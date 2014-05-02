@@ -1,0 +1,150 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 64 64 184 376)
+	(text "the_heart" (rect 5 0 59 14)(font "Arial" (font_size 8)))
+	(text "inst" (rect 0 296 17 308)(font "Arial" ))
+	(port
+		(pt 120 184)
+		(input)
+		(text "setM1" (rect 0 0 34 14)(font "Arial" (font_size 8)))
+		(text "setM1" (rect 69 176 103 190)(font "Arial" (font_size 8)))
+		(line (pt 104 184)(pt 120 184))
+	)
+	(port
+		(pt 120 24)
+		(input)
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 88 16 103 30)(font "Arial" (font_size 8)))
+		(line (pt 104 24)(pt 120 24))
+	)
+	(port
+		(pt 120 152)
+		(input)
+		(text "nextM" (rect 0 0 34 14)(font "Arial" (font_size 8)))
+		(text "nextM" (rect 64 144 98 158)(font "Arial" (font_size 8)))
+		(line (pt 104 152)(pt 120 152))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "reset" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "reset" (rect 21 35 50 49)(font "Arial" (font_size 8)))
+		(line (pt 0 40)(pt 16 40))
+	)
+	(port
+		(pt 120 136)
+		(input)
+		(text "hold_clk" (rect 0 0 46 14)(font "Arial" (font_size 8)))
+		(text "hold_clk" (rect 57 128 103 142)(font "Arial" (font_size 8)))
+		(line (pt 104 136)(pt 120 136))
+	)
+	(port
+		(pt 120 200)
+		(output)
+		(text "M1" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M1" (rect 83 195 99 209)(font "Arial" (font_size 8)))
+		(line (pt 120 200)(pt 104 200))
+	)
+	(port
+		(pt 120 216)
+		(output)
+		(text "M2" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M2" (rect 83 211 99 225)(font "Arial" (font_size 8)))
+		(line (pt 120 216)(pt 104 216))
+	)
+	(port
+		(pt 120 232)
+		(output)
+		(text "M3" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M3" (rect 83 227 99 241)(font "Arial" (font_size 8)))
+		(line (pt 120 232)(pt 104 232))
+	)
+	(port
+		(pt 120 248)
+		(output)
+		(text "M4" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M4" (rect 83 243 99 257)(font "Arial" (font_size 8)))
+		(line (pt 120 248)(pt 104 248))
+	)
+	(port
+		(pt 120 264)
+		(output)
+		(text "M5" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M5" (rect 83 259 99 273)(font "Arial" (font_size 8)))
+		(line (pt 120 264)(pt 104 264))
+	)
+	(port
+		(pt 120 280)
+		(output)
+		(text "M6" (rect 0 0 16 14)(font "Arial" (font_size 8)))
+		(text "M6" (rect 83 275 99 289)(font "Arial" (font_size 8)))
+		(line (pt 120 280)(pt 104 280))
+	)
+	(port
+		(pt 120 40)
+		(output)
+		(text "T1" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T1" (rect 85 35 99 49)(font "Arial" (font_size 8)))
+		(line (pt 120 40)(pt 104 40))
+	)
+	(port
+		(pt 120 56)
+		(output)
+		(text "T2" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T2" (rect 85 51 99 65)(font "Arial" (font_size 8)))
+		(line (pt 120 56)(pt 104 56))
+	)
+	(port
+		(pt 120 72)
+		(output)
+		(text "T3" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T3" (rect 85 67 99 81)(font "Arial" (font_size 8)))
+		(line (pt 120 72)(pt 104 72))
+	)
+	(port
+		(pt 120 88)
+		(output)
+		(text "T4" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T4" (rect 85 83 99 97)(font "Arial" (font_size 8)))
+		(line (pt 120 88)(pt 104 88))
+	)
+	(port
+		(pt 120 104)
+		(output)
+		(text "T5" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T5" (rect 85 99 99 113)(font "Arial" (font_size 8)))
+		(line (pt 120 104)(pt 104 104))
+	)
+	(port
+		(pt 120 120)
+		(output)
+		(text "T6" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "T6" (rect 85 115 99 129)(font "Arial" (font_size 8)))
+		(line (pt 120 120)(pt 104 120))
+	)
+	(drawing
+		(text "THE SEQUENCER" (rect 30 107 44 204)(font "Arial" (font_size 8))(vertical))
+		(rectangle (rect 16 16 104 296))
+	)
+	(fill (color 253 211 206))
+)
