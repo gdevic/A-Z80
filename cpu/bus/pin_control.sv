@@ -51,7 +51,6 @@ module pin_control
     // Outputs to internal blocks
     //----------------------------------------------------------
     output wire holdClk,                // Signal to the sequencer to hold a clock
-    output wire nextM,                  // Signal to the sequencer that we are done with a function
     output wire ctl_ab_oe,              // Address bus pads: output enable to pins
     output wire ctl_ab_wr,              // Address bus pads: write address from internal AB
     output wire ctl_db_oe,              // Data bus pads: output enable
@@ -108,12 +107,12 @@ assign rfsh   = (fFetch   & (T3 | T4)) |
 
 //----------------------------------------------------------------------------
 // Signal the end of a particular M-cycle
-assign nextM  = (fFetch   & T4) |
-                (fMRead   & T3) |
-                (fMWrite  & T3) |
-                (fIORead  & T4) |
-                (fIOWrite & T4) |
-                (fIntr    & T6);
+//assign nextM  = (fFetch   & T4) |
+//                (fMRead   & T3) |
+//                (fMWrite  & T3) |
+//                (fIORead  & T4) |
+//                (fIOWrite & T4) |
+//                (fIntr    & T6);
 
 //----------------------------------------------------------------------------
 // The usual state advancing mechanism can be temporarily paused if the pins

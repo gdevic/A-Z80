@@ -55,7 +55,7 @@ for line in content:
             ctl[col_clean[0]] = col_clean[1]
             # Print the control wire to the module argument section
             name = "{0:<24}".format(col_clean[0] + ',')
-            imodule.append("output wire {0}// {1}".format(name, col_clean[2]))
+            imodule.append("output reg {0}// {1}".format(name, col_clean[2]))
             # Print the control wire to the wire initialization section
             name = "{0:<20}".format(col_clean[0])
             izero.append("{0} = {1}'h0;        // Reset {2}".format(name, col_clean[1], col_clean[2]))
