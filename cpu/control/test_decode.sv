@@ -6,19 +6,88 @@ reg [7:0] ir_sig;
 reg [4:0] prefix_sig;
 wire [107:0] pla_sig;
 
-integer opcode;
-integer file, r;
-
 initial begin
-    // Test every opcode in the first table: Instructions with no prefix
-    prefix_sig[4:0] = 5'b00100;
-    $display("prefix_sig[4:0] = 5'b00100;");
+    integer opcode;
+    // Test every opcode in the first table
+
+    //================================================
+    // Regular instructions with no prefix
+    //================================================
+    prefix_sig[4:0] = 5'b10100;
+    $display("START IXY0:XX");
     opcode = 0;
     while(opcode<256) begin
-        #1 $display("%H", opcode);
+        #1 $display("OPCODE: 0x%2H", opcode);
         ir_sig[7:0] = opcode;
         opcode++;
     end
+    #1 $display("END");
+
+    //================================================
+    // Regular instructions with IX/IY prefix
+    //================================================
+    prefix_sig[4:0] = 5'b01100;
+    $display("START IXY1:XX");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("OPCODE: 0x%2H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
+    #1 $display("END");
+
+    //================================================
+    // CD instructions with no prefix
+    //================================================
+    prefix_sig[4:0] = 5'b10010;
+    $display("START IXY0:CB");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("OPCODE: 0x%2H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
+    #1 $display("END");
+
+    //================================================
+    // CB instructions with IX/IY prefix
+    //================================================
+    prefix_sig[4:0] = 5'b01010;
+    $display("START IXY1:CB");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("OPCODE: 0x%2H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
+    #1 $display("END");
+
+    //================================================
+    // ED instructions with no prefix
+    //================================================
+    prefix_sig[4:0] = 5'b10001;
+    $display("START IXY0:ED");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("OPCODE: 0x%2H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
+    #1 $display("END");
+
+    //================================================
+    // ED instructions with IX/IY prefix
+    //================================================
+    prefix_sig[4:0] = 5'b01001;
+    $display("START IXY1:ED");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("OPCODE: 0x%2H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
+    #1 $display("END");
+
 end
 
 pla_decode pla_decode_inst

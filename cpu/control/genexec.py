@@ -69,6 +69,7 @@ for line in content:
             description = col_clean[2]
             imatrix.append("if ({0}) begin".format(condition))
             imatrix.append("    $display(\"{0} {1}\");".format(condition, description))
+            
             # Reset the M and T cycle counters
             M = 1
             T = 1
