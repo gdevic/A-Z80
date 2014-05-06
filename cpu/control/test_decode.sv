@@ -6,14 +6,19 @@ reg [7:0] ir_sig;
 reg [4:0] prefix_sig;
 wire [107:0] pla_sig;
 
-initial begin
-    prefix_sig[4:0] = 5'b00100;
-end
+integer opcode;
+integer file, r;
 
-always begin
-    ir_sig[7:0] = 8'h27;
-    #10;
-    $stop;
+initial begin
+    // Test every opcode in the first table: Instructions with no prefix
+    prefix_sig[4:0] = 5'b00100;
+    $display("prefix_sig[4:0] = 5'b00100;");
+    opcode = 0;
+    while(opcode<256) begin
+        #1 $display("%H", opcode);
+        ir_sig[7:0] = opcode;
+        opcode++;
+    end
 end
 
 pla_decode pla_decode_inst
