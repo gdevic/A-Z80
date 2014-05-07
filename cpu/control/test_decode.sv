@@ -8,83 +8,102 @@ wire [107:0] pla_sig;
 
 initial begin
     integer opcode;
+    
     // Test every opcode in the first table
 
     //================================================
     // Regular instructions with no prefix
     //================================================
-    prefix_sig[4:0] = 5'b10100;
     $display("START IXY0:XX");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b10100;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
     //================================================
     // Regular instructions with IX/IY prefix
     //================================================
-    prefix_sig[4:0] = 5'b01100;
     $display("START IXY1:XX");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
     //================================================
     // CD instructions with no prefix
     //================================================
-    prefix_sig[4:0] = 5'b10010;
     $display("START IXY0:CB");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b10010;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
     //================================================
     // CB instructions with IX/IY prefix
     //================================================
-    prefix_sig[4:0] = 5'b01010;
     $display("START IXY1:CB");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b01010;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
     //================================================
     // ED instructions with no prefix
     //================================================
-    prefix_sig[4:0] = 5'b10001;
     $display("START IXY0:ED");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b10001;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
     //================================================
     // ED instructions with IX/IY prefix
     //================================================
-    prefix_sig[4:0] = 5'b01001;
     $display("START IXY1:ED");
     opcode = 0;
     while(opcode<256) begin
         #1 $display("OPCODE: 0x%2H", opcode);
-        ir_sig[7:0] = opcode;
-        opcode++;
+           prefix_sig[4:0] = 5'b01001;
+           ir_sig[7:0] = opcode;
+        #1 // Reset the IR into NOP so we get the trigger signal again
+           prefix_sig[4:0] = 5'b01100;
+           ir_sig[7:0] = 0;
+           opcode++;
     end
     #1 $display("END");
 
