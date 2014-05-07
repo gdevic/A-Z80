@@ -2,15 +2,20 @@
 # This script reads Z80 instruction timing data from a spreadsheet text file
 # and generates a set of Verilog include files for control block.
 #
-# Before exporting the spreadsheet, search for "Region and Language" Windows 7 applet,
-# Customize format and select "|" as the List separator. This is our separator character.
+# Input timing file is exported from the Excel file as TAB-delimited text file
 #
 import string
 import sys
-import re
+import csv
 
 # Input file exported from a timing spreadsheet:
 fname = "Instruction timings.csv"
+
+# Helper function to shorten the condition string. This strips all extended
+# PLA logic conditions for the purpose of $display-ing a simpler string
+def shortCondition(condString):
+    end = condString.find("]") + 1
+    return condString[0:end]
 
 ctl = {}
 imodule = []
@@ -18,19 +23,17 @@ izero = []
 imatrix = []
 in_defs = False     # States that we are inside the control wire definition section
 
-# Read the content of a file, all at once
-with open(fname) as f:
-    content = f.read().splitlines()
+# Read the content of a file and using the csv reader remove any quotes from the input fields
+content = []
+with open(fname, 'rb') as csvFile:
+    reader = csv.reader(csvFile, delimiter='\t', quotechar='"')
+    for row in reader:
+        content.append('\t'.join(row))
 
 # Search for the section that contains the list of control wires
 for line in content:
-    # We have this unfortunate case of | being in our automated dump and causing
-    # Excel to export it enclosed with "  Remove it and delete | that it contains.
-    match = re.match("^\"([\s\S]*)\"([\s\S]*)", line, re.M|re.I)
-    if match:
-        line = "{0}{1}".format(match.group(1).replace("|", ""), match.group(2))
-    col = line.split('|')           # Split the string into a list of columns
-    col_clean = filter(None, col)   # Removed all empty fields (between the separators |)
+    col = line.split('\t')          # Split the string into a list of columns
+    col_clean = filter(None, col)   # Removed all empty fields (between the separators)
     if len(col_clean)==0:           # Ignore completely empty lines
         continue
     # A small state machine tracking where we are during a single pass over the list
@@ -68,7 +71,7 @@ for line in content:
             condition = col_clean[1]
             description = col_clean[2]
             imatrix.append("if ({0}) begin".format(condition))
-            imatrix.append("    $display(\"{0} {1}\");".format(condition, description))
+            imatrix.append("    $display(\"{0} {1}\");".format(shortCondition(condition), description))
             
             # Reset the M and T cycle counters
             M = 1
@@ -94,7 +97,7 @@ for line in content:
         # Column G (index 6) is one or more state control wires (nextM and setM1)
         #==================================================================
         if col[6]!='':
-            c = col[6].split(',')
+            c = col[6].split(';')
             for c2 in c:
                 state += "{0:<9}".format(c2 + '=1;')
         else:
