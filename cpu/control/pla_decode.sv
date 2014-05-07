@@ -16,21 +16,11 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX110)  pla[ 96]=1'b1; else pla[ 96]=1'b0;   // 01xxx110  im n
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX01110110)  pla[ 95]=1'b1; else pla[ 95]=1'b0;   // 01110110  halt
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00110111)  pla[ 92]=1'b1; else pla[ 92]=1'b0;   // 00110111  scf
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX01X)  pla[ 91]=1'b1; else pla[ 91]=1'b0;   // 101xx01x  inx/outx/inxr/otxr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00111111)  pla[ 89]=1'b1; else pla[ 89]=1'b0;   // 00111111  ccf
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX101XXX)  pla[ 88]=1'b1; else pla[ 88]=1'b0;   // xx101xxx  101 (XOR)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX110XXX)  pla[ 86]=1'b1; else pla[ 86]=1'b0;   // xx110xxx  110 (OR)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX100XXX)  pla[ 85]=1'b1; else pla[ 85]=1'b0;   // xx100xxx  100 (AND)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX000XXX)  pla[ 84]=1'b1; else pla[ 84]=1'b0;   // xx000xxx  000 (ADD)
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX10101X111)  pla[ 83]=1'b1; else pla[ 83]=1'b0;   // 0101x111  ld a,i/ld a,r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX100)  pla[ 82]=1'b1; else pla[ 82]=1'b0;   // 01xxx100  neg
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00101111)  pla[ 81]=1'b1; else pla[ 81]=1'b0;   // 00101111  cpl
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX001XXX)  pla[ 80]=1'b1; else pla[ 80]=1'b0;   // xx001xxx  001 (ADC)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX011XXX)  pla[ 79]=1'b1; else pla[ 79]=1'b0;   // xx011xxx  011 (SBC)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX010XXX)  pla[ 78]=1'b1; else pla[ 78]=1'b0;   // xx010xxx  010 (SUB)
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00100111)  pla[ 77]=1'b1; else pla[ 77]=1'b0;   // 00100111  daa
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXXXXX111XXX)  pla[ 76]=1'b1; else pla[ 76]=1'b0;   // xx111xxx  111 (CP)
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XXX101)  pla[ 75]=1'b1; else pla[ 75]=1'b0;   // 00xxx101  dec r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXX1X11XXXXXX)  pla[ 74]=1'b1; else pla[ 74]=1'b0;   // 11xxxxxx  set
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXX1X10XXXXXX)  pla[ 73]=1'b1; else pla[ 73]=1'b0;   // 10xxxxxx  res
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXX1X01XXXXXX)  pla[ 72]=1'b1; else pla[ 72]=1'b0;   // 01xxxxxx  bit
@@ -41,7 +31,6 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XXX10X)  pla[ 66]=1'b1; else pla[ 66]=1'b0;   // 00xxx10x  inc/dec r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX10XXXXXX)  pla[ 65]=1'b1; else pla[ 65]=1'b0;   // 10xxxxxx  add/sub/and/or/xor/cmp a,r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX110)  pla[ 64]=1'b1; else pla[ 64]=1'b0;   // 11xxx110  add/sub/and/or/xor/cmp a,n
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXX1XXXXXXXXX)  pla[ 62]=1'b1; else pla[ 62]=1'b0;   // xxxxxxxx  Every CB
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX01XXXXXX)  pla[ 61]=1'b1; else pla[ 61]=1'b0;   // 01xxxxxx  ld r,r'
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX01110XXX)  pla[ 59]=1'b1; else pla[ 59]=1'b0;   // 01110xxx  ld (hl),r
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX01XXX110)  pla[ 58]=1'b1; else pla[ 58]=1'b0;   // 01xxx110  ld r,(hl)
@@ -67,12 +56,9 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX1101X011)  pla[ 37]=1'b1; else pla[ 37]=1'b0;   // 1101x011  out (n),a/in a,(n)
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11001001)  pla[ 35]=1'b1; else pla[ 35]=1'b0;   // 11001001  ret
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX001)  pla[ 34]=1'b1; else pla[ 34]=1'b0;   // 01xxx001  out (c),r
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XX0011)  pla[ 33]=1'b1; else pla[ 33]=1'b0;   // 01xx0011  ld (nn),rr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX011)  pla[ 31]=1'b1; else pla[ 31]=1'b0;   // 01xxx011  ld rr,(nn)/(nn),rr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX0010X010)  pla[ 30]=1'b1; else pla[ 30]=1'b0;   // 0010x010  ld hl,(nn)/(nn),hl
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11000011)  pla[ 29]=1'b1; else pla[ 29]=1'b0;   // 11000011  jp nn
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11010011)  pla[ 28]=1'b1; else pla[ 28]=1'b0;   // 11010011  out (n),a
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX00X)  pla[ 27]=1'b1; else pla[ 27]=1'b0;   // 01xxx00x  in/out
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00010000)  pla[ 26]=1'b1; else pla[ 26]=1'b0;   // 00010000  djnz e
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX000XX111)  pla[ 25]=1'b1; else pla[ 25]=1'b0;   // 000xx111  rlca/rla/rrca/rra
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11001101)  pla[ 24]=1'b1; else pla[ 24]=1'b0;   // 11001101  call nn
@@ -81,10 +67,7 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX010)  pla[ 21]=1'b1; else pla[ 21]=1'b0;   // 101xx010  inx/inxr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX011)  pla[ 20]=1'b1; else pla[ 20]=1'b0;   // 101xx011  outx/otxr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XXX110)  pla[ 17]=1'b1; else pla[ 17]=1'b0;   // 00xxx110  ld r,n
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XX0101)  pla[ 16]=1'b1; else pla[ 16]=1'b0;   // 11xx0101  push qq
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX10110X111)  pla[ 15]=1'b1; else pla[ 15]=1'b0;   // 0110x111  rrd/rld
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XX1011)  pla[ 14]=1'b1; else pla[ 14]=1'b0;   // 00xx1011  dec ss
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XX0010)  pla[ 13]=1'b1; else pla[ 13]=1'b0;   // 00xx0010  ld(rr),a/ld(nn),a/ld(nn),hl
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX000)  pla[ 12]=1'b1; else pla[ 12]=1'b0;   // 101xx000  ldi/ldir/ldd/lddr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX001)  pla[ 11]=1'b1; else pla[ 11]=1'b0;   // 101xx001  cpi/cpir/cpd/cpdr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11100011)  pla[ 10]=1'b1; else pla[ 10]=1'b0;   // 11100011  ex (sp),hl
@@ -93,16 +76,33 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XX0001)  pla[  7]=1'b1; else pla[  7]=1'b0;   // 00xx0001  ld rr,nn
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11101001)  pla[  6]=1'b1; else pla[  6]=1'b0;   // 11101001  jp hl
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11111001)  pla[  5]=1'b1; else pla[  5]=1'b0;   // 11111001  ld sp,hl
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1010XX111)  pla[  4]=1'b1; else pla[  4]=1'b0;   // 010xx111  ld i,a/a,i/r,a/a,r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11X11101)  pla[  3]=1'b1; else pla[  3]=1'b0;   // 11x11101  IX/IY
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11101011)  pla[  2]=1'b1; else pla[  2]=1'b0;   // 11101011  ex de,hl
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11011001)  pla[  1]=1'b1; else pla[  1]=1'b0;   // 11011001  exx
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX11010X0XX)  pla[  0]=1'b1; else pla[  0]=1'b0;   // 1010x0xx  ldx/cpx/inx/outx
 
     // PLA table entries that are ignored (not used)
+    pla[ 88]=1'b0;   // xx101xxx  101 (XOR)
+    pla[ 86]=1'b0;   // xx110xxx  110 (OR)
+    pla[ 85]=1'b0;   // xx100xxx  100 (AND)
+    pla[ 84]=1'b0;   // xx000xxx  000 (ADD)
+    pla[ 80]=1'b0;   // xx001xxx  001 (ADC)
+    pla[ 79]=1'b0;   // xx011xxx  011 (SBC)
+    pla[ 78]=1'b0;   // xx010xxx  010 (SUB)
+    pla[ 76]=1'b0;   // xx111xxx  111 (CP)
     pla[101]=1'b0;   // xxx1xxxx  opcode[4]
     pla[100]=1'b0;   // xxxx1xxx  opcode[3]
     pla[ 99]=1'b0;   // xxxxxxx1  opcode[0]
+    pla[ 91]=1'b0;   // 101xx01x  _blockio(20,21)
+    pla[ 75]=1'b0;   // 00xxx101  _dec(53,66,105)
+    pla[ 62]=1'b0;   // xxxxxxxx  Every CB
+    pla[ 33]=1'b0;   // 01xx0011  _store(31)
+    pla[ 28]=1'b0;   // 11010011  _out(37)
+    pla[ 27]=1'b0;   // 01xxx00x  _io(34,67)
+    pla[ 16]=1'b0;   // 11xx0101  _push(23)
+    pla[ 14]=1'b0;   // 00xx1011  _dec(9)
+    pla[ 13]=1'b0;   // 00xx0010  _dir(8,30,38)
+    pla[  4]=1'b0;   // 010xx111  _useir(57,83)
+    pla[  0]=1'b0;   // 1010x0xx  _break(11,12,20,21)
     pla[ 98]=1'b0;   // 1101x011  out (*),a/in a,(*)
     pla[ 94]=1'b0;   // 101xx000  ldi/ldir/ldd/lddr
     pla[ 93]=1'b0;   // 101xx001  cpi/cpir/cpd/cpdr
@@ -121,5 +121,4 @@ begin
 end
 
 endmodule
-
 
