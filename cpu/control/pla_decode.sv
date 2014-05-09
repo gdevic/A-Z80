@@ -31,23 +31,22 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XXX10X)  pla[ 66]=1'b1; else pla[ 66]=1'b0;   // 00xxx10x  inc/dec r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX10XXXXXX)  pla[ 65]=1'b1; else pla[ 65]=1'b0;   // 10xxxxxx  add/sub/and/or/xor/cmp a,r
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX110)  pla[ 64]=1'b1; else pla[ 64]=1'b0;   // 11xxx110  add/sub/and/or/xor/cmp a,n
+    if ({prefix[4:0], ir[7:0]} ==? 13'b1XX1XXXXXXXXX)  pla[ 62]=1'b1; else pla[ 62]=1'b0;   // xxxxxxxx  Every CB without IX/IY
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX01XXXXXX)  pla[ 61]=1'b1; else pla[ 61]=1'b0;   // 01xxxxxx  ld r,r'
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX01110XXX)  pla[ 59]=1'b1; else pla[ 59]=1'b0;   // 01110xxx  ld (hl),r
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX01XXX110)  pla[ 58]=1'b1; else pla[ 58]=1'b0;   // 01xxx110  ld r,(hl)
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX10100X111)  pla[ 57]=1'b1; else pla[ 57]=1'b0;   // 0100x111  ld i,a/ld r,a
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX111)  pla[ 56]=1'b1; else pla[ 56]=1'b0;   // 11xxx111  rst
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXXX1XXXXXX110)  pla[ 55]=1'b1; else pla[ 55]=1'b0;   // xxxxx110  cb: op (hl)
     if ({prefix[4:0], ir[7:0]} ==? 13'bX1X1XXXXXXXXX)  pla[ 54]=1'b1; else pla[ 54]=1'b0;   // xxxxxxxx  Every CB with IX/IY
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX0011010X)  pla[ 53]=1'b1; else pla[ 53]=1'b0;   // 0011010x  inc/dec (hl)
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX10XXX110)  pla[ 52]=1'b1; else pla[ 52]=1'b0;   // 10xxx110  add/sub/and/or/xor/cp (hl)
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11101101)  pla[ 51]=1'b1; else pla[ 51]=1'b0;   // 11101101  ED
     if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX00110110)  pla[ 50]=1'b1; else pla[ 50]=1'b0;   // 00110110  ld (hl),n
-    if ({prefix[4:0], ir[7:0]} ==? 13'bX1XXX11001011)  pla[ 49]=1'b1; else pla[ 49]=1'b0;   // 11001011  IX/IY + CB
+    if ({prefix[4:0], ir[7:0]} ==? 13'bX11XX11001011)  pla[ 49]=1'b1; else pla[ 49]=1'b0;   // 11001011  CB with IX/IY
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX001XX000)  pla[ 48]=1'b1; else pla[ 48]=1'b0;   // 001xx000  jr ss,e
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00011000)  pla[ 47]=1'b1; else pla[ 47]=1'b0;   // 00011000  jr e
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX101XXX101)  pla[ 46]=1'b1; else pla[ 46]=1'b0;   // 01xxx101  reti/retn
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX000)  pla[ 45]=1'b1; else pla[ 45]=1'b0;   // 11xxx000  ret cc
-    if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11001011)  pla[ 44]=1'b1; else pla[ 44]=1'b0;   // 11001011  CB regular
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX010)  pla[ 43]=1'b1; else pla[ 43]=1'b0;   // 11xxx010  jp cc,nn
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XXX100)  pla[ 42]=1'b1; else pla[ 42]=1'b0;   // 11xxx100  call cc,nn
     if ({prefix[4:0], ir[7:0]} ==? 13'bX11XX00110110)  pla[ 40]=1'b1; else pla[ 40]=1'b0;   // 00110110  ld (ix+d),n
@@ -63,7 +62,7 @@ begin
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX000XX111)  pla[ 25]=1'b1; else pla[ 25]=1'b0;   // 000xx111  rlca/rla/rrca/rra
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11001101)  pla[ 24]=1'b1; else pla[ 24]=1'b0;   // 11001101  call nn
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX11XX0X01)  pla[ 23]=1'b1; else pla[ 23]=1'b0;   // 11xx0x01  push qq/pop qq
-    if ({prefix[4:0], ir[7:0]} ==? 13'b1XXXX11001011)  pla[ 22]=1'b1; else pla[ 22]=1'b0;   // 11001011  CB without IX/IY
+    if ({prefix[4:0], ir[7:0]} ==? 13'b1X1XX11001011)  pla[ 22]=1'b1; else pla[ 22]=1'b0;   // 11001011  CB without IX/IY
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX010)  pla[ 21]=1'b1; else pla[ 21]=1'b0;   // 101xx010  inx/inxr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXXXX1101XX011)  pla[ 20]=1'b1; else pla[ 20]=1'b0;   // 101xx011  outx/otxr
     if ({prefix[4:0], ir[7:0]} ==? 13'bXX1XX00XXX110)  pla[ 17]=1'b1; else pla[ 17]=1'b0;   // 00xxx110  ld r,n
@@ -94,7 +93,8 @@ begin
     pla[ 99]=1'b0;   // xxxxxxx1  opcode[0]
     pla[ 91]=1'b0;   // 101xx01x  _blockio(20,21)
     pla[ 75]=1'b0;   // 00xxx101  _dec(53,66,105)
-    pla[ 62]=1'b0;   // xxxxxxxx  Every CB
+    pla[ 55]=1'b0;   // xxxxx110  _cbhl(70,72,73,74)
+    pla[ 44]=1'b0;   // 11001011  _cb
     pla[ 33]=1'b0;   // 01xx0011  _store(31)
     pla[ 28]=1'b0;   // 11010011  _out(37)
     pla[ 27]=1'b0;   // 01xxx00x  _io(34,67)

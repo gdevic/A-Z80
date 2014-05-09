@@ -101,7 +101,7 @@ initial begin
            prefix_sig[4:0] = 5'b01001;
            ir_sig[7:0] = opcode;
         #1 // Reset the IR into NOP so we get the trigger signal again
-           prefix_sig[4:0] = 5'b01100;
+           prefix_sig[4:0] = 5'b01001;
            ir_sig[7:0] = 0;
            opcode++;
     end
