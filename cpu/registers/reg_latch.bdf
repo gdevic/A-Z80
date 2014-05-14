@@ -21,9 +21,9 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 64 40 232 56)
+	(rect 40 40 208 56)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "oe" (rect 5 0 17 12)(font "Arial" ))
+	(text "oe" (rect 5 0 16 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -37,9 +37,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 64 112 232 128)
+	(rect 40 112 208 128)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "we" (rect 5 0 18 12)(font "Arial" ))
+	(text "we" (rect 5 0 17 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -572,6 +572,40 @@ applicable agreement for further details.
 		(line (pt 14 7)(pt 32 16))
 	)
 )
+(symbol
+	(rect 240 32 304 80)
+	(text "XOR" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst1" (rect 3 37 26 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 11 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 11 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 49 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 13)(pt 25 13))
+		(line (pt 14 36)(pt 25 36))
+		(arc (pt 7 29)(pt 7 19)(rect -14 8 19 41))
+		(arc (pt 49 24)(pt 25 13)(rect -6 13 57 76))
+		(arc (pt 25 35)(pt 49 24)(rect -6 -27 57 36))
+		(arc (pt 8 36)(pt 8 12)(rect -21 7 14 42))
+	)
+)
 (connector
 	(pt 408 112)
 	(pt 384 112)
@@ -605,20 +639,12 @@ applicable agreement for further details.
 	(pt 408 192)
 )
 (connector
-	(pt 232 48)
-	(pt 400 48)
-)
-(connector
 	(pt 432 88)
 	(pt 400 88)
 )
 (connector
 	(pt 432 96)
 	(pt 432 88)
-)
-(connector
-	(pt 400 48)
-	(pt 400 88)
 )
 (connector
 	(pt 400 648)
@@ -694,10 +720,6 @@ applicable agreement for further details.
 )
 (connector
 	(pt 432 168)
-	(pt 400 168)
-)
-(connector
-	(pt 400 88)
 	(pt 400 168)
 )
 (connector
@@ -782,14 +804,6 @@ applicable agreement for further details.
 (connector
 	(pt 320 200)
 	(pt 304 200)
-)
-(connector
-	(pt 320 120)
-	(pt 304 120)
-)
-(connector
-	(pt 304 120)
-	(pt 232 120)
 )
 (connector
 	(pt 320 280)
@@ -938,6 +952,42 @@ applicable agreement for further details.
 	(pt 248 104)
 	(pt 320 104)
 )
+(connector
+	(pt 400 56)
+	(pt 400 88)
+)
+(connector
+	(pt 400 88)
+	(pt 400 168)
+)
+(connector
+	(pt 304 56)
+	(pt 400 56)
+)
+(connector
+	(pt 208 48)
+	(pt 240 48)
+)
+(connector
+	(pt 304 120)
+	(pt 320 120)
+)
+(connector
+	(pt 240 64)
+	(pt 224 64)
+)
+(connector
+	(pt 224 64)
+	(pt 224 120)
+)
+(connector
+	(pt 208 120)
+	(pt 224 120)
+)
+(connector
+	(pt 224 120)
+	(pt 304 120)
+)
 (junction (pt 400 88))
 (junction (pt 400 568))
 (junction (pt 400 488))
@@ -967,3 +1017,5 @@ applicable agreement for further details.
 (junction (pt 248 504))
 (junction (pt 248 584))
 (junction (pt 248 664))
+(junction (pt 224 120))
+(text "Disable OE if WE is also asserted" (rect 312 40 500 54)(font "Arial" (font_size 8)))
