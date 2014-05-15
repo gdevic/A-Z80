@@ -133,23 +133,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 96 56 264 72)
-	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_sel_gp" (rect 5 0 75 12)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
-	)
-	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
-	(rect 96 1064 272 1080)
+	(rect 96 1104 272 1120)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_wz" (rect 5 0 75 12)(font "Arial" ))
 	(pt 176 8)
@@ -165,7 +149,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 96 1144 272 1160)
+	(rect 96 1184 272 1200)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_pc" (rect 5 0 75 12)(font "Arial" ))
 	(pt 176 8)
@@ -181,7 +165,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 104 1168 272 1184)
+	(rect 104 1208 272 1224)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_ir" (rect 5 0 69 12)(font "Arial" ))
 	(pt 168 8)
@@ -197,7 +181,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 96 1040 272 1056)
+	(rect 96 1080 272 1096)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_sp" (rect 5 0 75 12)(font "Arial" ))
 	(pt 176 8)
@@ -215,7 +199,7 @@ applicable agreement for further details.
 	(input)
 	(rect 80 32 264 48)
 	(text "INPUT" (rect 141 0 169 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_sel_gp_16" (rect 5 0 94 12)(font "Arial" ))
+	(text "ctl_reg_sel_gp_16" (rect 5 0 93 12)(font "Arial" ))
 	(pt 184 8)
 	(drawing
 		(line (pt 100 12)(pt 125 12))
@@ -229,9 +213,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 80 1200 272 1216)
+	(rect 80 1240 272 1256)
 	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_sel_sys_hi" (rect 5 0 98 12)(font "Arial" ))
+	(text "ctl_reg_sel_sys_hi" (rect 5 0 97 12)(font "Arial" ))
 	(pt 192 8)
 	(drawing
 		(line (pt 108 12)(pt 133 12))
@@ -245,9 +229,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 80 1224 272 1240)
+	(rect 80 1264 272 1280)
 	(text "INPUT" (rect 149 0 177 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_sel_sys_lo" (rect 5 0 98 12)(font "Arial" ))
+	(text "ctl_reg_sel_sys_lo" (rect 5 0 97 12)(font "Arial" ))
 	(pt 192 8)
 	(drawing
 		(line (pt 108 12)(pt 133 12))
@@ -261,9 +245,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 96 1256 272 1272)
+	(rect 96 1296 272 1312)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_sys_oe" (rect 5 0 81 12)(font "Arial" ))
+	(text "ctl_reg_sys_oe" (rect 5 0 80 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -277,9 +261,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 96 1096 272 1112)
+	(rect 96 1136 272 1152)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_reg_gp_oe" (rect 5 0 74 12)(font "Arial" ))
+	(text "ctl_reg_gp_oe" (rect 5 0 73 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -290,6 +274,22 @@ applicable agreement for further details.
 		(line (pt 117 12)(pt 121 8))
 	)
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 104 1000 272 1016)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "ctl_reg_sel_gp" (rect 5 0 75 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
 )
 (pin
 	(output)
@@ -453,7 +453,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1064 1352 1080)
+	(rect 1176 1104 1352 1120)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_wz" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
@@ -469,7 +469,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1144 1352 1160)
+	(rect 1176 1184 1352 1200)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_pc" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
@@ -485,7 +485,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1168 1352 1184)
+	(rect 1176 1208 1352 1224)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_ir" (rect 90 0 137 12)(font "Arial" ))
 	(pt 0 8)
@@ -549,7 +549,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1200 1352 1216)
+	(rect 1176 1240 1352 1256)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_sys_hi" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
@@ -565,7 +565,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1224 1352 1240)
+	(rect 1176 1264 1352 1280)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_sys_lo" (rect 90 0 164 12)(font "Arial" ))
 	(pt 0 8)
@@ -581,7 +581,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1256 1352 1272)
+	(rect 1176 1296 1352 1312)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sys_oe" (rect 90 0 147 12)(font "Arial" ))
 	(pt 0 8)
@@ -597,7 +597,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1176 1096 1352 1112)
+	(rect 1176 1136 1352 1152)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_gp_oe" (rect 90 0 140 12)(font "Arial" ))
 	(pt 0 8)
@@ -1065,7 +1065,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 504 768 568 848)
+	(rect 512 768 576 848)
 	(text "TFF" (rect 1 0 18 10)(font "Arial" (font_size 6)))
 	(text "inst9" (rect 3 68 26 80)(font "Arial" ))
 	(port
@@ -1115,7 +1115,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 520 720 552 736)
+	(rect 528 720 560 736)
 	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
 	(text "inst22" (rect 3 5 32 17)(font "Arial" )(invisible))
 	(port
@@ -1948,6 +1948,72 @@ applicable agreement for further details.
 		(arc (pt 25 35)(pt 49 24)(rect -6 -27 57 36))
 	)
 )
+(symbol
+	(rect 392 992 456 1040)
+	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "inst2" (rect 3 37 26 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 42 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 12)(pt 30 12))
+		(line (pt 14 37)(pt 31 37))
+		(line (pt 14 12)(pt 14 37))
+		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
+	)
+)
+(symbol
+	(rect 312 1016 376 1064)
+	(text "NOR2" (rect 1 0 26 10)(font "Arial" (font_size 6)))
+	(text "inst3" (rect 3 37 26 49)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32))
+	)
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 54 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 12 36)(pt 23 36))
+		(line (pt 12 13)(pt 23 13))
+		(arc (pt 46 24)(pt 23 13)(rect -6 13 53 72))
+		(arc (pt 5 29)(pt 5 19)(rect -16 8 17 41))
+		(arc (pt 23 35)(pt 46 24)(rect -6 -23 53 36))
+		(circle (rect 46 20 54 28))
+	)
+)
 (connector
 	(pt 448 184)
 	(pt 432 184)
@@ -2408,52 +2474,8 @@ applicable agreement for further details.
 	(pt 632 432)
 )
 (connector
-	(pt 264 64)
-	(pt 464 64)
-)
-(connector
 	(pt 320 104)
 	(pt 320 184)
-)
-(connector
-	(pt 464 64)
-	(pt 464 144)
-)
-(connector
-	(pt 536 848)
-	(pt 536 856)
-)
-(connector
-	(pt 536 856)
-	(pt 584 856)
-)
-(connector
-	(pt 504 792)
-	(pt 488 792)
-)
-(connector
-	(pt 488 792)
-	(pt 488 760)
-)
-(connector
-	(pt 488 760)
-	(pt 536 760)
-)
-(connector
-	(pt 536 760)
-	(pt 584 760)
-)
-(connector
-	(pt 536 736)
-	(pt 536 760)
-)
-(connector
-	(pt 536 760)
-	(pt 536 768)
-)
-(connector
-	(pt 272 808)
-	(pt 504 808)
 )
 (connector
 	(pt 488 904)
@@ -2476,16 +2498,8 @@ applicable agreement for further details.
 	(pt 320 592)
 )
 (connector
-	(pt 464 144)
-	(pt 464 272)
-)
-(connector
 	(pt 464 272)
 	(pt 464 552)
-)
-(connector
-	(pt 464 552)
-	(pt 464 904)
 )
 (connector
 	(pt 344 280)
@@ -2546,10 +2560,6 @@ applicable agreement for further details.
 	(pt 1176 856)
 )
 (connector
-	(pt 584 760)
-	(pt 584 856)
-)
-(connector
 	(pt 736 920)
 	(pt 1040 920)
 )
@@ -2582,28 +2592,8 @@ applicable agreement for further details.
 	(pt 960 792)
 )
 (connector
-	(pt 568 792)
-	(pt 960 792)
-)
-(connector
-	(pt 960 792)
-	(pt 1056 792)
-)
-(connector
 	(pt 736 976)
 	(pt 1056 976)
-)
-(connector
-	(pt 272 1048)
-	(pt 1040 1048)
-)
-(connector
-	(pt 1040 1048)
-	(pt 1040 992)
-)
-(connector
-	(pt 1056 992)
-	(pt 1040 992)
 )
 (connector
 	(pt 1120 984)
@@ -2673,35 +2663,150 @@ applicable agreement for further details.
 	(pt 264 40)
 )
 (connector
-	(pt 272 1176)
-	(pt 1176 1176)
+	(pt 464 144)
+	(pt 464 272)
 )
 (connector
-	(pt 272 1208)
-	(pt 1176 1208)
+	(pt 464 1016)
+	(pt 456 1016)
 )
 (connector
-	(pt 272 1232)
-	(pt 1176 1232)
+	(pt 464 552)
+	(pt 464 904)
 )
 (connector
-	(pt 272 1152)
-	(pt 1176 1152)
+	(pt 464 904)
+	(pt 464 1016)
 )
 (connector
-	(pt 272 1264)
-	(pt 1176 1264)
+	(pt 272 1008)
+	(pt 392 1008)
 )
 (connector
-	(pt 272 1072)
-	(pt 1176 1072)
+	(pt 376 1040)
+	(pt 384 1040)
 )
 (connector
-	(pt 272 1104)
-	(pt 1176 1104)
+	(pt 384 1040)
+	(pt 384 1024)
+)
+(connector
+	(pt 384 1024)
+	(pt 392 1024)
+)
+(connector
+	(pt 1040 992)
+	(pt 1040 1088)
+)
+(connector
+	(pt 1056 992)
+	(pt 1040 992)
+)
+(connector
+	(pt 272 1216)
+	(pt 1176 1216)
+)
+(connector
+	(pt 272 1248)
+	(pt 1176 1248)
+)
+(connector
+	(pt 272 1272)
+	(pt 1176 1272)
+)
+(connector
+	(pt 272 1192)
+	(pt 1176 1192)
+)
+(connector
+	(pt 272 1304)
+	(pt 1176 1304)
+)
+(connector
+	(pt 272 1144)
+	(pt 1176 1144)
+)
+(connector
+	(pt 312 1048)
+	(pt 304 1048)
+)
+(connector
+	(pt 304 1048)
+	(pt 304 1088)
+)
+(connector
+	(pt 312 1032)
+	(pt 288 1032)
+)
+(connector
+	(pt 288 1032)
+	(pt 288 1112)
+)
+(connector
+	(pt 272 1088)
+	(pt 304 1088)
+)
+(connector
+	(pt 304 1088)
+	(pt 1040 1088)
+)
+(connector
+	(pt 272 1112)
+	(pt 288 1112)
+)
+(connector
+	(pt 288 1112)
+	(pt 1176 1112)
+)
+(connector
+	(pt 544 848)
+	(pt 544 856)
+)
+(connector
+	(pt 544 856)
+	(pt 592 856)
+)
+(connector
+	(pt 496 792)
+	(pt 496 760)
+)
+(connector
+	(pt 592 760)
+	(pt 592 856)
+)
+(connector
+	(pt 496 760)
+	(pt 544 760)
+)
+(connector
+	(pt 544 760)
+	(pt 592 760)
+)
+(connector
+	(pt 544 736)
+	(pt 544 760)
+)
+(connector
+	(pt 544 760)
+	(pt 544 768)
+)
+(connector
+	(pt 576 792)
+	(pt 960 792)
+)
+(connector
+	(pt 960 792)
+	(pt 1056 792)
+)
+(connector
+	(pt 496 792)
+	(pt 512 792)
+)
+(connector
+	(pt 272 808)
+	(pt 512 808)
 )
 (junction (pt 320 104))
-(junction (pt 464 144))
 (junction (pt 344 152))
 (junction (pt 320 184))
 (junction (pt 656 560))
@@ -2727,7 +2832,6 @@ applicable agreement for further details.
 (junction (pt 632 432))
 (junction (pt 632 376))
 (junction (pt 712 360))
-(junction (pt 536 760))
 (junction (pt 584 984))
 (junction (pt 656 912))
 (junction (pt 1040 864))
@@ -2735,6 +2839,10 @@ applicable agreement for further details.
 (junction (pt 344 104))
 (junction (pt 968 104))
 (junction (pt 1040 40))
+(junction (pt 464 904))
+(junction (pt 304 1088))
+(junction (pt 288 1112))
+(junction (pt 544 760))
 (text "BC" (rect 496 112 512 126)(font "Arial" (font_size 8)))
 (text "2'b00" (rect 384 120 414 134)(font "Arial" (font_size 8)))
 (text "2'b01" (rect 384 264 414 278)(font "Arial" (font_size 8)))
@@ -2745,13 +2853,13 @@ applicable agreement for further details.
 (text "AF" (rect 496 872 512 886)(font "Arial" (font_size 8)))
 (text "Use AF or SP" (rect 672 880 748 894)(font "Arial" (font_size 8)))
 (text "16-bit register access" (rect 280 24 405 38)(font "Arial" (font_size 8)))
-(text "Select general purpose registers" (rect 280 48 466 62)(font "Arial" (font_size 8)))
-(text "System register PC" (rect 288 1136 396 1150)(font "Arial" (font_size 8)))
-(text "System register IR" (rect 288 1160 391 1174)(font "Arial" (font_size 8)))
-(text "Select high byte of a syetem register" (rect 288 1192 496 1206)(font "Arial" (font_size 8)))
-(text "Select low byte of a system register" (rect 288 1216 494 1230)(font "Arial" (font_size 8)))
-(text "Output enable of a system register onto the data bus" (rect 288 1248 587 1262)(font "Arial" (font_size 8)))
-(text "Output enable of a general purpose register onto the data bus" (rect 288 1088 639 1102)(font "Arial" (font_size 8)))
-(text "GP register WZ" (rect 288 1056 375 1070)(font "Arial" (font_size 8)))
-(text "GP register SP" (rect 288 1032 370 1046)(font "Arial" (font_size 8)))
+(text "System register PC" (rect 288 1176 396 1190)(font "Arial" (font_size 8)))
+(text "System register IR" (rect 288 1200 391 1214)(font "Arial" (font_size 8)))
+(text "Select high byte of a syetem register" (rect 288 1232 496 1246)(font "Arial" (font_size 8)))
+(text "Select low byte of a system register" (rect 288 1256 494 1270)(font "Arial" (font_size 8)))
+(text "Output enable of a system register onto the data bus" (rect 288 1288 587 1302)(font "Arial" (font_size 8)))
+(text "Output enable of a general purpose register onto the data bus" (rect 288 1128 639 1142)(font "Arial" (font_size 8)))
+(text "GP register WZ" (rect 288 1096 375 1110)(font "Arial" (font_size 8)))
+(text "GP register SP" (rect 288 1072 370 1086)(font "Arial" (font_size 8)))
 (text "Use SP instead of AF" (rect 288 968 409 982)(font "Arial" (font_size 8)))
+(text "Select general purpose registers" (rect 288 992 474 1006)(font "Arial" (font_size 8)))
