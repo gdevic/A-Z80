@@ -98,43 +98,35 @@ initial begin
 
     //------------------------------------------------------------
     // Identify each 16-bit system register and check access to it
-    ctl_sw_4d_sig = 1;              // Use unified bus
-    #1  ctl_reg_sel_sys_hi_sig = 1; // 16-bit access
+    #1  ctl_sw_4d_sig = 1;          // Use unified bus: downstream
+        ctl_reg_sel_sys_hi_sig = 1; // 16-bit access
         ctl_reg_sel_sys_lo_sig = 1; // 16-bit access
         db_hi_ds = 8'h81;
         db_lo_ds = 8'h41;
         ctl_reg_sel_wz_sig = 1;     // WZ
-    #1  db_hi_ds = 8'hAA;
-        db_lo_ds = 8'h55;
-        ctl_sw_4d_sig = 0;
-    #1  db_hi_ds = 'z;
-        db_lo_ds = 'z;
-    #1  ctl_reg_sel_wz_sig = 0;     // WZ off
-
-    #10
+    #1  db_hi_ds = 8'h82;
+        db_lo_ds = 8'h42;
+        ctl_reg_sel_wz_sig = 0;     // WZ off
         ctl_reg_sel_pc_sig = 1;     // PC
-        
-        
     #1  db_hi_ds = 8'h83;
         db_lo_ds = 8'h43;
         ctl_reg_sel_pc_sig = 0;     // PC off
         ctl_reg_sel_ir_sig = 1;     // IR
-    // Read back
     #1  db_hi_ds = 'z;
         db_lo_ds = 'z;
         ctl_reg_sel_ir_sig = 0;     // IR off
+    // Read back
         ctl_reg_sys_oe_sig = 1;     // Write register value to bus
         ctl_reg_sel_wz_sig = 1;     // WZ
-    #1  ctl_reg_sel_pc_sig = 1;     // PC
-        ctl_reg_sel_wz_sig = 0;     // WZ off
-    #1  ctl_reg_sel_ir_sig = 1;     // IR
-        ctl_reg_sel_pc_sig = 0;     // PC off
-    #1  ctl_reg_sys_oe_sig = 0;     // End the test
-        ctl_reg_sel_ir_sig = 0;     // IR off
+    #1  ctl_reg_sel_wz_sig = 0;     // WZ off
+        ctl_reg_sel_pc_sig = 1;     // PC
+    #1  ctl_reg_sel_pc_sig = 0;     // PC off
+        ctl_reg_sel_ir_sig = 1;     // IR
+    // End the test
+    #1  ctl_reg_sel_ir_sig = 0;     // IR off
+        ctl_sw_4d_sig = 0;
         ctl_reg_sel_sys_hi_sig = 0;
         ctl_reg_sel_sys_lo_sig = 0;
-        ctl_sw_4d_sig = 0;
-    
     
     //------------------------------------------------------------
     // Identify each 16-bit register and check access to it
@@ -161,6 +153,7 @@ initial begin
     #1  reg_sel_sig = 3'b100;       // HL
     #1  reg_sel_sig = 3'b110;       // AF
     #1  ctl_reg_gp_oe_sig = 0;      // End the test
+        ctl_reg_sel_gp_16_sig = 0;
     
     //------------------------------------------------------------
     // Identify each 8-bit register and check access to it
@@ -203,29 +196,8 @@ initial begin
     #1  reg_sel_sig = 3'b111;       // low byte -> F
     #1  ctl_reg_gp_oe_sig = 0;      // End the test
 
-    //------------------------------------------------------------
-    // Test byte store to each of the GP registers, including shadow banks
-    #1  db_hi_ds = 8'h80;
-        reg_sel_sig = 3'b000;       // reg 0, high byte -> B
-        ctl_reg_sel_gp_sig = 1;     // select a GP register
-    #1  db_hi_ds = 'z;
-        ctl_reg_gp_oe_sig = 1;
 
-    //------------------------------------------------------------
-    // Store and read a byte from a system register
-    #1  db_hi_as = 8'h80;
-        db_lo_as = 8'h00;
-        ctl_reg_sel_sys_hi_sig = 1;
-        ctl_reg_sel_pc_sig = 1;
-    #1  db_hi_as = 'z;
-        db_lo_as = 'z;
-        ctl_reg_sel_sys_hi_sig = 0;
-        ctl_reg_sel_pc_sig = 0;
-    #1
-        ctl_reg_sel_sys_hi_sig = 1;
-        ctl_reg_sel_pc_sig = 1;
-        ctl_reg_sys_oe_sig = 1;
-
+    
 end
 
 // Drive 3-state bidirectional buses with these statements
