@@ -3,15 +3,15 @@
 module test_regfile;
 
 // We have 4 Bi-directional buses that can also be 3-stated:
-// On the address-side, there are high and low 8-bit busses
-reg  [7:0] dbus_lo_as;      // Drive it using this bus
-wire [7:0] dbus_lo_as_sig;  // Read it using this bus
+// On the address-side, there are high and low 8-bit buses
+reg  [7:0] db_lo_as;        // Drive it using this bus
+wire [7:0] db_lo_as_sig;    // Read it using this bus
 
-reg  [7:0] dbus_hi_as;      // Drive it using this bus
-wire [7:0] dbus_hi_as_sig;  // Read it using this bus
+reg  [7:0] db_hi_as;        // Drive it using this bus
+wire [7:0] db_hi_as_sig;    // Read it using this bus
 
-// ----------------- BUSSES -----------------
-// On the data-side, there are high and low 8-bit busses
+// ----------------- BUSES -----------------
+// On the data-side, there are high and low 8-bit buses
 reg  [7:0] db_lo_ds;        // Drive it using this bus
 wire [7:0] db_lo_ds_sig;    // Read it using this bus
 
@@ -19,7 +19,8 @@ reg  [7:0] db_hi_ds;        // Drive it using this bus
 wire [7:0] db_hi_ds_sig;    // Read it using this bus
 
 // ----------------- CONTROL -----------------
-reg ctl_sw_4_sig;           // Bus switch #4
+reg ctl_sw_4u_sig;          // Bus switch #4 upstream gate
+reg ctl_sw_4d_sig;          // Bus switch #4 downstream gate
 
 // ----------------- GP REGS -----------------
 reg reg_sel_af_sig;         // Select AF register
@@ -48,7 +49,8 @@ reg reg_sel_sys_lo_sig;     // Select low byte of a system register
 reg reg_sys_oe_sig;         // Write selected system register to the data bus
 
 initial begin
-    ctl_sw_4_sig = 0;
+    ctl_sw_4d_sig = 0;
+    ctl_sw_4u_sig = 0;
 
     reg_sel_af_sig = 0;         // Select AF register
     reg_sel_af2_sig = 0;        // ...
@@ -75,13 +77,13 @@ initial begin
     reg_sys_oe_sig = 0;         // Write selected system register to the data bus
 
     // Test bidirectional data buses and leave them at Z
-    #1  dbus_lo_as = 8'hAA;
-        dbus_hi_as = 8'h55;
+    #1  db_lo_as = 8'hAA;
+        db_hi_as = 8'h55;
         db_lo_ds   = 8'hCA;
         db_hi_ds   = 8'hFE;
 
-    #1  dbus_lo_as = 'z;
-        dbus_hi_as = 'z;
+    #1  db_lo_as = 'z;
+        db_hi_as = 'z;
         db_lo_ds   = 'z;
         db_hi_ds   = 'z;
 
@@ -107,8 +109,8 @@ initial begin
 end
 
 // Drive 3-state bidirectional buses with these statements
-assign dbus_lo_as_sig = dbus_lo_as;
-assign dbus_hi_as_sig = dbus_hi_as;
+assign db_lo_as_sig = db_lo_as;
+assign db_hi_as_sig = db_hi_as;
 
 assign db_lo_ds_sig = db_lo_ds;
 assign db_hi_ds_sig = db_hi_ds;
@@ -116,7 +118,8 @@ assign db_hi_ds_sig = db_hi_ds;
 // Instantiate register file block
 reg_file reg_file_inst
 (
-	.ctl_sw_4(ctl_sw_4_sig) ,	// input  ctl_sw_4_sig
+	.ctl_sw_4u(ctl_sw_4u_sig) ,	// input  ctl_sw_4u_sig
+	.ctl_sw_4d(ctl_sw_4d_sig) ,	// input  ctl_sw_4d_sig
 	.reg_sel_pc(reg_sel_pc_sig) ,	// input  reg_sel_pc_sig
 	.reg_sel_ir(reg_sel_ir_sig) ,	// input  reg_sel_ir_sig
 	.reg_sel_sys_lo(reg_sel_sys_lo_sig) ,	// input  reg_sel_sys_lo_sig
@@ -137,8 +140,8 @@ reg_file reg_file_inst
 	.reg_sel_gp_lo(reg_sel_gp_lo_sig) ,	// input  reg_sel_gp_lo_sig
 	.reg_gp_oe(reg_gp_oe_sig) ,	// input  reg_sel_gp_oe_sig
 	.reg_sys_oe(reg_sys_oe_sig) ,	// input  reg_sys_oe_sig
-	.dbus_lo_as(dbus_lo_as_sig[7:0]) ,	// inout [7:0] dbus_lo_as_sig
-	.dbus_hi_as(dbus_hi_as_sig[7:0]) ,	// inout [7:0] dbus_hi_as_sig
+	.db_lo_as(db_lo_as_sig[7:0]) ,	// inout [7:0] db_lo_as_sig
+	.db_hi_as(db_hi_as_sig[7:0]) ,	// inout [7:0] db_hi_as_sig
 	.db_lo_ds(db_lo_ds_sig[7:0]) ,	// inout [7:0] db_lo_ds_sig
 	.db_hi_ds(db_hi_ds_sig[7:0]) 	// inout [7:0] db_hi_ds_sig
 );
