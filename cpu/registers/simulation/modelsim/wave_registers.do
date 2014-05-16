@@ -27,14 +27,14 @@ add wave -noupdate /test_registers/ctl_reg_sel_ir_sig
 add wave -noupdate /test_registers/ctl_reg_sel_sys_hi_sig
 add wave -noupdate /test_registers/ctl_reg_sel_sys_lo_sig
 add wave -noupdate /test_registers/ctl_reg_sys_oe_sig
-add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_af_sig
-add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_af2_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_bc_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_bc2_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_de_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_de2_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_hl_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_hl2_sig
+add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_af_sig
+add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_af2_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_ix_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_iy_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_wz_sig
@@ -47,7 +47,7 @@ add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_sys_lo_s
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_gp_oe_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sys_oe_sig
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {100 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1200 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 212
 configure wave -valuecolwidth 77
