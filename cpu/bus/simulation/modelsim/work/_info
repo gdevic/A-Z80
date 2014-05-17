@@ -1,0 +1,84 @@
+m255
+K3
+13
+cModel Technology
+Z0 dP:\Z80\cpu\bus\simulation\modelsim
+vaddress_latch
+Z1 !s100 aE2L`XRhg=^=jemncFE:20
+Z2 IDc;]OS74anN=WN945C??n3
+Z3 Vf<_@^4?YbUWmmCA0RmbXf0
+Z4 dP:\Z80\cpu\bus\simulation\modelsim
+Z5 w1400307637
+Z6 8P:/Z80/cpu/bus/address_latch.v
+Z7 FP:/Z80/cpu/bus/address_latch.v
+L0 19
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/address_latch.v|
+Z10 o-work work -O0
+Z11 !s108 1400308603.013000
+Z12 !s107 P:/Z80/cpu/bus/address_latch.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vinc_dec
+Z13 !s100 OzhlSQl=YHf9]m?nE@?ZT3
+Z14 Idl1aYdQdFKf[Zm`4BFI0Z2
+Z15 VQ`2Uo8>[b@JPm_hmm@;C>1
+R4
+Z16 w1400308252
+Z17 8P:/Z80/cpu/bus/inc_dec.v
+Z18 FP:/Z80/cpu/bus/inc_dec.v
+L0 19
+R8
+r1
+31
+Z19 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec.v|
+R10
+Z20 !s108 1400308603.085000
+Z21 !s107 P:/Z80/cpu/bus/inc_dec.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vinc_dec_2bit
+!i10b 1
+Z22 !s100 C@XCk`I2KkTKYMBPcPTiV3
+Z23 I9TQgDZhEH?mX5`H^U5kHE3
+Z24 V6Qo>lE;N8O8I6<h:hBjFF3
+R4
+Z25 w1400298313
+Z26 8P:/Z80/cpu/bus/inc_dec_2bit.v
+Z27 FP:/Z80/cpu/bus/inc_dec_2bit.v
+L0 19
+R8
+r1
+!s85 0
+31
+!s108 1400308603.270000
+!s107 P:/Z80/cpu/bus/inc_dec_2bit.v|
+Z28 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec_2bit.v|
+!s101 -O0
+R10
+vtest_bus
+Z29 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z30 !s100 SMRRiBK?1:Kc5RJW>hXCc3
+Z31 IPgeZG?4V7:Mc5d>N;6PTB2
+Z32 VL=z5MU14WS2jB7kCH0_X>1
+Z33 !s105 test_bus_sv_unit
+S1
+R4
+Z34 w1400307458
+Z35 8P:/Z80/cpu/bus/test_bus.sv
+Z36 FP:/Z80/cpu/bus/test_bus.sv
+L0 3
+R8
+r1
+31
+Z37 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/bus/test_bus.sv|
+Z38 o-work work -sv -O0
+!i10b 1
+!s85 0
+Z39 !s108 1400308603.182000
+Z40 !s107 P:/Z80/cpu/bus/test_bus.sv|
+!s101 -O0
