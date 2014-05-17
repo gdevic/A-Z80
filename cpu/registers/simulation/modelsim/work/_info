@@ -8,7 +8,7 @@ Z1 !s100 Z8`R@kIYA4j7AFj1Y75cR0
 Z2 IN=1:o7f?80U;MDFXFiolG3
 Z3 VbB9egHLIHd8I4hkT=n<QP2
 Z4 dP:\Z80\cpu\registers\simulation\modelsim
-Z5 w1400246602
+Z5 w1400334610
 Z6 8P:/Z80/cpu/registers/reg_control.v
 Z7 FP:/Z80/cpu/registers/reg_control.v
 L0 19
@@ -17,7 +17,7 @@ r1
 31
 Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/registers/reg_control.v|
 Z10 o-work work -O0
-Z11 !s108 1400333679.301000
+Z11 !s108 1400334991.076000
 Z12 !s107 P:/Z80/cpu/registers/reg_control.v|
 !i10b 1
 !s85 0
@@ -27,102 +27,102 @@ Z13 !s100 bOcmLQ0?8HJGC`ol?6ZQE3
 Z14 I3kXj9EMlz@=IU`=_0F5cU3
 Z15 VcOA0?<4L2lULBFW0hhom;1
 R4
-Z16 w1400246436
-Z17 8P:/Z80/cpu/registers/reg_file.v
-Z18 FP:/Z80/cpu/registers/reg_file.v
+R5
+Z16 8P:/Z80/cpu/registers/reg_file.v
+Z17 FP:/Z80/cpu/registers/reg_file.v
 L0 19
 R8
 r1
 31
-Z19 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/registers/reg_file.v|
+Z18 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/registers/reg_file.v|
 R10
-Z20 !s108 1400333679.376000
-Z21 !s107 P:/Z80/cpu/registers/reg_file.v|
+Z19 !s108 1400334991.163000
+Z20 !s107 P:/Z80/cpu/registers/reg_file.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vreg_latch
-Z22 !s100 8`JzAak:oDHL;d?IK1YMl1
-Z23 Iz7]4BkQj<VJiBm]XUSIj]2
-Z24 V1z@U<jce=LBN0WTEW^Q<F0
+Z21 !s100 8`JzAak:oDHL;d?IK1YMl1
+Z22 Iz7]4BkQj<VJiBm]XUSIj]2
+Z23 V1z@U<jce=LBN0WTEW^Q<F0
 R4
-Z25 w1400125522
-Z26 8P:/Z80/cpu/registers/reg_latch.v
-Z27 FP:/Z80/cpu/registers/reg_latch.v
+R5
+Z24 8P:/Z80/cpu/registers/reg_latch.v
+Z25 FP:/Z80/cpu/registers/reg_latch.v
 L0 19
 R8
 r1
 31
-Z28 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/registers/reg_latch.v|
+Z26 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/registers/reg_latch.v|
 R10
-Z29 !s108 1400333679.454000
-Z30 !s107 P:/Z80/cpu/registers/reg_latch.v|
+Z27 !s108 1400334991.241000
+Z28 !s107 P:/Z80/cpu/registers/reg_latch.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_latch
-Z31 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z32 !s100 CWocohizkZKT`XUWY;GT83
-Z33 I9WkIdJ@C`2cFnkze0DH1d1
-Z34 VOZ7j5VQ<2EnJ40Y][]d3n2
-Z35 !s105 test_latch_sv_unit
+Z29 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z30 !s100 CWocohizkZKT`XUWY;GT83
+Z31 I9WkIdJ@C`2cFnkze0DH1d1
+Z32 VOZ7j5VQ<2EnJ40Y][]d3n2
+Z33 !s105 test_latch_sv_unit
 S1
 R4
-Z36 w1400122297
-Z37 8P:/Z80/cpu/registers/test_latch.sv
-Z38 FP:/Z80/cpu/registers/test_latch.sv
+R5
+Z34 8P:/Z80/cpu/registers/test_latch.sv
+Z35 FP:/Z80/cpu/registers/test_latch.sv
 L0 3
 R8
 r1
 31
-Z39 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_latch.sv|
-Z40 o-work work -sv -O0
+Z36 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_latch.sv|
+Z37 o-work work -sv -O0
 !i10b 1
 !s85 0
-Z41 !s108 1400333679.631000
-Z42 !s107 P:/Z80/cpu/registers/test_latch.sv|
+Z38 !s108 1400334991.398000
+Z39 !s107 P:/Z80/cpu/registers/test_latch.sv|
 !s101 -O0
 vtest_regfile
-R31
+R29
 !i10b 1
-Z43 !s100 >4WEU3Sd]KIMOU4Th9RiP3
-Z44 IVJ?4FYKg@WdE8fg4J?K_B2
-Z45 VB70c5`McQ<GzJWnGLGI2l0
-Z46 !s105 test_regfile_sv_unit
+Z40 !s100 >4WEU3Sd]KIMOU4Th9RiP3
+Z41 IVJ?4FYKg@WdE8fg4J?K_B2
+Z42 VB70c5`McQ<GzJWnGLGI2l0
+Z43 !s105 test_regfile_sv_unit
 S1
 R4
-Z47 w1400214916
-Z48 8P:/Z80/cpu/registers/test_regfile.sv
-Z49 FP:/Z80/cpu/registers/test_regfile.sv
+R5
+Z44 8P:/Z80/cpu/registers/test_regfile.sv
+Z45 FP:/Z80/cpu/registers/test_regfile.sv
 L0 3
 R8
 r1
 !s85 0
 31
-!s108 1400333679.725000
+!s108 1400334991.476000
 !s107 P:/Z80/cpu/registers/test_regfile.sv|
-Z50 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_regfile.sv|
+Z46 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_regfile.sv|
 !s101 -O0
-R40
+R37
 vtest_registers
-R31
-Z51 !s100 gN2lBNJ;OVk^LIWXW_jB;0
-Z52 I8QbcXF6Kc7gOlR`neZI[V1
-Z53 V?A1=OO@S[3@fKUB5=:^od1
-Z54 !s105 test_registers_sv_unit
+R29
+Z47 !s100 gN2lBNJ;OVk^LIWXW_jB;0
+Z48 I8QbcXF6Kc7gOlR`neZI[V1
+Z49 V?A1=OO@S[3@fKUB5=:^od1
+Z50 !s105 test_registers_sv_unit
 S1
 R4
-Z55 w1400247280
-Z56 8P:/Z80/cpu/registers/test_registers.sv
-Z57 FP:/Z80/cpu/registers/test_registers.sv
+R5
+Z51 8P:/Z80/cpu/registers/test_registers.sv
+Z52 FP:/Z80/cpu/registers/test_registers.sv
 L0 3
 R8
 r1
 31
-Z58 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_registers.sv|
-R40
-Z59 !s108 1400333679.540000
-Z60 !s107 P:/Z80/cpu/registers/test_registers.sv|
+Z53 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/registers/test_registers.sv|
+R37
+Z54 !s108 1400334991.319000
+Z55 !s107 P:/Z80/cpu/registers/test_registers.sv|
 !i10b 1
 !s85 0
 !s101 -O0
