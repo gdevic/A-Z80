@@ -401,3 +401,4 @@ applicable agreement for further details.
 (junction (pt 568 192))
 (junction (pt 464 192))
 (junction (pt 472 136))
+(text "Custom BSF - do not regenerate!" (rect 24 120 209 134)(font "Arial" (color 255 0 0)(font_size 8)))

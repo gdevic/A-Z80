@@ -54,15 +54,15 @@ applicable agreement for further details.
 	(port
 		(pt 200 32)
 		(output)
-		(text "out[15..0]" (rect 0 0 53 14)(font "Arial" (font_size 8)))
-		(text "out[15..0]" (rect 126 27 179 41)(font "Arial" (font_size 8)))
+		(text "address[15..0]" (rect 0 0 82 14)(font "Arial" (font_size 8)))
+		(text "address[15..0]" (rect 97 27 179 41)(font "Arial" (font_size 8)))
 		(line (pt 200 32)(pt 184 32)(line_width 3))
 	)
 	(port
 		(pt 200 48)
 		(output)
-		(text "status_hl_is_0" (rect 0 0 82 14)(font "Arial" (font_size 8)))
-		(text "status_hl_is_0" (rect 97 43 179 57)(font "Arial" (font_size 8)))
+		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
+		(text "address_is_1" (rect 102 43 179 57)(font "Arial" (font_size 8)))
 		(line (pt 200 48)(pt 184 48))
 	)
 	(drawing
