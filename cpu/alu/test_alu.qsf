@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY alu_shifter
+set_global_assignment -name TOP_LEVEL_ENTITY alu
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:26:45  MAY 18, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
@@ -59,6 +59,8 @@ set_global_assignment -name BDF_FILE alu_shifter_core.bdf
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\library"
 set_global_assignment -name BDF_FILE alu.bdf
 set_global_assignment -name BDF_FILE alu_slice.bdf
+set_global_assignment -name BDF_FILE alu_op1_mux_low.bdf
+set_global_assignment -name BDF_FILE alu_op1_mux_high.bdf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
