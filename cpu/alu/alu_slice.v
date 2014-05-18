@@ -14,81 +14,63 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun May 18 11:12:40 2014"
+// CREATED		"Sun May 18 10:52:10 2014"
 
-module alu_core(
+module alu_slice(
+	op2,
+	op1,
 	cy_in,
+	R,
 	S,
 	V,
-	R,
-	op1,
-	op2,
 	cy_out,
 	result
 );
 
 
+input wire	op2;
+input wire	op1;
 input wire	cy_in;
+input wire	R;
 input wire	S;
 input wire	V;
-input wire	R;
-input wire	[3:0] op1;
-input wire	[3:0] op2;
 output wire	cy_out;
-output wire	[3:0] result;
+output wire	result;
 
-wire	[3:0] result_ALTERA_SYNTHESIZED;
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_3;
+wire	SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_5;
+wire	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_7;
+wire	SYNTHESIZED_WIRE_8;
 
 
 
 
+assign	SYNTHESIZED_WIRE_0 = op2 | cy_in | op1;
 
-alu_slice	b2v_alu_slice_bit_0(
-	.cy_in(cy_in),
-	.op1(op1[0]),
-	.op2(op2[0]),
-	.S(S),
-	.V(V),
-	.R(R),
-	.result(result_ALTERA_SYNTHESIZED[0]),
-	.cy_out(SYNTHESIZED_WIRE_0));
+assign	SYNTHESIZED_WIRE_3 = SYNTHESIZED_WIRE_0 & SYNTHESIZED_WIRE_1;
 
+assign	SYNTHESIZED_WIRE_4 = cy_in & op2 & op1;
 
-alu_slice	b2v_alu_slice_bit_1(
-	.cy_in(SYNTHESIZED_WIRE_0),
-	.op1(op1[1]),
-	.op2(op2[1]),
-	.S(S),
-	.V(V),
-	.R(R),
-	.result(result_ALTERA_SYNTHESIZED[1]),
-	.cy_out(SYNTHESIZED_WIRE_1));
+assign	result =  ~SYNTHESIZED_WIRE_2;
 
+assign	SYNTHESIZED_WIRE_2 = ~(SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4);
 
-alu_slice	b2v_alu_slice_bit_2(
-	.cy_in(SYNTHESIZED_WIRE_1),
-	.op1(op1[2]),
-	.op2(op2[2]),
-	.S(S),
-	.V(V),
-	.R(R),
-	.result(result_ALTERA_SYNTHESIZED[2]),
-	.cy_out(SYNTHESIZED_WIRE_2));
+assign	SYNTHESIZED_WIRE_5 = op2 | op1;
 
+assign	SYNTHESIZED_WIRE_7 = cy_in & SYNTHESIZED_WIRE_5;
 
-alu_slice	b2v_alu_slice_bit_3(
-	.cy_in(SYNTHESIZED_WIRE_2),
-	.op1(op1[3]),
-	.op2(op2[3]),
-	.S(S),
-	.V(V),
-	.R(R),
-	.result(result_ALTERA_SYNTHESIZED[3]),
-	.cy_out(cy_out));
+assign	SYNTHESIZED_WIRE_8 = op1 & op2;
 
-assign	result = result_ALTERA_SYNTHESIZED;
+assign	cy_out = ~(R | SYNTHESIZED_WIRE_10);
+
+assign	SYNTHESIZED_WIRE_10 = ~(SYNTHESIZED_WIRE_7 | SYNTHESIZED_WIRE_8 | S);
+
+assign	SYNTHESIZED_WIRE_1 = V | SYNTHESIZED_WIRE_10;
+
 
 endmodule

@@ -1,6 +1,6 @@
-// Test ALU core
+// Test ALU slice
 `timescale 100 ps/ 100 ps
-module test_core;
+module test_slice;
 
 // ----------------- INPUT -----------------
 reg [3:0] op1_sig;          // Operand 1
@@ -14,7 +14,19 @@ reg V_sig;                  // Operation control "V"
 wire cy_out_sig;            // Carry out (from slice A)
 wire [3:0] result_sig;      // Result bits
 
+// ----------------- CONNECTIONS -----------------
+wire cy_out_D_sig;          // Carry out from slice D into slice C
+wire cy_out_C_sig;          // Carry out from slice C into slice B
+wire cy_out_B_sig;          // Carry out from slice B into slice A
+
 initial begin
+    op1_sig = '0;
+    op2_sig = '0;
+    cy_in_sig = 0;
+    R_sig = 0;
+    S_sig = 0;
+    V_sig = 0;
+
     //------------------------------------------------------------
     // Test ADD/ADC:    R=0  S=0  V=0    Cin for ADC operation
     R_sig = 0;
@@ -89,18 +101,57 @@ initial begin
 end
 
 //--------------------------------------------------------------
-// Instantiate ALU core block
+// Instantiate 4 ALU slice units, daisy-chained; MSB is slice A
+//
+//            slice_A slice_B slice_C slice_D
+//  cy_out <=   [3]     [2]     [1]     [0]  <= cy_in
 //--------------------------------------------------------------
-alu_core alu_core_inst
+alu_slice slice_A
 (
-	.cy_in(cy_in_sig) ,	// input  cy_in_sig
-	.op1(op1_sig[3:0]) ,	// input [3:0] op1_sig
-	.op2(op2_sig[3:0]) ,	// input [3:0] op2_sig
+	.op1(op1_sig[3]) ,	// input  op1_sig
+	.op2(op2_sig[3]) ,	// input  op2_sig
+	.cy_in(cy_out_B_sig) ,	// input  cy_in_sig
+	.R(R_sig) ,	// input  R_sig
 	.S(S_sig) ,	// input  S_sig
 	.V(V_sig) ,	// input  V_sig
-	.R(R_sig) ,	// input  R_sig
 	.cy_out(cy_out_sig) ,	// output  cy_out_sig
-	.result(result_sig[3:0]) 	// output [3:0] result_sig
+	.result(result_sig[3]) 	// output  result_sig
+);
+
+alu_slice slice_B
+(
+	.op1(op1_sig[2]) ,	// input  op1_sig
+	.op2(op2_sig[2]) ,	// input  op2_sig
+	.cy_in(cy_out_C_sig) ,	// input  cy_in_sig
+	.R(R_sig) ,	// input  R_sig
+	.S(S_sig) ,	// input  S_sig
+	.V(V_sig) ,	// input  V_sig
+	.cy_out(cy_out_B_sig) ,	// output  cy_out_sig
+	.result(result_sig[2]) 	// output  result_sig
+);
+
+alu_slice slice_C
+(
+	.op1(op1_sig[1]) ,	// input  op1_sig
+	.op2(op2_sig[1]) ,	// input  op2_sig
+	.cy_in(cy_out_D_sig) ,	// input  cy_in_sig
+	.R(R_sig) ,	// input  R_sig
+	.S(S_sig) ,	// input  S_sig
+	.V(V_sig) ,	// input  V_sig
+	.cy_out(cy_out_C_sig) ,	// output  cy_out_sig
+	.result(result_sig[1]) 	// output  result_sig
+);
+
+alu_slice slice_D
+(
+	.op1(op1_sig[0]) ,	// input  op1_sig
+	.op2(op2_sig[0]) ,	// input  op2_sig
+	.cy_in(cy_in_sig) ,	// input  cy_in_sig
+	.R(R_sig) ,	// input  R_sig
+	.S(S_sig) ,	// input  S_sig
+	.V(V_sig) ,	// input  V_sig
+	.cy_out(cy_out_D_sig) ,	// output  cy_out_sig
+	.result(result_sig[0]) 	// output  result_sig
 );
 
 endmodule

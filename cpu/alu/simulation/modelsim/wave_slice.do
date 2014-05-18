@@ -1,13 +1,16 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -radix hexadecimal /test_core/op1_sig
-add wave -noupdate -radix hexadecimal /test_core/op2_sig
-add wave -noupdate /test_core/cy_in_sig
-add wave -noupdate -color Gold -itemcolor Gold -radix hexadecimal /test_core/result_sig
-add wave -noupdate -color Gold -format Literal -itemcolor Gold /test_core/cy_out_sig
-add wave -noupdate /test_core/R_sig
-add wave -noupdate /test_core/S_sig
-add wave -noupdate /test_core/V_sig
+add wave -noupdate -radix hexadecimal /test_slice/op1_sig
+add wave -noupdate -radix hexadecimal /test_slice/op2_sig
+add wave -noupdate /test_slice/cy_in_sig
+add wave -noupdate -color Gold -itemcolor Gold -radix hexadecimal /test_slice/result_sig
+add wave -noupdate -color Gold -format Literal -itemcolor Gold /test_slice/cy_out_sig
+add wave -noupdate /test_slice/R_sig
+add wave -noupdate /test_slice/S_sig
+add wave -noupdate /test_slice/V_sig
+add wave -noupdate /test_slice/cy_out_D_sig
+add wave -noupdate /test_slice/cy_out_C_sig
+add wave -noupdate /test_slice/cy_out_B_sig
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ps} 0}
 quietly wave cursor active 0
