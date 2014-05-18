@@ -1,0 +1,46 @@
+m255
+K3
+13
+cModel Technology
+Z0 dP:\Z80\cpu\alu\simulation\modelsim
+valu_core
+Z1 !s100 QA5@CE2LAej;lhZ`>h7I10
+Z2 IIAUC0QP1ZgCH2WTP]Ble_2
+Z3 VRLm:DmWARaYFYY3BG2WFS3
+Z4 dP:\Z80\cpu\alu\simulation\modelsim
+Z5 w1400420989
+Z6 8P:/Z80/cpu/alu/alu_core.v
+Z7 FP:/Z80/cpu/alu/alu_core.v
+L0 19
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_core.v|
+Z10 o-work work -O0
+Z11 !s108 1400423265.062000
+Z12 !s107 P:/Z80/cpu/alu/alu_core.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtest_core
+Z13 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+!i10b 1
+Z14 !s100 Y2ObKgI=IFm09O8gP;1<I3
+Z15 IkVU2TafH9hQ@CQYn_`4lh2
+Z16 V`i8O1:?:gid[RnQDY_KSA0
+Z17 !s105 test_core_sv_unit
+S1
+R4
+w1400424432
+Z18 8P:/Z80/cpu/alu/test_core.sv
+Z19 FP:/Z80/cpu/alu/test_core.sv
+L0 3
+R8
+r1
+!s85 0
+31
+!s108 1400424454.074000
+!s107 P:/Z80/cpu/alu/test_core.sv|
+Z20 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_core.sv|
+!s101 -O0
+Z21 o-work work -sv -O0
