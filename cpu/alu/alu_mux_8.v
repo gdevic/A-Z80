@@ -14,9 +14,9 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun May 18 10:26:31 2014"
+// CREATED		"Mon May 19 09:30:18 2014"
 
-module mux_8(
+module alu_mux_8(
 	in0,
 	in1,
 	in2,

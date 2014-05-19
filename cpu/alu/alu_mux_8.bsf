@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 16 16 128 208)
-	(text "mux_8" (rect 5 0 42 14)(font "Arial" (font_size 8)))
+	(text "alu_mux_8" (rect 5 0 66 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
 		(pt 0 32)
