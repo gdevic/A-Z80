@@ -9,6 +9,9 @@ transcript
 *.wlf
 _vmake
 _temp/
+_primary.*
+*.prw
+*.psm
 
 # Generic backup files
 *~
