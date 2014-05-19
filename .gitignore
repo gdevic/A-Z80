@@ -1,0 +1,16 @@
+# Quartus temp folders
+db/
+incremental_db/
+out/
+
+# ModelSim files and folders
+transcript
+*.mti
+*.wlf
+_vmake
+_temp/
+
+# Generic backup files
+*~
+
+*.bak
