@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon May 19 22:11:43 2014"
+// CREATED		"Tue May 20 18:22:07 2014"
 
 module alu_bit_select(
 	bsel,

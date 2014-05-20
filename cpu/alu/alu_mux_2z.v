@@ -14,45 +14,36 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue May 20 18:23:48 2014"
+// CREATED		"Tue May 20 18:23:39 2014"
 
-module alu_zero(
-	parity_in,
-	ap,
-	b,
-	zero,
-	parity_out
+module alu_mux_2z(
+	sel_a,
+	sel_zero,
+	a,
+	ena_out,
+	Q2
 );
 
 
-input wire	parity_in;
-input wire	[3:0] ap;
-input wire	[3:0] b;
-output wire	zero;
-output wire	parity_out;
+input wire	sel_a;
+input wire	sel_zero;
+input wire	[3:0] a;
+output wire	ena_out;
+output wire	[3:0] Q2;
 
-wire	SYNTHESIZED_WIRE_0;
+wire	[3:0] SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
-wire	SYNTHESIZED_WIRE_3;
-wire	SYNTHESIZED_WIRE_4;
 
 
 
 
-assign	parity_out = SYNTHESIZED_WIRE_0 ^ ap[0];
+assign	SYNTHESIZED_WIRE_0 = a & {sel_a,sel_a,sel_a,sel_a};
 
-assign	SYNTHESIZED_WIRE_0 = SYNTHESIZED_WIRE_1 ^ ap[1];
+assign	ena_out = sel_zero | sel_a;
 
-assign	SYNTHESIZED_WIRE_1 = SYNTHESIZED_WIRE_2 ^ ap[2];
+assign	Q2 = SYNTHESIZED_WIRE_0 & {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1};
 
-assign	SYNTHESIZED_WIRE_2 = parity_in ^ ap[3];
-
-assign	SYNTHESIZED_WIRE_3 = ~(ap[2] | ap[3] | ap[1] | ap[0]);
-
-assign	SYNTHESIZED_WIRE_4 = ~(b[2] | b[3] | b[1] | b[0]);
-
-assign	zero = SYNTHESIZED_WIRE_3 & SYNTHESIZED_WIRE_4;
+assign	SYNTHESIZED_WIRE_1 =  ~sel_zero;
 
 
 endmodule

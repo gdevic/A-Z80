@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue May 20 00:17:38 2014"
+// CREATED		"Tue May 20 17:39:32 2014"
 
 module alu(
 	alu_core_R,
@@ -22,9 +22,7 @@ module alu(
 	alu_core_S,
 	alu_bs_oe,
 	alu_parity_in,
-	alu_shift_enable,
 	alu_oe,
-	alu_shift_cf_in,
 	alu_shift_oe,
 	alu_core_cf_in,
 	alu_op2_oe,
@@ -39,16 +37,21 @@ module alu(
 	alu_sel_op2_pos,
 	alu_sel_op2_low,
 	alu_op_low,
+	alu_shift_sra,
+	alu_shift_enable,
+	alu_shift_right,
+	alu_shift_in,
 	bsel,
-	op543,
 	alu_zero,
-	alu_shift_cf_out,
 	alu_core_cf_out,
 	alu_parity_out,
 	alu_high_eq_9,
 	alu_high_gt_9,
 	alu_low_gt_9,
-	db
+	alu_shift_out,
+	db,
+	test_db_high,
+	test_db_low
 );
 
 
@@ -57,9 +60,7 @@ input wire	alu_core_V;
 input wire	alu_core_S;
 input wire	alu_bs_oe;
 input wire	alu_parity_in;
-input wire	alu_shift_enable;
 input wire	alu_oe;
-input wire	alu_shift_cf_in;
 input wire	alu_shift_oe;
 input wire	alu_core_cf_in;
 input wire	alu_op2_oe;
@@ -74,16 +75,21 @@ input wire	alu_op2_sel_lq;
 input wire	alu_sel_op2_pos;
 input wire	alu_sel_op2_low;
 input wire	alu_op_low;
+input wire	alu_shift_sra;
+input wire	alu_shift_enable;
+input wire	alu_shift_right;
+input wire	alu_shift_in;
 input wire	[2:0] bsel;
-input wire	[2:0] op543;
 output wire	alu_zero;
-output wire	alu_shift_cf_out;
 output wire	alu_core_cf_out;
 output wire	alu_parity_out;
 output wire	alu_high_eq_9;
 output wire	alu_high_gt_9;
 output wire	alu_low_gt_9;
+output wire	alu_shift_out;
 inout wire	[7:0] db;
+output wire	[3:0] test_db_high;
+output wire	[3:0] test_db_low;
 
 wire	[3:0] db_high;
 wire	[3:0] db_low;
@@ -164,14 +170,15 @@ alu_bit_select	b2v_input_bit_select(
 	.bs_out_low(SYNTHESIZED_WIRE_0));
 
 
-alu_shifter	b2v_input_shifter(
+alu_shifter_core	b2v_input_shift(
+	.shift_in(alu_shift_in),
+	.shift_right(alu_shift_right),
 	.shift_enable(alu_shift_enable),
-	.cf_in(alu_shift_cf_in),
+	.shift_sra(alu_shift_sra),
 	.db(db),
-	.op543(op543),
-	.cf_out(alu_shift_cf_out),
-	.db_in_high(SYNTHESIZED_WIRE_45),
-	.db_in_low(SYNTHESIZED_WIRE_44));
+	.shift_out(alu_shift_out),
+	.out_high(SYNTHESIZED_WIRE_45),
+	.out_low(SYNTHESIZED_WIRE_44));
 
 assign	SYNTHESIZED_WIRE_48 = SYNTHESIZED_WIRE_4 | SYNTHESIZED_WIRE_5;
 
@@ -336,5 +343,7 @@ alu_zero	b2v_zero_parity(
 	.parity_out(alu_parity_out),
 	.zero(alu_zero));
 
+assign	test_db_high = db_high;
+assign	test_db_low = db_low;
 
 endmodule
