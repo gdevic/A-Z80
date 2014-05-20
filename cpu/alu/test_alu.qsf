@@ -55,7 +55,6 @@ set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name BDF_FILE alu_mux_8.bdf
 set_global_assignment -name BDF_FILE alu_core.bdf
 set_global_assignment -name BDF_FILE alu_bit_select.bdf
-set_global_assignment -name BDF_FILE alu_shifter.bdf
 set_global_assignment -name BDF_FILE alu_shifter_core.bdf
 set_global_assignment -name BDF_FILE alu.bdf
 set_global_assignment -name BDF_FILE alu_slice.bdf
