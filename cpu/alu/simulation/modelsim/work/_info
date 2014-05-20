@@ -8,7 +8,7 @@ Z1 !s100 RR52h8a0?JAN7OoA5T=D20
 Z2 I?BQX8TS9CXl20ke8n@dnO0
 Z3 VTTILXz1AV6VT;K1DY7cPa2
 Z4 dP:\Z80\cpu\alu\simulation\modelsim
-Z5 w1400540708
+Z5 w1400429560
 Z6 8P:/Z80/cpu/alu/alu_core.v
 Z7 FP:/Z80/cpu/alu/alu_core.v
 L0 19
@@ -17,7 +17,7 @@ r1
 31
 Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_core.v|
 Z10 o-work work -O0
-Z11 !s108 1400540910.376000
+Z11 !s108 1400562753.983000
 Z12 !s107 P:/Z80/cpu/alu/alu_core.v|
 !i10b 1
 !s85 0
@@ -27,263 +27,304 @@ Z13 !s100 D4<Dg9XF[Q>YkKLLn8ZL60
 Z14 Ialg7JI19lOiI`>k8kHX8g2
 Z15 VlzYZc:?FX<Ob4PU3Go48E1
 R4
-R5
-Z16 8P:/Z80/cpu/alu/alu_mux_3z.v
-Z17 FP:/Z80/cpu/alu/alu_mux_3z.v
+Z16 w1400505633
+Z17 8P:/Z80/cpu/alu/alu_mux_3z.v
+Z18 FP:/Z80/cpu/alu/alu_mux_3z.v
 L0 19
 R8
 r1
 31
-Z18 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_mux_3z.v|
+Z19 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_mux_3z.v|
 R10
-Z19 !s108 1400540910.688000
-Z20 !s107 P:/Z80/cpu/alu/alu_mux_3z.v|
+Z20 !s108 1400562754.577000
+Z21 !s107 P:/Z80/cpu/alu/alu_mux_3z.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_8
-Z21 !s100 G0=>6RB>^CH<hBz48DfVV2
-Z22 ILE24K0HGA_EZbETD_oNfL1
-Z23 VT@ijT63F;:E1?f]L:TM2R1
+Z22 !s100 G0=>6RB>^CH<hBz48DfVV2
+Z23 ILE24K0HGA_EZbETD_oNfL1
+Z24 VT@ijT63F;:E1?f]L:TM2R1
 R4
-R5
-Z24 8P:/Z80/cpu/alu/alu_mux_8.v
-Z25 FP:/Z80/cpu/alu/alu_mux_8.v
+Z25 w1400509818
+Z26 8P:/Z80/cpu/alu/alu_mux_8.v
+Z27 FP:/Z80/cpu/alu/alu_mux_8.v
 L0 19
 R8
 r1
 31
-Z26 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_mux_8.v|
+Z28 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_mux_8.v|
 R10
+Z29 !s108 1400562754.656000
+Z30 !s107 P:/Z80/cpu/alu/alu_mux_8.v|
 !i10b 1
 !s85 0
-Z27 !s108 1400540910.747000
-Z28 !s107 P:/Z80/cpu/alu/alu_mux_8.v|
 !s101 -O0
 valu_op1_mux_low
-Z29 IUjj=g:X?d`1WFh?KFARRb0
-Z30 VbgkYn[dHI3<>44MXc9_Za3
+Z31 IUjj=g:X?d`1WFh?KFARRb0
+Z32 VbgkYn[dHI3<>44MXc9_Za3
 R4
-Z31 w1400447465
-Z32 8P:/Z80/cpu/alu/alu_op1_mux_low.v
-Z33 FP:/Z80/cpu/alu/alu_op1_mux_low.v
+Z33 w1400447465
+Z34 8P:/Z80/cpu/alu/alu_op1_mux_low.v
+Z35 FP:/Z80/cpu/alu/alu_op1_mux_low.v
 L0 19
 R8
 r1
 31
 R10
-Z34 !s100 5O2ZG:oV0[8:gg94]H7ho2
-Z35 !s108 1400448087.556000
-Z36 !s107 P:/Z80/cpu/alu/alu_op1_mux_low.v|
-Z37 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_op1_mux_low.v|
+Z36 !s100 5O2ZG:oV0[8:gg94]H7ho2
+Z37 !s108 1400448087.556000
+Z38 !s107 P:/Z80/cpu/alu/alu_op1_mux_low.v|
+Z39 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_op1_mux_low.v|
 !i10b 1
 !s85 0
+!s101 -O0
+valu_prep_daa
+Z40 I64eZ>D3D8`?5VLORzYQ`B3
+Z41 VL4K^cH:7WI4=<Ygk_F[<Z3
+R4
+Z42 w1400562447
+Z43 8P:/Z80/cpu/alu/alu_prep_daa.v
+Z44 FP:/Z80/cpu/alu/alu_prep_daa.v
+L0 19
+R8
+r1
+31
+R10
+!i10b 1
+Z45 !s100 OabSAKPZN30]^JfQ]AFdk0
+!s85 0
+Z46 !s108 1400562754.739000
+Z47 !s107 P:/Z80/cpu/alu/alu_prep_daa.v|
+Z48 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_prep_daa.v|
 !s101 -O0
 valu_shifter
+Z49 IzLIO6ZB0b7F]GGm=0nM:72
+Z50 Vi;NKDaLdL<GKKGk30lMhO0
+R4
+Z51 w1400557854
+Z52 8P:/Z80/cpu/alu/alu_shifter.v
+Z53 FP:/Z80/cpu/alu/alu_shifter.v
+L0 19
+R8
+r1
+31
+Z54 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_shifter.v|
+R10
+Z55 !s100 OND2]kj6m9>m2hKC:bb5I2
+Z56 !s108 1400562754.147000
+Z57 !s107 P:/Z80/cpu/alu/alu_shifter.v|
 !i10b 1
-!s100 [D;TZnfVI6kNhW``>:iC>1
-IVVGJf]N0[PKXNon9jolZf0
-Z38 Vne5N6maL<ohE3GlgM5Wc;2
-R4
-w1400541024
-Z39 8P:/Z80/cpu/alu/alu_shifter.v
-Z40 FP:/Z80/cpu/alu/alu_shifter.v
-L0 19
-R8
-r1
 !s85 0
-31
-!s108 1400541030.024000
-!s107 P:/Z80/cpu/alu/alu_shifter.v|
-Z41 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_shifter.v|
 !s101 -O0
-R10
 valu_shifter_core
-Z42 !s100 mmezXI3O?iaU41;OSOL1>0
-Z43 Il]1V;o`O0A6DcANR49f093
-Z44 V1Pe[=nJ1nA7g]6mW?@X;70
+Z58 !s100 mmezXI3O?iaU41;OSOL1>0
+Z59 Il]1V;o`O0A6DcANR49f093
+Z60 V1Pe[=nJ1nA7g]6mW?@X;70
 R4
-R5
-Z45 8P:/Z80/cpu/alu/alu_shifter_core.v
-Z46 FP:/Z80/cpu/alu/alu_shifter_core.v
+Z61 w1400440187
+Z62 8P:/Z80/cpu/alu/alu_shifter_core.v
+Z63 FP:/Z80/cpu/alu/alu_shifter_core.v
 L0 19
 R8
 r1
 31
-Z47 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_shifter_core.v|
+Z64 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_shifter_core.v|
 R10
-Z48 !s108 1400540910.554000
-Z49 !s107 P:/Z80/cpu/alu/alu_shifter_core.v|
+Z65 !s108 1400562754.325000
+Z66 !s107 P:/Z80/cpu/alu/alu_shifter_core.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_slice
-Z50 !s100 Obl=K>a:OV;HSgho;`QLg3
-Z51 IGHzNRYJ?io=WNEGShMTM01
-Z52 V>FE0=Vc=UPG3e5HDTLe9?2
+Z67 !s100 Obl=K>a:OV;HSgho;`QLg3
+Z68 IGHzNRYJ?io=WNEGShMTM01
+Z69 V>FE0=Vc=UPG3e5HDTLe9?2
 R4
-R5
-Z53 8P:/Z80/cpu/alu/alu_slice.v
-Z54 FP:/Z80/cpu/alu/alu_slice.v
+Z70 w1400428330
+Z71 8P:/Z80/cpu/alu/alu_slice.v
+Z72 FP:/Z80/cpu/alu/alu_slice.v
 L0 19
 R8
 r1
 31
-Z55 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_slice.v|
+Z73 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/alu/alu_slice.v|
 R10
-Z56 !s108 1400540910.264000
-Z57 !s107 P:/Z80/cpu/alu/alu_slice.v|
+Z74 !s108 1400562753.820000
+Z75 !s107 P:/Z80/cpu/alu/alu_slice.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vmux_8
-Z58 !s100 7Cam0A[0NKVhC37P[4LV53
-Z59 IG;CezP_Ta4bh[7fENKhWl2
-Z60 V7E_aj0T`mCT@fmD3GW:Yd1
+Z76 !s100 7Cam0A[0NKVhC37P[4LV53
+Z77 IG;CezP_Ta4bh[7fENKhWl2
+Z78 V7E_aj0T`mCT@fmD3GW:Yd1
 R4
-Z61 w1400426791
-Z62 8P:/Z80/cpu/library/mux_8.v
-Z63 FP:/Z80/cpu/library/mux_8.v
+Z79 w1400426791
+Z80 8P:/Z80/cpu/library/mux_8.v
+Z81 FP:/Z80/cpu/library/mux_8.v
 L0 19
 R8
 r1
 31
-Z64 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/library/mux_8.v|
+Z82 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/library/mux_8.v|
 R10
-Z65 !s108 1400505651.540000
-Z66 !s107 P:/Z80/cpu/library/mux_8.v|
+Z83 !s108 1400505651.540000
+Z84 !s107 P:/Z80/cpu/library/mux_8.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_core
-Z67 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z68 !s100 1Y;H8WPQGjeW7NN?c1mkF3
-Z69 IhNCjYzagE?R9Kda4e2R:S2
-Z70 V`i8O1:?:gid[RnQDY_KSA0
-Z71 !s105 test_core_sv_unit
+Z85 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z86 !s100 1Y;H8WPQGjeW7NN?c1mkF3
+Z87 IhNCjYzagE?R9Kda4e2R:S2
+Z88 V`i8O1:?:gid[RnQDY_KSA0
+Z89 !s105 test_core_sv_unit
 S1
 R4
-R5
-Z72 8P:/Z80/cpu/alu/test_core.sv
-Z73 FP:/Z80/cpu/alu/test_core.sv
+Z90 w1400429746
+Z91 8P:/Z80/cpu/alu/test_core.sv
+Z92 FP:/Z80/cpu/alu/test_core.sv
 L0 3
 R8
 r1
 31
-Z74 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_core.sv|
-Z75 o-work work -sv -O0
-Z76 !s108 1400540910.419000
-Z77 !s107 P:/Z80/cpu/alu/test_core.sv|
+Z93 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_core.sv|
+Z94 o-work work -sv -O0
+Z95 !s108 1400562754.062000
+Z96 !s107 P:/Z80/cpu/alu/test_core.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_mux_3z
-R67
-Z78 !s100 dFTIiOzhXE7Ebl_jlBX;`3
-Z79 I]EhklZJ9^cXRG`E;jQBWI3
-Z80 V]<In`T<oHQEaDAVeX]TzI3
-Z81 !s105 test_mux_3z_sv_unit
+R85
+Z97 !s100 dFTIiOzhXE7Ebl_jlBX;`3
+Z98 I]EhklZJ9^cXRG`E;jQBWI3
+Z99 V]<In`T<oHQEaDAVeX]TzI3
+Z100 !s105 test_mux_3z_sv_unit
 S1
 R4
-R5
-Z82 8P:/Z80/cpu/alu/test_mux_3z.sv
-Z83 FP:/Z80/cpu/alu/test_mux_3z.sv
+Z101 w1400505685
+Z102 8P:/Z80/cpu/alu/test_mux_3z.sv
+Z103 FP:/Z80/cpu/alu/test_mux_3z.sv
 L0 3
 R8
 r1
 31
-Z84 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_mux_3z.sv|
-R75
-Z85 !s108 1400540910.643000
-Z86 !s107 P:/Z80/cpu/alu/test_mux_3z.sv|
+Z104 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_mux_3z.sv|
+R94
+Z105 !s108 1400562754.494000
+Z106 !s107 P:/Z80/cpu/alu/test_mux_3z.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_op1_mux_low
-R67
-Z87 IEaTYfNzc8fGb0HUZb81D]2
-Z88 VUM5ha@eKWMm1]N:3RTQ_k1
+R85
+Z107 IEaTYfNzc8fGb0HUZb81D]2
+Z108 VUM5ha@eKWMm1]N:3RTQ_k1
 S1
 R4
-Z89 w1400448022
-Z90 8P:/Z80/cpu/alu/test_op1_mux_low.sv
-Z91 FP:/Z80/cpu/alu/test_op1_mux_low.sv
+Z109 w1400448022
+Z110 8P:/Z80/cpu/alu/test_op1_mux_low.sv
+Z111 FP:/Z80/cpu/alu/test_op1_mux_low.sv
 L0 3
 R8
 r1
 31
-R75
-Z92 !s100 HgMhjeaL:?:::`?gom5DU3
-Z93 !s105 test_op1_mux_low_sv_unit
-Z94 !s108 1400448087.471000
-Z95 !s107 P:/Z80/cpu/alu/test_op1_mux_low.sv|
-Z96 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_op1_mux_low.sv|
+R94
+Z112 !s100 HgMhjeaL:?:::`?gom5DU3
+Z113 !s105 test_op1_mux_low_sv_unit
+Z114 !s108 1400448087.471000
+Z115 !s107 P:/Z80/cpu/alu/test_op1_mux_low.sv|
+Z116 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_op1_mux_low.sv|
 !i10b 1
 !s85 0
 !s101 -O0
-vtest_shifter
-R67
-Z97 !s100 kDoY6^SRoE@b?:BYkMJ;[2
-Z98 IGhGjVN^BEM4R8MbmTcemo0
-Z99 V7d7g?RIV?mCCkE;aUXlDc0
-Z100 !s105 test_shifter_sv_unit
+vtest_prep_daa
+R85
+!i10b 1
+!s100 d_1Xob2?o<fhnJ7YlFnJl2
+I8UT_Q=lK7ozF8kmV5Th=g1
+VVR2zNVS;o2<>@4Y_C08df2
+!s105 test_prep_daa_sv_unit
 S1
 R4
-R5
-Z101 8P:/Z80/cpu/alu/test_shifter.sv
-Z102 FP:/Z80/cpu/alu/test_shifter.sv
+w1400562694
+8P:/Z80/cpu/alu/test_prep_daa.sv
+FP:/Z80/cpu/alu/test_prep_daa.sv
+L0 3
+R8
+r1
+!s85 0
+31
+!s108 1400562754.821000
+!s107 P:/Z80/cpu/alu/test_prep_daa.sv|
+!s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_prep_daa.sv|
+!s101 -O0
+R94
+vtest_shifter
+R85
+Z117 !s100 kDoY6^SRoE@b?:BYkMJ;[2
+Z118 IGhGjVN^BEM4R8MbmTcemo0
+Z119 V7d7g?RIV?mCCkE;aUXlDc0
+Z120 !s105 test_shifter_sv_unit
+S1
+R4
+Z121 w1400442327
+Z122 8P:/Z80/cpu/alu/test_shifter.sv
+Z123 FP:/Z80/cpu/alu/test_shifter.sv
 L0 3
 R8
 r1
 31
-Z103 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_shifter.sv|
-R75
-Z104 !s108 1400540910.508000
-Z105 !s107 P:/Z80/cpu/alu/test_shifter.sv|
+Z124 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_shifter.sv|
+R94
+Z125 !s108 1400562754.228000
+Z126 !s107 P:/Z80/cpu/alu/test_shifter.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_shifter_core
-R67
-Z106 !s100 M_9L[`Z<WY>4PoIdEWC@Z2
-Z107 IFRTJ7=?[OH9j]OMo^OX0C1
-Z108 VX>lO4=jXBB;]94iXS@h=M1
-Z109 !s105 test_shifter_core_sv_unit
+R85
+Z127 !s100 M_9L[`Z<WY>4PoIdEWC@Z2
+Z128 IFRTJ7=?[OH9j]OMo^OX0C1
+Z129 VX>lO4=jXBB;]94iXS@h=M1
+Z130 !s105 test_shifter_core_sv_unit
 S1
 R4
-R5
-Z110 8P:/Z80/cpu/alu/test_shifter_core.sv
-Z111 FP:/Z80/cpu/alu/test_shifter_core.sv
+Z131 w1400442639
+Z132 8P:/Z80/cpu/alu/test_shifter_core.sv
+Z133 FP:/Z80/cpu/alu/test_shifter_core.sv
 L0 3
 R8
 r1
 31
-Z112 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_shifter_core.sv|
-R75
-Z113 !s108 1400540910.599000
-Z114 !s107 P:/Z80/cpu/alu/test_shifter_core.sv|
+Z134 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_shifter_core.sv|
+R94
+Z135 !s108 1400562754.408000
+Z136 !s107 P:/Z80/cpu/alu/test_shifter_core.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_slice
-R67
-Z115 !s100 g5g;MeIZC5M@;dQn2X[`L0
-Z116 IV71neYD?ezUUD6EX[Yf:;3
-Z117 VQbWE7`0ggkfGCJXnBoQb90
-Z118 !s105 test_slice_sv_unit
+R85
+Z137 !s100 g5g;MeIZC5M@;dQn2X[`L0
+Z138 IV71neYD?ezUUD6EX[Yf:;3
+Z139 VQbWE7`0ggkfGCJXnBoQb90
+Z140 !s105 test_slice_sv_unit
 S1
 R4
-R5
-Z119 8P:/Z80/cpu/alu/test_slice.sv
-Z120 FP:/Z80/cpu/alu/test_slice.sv
+Z141 w1400428070
+Z142 8P:/Z80/cpu/alu/test_slice.sv
+Z143 FP:/Z80/cpu/alu/test_slice.sv
 L0 3
 R8
 r1
 31
-Z121 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_slice.sv|
-R75
-Z122 !s108 1400540910.330000
-Z123 !s107 P:/Z80/cpu/alu/test_slice.sv|
+Z144 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/alu/test_slice.sv|
+R94
+Z145 !s108 1400562753.892000
+Z146 !s107 P:/Z80/cpu/alu/test_slice.sv|
 !i10b 1
 !s85 0
 !s101 -O0

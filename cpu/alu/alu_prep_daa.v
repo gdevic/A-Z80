@@ -14,68 +14,50 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon May 19 22:50:54 2014"
+// CREATED		"Tue May 20 00:07:27 2014"
 
-module alu_shifter(
-	cf_in,
-	shift_enable,
-	db,
-	op543,
-	cf_out,
-	db_in_high,
-	db_in_low
+module alu_prep_daa(
+	high,
+	low,
+	low_gt_9,
+	high_eq_9,
+	high_gt_9
 );
 
 
-input wire	cf_in;
-input wire	shift_enable;
-input wire	[7:0] db;
-input wire	[2:0] op543;
-output wire	cf_out;
-output wire	[3:0] db_in_high;
-output wire	[3:0] db_in_low;
+input wire	[3:0] high;
+input wire	[3:0] low;
+output wire	low_gt_9;
+output wire	high_eq_9;
+output wire	high_gt_9;
 
-wire	SYNTHESIZED_WIRE_7;
+wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_3;
 wire	SYNTHESIZED_WIRE_4;
-wire	SYNTHESIZED_WIRE_6;
-
-assign	SYNTHESIZED_WIRE_8 = 0;
-assign	SYNTHESIZED_WIRE_4 = 1;
+wire	SYNTHESIZED_WIRE_5;
 
 
 
 
+assign	SYNTHESIZED_WIRE_4 =  ~high[2];
 
-alu_mux_8	b2v_inst1(
-	.in0(SYNTHESIZED_WIRE_7),
-	.in1(SYNTHESIZED_WIRE_1),
-	.in2(cf_in),
-	.in3(cf_in),
-	.in4(SYNTHESIZED_WIRE_8),
-	.in5(SYNTHESIZED_WIRE_7),
-	.in6(SYNTHESIZED_WIRE_4),
-	.in7(SYNTHESIZED_WIRE_8),
-	.sel(op543),
-	.out(SYNTHESIZED_WIRE_6));
+assign	SYNTHESIZED_WIRE_1 = low[3] & low[2];
 
-assign	SYNTHESIZED_WIRE_1 = db[0];
+assign	SYNTHESIZED_WIRE_3 = high[3] & high[2];
 
+assign	SYNTHESIZED_WIRE_0 = low[3] & low[1];
 
-assign	SYNTHESIZED_WIRE_7 = db[7];
+assign	low_gt_9 = SYNTHESIZED_WIRE_0 | SYNTHESIZED_WIRE_1;
 
+assign	SYNTHESIZED_WIRE_2 = high[3] & high[1];
 
+assign	high_gt_9 = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_3;
 
-alu_shifter_core	b2v_shifter_core_inst(
-	.shift_in(SYNTHESIZED_WIRE_6),
-	.shift_right(op543[0]),
-	.shift_enable(shift_enable),
-	.db(db),
-	.cy_out(cf_out),
-	.out_high(db_in_high),
-	.out_low(db_in_low));
+assign	SYNTHESIZED_WIRE_5 =  ~high[1];
 
+assign	high_eq_9 = high[3] & high[0] & SYNTHESIZED_WIRE_4 & SYNTHESIZED_WIRE_5;
 
 
 endmodule
