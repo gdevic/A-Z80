@@ -1,15 +1,9 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -expand -group db -radix hexadecimal /test_shifter/db
-add wave -noupdate -expand -group db -radix hexadecimal /test_shifter/db_sig
-add wave -noupdate -color Gold -itemcolor Gold /test_shifter/alu_oe_sig
-add wave -noupdate -expand -group {ALU db} -radix hexadecimal /test_shifter/db_high
-add wave -noupdate -expand -group {ALU db} -radix hexadecimal -childformat {{{/test_shifter/db_high_sig[3]} -radix hexadecimal} {{/test_shifter/db_high_sig[2]} -radix hexadecimal} {{/test_shifter/db_high_sig[1]} -radix hexadecimal} {{/test_shifter/db_high_sig[0]} -radix hexadecimal}} -subitemconfig {{/test_shifter/db_high_sig[3]} {-radix hexadecimal} {/test_shifter/db_high_sig[2]} {-radix hexadecimal} {/test_shifter/db_high_sig[1]} {-radix hexadecimal} {/test_shifter/db_high_sig[0]} {-radix hexadecimal}} /test_shifter/db_high_sig
-add wave -noupdate -expand -group {ALU db} -radix hexadecimal /test_shifter/db_low
-add wave -noupdate -expand -group {ALU db} -radix hexadecimal -childformat {{{/test_shifter/db_low_sig[3]} -radix hexadecimal} {{/test_shifter/db_low_sig[2]} -radix hexadecimal} {{/test_shifter/db_low_sig[1]} -radix hexadecimal} {{/test_shifter/db_low_sig[0]} -radix hexadecimal}} -subitemconfig {{/test_shifter/db_low_sig[3]} {-radix hexadecimal} {/test_shifter/db_low_sig[2]} {-radix hexadecimal} {/test_shifter/db_low_sig[1]} {-radix hexadecimal} {/test_shifter/db_low_sig[0]} {-radix hexadecimal}} /test_shifter/db_low_sig
-add wave -noupdate -color Gold -itemcolor Gold /test_shifter/alu_shift_oe_sig
+add wave -noupdate -expand -group db -radix binary -childformat {{{/test_shifter/db_sig[7]} -radix hexadecimal} {{/test_shifter/db_sig[6]} -radix hexadecimal} {{/test_shifter/db_sig[5]} -radix hexadecimal} {{/test_shifter/db_sig[4]} -radix hexadecimal} {{/test_shifter/db_sig[3]} -radix hexadecimal} {{/test_shifter/db_sig[2]} -radix hexadecimal} {{/test_shifter/db_sig[1]} -radix hexadecimal} {{/test_shifter/db_sig[0]} -radix hexadecimal}} -subitemconfig {{/test_shifter/db_sig[7]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[6]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[5]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[4]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[3]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[2]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[1]} {-height 14 -radix hexadecimal} {/test_shifter/db_sig[0]} {-height 14 -radix hexadecimal}} /test_shifter/db_sig
+add wave -noupdate -expand -group {ALU db} -color Gold -itemcolor Gold -radix hexadecimal /test_shifter/db_in_low_sig
+add wave -noupdate -expand -group {ALU db} -color Gold -itemcolor Gold -radix hexadecimal /test_shifter/db_in_high_sig
 add wave -noupdate /test_shifter/op543_sig
-add wave -noupdate /test_shifter/alu_shift_enable_sig
 add wave -noupdate /test_shifter/cf_in_sig
 add wave -noupdate /test_shifter/cf_out_sig
 TreeUpdate [SetDefaultTree]
@@ -29,4 +23,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {900 ps}
+WaveRestoreZoom {3300 ps} {5100 ps}

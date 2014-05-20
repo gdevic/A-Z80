@@ -59,7 +59,7 @@ initial begin
     #1
     low_sig  = 4'hF;
     high_sig = 4'hF;
-    
+
     #1 $display("End of test");
 end
 
