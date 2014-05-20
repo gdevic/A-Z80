@@ -26,16 +26,9 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
-		(text "oe" (rect 21 27 35 41)(font "Arial" (font_size 8)))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
 		(text "bsel[2..0]" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "bsel[2..0]" (rect 21 43 72 57)(font "Arial" (font_size 8)))
-		(line (pt 0 48)(pt 16 48)(line_width 3))
+		(text "bsel[2..0]" (rect 21 27 72 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
 		(pt 200 32)
