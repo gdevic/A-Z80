@@ -7,11 +7,31 @@ module test_alu;
 reg alu_oe_sig;             // ALU unit output enable to the outside bus
 
 // Write to the ALU internal data buses
-reg alu_shift_oe_sig;       // Enable writing by the input shifter
 reg alu_op1_oe_sig;         // Enable writing by the OP1 latch
 reg alu_op2_oe_sig;         // Enable writing by the OP2 latch
 reg alu_res_oe_sig;         // Enable writing by the ALU result latch
+reg alu_shift_oe_sig;       // Enable writing by the input shifter
 reg alu_bs_oe_sig;          // Enable writing by the input bit selector
+// Our own test internal mux to select ALU bus writers
+reg [2:0] bus_sel;          // Select internal bus writer:
+typedef enum logic[2:0] {
+    BUS_HIGHZ, BUS_OP1, BUS_OP2, BUS_RES, BUS_SHIFT, BUS_BS
+} bus_t;
+always_comb
+begin
+    alu_op1_oe_sig = 0;
+    alu_op2_oe_sig = 0;
+    alu_res_oe_sig = 0;
+    alu_shift_oe_sig = 0;
+    alu_bs_oe_sig = 0;
+    case (bus_sel)
+        BUS_OP1     : alu_op1_oe_sig = 1;
+        BUS_OP2     : alu_op2_oe_sig = 1;
+        BUS_RES     : alu_res_oe_sig = 1;
+        BUS_SHIFT   : alu_shift_oe_sig = 1;
+        BUS_BS      : alu_bs_oe_sig = 1;
+    endcase
+end
 
 // Input shifter control wires and output from the shifter
 reg alu_shift_enable_sig;   // Enable input shift vs. pass-through
@@ -61,16 +81,17 @@ wire [7:0] db_sig;          // Read it using this bus
 wire [3:0] test_db_low_sig; // Test point to probe internal low nibble bus
 wire [3:0] test_db_high_sig;// Test point to probe internal high nibble bus
 
+// ----------------- FLAGS  -----------------
+reg cf;                     // Carry flag
+reg pf;                     // Parity flag
+reg hf;                     // Half-carry flag
+
 initial begin
     // Init / reset
     db = 8'h00;
     alu_oe_sig = 0;
 
-    alu_shift_oe_sig = 0;
-    alu_op1_oe_sig = 0;
-    alu_op2_oe_sig = 0;
-    alu_res_oe_sig = 0;
-    alu_bs_oe_sig = 0;
+    bus_sel = BUS_HIGHZ;
 
     alu_shift_enable_sig = 0;
     alu_shift_in_sig = 0;
@@ -90,14 +111,88 @@ initial begin
     alu_sel_op2_pos_sig = 0;
     alu_sel_op2_low_sig = 0;
 
+    alu_parity_in_sig = 0;
     alu_core_cf_in_sig = 0;
     alu_core_R_sig = 0;
     alu_core_S_sig = 0;
     alu_core_V_sig = 0;
     alu_op_low_sig = 0;
 
-    alu_parity_in_sig = 0;
+    cf = 0;
+    hf = 0;
+    pf = 0;
 
+    //------------------------------------------------------------
+    // Test loading to internal bus from the input bit selector through the OP2 latch
+    #1  db = 'z;                        // Not using external bus to load, but the bit-select
+        bsel_sig = 2'h3;                // Bit 3:  0000 1000
+        bus_sel = BUS_BS;
+        alu_op2_sel_bus_sig = 1;        // Write into the OP2 latch
+
+    #1  bsel_sig = 2'h0;
+        alu_op2_sel_bus_sig = 0;
+        bus_sel = BUS_OP2;
+        alu_oe_sig = 1;                 // Write internal bus out to the ALU bus
+        // Expected output on the external ALU bus : 0000 1000, 0x08
+    #1  // Reset
+        bus_sel = BUS_HIGHZ;
+        alu_oe_sig = 0;
+
+    //------------------------------------------------------------
+    // Test loading to internal bus from the input shifter through the OP1 latch
+    #1  db = 8'h24;                     // High: 0010  Low: 0100
+        bus_sel = BUS_SHIFT;
+        alu_shift_enable_sig = 1;       // Enable shift
+        alu_shift_in_sig = 1;           // left shift <- 1
+        alu_op1_sel_bus_sig = 1;        // Write into the OP1 latch
+
+    #1  db = 'z;
+        alu_shift_enable_sig = 0;
+        alu_op1_sel_bus_sig = 0;
+        alu_shift_in_sig = 0;
+        bus_sel = BUS_OP1;              // Read back OP1 latch
+    #1  // *** WHY this does not work in the same cycle??? ***
+        alu_oe_sig = 1;                 // Write internal bus out to the ALU bus
+        // Expected output on the external ALU bus : 0100 1001, 0x49
+    #1  // Reset
+        bus_sel = BUS_HIGHZ;
+        alu_oe_sig = 0;                 // Write internal bus out to the ALU bus
+
+    //------------------------------------------------------------
+    // Test the full adding function, ADD
+    #1  db = 8'h8C;                     // Operand 1:  8C
+        bus_sel = BUS_SHIFT;            // Shifter writes to internal bus
+        alu_op1_sel_bus_sig = 1;        // Write into the OP1 latch
+
+    #1  db = 8'h6D;                     // Operand 1:  6D
+        alu_op1_sel_bus_sig = 0;
+        bus_sel = BUS_SHIFT;            // Shifter writes to internal bus
+        alu_op2_sel_bus_sig = 1;        // Write into the OP2 latch
+        // Do a low nibble addition in this cycle
+        alu_sel_op2_low_sig = 1;        // Alu select OP2 low nibble
+        alu_parity_in_sig = 0;          // Reset parity of the nibble
+        alu_core_cf_in_sig = 0;         // CF in 0
+        alu_sel_op2_pos_sig = 1;
+        alu_core_R_sig = 0;
+        alu_core_S_sig = 0;
+        alu_core_V_sig = 0;
+        alu_op_low_sig = 1;             // Perform the low nibble calculation
+        hf = alu_core_cf_out_sig;       // Load the HF with the half-carry out
+        pf = alu_parity_out_sig;        // Load the PF with the parity of the nibble result
+
+    #1  db = 'z;
+        bus_sel = BUS_RES;              // ALU result latch writes to the bus
+        alu_op2_sel_bus_sig = 0;
+        alu_sel_op2_low_sig = 0;
+        alu_core_cf_in_sig = 0;
+        alu_op_low_sig = 0;
+        alu_core_cf_in_sig = hf;        // Carry in the half-carry
+        alu_parity_in_sig = pf;         // Parity in the parity of the low result nibble
+    #1  // *** WHY this does not work in the same cycle??? ***
+        alu_oe_sig = 1;                 // Write internal bus out to the ALU bus
+    #1  // Reset
+        alu_oe_sig = 0;
+        bus_sel = BUS_HIGHZ;
 
     #1 $display("End of test");
 end
