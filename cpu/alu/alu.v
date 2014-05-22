@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue May 20 17:39:32 2014"
+// CREATED		"Thu May 22 08:25:07 2014"
 
 module alu(
 	alu_core_R,
@@ -34,13 +34,13 @@ module alu(
 	alu_op2_sel_zero,
 	alu_op2_sel_bus,
 	alu_op2_sel_lq,
-	alu_sel_op2_pos,
-	alu_sel_op2_low,
 	alu_op_low,
 	alu_shift_sra,
 	alu_shift_enable,
 	alu_shift_right,
 	alu_shift_in,
+	alu_sel_op2_neg,
+	alu_sel_op2_high,
 	bsel,
 	alu_zero,
 	alu_core_cf_out,
@@ -72,13 +72,13 @@ input wire	alu_op1_sel_bus;
 input wire	alu_op2_sel_zero;
 input wire	alu_op2_sel_bus;
 input wire	alu_op2_sel_lq;
-input wire	alu_sel_op2_pos;
-input wire	alu_sel_op2_low;
 input wire	alu_op_low;
 input wire	alu_shift_sra;
 input wire	alu_shift_enable;
 input wire	alu_shift_right;
 input wire	alu_shift_in;
+input wire	alu_sel_op2_neg;
+input wire	alu_sel_op2_high;
 input wire	[2:0] bsel;
 output wire	alu_zero;
 output wire	alu_core_cf_out;
@@ -198,17 +198,17 @@ assign	SYNTHESIZED_WIRE_12 =  ~SYNTHESIZED_WIRE_49;
 
 assign	SYNTHESIZED_WIRE_15 =  ~SYNTHESIZED_WIRE_50;
 
-assign	SYNTHESIZED_WIRE_20 = SYNTHESIZED_WIRE_49 & {alu_sel_op2_pos,alu_sel_op2_pos,alu_sel_op2_pos,alu_sel_op2_pos};
+assign	SYNTHESIZED_WIRE_20 = SYNTHESIZED_WIRE_49 & {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51};
 
-assign	SYNTHESIZED_WIRE_19 = {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51} & SYNTHESIZED_WIRE_12;
+assign	SYNTHESIZED_WIRE_19 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_12;
 
-assign	SYNTHESIZED_WIRE_22 = SYNTHESIZED_WIRE_50 & {alu_sel_op2_pos,alu_sel_op2_pos,alu_sel_op2_pos,alu_sel_op2_pos};
+assign	SYNTHESIZED_WIRE_22 = SYNTHESIZED_WIRE_50 & {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51};
 
-assign	SYNTHESIZED_WIRE_21 = {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51} & SYNTHESIZED_WIRE_15;
+assign	SYNTHESIZED_WIRE_21 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_15;
 
-assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_16 & {alu_sel_op2_low,alu_sel_op2_low,alu_sel_op2_low,alu_sel_op2_low};
+assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_16 & {SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17};
 
-assign	SYNTHESIZED_WIRE_23 = {SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17} & SYNTHESIZED_WIRE_18;
+assign	SYNTHESIZED_WIRE_23 = {alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high} & SYNTHESIZED_WIRE_18;
 
 assign	SYNTHESIZED_WIRE_16 = SYNTHESIZED_WIRE_19 | SYNTHESIZED_WIRE_20;
 
@@ -216,9 +216,9 @@ assign	SYNTHESIZED_WIRE_18 = SYNTHESIZED_WIRE_21 | SYNTHESIZED_WIRE_22;
 
 assign	SYNTHESIZED_WIRE_3 = SYNTHESIZED_WIRE_23 | SYNTHESIZED_WIRE_24;
 
-assign	SYNTHESIZED_WIRE_51 =  ~alu_sel_op2_pos;
+assign	SYNTHESIZED_WIRE_51 =  ~alu_sel_op2_neg;
 
-assign	SYNTHESIZED_WIRE_17 =  ~alu_sel_op2_low;
+assign	SYNTHESIZED_WIRE_17 =  ~alu_sel_op2_high;
 
 assign	db_low[3] = alu_res_oe ? SYNTHESIZED_WIRE_52[3] : 1'bz;
 assign	db_low[2] = alu_res_oe ? SYNTHESIZED_WIRE_52[2] : 1'bz;
