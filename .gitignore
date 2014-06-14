@@ -1,4 +1,5 @@
-# Quartus temp folders
+# Quartus files and folders
+*.rpt
 db/
 incremental_db/
 out/
@@ -15,5 +16,4 @@ _primary.*
 
 # Generic backup files
 *~
-
 *.bak
