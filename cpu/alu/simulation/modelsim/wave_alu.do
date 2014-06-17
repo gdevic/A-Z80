@@ -31,10 +31,13 @@ add wave -noupdate -expand -group {ALU core} /test_alu/alu_sel_op2_high
 add wave -noupdate -expand -group {ALU core} /test_alu/alu_op_low
 add wave -noupdate -expand -group Flags /test_alu/alu_core_cf_in
 add wave -noupdate -expand -group Flags /test_alu/alu_core_cf_out
-add wave -noupdate -expand -group Flags /test_alu/alu_core_vf_out
 add wave -noupdate -expand -group Flags /test_alu/alu_parity_in
 add wave -noupdate -expand -group Flags /test_alu/alu_parity_out
 add wave -noupdate -expand -group Flags /test_alu/alu_zero
+add wave -noupdate -expand -group Flags /test_alu/alu_vf_out
+add wave -noupdate -expand -group Flags /test_alu/alu_sf_out
+add wave -noupdate -expand -group Flags /test_alu/alu_xf_out
+add wave -noupdate -expand -group Flags /test_alu/alu_yf_out
 add wave -noupdate -expand -group Flags /test_alu/alu_low_gt_9
 add wave -noupdate -expand -group Flags /test_alu/alu_high_gt_9
 add wave -noupdate -expand -group Flags /test_alu/alu_high_eq_9

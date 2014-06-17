@@ -68,12 +68,15 @@ logic alu_core_S;           // Operation control "S"
 logic alu_core_V;           // Operation control "V"
 logic alu_op_low;           // Signal to compute and store the low nibble (see schematic)
 wire alu_core_cf_out;       // Output carry bit from the ALU core
-wire alu_core_vf_out;       // Output overflow flag from the ALU core
+wire alu_vf_out;            // Output overflow flag from the ALU
 
-// Zero-detect, parity calculation and DAA-preparation logic
+// Zero-detect, parity calculation, flag preparation and DAA-preparation logic
 logic alu_parity_in;        // Input parity bit from a previous nibble
 wire alu_parity_out;        // Output parity on the result and a previous nibble
 wire alu_zero;              // Output signal that the result is zero
+wire alu_sf_out;            // Output signal containing the result sign bit
+wire alu_yf_out;            // Output signal containing the result[5] bit which is YF
+wire alu_xf_out;            // Output signal containing the result[3] bit which is XF
 wire alu_low_gt_9;          // Output signal that the low nibble result > 9
 wire alu_high_gt_9;         // Output signal that the high nibble result > 9
 wire alu_high_eq_9;         // Output signal that the high nibble result == 9
