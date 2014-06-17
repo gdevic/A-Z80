@@ -38,11 +38,11 @@ end
 
 // ------------------------ INPUT ------------------------
 // Input shifter control wires and output from the shifter
-logic alu_shift_enable;     // Enable input shift vs. pass-through
-logic alu_shift_in;         // Carry-in
-logic alu_shift_right;      // Shift right (1) or left (0)
-logic alu_shift_sra;        // SRA instruction, keep bit [7]
-wire alu_shift_out;         // Output carry bit from the input shifter
+logic alu_shift_in;         // Carry-in into the shifter
+logic alu_shift_right;      // Shift right
+logic alu_shift_left;       // Shift left
+wire alu_shift_db0;         // Output db[0] from the shifter for the shift logic
+wire alu_shift_db7;         // Output db[7] from the shifter for the shift logic
 
 // Input bit selector control wires
 logic [2:0] bsel;           // Selects a bit to generate
@@ -95,10 +95,9 @@ initial begin
     db_w = 8'h00;
     bus_sel = BUS_HIGHZ;
 
-    alu_shift_enable = 0;
     alu_shift_in = 0;
     alu_shift_right = 0;
-    alu_shift_sra = 0;
+    alu_shift_left = 0;
 
     bsel = 2'h0;
 
@@ -128,7 +127,7 @@ initial begin
     // Test loading to internal bus from the input shifter through the OP1 latch
     #1  db_w = 8'h24;                   // High: 0010  Low: 0100
         bus_sel = BUS_SHIFT;
-        alu_shift_enable = 1;           // Enable shift
+        alu_shift_right = 1;            // Enable shift and shift right
         alu_shift_in = 1;               // left shift <- 1
         alu_op1_sel_bus = 1;            // Write into the OP1 latch
 
@@ -136,7 +135,7 @@ initial begin
         alu_op1_sel_bus = 0;
         alu_shift_in = 0;
         bus_sel = BUS_OP1;              // Read back OP1 latch
-        alu_shift_enable = 0;
+        alu_shift_right = 0;
         // Expected output on the external ALU bus : 0100 1001, 0x49
     #1  // Reset
         bus_sel = BUS_HIGHZ;

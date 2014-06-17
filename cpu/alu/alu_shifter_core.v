@@ -14,35 +14,44 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue May 20 16:23:04 2014"
+// CREATED		"Mon Jun 16 20:59:16 2014"
 
 module alu_shifter_core(
-	shift_enable,
-	shift_right,
 	shift_in,
-	shift_sra,
+	shift_right,
+	shift_left,
 	db,
-	shift_out,
+	shift_db0,
+	shift_db7,
 	out_high,
 	out_low
 );
 
 
-input wire	shift_enable;
-input wire	shift_right;
 input wire	shift_in;
-input wire	shift_sra;
+input wire	shift_right;
+input wire	shift_left;
 input wire	[7:0] db;
-output wire	shift_out;
+output wire	shift_db0;
+output wire	shift_db7;
 output wire	[3:0] out_high;
 output wire	[3:0] out_low;
 
 wire	[3:0] out_high_ALTERA_SYNTHESIZED;
 wire	[3:0] out_low_ALTERA_SYNTHESIZED;
-wire	SYNTHESIZED_WIRE_47;
-wire	SYNTHESIZED_WIRE_48;
-wire	SYNTHESIZED_WIRE_49;
+wire	SYNTHESIZED_WIRE_32;
+wire	SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_9;
+wire	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_11;
+wire	SYNTHESIZED_WIRE_12;
+wire	SYNTHESIZED_WIRE_13;
+wire	SYNTHESIZED_WIRE_14;
+wire	SYNTHESIZED_WIRE_15;
+wire	SYNTHESIZED_WIRE_16;
 wire	SYNTHESIZED_WIRE_17;
+wire	SYNTHESIZED_WIRE_18;
+wire	SYNTHESIZED_WIRE_19;
 wire	SYNTHESIZED_WIRE_20;
 wire	SYNTHESIZED_WIRE_21;
 wire	SYNTHESIZED_WIRE_22;
@@ -55,104 +64,77 @@ wire	SYNTHESIZED_WIRE_28;
 wire	SYNTHESIZED_WIRE_29;
 wire	SYNTHESIZED_WIRE_30;
 wire	SYNTHESIZED_WIRE_31;
-wire	SYNTHESIZED_WIRE_32;
-wire	SYNTHESIZED_WIRE_33;
-wire	SYNTHESIZED_WIRE_34;
-wire	SYNTHESIZED_WIRE_35;
-wire	SYNTHESIZED_WIRE_36;
-wire	SYNTHESIZED_WIRE_37;
-wire	SYNTHESIZED_WIRE_38;
-wire	SYNTHESIZED_WIRE_39;
-wire	SYNTHESIZED_WIRE_40;
-wire	SYNTHESIZED_WIRE_41;
-wire	SYNTHESIZED_WIRE_42;
-wire	SYNTHESIZED_WIRE_43;
-wire	SYNTHESIZED_WIRE_44;
-wire	SYNTHESIZED_WIRE_45;
-wire	SYNTHESIZED_WIRE_46;
+
+assign	shift_db0 = db[0];
+assign	shift_db7 = db[7];
 
 
 
+assign	SYNTHESIZED_WIRE_9 = shift_in & shift_left;
 
-assign	SYNTHESIZED_WIRE_46 = db[0] & shift_right;
+assign	SYNTHESIZED_WIRE_8 = db[0] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_45 = db[7] & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_10 = db[1] & shift_right;
 
-assign	SYNTHESIZED_WIRE_24 = db[0] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_12 = db[0] & shift_left;
 
-assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_49 & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_11 = db[1] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_26 = db[1] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_13 = db[2] & shift_right;
 
-assign	SYNTHESIZED_WIRE_27 = db[1] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_15 = db[1] & shift_left;
 
-assign	SYNTHESIZED_WIRE_28 = db[0] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_14 = db[2] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_29 = db[2] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_16 = db[3] & shift_right;
 
-assign	SYNTHESIZED_WIRE_30 = db[2] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_18 = db[2] & shift_left;
 
-assign	SYNTHESIZED_WIRE_31 = db[1] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_17 = db[3] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_32 = db[3] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_19 = db[4] & shift_right;
 
-assign	SYNTHESIZED_WIRE_33 = db[3] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_21 = db[3] & shift_left;
 
-assign	SYNTHESIZED_WIRE_34 = db[2] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_20 = db[4] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_35 = db[4] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_22 = db[5] & shift_right;
 
-assign	SYNTHESIZED_WIRE_36 = db[4] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_24 = db[4] & shift_left;
 
-assign	SYNTHESIZED_WIRE_37 = db[3] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_23 = db[5] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_38 = db[5] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_25 = db[6] & shift_right;
 
-assign	SYNTHESIZED_WIRE_39 = db[5] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_27 = db[5] & shift_left;
 
-assign	SYNTHESIZED_WIRE_40 = db[4] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_26 = db[6] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_41 = db[6] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_28 = db[7] & shift_right;
 
-assign	SYNTHESIZED_WIRE_42 = db[6] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_30 = db[6] & shift_left;
 
-assign	SYNTHESIZED_WIRE_43 = db[5] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	SYNTHESIZED_WIRE_29 = db[7] & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_44 = db[7] & shift_enable & shift_right;
+assign	SYNTHESIZED_WIRE_31 = shift_in & shift_right;
 
-assign	SYNTHESIZED_WIRE_23 = db[7] & SYNTHESIZED_WIRE_48;
+assign	SYNTHESIZED_WIRE_32 = ~(shift_right | shift_left);
 
-assign	SYNTHESIZED_WIRE_22 = db[7] & shift_sra;
+assign	out_low_ALTERA_SYNTHESIZED[0] = SYNTHESIZED_WIRE_8 | SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_10;
 
-assign	SYNTHESIZED_WIRE_49 = shift_in & SYNTHESIZED_WIRE_17;
+assign	out_low_ALTERA_SYNTHESIZED[1] = SYNTHESIZED_WIRE_11 | SYNTHESIZED_WIRE_12 | SYNTHESIZED_WIRE_13;
 
-assign	SYNTHESIZED_WIRE_21 = db[6] & shift_enable & SYNTHESIZED_WIRE_47;
+assign	out_low_ALTERA_SYNTHESIZED[2] = SYNTHESIZED_WIRE_14 | SYNTHESIZED_WIRE_15 | SYNTHESIZED_WIRE_16;
 
-assign	SYNTHESIZED_WIRE_20 = SYNTHESIZED_WIRE_49 & shift_enable & shift_right;
+assign	out_low_ALTERA_SYNTHESIZED[3] = SYNTHESIZED_WIRE_17 | SYNTHESIZED_WIRE_18 | SYNTHESIZED_WIRE_19;
 
-assign	out_high_ALTERA_SYNTHESIZED[3] = SYNTHESIZED_WIRE_20 | SYNTHESIZED_WIRE_21 | SYNTHESIZED_WIRE_22 | SYNTHESIZED_WIRE_23;
+assign	out_high_ALTERA_SYNTHESIZED[0] = SYNTHESIZED_WIRE_20 | SYNTHESIZED_WIRE_21 | SYNTHESIZED_WIRE_22;
 
-assign	SYNTHESIZED_WIRE_47 =  ~shift_right;
+assign	out_high_ALTERA_SYNTHESIZED[1] = SYNTHESIZED_WIRE_23 | SYNTHESIZED_WIRE_24 | SYNTHESIZED_WIRE_25;
 
-assign	SYNTHESIZED_WIRE_48 =  ~shift_enable;
+assign	out_high_ALTERA_SYNTHESIZED[2] = SYNTHESIZED_WIRE_26 | SYNTHESIZED_WIRE_27 | SYNTHESIZED_WIRE_28;
 
-assign	out_low_ALTERA_SYNTHESIZED[0] = SYNTHESIZED_WIRE_24 | SYNTHESIZED_WIRE_25 | SYNTHESIZED_WIRE_26;
-
-assign	out_low_ALTERA_SYNTHESIZED[1] = SYNTHESIZED_WIRE_27 | SYNTHESIZED_WIRE_28 | SYNTHESIZED_WIRE_29;
-
-assign	out_low_ALTERA_SYNTHESIZED[2] = SYNTHESIZED_WIRE_30 | SYNTHESIZED_WIRE_31 | SYNTHESIZED_WIRE_32;
-
-assign	out_low_ALTERA_SYNTHESIZED[3] = SYNTHESIZED_WIRE_33 | SYNTHESIZED_WIRE_34 | SYNTHESIZED_WIRE_35;
-
-assign	out_high_ALTERA_SYNTHESIZED[0] = SYNTHESIZED_WIRE_36 | SYNTHESIZED_WIRE_37 | SYNTHESIZED_WIRE_38;
-
-assign	out_high_ALTERA_SYNTHESIZED[1] = SYNTHESIZED_WIRE_39 | SYNTHESIZED_WIRE_40 | SYNTHESIZED_WIRE_41;
-
-assign	out_high_ALTERA_SYNTHESIZED[2] = SYNTHESIZED_WIRE_42 | SYNTHESIZED_WIRE_43 | SYNTHESIZED_WIRE_44;
-
-assign	shift_out = SYNTHESIZED_WIRE_45 | SYNTHESIZED_WIRE_46;
-
-assign	SYNTHESIZED_WIRE_17 =  ~shift_sra;
+assign	out_high_ALTERA_SYNTHESIZED[3] = SYNTHESIZED_WIRE_29 | SYNTHESIZED_WIRE_30 | SYNTHESIZED_WIRE_31;
 
 assign	out_high = out_high_ALTERA_SYNTHESIZED;
 assign	out_low = out_low_ALTERA_SYNTHESIZED;

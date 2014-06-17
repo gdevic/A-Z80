@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu May 22 08:25:07 2014"
+// CREATED		"Mon Jun 16 21:19:14 2014"
 
 module alu(
 	alu_core_R,
@@ -35,12 +35,11 @@ module alu(
 	alu_op2_sel_bus,
 	alu_op2_sel_lq,
 	alu_op_low,
-	alu_shift_sra,
-	alu_shift_enable,
-	alu_shift_right,
 	alu_shift_in,
 	alu_sel_op2_neg,
 	alu_sel_op2_high,
+	alu_shift_left,
+	alu_shift_right,
 	bsel,
 	alu_zero,
 	alu_core_cf_out,
@@ -48,7 +47,8 @@ module alu(
 	alu_high_eq_9,
 	alu_high_gt_9,
 	alu_low_gt_9,
-	alu_shift_out,
+	alu_shift_db0,
+	alu_shift_db7,
 	db,
 	test_db_high,
 	test_db_low
@@ -73,12 +73,11 @@ input wire	alu_op2_sel_zero;
 input wire	alu_op2_sel_bus;
 input wire	alu_op2_sel_lq;
 input wire	alu_op_low;
-input wire	alu_shift_sra;
-input wire	alu_shift_enable;
-input wire	alu_shift_right;
 input wire	alu_shift_in;
 input wire	alu_sel_op2_neg;
 input wire	alu_sel_op2_high;
+input wire	alu_shift_left;
+input wire	alu_shift_right;
 input wire	[2:0] bsel;
 output wire	alu_zero;
 output wire	alu_core_cf_out;
@@ -86,7 +85,8 @@ output wire	alu_parity_out;
 output wire	alu_high_eq_9;
 output wire	alu_high_gt_9;
 output wire	alu_low_gt_9;
-output wire	alu_shift_out;
+output wire	alu_shift_db0;
+output wire	alu_shift_db7;
 inout wire	[7:0] db;
 output wire	[3:0] test_db_high;
 output wire	[3:0] test_db_low;
@@ -172,11 +172,11 @@ alu_bit_select	b2v_input_bit_select(
 
 alu_shifter_core	b2v_input_shift(
 	.shift_in(alu_shift_in),
+	.shift_left(alu_shift_left),
 	.shift_right(alu_shift_right),
-	.shift_enable(alu_shift_enable),
-	.shift_sra(alu_shift_sra),
 	.db(db),
-	.shift_out(alu_shift_out),
+	.shift_db0(alu_shift_db0),
+	.shift_db7(alu_shift_db7),
 	.out_high(SYNTHESIZED_WIRE_45),
 	.out_low(SYNTHESIZED_WIRE_44));
 

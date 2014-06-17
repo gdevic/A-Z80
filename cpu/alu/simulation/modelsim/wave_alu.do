@@ -11,11 +11,11 @@ add wave -noupdate -expand -group {Bus control} /test_alu/alu_op2_oe
 add wave -noupdate -expand -group {Bus control} /test_alu/alu_res_oe
 add wave -noupdate -expand -group {Bus control} /test_alu/alu_shift_oe
 add wave -noupdate -expand -group {Bus control} /test_alu/alu_bs_oe
-add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_enable
 add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_in
 add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_right
-add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_sra
-add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_out
+add wave -noupdate -expand -group {Input shifter} /test_alu/alu_shift_left
+add wave -noupdate /test_alu/alu_shift_db0
+add wave -noupdate /test_alu/alu_shift_db7
 add wave -noupdate /test_alu/bsel
 add wave -noupdate -expand -group {Operand selectors} /test_alu/alu_op1_sel_bus
 add wave -noupdate -expand -group {Operand selectors} /test_alu/alu_op1_sel_low
