@@ -12,6 +12,7 @@ reg V_sig;                  // Operation control "V"
 
 // ----------------- OUTPUT -----------------
 wire cy_out_sig;            // Carry out (from slice A)
+wire vf_out_sig;            // Overflow out
 wire [3:0] result_sig;      // Result bits
 
 initial begin
@@ -100,6 +101,7 @@ alu_core alu_core_inst
 	.V(V_sig) ,	// input  V_sig
 	.R(R_sig) ,	// input  R_sig
 	.cy_out(cy_out_sig) ,	// output  cy_out_sig
+	.vf_out(vf_out_sig) ,	// output  vf_out_sig
 	.result(result_sig[3:0]) 	// output [3:0] result_sig
 );
 

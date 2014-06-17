@@ -79,6 +79,13 @@ applicable agreement for further details.
 		(text "cy_out" (rect 101 43 139 57)(font "Arial" (font_size 8)))
 		(line (pt 160 48)(pt 144 48))
 	)
+	(port
+		(pt 160 64)
+		(output)
+		(text "vf_out" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "vf_out" (rect 103 59 139 73)(font "Arial" (font_size 8)))
+		(line (pt 160 64)(pt 144 64))
+	)
 	(drawing
 		(rectangle (rect 16 16 144 144))
 	)

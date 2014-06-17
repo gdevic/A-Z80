@@ -5,6 +5,7 @@ add wave -noupdate -radix hexadecimal /test_core/op2_sig
 add wave -noupdate /test_core/cy_in_sig
 add wave -noupdate -color Gold -itemcolor Gold -radix hexadecimal /test_core/result_sig
 add wave -noupdate -color Gold -format Literal -itemcolor Gold /test_core/cy_out_sig
+add wave -noupdate -color Gray75 -itemcolor Gray75 /test_core/vf_out_sig
 add wave -noupdate /test_core/R_sig
 add wave -noupdate /test_core/S_sig
 add wave -noupdate /test_core/V_sig

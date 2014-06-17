@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jun 16 21:19:14 2014"
+// CREATED		"Mon Jun 16 21:53:16 2014"
 
 module alu(
 	alu_core_R,
@@ -49,6 +49,7 @@ module alu(
 	alu_low_gt_9,
 	alu_shift_db0,
 	alu_shift_db7,
+	alu_core_vf_out,
 	db,
 	test_db_high,
 	test_db_low
@@ -87,6 +88,7 @@ output wire	alu_high_gt_9;
 output wire	alu_low_gt_9;
 output wire	alu_shift_db0;
 output wire	alu_shift_db7;
+output wire	alu_core_vf_out;
 inout wire	[7:0] db;
 output wire	[3:0] test_db_high;
 output wire	[3:0] test_db_low;
@@ -151,6 +153,7 @@ alu_core	b2v_core(
 	.op1(SYNTHESIZED_WIRE_48),
 	.op2(SYNTHESIZED_WIRE_3),
 	.cy_out(alu_core_cf_out),
+	.vf_out(alu_core_vf_out),
 	.result(SYNTHESIZED_WIRE_53));
 
 assign	db[3] = alu_oe ? db_low[3] : 1'bz;
