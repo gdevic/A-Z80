@@ -1,0 +1,92 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.2"))
+(symbol
+	(rect 16 16 224 144)
+	(text "alu_control" (rect 5 0 67 14)(font "Arial" (font_size 8)))
+	(text "inst" (rect 8 112 25 124)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "alu_shift_db7" (rect 0 0 76 14)(font "Arial" (font_size 8)))
+		(text "alu_shift_db7" (rect 21 27 97 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "alu_shift_db0" (rect 0 0 76 14)(font "Arial" (font_size 8)))
+		(text "alu_shift_db0" (rect 21 43 97 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "ctl_shift_en" (rect 0 0 66 14)(font "Arial" (font_size 8)))
+		(text "ctl_shift_en" (rect 21 59 87 73)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "op543[2..0]" (rect 0 0 63 14)(font "Arial" (font_size 8)))
+		(text "op543[2..0]" (rect 21 75 84 89)(font "Arial" (font_size 8)))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "shift_cf_in" (rect 0 0 60 14)(font "Arial" (font_size 8)))
+		(text "shift_cf_in" (rect 21 91 81 105)(font "Arial" (font_size 8)))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 208 32)
+		(output)
+		(text "shift_cf_out" (rect 0 0 68 14)(font "Arial" (font_size 8)))
+		(text "shift_cf_out" (rect 119 27 187 41)(font "Arial" (font_size 8)))
+		(line (pt 208 32)(pt 192 32))
+	)
+	(port
+		(pt 208 48)
+		(output)
+		(text "alu_shift_left" (rect 0 0 73 14)(font "Arial" (font_size 8)))
+		(text "alu_shift_left" (rect 114 43 187 57)(font "Arial" (font_size 8)))
+		(line (pt 208 48)(pt 192 48))
+	)
+	(port
+		(pt 208 64)
+		(output)
+		(text "alu_shift_right" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "alu_shift_right" (rect 107 59 187 73)(font "Arial" (font_size 8)))
+		(line (pt 208 64)(pt 192 64))
+	)
+	(port
+		(pt 208 80)
+		(output)
+		(text "alu_shift_in" (rect 0 0 64 14)(font "Arial" (font_size 8)))
+		(text "alu_shift_in" (rect 123 75 187 89)(font "Arial" (font_size 8)))
+		(line (pt 208 80)(pt 192 80))
+	)
+	(drawing
+		(rectangle (rect 16 16 192 112))
+	)
+)
