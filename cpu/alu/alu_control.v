@@ -14,13 +14,12 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Jul 01 09:08:00 2014"
+// CREATED		"Wed Jul 02 19:50:06 2014"
 
 module alu_control(
 	alu_shift_db0,
 	alu_shift_db7,
 	ctl_shift_en,
-	shift_cf_in,
 	alu_low_gt_9,
 	alu_high_gt_9,
 	alu_high_eq_9,
@@ -34,6 +33,10 @@ module alu_control(
 	flags_pf,
 	flags_sf,
 	ctl_cond_short,
+	alu_vf_out,
+	iff2,
+	address_is_1,
+	ctl_pf_sel,
 	op543,
 	alu_shift_in,
 	alu_shift_right,
@@ -41,6 +44,8 @@ module alu_control(
 	shift_cf_out,
 	alu_parity_in,
 	flags_cond_true,
+	daa_cf_out,
+	pf_sel,
 	db
 );
 
@@ -48,7 +53,6 @@ module alu_control(
 input wire	alu_shift_db0;
 input wire	alu_shift_db7;
 input wire	ctl_shift_en;
-input wire	shift_cf_in;
 input wire	alu_low_gt_9;
 input wire	alu_high_gt_9;
 input wire	alu_high_eq_9;
@@ -62,6 +66,10 @@ input wire	flags_zf;
 input wire	flags_pf;
 input wire	flags_sf;
 input wire	ctl_cond_short;
+input wire	alu_vf_out;
+input wire	iff2;
+input wire	address_is_1;
+input wire	[1:0] ctl_pf_sel;
 input wire	[2:0] op543;
 output wire	alu_shift_in;
 output wire	alu_shift_right;
@@ -69,6 +77,8 @@ output wire	alu_shift_left;
 output wire	shift_cf_out;
 output wire	alu_parity_in;
 output wire	flags_cond_true;
+output wire	daa_cf_out;
+output wire	pf_sel;
 output wire	[7:0] db;
 
 wire	flags_cf_int;
@@ -94,6 +104,7 @@ wire	SYNTHESIZED_WIRE_19;
 wire	SYNTHESIZED_WIRE_26;
 wire	SYNTHESIZED_WIRE_21;
 
+assign	daa_cf_out = SYNTHESIZED_WIRE_11;
 assign	SYNTHESIZED_WIRE_26 = 0;
 assign	SYNTHESIZED_WIRE_21 = 1;
 
@@ -168,11 +179,20 @@ alu_mux_8	b2v_inst_cond_mux(
 	.out(flags_cond_true));
 
 
+alu_mux_4	b2v_inst_pf_sel(
+	.in0(alu_parity_out),
+	.in1(alu_vf_out),
+	.in2(iff2),
+	.in3(address_is_1),
+	.sel(ctl_pf_sel),
+	.out(pf_sel));
+
+
 alu_mux_8	b2v_inst_shift_mux(
 	.in0(alu_shift_db7),
 	.in1(alu_shift_db0),
-	.in2(shift_cf_in),
-	.in3(shift_cf_in),
+	.in2(flags_cf_int),
+	.in3(flags_cf_int),
 	.in4(SYNTHESIZED_WIRE_26),
 	.in5(alu_shift_db7),
 	.in6(SYNTHESIZED_WIRE_21),

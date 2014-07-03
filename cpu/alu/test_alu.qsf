@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY alu_flags
+set_global_assignment -name TOP_LEVEL_ENTITY alu_control
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:26:45  MAY 18, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
