@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 64 64 184 376)
-	(text "the_heart" (rect 5 0 59 14)(font "Arial" (font_size 8)))
+	(text "sequencer" (rect 5 0 66 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 0 296 17 308)(font "Arial" ))
 	(port
 		(pt 120 184)
@@ -143,7 +143,7 @@ applicable agreement for further details.
 		(line (pt 120 120)(pt 104 120))
 	)
 	(drawing
-		(text "THE SEQUENCER" (rect 30 107 44 204)(font "Arial" (font_size 8))(vertical))
+		(text "SEQUENCER" (rect 30 115 44 186)(font "Arial" (font_size 8))(vertical))
 		(rectangle (rect 16 16 104 296))
 	)
 	(fill (color 253 211 206))
