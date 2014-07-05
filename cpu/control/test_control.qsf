@@ -55,6 +55,7 @@ set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY "P:\\Z80\\cpu\\control\\test\\out"
+set_global_assignment -name BDF_FILE sequencer.bdf
 set_global_assignment -name BDF_FILE ir.bdf
 set_global_assignment -name SYSTEMVERILOG_FILE pla_decode.sv
 set_global_assignment -name SYSTEMVERILOG_FILE execute.sv
