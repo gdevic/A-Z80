@@ -75,11 +75,11 @@ initial begin
 end
 
 //--------------------------------------------------------------
-// Instantiate ALU block and assign identical nets and variables
+// Instantiate bus block and assign identical nets and variables
 //--------------------------------------------------------------
 
-address_pins address_pins_inst( .* );
+address_pins address_pins_inst( .*, .address(ab[15:0]), .A(apin[15:0]) );
 
-data_pins data_pins_inst( .* );
+data_pins data_pins_inst( .*, .D(dpin[7:0]) );
 
 endmodule

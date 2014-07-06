@@ -82,4 +82,5 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 240 152))
 	)
+	(fill (color 253 211 206))
 )

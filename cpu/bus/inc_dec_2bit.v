@@ -14,14 +14,14 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri May 16 22:45:13 2014"
+// CREATED		"Sun Jul 06 08:30:41 2014"
 
 module inc_dec_2bit(
 	carry_borrow_in,
-	d0_in,
 	d1_in,
-	dec0_in,
+	d0_in,
 	dec1_in,
+	dec0_in,
 	carry_borrow_out,
 	d1_out,
 	d0_out
@@ -29,10 +29,10 @@ module inc_dec_2bit(
 
 
 input wire	carry_borrow_in;
-input wire	d0_in;
 input wire	d1_in;
-input wire	dec0_in;
+input wire	d0_in;
 input wire	dec1_in;
+input wire	dec0_in;
 output wire	carry_borrow_out;
 output wire	d1_out;
 output wire	d0_out;

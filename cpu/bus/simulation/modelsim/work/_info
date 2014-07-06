@@ -4,58 +4,58 @@ K3
 cModel Technology
 Z0 dP:\Z80\cpu\bus\simulation\modelsim
 vaddress_latch
-Z1 !s100 aE2L`XRhg=^=jemncFE:20
-Z2 IDc;]OS74anN=WN945C??n3
-Z3 Vf<_@^4?YbUWmmCA0RmbXf0
-Z4 dP:\Z80\cpu\bus\simulation\modelsim
-Z5 w1400334610
-Z6 8P:/Z80/cpu/bus/address_latch.v
-Z7 FP:/Z80/cpu/bus/address_latch.v
+Z1 IDc;]OS74anN=WN945C??n3
+Z2 Vf<_@^4?YbUWmmCA0RmbXf0
+Z3 dP:\Z80\cpu\bus\simulation\modelsim
+Z4 w1404584735
+Z5 8P:/Z80/cpu/bus/address_latch.v
+Z6 FP:/Z80/cpu/bus/address_latch.v
 L0 19
-Z8 OV;L;10.1d;51
+Z7 OV;L;10.1d;51
 r1
 31
-Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/address_latch.v|
-Z10 o-work work -O0
-Z11 !s108 1402666416.765000
+Z8 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/address_latch.v|
+Z9 o-work work -O0
+Z10 !s100 aE2L`XRhg=^=jemncFE:20
+Z11 !s108 1404652781.148000
 Z12 !s107 P:/Z80/cpu/bus/address_latch.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vaddress_pins
-Z13 !s100 Wi;_9D[m>HWkFJD87SKcN2
-Z14 I=2i2R4i4QU9>Na`TXR7cU3
-Z15 VdRC1<[L>]GDC9[;0RllFL0
-R4
-Z16 w1402665433
-Z17 8P:/Z80/cpu/bus/address_pins.v
-Z18 FP:/Z80/cpu/bus/address_pins.v
+Z13 Ii]ODEgCfkDBY;fF_Mz30N3
+Z14 V0<Ih`k^;;@I<ElLkUM]5M1
+R3
+Z15 w1404584799
+Z16 8P:/Z80/cpu/bus/address_pins.v
+Z17 FP:/Z80/cpu/bus/address_pins.v
 L0 19
-R8
+R7
 r1
 31
-Z19 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/address_pins.v|
-R10
-Z20 !s108 1402666417.159000
+Z18 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/address_pins.v|
+R9
+Z19 !s100 i;JfJMRgnkJTOl:Y0]86^0
+Z20 !s108 1404652781.518000
 Z21 !s107 P:/Z80/cpu/bus/address_pins.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vdata_pins
-Z22 !s100 bboEADjW49H=IbQVLUoW=1
-Z23 I=EWXAgHI]h@1GLX82mNOc2
-Z24 V:a]F1]k5aK1M002Rzdd[F1
-R4
-Z25 w1402665445
-Z26 8P:/Z80/cpu/bus/data_pins.v
-Z27 FP:/Z80/cpu/bus/data_pins.v
+Z22 IHFQi8e7n04amPU8GoV0NJ2
+Z23 VXOe4HzblgEE5Qma`P[a=22
+R3
+Z24 w1404585137
+Z25 8P:/Z80/cpu/bus/data_pins.v
+Z26 FP:/Z80/cpu/bus/data_pins.v
 L0 19
-R8
+R7
 r1
 31
-Z28 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/data_pins.v|
-R10
-Z29 !s108 1402666417.233000
+Z27 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/data_pins.v|
+R9
+Z28 !s100 3@H_nM6f[X`?n9f;Qg=UE2
+Z29 !s108 1404652781.588000
 Z30 !s107 P:/Z80/cpu/bus/data_pins.v|
 !i10b 1
 !s85 0
@@ -64,81 +64,81 @@ vinc_dec
 Z31 !s100 OzhlSQl=YHf9]m?nE@?ZT3
 Z32 Idl1aYdQdFKf[Zm`4BFI0Z2
 Z33 VQ`2Uo8>[b@JPm_hmm@;C>1
-R4
-R5
-Z34 8P:/Z80/cpu/bus/inc_dec.v
-Z35 FP:/Z80/cpu/bus/inc_dec.v
+R3
+Z34 w1400334610
+Z35 8P:/Z80/cpu/bus/inc_dec.v
+Z36 FP:/Z80/cpu/bus/inc_dec.v
 L0 19
-R8
+R7
 r1
 31
-Z36 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec.v|
-R10
-Z37 !s108 1402666416.842000
-Z38 !s107 P:/Z80/cpu/bus/inc_dec.v|
+Z37 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec.v|
+R9
+Z38 !s108 1404652781.220000
+Z39 !s107 P:/Z80/cpu/bus/inc_dec.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vinc_dec_2bit
-Z39 !s100 C@XCk`I2KkTKYMBPcPTiV3
-Z40 I9TQgDZhEH?mX5`H^U5kHE3
-Z41 V6Qo>lE;N8O8I6<h:hBjFF3
-R4
-R5
-Z42 8P:/Z80/cpu/bus/inc_dec_2bit.v
-Z43 FP:/Z80/cpu/bus/inc_dec_2bit.v
+Z40 !s100 Q@dkJ;P^a55bg]SNTmG=K0
+Z41 IaOmb<H03WOCTS=>MDeEUz0
+Z42 VdbU1O6H?3T32fVKYa?=jh1
+R3
+Z43 w1404580024
+Z44 8P:/Z80/cpu/bus/inc_dec_2bit.v
+Z45 FP:/Z80/cpu/bus/inc_dec_2bit.v
 L0 19
-R8
+R7
 r1
 31
-Z44 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec_2bit.v|
-R10
-Z45 !s108 1402666417.028000
-Z46 !s107 P:/Z80/cpu/bus/inc_dec_2bit.v|
+Z46 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/bus/inc_dec_2bit.v|
+R9
+Z47 !s108 1404652781.369000
+Z48 !s107 P:/Z80/cpu/bus/inc_dec_2bit.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_bus
-Z47 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z48 !s100 SMRRiBK?1:Kc5RJW>hXCc3
-Z49 IPgeZG?4V7:Mc5d>N;6PTB2
-Z50 VL=z5MU14WS2jB7kCH0_X>1
-Z51 !s105 test_bus_sv_unit
+Z49 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z50 IPgeZG?4V7:Mc5d>N;6PTB2
+Z51 VL=z5MU14WS2jB7kCH0_X>1
+Z52 !s105 test_bus_sv_unit
 S1
-R4
-R5
-Z52 8P:/Z80/cpu/bus/test_bus.sv
-Z53 FP:/Z80/cpu/bus/test_bus.sv
+R3
+Z53 w1404652822
+Z54 8P:/Z80/cpu/bus/test_bus.sv
+Z55 FP:/Z80/cpu/bus/test_bus.sv
 L0 3
-R8
+R7
 r1
 31
-Z54 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/bus/test_bus.sv|
-Z55 o-work work -sv -O0
-Z56 !s108 1402666416.923000
-Z57 !s107 P:/Z80/cpu/bus/test_bus.sv|
+Z56 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/bus/test_bus.sv|
+Z57 o-work work -sv -O0
+Z58 !s100 SMRRiBK?1:Kc5RJW>hXCc3
+Z59 !s108 1404652826.321000
+Z60 !s107 P:/Z80/cpu/bus/test_bus.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_pins
-R47
+R49
 !i10b 1
-!s100 1`E@45eBYi=5`M_1Z95U81
-IQJQHL:4WOjh:Fk>_UWW4d3
-Z58 Vj[jdD^RIYf3lZQ<UXcn173
-Z59 !s105 test_pins_sv_unit
+!s100 iYY<;H3WEk_FV>ZT51FTk0
+Id`VO?S^Pm?na^CZ0N_IU51
+Z61 Vj[jdD^RIYf3lZQ<UXcn173
+Z62 !s105 test_pins_sv_unit
 S1
-R4
-w1402667892
-Z60 8P:/Z80/cpu/bus/test_pins.sv
-Z61 FP:/Z80/cpu/bus/test_pins.sv
+R3
+w1404653331
+Z63 8P:/Z80/cpu/bus/test_pins.sv
+Z64 FP:/Z80/cpu/bus/test_pins.sv
 L0 3
-R8
+R7
 r1
 !s85 0
 31
-!s108 1402667895.859000
+!s108 1404653335.399000
 !s107 P:/Z80/cpu/bus/test_pins.sv|
-Z62 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/bus/test_pins.sv|
+Z65 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/bus/test_pins.sv|
 !s101 -O0
-R55
+R57

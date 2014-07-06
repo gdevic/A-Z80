@@ -116,7 +116,6 @@ applicable agreement for further details.
 		(line (pt 14 25)(pt 32 16))
 		(line (pt 14 7)(pt 32 16))
 	)
-	(fill (color 255 170 255))
 )
 (symbol
 	(rect 264 128 312 160)
@@ -149,7 +148,6 @@ applicable agreement for further details.
 		(line (pt 34 25)(pt 16 16))
 	)
 	(rotate180)
-	(fill (color 255 170 255))
 )
 (connector
 	(pt 216 128)

@@ -87,7 +87,7 @@ applicable agreement for further details.
 	(bidir)
 	(rect 760 152 936 168)
 	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "dpin[7..0]" (rect 90 0 136 12)(font "Arial" ))
+	(text "D[7..0]" (rect 90 0 124 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 56 4)(pt 78 4))

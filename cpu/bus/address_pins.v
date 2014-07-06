@@ -14,48 +14,48 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri Jun 13 08:17:13 2014"
+// CREATED		"Sun Jul 06 08:31:21 2014"
 
 module address_pins(
 	ctl_ab_we,
 	ctl_ab_pin_oe,
-	ab,
-	apin
+	address,
+	A
 );
 
 
 input wire	ctl_ab_we;
 input wire	ctl_ab_pin_oe;
-input wire	[15:0] ab;
-output wire	[15:0] apin;
+input wire	[15:0] address;
+output wire	[15:0] A;
 
 reg	[15:0] SYNTHESIZED_WIRE_0;
 
 
 
 
-assign	apin[15] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[15] : 1'bz;
-assign	apin[14] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[14] : 1'bz;
-assign	apin[13] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[13] : 1'bz;
-assign	apin[12] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[12] : 1'bz;
-assign	apin[11] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[11] : 1'bz;
-assign	apin[10] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[10] : 1'bz;
-assign	apin[9] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[9] : 1'bz;
-assign	apin[8] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[8] : 1'bz;
-assign	apin[7] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[7] : 1'bz;
-assign	apin[6] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[6] : 1'bz;
-assign	apin[5] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[5] : 1'bz;
-assign	apin[4] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[4] : 1'bz;
-assign	apin[3] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[3] : 1'bz;
-assign	apin[2] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[2] : 1'bz;
-assign	apin[1] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[1] : 1'bz;
-assign	apin[0] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[0] : 1'bz;
+assign	A[15] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[15] : 1'bz;
+assign	A[14] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[14] : 1'bz;
+assign	A[13] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[13] : 1'bz;
+assign	A[12] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[12] : 1'bz;
+assign	A[11] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[11] : 1'bz;
+assign	A[10] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[10] : 1'bz;
+assign	A[9] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[9] : 1'bz;
+assign	A[8] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[8] : 1'bz;
+assign	A[7] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[7] : 1'bz;
+assign	A[6] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[6] : 1'bz;
+assign	A[5] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[5] : 1'bz;
+assign	A[4] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[4] : 1'bz;
+assign	A[3] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[3] : 1'bz;
+assign	A[2] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[2] : 1'bz;
+assign	A[1] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[1] : 1'bz;
+assign	A[0] = ctl_ab_pin_oe ? SYNTHESIZED_WIRE_0[0] : 1'bz;
 
 
-always@(ctl_ab_we or ab)
+always@(ctl_ab_we or address)
 begin
 if (ctl_ab_we)
-	SYNTHESIZED_WIRE_0 <= ab;
+	SYNTHESIZED_WIRE_0 <= address;
 end
 
 
