@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri May 16 08:23:22 2014"
+// CREATED		"Sun Jul 06 08:42:53 2014"
 
 module reg_control(
 	ctl_reg_exx,

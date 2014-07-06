@@ -14,14 +14,21 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri May 16 08:20:36 2014"
+// CREATED		"Sun Jul 06 08:39:06 2014"
 
 module reg_file(
-	reg_sel_pc,
-	reg_sel_ir,
 	reg_sel_sys_lo,
-	reg_sel_sp,
+	reg_sel_gp_lo,
+	reg_sys_oe,
+	reg_gp_oe,
+	reg_sel_sys_hi,
+	reg_sel_gp_hi,
+	reg_sel_ir,
+	reg_sel_pc,
+	ctl_sw_4d,
+	ctl_sw_4u,
 	reg_sel_wz,
+	reg_sel_sp,
 	reg_sel_iy,
 	reg_sel_ix,
 	reg_sel_hl2,
@@ -32,13 +39,6 @@ module reg_file(
 	reg_sel_bc,
 	reg_sel_af2,
 	reg_sel_af,
-	reg_sel_gp_hi,
-	reg_sel_gp_lo,
-	reg_sys_oe,
-	reg_gp_oe,
-	ctl_sw_4d,
-	ctl_sw_4u,
-	reg_sel_sys_hi,
 	db_hi_as,
 	db_hi_ds,
 	db_lo_as,
@@ -46,11 +46,18 @@ module reg_file(
 );
 
 
-input wire	reg_sel_pc;
-input wire	reg_sel_ir;
 input wire	reg_sel_sys_lo;
-input wire	reg_sel_sp;
+input wire	reg_sel_gp_lo;
+input wire	reg_sys_oe;
+input wire	reg_gp_oe;
+input wire	reg_sel_sys_hi;
+input wire	reg_sel_gp_hi;
+input wire	reg_sel_ir;
+input wire	reg_sel_pc;
+input wire	ctl_sw_4d;
+input wire	ctl_sw_4u;
 input wire	reg_sel_wz;
+input wire	reg_sel_sp;
 input wire	reg_sel_iy;
 input wire	reg_sel_ix;
 input wire	reg_sel_hl2;
@@ -61,13 +68,6 @@ input wire	reg_sel_bc2;
 input wire	reg_sel_bc;
 input wire	reg_sel_af2;
 input wire	reg_sel_af;
-input wire	reg_sel_gp_hi;
-input wire	reg_sel_gp_lo;
-input wire	reg_sys_oe;
-input wire	reg_gp_oe;
-input wire	ctl_sw_4d;
-input wire	ctl_sw_4u;
-input wire	reg_sel_sys_hi;
 inout wire	[7:0] db_hi_as;
 inout wire	[7:0] db_hi_ds;
 inout wire	[7:0] db_lo_as;
