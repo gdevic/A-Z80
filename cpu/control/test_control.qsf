@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY ir
+set_global_assignment -name TOP_LEVEL_ENTITY pin_control
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:22:01  APRIL 30, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
@@ -55,6 +55,7 @@ set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY "P:\\Z80\\cpu\\control\\test\\out"
+set_global_assignment -name SYSTEMVERILOG_FILE pin_control.sv
 set_global_assignment -name BDF_FILE sequencer.bdf
 set_global_assignment -name BDF_FILE ir.bdf
 set_global_assignment -name SYSTEMVERILOG_FILE pla_decode.sv
