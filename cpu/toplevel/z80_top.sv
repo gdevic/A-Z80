@@ -3,15 +3,22 @@
 //============================================================================
 `timescale 100 ps/ 100 ps
 
-module z80_top;
+module z80_top(
+    nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nWAIT, nBUSACK,
+    nINT, nNMI, nRESET, nBUSRQ, CPUCLK,
+    A[15:0], D[7:0]
+// TODO: interface
+);
 
 //--------------------------------------------------------------
 // Instantiate design blocks
 //--------------------------------------------------------------
+// First, the sequencer, the hart of the CPU
+sequencer       sequencer  ( .* );
+
 // Cpu control block, IR, PLA
 pla_decode      pla_decode ( .* );
 execute         execute    ( .* );
-sequencer       sequencer  ( .* );
 ir              ir         ( .* );
 
 // Register file and its control block
@@ -26,7 +33,7 @@ alu_flags       alu_flags   ( .* );
 // Bus endpoints, switches, address latch/increment module
 address_latch   address_latch ( .* );
 address_pins    address_pins  ( .* );
-//control_pins  control_pins  ( .* );
+control_pins    control_pins  ( .* );
 data_pins       data_pins     ( .*, .db(db1[7:0]) );
 
 endmodule
