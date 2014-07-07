@@ -12,9 +12,9 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II 64-Bit"
+// PROGRAM		"Quartus II"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 06 08:31:51 2014"
+// CREATED		"Mon Jul 07 16:22:19 2014"
 
 module control_pins(
 	ctl_bus_pin_oe,
@@ -41,11 +41,11 @@ module control_pins(
 	nHALT,
 	nWAIT,
 	nBUSACK,
-	int,
 	nmi,
 	reset,
 	busrq,
-	clk
+	clk,
+	intr
 );
 
 
@@ -73,11 +73,11 @@ output wire	nRFSH;
 output wire	nHALT;
 output wire	nWAIT;
 output wire	nBUSACK;
-output wire	int;
 output wire	nmi;
 output wire	reset;
 output wire	busrq;
 output wire	clk;
+output wire	intr;
 
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
@@ -111,7 +111,7 @@ assign	nWAIT =  ~mwait;
 
 assign	nBUSACK =  ~busack;
 
-assign	int =  ~nINT;
+assign	intr =  ~nINT;
 
 assign	nmi =  ~nNMI;
 

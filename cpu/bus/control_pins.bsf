@@ -208,8 +208,8 @@ applicable agreement for further details.
 	(port
 		(pt 200 208)
 		(output)
-		(text "int" (rect 0 0 12 14)(font "Arial" (font_size 8)))
-		(text "int" (rect 167 203 179 217)(font "Arial" (font_size 8)))
+		(text "intr" (rect 0 0 17 14)(font "Arial" (font_size 8)))
+		(text "intr" (rect 162 203 179 217)(font "Arial" (font_size 8)))
 		(line (pt 200 208)(pt 184 208))
 	)
 	(port
