@@ -13,6 +13,7 @@ _temp/
 _primary.*
 *.prw
 *.psm
+*.vstf
 
 # Generic backup files
 *~
