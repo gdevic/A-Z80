@@ -6,7 +6,7 @@
 `include "z80.svh"
 
 module z80_top (
-    z80_ifc z80
+    z80_ifc.i z80
 );
 
 //--------------------------------------------------------------
@@ -32,21 +32,6 @@ module z80_top (
 //address_latch   address_latch ( .* );
 //address_pins    address_pins  ( .* );
 
-logic nM1;
-logic nMREQ;
-logic nIORQ;
-logic nRD;
-logic nWR;
-logic nRFSH;
-logic nHALT;
-logic nWAIT;
-logic nBUSACK;
-
-logic nINT;
-logic nNMI;
-logic nRESET;
-logic nBUSRQ;
-
 //logic ctl_bus_pin_oe;
 logic m1;
 logic mreq;
@@ -57,14 +42,28 @@ logic rfsh;
 logic halt;
 logic mwait;
 logic busack;
-logic CPUCLK;
 logic nmi;
 logic reset;
 logic busrq;
-logic clk;
 logic intr;
+logic clk;
 
-control_pins_p control_pins ( .* );
+control_pins_p control_pins ( .*,
+    .nM1     (z80.nM1),
+    .nMREQ   (z80.nMREQ),
+    .nIORQ   (z80.nIORQ),
+    .nRD     (z80.nRD),
+    .nWR     (z80.nWR),
+    .nRFSH   (z80.nRFSH),
+    .nHALT   (z80.nHALT),
+    .nWAIT   (z80.nWAIT),
+    .nBUSACK (z80.nBUSACK),
+    .nINT    (z80.nINT),
+    .nNMI    (z80.nNMI),
+    .nRESET  (z80.nRESET),
+    .nBUSRQ  (z80.nBUSRQ),
+    .CPUCLK  (z80.CPUCLK)
+ );
 
 logic M1;
 logic M2;
@@ -98,21 +97,21 @@ logic ctl_db_oe;              // Data bus pads: read from its latch into interna
 
 pin_control pin_control ( .* );
 
-assign z80.nM1   = m1;
-assign z80.nMREQ = mreq;
-assign z80.nIORQ = iorq;
-assign z80.nRD   = rd;
-assign z80.nWR   = wr;
-assign z80.nRFSH = rfsh;
-assign z80.nHALT = halt;
-assign z80.nWAIT = mwait;
-assign z80.nBUSACK = busack;
+//assign z80.nM1   = m1;
+//assign z80.nMREQ = mreq;
+//assign z80.nIORQ = iorq;
+//assign z80.nRD   = rd;
+//assign z80.nWR   = wr;
+//assign z80.nRFSH = rfsh;
+//assign z80.nHALT = halt;
+//assign z80.nWAIT = mwait;
+//assign z80.nBUSACK = busack;
 
-assign intr  = z80.nINT;
-assign nmi   = z80.nNMI;
-assign reset = z80.nRESET;
-assign busrq = z80.nBUSRQ;
-assign clk   = z80.CPUCLK;
+//assign intr  = z80.nINT;
+//assign nmi   = z80.nNMI;
+//assign reset = z80.nRESET;
+//assign busrq = z80.nBUSRQ;
+//assign clk   = z80.CPUCLK;
 
 
 sequencer sequencer ( .* );

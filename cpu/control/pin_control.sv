@@ -121,7 +121,8 @@ always @ (busrq_latch) begin
     busack_latch = busrq_latch;
 end
 
-assign busack = busack_latch;
+//assign busack = busack_latch;
+assign busack = '0;
 
 // This flip flop is written to by the WAIT input signal at the negative edge of every clock.
 // It is then tested at a certain M-cycle of each function.

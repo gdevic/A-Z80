@@ -61,9 +61,6 @@ set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WEAK PULL-UP"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL OFF
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\control"
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\bus"
@@ -100,4 +97,7 @@ set_global_assignment -name VERILOG_FILE ../alu/alu_control.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_bit_select.v
 set_global_assignment -name VERILOG_FILE ../alu/alu.v
 set_global_assignment -name SYSTEMVERILOG_FILE z80_top.sv
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
