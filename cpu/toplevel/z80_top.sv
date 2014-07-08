@@ -5,9 +5,7 @@
 
 `include "z80.svh"
 
-module z80_top (
-    z80_ifc.i z80
-);
+module z80_top (intf.dut z80);
 
 //--------------------------------------------------------------
 // Instantiate design blocks

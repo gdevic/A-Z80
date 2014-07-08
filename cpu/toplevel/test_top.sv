@@ -5,18 +5,33 @@
 
 `include "z80.svh"
 
-module test_top();
-
-z80_ifc pin();
-z80_top cpu(pin);
-
-logic clk = 0;
-always #10 clk++;
+module test_bench(intf.tb tb_if);
 
 initial begin
-    cpu.nM1 = 0;
+    tb_if.nINT = 0;
+    tb_if.nNMI = 0;
+    tb_if.nRESET = 1;
+    tb_if.nBUSRQ = 0;
 
-    #1 $display("End of test");
+    #2 tb_if.nRESET = 0;
+
+    #100 $display("End of test");
+    $stop;
 end
+
+final begin
+    $display("Final: End of test at %d", $time);
+end
+
+endmodule
+
+module test_top();
+
+logic clk = 0;
+always #1 clk++;
+
+intf bus_if(clk);
+z80_top d(bus_if);
+test_bench tb(bus_if);
 
 endmodule
