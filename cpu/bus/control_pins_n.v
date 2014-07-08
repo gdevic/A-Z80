@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jul 07 22:14:03 2014"
+// CREATED		"Mon Jul 07 23:30:04 2014"
 
 module control_pins_n(
 	ctl_bus_pin_oe,

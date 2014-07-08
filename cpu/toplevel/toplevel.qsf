@@ -69,6 +69,8 @@ set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\control"
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\bus"
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\registers"
 set_global_assignment -name SEARCH_PATH "p:\\z80\\cpu\\alu"
+set_global_assignment -name VERILOG_FILE ../bus/control_pins_p.v
+set_global_assignment -name VERILOG_FILE ../bus/control_pins_n.v
 set_global_assignment -name VERILOG_FILE ../control/sequencer.v
 set_global_assignment -name VERILOG_FILE ../control/ir.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pla_decode.sv
@@ -78,7 +80,6 @@ set_global_assignment -name VERILOG_FILE ../bus/inc_dec_2bit.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec.v
 set_global_assignment -name VERILOG_FILE ../bus/data_switch.v
 set_global_assignment -name VERILOG_FILE ../bus/data_pins.v
-set_global_assignment -name VERILOG_FILE ../bus/control_pins.v
 set_global_assignment -name VERILOG_FILE ../bus/address_pins.v
 set_global_assignment -name VERILOG_FILE ../bus/address_latch.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_latch.v
