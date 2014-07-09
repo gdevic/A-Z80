@@ -8,6 +8,9 @@ import os
 
 with open("_info") as f:
     for line in f:
-        if line.startswith("v") and not os.path.exists(line[1:].strip()):
+        # When a ModelSim library information file starts with:
+        # v : the rest of the line contains a name of a module
+        # Y : the rest of the line contains a name of an interface
+        if (line.startswith("v") or line.startswith("Y")) and not os.path.exists(line[1:].strip()):
             print line[1:].strip()
             os.mkdir(line[1:].strip())
