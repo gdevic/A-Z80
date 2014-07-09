@@ -4,6 +4,9 @@ db/
 incremental_db/
 out/
 
+# Quartus workspace file: stores window position, dock state etc.
+*.qws
+
 # ModelSim files and folders
 transcript
 *.mti
