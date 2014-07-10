@@ -21,22 +21,6 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 64 88 240 104)
-	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "in[7..0]" (rect 9 0 43 12)(font "Arial" ))
-	(pt 176 8)
-	(drawing
-		(line (pt 92 12)(pt 117 12))
-		(line (pt 92 4)(pt 117 4))
-		(line (pt 121 8)(pt 176 8))
-		(line (pt 92 12)(pt 92 4))
-		(line (pt 117 4)(pt 121 8))
-		(line (pt 117 12)(pt 121 8))
-	)
-	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 64 104 240 120)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_ir_we" (rect 9 0 51 12)(font "Arial" ))
@@ -52,10 +36,26 @@ applicable agreement for further details.
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
 )
 (pin
+	(input)
+	(rect 64 88 240 104)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "db[7..0]" (rect 9 0 46 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(output)
 	(rect 400 96 576 112)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "out[7..0]" (rect 90 0 131 12)(font "Arial" ))
+	(text "opcode[7..0]" (rect 90 0 151 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -105,13 +105,13 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
+	(pt 240 112)
+	(pt 288 112)
+)
+(connector
 	(pt 240 96)
 	(pt 288 96)
 	(bus)
-)
-(connector
-	(pt 240 112)
-	(pt 288 112)
 )
 (text "There are 8 latches implementing the Instruction Register" (rect 152 160 472 174)(font "Arial" (font_size 8)))
 (text "There is no output enable signal since they feed the decode PLA continously" (rect 152 176 587 190)(font "Arial" (font_size 8)))

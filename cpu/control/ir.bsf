@@ -20,14 +20,14 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 168 112)
+	(rect 16 16 192 112)
 	(text "ir" (rect 5 0 12 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "in[7..0]" (rect 0 0 37 14)(font "Arial" (font_size 8)))
-		(text "in[7..0]" (rect 21 27 58 41)(font "Arial" (font_size 8)))
+		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
+		(text "db[7..0]" (rect 21 27 63 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
@@ -38,13 +38,13 @@ applicable agreement for further details.
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port
-		(pt 152 32)
+		(pt 176 32)
 		(output)
-		(text "out[7..0]" (rect 0 0 46 14)(font "Arial" (font_size 8)))
-		(text "out[7..0]" (rect 85 27 131 41)(font "Arial" (font_size 8)))
-		(line (pt 152 32)(pt 136 32)(line_width 3))
+		(text "opcode[7..0]" (rect 0 0 70 14)(font "Arial" (font_size 8)))
+		(text "opcode[7..0]" (rect 85 27 155 41)(font "Arial" (font_size 8)))
+		(line (pt 176 32)(pt 160 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 136 80))
+		(rectangle (rect 16 16 160 80))
 	)
 )

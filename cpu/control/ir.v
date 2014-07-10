@@ -14,28 +14,28 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sat Jul 05 10:27:45 2014"
+// CREATED		"Thu Jul 10 18:08:11 2014"
 
 module ir(
 	ctl_ir_we,
-	in,
-	out
+	db,
+	opcode
 );
 
 
 input wire	ctl_ir_we;
-input wire	[7:0] in;
-output reg	[7:0] out;
+input wire	[7:0] db;
+output reg	[7:0] opcode;
 
 
 
 
 
 
-always@(ctl_ir_we or in)
+always@(ctl_ir_we or db)
 begin
 if (ctl_ir_we)
-	out <= in;
+	opcode <= db;
 end
 
 
