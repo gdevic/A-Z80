@@ -5,8 +5,8 @@
 interface intf (input logic CPUCLK);
     logic nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nWAIT, nBUSACK;
     logic nINT, nNMI, nRESET, nBUSRQ;
-    logic A[15:0];
-    wire  D[7:0];
+    logic [15:0] A;
+    wire  [7:0] D;
     
 //=================================================
 // Modport for the CPU module (internal) interface

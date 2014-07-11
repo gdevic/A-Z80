@@ -62,6 +62,83 @@ logic ctl_inc_limit6;         // Limit increment to 6 bits (for incrementing IR)
 logic ctl_inc_cy;             // Address increment, carry in value (+/-1 or 0)
 logic ctl_ab_mux_inc;         // Address bus mux: select from latch (0) or the increment (1)
 
+logic [4:0] prefix;
+
+logic ctl_ir_we;
+logic explode;
+logic halt;
+logic mwait;
+logic fIntr;
+logic ctl_bus_zero;
+logic ctl_shift_en;
+logic ctl_daa_66;
+logic ctl_daa_oe;
+logic ctl_alu_op_low;
+logic ctl_cond_short;
+logic iff2;
+logic [1:0] ctl_pf_sel;
+logic [2:0] op543;
+
+logic ctl_flags_oe;
+logic ctl_flags_bus;
+logic ctl_flags_alu;
+logic ctl_flags_nf_set;
+logic ctl_daa;
+logic ctl_flags_we_cf2;
+logic ctl_flags_use_cf2;
+logic ctl_flags_cf_set;
+logic ctl_flags_cf_cpl;
+logic ctl_flags_cf_we;
+logic ctl_flags_sz_we;
+logic ctl_flags_xy_we;
+logic ctl_flags_hf_we;
+logic ctl_flags_pf_we;
+logic ctl_flags_nf_we;
+
+logic alu_core_R;
+logic alu_core_V;
+logic alu_core_S;
+logic alu_bs_oe;
+logic alu_oe;
+logic alu_shift_oe;
+logic alu_core_cf_in;
+logic alu_op2_oe;
+logic alu_op1_oe;
+logic alu_res_oe;
+logic alu_op1_sel_low;
+logic alu_op1_sel_zero;
+logic alu_op1_sel_bus;
+logic alu_op2_sel_zero;
+logic alu_op2_sel_bus;
+logic alu_op2_sel_lq;
+logic alu_op_low;
+logic alu_sel_op2_neg;
+logic alu_sel_op2_high;
+logic [2:0] bsel;
+
+logic ctl_sw_4d;
+logic ctl_sw_4u;
+
+logic ctl_reg_exx;
+logic ctl_reg_use_ixiy;
+logic ctl_reg_use_ix;
+logic ctl_reg_ex_af;
+logic ctl_reg_ex_de_hl;
+logic ctl_reg_use_sp;
+logic ctl_reg_sel_wz;
+logic ctl_reg_sel_pc;
+logic ctl_reg_sel_ir;
+logic ctl_reg_sel_gp_16;
+logic ctl_reg_sel_sys_hi;
+logic ctl_reg_sel_sys_lo;
+logic ctl_reg_sys_oe;
+logic ctl_reg_sel_gp;
+logic ctl_reg_gp_oe;
+logic [2:0] reg_sel;
+
+logic ctl_bus_inc_we;
+logic ctl_inc_zero;
+
 execute execute ( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -126,7 +203,7 @@ pin_control pin_control ( .* );
 
 logic [7:0] db;
 
-data_pins data_pins ( .*, .D(z80.D[7:0]) );
+data_pins data_pins ( .*, .db(db[7:0]), .D(z80.D[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bus_zero bus_zero ( .* );
@@ -184,7 +261,7 @@ alu alu ( .*, .db(db2[7:0]) );
 logic [7:0] db_hi_as;
 logic [7:0] db_lo_as;
 
-reg_file reg_file ( .*, .db_hi_ds(db2[7:0]), .db_lo_ds(db1[7:0]) );
+reg_file reg_file ( .*, .db_hi_ds(db2[7:0]), .db_lo_ds(db1[7:0]), .db_hi_as(db_hi_as[7:0]), .db_lo_as(db_lo_as[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic reg_sel_bc;
