@@ -69,7 +69,7 @@ logic explode;
 logic halt;
 logic mwait;
 logic fIntr;
-logic ctl_bus_zero;
+logic ctl_bus_zero_oe;
 logic ctl_shift_en;
 logic ctl_daa_66;
 logic ctl_daa_oe;

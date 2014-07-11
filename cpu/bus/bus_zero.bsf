@@ -20,24 +20,24 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 184 112)
+	(rect 16 16 208 112)
 	(text "bus_zero" (rect 5 0 59 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "ctl_bus_zero" (rect 0 0 74 14)(font "Arial" (font_size 8)))
-		(text "ctl_bus_zero" (rect 21 27 95 41)(font "Arial" (font_size 8)))
+		(text "ctl_bus_zero_oe" (rect 0 0 95 14)(font "Arial" (font_size 8)))
+		(text "ctl_bus_zero_oe" (rect 21 27 116 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
-		(pt 168 32)
+		(pt 192 32)
 		(output)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 105 27 147 41)(font "Arial" (font_size 8)))
-		(line (pt 168 32)(pt 152 32)(line_width 3))
+		(text "db[7..0]" (rect 129 27 171 41)(font "Arial" (font_size 8)))
+		(line (pt 192 32)(pt 176 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 152 80))
+		(rectangle (rect 16 16 176 80))
 	)
 )
