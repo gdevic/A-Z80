@@ -85,7 +85,7 @@ address_latch address_latch_inst
 	.ctl_ab_mux_inc(ctl_ab_mux_inc_sig) ,	// input  ctl_ab_mux_inc_sig
 	.address(address_sig[15:0]) ,	// output [15:0] address_sig
 	.address_is_1(address_is_1_sig) ,	// output  address_is_1_sig
-	.db(db_sig[15:0]) 	// inout [15:0] db_sig
+	.abus(db_sig[15:0]) 	// inout [15:0] db_sig
 );
 
 endmodule

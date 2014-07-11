@@ -167,7 +167,7 @@ applicable agreement for further details.
 	(bidir)
 	(rect 56 160 232 176)
 	(text "BIDIR" (rect 151 0 175 10)(font "Arial" (font_size 6)))
-	(text "db[15..0]" (rect 43 0 86 12)(font "Arial" ))
+	(text "abus[15..0]" (rect 31 0 86 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 120 4)(pt 98 4))
