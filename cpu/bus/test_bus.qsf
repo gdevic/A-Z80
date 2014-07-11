@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY address_latch
+set_global_assignment -name TOP_LEVEL_ENTITY bus_zero
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:06:27  MAY 16, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
@@ -67,6 +67,7 @@ set_global_assignment -name BDF_FILE data_pins.bdf
 set_global_assignment -name BDF_FILE data_switch.bdf
 set_global_assignment -name BDF_FILE control_pins_n.bdf
 set_global_assignment -name BDF_FILE control_pins_p.bdf
+set_global_assignment -name BDF_FILE bus_zero.bdf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

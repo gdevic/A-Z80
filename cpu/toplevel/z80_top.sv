@@ -129,6 +129,9 @@ logic [7:0] db;
 data_pins data_pins ( .*, .D(z80.D[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+bus_zero bus_zero ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 logic [7:0] db1;
 
 data_switch sw1 ( .ctl_sw_up(ctl_sw_1u), .ctl_sw_down(ctl_sw_1d), .db_up(db[7:0]), .db_down(db1[7:0]));
@@ -146,18 +149,18 @@ logic pf_sel;
 alu_control alu_control ( .*, .db(db1[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-logic [7:0] db2;
-
-data_switch sw2 ( .ctl_sw_up(ctl_sw_2u), .ctl_sw_down(ctl_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]));
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 logic flags_sf;
 logic flags_zf;
 logic flags_hf;
 logic flags_pf;
 logic flags_cf;
 
-alu_flags alu_flags ( .*, .db(db2[7:0]) );
+alu_flags alu_flags ( .*, .db(db1[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic [7:0] db2;
+
+data_switch sw2 ( .ctl_sw_up(ctl_sw_2u), .ctl_sw_down(ctl_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]));
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic alu_zero;
@@ -181,7 +184,7 @@ alu alu ( .*, .db(db2[7:0]) );
 logic [7:0] db_hi_as;
 logic [7:0] db_lo_as;
 
-reg_file reg_file ( .*, .db_hi_ds(db1[7:0]), .db_lo_ds(db2[7:0]) );
+reg_file reg_file ( .*, .db_hi_ds(db2[7:0]), .db_lo_ds(db1[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic reg_sel_bc;
