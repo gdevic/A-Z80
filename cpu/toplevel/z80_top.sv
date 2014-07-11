@@ -7,44 +7,78 @@
 
 module z80_top (intf.dut z80);
 
-//--------------------------------------------------------------
+//----------------------------------------------------------------------------
 // Instantiate design blocks
-//--------------------------------------------------------------
-// First, the sequencer, the hart of the CPU
+//----------------------------------------------------------------------------
 
-// Cpu control block, IR, PLA
-//pla_decode      pla_decode ( .* );
-//execute         execute    ( .* );
-//ir              ir         ( .* );
+logic [7:0] opcode;
 
-// Register file and its control block
-//reg_file        reg_file    ( .* );
-//reg_control     reg_control ( .* );
+ir instruction_reg ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// ALU and its control block
-//alu             alu         ( .* );
-//alu_control     alu_control ( .* );
-//alu_flags       alu_flags   ( .* );
+logic [107:0] pla;
 
-// Bus endpoints, switches, address latch/increment module
-//address_latch   address_latch ( .* );
-//address_pins    address_pins  ( .* );
+pla_decode pla_decode ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//logic ctl_bus_pin_oe;
-logic m1;
-logic mreq;
-logic iorq;
-logic rd;
-logic wr;
-logic rfsh;
-logic halt;
-logic mwait;
-logic busack;
+logic M1;
+logic M2;
+logic M3;
+logic M4;
+logic M5;
+logic M6;
+logic T1;
+logic T2;
+logic T3;
+logic T4;
+logic T5;
+logic T6;
+
+sequencer sequencer ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Control the machine state sequencer
+logic nextM;                  // Signal to the sequencer to advance to the next M-cycle (also reset T to T1)
+logic setM1;                  // Signal to the sequencer to reset next cycle to M1/T1 (next instruction fetch)
+// Set M1 based on a condition signal: setM1 if the condition is false
+logic setM1ss;                // setM1 to ~'ss' flag condition signal
+logic setM1cc;                // setM1 to ~'cc' flag condition signal
+logic setM1bz;                // setM1 to zero-flag (ZF); used for DJNZ after decrementing B
+// Control IO pin states sequence
+logic fFetch;                 // Pin control to hold the instruction fetch (M1) sequence
+logic fMRead;                 // Pin control to hold the memory read sequence
+logic fMWrite;                // Pin control to hold the memory write sequence
+logic fIORead;                // Pin control to hold the IO read sequence
+logic fIOWrite;               // Pin control to hold the IO write sequence
+logic FIntr;                  // Pin control to hold the interrupt pin sequence
+// Controls internal data bus switches
+logic ctl_bus_sw1;            // Switch 1 on (connects pads to ALU)
+logic ctl_bus_sw2;            // Switch 2 on (connects top and bottom register byte)
+logic ctl_bus_sw4;            // Switch 4 on (connects PC/IR with the rest of the registers)
+// Control of Address Latch (AL), address increment (INC) and address mux (AB_MUX)
+logic ctl_al_we;              // Write enable to address latch
+logic ctl_inc_dec;            // Perform decrement (1) or increment (0)
+logic ctl_inc_limit6;         // Limit increment to 6 bits (for incrementing IR)
+logic ctl_inc_cy;             // Address increment, carry in value (+/-1 or 0)
+logic ctl_ab_mux_inc;         // Address bus mux: select from latch (0) or the increment (1)
+
+execute execute ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic nM1;
+logic nMREQ;
+logic nIORQ;
+logic nRD;
+logic nWR;
+logic nRFSH;
+logic nHALT;
+logic nWAIT;
+logic nBUSACK;
 logic nmi;
 logic reset;
 logic busrq;
-logic intr;
 logic clk;
+logic intr;
 
 control_pins_p control_pins ( .*,
     .nM1     (z80.nM1),
@@ -62,58 +96,125 @@ control_pins_p control_pins ( .*,
     .nBUSRQ  (z80.nBUSRQ),
     .CPUCLK  (z80.CPUCLK)
  );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-logic M1;
-logic M2;
-logic M3;
-logic M4;
-logic M5;
-logic M6;
-logic T1;                      // T-cycle #1
-logic T2;                      // T-cycle #2
-logic T3;                      // T-cycle #3
-logic T4;                      // T-cycle #4
-logic T5;                      // T-cycle #5
-logic T6;                      // T-cycle #6
-logic fFetch;                  // Function: opcode fetch cycle ("M1")
-logic fMRead;                  // Function: memory read cycle
-logic fMWrite;                 // Function: memory write cycle
-logic fIORead;                 // Function: IO Read cycle
-logic fIOWrite;                // Function: IO Write cycle
-logic fIntr;                   // Function: Interrupt response cycle
-logic nextM;
-logic setM1;
+    //----------------------------------------------------------
+    // Outputs to the chip control pin pads
+    //----------------------------------------------------------
+    logic m1;                     // M1     - Opcode fetch phase
+    logic mreq;                   // MREQ   - Memory request
+    logic iorq;                   // IORQ   - I/O command in progress
+    logic rd;                     // RD     - Memory read request
+    logic wr;                     // WR     - Memory write request
+    logic rfsh;                   // RFSH   - Memory refresh phase
+    logic busack;                 // BUSACK - Response to the BUSRQ
 
-logic hold_clk;               // Signal to the sequencer to hold the clock
-logic ctl_bus_pin_oe;         // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
-logic ctl_ab_pin_oe;          // Address bus pads: output enable to address pins
-logic ctl_ab_we;              // Address bus pads: write the output pin address latch
-logic ctl_db_pin_oe;          // Data bus pads: output enable
-logic ctl_db_pin_re;          // Data bus pads: read from the output pin into the latch
-logic ctl_db_we;              // Data bus pads: write from internal DB to its latch
-logic ctl_db_oe;              // Data bus pads: read from its latch into internal DB
+    //----------------------------------------------------------
+    // Outputs to internal blocks
+    //----------------------------------------------------------
+    logic hold_clk;               // Signal to the sequencer to hold the clock
+    logic ctl_bus_pin_oe;         // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
+    logic ctl_ab_pin_oe;          // Address bus pads: output enable to address pins
+    logic ctl_ab_we;              // Address bus pads: write the output pin address latch
+    logic ctl_db_pin_oe;          // Data bus pads: output enable
+    logic ctl_db_pin_re;          // Data bus pads: read from the output pin into the latch
+    logic ctl_db_we;              // Data bus pads: write from internal DB to its latch
+    logic ctl_db_oe;              // Data bus pads: read from its latch into internal DB
 
 pin_control pin_control ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//assign z80.nM1   = m1;
-//assign z80.nMREQ = mreq;
-//assign z80.nIORQ = iorq;
-//assign z80.nRD   = rd;
-//assign z80.nWR   = wr;
-//assign z80.nRFSH = rfsh;
-//assign z80.nHALT = halt;
-//assign z80.nWAIT = mwait;
-//assign z80.nBUSACK = busack;
+logic [7:0] db;
 
-//assign intr  = z80.nINT;
-//assign nmi   = z80.nNMI;
-//assign reset = z80.nRESET;
-//assign busrq = z80.nBUSRQ;
-//assign clk   = z80.CPUCLK;
+data_pins data_pins ( .*, .D(z80.D[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+logic [7:0] db1;
 
-sequencer sequencer ( .* );
+data_switch sw1 ( .ctl_sw_up(ctl_sw_1u), .ctl_sw_down(ctl_sw_1d), .db_up(db[7:0]), .db_down(db1[7:0]));
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//data_pins       data_pins     ( .*, .db(db1[7:0]) );
+logic alu_shift_in;
+logic alu_shift_right;
+logic alu_shift_left;
+logic shift_cf_out;
+logic alu_parity_in;
+logic flags_cond_true;
+logic daa_cf_out;
+logic pf_sel;
+
+alu_control alu_control ( .*, .db(db1[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic [7:0] db2;
+
+data_switch sw2 ( .ctl_sw_up(ctl_sw_2u), .ctl_sw_down(ctl_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]));
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic flags_sf;
+logic flags_zf;
+logic flags_hf;
+logic flags_pf;
+logic flags_cf;
+
+alu_flags alu_flags ( .*, .db(db2[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic alu_zero;
+logic alu_parity_out;
+logic alu_high_eq_9;
+logic alu_high_gt_9;
+logic alu_low_gt_9;
+logic alu_shift_db0;
+logic alu_shift_db7;
+logic alu_core_cf_out;
+logic alu_sf_out;
+logic alu_yf_out;
+logic alu_xf_out;
+logic alu_vf_out;
+logic [3:0] test_db_high;
+logic [3:0] test_db_low;
+
+alu alu ( .*, .db(db2[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic [7:0] db_hi_as;
+logic [7:0] db_lo_as;
+
+reg_file reg_file ( .*, .db_hi_ds(db1[7:0]), .db_lo_ds(db2[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic reg_sel_bc;
+logic reg_sel_bc2;
+logic reg_sel_ix;
+logic reg_sel_iy;
+logic reg_sel_de;
+logic reg_sel_hl;
+logic reg_sel_de2;
+logic reg_sel_hl2;
+logic reg_sel_af;
+logic reg_sel_af2;
+logic reg_sel_wz;
+logic reg_sel_pc;
+logic reg_sel_ir;
+logic reg_sel_sp;
+logic reg_sel_gp_hi;
+logic reg_sel_gp_lo;
+logic reg_sel_sys_hi;
+logic reg_sel_sys_lo;
+logic reg_sys_oe;
+logic reg_gp_oe;
+
+reg_control reg_control ( .* );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+logic address_is_1;
+logic [15:0] address;
+
+address_latch address_latch ( .*, .abus({db_hi_as[7:0], db_lo_as[7:0]}) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+address_pins address_pins ( .*, .A(z80.A[15:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 endmodule
