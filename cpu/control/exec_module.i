@@ -12,10 +12,6 @@ output reg fMWrite,                // Pin control to hold the memory write seque
 output reg fIORead,                // Pin control to hold the IO read sequence
 output reg fIOWrite,               // Pin control to hold the IO write sequence
 output reg FIntr,                  // Pin control to hold the interrupt pin sequence
-// Controls internal data bus switches
-output reg ctl_bus_sw1,            // Switch 1 on (connects pads to ALU)
-output reg ctl_bus_sw2,            // Switch 2 on (connects top and bottom register byte)
-output reg ctl_bus_sw4,            // Switch 4 on (connects PC/IR with the rest of the registers)
 // Control of Address Latch (AL), address increment (INC) and address mux (AB_MUX)
 output reg ctl_al_we,              // Write enable to address latch
 output reg ctl_inc_dec,            // Perform decrement (1) or increment (0)

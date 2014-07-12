@@ -51,10 +51,6 @@ logic fMWrite;                // Pin control to hold the memory write sequence
 logic fIORead;                // Pin control to hold the IO read sequence
 logic fIOWrite;               // Pin control to hold the IO write sequence
 logic FIntr;                  // Pin control to hold the interrupt pin sequence
-// Controls internal data bus switches
-logic ctl_bus_sw1;            // Switch 1 on (connects pads to ALU)
-logic ctl_bus_sw2;            // Switch 2 on (connects top and bottom register byte)
-logic ctl_bus_sw4;            // Switch 4 on (connects PC/IR with the rest of the registers)
 // Control of Address Latch (AL), address increment (INC) and address mux (AB_MUX)
 logic ctl_al_we;              // Write enable to address latch
 logic ctl_inc_dec;            // Perform decrement (1) or increment (0)
