@@ -77,7 +77,6 @@ logic ctl_alu_op_low;
 logic ctl_cond_short;
 logic iff2;
 logic [1:0] ctl_pf_sel;
-logic [2:0] op543;
 
 logic ctl_flags_oe;
 logic ctl_flags_bus;
@@ -114,7 +113,6 @@ logic alu_op2_sel_lq;
 logic alu_op_low;
 logic alu_sel_op2_neg;
 logic alu_sel_op2_high;
-logic [2:0] bsel;
 
 logic ctl_sw_4d;
 logic ctl_sw_4u;
@@ -223,7 +221,7 @@ logic flags_cond_true;
 logic daa_cf_out;
 logic pf_sel;
 
-alu_control alu_control ( .*, .db(db1[7:0]) );
+alu_control alu_control ( .*, .db(db1[7:0]), .op543(db[5:3]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic flags_sf;
@@ -255,7 +253,7 @@ logic alu_vf_out;
 logic [3:0] test_db_high;
 logic [3:0] test_db_low;
 
-alu alu ( .*, .db(db2[7:0]) );
+alu alu ( .*, .db(db2[7:0]), .bsel(db[5:3]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic [7:0] db_hi_as;
