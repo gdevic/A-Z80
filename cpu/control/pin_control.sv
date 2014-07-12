@@ -17,6 +17,8 @@ module pin_control
     input wire clk,                     // Input clock
     input wire mwait,                   // WAIT   - External device is not ready
     input wire busrq,                   // BUSRQ  - External device requests access to the bus
+    input wire intr,                    // INTR   - External interrupt request
+    input wire nmi,                     // NMI    - External non-maskable interrupt request
     input wire reset,                   // RESET  - Input reset pin
 
     //----------------------------------------------------------
@@ -109,44 +111,56 @@ assign rfsh   = (fFetch   & (T3 | T4)) |
 // The usual state advancing mechanism can be temporarily paused if the pins
 // BUSRQ and WAIT are asserted
 
-// This flip flop is written to by the BUSRQ input signal at the start of every clock.
-// It is then tested at the start of the _last_ state of each machine cycle.
+// We need this signal: what is normally the last T-cycle for each function since
+// at that clock several events need to be checked (busrq, ints, nmi)
+assign lastT =  (fFetch   & T4) |
+                (fMRead   & T3) |
+                (fMWrite  & T3) |
+                (fIORead  & T4) |
+                (fIOWrite & T4) |
+                (fIntr    & T6);
+
+// This flip flop stores the state of the BUSREQ signal at its proper sampling time
 reg busrq_latch = 0;
-always @ (clk) begin
+always @ (posedge lastT) begin
    busrq_latch = busrq;
 end
 
+// BUSACK trails the BUSREQ by 1 clock
 reg busack_latch;
 always @ (busrq_latch) begin
     busack_latch = busrq_latch;
 end
 
-//assign busack = busack_latch;
-assign busack = '0;
+// Assign the BUSACK
+assign busack = busack_latch;
 
-// This flip flop is written to by the WAIT input signal at the negative edge of every clock.
-// It is then tested at a certain M-cycle of each function.
+// This signal determines the T-clock cycle of each function at which
+// we test for the WAIT; the WAIT is then latched at the negative edge of a clock
+assign testW =  (fFetch   & T2) |
+                (fMRead   & T2) |
+                (fMWrite  & T2) |
+                (fIORead  & T3) |
+                (fIOWrite & T3) |
+                (fIntr    & T4);
+
+// This flip flop stores the state of the WAIT signal at its proper sampling time
 reg wait_latch = 0;
 always @ (negedge clk) begin
-   wait_latch = mwait;
+    if (testW) wait_latch = mwait;
 end
 
 // Pause the sequencer if the WAIT or BUSRQ input signals have been asserted
 // at certain T state periods and functions
-assign hold_clk = (wait_latch & (
-                    (fFetch   & T2) |
-                    (fMRead   & T2) |
-                    (fMWrite  & T2) |
-                    (fIORead  & T3) |
-                    (fIOWrite & T3) |
-                    (fIntr    & T4)))
-                 |(busrq_latch & (
-                    (fFetch   & T4) |
-                    (fMRead   & T3) |
-                    (fMWrite  & T3) |
-                    (fIORead  & T4) |
-                    (fIOWrite & T4) |
-                    (fIntr    & T6)));
+assign hold_clk = busrq_latch | wait_latch;
+
+//----------------------------------------------------------------------------
+// NMI flip flop is latched at any time (in spite of what documentation says)
+// and it is sampled at the lastT along with INTR over which it takes priority
+reg nmi_latch = 0;
+always @(posedge nmi) begin
+    nmi_latch = 1;
+end
 
 //----------------------------------------------------------------------------
 // Wires controlling the address and data latches/buffers interfacing with the outside world
