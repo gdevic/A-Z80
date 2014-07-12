@@ -2,7 +2,7 @@
 `ifndef Z80_IFC
 `define Z80_IFC
 
-interface intf (input logic CPUCLK);
+interface z80_if (input logic CLK);
     logic nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nWAIT, nBUSACK;
     logic nINT, nNMI, nRESET, nBUSRQ;
     logic [15:0] A;
@@ -15,7 +15,7 @@ interface intf (input logic CPUCLK);
 modport dut (
     output nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nWAIT, nBUSACK,
     input  nINT, nNMI, nRESET, nBUSRQ,
-    input  CPUCLK,
+    input  CLK,
     output A,
     inout  D);
 
@@ -26,10 +26,10 @@ modport dut (
 modport tb (
     input  nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nWAIT, nBUSACK,
     output nINT, nNMI, nRESET, nBUSRQ,
-    input  CPUCLK,
+    input  CLK,
     input  A,
     inout  D);
 
-endinterface : intf
+endinterface : z80_if
 
 `endif

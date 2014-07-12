@@ -6,19 +6,19 @@
 
 `include "z80.svh"
 
-module test_bench(intf.tb tb_if);
+module test_bench(z80_if.tb z);
 
-assign clk = tb_if.CPUCLK;
+assign clk = z.CLK;
 
 initial begin
     $display("Test: Start of test at %d", $time);
-    tb_if.nINT <= 0;
-    tb_if.nNMI <= 0;
-    tb_if.nRESET <= 1;
-    tb_if.nBUSRQ <= 0;
+    z.nINT <= 0;
+    z.nNMI <= 0;
+    z.nRESET <= 1;
+    z.nBUSRQ <= 0;
 
     repeat (3) @(posedge clk);
-    tb_if.nRESET <= 0;
+    z.nRESET <= 0;
 
 end
 
@@ -30,10 +30,10 @@ logic clk = 0;
 initial repeat (20) `TD clk = ~clk;
 
 // Instantiate the bus interface to the design
-intf        bus_if(clk);
+z80_if z80(clk);
 // Create an instance of our Z80 design
-z80_top     d(bus_if);
+z80_top dut(z80);
 // Create an instance of the test bench
-test_bench  tb(bus_if);
+test_bench tb(z80);
 
 endmodule

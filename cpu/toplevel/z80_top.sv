@@ -5,7 +5,7 @@
 
 `include "z80.svh"
 
-module z80_top (intf.dut z80);
+module z80_top (z80_if.dut z80);
 
 //----------------------------------------------------------------------------
 // Instantiate design blocks
@@ -171,7 +171,7 @@ control_pins_p control_pins ( .*,
     .nNMI    (z80.nNMI),
     .nRESET  (z80.nRESET),
     .nBUSRQ  (z80.nBUSRQ),
-    .CPUCLK  (z80.CPUCLK)
+    .CPUCLK  (z80.CLK)
  );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
