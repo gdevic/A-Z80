@@ -199,8 +199,10 @@ logic [7:0] db;
 
 data_pins data_pins ( .*, .db(db[7:0]), .D(z80.D[7:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generators for 0x00 and 0xFF on the data (instruction) bus
 
 bus_zero bus_zero ( .* );
+bus_ff bus_ff ( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 logic [7:0] db1;

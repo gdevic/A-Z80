@@ -26,8 +26,14 @@ endmodule
 
 module test_top();
 
-logic clk = 0;
+bit clk = 0;
 initial repeat (20) `TD clk = ~clk;
+
+initial begin : assert_reset
+    bit reset = 1;
+    repeat (3) `TD reset = 1;
+    reset = 0;
+end : assert_reset
 
 // Instantiate the bus interface to the design
 z80_if z80(clk);
