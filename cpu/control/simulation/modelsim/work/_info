@@ -3,85 +3,126 @@ K3
 13
 cModel Technology
 Z0 dP:\Z80\cpu\control
-vpin_control
-Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z2 IOQ1QaU3ead<AlfE]E8GE]3
-Z3 VlJL_XjN31TkEUCQZBl7FQ1
-Z4 !s105 pin_control_sv_unit
-S1
-Z5 dP:\Z80\cpu\control\simulation\modelsim
-Z6 w1406077581
-Z7 8P:/Z80/cpu/control/pin_control.sv
-Z8 FP:/Z80/cpu/control/pin_control.sv
-L0 12
-Z9 OV;L;10.1d;51
+vinterrupts
+Z1 !s100 z2QNiaIjc^[Hf?n<;^NPB2
+Z2 I5LQV^9jm0jAAA`NeQSA9V1
+Z3 V=hZ3JD^3nk_?HgDGz05X41
+Z4 dP:\Z80\cpu\control\simulation\modelsim
+Z5 w1406092972
+Z6 8P:/Z80/cpu/control/interrupts.v
+Z7 FP:/Z80/cpu/control/interrupts.v
+L0 19
+Z8 OV;L;10.1d;51
 r1
 31
-Z10 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/pin_control.sv|
-Z11 o-work work -sv -O0
-Z12 !s100 j=`kmiAiSdmgGGaleI8FF3
-Z13 !s108 1406077583.725000
-Z14 !s107 P:/Z80/cpu/control/pin_control.sv|
+Z9 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/interrupts.v|
+Z10 o-work work -O0
+!i10b 1
+!s85 0
+Z11 !s108 1406094193.166000
+Z12 !s107 P:/Z80/cpu/control/interrupts.v|
+!s101 -O0
+vpin_control
+Z13 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z14 !s100 bg_`oS9INKgW3W?nWPQf70
+Z15 I<<5dzkJ_I8TPeJ0FcM1Vb1
+Z16 VlJL_XjN31TkEUCQZBl7FQ1
+Z17 !s105 pin_control_sv_unit
+S1
+R4
+Z18 w1406077611
+Z19 8P:/Z80/cpu/control/pin_control.sv
+Z20 FP:/Z80/cpu/control/pin_control.sv
+L0 12
+R8
+r1
+31
+Z21 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/pin_control.sv|
+Z22 o-work work -sv -O0
+Z23 !s108 1406094192.861000
+Z24 !s107 P:/Z80/cpu/control/pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vpin_delay
-Z15 !s100 k?L7lG;OloMlPOUoohZAk1
-Z16 IO_h^UN9NmHTU7R^2Ta?_93
-Z17 V1LTjFzGzYHPK]=`B:90YN3
-R5
-Z18 w1406076651
-Z19 8P:/Z80/cpu/control/pin_delay.v
-Z20 FP:/Z80/cpu/control/pin_delay.v
+Z25 !s100 k?L7lG;OloMlPOUoohZAk1
+Z26 IO_h^UN9NmHTU7R^2Ta?_93
+Z27 V1LTjFzGzYHPK]=`B:90YN3
+R4
+Z28 w1406078043
+Z29 8P:/Z80/cpu/control/pin_delay.v
+Z30 FP:/Z80/cpu/control/pin_delay.v
 L0 19
-R9
+R8
 r1
 31
-Z21 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/pin_delay.v|
-Z22 o-work work -O0
+Z31 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/pin_delay.v|
+R10
+Z32 !s108 1406094193.020000
+Z33 !s107 P:/Z80/cpu/control/pin_delay.v|
 !i10b 1
 !s85 0
-Z23 !s108 1406077583.871000
-Z24 !s107 P:/Z80/cpu/control/pin_delay.v|
 !s101 -O0
 vsequencer
-!i10b 1
-Z25 !s100 198ClkA<Q5Y`PbS]4063d0
-Z26 I1ka:<=d:L`2fkh_5KV_Xm2
-Z27 V;e8IWYDk8IKVR_cIG_[IU3
-R5
-Z28 w1406075890
-Z29 8P:/Z80/cpu/control/sequencer.v
-Z30 FP:/Z80/cpu/control/sequencer.v
+Z34 !s100 198ClkA<Q5Y`PbS]4063d0
+Z35 I1ka:<=d:L`2fkh_5KV_Xm2
+Z36 V;e8IWYDk8IKVR_cIG_[IU3
+R4
+Z37 w1406077864
+Z38 8P:/Z80/cpu/control/sequencer.v
+Z39 FP:/Z80/cpu/control/sequencer.v
 L0 19
-R9
+R8
+r1
+31
+Z40 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/sequencer.v|
+R10
+Z41 !s108 1406094193.092000
+Z42 !s107 P:/Z80/cpu/control/sequencer.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtest_interrupts
+R13
+!i10b 1
+!s100 V1k99Kk0^7S6bEZF?3ab31
+IZZlHz4TP14^:gzmEBZ:8?1
+Z43 VMcP0PQK3;]?5;IT06k6[m2
+Z44 !s105 test_interrupts_sv_unit
+S1
+R4
+w1406094191
+Z45 8P:/Z80/cpu/control/test_interrupts.sv
+Z46 FP:/Z80/cpu/control/test_interrupts.sv
+L0 4
+R8
 r1
 !s85 0
 31
-!s108 1406077583.938000
-!s107 P:/Z80/cpu/control/sequencer.v|
-Z31 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/sequencer.v|
+!s108 1406094193.237000
+!s107 P:/Z80/cpu/control/test_interrupts.sv|
+Z47 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/test_interrupts.sv|
 !s101 -O0
 R22
 vtest_pin_control
-R1
-Z32 !s100 N>Y`:TIT?NJnV]EF[mzPg0
-Z33 IRA6_ZF;<jkKhGN3bP8iIC2
-Z34 V[aVBVZLGUgh3E[Ud35Shj0
-Z35 !s105 test_pin_control_sv_unit
+R13
+Z48 !s100 N>Y`:TIT?NJnV]EF[mzPg0
+Z49 IRA6_ZF;<jkKhGN3bP8iIC2
+Z50 V[aVBVZLGUgh3E[Ud35Shj0
+Z51 !s105 test_pin_control_sv_unit
 S1
-R5
-Z36 w1406076883
-Z37 8P:/Z80/cpu/control/test_pin_control.sv
-Z38 FP:/Z80/cpu/control/test_pin_control.sv
+R4
+Z52 w1406077764
+Z53 8P:/Z80/cpu/control/test_pin_control.sv
+Z54 FP:/Z80/cpu/control/test_pin_control.sv
 L0 4
-R9
+R8
 r1
 31
-Z39 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/test_pin_control.sv|
-R11
-Z40 !s108 1406077583.797000
-Z41 !s107 P:/Z80/cpu/control/test_pin_control.sv|
+Z55 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/test_pin_control.sv|
+R22
+Z56 !s108 1406094192.942000
+Z57 !s107 P:/Z80/cpu/control/test_pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0
