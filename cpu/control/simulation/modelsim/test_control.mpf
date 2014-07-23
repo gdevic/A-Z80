@@ -7,15 +7,125 @@
 ;   
 
 [Library]
-others = $MODEL_TECH/../modelsim.ini
+std = $MODEL_TECH/../std
+ieee = $MODEL_TECH/../ieee
+verilog = $MODEL_TECH/../verilog
+vital2000 = $MODEL_TECH/../vital2000
+std_developerskit = $MODEL_TECH/../std_developerskit
+synopsys = $MODEL_TECH/../synopsys
+modelsim_lib = $MODEL_TECH/../modelsim_lib
+sv_std = $MODEL_TECH/../sv_std
 
 ; Altera Primitive libraries
 ;
 ; VHDL Section
 ;
+altera_mf = $MODEL_TECH/../altera/vhdl/altera_mf
+altera = $MODEL_TECH/../altera/vhdl/altera
+altera_lnsim = $MODEL_TECH/../altera/vhdl/altera_lnsim
+lpm = $MODEL_TECH/../altera/vhdl/220model
+220model = $MODEL_TECH/../altera/vhdl/220model
+max = $MODEL_TECH/../altera/vhdl/max
+maxii = $MODEL_TECH/../altera/vhdl/maxii
+maxv = $MODEL_TECH/../altera/vhdl/maxv
+stratix = $MODEL_TECH/../altera/vhdl/stratix
+stratixii = $MODEL_TECH/../altera/vhdl/stratixii
+stratixiigx = $MODEL_TECH/../altera/vhdl/stratixiigx
+hardcopyii = $MODEL_TECH/../altera/vhdl/hardcopyii
+hardcopyiii = $MODEL_TECH/../altera/vhdl/hardcopyiii
+hardcopyiv = $MODEL_TECH/../altera/vhdl/hardcopyiv
+cyclone = $MODEL_TECH/../altera/vhdl/cyclone
+cycloneii = $MODEL_TECH/../altera/vhdl/cycloneii
+cycloneiii = $MODEL_TECH/../altera/vhdl/cycloneiii
+cycloneiiils = $MODEL_TECH/../altera/vhdl/cycloneiiils
+sgate = $MODEL_TECH/../altera/vhdl/sgate
+stratixgx = $MODEL_TECH/../altera/vhdl/stratixgx
+altgxb = $MODEL_TECH/../altera/vhdl/altgxb
+stratixgx_gxb = $MODEL_TECH/../altera/vhdl/stratixgx_gxb
+stratixiigx_hssi = $MODEL_TECH/../altera/vhdl/stratixiigx_hssi
+arriagx_hssi = $MODEL_TECH/../altera/vhdl/arriagx_hssi
+arriaii = $MODEL_TECH/../altera/vhdl/arriaii
+arriaii_hssi = $MODEL_TECH/../altera/vhdl/arriaii_hssi
+arriaii_pcie_hip = $MODEL_TECH/../altera/vhdl/arriaii_pcie_hip
+arriaiigz = $MODEL_TECH/../altera/vhdl/arriaiigz
+arriaiigz_hssi = $MODEL_TECH/../altera/vhdl/arriaiigz_hssi
+arriaiigz_pcie_hip = $MODEL_TECH/../altera/vhdl/arriaiigz_pcie_hip
+arriagx = $MODEL_TECH/../altera/vhdl/arriagx
+altgxb_lib = $MODEL_TECH/../altera/vhdl/altgxb
+stratixiv = $MODEL_TECH/../altera/vhdl/stratixiv
+stratixiv_hssi = $MODEL_TECH/../altera/vhdl/stratixiv_hssi
+stratixiv_pcie_hip = $MODEL_TECH/../altera/vhdl/stratixiv_pcie_hip
+cycloneiv = $MODEL_TECH/../altera/vhdl/cycloneiv
+cycloneiv_hssi = $MODEL_TECH/../altera/vhdl/cycloneiv_hssi
+cycloneiv_pcie_hip = $MODEL_TECH/../altera/vhdl/cycloneiv_pcie_hip
+cycloneive = $MODEL_TECH/../altera/vhdl/cycloneive
+hardcopyiv_hssi = $MODEL_TECH/../altera/vhdl/hardcopyiv_hssi
+hardcopyiv_pcie_hip = $MODEL_TECH/../altera/vhdl/hardcopyiv_pcie_hip
+stratixv = $MODEL_TECH/../altera/vhdl/stratixv
+stratixv_hssi = $MODEL_TECH/../altera/vhdl/stratixv_hssi
+stratixv_pcie_hip = $MODEL_TECH/../altera/vhdl/stratixv_pcie_hip
+arriavgz = $MODEL_TECH/../altera/vhdl/arriavgz
+arriavgz_hssi = $MODEL_TECH/../altera/vhdl/arriavgz_hssi
+arriavgz_pcie_hip = $MODEL_TECH/../altera/vhdl/arriavgz_pcie_hip
+arriav = $MODEL_TECH/../altera/vhdl/arriav
+cyclonev = $MODEL_TECH/../altera/vhdl/cyclonev
 ;
 ; Verilog Section
 ;
+altera_mf_ver = $MODEL_TECH/../altera/verilog/altera_mf
+altera_ver = $MODEL_TECH/../altera/verilog/altera
+altera_lnsim_ver = $MODEL_TECH/../altera/verilog/altera_lnsim
+lpm_ver = $MODEL_TECH/../altera/verilog/220model
+220model_ver = $MODEL_TECH/../altera/verilog/220model
+max_ver = $MODEL_TECH/../altera/verilog/max
+maxii_ver = $MODEL_TECH/../altera/verilog/maxii
+maxv_ver = $MODEL_TECH/../altera/verilog/maxv
+stratix_ver = $MODEL_TECH/../altera/verilog/stratix
+stratixii_ver = $MODEL_TECH/../altera/verilog/stratixii
+stratixiigx_ver = $MODEL_TECH/../altera/verilog/stratixiigx
+arriagx_ver = $MODEL_TECH/../altera/verilog/arriagx
+hardcopyii_ver = $MODEL_TECH/../altera/verilog/hardcopyii
+hardcopyiii_ver = $MODEL_TECH/../altera/verilog/hardcopyiii
+hardcopyiv_ver = $MODEL_TECH/../altera/verilog/hardcopyiv
+cyclone_ver = $MODEL_TECH/../altera/verilog/cyclone
+cycloneii_ver = $MODEL_TECH/../altera/verilog/cycloneii
+cycloneiii_ver = $MODEL_TECH/../altera/verilog/cycloneiii
+cycloneiiils_ver = $MODEL_TECH/../altera/verilog/cycloneiiils
+sgate_ver = $MODEL_TECH/../altera/verilog/sgate
+stratixgx_ver = $MODEL_TECH/../altera/verilog/stratixgx
+altgxb_ver = $MODEL_TECH/../altera/verilog/altgxb
+stratixgx_gxb_ver = $MODEL_TECH/../altera/verilog/stratixgx_gxb
+stratixiigx_hssi_ver = $MODEL_TECH/../altera/verilog/stratixiigx_hssi
+arriagx_hssi_ver = $MODEL_TECH/../altera/verilog/arriagx_hssi
+arriaii_ver = $MODEL_TECH/../altera/verilog/arriaii
+arriaii_hssi_ver = $MODEL_TECH/../altera/verilog/arriaii_hssi
+arriaii_pcie_hip_ver = $MODEL_TECH/../altera/verilog/arriaii_pcie_hip
+arriaiigz_ver = $MODEL_TECH/../altera/verilog/arriaiigz
+arriaiigz_hssi_ver = $MODEL_TECH/../altera/verilog/arriaiigz_hssi
+arriaiigz_pcie_hip_ver = $MODEL_TECH/../altera/verilog/arriaiigz_pcie_hip
+stratixiii_ver = $MODEL_TECH/../altera/verilog/stratixiii
+stratixiii = $MODEL_TECH/../altera/vhdl/stratixiii
+stratixiv_ver = $MODEL_TECH/../altera/verilog/stratixiv
+stratixiv_hssi_ver = $MODEL_TECH/../altera/verilog/stratixiv_hssi
+stratixiv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/stratixiv_pcie_hip
+stratixv_ver = $MODEL_TECH/../altera/verilog/stratixv
+stratixv_hssi_ver = $MODEL_TECH/../altera/verilog/stratixv_hssi
+stratixv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/stratixv_pcie_hip
+arriavgz_ver = $MODEL_TECH/../altera/verilog/arriavgz
+arriavgz_hssi_ver = $MODEL_TECH/../altera/verilog/arriavgz_hssi
+arriavgz_pcie_hip_ver = $MODEL_TECH/../altera/verilog/arriavgz_pcie_hip
+arriav_ver = $MODEL_TECH/../altera/verilog/arriav
+arriav_hssi_ver = $MODEL_TECH/../altera/verilog/arriav_hssi
+arriav_pcie_hip_ver = $MODEL_TECH/../altera/verilog/arriav_pcie_hip
+cyclonev_ver = $MODEL_TECH/../altera/verilog/cyclonev
+cyclonev_hssi_ver = $MODEL_TECH/../altera/verilog/cyclonev_hssi
+cyclonev_pcie_hip_ver = $MODEL_TECH/../altera/verilog/cyclonev_pcie_hip
+cycloneiv_ver = $MODEL_TECH/../altera/verilog/cycloneiv
+cycloneiv_hssi_ver = $MODEL_TECH/../altera/verilog/cycloneiv_hssi
+cycloneiv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/cycloneiv_pcie_hip
+cycloneive_ver = $MODEL_TECH/../altera/verilog/cycloneive
+hardcopyiv_hssi_ver = $MODEL_TECH/../altera/verilog/hardcopyiv_hssi
+hardcopyiv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/hardcopyiv_pcie_hip
 
 work = work
 [vcom]
@@ -159,7 +269,7 @@ IterationLimit = 5000
 
 ; Stop the simulator after a VHDL/Verilog assertion message
 ; 0 = Note  1 = Warning  2 = Error  3 = Failure  4 = Fatal
-BreakOnAssertion = 4
+BreakOnAssertion = 3
 
 ; Assertion Message Format
 ; %S - Severity Level 
@@ -298,7 +408,6 @@ ConcurrentFileLimit = 40
 ; Default is on, uncomment to turn off.
 ; NoAutoSDFCompile = 1
 
-DelayFileOpen = 1
 [lmc]
 
 [msg_system]
@@ -332,16 +441,18 @@ DelayFileOpen = 1
 Project_Version = 6
 Project_DefaultLib = work
 Project_SortMethod = unused
-Project_Files_Count = 3
-Project_File_0 = P:/Z80/cpu/control/pla_decode.sv
-Project_File_P_0 = cover_toggle 0 vlog_protect 0 file_type systemverilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat SV vlog_nodebug 0 folder {Top Level} cover_branch 0 cover_fsm 0 last_compile 1399602076 vlog_noload 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 1 cover_expr 0 dont_compile 0 cover_stmt 0
-Project_File_1 = P:/Z80/cpu/control/execute.sv
-Project_File_P_1 = cover_toggle 0 vlog_protect 0 file_type systemverilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat SV vlog_nodebug 0 cover_fsm 0 last_compile 1399264934 vlog_noload 0 cover_branch 0 folder {Top Level} vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 vlog_hazard 0 vlog_showsource 0 cover_optlevel 3 voptflow 1 ood 0 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 2 dont_compile 0 cover_expr 0 cover_stmt 0
-Project_File_2 = P:/Z80/cpu/control/test_decode.sv
-Project_File_P_2 = cover_toggle 0 vlog_protect 0 file_type systemverilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat SV vlog_nodebug 0 vlog_noload 0 cover_branch 0 folder {Top Level} last_compile 1399602158 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 0 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_Files_Count = 4
+Project_File_0 = P:/Z80/cpu/control/sequencer.v
+Project_File_P_0 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 vlog_noload 0 last_compile 1406075890 folder {Top Level} cover_branch 0 cover_fsm 0 vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 vlog_hazard 0 vlog_showsource 0 cover_optlevel 3 voptflow 1 ood 1 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 3 dont_compile 0 cover_expr 0 cover_stmt 0
+Project_File_1 = P:/Z80/cpu/control/test_pin_control.sv
+Project_File_P_1 = cover_toggle 0 vlog_protect 0 file_type systemverilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat SV vlog_nodebug 0 vlog_noload 0 cover_branch 0 folder {Top Level} last_compile 1406076883 cover_fsm 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 1 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 1 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_2 = P:/Z80/cpu/control/pin_delay.v
+Project_File_P_2 = cover_toggle 0 vlog_protect 0 file_type verilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat 0 vlog_nodebug 0 folder {Top Level} cover_branch 0 cover_fsm 0 last_compile 1406076651 vlog_noload 0 cover_excludedefault 0 vlog_enable0In 0 vlog_disableopt 0 cover_covercells 0 voptflow 1 cover_optlevel 3 vlog_showsource 0 vlog_hazard 0 toggle - vlog_0InOptions {} ood 0 cover_noshort 0 vlog_upper 0 compile_to work vlog_options {} compile_order 2 cover_expr 0 dont_compile 0 cover_stmt 0
+Project_File_3 = P:/Z80/cpu/control/pin_control.sv
+Project_File_P_3 = cover_toggle 0 vlog_protect 0 file_type systemverilog group_id 0 cover_exttoggle 0 cover_nofec 0 cover_cond 0 vlog_1995compat SV vlog_nodebug 0 cover_fsm 0 last_compile 1406077581 vlog_noload 0 cover_branch 0 folder {Top Level} vlog_enable0In 0 cover_excludedefault 0 vlog_disableopt 0 cover_covercells 0 vlog_hazard 0 vlog_showsource 0 cover_optlevel 3 voptflow 1 ood 1 vlog_0InOptions {} toggle - vlog_options {} compile_to work vlog_upper 0 cover_noshort 0 compile_order 0 dont_compile 0 cover_expr 0 cover_stmt 0
 Project_Sim_Count = 1
-Project_Sim_0 = Simulation 1
-Project_Sim_P_0 = Generics {} timing default -std_output {} -nopsl 0 +notimingchecks 0 -L {} selected_du {} -hazards 0 -sdf {} ok 1 -0in 0 -nosva 0 folder {Top Level} +pulse_r {} -absentisempty 0 OtherArgs {} -multisource_delay {} +pulse_e {} vopt_env 1 -coverage 0 -sdfnoerror 0 +plusarg {} -vital2.2b 0 -t 100ps -memprof 0 is_vopt_flow 0 additional_dus work.test_decode -noglitch 0 -nofileshare 0 -wlf {} -assertdebug 0 +no_pulse_msg 0 -0in_options {} -assertfile {} -sdfnowarn 0 -Lf {} -std_input {}
+Project_Sim_0 = Test pin control
+Project_Sim_P_0 = timing default -t default -sdfnoerror 0 -nofileshare 0 +no_pulse_msg 0 -Lf {} Generics {} +notimingchecks 0 ok 1 folder {Top Level} +pulse_e {} additional_dus work.test_pin_control -assertfile {} -std_output {} -L {} -nopsl 0 -nosva 0 +pulse_r {} -absentisempty 0 -assertcover 0 -multisource_delay {} OtherArgs {} -vital2.2b 0 is_vopt_flow 0 -memprof 0 -noglitch 0 -0in_options {} selected_du {} -sdf {} -hazards 0 -0in 0 vopt_env 1 -coverage 0 +plusarg {} -assertdebug 0 -wlf {} -sdfnowarn 0 -std_input {}
 Project_Folder_Count = 0
 Echo_Compile_Output = 0
 Save_Compile_Report = 1

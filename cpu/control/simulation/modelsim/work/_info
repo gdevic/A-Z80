@@ -2,73 +2,86 @@ m255
 K3
 13
 cModel Technology
-Z0 dP:\Z80\cpu\control\simulation\modelsim
-vexecute
+Z0 dP:\Z80\cpu\control
+vpin_control
 Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-!i10b 1
-!s100 W4cAldQ:LN@3]CP6IeVkR1
-ICMJ]85N`AgJ6kCVEaO^Q]3
-Z2 V]feICORHJN7?NE7SzkBZW2
-Z3 !s105 execute_sv_unit
+Z2 IOQ1QaU3ead<AlfE]E8GE]3
+Z3 VlJL_XjN31TkEUCQZBl7FQ1
+Z4 !s105 pin_control_sv_unit
 S1
-Z4 dP:\Z80\cpu\control\simulation\modelsim
-Z5 w1399601031
-Z6 8P:/Z80/cpu/control/execute.sv
-Z7 FP:/Z80/cpu/control/execute.sv
-Z8 F../../exec_module.i
-Z9 F../../exec_zero.i
-Z10 F../../exec_matrix.i
-L0 10
-Z11 OV;L;10.1d;51
+Z5 dP:\Z80\cpu\control\simulation\modelsim
+Z6 w1406077581
+Z7 8P:/Z80/cpu/control/pin_control.sv
+Z8 FP:/Z80/cpu/control/pin_control.sv
+L0 12
+Z9 OV;L;10.1d;51
+r1
+31
+Z10 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/pin_control.sv|
+Z11 o-work work -sv -O0
+Z12 !s100 j=`kmiAiSdmgGGaleI8FF3
+Z13 !s108 1406077583.725000
+Z14 !s107 P:/Z80/cpu/control/pin_control.sv|
+!i10b 1
+!s85 0
+!s101 -O0
+vpin_delay
+Z15 !s100 k?L7lG;OloMlPOUoohZAk1
+Z16 IO_h^UN9NmHTU7R^2Ta?_93
+Z17 V1LTjFzGzYHPK]=`B:90YN3
+R5
+Z18 w1406076651
+Z19 8P:/Z80/cpu/control/pin_delay.v
+Z20 FP:/Z80/cpu/control/pin_delay.v
+L0 19
+R9
+r1
+31
+Z21 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/pin_delay.v|
+Z22 o-work work -O0
+!i10b 1
+!s85 0
+Z23 !s108 1406077583.871000
+Z24 !s107 P:/Z80/cpu/control/pin_delay.v|
+!s101 -O0
+vsequencer
+!i10b 1
+Z25 !s100 198ClkA<Q5Y`PbS]4063d0
+Z26 I1ka:<=d:L`2fkh_5KV_Xm2
+Z27 V;e8IWYDk8IKVR_cIG_[IU3
+R5
+Z28 w1406075890
+Z29 8P:/Z80/cpu/control/sequencer.v
+Z30 FP:/Z80/cpu/control/sequencer.v
+L0 19
+R9
 r1
 !s85 0
 31
-!s108 1399686184.155000
-!s107 ../../exec_matrix.i|../../exec_zero.i|../../exec_module.i|P:/Z80/cpu/control/execute.sv|
-!s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/execute.sv|
+!s108 1406077583.938000
+!s107 P:/Z80/cpu/control/sequencer.v|
+Z31 !s90 -reportprogress|300|-work|work|P:/Z80/cpu/control/sequencer.v|
 !s101 -O0
-Z12 o-work work -sv -O0
-vpla_decode
+R22
+vtest_pin_control
 R1
-Z13 Ia2DZZW0abZFT[RiC7FhkJ2
-Z14 VL_QTa<DT?E[Db[023XGMm1
-Z15 !s105 pla_decode_sv_unit
+Z32 !s100 N>Y`:TIT?NJnV]EF[mzPg0
+Z33 IRA6_ZF;<jkKhGN3bP8iIC2
+Z34 V[aVBVZLGUgh3E[Ud35Shj0
+Z35 !s105 test_pin_control_sv_unit
 S1
-R4
-Z16 w1399602076
-Z17 8P:/Z80/cpu/control/pla_decode.sv
-Z18 FP:/Z80/cpu/control/pla_decode.sv
+R5
+Z36 w1406076883
+Z37 8P:/Z80/cpu/control/test_pin_control.sv
+Z38 FP:/Z80/cpu/control/test_pin_control.sv
 L0 4
-R11
+R9
 r1
 31
-R12
-!i10b 1
-Z19 !s100 iGRYTFfU[UkU7?=oT>MP32
-!s85 0
-Z20 !s108 1399686184.060000
-Z21 !s107 P:/Z80/cpu/control/pla_decode.sv|
-Z22 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/pla_decode.sv|
-!s101 -O0
-vtest_decode
-R1
-Z23 I?05^mjDnn3RbjMhUSMziF2
-Z24 V?jhK7Bc[0Dgz]NZX:9_b=1
-Z25 !s105 test_decode_sv_unit
-S1
-R4
-Z26 w1399602158
-Z27 8P:/Z80/cpu/control/test_decode.sv
-Z28 FP:/Z80/cpu/control/test_decode.sv
-L0 3
+Z39 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/test_pin_control.sv|
 R11
-r1
-31
-R12
-Z29 !s100 XF>eAo7MT^=jdcjPC6<@i0
-Z30 !s108 1399686183.976000
-Z31 !s107 P:/Z80/cpu/control/test_decode.sv|
-Z32 !s90 -reportprogress|300|-work|work|-sv|P:/Z80/cpu/control/test_decode.sv|
+Z40 !s108 1406077583.797000
+Z41 !s107 P:/Z80/cpu/control/test_pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0

@@ -12,7 +12,7 @@
 module pin_control
 (
     //----------------------------------------------------------
-    // Inputs from the chip control pin pads
+    // Inputs from the chip's control pin pads
     //----------------------------------------------------------
     input wire clk,                     // Input clock
     input wire mwait,                   // WAIT   - External device is not ready
@@ -22,7 +22,7 @@ module pin_control
     input wire reset,                   // RESET  - Input reset pin
 
     //----------------------------------------------------------
-    // Outputs to the chip control pin pads
+    // Outputs to the chip's control pin pads
     //----------------------------------------------------------
     output wire m1,                     // M1     - Opcode fetch phase
     output wire mreq,                   // MREQ   - Memory request
@@ -33,14 +33,14 @@ module pin_control
     output wire busack,                 // BUSACK - Response to the BUSRQ
 
     //----------------------------------------------------------
-    // Inputs from internal blocks
+    // Inputs from the sequencer and control units
     //----------------------------------------------------------
     input wire T1,                      // T-cycle #1
     input wire T2,                      // T-cycle #2
+    input wire Tw1,                     // Auto-extended T2 cycle for fIntr (1)
+    input wire Tw2,                     // Auto-extended T2 cycle for fIntr (2)
     input wire T3,                      // T-cycle #3
     input wire T4,                      // T-cycle #4
-    input wire T5,                      // T-cycle #5
-    input wire T6,                      // T-cycle #6
     input wire fFetch,                  // Function: opcode fetch cycle ("M1")
     input wire fMRead,                  // Function: memory read cycle
     input wire fMWrite,                 // Function: memory write cycle
@@ -51,7 +51,7 @@ module pin_control
     //----------------------------------------------------------
     // Outputs to internal blocks
     //----------------------------------------------------------
-    output wire hold_clk,               // Signal to the sequencer to hold the clock
+    output wire hold_clk_timing,        // Signal to the sequencer to hold the clock
     output wire ctl_bus_pin_oe,         // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
     output wire ctl_ab_pin_oe,          // Address bus pads: output enable to address pins
     output wire ctl_ab_we,              // Address bus pads: write the output pin address latch
@@ -70,21 +70,21 @@ assign m1     = (fFetch   & (T1 | T2)) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & 1'h0) |
                 (fIOWrite & 1'h0) |
-                (fIntr    & (T1 | T2 | T3 | T4));
+                (fIntr    & (T1 | T2 | Tw1 | Tw2));
 
 assign mreq   = (fFetch   & ((T1 & ~clk | T2) | (T3 & ~clk | T4 & clk))) |
                 (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
                 (fMWrite  & (T1 & ~clk | T2 | T3 & clk)) |
                 (fIORead  & 1'h0) |
                 (fIOWrite & 1'h0) |
-                (fIntr    & (T5 & ~clk | T6));
+                (fIntr    & (Tw1 & ~clk | Tw2 & clk));
 
 assign iorq   = (fFetch   & 1'h0) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & (T2 | T3 | T4 & clk)) |
                 (fIOWrite & (T2 | T3 | T4 & clk)) |
-                (fIntr    & (T3 & ~clk | T4));
+                (fIntr    & (Tw1 & ~clk | Tw2));
 
 assign rd     = (fFetch   & (T1 & ~clk | T2)) |
                 (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
@@ -105,7 +105,7 @@ assign rfsh   = (fFetch   & (T3 | T4)) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & 1'h0) |
                 (fIOWrite & 1'h0) |
-                (fIntr    & (T5 | T6));
+                (fIntr    & (Tw1 | Tw2));
 
 //----------------------------------------------------------------------------
 // The usual state advancing mechanism can be temporarily paused if the pins
@@ -118,7 +118,7 @@ assign lastT =  (fFetch   & T4) |
                 (fMWrite  & T3) |
                 (fIORead  & T4) |
                 (fIOWrite & T4) |
-                (fIntr    & T6);
+                (fIntr    & Tw2);
 
 // This flip flop stores the state of the BUSREQ signal at its proper sampling time
 reg busrq_latch = 0;
@@ -127,7 +127,7 @@ always @ (posedge lastT) begin
 end
 
 // BUSACK trails the BUSREQ by 1 clock
-reg busack_latch;
+reg busack_latch = 0;
 always @ (busrq_latch) begin
     busack_latch = busrq_latch;
 end
@@ -142,7 +142,7 @@ assign testW =  (fFetch   & T2) |
                 (fMWrite  & T2) |
                 (fIORead  & T3) |
                 (fIOWrite & T3) |
-                (fIntr    & T4);
+                (fIntr    & Tw2);
 
 // This flip flop stores the state of the WAIT signal at its proper sampling time
 reg wait_latch = 0;
@@ -152,7 +152,7 @@ end
 
 // Pause the sequencer if the WAIT or BUSRQ input signals have been asserted
 // at certain T state periods and functions
-assign hold_clk = busrq_latch | wait_latch;
+assign hold_clk_timing = busrq_latch | wait_latch;
 
 //----------------------------------------------------------------------------
 // NMI flip flop is latched at any time (in spite of what documentation says)
@@ -177,7 +177,7 @@ assign ctl_ab_we = (fFetch   & ((T1 & clk) | (T3 & clk))) |
                    (fMWrite  & (T1 & clk)) |
                    (fIORead  & (T1 & clk)) |
                    (fIOWrite & (T1 & clk)) |
-                   (fIntr    & ((T1 & clk) | (T5 & clk)));
+                   (fIntr    & ((T1 & clk) | (T3 & clk)));
 
 // Output data pad latch value onto the external data pin
 assign ctl_db_pin_oe =
@@ -195,7 +195,7 @@ assign ctl_db_pin_re =
                    (fMWrite  & 1'h0) |
                    (fIORead  & (T4 & clk)) |
                    (fIOWrite & 1'h0) |
-                   (fIntr    & (T4 & ~clk));
+                   (fIntr    & (Tw2 & ~clk));
 
 // Read data from the data pad latch into the internal data bus
 assign ctl_db_oe = (fFetch   & T3) |
@@ -203,7 +203,7 @@ assign ctl_db_oe = (fFetch   & T3) |
                    (fMWrite  & 1'h0) |
                    (fIORead  & (T4 & ~clk)) |
                    (fIOWrite & 1'h0) |
-                   (fIntr    & T5);
+                   (fIntr    & T3);
 
 // Write data from the internal data bus into the data pad latch
 assign ctl_db_we = (fFetch   & 1'h0) |
