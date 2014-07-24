@@ -1,0 +1,28 @@
+This is a list of source files that are part of the top-level design.
+It is read by various Python scripts to be processed. Every line that
+does not refer to a valid file is ignored.
+
+------ Control block -------
+control/ir.v
+control/pla_decode.sv
+control/sequencer.v
+control/execute.sv
+control/exec_module.i
+control/pin_control.sv
+
+---------- ALU -------------
+alu/alu_control.v
+alu/alu_flags.v
+alu/alu.v
+
+------ Register file -------
+registers/reg_file.v
+registers/reg_control.v
+
+------ Address latch -------
+bus/address_latch.v
+bus/address_pins.v
+
+------ I/O pin control -----
+bus/data_pins.v
+bus/control_pins_p.v

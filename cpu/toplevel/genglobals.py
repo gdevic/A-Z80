@@ -5,7 +5,7 @@
 import glob
 import os
 
-with open('top-level-files.txt') as f:
+with open('../top-level-files.txt') as f:
     files = f.read().splitlines()
 
 # Create a file that should be included in the top-level source
@@ -15,9 +15,9 @@ with open('globals.i', 'w') as file1:
 # Read and parse each file from the list of input files
 for infile in files:
     wires = []
-    if not os.path.isfile(infile):
+    if not os.path.isfile('../' + infile):
         continue
-    with open(infile, "r") as f:
+    with open('../' + infile, "r") as f:
         for line in f:
             info = line.split()
             if (len(info)>2):
