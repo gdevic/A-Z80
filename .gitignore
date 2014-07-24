@@ -1,5 +1,9 @@
-# Quartus files and folders
+# Quartus generated files and folders
 *.rpt
+*.done
+*.rpt
+*.smsg
+*.summary
 db/
 incremental_db/
 out/
@@ -11,7 +15,7 @@ out/
 transcript
 *.mti
 *.wlf
-_vmake
+_*
 _temp/
 _primary.*
 *.prw
@@ -21,3 +25,10 @@ _primary.*
 # Generic backup files
 *~
 *.bak
+
+# Visual Studio temporary files
+*.suo
+*.tss
+obj/
+Debug/
+Release/
