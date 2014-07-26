@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 64 48 240 64)
+	(rect 40 40 216 56)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_bus_zero_oe" (rect 9 0 88 12)(font "Arial" ))
 	(pt 176 8)
@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 368 80 544 96)
+	(rect 344 72 520 88)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "db[7..0]" (rect 90 0 127 12)(font "Arial" ))
 	(pt 0 8)
@@ -52,7 +52,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 280 72 328 104)
+	(rect 256 64 304 96)
 	(text "TRI" (rect 1 0 16 10)(font "Arial" (font_size 6)))
 	(text "inst" (rect 3 21 20 33)(font "Arial" ))
 	(port
@@ -83,7 +83,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 192 104 224 136)
+	(rect 168 96 200 128)
 	(text "GND" (rect 8 16 29 26)(font "Arial" (font_size 6)))
 	(text "inst4" (rect 3 21 26 33)(font "Arial" )(invisible))
 	(port
@@ -100,25 +100,25 @@ applicable agreement for further details.
 	)
 )
 (connector
-	(pt 304 56)
-	(pt 304 72)
+	(pt 280 48)
+	(pt 280 64)
 )
 (connector
-	(pt 240 56)
-	(pt 304 56)
+	(pt 216 48)
+	(pt 280 48)
 )
 (connector
-	(pt 328 88)
-	(pt 368 88)
+	(pt 304 80)
+	(pt 344 80)
 	(bus)
 )
 (connector
-	(pt 280 88)
-	(pt 208 88)
+	(pt 256 80)
+	(pt 184 80)
 	(bus)
 )
 (connector
-	(pt 208 88)
-	(pt 208 104)
+	(pt 184 80)
+	(pt 184 96)
 	(bus)
 )

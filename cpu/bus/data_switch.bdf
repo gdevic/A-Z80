@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 40 72 216 88)
+	(rect 32 32 208 48)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_sw_up" (rect 9 0 57 12)(font "Arial" ))
 	(pt 176 8)
@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 168 216 184)
+	(rect 32 128 208 144)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_sw_down" (rect 9 0 70 12)(font "Arial" ))
 	(pt 176 8)
@@ -53,7 +53,7 @@ applicable agreement for further details.
 )
 (pin
 	(bidir)
-	(rect 40 120 216 136)
+	(rect 32 80 208 96)
 	(text "BIDIR" (rect 151 0 175 10)(font "Arial" (font_size 6)))
 	(text "db_down[7..0]" (rect 18 0 86 12)(font "Arial" ))
 	(pt 176 8)
@@ -71,7 +71,7 @@ applicable agreement for further details.
 )
 (pin
 	(bidir)
-	(rect 360 120 536 136)
+	(rect 352 80 528 96)
 	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "db_up[7..0]" (rect 90 0 145 12)(font "Arial" ))
 	(pt 0 8)
@@ -87,7 +87,7 @@ applicable agreement for further details.
 	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
 )
 (symbol
-	(rect 264 96 312 128)
+	(rect 256 56 304 88)
 	(text "TRI" (rect 1 0 16 10)(font "Arial" (font_size 6)))
 	(text "tri1" (rect 3 21 18 33)(font "Arial" ))
 	(port
@@ -118,7 +118,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 264 128 312 160)
+	(rect 256 88 304 120)
 	(text "TRI" (rect 32 22 47 32)(font "Arial" (font_size 6)))
 	(text "tri2" (rect 30 -1 45 11)(font "Arial" ))
 	(port
@@ -150,70 +150,70 @@ applicable agreement for further details.
 	(rotate180)
 )
 (connector
-	(pt 216 128)
-	(pt 240 128)
+	(pt 208 88)
+	(pt 232 88)
 	(bus)
 )
 (connector
-	(pt 240 112)
-	(pt 264 112)
+	(pt 232 72)
+	(pt 256 72)
 	(bus)
 )
 (connector
-	(pt 240 144)
-	(pt 264 144)
+	(pt 232 104)
+	(pt 256 104)
 	(bus)
 )
 (connector
-	(pt 240 112)
-	(pt 240 128)
+	(pt 304 72)
+	(pt 328 72)
 	(bus)
 )
 (connector
-	(pt 240 128)
-	(pt 240 144)
+	(pt 328 104)
+	(pt 304 104)
 	(bus)
 )
 (connector
-	(pt 312 112)
-	(pt 336 112)
+	(pt 328 88)
+	(pt 352 88)
 	(bus)
 )
 (connector
-	(pt 336 144)
-	(pt 312 144)
+	(pt 280 40)
+	(pt 280 56)
+)
+(connector
+	(pt 280 136)
+	(pt 280 120)
+)
+(connector
+	(pt 208 40)
+	(pt 280 40)
+)
+(connector
+	(pt 208 136)
+	(pt 280 136)
+)
+(connector
+	(pt 232 72)
+	(pt 232 88)
 	(bus)
 )
 (connector
-	(pt 336 128)
-	(pt 360 128)
+	(pt 232 88)
+	(pt 232 104)
 	(bus)
 )
 (connector
-	(pt 336 112)
-	(pt 336 128)
+	(pt 328 72)
+	(pt 328 88)
 	(bus)
 )
 (connector
-	(pt 336 128)
-	(pt 336 144)
+	(pt 328 88)
+	(pt 328 104)
 	(bus)
 )
-(connector
-	(pt 288 80)
-	(pt 288 96)
-)
-(connector
-	(pt 288 176)
-	(pt 288 160)
-)
-(connector
-	(pt 216 80)
-	(pt 288 80)
-)
-(connector
-	(pt 216 176)
-	(pt 288 176)
-)
-(junction (pt 240 128))
-(junction (pt 336 128))
+(junction (pt 232 88))
+(junction (pt 328 88))

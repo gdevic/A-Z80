@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 56 128 224 144)
+	(rect 32 120 200 136)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "we" (rect 5 0 17 12)(font "Arial" ))
 	(pt 168 8)
@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 40 224 56)
+	(rect 32 32 200 48)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "oen" (rect 5 0 22 12)(font "Arial" ))
 	(pt 168 8)
@@ -53,7 +53,7 @@ applicable agreement for further details.
 )
 (pin
 	(bidir)
-	(rect 512 120 688 136)
+	(rect 488 112 664 128)
 	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "db[7..0]" (rect 90 0 127 12)(font "Arial" ))
 	(pt 0 8)
@@ -69,7 +69,7 @@ applicable agreement for further details.
 	(text "VCC" (rect 4 7 24 17)(font "Arial" (font_size 6)))
 )
 (symbol
-	(rect 424 112 472 144)
+	(rect 400 104 448 136)
 	(text "TRI" (rect 1 0 16 10)(font "Arial" (font_size 6)))
 	(text "inst" (rect 3 21 20 33)(font "Arial" ))
 	(port
@@ -100,7 +100,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 336 96 400 176)
+	(rect 312 88 376 168)
 	(text "LATCH" (rect 1 0 31 10)(font "Arial" (font_size 6)))
 	(text "reg_latch0" (rect 3 68 53 80)(font "Arial" ))
 	(port
@@ -132,50 +132,50 @@ applicable agreement for further details.
 	)
 )
 (connector
-	(pt 424 128)
-	(pt 400 128)
+	(pt 400 120)
+	(pt 376 120)
 	(bus)
 )
 (connector
-	(pt 488 128)
-	(pt 488 80)
+	(pt 464 120)
+	(pt 464 72)
 	(bus)
 )
 (connector
-	(pt 488 80)
-	(pt 312 80)
+	(pt 464 72)
+	(pt 288 72)
 	(bus)
 )
 (connector
-	(pt 512 128)
-	(pt 488 128)
+	(pt 288 72)
+	(pt 288 112)
 	(bus)
 )
 (connector
-	(pt 488 128)
-	(pt 472 128)
+	(pt 288 112)
+	(pt 312 112)
 	(bus)
 )
 (connector
-	(pt 312 80)
-	(pt 312 120)
+	(pt 312 128)
+	(pt 200 128)
+)
+(connector
+	(pt 424 104)
+	(pt 424 40)
+)
+(connector
+	(pt 424 40)
+	(pt 200 40)
+)
+(connector
+	(pt 448 120)
+	(pt 464 120)
 	(bus)
 )
 (connector
-	(pt 312 120)
-	(pt 336 120)
+	(pt 464 120)
+	(pt 488 120)
 	(bus)
 )
-(connector
-	(pt 336 136)
-	(pt 224 136)
-)
-(connector
-	(pt 448 112)
-	(pt 448 48)
-)
-(connector
-	(pt 448 48)
-	(pt 224 48)
-)
-(junction (pt 488 128))
+(junction (pt 464 120))

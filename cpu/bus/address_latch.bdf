@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 56 128 232 144)
+	(rect 24 152 200 168)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_bus_inc_we" (rect 9 0 83 12)(font "Arial" ))
 	(pt 176 8)
@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 312 232 328)
+	(rect 24 336 200 352)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_inc_cy" (rect 9 0 59 12)(font "Arial" ))
 	(pt 176 8)
@@ -53,7 +53,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 280 232 296)
+	(rect 24 304 200 320)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_inc_dec" (rect 9 0 64 12)(font "Arial" ))
 	(pt 176 8)
@@ -69,7 +69,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 104 232 120)
+	(rect 24 128 200 144)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_inc_zero" (rect 9 0 66 12)(font "Arial" ))
 	(pt 176 8)
@@ -85,7 +85,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 80 232 96)
+	(rect 24 104 200 120)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_al_we" (rect 9 0 53 12)(font "Arial" ))
 	(pt 176 8)
@@ -101,7 +101,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 16 232 32)
+	(rect 24 40 200 56)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_ab_mux_inc" (rect 9 0 85 12)(font "Arial" ))
 	(pt 176 8)
@@ -117,7 +117,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 56 264 232 280)
+	(rect 24 288 200 304)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_inc_limit6" (rect 9 0 72 12)(font "Arial" ))
 	(pt 176 8)
@@ -133,7 +133,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 848 280 1024 296)
+	(rect 816 304 992 320)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "address_is_1" (rect 90 0 154 12)(font "Arial" ))
 	(pt 0 8)
@@ -149,7 +149,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 848 128 1024 144)
+	(rect 816 152 992 168)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "address[15..0]" (rect 90 0 160 12)(font "Arial" ))
 	(pt 0 8)
@@ -165,7 +165,7 @@ applicable agreement for further details.
 )
 (pin
 	(bidir)
-	(rect 56 160 232 176)
+	(rect 24 184 200 200)
 	(text "BIDIR" (rect 151 0 175 10)(font "Arial" (font_size 6)))
 	(text "abus[15..0]" (rect 31 0 86 12)(font "Arial" ))
 	(pt 176 8)
@@ -182,7 +182,7 @@ applicable agreement for further details.
 	(text "VCC" (rect 152 7 172 17)(font "Arial" (font_size 6)))
 )
 (symbol
-	(rect 296 152 344 184)
+	(rect 264 176 312 208)
 	(text "TRI" (rect 32 0 47 10)(font "Arial" (font_size 6)))
 	(text "inst4" (rect 22 21 45 33)(font "Arial" ))
 	(port
@@ -214,7 +214,7 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 384 8 432 40)
+	(rect 352 32 400 64)
 	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
 	(text "i4" (rect 3 21 11 33)(font "Arial" ))
 	(port
@@ -239,7 +239,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 368 144 432 192)
+	(rect 336 168 400 216)
 	(text "AND2" (rect 39 0 63 10)(font "Arial" (font_size 6)))
 	(text "inst3" (rect 38 37 61 49)(font "Arial" ))
 	(port
@@ -272,7 +272,7 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 384 96 432 128)
+	(rect 352 120 400 152)
 	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
 	(text "i5" (rect 3 21 11 33)(font "Arial" ))
 	(port
@@ -297,7 +297,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 496 144 560 224)
+	(rect 464 168 528 248)
 	(text "LATCH" (rect 33 0 63 10)(font "Arial" (font_size 6)))
 	(text "inst_al" (rect 30 68 61 80)(font "Arial" ))
 	(port
@@ -330,7 +330,7 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 376 240 576 368)
+	(rect 344 264 544 392)
 	(text "inc_dec" (rect 5 0 49 14)(font "Arial" (font_size 8)))
 	(text "inst_inc_dec" (rect 8 112 69 124)(font "Arial" ))
 	(port
@@ -380,7 +380,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 664 88 728 136)
+	(rect 632 112 696 160)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "i1" (rect 3 37 11 49)(font "Arial" ))
 	(port
@@ -412,7 +412,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 664 136 728 184)
+	(rect 632 160 696 208)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "i2" (rect 3 37 11 49)(font "Arial" ))
 	(port
@@ -444,7 +444,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 760 112 824 160)
+	(rect 728 136 792 184)
 	(text "OR2" (rect 1 0 19 10)(font "Arial" (font_size 6)))
 	(text "i3" (rect 3 37 11 49)(font "Arial" ))
 	(port
@@ -477,197 +477,197 @@ applicable agreement for further details.
 	)
 )
 (connector
-	(pt 376 304)
-	(pt 280 304)
+	(pt 344 328)
+	(pt 248 328)
 	(bus)
 )
 (connector
-	(pt 280 168)
-	(pt 280 304)
+	(pt 248 192)
+	(pt 248 328)
 	(bus)
 )
 (connector
-	(pt 608 168)
-	(pt 608 272)
+	(pt 576 192)
+	(pt 576 296)
 	(bus)
 )
 (connector
-	(pt 472 176)
-	(pt 472 120)
+	(pt 440 200)
+	(pt 440 144)
 	(bus)
 )
 (connector
-	(pt 472 120)
-	(pt 664 120)
+	(pt 440 144)
+	(pt 632 144)
 	(bus)
 )
 (connector
-	(pt 744 112)
-	(pt 744 128)
+	(pt 712 136)
+	(pt 712 152)
 	(bus)
 )
 (connector
-	(pt 744 160)
-	(pt 744 144)
+	(pt 712 184)
+	(pt 712 168)
 	(bus)
 )
 (connector
-	(pt 744 144)
-	(pt 760 144)
+	(pt 712 168)
+	(pt 728 168)
 	(bus)
 )
 (connector
-	(pt 744 128)
-	(pt 760 128)
+	(pt 712 152)
+	(pt 728 152)
 	(bus)
 )
 (connector
-	(pt 280 56)
-	(pt 280 24)
+	(pt 248 80)
+	(pt 248 48)
 )
 (connector
-	(pt 448 160)
-	(pt 448 112)
+	(pt 416 184)
+	(pt 416 136)
 )
 (connector
-	(pt 584 184)
-	(pt 584 88)
+	(pt 552 208)
+	(pt 552 112)
 )
 (connector
-	(pt 320 152)
-	(pt 320 136)
+	(pt 288 176)
+	(pt 288 160)
 )
 (connector
-	(pt 632 104)
-	(pt 664 104)
+	(pt 600 128)
+	(pt 632 128)
 )
 (connector
-	(pt 608 56)
-	(pt 280 56)
+	(pt 576 80)
+	(pt 248 80)
 )
 (connector
-	(pt 608 56)
-	(pt 608 152)
+	(pt 576 80)
+	(pt 576 176)
 )
 (connector
-	(pt 608 152)
-	(pt 664 152)
+	(pt 576 176)
+	(pt 632 176)
 )
 (connector
-	(pt 632 104)
-	(pt 632 24)
+	(pt 600 128)
+	(pt 600 48)
 )
 (connector
-	(pt 472 176)
-	(pt 496 176)
+	(pt 312 192)
+	(pt 336 192)
 	(bus)
 )
 (connector
-	(pt 608 168)
-	(pt 664 168)
+	(pt 696 136)
+	(pt 712 136)
 	(bus)
 )
 (connector
-	(pt 280 24)
-	(pt 384 24)
-)
-(connector
-	(pt 280 168)
-	(pt 296 168)
+	(pt 696 184)
+	(pt 712 184)
 	(bus)
 )
 (connector
-	(pt 344 168)
-	(pt 368 168)
+	(pt 792 160)
+	(pt 816 160)
 	(bus)
 )
 (connector
-	(pt 728 112)
-	(pt 744 112)
+	(pt 400 48)
+	(pt 600 48)
+)
+(connector
+	(pt 400 184)
+	(pt 416 184)
+)
+(connector
+	(pt 400 136)
+	(pt 416 136)
+)
+(connector
+	(pt 528 208)
+	(pt 552 208)
+)
+(connector
+	(pt 544 296)
+	(pt 576 296)
 	(bus)
 )
 (connector
-	(pt 728 160)
-	(pt 744 160)
+	(pt 544 312)
+	(pt 816 312)
+)
+(connector
+	(pt 200 112)
+	(pt 552 112)
+)
+(connector
+	(pt 200 136)
+	(pt 352 136)
+)
+(connector
+	(pt 200 160)
+	(pt 288 160)
+)
+(connector
+	(pt 200 296)
+	(pt 344 296)
+)
+(connector
+	(pt 200 312)
+	(pt 344 312)
+)
+(connector
+	(pt 200 344)
+	(pt 344 344)
+)
+(connector
+	(pt 400 200)
+	(pt 440 200)
 	(bus)
 )
 (connector
-	(pt 824 136)
-	(pt 848 136)
+	(pt 440 200)
+	(pt 464 200)
 	(bus)
 )
 (connector
-	(pt 432 24)
-	(pt 632 24)
-)
-(connector
-	(pt 432 160)
-	(pt 448 160)
-)
-(connector
-	(pt 432 176)
-	(pt 472 176)
+	(pt 528 192)
+	(pt 576 192)
 	(bus)
 )
 (connector
-	(pt 432 112)
-	(pt 448 112)
-)
-(connector
-	(pt 560 168)
-	(pt 608 168)
+	(pt 576 192)
+	(pt 632 192)
 	(bus)
 )
 (connector
-	(pt 560 184)
-	(pt 584 184)
+	(pt 200 48)
+	(pt 248 48)
 )
 (connector
-	(pt 576 272)
-	(pt 608 272)
+	(pt 248 48)
+	(pt 352 48)
+)
+(connector
+	(pt 200 192)
+	(pt 248 192)
 	(bus)
 )
 (connector
-	(pt 576 288)
-	(pt 848 288)
-)
-(connector
-	(pt 232 24)
-	(pt 280 24)
-)
-(connector
-	(pt 232 168)
-	(pt 280 168)
+	(pt 248 192)
+	(pt 264 192)
 	(bus)
 )
-(connector
-	(pt 232 88)
-	(pt 584 88)
-)
-(connector
-	(pt 232 112)
-	(pt 384 112)
-)
-(connector
-	(pt 232 136)
-	(pt 320 136)
-)
-(connector
-	(pt 232 272)
-	(pt 376 272)
-)
-(connector
-	(pt 232 288)
-	(pt 376 288)
-)
-(connector
-	(pt 232 320)
-	(pt 376 320)
-)
-(junction (pt 472 176))
-(junction (pt 608 168))
-(junction (pt 280 24))
-(junction (pt 280 168))
-(text "Address increment / decrement" (rect 376 376 555 390)(font "Arial" (font_size 8)))
-(text "Address Latch" (rect 496 128 580 142)(font "Arial" (font_size 8)))
-(text "Address output mux" (rect 656 56 771 70)(font "Arial" (font_size 8)))
+(junction (pt 440 200))
+(junction (pt 576 192))
+(junction (pt 248 48))
+(junction (pt 248 192))
+(text "Address increment / decrement" (rect 344 400 523 414)(font "Arial" (font_size 8)))
+(text "Address Latch" (rect 464 152 548 166)(font "Arial" (font_size 8)))
+(text "Address output mux" (rect 624 80 739 94)(font "Arial" (font_size 8)))

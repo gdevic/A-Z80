@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 64 104 240 120)
+	(rect 40 64 216 80)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_ir_we" (rect 9 0 51 12)(font "Arial" ))
 	(pt 176 8)
@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 64 88 240 104)
+	(rect 40 48 216 64)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "db[7..0]" (rect 9 0 46 12)(font "Arial" ))
 	(pt 176 8)
@@ -53,7 +53,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 400 96 576 112)
+	(rect 376 56 552 72)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "opcode[7..0]" (rect 90 0 151 12)(font "Arial" ))
 	(pt 0 8)
@@ -68,7 +68,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 288 72 352 152)
+	(rect 264 32 328 112)
 	(text "LATCH" (rect 1 0 31 10)(font "Arial" (font_size 6)))
 	(text "inst_ir" (rect 3 68 32 80)(font "Arial" ))
 	(port
@@ -100,18 +100,18 @@ applicable agreement for further details.
 	)
 )
 (connector
-	(pt 400 104)
-	(pt 352 104)
+	(pt 376 64)
+	(pt 328 64)
 	(bus)
 )
 (connector
-	(pt 240 112)
-	(pt 288 112)
+	(pt 216 72)
+	(pt 264 72)
 )
 (connector
-	(pt 240 96)
-	(pt 288 96)
+	(pt 216 56)
+	(pt 264 56)
 	(bus)
 )
-(text "There are 8 latches implementing the Instruction Register" (rect 152 160 472 174)(font "Arial" (font_size 8)))
-(text "There is no output enable signal since they feed the decode PLA continously" (rect 152 176 587 190)(font "Arial" (font_size 8)))
+(text "There are 8 latches implementing the Instruction Register" (rect 128 120 448 134)(font "Arial" (font_size 8)))
+(text "There is no output enable signal since they feed the decode PLA continously" (rect 128 136 563 150)(font "Arial" (font_size 8)))
