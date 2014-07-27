@@ -80,7 +80,7 @@ for line in content:
         # Yes, a bit hardcoded but it works
         #==================================================================
         T = T + 1
-        if "nextM" in col[6]:
+        if ("nextM" in col[6]) or ("contM1" in col[6]) or ("contM2" in col[6]):
             M = M + 1
             T = 1
     # End of the PLA logic matrix

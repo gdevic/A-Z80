@@ -14,6 +14,19 @@ module execute
     //----------------------------------------------------------
     `include "exec_module.i"
 
+    output logic nextM,
+    output logic setM1,
+    
+    output logic fFetch,
+    output logic fMRead,
+    output logic fMWrite,
+    output logic fIORead,
+    output logic fIOWrite,
+    
+    output logic setM1ss,
+    output logic setM1cc,
+    output logic setM1bz,
+    
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
     //----------------------------------------------------------
@@ -36,13 +49,17 @@ module execute
     input wire T6                       // T-cycle #6
 );
 
-// Internal control wire contM when set by the decode logic, prevent looping back to a new M1 cycle
-// Instructions that are longer than 4T set it at their M1/T4 cycle
-logic contM = 0;
-assign setM1 = !contM;
+// If set by the execution matrix, prevents looping back to the next instruction
+// Instructions that are longer than 4T set this at M1/T4
+logic contM1;                           // Continue M1 cycle
+// Instructions that use M2 immediately after M1/T4 set this at M1/T4
+logic contM2;                           // Continue with the next M cycle
 
 always_comb
 begin
+    contM1 = 0;
+    contM2 = 0;
+
     //----------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent the
     // generation of latches
@@ -55,12 +72,15 @@ begin
     `include "exec_matrix.i"
 
     //----------------------------------------------------------
-    // Default M1 cycle execution
+    // Default M1 fetch cycle execution
     //----------------------------------------------------------
     if (M1 && T1) begin fFetch=1;             end
     if (M1 && T2) begin fFetch=1;             end
     if (M1 && T3) begin fFetch=1;             end
-    if (M1 && T4) begin fFetch=1;   nextM=1;  end
+    if (M1 && T4) begin fFetch=1;
+            nextM = !contM1;
+            setM1 = !contM1 & !contM2;
+    end
 
 end
 

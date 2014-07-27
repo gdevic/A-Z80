@@ -27,10 +27,12 @@ endmodule
 module test_top();
 
 bit clk = 0;
+bit reset = 0;
+
 initial repeat (20) `TD clk = ~clk;
 
 initial begin : assert_reset
-    bit reset = 1;
+    reset = 1;
     repeat (3) `TD reset = 1;
     reset = 0;
 end : assert_reset

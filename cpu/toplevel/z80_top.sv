@@ -12,6 +12,9 @@ module z80_top (z80_if.dut z80);
 //----------------------------------------------------------------------------
 `include "globals.i"
 
+logic [7:0] db1;
+logic [7:0] db2;
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,15 +49,11 @@ address_pins  address_pins ( .*, .A(z80.A[15:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-logic [7:0] db2;
-
 data_switch sw2 ( .ctl_sw_up(ctl_sw_2u), .ctl_sw_down(ctl_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]));
 
 // Generators for 0x00 and 0xFF on the data (instruction) bus
 bus_zero    bus_zero ( .* );
 bus_ff      bus_ff ( .* );
-
-logic [7:0] db1;
 
 data_switch sw1 ( .ctl_sw_up(ctl_sw_1u), .ctl_sw_down(ctl_sw_1d), .db_up(db[7:0]), .db_down(db1[7:0]));
 
