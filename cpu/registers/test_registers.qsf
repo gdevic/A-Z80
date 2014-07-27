@@ -52,7 +52,7 @@ set_global_assignment -name BDF_FILE reg_file.bdf
 set_global_assignment -name BDF_FILE reg_control.bdf
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY "P:\\Z80\\cpu\\registers\\out"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY out
 set_global_assignment -name SMART_RECOMPILE ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"

@@ -21,6 +21,7 @@ _primary.*
 *.prw
 *.psm
 *.vstf
+mgc_location_map
 
 # Generic backup files
 *~

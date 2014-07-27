@@ -2,6 +2,8 @@
             A conceptual implementation of the Z80 CPU
             ------------------------------------------
 
+This project is described the blog at: http://www.devic.us/hacks
+
 Prerequisites:
 * Altera Quartus and Modelsim (free web editions)
 * Python 2.7
@@ -19,30 +21,29 @@ Logic Design
 Each functional block contains a Quartus project file:
 ./<block>/test_<block>.qpf
 
-It is named "test_" because it is only used as a container for individual modules
-while the top-level design is in "toplevel".
+They are only used as containers for individual modules; the top-level design
+is in the "toplevel" folder.
 
-Great majority of submodules are designed in the Quartus schematic editor and then
-exported to Verilog for simulation and the top-level integration. Threfore, Quartus
-"Hierarchy" view is arbitrary - see the "Files" view to get a list of submodules.
+Majority of sub-modules are designed in the Quartus schematic editor and then
+exported to Verilog for simulation and the top-level integration.
 
 Simulation
 ==========
 Each functional block contains a Modelsim simulation profile:
 ./<block>/simulation/modelsim/test_<block>.mpf
 
-Before you can load it in Modelsim, you need to create a set of directories
-that Modelsim needs. You do that by running Python script(s) at:
-./<block>/simulation/modelsim/work/create_dirs.py
+Before you can load and simulate them using Modelsim, you need to set up
+the environment by running Python script(s) at:
+./<block>/simulation/modelsim/work/setup.py
 
-Run it for every module, once.
+Run it on every module's directory.
 
 Each Modelsim project contains a set of predefined waveform scripts which you can
 load before running a simulation of a particular submodule. The scripts are named
-according to the sub-module to test:
+according to a sub-module to test:
 ./<block>/simulation/modelsim/wave_<submodule>.do
 
-All tests are written in SystemVerilog (and have extension *.sv). They losely make
+All tests are written in SystemVerilog (and have extension *.sv). They loosely make
 up a set of directed, functional test benches.
 
 ----------------------------------------------------------------------------------
