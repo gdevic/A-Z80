@@ -21,9 +21,9 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 24 184 200 200)
+	(rect 24 32 200 48)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_db_we" (rect 9 0 57 12)(font "Arial" ))
+	(text "bus_db_pin_oe" (rect 9 0 82 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 24 168 200 184)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_db_pin_re" (rect 9 0 73 12)(font "Arial" ))
+	(text "bus_db_pin_re" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -53,9 +53,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 32 200 48)
+	(rect 24 184 200 200)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_db_pin_oe" (rect 9 0 76 12)(font "Arial" ))
+	(text "bus_db_we" (rect 9 0 63 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect 24 208 200 224)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_db_oe" (rect 9 0 56 12)(font "Arial" ))
+	(text "bus_db_oe" (rect 9 0 62 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -471,10 +471,6 @@ applicable agreement for further details.
 	(pt 272 256)
 )
 (connector
-	(pt 200 216)
-	(pt 272 216)
-)
-(connector
 	(pt 720 176)
 	(pt 744 176)
 	(bus)
@@ -483,14 +479,6 @@ applicable agreement for further details.
 	(pt 744 176)
 	(pt 760 176)
 	(bus)
-)
-(connector
-	(pt 200 192)
-	(pt 296 192)
-)
-(connector
-	(pt 296 192)
-	(pt 456 192)
 )
 (connector
 	(pt 200 176)
@@ -519,6 +507,18 @@ applicable agreement for further details.
 	(pt 224 272)
 	(pt 248 272)
 	(bus)
+)
+(connector
+	(pt 296 192)
+	(pt 456 192)
+)
+(connector
+	(pt 200 192)
+	(pt 296 192)
+)
+(connector
+	(pt 200 216)
+	(pt 272 216)
 )
 (junction (pt 744 176))
 (junction (pt 296 192))

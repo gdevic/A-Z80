@@ -56,16 +56,3 @@ output logic ctl_inc_zero,
 output logic ctl_al_we,
 output logic ctl_ab_mux_inc,
 output logic ctl_inc_limit6,
-
-// Module: bus/address_pins.v
-output logic ctl_ab_we,
-output logic ctl_ab_pin_oe,
-
-// Module: bus/data_pins.v
-output logic ctl_db_we,
-output logic ctl_db_pin_re,
-output logic ctl_db_pin_oe,
-output logic ctl_db_oe,
-
-// Module: bus/control_pins_p.v
-output logic ctl_bus_pin_oe,

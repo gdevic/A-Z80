@@ -20,14 +20,14 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 200 112)
+	(rect 16 16 208 112)
 	(text "address_pins" (rect 5 0 82 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "ctl_ab_pin_oe" (rect 0 0 79 14)(font "Arial" (font_size 8)))
-		(text "ctl_ab_pin_oe" (rect 21 27 100 41)(font "Arial" (font_size 8)))
+		(text "bus_ab_pin_oe" (rect 0 0 87 14)(font "Arial" (font_size 8)))
+		(text "bus_ab_pin_oe" (rect 21 27 108 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
@@ -40,18 +40,18 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "ctl_ab_we" (rect 0 0 60 14)(font "Arial" (font_size 8)))
-		(text "ctl_ab_we" (rect 21 59 81 73)(font "Arial" (font_size 8)))
+		(text "bus_ab_pin_we" (rect 0 0 92 14)(font "Arial" (font_size 8)))
+		(text "bus_ab_pin_we" (rect 21 59 113 73)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
-		(pt 184 32)
+		(pt 192 32)
 		(output)
 		(text "A[15..0]" (rect 0 0 44 14)(font "Arial" (font_size 8)))
-		(text "A[15..0]" (rect 119 27 163 41)(font "Arial" (font_size 8)))
-		(line (pt 184 32)(pt 168 32)(line_width 3))
+		(text "A[15..0]" (rect 127 27 171 41)(font "Arial" (font_size 8)))
+		(line (pt 192 32)(pt 176 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 168 80))
+		(rectangle (rect 16 16 176 80))
 	)
 )

@@ -21,9 +21,9 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 40 120 216 136)
+	(rect 40 104 216 120)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_ab_we" (rect 9 0 57 12)(font "Arial" ))
+	(text "address[15..0]" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -39,7 +39,7 @@ applicable agreement for further details.
 	(input)
 	(rect 40 32 216 48)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "ctl_ab_pin_oe" (rect 9 0 76 12)(font "Arial" ))
+	(text "bus_ab_pin_oe" (rect 9 0 82 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -53,9 +53,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 104 216 120)
+	(rect 40 120 216 136)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "address[15..0]" (rect 9 0 79 12)(font "Arial" ))
+	(text "bus_ab_pin_we" (rect 9 0 83 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -161,17 +161,17 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
+	(pt 216 112)
+	(pt 328 112)
+	(bus)
+)
+(connector
 	(pt 216 40)
 	(pt 440 40)
 )
 (connector
 	(pt 216 128)
 	(pt 328 128)
-)
-(connector
-	(pt 216 112)
-	(pt 328 112)
-	(bus)
 )
 (text "Repeated 16 times, once for each address pin." (rect 416 152 682 166)(font "Arial" (font_size 8)))
 (title_block

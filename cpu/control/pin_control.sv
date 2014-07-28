@@ -52,13 +52,13 @@ module pin_control
     // Outputs to internal blocks
     //----------------------------------------------------------
     output wire hold_clk_timing,        // Signal to the sequencer to hold the clock
-    output wire ctl_bus_pin_oe,         // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
-    output wire ctl_ab_pin_oe,          // Address bus pads: output enable to address pins
-    output wire ctl_ab_we,              // Address bus pads: write the output pin address latch
-    output wire ctl_db_pin_oe,          // Data bus pads: output enable
-    output wire ctl_db_pin_re,          // Data bus pads: read from the output pin into the latch
-    output wire ctl_db_we,              // Data bus pads: write from internal DB to its latch
-    output wire ctl_db_oe               // Data bus pads: read from its latch into internal DB
+    output wire pin_control_oe,         // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
+    output wire bus_ab_pin_oe,          // Address bus pads: output enable to address pins
+    output wire bus_ab_pin_we,          // Address bus pads: write the output pin address latch
+    output wire bus_db_pin_oe,          // Data bus pads: output enable
+    output wire bus_db_pin_re,          // Data bus pads: read from the output pin into the latch
+    output wire bus_db_we,              // Data bus pads: write from internal DB to its latch
+    output wire bus_db_oe               // Data bus pads: read from its latch into internal DB
 );
 
 //============================================================================

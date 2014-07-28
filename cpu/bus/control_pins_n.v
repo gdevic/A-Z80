@@ -14,10 +14,9 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jul 07 23:30:04 2014"
+// CREATED		"Sun Jul 27 19:19:34 2014"
 
 module control_pins_n(
-	ctl_bus_pin_oe,
 	nINT,
 	nNMI,
 	nRESET,
@@ -32,6 +31,7 @@ module control_pins_n(
 	mwait,
 	busack,
 	CPUCLK,
+	pin_control_oe,
 	nM1,
 	nMREQ,
 	nIORQ,
@@ -49,7 +49,6 @@ module control_pins_n(
 );
 
 
-input wire	ctl_bus_pin_oe;
 input wire	nINT;
 input wire	nNMI;
 input wire	nRESET;
@@ -64,6 +63,7 @@ input wire	halt;
 input wire	mwait;
 input wire	busack;
 input wire	CPUCLK;
+input wire	pin_control_oe;
 output wire	nM1;
 output wire	nMREQ;
 output wire	nIORQ;
@@ -91,15 +91,15 @@ assign	clk = CPUCLK;
 
 assign	nM1 =  ~m1;
 
-assign	nMREQ = ctl_bus_pin_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
+assign	nMREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
 
-assign	nIORQ = ctl_bus_pin_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
+assign	nIORQ = pin_control_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
 
-assign	nRD = ctl_bus_pin_oe ? SYNTHESIZED_WIRE_2 : 1'bz;
+assign	nRD = pin_control_oe ? SYNTHESIZED_WIRE_2 : 1'bz;
 
-assign	nWR = ctl_bus_pin_oe ? SYNTHESIZED_WIRE_3 : 1'bz;
+assign	nWR = pin_control_oe ? SYNTHESIZED_WIRE_3 : 1'bz;
 
-assign	nRFSH = ctl_bus_pin_oe ? SYNTHESIZED_WIRE_4 : 1'bz;
+assign	nRFSH = pin_control_oe ? SYNTHESIZED_WIRE_4 : 1'bz;
 
 assign	SYNTHESIZED_WIRE_4 =  ~rfsh;
 
