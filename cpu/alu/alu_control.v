@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Wed Jul 02 19:50:06 2014"
+// CREATED		"Mon Jul 28 00:35:30 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -46,6 +46,7 @@ module alu_control(
 	flags_cond_true,
 	daa_cf_out,
 	pf_sel,
+	alu_op_low,
 	db
 );
 
@@ -79,6 +80,7 @@ output wire	alu_parity_in;
 output wire	flags_cond_true;
 output wire	daa_cf_out;
 output wire	pf_sel;
+output wire	alu_op_low;
 output wire	[7:0] db;
 
 wire	flags_cf_int;
@@ -104,6 +106,7 @@ wire	SYNTHESIZED_WIRE_19;
 wire	SYNTHESIZED_WIRE_26;
 wire	SYNTHESIZED_WIRE_21;
 
+assign	alu_op_low = ctl_alu_op_low;
 assign	daa_cf_out = SYNTHESIZED_WIRE_11;
 assign	SYNTHESIZED_WIRE_26 = 0;
 assign	SYNTHESIZED_WIRE_21 = 1;
@@ -226,8 +229,8 @@ assign	SYNTHESIZED_WIRE_2 =  ~ctl_cond_short;
 
 assign	flags_cf_int = flags_cf;
 assign	out[3] = 0;
+assign	out[7] = 0;
 assign	out[0] = 0;
 assign	out[4] = 0;
-assign	out[7] = 0;
 
 endmodule

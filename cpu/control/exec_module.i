@@ -3,12 +3,42 @@
 // Module: control/ir.v
 output logic ctl_ir_we,
 
+// Module: control/interrupts.v
+output logic ctl_iffx_clr,
+output logic ctl_iffx_set,
+output logic ctl_iff1_clr,
+output logic ctl_iff1_iff2,
+output logic ctl_im_set,
+output logic ctl_im_sel3,
+output logic ctl_im_sel4,
+
 // Module: alu/alu_control.v
 output logic ctl_shift_en,
 output logic ctl_daa_66,
 output logic ctl_daa_oe,
 output logic ctl_alu_op_low,
 output logic ctl_cond_short,
+output logic [1:0] ctl_pf_sel,
+
+// Module: alu/alu_select.v
+output logic ctl_alu_oe,
+output logic ctl_alu_shift_oe,
+output logic ctl_alu_op2_oe,
+output logic ctl_alu_res_oe,
+output logic ctl_alu_op1_oe,
+output logic ctl_alu_bs_oe,
+output logic ctl_alu_op1_sel_bus,
+output logic ctl_alu_op1_sel_low,
+output logic ctl_alu_op1_sel_zero,
+output logic ctl_alu_op2_sel_zero,
+output logic ctl_alu_op2_sel_bus,
+output logic ctl_alu_op2_sel_lq,
+output logic ctl_alu_sel_op2_neg,
+output logic ctl_alu_sel_op2_high,
+output logic ctl_alu_core_R,
+output logic ctl_alu_core_V,
+output logic ctl_alu_core_S,
+output logic ctl_alu_core_cf_in,
 
 // Module: alu/alu_flags.v
 output logic ctl_flags_oe,
@@ -56,3 +86,9 @@ output logic ctl_inc_zero,
 output logic ctl_al_we,
 output logic ctl_ab_mux_inc,
 output logic ctl_inc_limit6,
+
+// Module: bus/bus_ff.v
+output logic ctl_bus_ff_oe,
+
+// Module: bus/bus_zero.v
+output logic ctl_bus_zero_oe,

@@ -34,11 +34,37 @@ logic setM1bz;
 
 // Module: control/exec_module.i
 logic ctl_ir_we;
+logic ctl_iffx_clr;
+logic ctl_iffx_set;
+logic ctl_iff1_clr;
+logic ctl_iff1_iff2;
+logic ctl_im_set;
+logic ctl_im_sel3;
+logic ctl_im_sel4;
 logic ctl_shift_en;
 logic ctl_daa_66;
 logic ctl_daa_oe;
 logic ctl_alu_op_low;
 logic ctl_cond_short;
+logic [1:0] ctl_pf_sel;
+logic ctl_alu_oe;
+logic ctl_alu_shift_oe;
+logic ctl_alu_op2_oe;
+logic ctl_alu_res_oe;
+logic ctl_alu_op1_oe;
+logic ctl_alu_bs_oe;
+logic ctl_alu_op1_sel_bus;
+logic ctl_alu_op1_sel_low;
+logic ctl_alu_op1_sel_zero;
+logic ctl_alu_op2_sel_zero;
+logic ctl_alu_op2_sel_bus;
+logic ctl_alu_op2_sel_lq;
+logic ctl_alu_sel_op2_neg;
+logic ctl_alu_sel_op2_high;
+logic ctl_alu_core_R;
+logic ctl_alu_core_V;
+logic ctl_alu_core_S;
+logic ctl_alu_core_cf_in;
 logic ctl_flags_oe;
 logic ctl_flags_bus;
 logic ctl_flags_alu;
@@ -78,6 +104,20 @@ logic ctl_inc_zero;
 logic ctl_al_we;
 logic ctl_ab_mux_inc;
 logic ctl_inc_limit6;
+logic ctl_bus_ff_oe;
+logic ctl_bus_zero_oe;
+
+// Module: control/interrupts.v
+logic iff1;
+logic iff2;
+logic im1;
+logic im2;
+
+// Module: control/clk_delay.v
+logic Tw1;
+logic Tw2;
+logic hold_clk_delay;
+logic T2_en;
 
 // Module: control/pin_control.sv
 logic m1;
@@ -105,7 +145,28 @@ logic alu_parity_in;
 logic flags_cond_true;
 logic daa_cf_out;
 logic pf_sel;
+logic alu_op_low;
 logic [7:0] db;
+
+// Module: alu/alu_select.v
+logic alu_oe;
+logic alu_shift_oe;
+logic alu_op2_oe;
+logic alu_res_oe;
+logic alu_op1_oe;
+logic alu_bs_oe;
+logic alu_op1_sel_bus;
+logic alu_op1_sel_low;
+logic alu_op1_sel_zero;
+logic alu_op2_sel_zero;
+logic alu_op2_sel_bus;
+logic alu_op2_sel_lq;
+logic alu_sel_op2_neg;
+logic alu_sel_op2_high;
+logic alu_core_R;
+logic alu_core_V;
+logic alu_core_S;
+logic alu_core_cf_in;
 
 // Module: alu/alu_flags.v
 logic flags_sf;
@@ -158,6 +219,12 @@ logic [15:0] address;
 
 // Module: bus/address_pins.v
 logic [15:0] A;
+
+// Module: bus/bus_ff.v
+// logic [7:0] db; (previously defined)
+
+// Module: bus/bus_zero.v
+// logic [7:0] db; (previously defined)
 
 // Module: bus/control_pins_p.v
 logic nM1;

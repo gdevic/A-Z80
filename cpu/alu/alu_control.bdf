@@ -293,7 +293,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 48 1392 224 1408)
+	(rect 48 1448 224 1464)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "alu_vf_out" (rect 9 0 62 12)(font "Arial" ))
 	(pt 176 8)
@@ -309,7 +309,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 48 1408 224 1424)
+	(rect 48 1464 224 1480)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "iff2" (rect 9 0 26 12)(font "Arial" ))
 	(pt 176 8)
@@ -325,7 +325,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 48 1424 224 1440)
+	(rect 48 1480 224 1496)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "address_is_1" (rect 9 0 73 12)(font "Arial" ))
 	(pt 176 8)
@@ -341,7 +341,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 48 1360 224 1376)
+	(rect 48 1416 224 1432)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_pf_sel[1..0]" (rect 9 0 83 12)(font "Arial" ))
 	(pt 176 8)
@@ -485,9 +485,25 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 544 1360 720 1376)
+	(rect 544 1416 720 1432)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "pf_sel" (rect 90 0 120 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 544 1304 720 1320)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "alu_op_low" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -1534,7 +1550,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 376 1336 488 1464)
+	(rect 376 1392 488 1520)
 	(text "alu_mux_4" (rect 5 0 66 14)(font "Arial" (font_size 8)))
 	(text "inst_pf_sel" (rect 8 112 62 124)(font "Arial" ))
 	(port
@@ -1935,33 +1951,8 @@ applicable agreement for further details.
 	(pt 808 1064)
 )
 (connector
-	(pt 224 1368)
-	(pt 376 1368)
-	(bus)
-)
-(connector
-	(pt 224 1400)
-	(pt 376 1400)
-)
-(connector
-	(pt 224 1416)
-	(pt 376 1416)
-)
-(connector
-	(pt 224 1432)
-	(pt 376 1432)
-)
-(connector
-	(pt 488 1368)
-	(pt 544 1368)
-)
-(connector
 	(pt 416 1248)
 	(pt 416 1176)
-)
-(connector
-	(pt 320 1184)
-	(pt 320 1264)
 )
 (connector
 	(pt 320 1184)
@@ -1982,14 +1973,6 @@ applicable agreement for further details.
 (connector
 	(pt 496 1256)
 	(pt 544 1256)
-)
-(connector
-	(pt 376 1384)
-	(pt 280 1384)
-)
-(connector
-	(pt 280 1384)
-	(pt 280 1168)
 )
 (connector
 	(pt 224 152)
@@ -2226,14 +2209,6 @@ applicable agreement for further details.
 	(pt 344 1264)
 )
 (connector
-	(pt 224 1168)
-	(pt 280 1168)
-)
-(connector
-	(pt 280 1168)
-	(pt 336 1168)
-)
-(connector
 	(text "flags_cf_int" (rect 111 296 170 308)(font "Arial" ))
 	(pt 96 312)
 	(pt 416 312)
@@ -2278,6 +2253,55 @@ applicable agreement for further details.
 	(text "op543[1]" (rect 258 504 300 516)(font "Arial" ))
 	(pt 248 520)
 	(pt 304 520)
+)
+(connector
+	(pt 224 1424)
+	(pt 376 1424)
+	(bus)
+)
+(connector
+	(pt 224 1456)
+	(pt 376 1456)
+)
+(connector
+	(pt 224 1472)
+	(pt 376 1472)
+)
+(connector
+	(pt 224 1488)
+	(pt 376 1488)
+)
+(connector
+	(pt 488 1424)
+	(pt 544 1424)
+)
+(connector
+	(pt 376 1440)
+	(pt 280 1440)
+)
+(connector
+	(pt 280 1168)
+	(pt 280 1440)
+)
+(connector
+	(pt 224 1168)
+	(pt 280 1168)
+)
+(connector
+	(pt 280 1168)
+	(pt 336 1168)
+)
+(connector
+	(pt 544 1312)
+	(pt 320 1312)
+)
+(connector
+	(pt 320 1184)
+	(pt 320 1264)
+)
+(connector
+	(pt 320 1264)
+	(pt 320 1312)
 )
 (junction (pt 336 168))
 (junction (pt 472 152))
@@ -2332,10 +2356,10 @@ applicable agreement for further details.
 (text "DAA + bus(66) logic" (rect 352 768 490 784)(font "Arial" (font_size 10)))
 (text "Half-parity control" (rect 360 1112 479 1128)(font "Arial" (font_size 10)))
 (text "Flag condition mux" (rect 464 488 593 504)(font "Arial" (font_size 10)))
-(text "Parity / Overflow input selector" (rect 352 1304 559 1320)(font "Arial" (font_size 10)))
+(text "Parity / Overflow input selector" (rect 352 1360 559 1376)(font "Arial" (font_size 10)))
 (title_block
-	(rect 656 1424 977 1485)
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Jul 26 17:27:28 2014" (rect 56 3 225 19)(font "Arial" (font_size 10)))(date)(border))
+	(rect 656 1480 977 1541)
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Jul 28 00:34:49 2014" (rect 56 3 231 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_control" (rect 56 2 209 20)(font "Arial" (font_size 12)))(border))

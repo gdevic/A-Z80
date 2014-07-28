@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 16 16 184 144)
-	(text "pin_delay" (rect 5 0 59 14)(font "Arial" (font_size 8)))
+	(text "clk_delay" (rect 5 0 58 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
 		(pt 0 32)

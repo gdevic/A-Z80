@@ -126,7 +126,7 @@ endtask
 
 pin_control pin_control ( .* );
 
-pin_delay pin_delay ( .* );
+clk_delay clk_delay ( .* );
 
 sequencer sequencer ( .* );
 

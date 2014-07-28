@@ -229,9 +229,16 @@ applicable agreement for further details.
 	(port
 		(pt 232 160)
 		(output)
-		(text "pf_sel" (rect 0 0 35 14)(font "Arial" (font_size 8)))
-		(text "pf_sel" (rect 176 155 211 169)(font "Arial" (font_size 8)))
+		(text "alu_op_low" (rect 0 0 66 14)(font "Arial" (font_size 8)))
+		(text "alu_op_low" (rect 145 155 211 169)(font "Arial" (font_size 8)))
 		(line (pt 232 160)(pt 216 160))
+	)
+	(port
+		(pt 232 176)
+		(output)
+		(text "pf_sel" (rect 0 0 35 14)(font "Arial" (font_size 8)))
+		(text "pf_sel" (rect 176 171 211 185)(font "Arial" (font_size 8)))
+		(line (pt 232 176)(pt 216 176))
 	)
 	(drawing
 		(rectangle (rect 16 16 216 368))

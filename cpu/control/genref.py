@@ -23,9 +23,12 @@ for infile in files:
     with open('../' + infile, "r") as f:
         for line in f:
             info = line.split()
-            if (len(info)>2):
-                if info[0]=="input" and info[1]=="wire" and info[2].startswith("ctl_"):
-                    wires.append(info[2].translate(None, ';,'))
+            # input wire register case
+            if len(info)>2 and info[0]=="input" and info[1]=="wire" and info[2].startswith("ctl_"):
+                wires.append(info[2].translate(None, ';,'))
+            # input wire [1:0] bus case
+            if len(info)>3 and info[0]=="input" and info[1]=="wire" and info[2].startswith("[") and info[3].startswith("ctl_"):
+                wires.append(info[2] + " " + info[3].translate(None, ';,'))
 
     if len(wires)>0:
         with open('exec_module.i', 'a') as file1, open('exec_zero.i', 'a') as file0:
@@ -34,5 +37,10 @@ for infile in files:
             for wire in wires:
                 print "   " + wire
                 file1.write("output logic " + wire + ",\n")
-                file0.write(wire + " = 0;\n")
+                # To the exec include, write bus with the length field (if the wire is a bus)
+                # To the zero include, skip bus width field
+                if "[" in wire:
+                    file0.write(wire.split()[1] + " = 0;\n")
+                else:
+                    file0.write(wire + " = 0;\n")                    
 

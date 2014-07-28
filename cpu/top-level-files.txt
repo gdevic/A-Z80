@@ -8,10 +8,13 @@ control/pla_decode.sv
 control/sequencer.v
 control/execute.sv
 control/exec_module.i
+control/interrupts.v
+control/clk_delay.v
 control/pin_control.sv
 
 ---------- ALU -------------
 alu/alu_control.v
+alu/alu_select.v
 alu/alu_flags.v
 alu/alu.v
 
@@ -22,6 +25,10 @@ registers/reg_control.v
 ------ Address latch -------
 bus/address_latch.v
 bus/address_pins.v
+
+--------- Misc bus ---------
+bus/bus_ff.v
+bus/bus_zero.v
 
 ------ I/O pin control -----
 bus/data_pins.v

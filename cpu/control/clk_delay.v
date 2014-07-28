@@ -14,9 +14,9 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Jul 22 20:14:03 2014"
+// CREATED		"Mon Jul 28 01:01:07 2014"
 
-module pin_delay(
+module clk_delay(
 	M1,
 	T2,
 	fIntr,

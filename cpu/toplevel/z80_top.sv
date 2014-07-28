@@ -12,8 +12,12 @@ module z80_top (z80_if.dut z80);
 //----------------------------------------------------------------------------
 `include "globals.i"
 
+// Define internal data bus partitions separated by data bus switches
 logic [7:0] db1;
 logic [7:0] db2;
+
+// Master hold clock signal may be requested by the delay or timing unit
+assign hold_clk = hold_clk_delay | hold_clk_timing;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
@@ -28,6 +32,7 @@ pin_control pin_control ( .* );
 // ALU and ALU control, including the flags
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alu_control alu_control ( .*, .db(db1[7:0]), .op543(db[5:3]) );
+alu_select  alu_select ( .* );
 alu_flags   alu_flags ( .*, .db(db1[7:0]) );
 alu         alu ( .*, .db(db2[7:0]), .bsel(db[5:3]) );
 

@@ -63,7 +63,7 @@ Z32 !s107 P:/A-Z80/cpu/control/pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0
-vpin_delay
+vclk_delay
 !i10b 1
 R1
 R2
