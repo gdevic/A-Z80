@@ -3,126 +3,145 @@ K3
 13
 cModel Technology
 Z0 dP:\Z80\cpu\control
-vinterrupts
-Z1 Imfg^=:j6TFDmIEo4H`=Q23
-Z2 V=hZ3JD^3nk_?HgDGz05X41
-Z3 d$ROOT/control/simulation/modelsim
-Z4 w1406478153
-Z5 8$ROOT/control/interrupts.v
-Z6 F$ROOT/control/interrupts.v
+vclk_delay
+Z1 !s100 m<j5VII:ZegnQ@jJN]U:[1
+Z2 IVEY>8dcK3Kiae=Ho?FDDU1
+Z3 V1LTjFzGzYHPK]=`B:90YN3
+Z4 d$ROOT/control/simulation/modelsim
+Z5 w1406478153
+Z6 8$ROOT/control/clk_delay.v
+Z7 F$ROOT/control/clk_delay.v
 L0 19
-Z7 OV;L;10.1d;51
+Z8 OV;L;10.1d;51
 r1
 31
-Z8 o-work work -O0
+Z9 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/clk_delay.v|
+Z10 o-work work -O0
+Z11 !s108 1406526640.158000
+Z12 !s107 P:/A-Z80/cpu/control/clk_delay.v|
 !i10b 1
-Z9 !s100 HE2<f;T@05AP=W5=7_GM=1
 !s85 0
-Z10 !s108 1406490438.922000
-Z11 !s107 P:/A-Z80/cpu/control/interrupts.v|
-Z12 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/interrupts.v|
+!s101 -O0
+vinterrupts
+Z13 !s100 HE2<f;T@05AP=W5=7_GM=1
+Z14 Imfg^=:j6TFDmIEo4H`=Q23
+Z15 V=hZ3JD^3nk_?HgDGz05X41
+R4
+R5
+Z16 8$ROOT/control/interrupts.v
+Z17 F$ROOT/control/interrupts.v
+L0 19
+R8
+r1
+31
+Z18 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/interrupts.v|
+R10
+Z19 !s108 1406526738.234000
+Z20 !s107 P:/A-Z80/cpu/control/interrupts.v|
+!i10b 1
+!s85 0
 !s101 -O0
 vpin_control
-Z13 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z14 IDzmKg;g;Cz9IXEP1D26Vg1
-Z15 VlJL_XjN31TkEUCQZBl7FQ1
-Z16 !s105 pin_control_sv_unit
+Z21 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z22 !s100 `ShXOQ:Ck;SAeXjCcoO183
+Z23 IICG1BA<FKZQiaXRXnBbQN3
+Z24 VobAb:JjAGLWk3]JPzo@]j2
+Z25 !s105 pin_control_sv_unit
 S1
-R3
 R4
-Z17 8$ROOT/control/pin_control.sv
-Z18 F$ROOT/control/pin_control.sv
+Z26 w1406507216
+Z27 8$ROOT/control/pin_control.sv
+Z28 F$ROOT/control/pin_control.sv
 L0 12
-R7
+R8
 r1
 31
-Z19 o-work work -sv -O0
-Z20 !s100 M=noMkNg<ID?I>FG>QQMm1
-Z21 !s108 1406490438.345000
-Z22 !s107 P:/A-Z80/cpu/control/pin_control.sv|
-Z23 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pin_control.sv|
+Z29 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pin_control.sv|
+Z30 o-work work -sv -O0
+Z31 !s108 1406526738.007000
+Z32 !s107 P:/A-Z80/cpu/control/pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vpin_delay
-Z24 Ij_zRmNFlK`<emamOkzXb`2
-Z25 V1LTjFzGzYHPK]=`B:90YN3
-R3
-R4
-Z26 8$ROOT/control/pin_delay.v
-Z27 F$ROOT/control/pin_delay.v
-L0 19
-R7
-r1
-31
-R8
-Z28 !s100 LU6JXY`EM_:AOEi9>g[j=0
-Z29 !s108 1406490438.535000
-Z30 !s107 P:/A-Z80/cpu/control/pin_delay.v|
-Z31 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/pin_delay.v|
 !i10b 1
-!s85 0
-!s101 -O0
-vsequencer
-Z32 I0^>mM^d6P`63h5g15?SE[0
-Z33 V;e8IWYDk8IKVR_cIG_[IU3
+R1
+R2
 R3
 R4
-Z34 8$ROOT/control/sequencer.v
-Z35 F$ROOT/control/sequencer.v
-L0 19
+R5
+R6
 R7
+L0 19
+R8
+r1
+!s85 0
+31
+!s108 1406526738.368000
+!s107 P:/A-Z80/cpu/control/clk_delay.v|
+R9
+!s101 -O0
+R10
+vsequencer
+Z33 !s100 WjY=9Z0PmOTANc:`bCG3G0
+Z34 I0^>mM^d6P`63h5g15?SE[0
+Z35 V;e8IWYDk8IKVR_cIG_[IU3
+R4
+R5
+Z36 8$ROOT/control/sequencer.v
+Z37 F$ROOT/control/sequencer.v
+L0 19
+R8
 r1
 31
-R8
-Z36 !s100 WjY=9Z0PmOTANc:`bCG3G0
-Z37 !s108 1406490438.730000
-Z38 !s107 P:/A-Z80/cpu/control/sequencer.v|
-Z39 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/sequencer.v|
+Z38 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/sequencer.v|
+R10
+Z39 !s108 1406526738.164000
+Z40 !s107 P:/A-Z80/cpu/control/sequencer.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vtest_interrupts
-R13
+R21
+Z41 !s100 =QT47c@nSdZojBf@5;8D]1
+Z42 I@]YKE_UUMA<H49_bV<2A]2
+Z43 VMcP0PQK3;]?5;IT06k6[m2
+Z44 !s105 test_interrupts_sv_unit
+S1
+R4
+R5
+Z45 8$ROOT/control/test_interrupts.sv
+Z46 F$ROOT/control/test_interrupts.sv
+L0 4
+R8
+r1
+31
+Z47 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/test_interrupts.sv|
+R30
 !i10b 1
-!s100 =QT47c@nSdZojBf@5;8D]1
-I@]YKE_UUMA<H49_bV<2A]2
-Z40 VMcP0PQK3;]?5;IT06k6[m2
-Z41 !s105 test_interrupts_sv_unit
-S1
-R3
-R4
-8$ROOT/control/test_interrupts.sv
-F$ROOT/control/test_interrupts.sv
-L0 4
-R7
-r1
 !s85 0
-31
-!s108 1406490438.996000
-!s107 P:/A-Z80/cpu/control/test_interrupts.sv|
-!s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/test_interrupts.sv|
+Z48 !s108 1406526738.300000
+Z49 !s107 P:/A-Z80/cpu/control/test_interrupts.sv|
 !s101 -O0
-R19
 vtest_pin_control
-R13
-Z42 IVK8d=KJiQAi:;nB?6?4d>1
-Z43 V[aVBVZLGUgh3E[Ud35Shj0
-Z44 !s105 test_pin_control_sv_unit
+R21
+Z50 !s100 9?U;Bn7>@ZAB5Jm8n`IjH2
+Z51 IVK8d=KJiQAi:;nB?6?4d>1
+Z52 V[aVBVZLGUgh3E[Ud35Shj0
+Z53 !s105 test_pin_control_sv_unit
 S1
-R3
 R4
-Z45 8$ROOT/control/test_pin_control.sv
-Z46 F$ROOT/control/test_pin_control.sv
+R5
+Z54 8$ROOT/control/test_pin_control.sv
+Z55 F$ROOT/control/test_pin_control.sv
 L0 4
-R7
+R8
 r1
 31
-R19
-Z47 !s100 9?U;Bn7>@ZAB5Jm8n`IjH2
-Z48 !s108 1406490438.419000
-Z49 !s107 P:/A-Z80/cpu/control/test_pin_control.sv|
-Z50 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/test_pin_control.sv|
+Z56 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/test_pin_control.sv|
+R30
+Z57 !s108 1406526738.090000
+Z58 !s107 P:/A-Z80/cpu/control/test_pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0

@@ -59,7 +59,6 @@ set_global_assignment -name BDF_FILE sequencer.bdf
 set_global_assignment -name BDF_FILE ir.bdf
 set_global_assignment -name SYSTEMVERILOG_FILE pla_decode.sv
 set_global_assignment -name SYSTEMVERILOG_FILE execute.sv
-set_global_assignment -name BDF_FILE test_control.bdf
 set_global_assignment -name BDF_FILE pin_delay.bdf
 set_global_assignment -name BDF_FILE interrupts.bdf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
