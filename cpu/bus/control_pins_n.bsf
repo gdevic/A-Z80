@@ -82,8 +82,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 160)
 		(input)
-		(text "mwait" (rect 0 0 34 14)(font "Arial" (font_size 8)))
-		(text "mwait" (rect 21 155 55 169)(font "Arial" (font_size 8)))
+		(text "nWAIT" (rect 0 0 37 14)(font "Arial" (font_size 8)))
+		(text "nWAIT" (rect 21 155 58 169)(font "Arial" (font_size 8)))
 		(line (pt 0 160)(pt 16 160))
 	)
 	(port
@@ -180,8 +180,8 @@ applicable agreement for further details.
 	(port
 		(pt 192 144)
 		(output)
-		(text "nWAIT" (rect 0 0 37 14)(font "Arial" (font_size 8)))
-		(text "nWAIT" (rect 134 139 171 153)(font "Arial" (font_size 8)))
+		(text "mwait" (rect 0 0 34 14)(font "Arial" (font_size 8)))
+		(text "mwait" (rect 137 139 171 153)(font "Arial" (font_size 8)))
 		(line (pt 192 144)(pt 176 144))
 	)
 	(port

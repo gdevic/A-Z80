@@ -201,22 +201,6 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 32 384 208 400)
-	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "mwait" (rect 9 0 37 12)(font "Arial" ))
-	(pt 176 8)
-	(drawing
-		(line (pt 92 12)(pt 117 12))
-		(line (pt 92 4)(pt 117 4))
-		(line (pt 121 8)(pt 176 8))
-		(line (pt 92 12)(pt 92 4))
-		(line (pt 117 4)(pt 121 8))
-		(line (pt 117 12)(pt 121 8))
-	)
-	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 32 472 208 488)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "busack" (rect 9 0 44 12)(font "Arial" ))
@@ -263,6 +247,23 @@ applicable agreement for further details.
 		(line (pt 117 12)(pt 121 8))
 	)
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 448 392 624 408)
+	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
+	(text "nWAIT" (rect 134 0 167 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 84 12)(pt 59 12))
+		(line (pt 84 4)(pt 59 4))
+		(line (pt 55 8)(pt 0 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 59 4)(pt 55 8))
+		(line (pt 59 12)(pt 55 8))
+	)
+	(flipy)
+	(text "VCC" (rect 20 7 40 17)(font "Arial" (font_size 6)))
 )
 (pin
 	(output)
@@ -378,22 +379,6 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 456 384 632 400)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "nWAIT" (rect 90 0 123 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-)
-(pin
-	(output)
 	(rect 448 472 624 488)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "nBUSACK" (rect 90 0 140 12)(font "Arial" ))
@@ -481,6 +466,23 @@ applicable agreement for further details.
 	(rect 32 552 208 568)
 	(text "OUTPUT" (rect 137 0 175 10)(font "Arial" (font_size 6)))
 	(text "intr" (rect 71 0 86 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 176 8)(pt 124 8))
+		(line (pt 124 4)(pt 98 4))
+		(line (pt 124 12)(pt 98 12))
+		(line (pt 124 12)(pt 124 4))
+		(line (pt 98 4)(pt 94 8))
+		(line (pt 94 8)(pt 98 12))
+		(line (pt 98 12)(pt 94 8))
+	)
+	(flipy)
+)
+(pin
+	(output)
+	(rect 32 392 208 408)
+	(text "OUTPUT" (rect 137 0 175 10)(font "Arial" (font_size 6)))
+	(text "mwait" (rect 58 0 86 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 176 8)(pt 124 8))
@@ -817,30 +819,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 232 376 280 408)
-	(text "WIRE" (rect 1 0 24 10)(font "Arial" (font_size 6)))
-	(text "inst7" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 14 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(line (pt 32 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 14 7)(pt 32 16))
-		(line (pt 14 25)(pt 14 7))
-		(line (pt 14 25)(pt 32 16))
-	)
-)
-(symbol
 	(rect 232 464 280 496)
 	(text "WIRE" (rect 1 0 24 10)(font "Arial" (font_size 6)))
 	(text "inst8" (rect 3 21 26 33)(font "Arial" ))
@@ -943,6 +921,31 @@ applicable agreement for further details.
 	(rect 296 424 344 456)
 	(text "WIRE" (rect 24 0 47 10)(font "Arial" (font_size 6)))
 	(text "inst9" (rect 22 21 45 33)(font "Arial" ))
+	(port
+		(pt 48 16)
+		(input)
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 35 7 46 19)(font "Courier New" (bold))(invisible))
+		(line (pt 48 16)(pt 34 16))
+	)
+	(port
+		(pt 0 16)
+		(output)
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect -1 7 16 19)(font "Courier New" (bold))(invisible))
+		(line (pt 16 16)(pt 0 16))
+	)
+	(drawing
+		(line (pt 34 7)(pt 16 16))
+		(line (pt 34 25)(pt 34 7))
+		(line (pt 34 25)(pt 16 16))
+	)
+	(flipy)
+)
+(symbol
+	(rect 296 384 344 416)
+	(text "WIRE" (rect 24 0 47 10)(font "Arial" (font_size 6)))
+	(text "inst13" (rect 16 21 45 33)(font "Arial" ))
 	(port
 		(pt 48 16)
 		(input)
@@ -1069,10 +1072,6 @@ applicable agreement for further details.
 	(pt 448 632)
 )
 (connector
-	(pt 280 392)
-	(pt 456 392)
-)
-(connector
 	(pt 296 560)
 	(pt 208 560)
 )
@@ -1121,10 +1120,6 @@ applicable agreement for further details.
 	(pt 232 352)
 )
 (connector
-	(pt 208 392)
-	(pt 232 392)
-)
-(connector
 	(pt 208 480)
 	(pt 232 480)
 )
@@ -1151,6 +1146,14 @@ applicable agreement for further details.
 (connector
 	(pt 368 88)
 	(pt 416 88)
+)
+(connector
+	(pt 344 400)
+	(pt 448 400)
+)
+(connector
+	(pt 296 400)
+	(pt 208 400)
 )
 (junction (pt 368 144))
 (junction (pt 368 192))

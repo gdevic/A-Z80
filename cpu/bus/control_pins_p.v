@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 27 19:39:33 2014"
+// CREATED		"Mon Jul 28 22:17:02 2014"
 
 module control_pins_p(
 	nINT,
@@ -28,10 +28,10 @@ module control_pins_p(
 	wr,
 	rfsh,
 	halt,
-	mwait,
 	busack,
 	CPUCLK,
 	pin_control_oe,
+	nWAIT,
 	nM1,
 	nMREQ,
 	nIORQ,
@@ -39,13 +39,13 @@ module control_pins_p(
 	nWR,
 	nRFSH,
 	nHALT,
-	nWAIT,
 	nBUSACK,
 	nmi,
 	reset,
 	busrq,
 	clk,
-	intr
+	intr,
+	mwait
 );
 
 
@@ -60,10 +60,10 @@ input wire	rd;
 input wire	wr;
 input wire	rfsh;
 input wire	halt;
-input wire	mwait;
 input wire	busack;
 input wire	CPUCLK;
 input wire	pin_control_oe;
+input wire	nWAIT;
 output wire	nM1;
 output wire	nMREQ;
 output wire	nIORQ;
@@ -71,13 +71,13 @@ output wire	nRD;
 output wire	nWR;
 output wire	nRFSH;
 output wire	nHALT;
-output wire	nWAIT;
 output wire	nBUSACK;
 output wire	nmi;
 output wire	reset;
 output wire	busrq;
 output wire	clk;
 output wire	intr;
+output wire	mwait;
 
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
@@ -104,6 +104,9 @@ assign	nmi = nNMI;
 assign	reset = nRESET;
 
 
+assign	mwait = nWAIT;
+
+
 assign	nMREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
 
 assign	SYNTHESIZED_WIRE_1 = iorq;
@@ -127,9 +130,6 @@ assign	SYNTHESIZED_WIRE_4 = rfsh;
 
 
 assign	nHALT = halt;
-
-
-assign	nWAIT = mwait;
 
 
 assign	nBUSACK = busack;
