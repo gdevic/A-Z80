@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri Jul 11 10:24:23 2014"
+// CREATED		"Mon Jul 28 22:27:09 2014"
 
 module bus_zero(
 	ctl_bus_zero_oe,
@@ -23,7 +23,7 @@ module bus_zero(
 
 
 input wire	ctl_bus_zero_oe;
-output wire	[7:0] db;
+inout wire	[7:0] db;
 
 wire	[0:7] SYNTHESIZED_WIRE_0;
 

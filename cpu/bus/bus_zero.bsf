@@ -32,7 +32,7 @@ applicable agreement for further details.
 	)
 	(port
 		(pt 192 32)
-		(output)
+		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
 		(text "db[7..0]" (rect 129 27 171 41)(font "Arial" (font_size 8)))
 		(line (pt 192 32)(pt 176 32)(line_width 3))

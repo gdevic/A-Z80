@@ -36,8 +36,10 @@ for infile in files:
         with open('globals.i', 'a') as file1:
             file1.write("\n// Module: " + infile + "\n")
             for wire in wires:
+                # Everything in globals is a wire
+                # (Can't use 'logic' since some buses are bidirectional)
                 if wire in glob:
-                    file1.write("// logic " + wire + "; (previously defined)\n")
+                    file1.write("// wire " + wire + "; (previously defined)\n")
                 else:
-                    file1.write("logic " + wire + ";\n")
+                    file1.write("wire " + wire + ";\n")
                     glob.append(wire)

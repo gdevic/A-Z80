@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sat Jul 19 10:01:09 2014"
+// CREATED		"Mon Jul 28 22:29:05 2014"
 
 module bus_ff(
 	ctl_bus_ff_oe,
@@ -23,7 +23,7 @@ module bus_ff(
 
 
 input wire	ctl_bus_ff_oe;
-output wire	[7:0] db;
+inout wire	[7:0] db;
 
 wire	[0:7] SYNTHESIZED_WIRE_0;
 
