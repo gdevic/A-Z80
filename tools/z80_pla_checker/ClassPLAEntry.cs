@@ -2,13 +2,22 @@
 
 namespace z80_pla_checker
 {
+    /// <summary>
+    /// This class defines a single PLA entry and the operations on it
+    /// </summary>
     public class ClassPlaEntry
     {
         // IX/IY Modifiers
-        public enum Modifier
+        [FlagsAttribute] 
+        public enum Modifier : short
         {
-            IXY0,                               // IX/IY bit should be 0
-            IXY1,                               // IX/IY bit should be 1
+            IXY0 = (1 << 0),                    // IX or IY flag is reset 
+            IXY1 = (1 << 1),                    // IX or IY flag is set
+            HALT = (1 << 2),                    // In HALT state
+            ALU  = (1 << 3),                    // ALU operation
+            XX = (1 << 4),                      // Regular instruction
+            CB = (1 << 5),                      // CB instruction table modifier
+            ED = (1 << 6)                       // ED instruction table modifier
         };
 
         // For opcode [table] lookup, one (and only one) prefix needs to be set
@@ -20,10 +29,15 @@ namespace z80_pla_checker
             All = 4
         };
 
+        private int prefix;                     // Modifier bitfield
+        private int opcode;                     // Opcode bitfield
+        private readonly int n;                 // Ordinal number of this PLA table entry
+
+
+
         public bool Ignored = false;            // This entry can optionally be ignored
         public bool Tag;                        // A generic tag used by the calling code
 
-        private readonly int n;                 // Ordinal number of this PLA table entry
         private readonly bool modIX0;           // Various prefix fields; some are used, some are not
         private readonly bool modIX1;           // Various prefix fields; some are used, some are not
         private readonly bool modQ;             // Various prefix fields; some are used, some are not
@@ -46,27 +60,41 @@ namespace z80_pla_checker
         {
             try
             {
-                char[] delimiterChars = { '\t' };
+                char[] delimiterChars = { '\t', ' ' };
                 string[] w = init.Split(delimiterChars);
 
+                // Example of an input line:
+                // w[0]    w[1]             w[2]  w[3] w[4] w[5]
+                // ......1 .11..11...1..... 0 1010x0xx D ldx/cpx/inx/outx
+
+                // Read the 7 bits of the prefix
+                for (int i = 0; i < 7; i++)
+                    if (w[0][6-i] == '1') prefix |= (1 << i);
+
+                // Read the 16 bits of the opcode
+                for (int i = 0; i < 16; i++)
+                    if (w[1][15 - i] == '1') opcode |= (1 << i);
+
                 n = Convert.ToInt32(w[0]);
-                modIX0 = w[1] == "1";
-                modIX1 = w[2] == "1";
-                modQ = w[3] == "1";
-                modALU = w[4] == "1";
-                xx = w[5] == "1";
-                cb = w[6] == "1";
-                ed = w[7] == "1";
-                for (int i = 0; i < 8; i++)
-                {
-                    bClr[i] = w[8 + i * 2] == "1";
-                    bSet[i] = w[8 + i * 2 + 1] == "1";
-                    if (bSet[i] && bClr[i])
-                        throw (new Exception("PLA error: Set and Clr are both selected!"));
-                }
-                instruction = w[24];
-                code = w[25];
-                mnemonic = w[26];
+
+
+                //modIX0 = w[1] == "1";
+                //modIX1 = w[2] == "1";
+                //modQ = w[3] == "1";
+                //modALU = w[4] == "1";
+                //xx = w[5] == "1";
+                //cb = w[6] == "1";
+                //ed = w[7] == "1";
+                //for (int i = 0; i < 8; i++)
+                //{
+                //    bClr[i] = w[8 + i * 2] == "1";
+                //    bSet[i] = w[8 + i * 2 + 1] == "1";
+                //    if (bSet[i] && bClr[i])
+                //        throw (new Exception("PLA error: Set and Clr are both selected!"));
+                //}
+                //instruction = w[24];
+                //code = w[25];
+                //mnemonic = w[26];
             }
             catch (Exception ex)
             {

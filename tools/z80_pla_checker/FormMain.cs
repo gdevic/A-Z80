@@ -7,8 +7,16 @@ namespace z80_pla_checker
 {
     public partial class FormMain : Form
     {
+        /// <summary>
+        /// Master PLA table
+        /// </summary>
         private readonly ClassPla pla = new ClassPla();
+        /// <summary>
+        /// Current modifiers
+        /// </summary>
         private ClassPlaEntry.Modifier modifier = ClassPlaEntry.Modifier.IXY0;
+
+
         private ClassPlaEntry.Prefix prefix = ClassPlaEntry.Prefix.XX;
         private readonly List<ClassOpTable> opTable = new List<ClassOpTable>();
         private readonly List<string> commands = new List<string>();
@@ -36,27 +44,31 @@ namespace z80_pla_checker
             ClassLog.Log("This is free software and you are welcome to redistribute it under certain conditions; for details see GPLv3 license.");
             ClassLog.Log("---------------------------------------------------------------------------------------------------------------------");
 
-            // Load the PLA table from a text file
-            pla.Load(GetAbsolutePath(@"..\..\..\resources\z80pla.txt"));
+            // Load the PLA table from a text file.
+            String plaFile = Properties.Settings.Default.plaFileName;
+            if (!pla.Load(plaFile))
+            {
+                ClassLog.Log("*** Error loading the master input PLA source table ***");
+                return;
+            }
 
-            // Create 3 opcode tables, one for each class of instructions
-            opTable.Add(new ClassOpTable());
-            opTable.Add(new ClassOpTable());
-            opTable.Add(new ClassOpTable());
-            opTable[(int)ClassPlaEntry.Prefix.XX].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-xx.txt"));
-            opTable[(int)ClassPlaEntry.Prefix.CB].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-cb.txt"));
-            opTable[(int)ClassPlaEntry.Prefix.ED].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-ed.txt"));
+            //// Create 3 opcode tables, one for each class of instructions
+            //opTable.Add(new ClassOpTable());
+            //opTable.Add(new ClassOpTable());
+            //opTable.Add(new ClassOpTable());
+            //opTable[(int)ClassPlaEntry.Prefix.XX].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-xx.txt"));
+            //opTable[(int)ClassPlaEntry.Prefix.CB].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-cb.txt"));
+            //opTable[(int)ClassPlaEntry.Prefix.ED].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-ed.txt"));
 
             ClassLog.Log(Command("?"));
         }
 
         /// <summary>
-        /// Print out a log message
+        /// Print out a log message & always show the last line
         /// </summary>
         public void Log(String s)
         {
             logText.AppendText(s + Environment.NewLine);
-            // Show the last line
             logText.SelectionStart = logText.Text.Length;
             logText.ScrollToCaret();
         }
@@ -75,6 +87,7 @@ namespace z80_pla_checker
         private void ExitToolStripMenuItemClick(object sender, EventArgs e)
         {
             Close();
+            Properties.Settings.Default.Save();
         }
 
         private static int ScanNumber(string arg, int baseValue)
@@ -149,75 +162,87 @@ namespace z80_pla_checker
         /// </summary>
         private void UpdateButtons()
         {
-            btIX0.Checked = btIX1.Checked = btXX.Checked = btCb.Checked = btEd.Checked = btAll.Checked = false;
-            switch (modifier)
-            {
-                case ClassPlaEntry.Modifier.IXY0:
-                    btIX0.Checked = true;
-                    break;
-                case ClassPlaEntry.Modifier.IXY1:
-                    btIX1.Checked = true;
-                    break;
-            }
-            switch (prefix)
-            {
-                case ClassPlaEntry.Prefix.XX:
-                    btXX.Checked = true;
-                    break;
-                case ClassPlaEntry.Prefix.CB:
-                    btCb.Checked = true;
-                    break;
-                case ClassPlaEntry.Prefix.ED:
-                    btEd.Checked = true;
-                    break;
-                case ClassPlaEntry.Prefix.All:
-                    btAll.Checked = true;
-                    break;
-                default:
-                    throw(new Exception());
-            }
-        }
+            btIX0.Checked = (modifier & ClassPlaEntry.Modifier.IXY0) != 0;
+            btIX1.Checked = (modifier & ClassPlaEntry.Modifier.IXY1) != 0;
+            btHALT.Checked = (modifier & ClassPlaEntry.Modifier.HALT) != 0;
+            btALU.Checked = (modifier & ClassPlaEntry.Modifier.ALU) != 0;
+            btXX.Checked = (modifier & ClassPlaEntry.Modifier.XX) != 0;
+            btCB.Checked = (modifier & ClassPlaEntry.Modifier.CB) != 0;
+            btED.Checked = (modifier & ClassPlaEntry.Modifier.ED) != 0;
 
-        private void btIX0Click(object sender, EventArgs e)
-        {
-            modifier = ClassPlaEntry.Modifier.IXY0;
-            UpdateButtons();
             ClassLog.Log("Set modifier to " + modifier);
         }
 
-        private void btIX1Click(object sender, EventArgs e)
+        private void BtIx0Click(object sender, EventArgs e)
         {
-            modifier = ClassPlaEntry.Modifier.IXY1;
+            if ((modifier & ClassPlaEntry.Modifier.IXY0) != 0)
+                modifier &= ~ClassPlaEntry.Modifier.IXY0;
+            else
+            {
+                modifier |= ClassPlaEntry.Modifier.IXY0;
+                modifier &= ~ClassPlaEntry.Modifier.IXY1;                
+            }
             UpdateButtons();
-            ClassLog.Log("Set modifier to " + modifier);
+        }
+
+        private void BtIx1Click(object sender, EventArgs e)
+        {
+            if ((modifier & ClassPlaEntry.Modifier.IXY1) != 0)
+                modifier &= ~ClassPlaEntry.Modifier.IXY1;
+            else
+            {
+                modifier |= ClassPlaEntry.Modifier.IXY1;
+                modifier &= ~ClassPlaEntry.Modifier.IXY0;
+            }
+            UpdateButtons();
+        }
+
+        private void BtHaltClick(object sender, EventArgs e)
+        {
+            modifier ^= ClassPlaEntry.Modifier.HALT;
+            UpdateButtons();
+        }
+
+        private void BtAluClick(object sender, EventArgs e)
+        {
+            modifier ^= ClassPlaEntry.Modifier.ALU;
+            UpdateButtons();
         }
 
         private void BtXxClick(object sender, EventArgs e)
         {
-            prefix = ClassPlaEntry.Prefix.XX;
+            if ((modifier & ClassPlaEntry.Modifier.XX) != 0)
+                modifier &= ~ClassPlaEntry.Modifier.XX;
+            else
+            {
+                modifier |= ClassPlaEntry.Modifier.XX;
+                modifier &= ~(ClassPlaEntry.Modifier.CB | ClassPlaEntry.Modifier.ED);
+            }
             UpdateButtons();
-            ClassLog.Log("Set prefix to match regular instructions");
         }
 
         private void BtCbClick(object sender, EventArgs e)
         {
-            prefix = ClassPlaEntry.Prefix.CB;
+            if ((modifier & ClassPlaEntry.Modifier.CB) != 0)
+                modifier &= ~ClassPlaEntry.Modifier.CB;
+            else
+            {
+                modifier |= ClassPlaEntry.Modifier.CB;
+                modifier &= ~(ClassPlaEntry.Modifier.XX | ClassPlaEntry.Modifier.ED);
+            }
             UpdateButtons();
-            ClassLog.Log("Set prefix to match CB");
         }
 
         private void BtEdClick(object sender, EventArgs e)
         {
-            prefix = ClassPlaEntry.Prefix.ED;
+            if ((modifier & ClassPlaEntry.Modifier.ED) != 0)
+                modifier &= ~ClassPlaEntry.Modifier.ED;
+            else
+            {
+                modifier |= ClassPlaEntry.Modifier.ED;
+                modifier &= ~(ClassPlaEntry.Modifier.XX | ClassPlaEntry.Modifier.CB);
+            }
             UpdateButtons();
-            ClassLog.Log("Set prefix to match ED");
-        }
-
-        private void BtAllClick(object sender, EventArgs e)
-        {
-            prefix = ClassPlaEntry.Prefix.All;
-            UpdateButtons();
-            ClassLog.Log("Set prefix to match ALL PLA lines");
         }
 
         /// <summary>
@@ -281,7 +306,6 @@ namespace z80_pla_checker
                             "p         - Dump the content of the PLA table" + Environment.NewLine +
                             "p [#]     - For a given PLA entry # (dec) show opcodes that trigger it" + Environment.NewLine +
                             "m [#]     - Match opcode # (hex) with a PLA entry (or match 0-FF)" + Environment.NewLine +
-                            "xx | cb | ed | all   Set a global opcode prefix" + Environment.NewLine +
                             "gen       - Generate a Verilog PLA module" + Environment.NewLine +
                             "gens      - Generate a Verilog PLA module sorted by the ordinal PLA number" + Environment.NewLine +
                             "test [#]  - Dump opcode table in various ways:" + Environment.NewLine +
@@ -293,14 +317,6 @@ namespace z80_pla_checker
                             pla.Dump();
                         break;
                     case "m": MatchPLA(tokens.Length > 1 ? tokens[1] : "");
-                        break;
-                    case "xx": BtXxClick(null, null);
-                        break;
-                    case "cb": BtCbClick(null, null);
-                        break;
-                    case "ed": BtEdClick(null, null);
-                        break;
-                    case "all": BtAllClick(null, null);
                         break;
                     case "gen": pla.GenVerilogPla(false);
                         break;
@@ -343,6 +359,19 @@ namespace z80_pla_checker
                 ClassLog.Log("Error: " + ex.Message);
             }
             return string.Empty;
+        }
+
+        /// <summary>
+        /// Select the input PLA table file to load
+        /// </summary>
+        private void LoadPlaTable(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Title = "Select a PLA table source file";
+            dlg.Filter = @"z80-pla.txt|*.txt|All files|*.*";
+            dlg.FileName = Properties.Settings.Default.plaFileName;
+            if (dlg.ShowDialog() == DialogResult.OK)
+                Properties.Settings.Default.plaFileName = dlg.FileName;
         }
     }
 }

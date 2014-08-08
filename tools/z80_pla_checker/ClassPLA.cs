@@ -5,10 +5,16 @@ using System.Linq;
 
 namespace z80_pla_checker
 {
+    /// <summary>
+    /// This class defines a complete PLA table and operations on it
+    /// </summary>
     class ClassPla
     {
+        /// <summary>
+        /// List of all PLA entries that we read from the input file
+        /// </summary>
         private readonly List<ClassPlaEntry> pla = new List<ClassPlaEntry>();
-        public List<int> IgnoredPla = new List<int>();
+        //public List<int> IgnoredPla = new List<int>();
 
         /// <summary>
         /// Returns the total number of PLA table entries
@@ -19,7 +25,7 @@ namespace z80_pla_checker
         }
 
         /// <summary>
-        /// Read a PLA table from a text file
+        /// Read the master PLA table from a text file
         /// </summary>
         public bool Load(string filename)
         {
@@ -46,66 +52,66 @@ namespace z80_pla_checker
             }
             ClassLog.Log(string.Format("Total {0} PLA lines", pla.Count()));
 
-            //============================================================
-            // Ignore duplicate PLA entries
-            IgnoredPla.Add(90);     // Duplicate of 26
-            IgnoredPla.Add(36);     // Duplicate of 8
-            IgnoredPla.Add(71);     // Duplicate of 25
-            IgnoredPla.Add(63);     // Duplicate of 17
-            IgnoredPla.Add(87);     // Duplicate of 83
-            IgnoredPla.Add(60);     // Duplicate of 15
-            IgnoredPla.Add(94);     // Duplicate of 12 and 18
-            IgnoredPla.Add(18);     // Duplicate of 12 and 94
-            IgnoredPla.Add(93);     // Duplicate of 11 and 19
-            IgnoredPla.Add(19);     // Duplicate of 11 and 93
-            IgnoredPla.Add(98);     // Duplicate of 37
-            IgnoredPla.Add(41);     // Duplicate of 3
-            IgnoredPla.Add(32);     // Duplicate of 4
+            ////============================================================
+            //// Ignore duplicate PLA entries
+            //IgnoredPla.Add(90);     // Duplicate of 26
+            //IgnoredPla.Add(36);     // Duplicate of 8
+            //IgnoredPla.Add(71);     // Duplicate of 25
+            //IgnoredPla.Add(63);     // Duplicate of 17
+            //IgnoredPla.Add(87);     // Duplicate of 83
+            //IgnoredPla.Add(60);     // Duplicate of 15
+            //IgnoredPla.Add(94);     // Duplicate of 12 and 18
+            //IgnoredPla.Add(18);     // Duplicate of 12 and 94
+            //IgnoredPla.Add(93);     // Duplicate of 11 and 19
+            //IgnoredPla.Add(19);     // Duplicate of 11 and 93
+            //IgnoredPla.Add(98);     // Duplicate of 37
+            //IgnoredPla.Add(41);     // Duplicate of 3
+            //IgnoredPla.Add(32);     // Duplicate of 4
 
-            //============================================================
-            // Special signals (not instructions)
-            IgnoredPla.Add(91);     // This signal goes along block IN/OUT instructions.
-            IgnoredPla.Add(75);     // This signal specifies a decrement operation for PLA 53, 66 and 105. Otherwise, it is an increment.
-            IgnoredPla.Add(55);     // This signal specifies (HL) addressing for all CB-table instructions, PLA entries 70, 72, 73, 74.
-            IgnoredPla.Add(44);     // This signal specifies a regular CB opcode (ignoring IX/IY).
-            IgnoredPla.Add(33);     // This signal specifies whether the register is being loaded or stored to memory for PLA entry 31.
-            IgnoredPla.Add(28);     // This signal specifies the OUT operation for PLA 37. Otherwise, it is operation.
-            IgnoredPla.Add(27);     // This signal goes along individual IN/OUT instructions in the ED table.
-            IgnoredPla.Add(16);     // This signal specifies a PUSH operation for PLA23. Otherwise, it is a POP operation.
-            IgnoredPla.Add(14);     // This signal specifies a decrement operation for PLA 9. Otherwise, it is an increment.
-            IgnoredPla.Add(13);     // This signal specifies whether the value is being loaded or stored for PLA entries 8, 30 and 38.
-            IgnoredPla.Add(4);      // This signal goes along instructions that access I and R register (PLA 57 and 83).
-            IgnoredPla.Add(0);      // This signal specifies *not* to repeat block instructions.
+            ////============================================================
+            //// Special signals (not instructions)
+            //IgnoredPla.Add(91);     // This signal goes along block IN/OUT instructions.
+            //IgnoredPla.Add(75);     // This signal specifies a decrement operation for PLA 53, 66 and 105. Otherwise, it is an increment.
+            //IgnoredPla.Add(55);     // This signal specifies (HL) addressing for all CB-table instructions, PLA entries 70, 72, 73, 74.
+            //IgnoredPla.Add(44);     // This signal specifies a regular CB opcode (ignoring IX/IY).
+            //IgnoredPla.Add(33);     // This signal specifies whether the register is being loaded or stored to memory for PLA entry 31.
+            //IgnoredPla.Add(28);     // This signal specifies the OUT operation for PLA 37. Otherwise, it is operation.
+            //IgnoredPla.Add(27);     // This signal goes along individual IN/OUT instructions in the ED table.
+            //IgnoredPla.Add(16);     // This signal specifies a PUSH operation for PLA23. Otherwise, it is a POP operation.
+            //IgnoredPla.Add(14);     // This signal specifies a decrement operation for PLA 9. Otherwise, it is an increment.
+            //IgnoredPla.Add(13);     // This signal specifies whether the value is being loaded or stored for PLA entries 8, 30 and 38.
+            //IgnoredPla.Add(4);      // This signal goes along instructions that access I and R register (PLA 57 and 83).
+            //IgnoredPla.Add(0);      // This signal specifies *not* to repeat block instructions.
 
-            //============================================================
-            // Ignore our own reserved entries
-            IgnoredPla.Add(106);
-            IgnoredPla.Add(107);
+            ////============================================================
+            //// Ignore our own reserved entries
+            //IgnoredPla.Add(106);
+            //IgnoredPla.Add(107);
 
-            //============================================================
-            // This is only temporary!
-            // Remove op-bits so we the output is more readable
-            IgnoredPla.Add(99);
-            IgnoredPla.Add(100);
-            IgnoredPla.Add(101);
+            ////============================================================
+            //// This is only temporary!
+            //// Remove op-bits so we the output is more readable
+            //IgnoredPla.Add(99);
+            //IgnoredPla.Add(100);
+            //IgnoredPla.Add(101);
 
-            // Remove ALU operation entries so the output is more readable
-            IgnoredPla.Add(88);
-            IgnoredPla.Add(86);
-            IgnoredPla.Add(85);
-            IgnoredPla.Add(84);
-            IgnoredPla.Add(80);
-            IgnoredPla.Add(79);
-            IgnoredPla.Add(78);
-            IgnoredPla.Add(76);
+            //// Remove ALU operation entries so the output is more readable
+            //IgnoredPla.Add(88);
+            //IgnoredPla.Add(86);
+            //IgnoredPla.Add(85);
+            //IgnoredPla.Add(84);
+            //IgnoredPla.Add(80);
+            //IgnoredPla.Add(79);
+            //IgnoredPla.Add(78);
+            //IgnoredPla.Add(76);
 
-            //============================================================
+            ////============================================================
 
-            foreach (var p in pla)
-            {
-                if (IgnoredPla.Contains<int>(p.GetN()))
-                    p.Ignored = true;
-            }
+            //foreach (var p in pla)
+            //{
+            //    if (IgnoredPla.Contains<int>(p.GetN()))
+            //        p.Ignored = true;
+            //}
             return true;
         }
 
@@ -311,8 +317,8 @@ namespace z80_pla_checker
             module += @"//=====================================================================================" + Environment.NewLine;
             module += @"module pla_decode (opcode, prefix, pla);" + Environment.NewLine;
             module += @"" + Environment.NewLine;
+            module += @"input wire [6:0] prefix;" + Environment.NewLine;
             module += @"input wire [7:0] opcode;" + Environment.NewLine;
-            module += @"input wire [4:0] prefix;" + Environment.NewLine;
             module += @"output reg [" + max + ":0] pla;" + Environment.NewLine;
             module += @"" + Environment.NewLine;
             module += @"always_comb" + Environment.NewLine;
@@ -332,7 +338,7 @@ namespace z80_pla_checker
                         if (current == p.GetN() && !p.Ignored)
                         {
                             String bitstream = p.GetBitstream();
-                            module += string.Format("    if ({{prefix[4:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
+                            module += string.Format("    if ({{prefix[6:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
                                 bitstream, p.GetN(), p.GetComment()) + Environment.NewLine;
                         }
                     }
@@ -346,7 +352,7 @@ namespace z80_pla_checker
                     if (p.Ignored)
                         continue;
                     String bitstream = p.GetBitstream();
-                    module += string.Format("    if ({{prefix[4:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
+                    module += string.Format("    if ({{prefix[6:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
                         bitstream, p.GetN(), p.GetComment()) + Environment.NewLine;
                 }
             }
