@@ -1,10 +1,13 @@
 ﻿namespace z80_pla_checker
 {
+    /// <summary>
+    /// Implements the logging to the main window
+    /// </summary>
     static public class ClassLog
     {
-        static public void log(string m)
+        static public void Log(string m)
         {
-            Program.main.Log(m);
+            Program.MainForm.Log(m);
         }
     }
 }

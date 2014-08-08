@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace z80_pla_checker
 {
@@ -18,7 +15,7 @@ namespace z80_pla_checker
         {
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
-            ClassLog.log("Loading " + filename);
+            ClassLog.Log("Loading " + filename);
 
             try
             {
@@ -49,7 +46,7 @@ namespace z80_pla_checker
             }
             catch (Exception ex)
             {
-                ClassLog.log(ex.Message);
+                ClassLog.Log(ex.Message);
                 return false;
             }
             return true;
@@ -60,7 +57,7 @@ namespace z80_pla_checker
         /// </summary>
         public void Dump()
         {
-            ClassLog.log("-------------------------------- " + name + " --------------------------------------------------");
+            ClassLog.Log("-------------------------------- " + name + " --------------------------------------------------");
             for (int y = 0; y < 16; y++)
             {               
                 string line = string.Format("{0:X} ", y);
@@ -68,7 +65,7 @@ namespace z80_pla_checker
                 {
                     line += string.Format(" | {0,-12}", opTable[y*16 + x]);
                 }
-                ClassLog.log(line);
+                ClassLog.Log(line);
             }
         }
     }

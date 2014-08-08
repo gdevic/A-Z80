@@ -25,7 +25,7 @@ namespace z80_pla_checker
         {
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
-            ClassLog.log("Loading " + filename);
+            ClassLog.Log("Loading " + filename);
 
             try
             {
@@ -41,10 +41,10 @@ namespace z80_pla_checker
             }
             catch (Exception ex)
             {
-                ClassLog.log(ex.Message);
+                ClassLog.Log(ex.Message);
                 return false;
             }
-            ClassLog.log(string.Format("Total {0} PLA lines", pla.Count()));
+            ClassLog.Log(string.Format("Total {0} PLA lines", pla.Count()));
 
             //============================================================
             // Ignore duplicate PLA entries
@@ -114,7 +114,7 @@ namespace z80_pla_checker
         /// </summary>
         public void Dump()
         {
-            ClassLog.log("Content of the PLA table");
+            ClassLog.Log("Content of the PLA table");
             foreach (var p in pla)
                 p.Dump();
         }
@@ -197,7 +197,7 @@ namespace z80_pla_checker
                     return m;
                 }
             }
-            ClassLog.log("Non-existent PLA index");
+            ClassLog.Log("Non-existent PLA index");
             return m;
         }
 
@@ -211,8 +211,8 @@ namespace z80_pla_checker
             if (w!=null)
                 w.WriteLine("# START " + modifier + ":" + prefix);
 
-            List<string> test3result = new List<string>();
-            ClassLog.log("-------------------------------- " + prefix + " --------------------------------------------------");
+            var test3Result = new List<string>();
+            ClassLog.Log("-------------------------------- " + prefix + " --------------------------------------------------");
             for (int y = 0; y < 16; y++)
             {
                 string line = string.Format("{0:X} ", y);
@@ -247,7 +247,7 @@ namespace z80_pla_checker
                     //===============================================================================
                     string final2 = "";
                     string flags = "";
-                    List<int> contenders = new List<int>();
+                    var contenders = new List<int>();
                     foreach (string oneMatch in match)
                     {
                         int lineX = Convert.ToInt32(oneMatch.Substring(1, oneMatch.IndexOf(']') - 1));
@@ -276,9 +276,9 @@ namespace z80_pla_checker
                     //===============================================================================
                     if (testnum == 3)
                     {
-                        test3result.Add(String.Format("# OPCODE: 0x{0:x2}", opcode));
+                        test3Result.Add(String.Format("# OPCODE: 0x{0:x2}", opcode));
                         foreach (string m in match)
-                            test3result.Add("# pla" + m);
+                            test3Result.Add("# pla" + m);
                     }
                     final.Add("");
 
@@ -287,11 +287,11 @@ namespace z80_pla_checker
                         final[testnum] = final[testnum].Substring(0, 12);
                     line += string.Format(" | {0,-12}", final[testnum]);
                 }
-                ClassLog.log(line);
+                ClassLog.Log(line);
             }
             if (w!=null)
             {
-                foreach (string oneMatch in test3result)
+                foreach (string oneMatch in test3Result)
                 {
                     w.WriteLine(oneMatch);
                 }
@@ -367,7 +367,7 @@ namespace z80_pla_checker
             module += @"" + Environment.NewLine;
             module += @"endmodule" + Environment.NewLine;
 
-            ClassLog.log(module);
+            ClassLog.Log(module);
         }
     }
 }

@@ -70,8 +70,8 @@ namespace z80_pla_checker
             }
             catch (Exception ex)
             {
-                ClassLog.log("ClassPlaEntry: Can't parse line: " + init);
-                ClassLog.log(ex.Message);
+                ClassLog.Log("ClassPlaEntry: Can't parse line: " + init);
+                ClassLog.Log(ex.Message);
             }
         }
 
@@ -106,7 +106,7 @@ namespace z80_pla_checker
                 line += "\t" + io(bSet[i]);
             }
             line += string.Format("\t{0}\t{1}\t{2}", instruction, code, mnemonic);
-            ClassLog.log(line);
+            ClassLog.Log(line);
         }
 
         /// <summary>

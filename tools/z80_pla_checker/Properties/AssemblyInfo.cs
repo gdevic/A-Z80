@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("z80_pla_checker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Experiment with and generate A-Z80 PLA table")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("z80_pla_checker")]
-[assembly: AssemblyCopyright("Copyright © Goran Devic, 2014")]
+[assembly: AssemblyCopyright("Copyright © Goran Devic, 2014, released under GPL")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

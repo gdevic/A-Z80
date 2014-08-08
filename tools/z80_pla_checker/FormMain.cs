@@ -22,8 +22,8 @@ namespace z80_pla_checker
 
         public static string GetAbsolutePath(string filename)
         {
-            string dir = System.IO.Path.GetDirectoryName(Application.StartupPath);
-            return System.IO.Path.Combine(dir, filename);
+            string dir = Path.GetDirectoryName(Application.StartupPath);
+            return Path.Combine(dir, filename);
         }
 
         /// <summary>
@@ -31,6 +31,11 @@ namespace z80_pla_checker
         /// </summary>
         public void OnStart()
         {
+            ClassLog.Log("PLA Checker Tool  Copyright (C) 2014  Goran Devic");
+            ClassLog.Log("This program comes with ABSOLUTELY NO WARRANTY");
+            ClassLog.Log("This is free software and you are welcome to redistribute it under certain conditions; for details see GPLv3 license.");
+            ClassLog.Log("---------------------------------------------------------------------------------------------------------------------");
+
             // Load the PLA table from a text file
             pla.Load(GetAbsolutePath(@"..\..\..\resources\z80pla.txt"));
 
@@ -42,7 +47,7 @@ namespace z80_pla_checker
             opTable[(int)ClassPlaEntry.Prefix.CB].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-cb.txt"));
             opTable[(int)ClassPlaEntry.Prefix.ED].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-ed.txt"));
 
-            ClassLog.log(Command("?"));
+            ClassLog.Log(Command("?"));
         }
 
         /// <summary>
@@ -80,7 +85,7 @@ namespace z80_pla_checker
             }
             catch(Exception ex)
             {
-                ClassLog.log(ex.Message + ": " + arg);
+                ClassLog.Log(ex.Message + ": " + arg);
                 return -1;
             }
         }
@@ -102,13 +107,13 @@ namespace z80_pla_checker
             {
                 if (op >= 0 && x != op)
                     continue;
-                ClassLog.log(String.Format("Opcode: {0} {1:X02} ", prefix, x));
+                ClassLog.Log(String.Format("Opcode: {0} {1:X02} ", prefix, x));
 
                 Byte opcode = Convert.ToByte(x);
                 List<string> m = pla.TableMatch(opcode, modifier, prefix);
 
                 foreach (var s in m)
-                    ClassLog.log(s);
+                    ClassLog.Log(s);
             }
         }
 
@@ -123,9 +128,9 @@ namespace z80_pla_checker
             List<string> m = pla.MatchPLA(modifier, index);
             if (m.Count == 0)
                 return;
-            ClassLog.log(String.Format("PLA Entry: {0}  Modifier: {1}  Prefix: {2}", index, modifier, prefix));
+            ClassLog.Log(String.Format("PLA Entry: {0}  Modifier: {1}  Prefix: {2}", index, modifier, prefix));
             foreach (var s in m)
-                ClassLog.log(s);
+                ClassLog.Log(s);
         }
 
         /// <summary>
@@ -133,10 +138,10 @@ namespace z80_pla_checker
         /// </summary>
         private void BtRedoClick(object sender, EventArgs e)
         {
-            ClassLog.log(string.Format("{0}>>> {1}", commands.Count, commands[commands.Count - 1]));
+            ClassLog.Log(string.Format("{0}>>> {1}", commands.Count, commands[commands.Count - 1]));
             string response = Command(commands[commands.Count - 1]);
             if (!string.IsNullOrEmpty(response))
-                ClassLog.log(response);
+                ClassLog.Log(response);
         }
 
         /// <summary>
@@ -177,42 +182,42 @@ namespace z80_pla_checker
         {
             modifier = ClassPlaEntry.Modifier.IXY0;
             UpdateButtons();
-            ClassLog.log("Set modifier to " + modifier);
+            ClassLog.Log("Set modifier to " + modifier);
         }
 
         private void btIX1Click(object sender, EventArgs e)
         {
             modifier = ClassPlaEntry.Modifier.IXY1;
             UpdateButtons();
-            ClassLog.log("Set modifier to " + modifier);
+            ClassLog.Log("Set modifier to " + modifier);
         }
 
         private void BtXxClick(object sender, EventArgs e)
         {
             prefix = ClassPlaEntry.Prefix.XX;
             UpdateButtons();
-            ClassLog.log("Set prefix to match regular instructions");
+            ClassLog.Log("Set prefix to match regular instructions");
         }
 
         private void BtCbClick(object sender, EventArgs e)
         {
             prefix = ClassPlaEntry.Prefix.CB;
             UpdateButtons();
-            ClassLog.log("Set prefix to match CB");
+            ClassLog.Log("Set prefix to match CB");
         }
 
         private void BtEdClick(object sender, EventArgs e)
         {
             prefix = ClassPlaEntry.Prefix.ED;
             UpdateButtons();
-            ClassLog.log("Set prefix to match ED");
+            ClassLog.Log("Set prefix to match ED");
         }
 
         private void BtAllClick(object sender, EventArgs e)
         {
             prefix = ClassPlaEntry.Prefix.All;
             UpdateButtons();
-            ClassLog.log("Set prefix to match ALL PLA lines");
+            ClassLog.Log("Set prefix to match ALL PLA lines");
         }
 
         /// <summary>
@@ -229,10 +234,10 @@ namespace z80_pla_checker
                 {
                     commands.Add(cmd);
                     btRedo.Enabled = true;
-                    ClassLog.log(string.Format("{0}>>> {1}", commands.Count, cmd));
+                    ClassLog.Log(string.Format("{0}>>> {1}", commands.Count, cmd));
                     string response = Command(textOp.Text);
                     if (!string.IsNullOrEmpty(response))
-                        ClassLog.log(response);
+                        ClassLog.Log(response);
 
                     commandsBrowseIndex = commands.Count;
                     textOp.Text = "";
@@ -335,7 +340,7 @@ namespace z80_pla_checker
             }
             catch (Exception ex)
             {
-                ClassLog.log("Error: " + ex.Message);
+                ClassLog.Log("Error: " + ex.Message);
             }
             return string.Empty;
         }
