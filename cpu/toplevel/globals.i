@@ -220,6 +220,12 @@ wire [15:0] address;
 // Module: bus/address_pins.v
 wire [15:0] A;
 
+// Module: bus/bus_switch.sv
+wire ctl_sw_1u;
+wire ctl_sw_1d;
+wire ctl_sw_2u;
+wire ctl_sw_2d;
+
 // Module: bus/control_pins_p.v
 wire nM1;
 wire nMREQ;

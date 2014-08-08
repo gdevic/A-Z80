@@ -17,7 +17,7 @@ logic [7:0] db1;
 logic [7:0] db2;
 
 // Master hold clock signal may be requested by the delay or timing unit
-assign hold_clk = hold_clk_delay | hold_clk_timing;
+logic hold_clk = hold_clk_delay | hold_clk_timing;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
@@ -54,13 +54,15 @@ address_pins  address_pins ( .*, .A(z80.A[15:0]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-data_switch sw2 ( .ctl_sw_up(ctl_sw_2u), .ctl_sw_down(ctl_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]));
+// Control wires for data bus switches are routed through the "bus_switch.sv"
+logic bus_sw_1u, bus_sw_1d, bus_sw_2u, bus_sw_2d;
+data_switch sw2 ( .ctl_sw_up(bus_sw_2u), .ctl_sw_down(bus_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]) );
 
 // Generators for 0x00 and 0xFF on the data (instruction) bus
 bus_zero    bus_zero ( .* );
 bus_ff      bus_ff ( .* );
 
-data_switch sw1 ( .ctl_sw_up(ctl_sw_1u), .ctl_sw_down(ctl_sw_1d), .db_up(db[7:0]), .db_down(db1[7:0]));
+data_switch sw1 ( .ctl_sw_up(bus_sw_1u), .ctl_sw_down(bus_sw_1d), .db_up(db[7:0]), .db_down(db1[7:0]) );
 
 // External data pins connecting to the interface pins
 data_pins   data_pins ( .*, .db(db[7:0]), .D(z80.D[7:0]) );

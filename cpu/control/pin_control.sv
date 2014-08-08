@@ -166,13 +166,14 @@ end
 // Wires controlling the address and data latches/buffers interfacing with the outside world
 
 // Address bus is given up only during the reset and bus request states
-assign ctl_ab_pin_oe = ~(reset | busack);
+assign bus_ab_pin_oe = ~(reset | busack);
 
 // The same is with the control pins
-assign ctl_bus_pin_oe = ~(reset | busack);
+assign pin_control_oe = ~(reset | busack);
 
 // Write 16-bit address value from the internal address bus into the address pad latch
-assign ctl_ab_we = (fFetch   & ((T1 & clk) | (T3 & clk))) |
+assign bus_ab_pin_we =
+                   (fFetch   & ((T1 & clk) | (T3 & clk))) |
                    (fMRead   & (T1 & clk)) |
                    (fMWrite  & (T1 & clk)) |
                    (fIORead  & (T1 & clk)) |
@@ -180,7 +181,7 @@ assign ctl_ab_we = (fFetch   & ((T1 & clk) | (T3 & clk))) |
                    (fIntr    & ((T1 & clk) | (T3 & clk)));
 
 // Output data pad latch value onto the external data pin
-assign ctl_db_pin_oe =
+assign bus_db_pin_oe =
                    (fFetch   & 1'h0) |
                    (fMRead   & 1'h0) |
                    (fMWrite  & (T1 & ~clk | T2 | T3)) |
@@ -189,7 +190,7 @@ assign ctl_db_pin_oe =
                    (fIntr    & 1'h0);
 
 // Read data from the external data pin into the data pad latch
-assign ctl_db_pin_re =
+assign bus_db_pin_re =
                    (fFetch   & T2) |
                    (fMRead   & (T3 & clk)) |
                    (fMWrite  & 1'h0) |
@@ -198,7 +199,7 @@ assign ctl_db_pin_re =
                    (fIntr    & (Tw2 & ~clk));
 
 // Read data from the data pad latch into the internal data bus
-assign ctl_db_oe = (fFetch   & T3) |
+assign bus_db_oe = (fFetch   & T3) |
                    (fMRead   & (T3 & ~clk)) |
                    (fMWrite  & 1'h0) |
                    (fIORead  & (T4 & ~clk)) |
@@ -206,7 +207,7 @@ assign ctl_db_oe = (fFetch   & T3) |
                    (fIntr    & T3);
 
 // Write data from the internal data bus into the data pad latch
-assign ctl_db_we = (fFetch   & 1'h0) |
+assign bus_db_we = (fFetch   & 1'h0) |
                    (fMRead   & 1'h0) |
                    (fMWrite  & (T1 & clk)) |
                    (fIORead  & 1'h0) |
