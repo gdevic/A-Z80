@@ -1,8 +1,8 @@
                            A-Z80
-            A conceptual implementation of the Z80 CPU
-            ------------------------------------------
+         A conceptual implementation of the Z80 CPU
+         ------------------------------------------
 
-This project is described the blog at: http://www.devic.us/hacks
+This project is described my blog at http://www.devic.us/hacks
 
 Prerequisites:
 * Altera Quartus and Modelsim (free web editions)
@@ -21,8 +21,8 @@ Logic Design
 Each functional block contains a Quartus project file:
 ./<block>/test_<block>.qpf
 
-They are only used as containers for individual modules; the top-level design
-is in the "toplevel" folder.
+They are only used as containers for various files within individual modules;
+the top-level design is in the "toplevel" folder.
 
 Majority of sub-modules are designed in the Quartus schematic editor and then
 exported to Verilog for simulation and the top-level integration.
@@ -33,18 +33,17 @@ Each functional block contains a Modelsim simulation profile:
 ./<block>/simulation/modelsim/test_<block>.mpf
 
 Before you can load and simulate them using Modelsim, you need to set up
-the environment by running Python script(s) at:
+the environment by running a set of Python scripts at each functional block:
 ./<block>/simulation/modelsim/work/setup.py
 
-Run it on every module's directory.
+Run each one of them to create necessary directories that Modelsim needs.
 
 Each Modelsim project contains a set of predefined waveform scripts which you can
 load before running a simulation of a particular submodule. The scripts are named
 according to a sub-module to test:
 ./<block>/simulation/modelsim/wave_<submodule>.do
 
-All tests are written in SystemVerilog (and have extension *.sv). They loosely make
-up a set of directed, functional test benches.
+All tests and test benches are written in SystemVerilog (and have extension *.sv).
 
 ----------------------------------------------------------------------------------
 Email me if you have any questions,

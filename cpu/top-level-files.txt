@@ -1,6 +1,6 @@
 This is a list of source files that are part of the top-level design.
-It is read by various Python scripts to be processed. Every line that
-does not refer to a valid file is ignored.
+It is read by various Python scripts for the top level integration and
+synthesis. Every line that does not refer to a valid file is ignored.
 
 ------ Control block -------
 control/ir.v
