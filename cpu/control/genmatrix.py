@@ -9,7 +9,7 @@ import sys
 import csv
 
 # Input file exported from a timing spreadsheet:
-fname = "Instruction timings.csv"
+fname = "Timings.csv"
 
 # Helper function to shorten the condition string. This strips all extended
 # PLA logic conditions for the purpose of $display-ing a simpler string
