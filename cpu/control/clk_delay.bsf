@@ -40,8 +40,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "fIntr" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "fIntr" (rect 21 59 43 73)(font "Arial" (font_size 8)))
+		(text "in_intr" (rect 0 0 34 14)(font "Arial" (font_size 8)))
+		(text "in_intr" (rect 21 59 55 73)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port

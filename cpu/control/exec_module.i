@@ -11,6 +11,8 @@ output logic ctl_iff1_iff2,
 output logic ctl_im_set,
 output logic ctl_im_sel3,
 output logic ctl_im_sel4,
+output logic ctl_in_nmi_clr,
+output logic ctl_in_int_clr,
 
 // Module: control/decode_state.v
 output logic ctl_state_iy_set,
@@ -104,3 +106,6 @@ output logic ctl_bus_ff_oe,
 
 // Module: bus/bus_zero.v
 output logic ctl_bus_zero_oe,
+
+// Module: bus/data_pins.v
+output logic ctl_bus_db_oe,

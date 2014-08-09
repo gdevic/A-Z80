@@ -65,11 +65,13 @@ set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL OFF
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE ../control/sequencer.v
 set_global_assignment -name VERILOG_FILE ../control/ir.v
-set_global_assignment -name VERILOG_FILE ../control/decode_state.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pla_decode.sv
+set_global_assignment -name VERILOG_FILE ../control/sequencer.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/execute.sv
+set_global_assignment -name VERILOG_FILE ../control/interrupts.v
+set_global_assignment -name VERILOG_FILE ../control/decode_state.v
+set_global_assignment -name VERILOG_FILE ../control/clk_delay.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pin_control.sv
 set_global_assignment -name VERILOG_FILE ../bus/control_pins_p.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec_2bit.v

@@ -41,6 +41,8 @@ wire ctl_iff1_iff2;
 wire ctl_im_set;
 wire ctl_im_sel3;
 wire ctl_im_sel4;
+wire ctl_in_nmi_clr;
+wire ctl_in_int_clr;
 wire ctl_state_iy_set;
 wire ctl_state_ixiy_clr;
 wire ctl_state_ixiy_we;
@@ -116,12 +118,15 @@ wire ctl_ab_mux_inc;
 wire ctl_inc_limit6;
 wire ctl_bus_ff_oe;
 wire ctl_bus_zero_oe;
+wire ctl_bus_db_oe;
 
 // Module: control/interrupts.v
 wire iff1;
 wire iff2;
 wire im1;
 wire im2;
+wire in_nmi;
+wire in_intr;
 
 // Module: control/decode_state.v
 wire in_halt;
@@ -153,7 +158,6 @@ wire bus_ab_pin_we;
 wire bus_db_pin_oe;
 wire bus_db_pin_re;
 wire bus_db_we;
-wire bus_db_oe;
 
 // Module: alu/alu_control.v
 wire alu_shift_in;

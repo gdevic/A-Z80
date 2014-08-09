@@ -14,14 +14,14 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jul 28 01:01:07 2014"
+// CREATED		"Sat Aug 09 12:27:09 2014"
 
 module clk_delay(
 	M1,
 	T2,
-	fIntr,
 	clk,
 	reset,
+	in_intr,
 	Tw1,
 	Tw2,
 	hold_clk_delay,
@@ -31,9 +31,9 @@ module clk_delay(
 
 input wire	M1;
 input wire	T2;
-input wire	fIntr;
 input wire	clk;
 input wire	reset;
+input wire	in_intr;
 output wire	Tw1;
 output wire	Tw2;
 output wire	hold_clk_delay;
@@ -90,7 +90,7 @@ end
 
 assign	SYNTHESIZED_WIRE_3 =  ~reset;
 
-assign	SYNTHESIZED_WIRE_6 = M1 & T2 & fIntr;
+assign	SYNTHESIZED_WIRE_6 = M1 & T2 & in_intr;
 
 assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_9 | reset);
 

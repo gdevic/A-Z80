@@ -17,8 +17,6 @@ module pin_control
     input wire clk,                     // Input clock
     input wire mwait,                   // WAIT   - External device is not ready
     input wire busrq,                   // BUSRQ  - External device requests access to the bus
-    input wire intr,                    // INTR   - External interrupt request
-    input wire nmi,                     // NMI    - External non-maskable interrupt request
     input wire reset,                   // RESET  - Input reset pin
 
     //----------------------------------------------------------
@@ -37,8 +35,8 @@ module pin_control
     //----------------------------------------------------------
     input wire T1,                      // T-cycle #1
     input wire T2,                      // T-cycle #2
-    input wire Tw1,                     // Auto-extended T2 cycle for fIntr (1)
-    input wire Tw2,                     // Auto-extended T2 cycle for fIntr (2)
+    input wire Tw1,                     // Auto-extended T2 cycle when in_intr (1)
+    input wire Tw2,                     // Auto-extended T2 cycle when in_intr (2)
     input wire T3,                      // T-cycle #3
     input wire T4,                      // T-cycle #4
     input wire fFetch,                  // Function: opcode fetch cycle ("M1")
@@ -46,7 +44,8 @@ module pin_control
     input wire fMWrite,                 // Function: memory write cycle
     input wire fIORead,                 // Function: IO Read cycle
     input wire fIOWrite,                // Function: IO Write cycle
-    input wire fIntr,                   // Function: Interrupt response cycle
+    input wire setM1,                   // Last T clock of any instruction
+    input wire in_intr,                 // Servicing the interrupt
 
     //----------------------------------------------------------
     // Outputs to internal blocks
@@ -57,72 +56,62 @@ module pin_control
     output wire bus_ab_pin_we,          // Address bus pads: write the output pin address latch
     output wire bus_db_pin_oe,          // Data bus pads: output enable
     output wire bus_db_pin_re,          // Data bus pads: read from the output pin into the latch
-    output wire bus_db_we,              // Data bus pads: write from internal DB to its latch
-    output wire bus_db_oe               // Data bus pads: read from its latch into internal DB
+    output wire bus_db_we               // Data bus pads: write from internal DB to its latch
 );
 
 //============================================================================
 // Static equations to control external CPU pins
 //============================================================================
 
-assign m1     = (fFetch   & (T1 | T2)) |
+assign m1     = (fFetch   &~in_intr & (T1 | T2)) |
+                (fFetch   & in_intr & (T1 | T2 | Tw1 | Tw2)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & 1'h0) |
-                (fIOWrite & 1'h0) |
-                (fIntr    & (T1 | T2 | Tw1 | Tw2));
+                (fIOWrite & 1'h0);
 
-assign mreq   = (fFetch   & ((T1 & ~clk | T2) | (T3 & ~clk | T4 & clk))) |
+assign mreq   = (fFetch   &~in_intr & ((T1 & ~clk | T2) | (T3 & ~clk | T4 & clk))) |
+                (fFetch   & in_intr & (Tw1 & ~clk | Tw2 & clk)) |
                 (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
                 (fMWrite  & (T1 & ~clk | T2 | T3 & clk)) |
                 (fIORead  & 1'h0) |
-                (fIOWrite & 1'h0) |
-                (fIntr    & (Tw1 & ~clk | Tw2 & clk));
+                (fIOWrite & 1'h0);
 
-assign iorq   = (fFetch   & 1'h0) |
+assign iorq   = (fFetch   &~in_intr & 1'h0) |
+                (fFetch   & in_intr & (Tw1 & ~clk | Tw2)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & (T2 | T3 | T4 & clk)) |
-                (fIOWrite & (T2 | T3 | T4 & clk)) |
-                (fIntr    & (Tw1 & ~clk | Tw2));
+                (fIOWrite & (T2 | T3 | T4 & clk));
 
 assign rd     = (fFetch   & (T1 & ~clk | T2)) |
                 (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & (T2 | T3 | T4 & clk)) |
-                (fIOWrite & 1'h0) |
-                (fIntr    & 1'h0);
+                (fIOWrite & 1'h0);
 
 assign wr     = (fFetch   & 1'h0) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & (T2 & ~clk | T3 & clk)) |
                 (fIORead  & 1'h0) |
-                (fIOWrite & (T2 | T3 | T4 & clk)) |
-                (fIntr    & 1'h0);
+                (fIOWrite & (T2 | T3 | T4 & clk));
 
-assign rfsh   = (fFetch   & (T3 | T4)) |
+assign rfsh   = (fFetch   &~in_intr & (T3 | T4)) |
+                (fFetch   & in_intr & (Tw1 | Tw2)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & 1'h0) |
-                (fIOWrite & 1'h0) |
-                (fIntr    & (Tw1 | Tw2));
+                (fIOWrite & 1'h0);
 
 //----------------------------------------------------------------------------
 // The usual state advancing mechanism can be temporarily paused if the pins
 // BUSRQ and WAIT are asserted
 
-// We need this signal: what is normally the last T-cycle for each function since
-// at that clock several events need to be checked (busrq, ints, nmi)
-logic lastT =   (fFetch   & T4) |
-                (fMRead   & T3) |
-                (fMWrite  & T3) |
-                (fIORead  & T4) |
-                (fIOWrite & T4) |
-                (fIntr    & Tw2);
-
 // This flip flop stores the state of the BUSREQ signal at its proper sampling time
+// Global signal setM1 is asserted at the last T-cycle of any instruction. We use it
+// to read BUSRQ
 reg busrq_latch = 0;
-always @ (posedge lastT) begin
+always @ (posedge setM1) begin
    busrq_latch = busrq;
 end
 
@@ -137,12 +126,12 @@ assign busack = busack_latch;
 
 // This signal determines the T-clock cycle of each function at which
 // we test for the WAIT; the WAIT is then latched at the negative edge of a clock
-logic testW =   (fFetch   & T2) |
+logic testW =   (fFetch   &~in_intr & T2) |
+                (fFetch   & in_intr & Tw2) |
                 (fMRead   & T2) |
                 (fMWrite  & T2) |
                 (fIORead  & T3) |
-                (fIOWrite & T3) |
-                (fIntr    & Tw2);
+                (fIOWrite & T3);
 
 // This flip flop stores the state of the WAIT signal at its proper sampling time
 reg wait_latch = 0;
@@ -153,14 +142,6 @@ end
 // Pause the sequencer if the WAIT or BUSRQ input signals have been asserted
 // at certain T state periods and functions
 assign hold_clk_timing = busrq_latch | wait_latch;
-
-//----------------------------------------------------------------------------
-// NMI flip flop is latched at any time (in spite of what documentation says)
-// and it is sampled at the lastT along with INTR over which it takes priority
-reg nmi_latch = 0;
-always @(posedge nmi) begin
-    nmi_latch = 1;
-end
 
 //----------------------------------------------------------------------------
 // Wires controlling the address and data latches/buffers interfacing with the outside world
@@ -177,8 +158,7 @@ assign bus_ab_pin_we =
                    (fMRead   & (T1 & clk)) |
                    (fMWrite  & (T1 & clk)) |
                    (fIORead  & (T1 & clk)) |
-                   (fIOWrite & (T1 & clk)) |
-                   (fIntr    & ((T1 & clk) | (T3 & clk)));
+                   (fIOWrite & (T1 & clk));
 
 // Output data pad latch value onto the external data pin
 assign bus_db_pin_oe =
@@ -186,32 +166,22 @@ assign bus_db_pin_oe =
                    (fMRead   & 1'h0) |
                    (fMWrite  & (T1 & ~clk | T2 | T3)) |
                    (fIORead  & 1'h0) |
-                   (fIOWrite & (T1 & ~clk | T2 | T3 | T4)) |
-                   (fIntr    & 1'h0);
+                   (fIOWrite & (T1 & ~clk | T2 | T3 | T4));
 
 // Read data from the external data pin into the data pad latch
 assign bus_db_pin_re =
-                   (fFetch   & T2) |
+                   (fFetch   &~in_intr & (T2  & ~clk)) |
+                   (fFetch   & in_intr & (Tw2 & ~clk)) |
                    (fMRead   & (T3 & clk)) |
                    (fMWrite  & 1'h0) |
                    (fIORead  & (T4 & clk)) |
-                   (fIOWrite & 1'h0) |
-                   (fIntr    & (Tw2 & ~clk));
-
-// Read data from the data pad latch into the internal data bus
-assign bus_db_oe = (fFetch   & T3) |
-                   (fMRead   & (T3 & ~clk)) |
-                   (fMWrite  & 1'h0) |
-                   (fIORead  & (T4 & ~clk)) |
-                   (fIOWrite & 1'h0) |
-                   (fIntr    & T3);
+                   (fIOWrite & 1'h0);
 
 // Write data from the internal data bus into the data pad latch
 assign bus_db_we = (fFetch   & 1'h0) |
                    (fMRead   & 1'h0) |
                    (fMWrite  & (T1 & clk)) |
                    (fIORead  & 1'h0) |
-                   (fIOWrite & (T1 & clk)) |
-                   (fIntr    & 1'h0);
+                   (fIOWrite & (T1 & clk));
 
 endmodule

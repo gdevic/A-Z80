@@ -13,23 +13,26 @@ module z80_top (z80_if.dut z80);
 `include "globals.i"
 
 // Define internal data bus partitions separated by data bus switches
-logic [7:0] db1;
-logic [7:0] db2;
+wire [7:0] db1;
+wire [7:0] db2;
 
 // Master hold clock signal may be requested by the delay or timing unit
-logic hold_clk = hold_clk_delay | hold_clk_timing;
+logic hold_clk;
+assign hold_clk = hold_clk_delay | hold_clk_timing;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Collect the PLA instruction decode prefix bitfield
-logic [6:0] prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, table_ed };
+logic [6:0] prefix;
+assign prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, table_ed };
 
 sequencer   sequencer ( .* );
 ir          instruction_reg ( .* );
 decode_state decode_state ( .* );
 pla_decode  pla_decode ( .* );
 execute     execute ( .* );
+clk_delay   clk_delay ( .* );
 pin_control pin_control ( .* );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,8 +46,8 @@ alu         alu ( .*, .db(db2[7:0]), .bsel(db[5:3]) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Register file and register control
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-logic [7:0] db_hi_as;
-logic [7:0] db_lo_as;
+wire [7:0] db_hi_as;
+wire [7:0] db_lo_as;
 
 reg_file    reg_file ( .*, .db_hi_ds(db2[7:0]), .db_lo_ds(db1[7:0]), .db_hi_as(db_hi_as[7:0]), .db_lo_as(db_lo_as[7:0]) );
 reg_control reg_control ( .* );
