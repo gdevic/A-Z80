@@ -41,6 +41,14 @@ wire ctl_iff1_iff2;
 wire ctl_im_set;
 wire ctl_im_sel3;
 wire ctl_im_sel4;
+wire ctl_state_iy_set;
+wire ctl_state_ixiy_clr;
+wire ctl_state_ixiy_we;
+wire ctl_state_halt_set;
+wire ctl_state_halt_clr;
+wire ctl_state_tbl_clr;
+wire ctl_state_tbl_ed_set;
+wire ctl_state_tbl_cb_set;
 wire ctl_shift_en;
 wire ctl_daa_66;
 wire ctl_daa_oe;
@@ -112,6 +120,14 @@ wire iff1;
 wire iff2;
 wire im1;
 wire im2;
+
+// Module: control/decode_state.v
+wire in_halt;
+wire table_cb;
+wire table_ed;
+wire table_xx;
+wire use_ix;
+wire use_ixiy;
 
 // Module: control/clk_delay.v
 wire Tw1;

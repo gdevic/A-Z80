@@ -12,6 +12,16 @@ output logic ctl_im_set,
 output logic ctl_im_sel3,
 output logic ctl_im_sel4,
 
+// Module: control/decode_state.v
+output logic ctl_state_iy_set,
+output logic ctl_state_ixiy_clr,
+output logic ctl_state_ixiy_we,
+output logic ctl_state_halt_set,
+output logic ctl_state_halt_clr,
+output logic ctl_state_tbl_clr,
+output logic ctl_state_tbl_ed_set,
+output logic ctl_state_tbl_cb_set,
+
 // Module: alu/alu_control.v
 output logic ctl_shift_en,
 output logic ctl_daa_66,

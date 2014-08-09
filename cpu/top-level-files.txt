@@ -9,6 +9,7 @@ control/sequencer.v
 control/execute.sv
 control/exec_module.i
 control/interrupts.v
+control/decode_state.v
 control/clk_delay.v
 control/pin_control.sv
 
