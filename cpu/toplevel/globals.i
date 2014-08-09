@@ -4,7 +4,7 @@
 wire [7:0] opcode;
 
 // Module: control/pla_decode.sv
-wire [107:0] pla;
+wire [104:0] pla;
 
 // Module: control/sequencer.v
 wire M1;
