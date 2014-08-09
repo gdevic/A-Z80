@@ -21,22 +21,6 @@ applicable agreement for further details.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect 32 144 208 160)
-	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "reg_sel[2..0]" (rect 9 0 70 12)(font "Arial" ))
-	(pt 176 8)
-	(drawing
-		(line (pt 92 12)(pt 117 12))
-		(line (pt 92 4)(pt 117 4))
-		(line (pt 121 8)(pt 176 8))
-		(line (pt 92 12)(pt 92 4))
-		(line (pt 117 4)(pt 121 8))
-		(line (pt 117 12)(pt 121 8))
-	)
-	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 48 488 224 504)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_exx" (rect 9 0 65 12)(font "Arial" ))
@@ -280,6 +264,22 @@ applicable agreement for further details.
 	(rect 32 48 208 64)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_gp_oe" (rect 9 0 77 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 32 144 208 160)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ctl_reg_sel[2..0]" (rect 9 0 88 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -2968,11 +2968,6 @@ applicable agreement for further details.
 	(pt 264 328)
 )
 (connector
-	(text "reg_sel[2]" (rect 248 519 260 567)(font "Arial" )(vertical))
-	(pt 264 328)
-	(pt 264 648)
-)
-(connector
 	(pt 264 648)
 	(pt 264 968)
 )
@@ -2983,11 +2978,6 @@ applicable agreement for further details.
 (connector
 	(pt 288 192)
 	(pt 288 312)
-)
-(connector
-	(text "reg_sel[1]" (rect 272 519 284 567)(font "Arial" )(vertical))
-	(pt 288 312)
-	(pt 288 632)
 )
 (connector
 	(pt 288 632)
@@ -3050,11 +3040,6 @@ applicable agreement for further details.
 (connector
 	(pt 1008 200)
 	(pt 1024 200)
-)
-(connector
-	(text "reg_sel[0]" (rect 304 136 352 148)(font "Arial" ))
-	(pt 288 152)
-	(pt 936 152)
 )
 (connector
 	(pt 936 152)
@@ -3311,6 +3296,21 @@ applicable agreement for further details.
 	(pt 288 152)
 	(bus)
 )
+(connector
+	(text "ctl_reg_sel[0]" (rect 304 136 370 148)(font "Arial" ))
+	(pt 288 152)
+	(pt 936 152)
+)
+(connector
+	(text "ctl_reg_sel[2]" (rect 248 519 260 585)(font "Arial" )(vertical))
+	(pt 264 328)
+	(pt 264 648)
+)
+(connector
+	(text "ctl_reg_sel[1]" (rect 272 519 284 585)(font "Arial" )(vertical))
+	(pt 288 312)
+	(pt 288 632)
+)
 (junction (pt 528 1032))
 (junction (pt 600 960))
 (junction (pt 528 712))
@@ -3393,10 +3393,10 @@ applicable agreement for further details.
 (text "Output enable of a general purpose register onto the data bus" (rect 224 40 575 54)(font "Arial" (font_size 8)))
 (title_block
 	(rect 40 1280 361 1341)
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Jul 26 17:56:41 2014" (rect 56 3 225 19)(font "Arial" (font_size 10)))(date)(border))
-	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_control" (rect 56 2 212 20)(font "Arial" (font_size 12)))(border))
+	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Aug 09 07:54:33 2014" (rect 56 3 234 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
 )

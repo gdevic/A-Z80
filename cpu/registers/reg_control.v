@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 06 08:42:53 2014"
+// CREATED		"Sat Aug 09 07:54:45 2014"
 
 module reg_control(
 	ctl_reg_exx,
@@ -33,7 +33,7 @@ module reg_control(
 	ctl_reg_sel_gp,
 	reset,
 	ctl_reg_gp_oe,
-	reg_sel,
+	ctl_reg_sel,
 	reg_sel_bc,
 	reg_sel_bc2,
 	reg_sel_ix,
@@ -73,7 +73,7 @@ input wire	ctl_reg_sys_oe;
 input wire	ctl_reg_sel_gp;
 input wire	reset;
 input wire	ctl_reg_gp_oe;
-input wire	[2:0] reg_sel;
+input wire	[2:0] ctl_reg_sel;
 output wire	reg_sel_bc;
 output wire	reg_sel_bc2;
 output wire	reg_sel_ix;
@@ -199,21 +199,21 @@ assign	SYNTHESIZED_WIRE_50 =  ~sel_exx;
 
 assign	SYNTHESIZED_WIRE_56 = SYNTHESIZED_WIRE_61 & SYNTHESIZED_WIRE_33;
 
-assign	SYNTHESIZED_WIRE_58 = reg_sel[1] & ctl_reg_sel_gp & SYNTHESIZED_WIRE_34;
+assign	SYNTHESIZED_WIRE_58 = ctl_reg_sel[1] & ctl_reg_sel_gp & SYNTHESIZED_WIRE_34;
 
-assign	SYNTHESIZED_WIRE_34 =  ~reg_sel[2];
+assign	SYNTHESIZED_WIRE_34 =  ~ctl_reg_sel[2];
 
-assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_35 & ctl_reg_sel_gp & reg_sel[2];
+assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_35 & ctl_reg_sel_gp & ctl_reg_sel[2];
 
 assign	SYNTHESIZED_WIRE_53 = SYNTHESIZED_WIRE_61 & ctl_reg_use_ixiy;
 
-assign	SYNTHESIZED_WIRE_35 =  ~reg_sel[1];
+assign	SYNTHESIZED_WIRE_35 =  ~ctl_reg_sel[1];
 
 assign	SYNTHESIZED_WIRE_38 = ctl_reg_ex_de_hl & sel_exx;
 
 assign	SYNTHESIZED_WIRE_33 =  ~ctl_reg_use_ixiy;
 
-assign	SYNTHESIZED_WIRE_52 = ctl_reg_sel_gp & reg_sel[1] & reg_sel[2];
+assign	SYNTHESIZED_WIRE_52 = ctl_reg_sel_gp & ctl_reg_sel[1] & ctl_reg_sel[2];
 
 assign	SYNTHESIZED_WIRE_10 =  ~ctl_reg_use_ix;
 
@@ -235,7 +235,7 @@ else
 	SYNTHESIZED_WIRE_60 <= SYNTHESIZED_WIRE_60 ^ int_nreset;
 end
 
-assign	SYNTHESIZED_WIRE_47 =  ~reg_sel[0];
+assign	SYNTHESIZED_WIRE_47 =  ~ctl_reg_sel[0];
 
 
 always@(posedge SYNTHESIZED_WIRE_38 or negedge int_nreset or negedge int_nreset)
@@ -255,7 +255,7 @@ end
 
 assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_39 | SYNTHESIZED_WIRE_40;
 
-assign	reg_sel_gp_lo = reg_sel[0] | ctl_reg_sel_gp_16;
+assign	reg_sel_gp_lo = ctl_reg_sel[0] | ctl_reg_sel_gp_16;
 
 assign	SYNTHESIZED_WIRE_21 = SYNTHESIZED_WIRE_41 | SYNTHESIZED_WIRE_42;
 
@@ -265,9 +265,9 @@ assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_45 | SYNTHESIZED_WIRE_46;
 
 assign	reg_sel_gp_hi = SYNTHESIZED_WIRE_47 | ctl_reg_sel_gp_16;
 
-assign	SYNTHESIZED_WIRE_30 =  ~reg_sel[1];
+assign	SYNTHESIZED_WIRE_30 =  ~ctl_reg_sel[1];
 
-assign	SYNTHESIZED_WIRE_31 =  ~reg_sel[2];
+assign	SYNTHESIZED_WIRE_31 =  ~ctl_reg_sel[2];
 
 
 always@(posedge ctl_reg_exx or negedge int_nreset or negedge int_nreset)

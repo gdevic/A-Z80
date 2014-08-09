@@ -75,8 +75,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 144)
 		(input)
-		(text "halt" (rect 0 0 20 14)(font "Arial" (font_size 8)))
-		(text "halt" (rect 21 139 41 153)(font "Arial" (font_size 8)))
+		(text "in_halt" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "in_halt" (rect 21 139 57 153)(font "Arial" (font_size 8)))
 		(line (pt 0 144)(pt 16 144))
 	)
 	(port

@@ -22,9 +22,13 @@ logic hold_clk = hold_clk_delay | hold_clk_timing;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ir          instruction_reg ( .* );
-pla_decode  pla_decode ( .* );
+// Collect the PLA instruction decode prefix bitfield
+logic [6:0] prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, table_ed };
+
 sequencer   sequencer ( .* );
+ir          instruction_reg ( .* );
+decode_state decode_state ( .* );
+pla_decode  pla_decode ( .* );
 execute     execute ( .* );
 pin_control pin_control ( .* );
 

@@ -113,7 +113,7 @@ assign rfsh   = (fFetch   & (T3 | T4)) |
 
 // We need this signal: what is normally the last T-cycle for each function since
 // at that clock several events need to be checked (busrq, ints, nmi)
-assign lastT =  (fFetch   & T4) |
+logic lastT =   (fFetch   & T4) |
                 (fMRead   & T3) |
                 (fMWrite  & T3) |
                 (fIORead  & T4) |
@@ -137,7 +137,7 @@ assign busack = busack_latch;
 
 // This signal determines the T-clock cycle of each function at which
 // we test for the WAIT; the WAIT is then latched at the negative edge of a clock
-assign testW =  (fFetch   & T2) |
+logic testW =   (fFetch   & T2) |
                 (fMRead   & T2) |
                 (fMWrite  & T2) |
                 (fIORead  & T3) |

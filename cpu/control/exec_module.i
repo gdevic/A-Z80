@@ -21,6 +21,7 @@ output logic ctl_state_halt_clr,
 output logic ctl_state_tbl_clr,
 output logic ctl_state_tbl_ed_set,
 output logic ctl_state_tbl_cb_set,
+output logic ctl_state_alu,
 
 // Module: alu/alu_control.v
 output logic ctl_shift_en,
@@ -87,6 +88,7 @@ output logic ctl_reg_sel_sys_lo,
 output logic ctl_reg_sys_oe,
 output logic ctl_reg_sel_gp,
 output logic ctl_reg_gp_oe,
+output logic [2:0] ctl_reg_sel,
 
 // Module: bus/address_latch.v
 output logic ctl_bus_inc_we,

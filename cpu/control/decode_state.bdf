@@ -117,7 +117,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 736 216 752)
+	(rect 40 832 216 848)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_state_tbl_clr" (rect 9 0 86 12)(font "Arial" ))
 	(pt 176 8)
@@ -133,7 +133,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 816 216 832)
+	(rect 40 912 216 928)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_state_tbl_ed_set" (rect 9 0 108 12)(font "Arial" ))
 	(pt 176 8)
@@ -149,9 +149,25 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 672 216 688)
+	(rect 40 768 216 784)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_state_tbl_cb_set" (rect 9 0 108 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 40 608 216 624)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ctl_state_alu" (rect 9 0 71 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -181,7 +197,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 600 680 776 696)
+	(rect 600 776 776 792)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "table_cb" (rect 90 0 131 12)(font "Arial" ))
 	(pt 0 8)
@@ -197,7 +213,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 600 808 776 824)
+	(rect 600 904 776 920)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "table_ed" (rect 90 0 131 12)(font "Arial" ))
 	(pt 0 8)
@@ -213,7 +229,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 600 744 776 760)
+	(rect 600 840 776 856)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "table_xx" (rect 90 0 131 12)(font "Arial" ))
 	(pt 0 8)
@@ -248,6 +264,22 @@ applicable agreement for further details.
 	(rect 632 192 808 208)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "use_ixiy" (rect 90 0 131 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 592 608 768 624)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "in_alu" (rect 90 0 118 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -575,7 +607,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 272 728 336 776)
+	(rect 272 824 336 872)
 	(text "NOR2" (rect 1 0 26 10)(font "Arial" (font_size 6)))
 	(text "inst19" (rect 3 37 32 49)(font "Arial" ))
 	(port
@@ -609,7 +641,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 376 656 448 736)
+	(rect 376 752 448 832)
 	(text "DLATCH" (rect 1 -1 38 9)(font "Arial" (font_size 6)))
 	(text "instCB" (rect 3 68 30 78)(font "Arial" (font_size 6)))
 	(port
@@ -657,7 +689,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 400 624 432 640)
+	(rect 400 720 432 736)
 	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
 	(text "inst20" (rect 3 5 32 17)(font "Arial" )(invisible))
 	(port
@@ -672,7 +704,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 376 768 448 848)
+	(rect 376 864 448 944)
 	(text "DLATCH" (rect 1 71 38 81)(font "Arial" (font_size 6)))
 	(text "instED" (rect 3 2 30 12)(font "Arial" (font_size 6)))
 	(port
@@ -721,7 +753,7 @@ applicable agreement for further details.
 	(flipx)
 )
 (symbol
-	(rect 400 864 432 880)
+	(rect 400 960 432 976)
 	(text "VCC" (rect 7 6 27 16)(font "Arial" (font_size 6)))
 	(text "inst21" (rect 3 -1 32 11)(font "Arial" )(invisible))
 	(port
@@ -737,7 +769,7 @@ applicable agreement for further details.
 	(flipx)
 )
 (symbol
-	(rect 504 728 568 776)
+	(rect 504 824 568 872)
 	(text "NOR2" (rect 1 0 26 10)(font "Arial" (font_size 6)))
 	(text "inst" (rect 3 37 20 49)(font "Arial" ))
 	(port
@@ -863,103 +895,6 @@ applicable agreement for further details.
 	(pt 272 264)
 )
 (connector
-	(pt 216 744)
-	(pt 272 744)
-)
-(connector
-	(text "reset" (rect 228 744 252 756)(font "Arial" ))
-	(pt 216 760)
-	(pt 272 760)
-)
-(connector
-	(pt 600 752)
-	(pt 568 752)
-)
-(connector
-	(pt 504 744)
-	(pt 480 744)
-)
-(connector
-	(pt 504 760)
-	(pt 480 760)
-)
-(connector
-	(pt 336 752)
-	(pt 416 752)
-)
-(connector
-	(pt 296 696)
-	(pt 376 696)
-)
-(connector
-	(pt 480 688)
-	(pt 480 744)
-)
-(connector
-	(pt 296 680)
-	(pt 296 696)
-)
-(connector
-	(pt 296 808)
-	(pt 376 808)
-)
-(connector
-	(pt 480 760)
-	(pt 480 816)
-)
-(connector
-	(pt 296 808)
-	(pt 296 824)
-)
-(connector
-	(pt 448 688)
-	(pt 480 688)
-)
-(connector
-	(pt 480 688)
-	(pt 600 688)
-)
-(connector
-	(pt 448 816)
-	(pt 480 816)
-)
-(connector
-	(pt 480 816)
-	(pt 600 816)
-)
-(connector
-	(pt 216 824)
-	(pt 296 824)
-)
-(connector
-	(pt 296 824)
-	(pt 376 824)
-)
-(connector
-	(pt 416 752)
-	(pt 416 768)
-)
-(connector
-	(pt 416 736)
-	(pt 416 752)
-)
-(connector
-	(pt 416 640)
-	(pt 416 656)
-)
-(connector
-	(pt 416 848)
-	(pt 416 864)
-)
-(connector
-	(pt 296 680)
-	(pt 376 680)
-)
-(connector
-	(pt 216 680)
-	(pt 296 680)
-)
-(connector
 	(pt 216 504)
 	(pt 272 504)
 )
@@ -1000,24 +935,126 @@ applicable agreement for further details.
 	(pt 408 392)
 	(pt 408 408)
 )
+(connector
+	(pt 216 840)
+	(pt 272 840)
+)
+(connector
+	(text "reset" (rect 228 840 252 852)(font "Arial" ))
+	(pt 216 856)
+	(pt 272 856)
+)
+(connector
+	(pt 600 848)
+	(pt 568 848)
+)
+(connector
+	(pt 504 840)
+	(pt 480 840)
+)
+(connector
+	(pt 504 856)
+	(pt 480 856)
+)
+(connector
+	(pt 336 848)
+	(pt 416 848)
+)
+(connector
+	(pt 296 792)
+	(pt 376 792)
+)
+(connector
+	(pt 480 784)
+	(pt 480 840)
+)
+(connector
+	(pt 296 776)
+	(pt 296 792)
+)
+(connector
+	(pt 296 904)
+	(pt 376 904)
+)
+(connector
+	(pt 480 856)
+	(pt 480 912)
+)
+(connector
+	(pt 296 904)
+	(pt 296 920)
+)
+(connector
+	(pt 416 736)
+	(pt 416 752)
+)
+(connector
+	(pt 416 944)
+	(pt 416 960)
+)
+(connector
+	(pt 216 616)
+	(pt 592 616)
+)
+(connector
+	(pt 448 784)
+	(pt 480 784)
+)
+(connector
+	(pt 480 784)
+	(pt 600 784)
+)
+(connector
+	(pt 448 912)
+	(pt 480 912)
+)
+(connector
+	(pt 480 912)
+	(pt 600 912)
+)
+(connector
+	(pt 216 920)
+	(pt 296 920)
+)
+(connector
+	(pt 296 920)
+	(pt 376 920)
+)
+(connector
+	(pt 216 776)
+	(pt 296 776)
+)
+(connector
+	(pt 296 776)
+	(pt 376 776)
+)
+(connector
+	(pt 416 832)
+	(pt 416 848)
+)
+(connector
+	(pt 416 848)
+	(pt 416 864)
+)
 (junction (pt 248 200))
 (junction (pt 328 216))
 (junction (pt 536 136))
 (junction (pt 384 272))
-(junction (pt 480 688))
-(junction (pt 480 816))
-(junction (pt 296 824))
-(junction (pt 296 680))
-(junction (pt 416 752))
 (junction (pt 304 448))
+(junction (pt 480 784))
+(junction (pt 480 912))
+(junction (pt 296 920))
+(junction (pt 296 776))
+(junction (pt 416 848))
 (text "IX and IY state flags" (rect 304 40 439 56)(font "Arial" (font_size 10)))
 (text "HALT state flag" (rect 312 336 417 352)(font "Arial" (font_size 10)))
-(text "Opcode Table state flag" (rect 304 576 465 592)(font "Arial" (font_size 10)))
+(text "Opcode Table state flag" (rect 304 672 465 688)(font "Arial" (font_size 10)))
+(text "ALU feedback wire" (rect 312 584 439 600)(font "Arial" (font_size 10)))
 (title_block
-	(rect 40 896 361 957)
+	(rect 40 992 361 1053)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / decode_state" (rect 56 2 234 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Aug 09 01:19:03 2014" (rect 56 3 234 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Aug 09 07:40:28 2014" (rect 56 3 234 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

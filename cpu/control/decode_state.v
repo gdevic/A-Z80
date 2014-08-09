@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sat Aug 09 01:20:15 2014"
+// CREATED		"Sat Aug 09 07:40:40 2014"
 
 module decode_state(
 	ctl_state_iy_set,
@@ -26,12 +26,14 @@ module decode_state(
 	ctl_state_tbl_clr,
 	ctl_state_tbl_ed_set,
 	ctl_state_tbl_cb_set,
+	ctl_state_alu,
 	in_halt,
 	table_cb,
 	table_ed,
 	table_xx,
 	use_ix,
-	use_ixiy
+	use_ixiy,
+	in_alu
 );
 
 
@@ -44,12 +46,14 @@ input wire	ctl_state_halt_clr;
 input wire	ctl_state_tbl_clr;
 input wire	ctl_state_tbl_ed_set;
 input wire	ctl_state_tbl_cb_set;
+input wire	ctl_state_alu;
 output reg	in_halt;
 output wire	table_cb;
 output wire	table_ed;
 output wire	table_xx;
 output wire	use_ix;
 output wire	use_ixiy;
+output wire	in_alu;
 
 reg	SYNTHESIZED_WIRE_0;
 reg	SYNTHESIZED_WIRE_1;
@@ -65,6 +69,7 @@ wire	SYNTHESIZED_WIRE_11;
 wire	SYNTHESIZED_WIRE_12;
 wire	SYNTHESIZED_WIRE_14;
 
+assign	in_alu = ctl_state_alu;
 assign	table_cb = SYNTHESIZED_WIRE_1;
 assign	table_ed = SYNTHESIZED_WIRE_0;
 assign	use_ix = SYNTHESIZED_WIRE_3;

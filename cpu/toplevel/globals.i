@@ -49,6 +49,7 @@ wire ctl_state_halt_clr;
 wire ctl_state_tbl_clr;
 wire ctl_state_tbl_ed_set;
 wire ctl_state_tbl_cb_set;
+wire ctl_state_alu;
 wire ctl_shift_en;
 wire ctl_daa_66;
 wire ctl_daa_oe;
@@ -105,6 +106,7 @@ wire ctl_reg_sel_sys_lo;
 wire ctl_reg_sys_oe;
 wire ctl_reg_sel_gp;
 wire ctl_reg_gp_oe;
+wire [2:0] ctl_reg_sel;
 wire ctl_bus_inc_we;
 wire ctl_inc_cy;
 wire ctl_inc_dec;
@@ -128,6 +130,7 @@ wire table_ed;
 wire table_xx;
 wire use_ix;
 wire use_ixiy;
+wire in_alu;
 
 // Module: control/clk_delay.v
 wire Tw1;

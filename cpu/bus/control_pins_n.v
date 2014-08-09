@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jul 28 22:18:07 2014"
+// CREATED		"Sat Aug 09 09:01:58 2014"
 
 module control_pins_n(
 	nINT,
@@ -27,11 +27,11 @@ module control_pins_n(
 	rd,
 	wr,
 	rfsh,
-	halt,
 	busack,
 	CPUCLK,
 	pin_control_oe,
 	nWAIT,
+	in_halt,
 	nM1,
 	nMREQ,
 	nIORQ,
@@ -59,11 +59,11 @@ input wire	iorq;
 input wire	rd;
 input wire	wr;
 input wire	rfsh;
-input wire	halt;
 input wire	busack;
 input wire	CPUCLK;
 input wire	pin_control_oe;
 input wire	nWAIT;
+input wire	in_halt;
 output wire	nM1;
 output wire	nMREQ;
 output wire	nIORQ;
@@ -108,7 +108,7 @@ assign	SYNTHESIZED_WIRE_4 =  ~rfsh;
 
 assign	busrq =  ~nBUSRQ;
 
-assign	nHALT =  ~halt;
+assign	nHALT =  ~in_halt;
 
 assign	nBUSACK =  ~busack;
 
