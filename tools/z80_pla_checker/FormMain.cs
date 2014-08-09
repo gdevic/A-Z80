@@ -11,14 +11,12 @@ namespace z80_pla_checker
         /// Master PLA table
         /// </summary>
         private readonly ClassPla pla = new ClassPla();
+
         /// <summary>
         /// Current modifiers
         /// </summary>
-        private ClassPlaEntry.Modifier modifier = ClassPlaEntry.Modifier.IXY0;
+        private ClassPlaEntry.Modifier modifier = ClassPlaEntry.Modifier.XX;
 
-
-        private ClassPlaEntry.Prefix prefix = ClassPlaEntry.Prefix.XX;
-        private readonly List<ClassOpTable> opTable = new List<ClassOpTable>();
         private readonly List<string> commands = new List<string>();
         private int commandsBrowseIndex;
 
@@ -26,12 +24,6 @@ namespace z80_pla_checker
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
-        }
-
-        public static string GetAbsolutePath(string filename)
-        {
-            string dir = Path.GetDirectoryName(Application.StartupPath);
-            return Path.Combine(dir, filename);
         }
 
         /// <summary>
@@ -52,14 +44,6 @@ namespace z80_pla_checker
                 return;
             }
 
-            //// Create 3 opcode tables, one for each class of instructions
-            //opTable.Add(new ClassOpTable());
-            //opTable.Add(new ClassOpTable());
-            //opTable.Add(new ClassOpTable());
-            //opTable[(int)ClassPlaEntry.Prefix.XX].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-xx.txt"));
-            //opTable[(int)ClassPlaEntry.Prefix.CB].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-cb.txt"));
-            //opTable[(int)ClassPlaEntry.Prefix.ED].Load(GetAbsolutePath(@"..\..\..\resources\opcodes-ed.txt"));
-
             ClassLog.Log(Command("?"));
         }
 
@@ -74,19 +58,18 @@ namespace z80_pla_checker
         }
 
         /// <summary>
-        /// Clear the log text panel
-        /// </summary>
-        private void BtClearClick(object sender, EventArgs e)
-        {
-            logText.Clear();
-        }
-
-        /// <summary>
         /// Exit the application
         /// </summary>
         private void ExitToolStripMenuItemClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        /// <summary>
+        /// Application is closing
+        /// </summary>
+        private void FormMainFormClosing(object sender, FormClosingEventArgs e)
+        {
             Properties.Settings.Default.Save();
         }
 
@@ -120,10 +103,10 @@ namespace z80_pla_checker
             {
                 if (op >= 0 && x != op)
                     continue;
-                ClassLog.Log(String.Format("Opcode: {0} {1:X02} ", prefix, x));
+                ClassLog.Log(String.Format("Opcode: {0:X02} ", x));
 
                 Byte opcode = Convert.ToByte(x);
-                List<string> m = pla.TableMatch(opcode, modifier, prefix);
+                List<string> m = pla.TableMatch(modifier, opcode);
 
                 foreach (var s in m)
                     ClassLog.Log(s);
@@ -141,9 +124,30 @@ namespace z80_pla_checker
             List<string> m = pla.MatchPLA(modifier, index);
             if (m.Count == 0)
                 return;
-            ClassLog.Log(String.Format("PLA Entry: {0}  Modifier: {1}  Prefix: {2}", index, modifier, prefix));
+            ClassLog.Log(String.Format("PLA Entry: {0}  Modifier: {1}", index, modifier));
             foreach (var s in m)
                 ClassLog.Log(s);
+        }
+
+        /// <summary>
+        /// Select the input PLA table file to load
+        /// </summary>
+        private void LoadPlaTable(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Title = "Select a PLA table source file";
+            dlg.Filter = @"z80-pla.txt|*.txt|All files|*.*";
+            dlg.FileName = Properties.Settings.Default.plaFileName;
+            if (dlg.ShowDialog() == DialogResult.OK)
+                Properties.Settings.Default.plaFileName = dlg.FileName;
+        }
+
+        /// <summary>
+        /// Clear the log text panel
+        /// </summary>
+        private void BtClearClick(object sender, EventArgs e)
+        {
+            logText.Clear();
         }
 
         /// <summary>
@@ -307,9 +311,7 @@ namespace z80_pla_checker
                             "p [#]     - For a given PLA entry # (dec) show opcodes that trigger it" + Environment.NewLine +
                             "m [#]     - Match opcode # (hex) with a PLA entry (or match 0-FF)" + Environment.NewLine +
                             "gen       - Generate a Verilog PLA module" + Environment.NewLine +
-                            "gens      - Generate a Verilog PLA module sorted by the ordinal PLA number" + Environment.NewLine +
-                            "test [#]  - Dump opcode table in various ways:" + Environment.NewLine +
-                            "            test 3  ..suitable to compare to the RTL simulation of decode/execute dump" + Environment.NewLine +
+                            "test [#]  - Dump opcode table in various ways" + Environment.NewLine +
                             "cls       - Clear the screen";
                     case "p": if (tokens.Length > 1)
                             MatchOpcodes(modifier, tokens[1]);
@@ -318,9 +320,7 @@ namespace z80_pla_checker
                         break;
                     case "m": MatchPLA(tokens.Length > 1 ? tokens[1] : "");
                         break;
-                    case "gen": pla.GenVerilogPla(false);
-                        break;
-                    case "gens": pla.GenVerilogPla(true);
+                    case "gen": pla.GenVerilogPla();
                         break;
                     case "cls": BtClearClick(null, null);
                         break;
@@ -329,25 +329,7 @@ namespace z80_pla_checker
                             int testnum = 0;
                             if (tokens.Length > 1)
                                 testnum = ScanNumber(tokens[1], 10);
-                            // Test #3 is special: we loop over all combination of prefix and opcode
-                            // to generate a test file suitable to compare to the RTL simulation
-                            if (testnum == 3)
-                            {
-                                using (StreamWriter w = File.CreateText("dumps.txt"))
-                                {
-                                    pla.Test(ClassPlaEntry.Modifier.IXY0, ClassPlaEntry.Prefix.XX, 3, w);
-                                    pla.Test(ClassPlaEntry.Modifier.IXY1, ClassPlaEntry.Prefix.XX, 3, w);
-                                    pla.Test(ClassPlaEntry.Modifier.IXY0, ClassPlaEntry.Prefix.CB, 3, w);
-                                    pla.Test(ClassPlaEntry.Modifier.IXY1, ClassPlaEntry.Prefix.CB, 3, w);
-                                    pla.Test(ClassPlaEntry.Modifier.IXY0, ClassPlaEntry.Prefix.ED, 3, w);
-                                    pla.Test(ClassPlaEntry.Modifier.IXY1, ClassPlaEntry.Prefix.ED, 3, w);
-                                }
-                            }
-                            else
-                            {
-                                pla.Test(modifier, prefix, testnum);
-                                opTable[prefix == ClassPlaEntry.Prefix.All ? 0 : (int)prefix].Dump();                                
-                            }
+                            pla.Test(modifier, testnum);
                         }
                         break;
                     default:
@@ -359,19 +341,6 @@ namespace z80_pla_checker
                 ClassLog.Log("Error: " + ex.Message);
             }
             return string.Empty;
-        }
-
-        /// <summary>
-        /// Select the input PLA table file to load
-        /// </summary>
-        private void LoadPlaTable(object sender, EventArgs e)
-        {
-            var dlg = new OpenFileDialog();
-            dlg.Title = "Select a PLA table source file";
-            dlg.Filter = @"z80-pla.txt|*.txt|All files|*.*";
-            dlg.FileName = Properties.Settings.Default.plaFileName;
-            if (dlg.ShowDialog() == DialogResult.OK)
-                Properties.Settings.Default.plaFileName = dlg.FileName;
         }
     }
 }

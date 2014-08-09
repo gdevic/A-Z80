@@ -35,14 +35,15 @@ namespace z80_pla_checker
 
             try
             {
-                string[] lines = System.IO.File.ReadAllLines(filename);
+                string[] lines = File.ReadAllLines(filename);
                 pla.Clear();
                 foreach (string line in lines)
                 {
                     if (line[0] == '#')
                         continue;
-                    var p = new ClassPlaEntry(line);
-                    pla.Add(p);
+                    var p = new ClassPlaEntry();
+                    if (p.Init(line))
+                        pla.Add(p);
                 }
             }
             catch (Exception ex)
@@ -120,9 +121,9 @@ namespace z80_pla_checker
         /// </summary>
         public void Dump()
         {
-            ClassLog.Log("Content of the PLA table");
-            foreach (var p in pla)
-                p.Dump();
+            ClassLog.Log("Content of the PLA table:");
+            foreach (var p in pla.Where(p => !p.IsDuplicate()))
+                ClassLog.Log(p.Raw);
         }
 
         /// <summary>
@@ -130,75 +131,73 @@ namespace z80_pla_checker
         /// This function performs a more comprehensive matching taking into account
         /// the inter-PLA entry logic dependencies.
         /// </summary>
-        public List<string> TableMatch(byte opcode, ClassPlaEntry.Modifier modifier, ClassPlaEntry.Prefix prefix)
+        public List<string> TableMatch(ClassPlaEntry.Modifier modifier, byte instr)
         {
             var t = new bool[pla.Count];
 
             // First do a simple search to find the list of *all* PLA entries that match
             foreach (var p in pla)
             {
-                String match = p.Match(opcode, modifier, prefix);
-                t[p.GetN()] = !string.IsNullOrEmpty(match);
+                String match = p.Match(modifier, instr);
+                t[p.N] = !string.IsNullOrEmpty(match);
             }
 
-            //============================================================
-            // Apply any intra-PLA conditions. These are hard-coded into the
-            // timing spreadsheet and we are duplicating them here:
+            ////============================================================
+            //// Apply any intra-PLA conditions. These are hard-coded into the
+            //// timing spreadsheet and we are duplicating them here:
 
-            // INC/DEC variations with register, (hl) or (ix+d)
-            if (t[66] && !(t[53] || t[105])) ; else t[66] = false;
+            //// INC/DEC variations with register, (hl) or (ix+d)
+            //if (t[66] && !(t[53] || t[105])) ; else t[66] = false;
 
-            // Generic LD r,r' + (hl), IX variations and on top of that HALT
-            if (t[61] && !(t[59] || t[103] || t[58] || t[102] || t[95])) ; else t[61] = false;
-            if (t[58] && !t[95]) ; else t[58] = false;
-            if (t[102] && !t[95]) ; else t[102] = false;
-            if (t[59] && !t[95]) ; else t[59] = false;
-            if (t[103] && !t[95]) ; else t[103] = false;
+            //// Generic LD r,r' + (hl), IX variations and on top of that HALT
+            //if (t[61] && !(t[59] || t[103] || t[58] || t[102] || t[95])) ; else t[61] = false;
+            //if (t[58] && !t[95]) ; else t[58] = false;
+            //if (t[102] && !t[95]) ; else t[102] = false;
+            //if (t[59] && !t[95]) ; else t[59] = false;
+            //if (t[103] && !t[95]) ; else t[103] = false;
 
-            // A single LD (hl),n and LD (ix+d),n has precedence over a set of LD r,n
-            if (t[17] && !(t[40] || t[50])) ; else t[17] = false;
+            //// A single LD (hl),n and LD (ix+d),n has precedence over a set of LD r,n
+            //if (t[17] && !(t[40] || t[50])) ; else t[17] = false;
 
-            // ALU A,r' and variations on (hl) and (ix+d)
-            if (t[65] && !(t[52] || t[104])) ; else t[65] = false;
+            //// ALU A,r' and variations on (hl) and (ix+d)
+            //if (t[65] && !(t[52] || t[104])) ; else t[65] = false;
 
-            // ALU
-            if (t[88] && (t[65] || t[64] || t[52] || t[104])) ; else t[88] = false;
-            if (t[86] && (t[65] || t[64] || t[52] || t[104])) ; else t[86] = false;
-            if (t[85] && (t[65] || t[64] || t[52] || t[104])) ; else t[85] = false;
-            if (t[84] && (t[65] || t[64] || t[52] || t[104])) ; else t[84] = false;
-            if (t[80] && (t[65] || t[64] || t[52] || t[104])) ; else t[80] = false;
-            if (t[79] && (t[65] || t[64] || t[52] || t[104])) ; else t[79] = false;
-            if (t[78] && (t[65] || t[64] || t[52] || t[104])) ; else t[78] = false;
-            if (t[76] && (t[65] || t[64] || t[52] || t[104])) ; else t[76] = false;
+            //// ALU
+            //if (t[88] && (t[65] || t[64] || t[52] || t[104])) ; else t[88] = false;
+            //if (t[86] && (t[65] || t[64] || t[52] || t[104])) ; else t[86] = false;
+            //if (t[85] && (t[65] || t[64] || t[52] || t[104])) ; else t[85] = false;
+            //if (t[84] && (t[65] || t[64] || t[52] || t[104])) ; else t[84] = false;
+            //if (t[80] && (t[65] || t[64] || t[52] || t[104])) ; else t[80] = false;
+            //if (t[79] && (t[65] || t[64] || t[52] || t[104])) ; else t[79] = false;
+            //if (t[78] && (t[65] || t[64] || t[52] || t[104])) ; else t[78] = false;
+            //if (t[76] && (t[65] || t[64] || t[52] || t[104])) ; else t[76] = false;
 
             //============================================================
 
             // Finally, collect and return all PLA entries that are left asserted
             return (from p in pla
-                    where t[p.GetN()]
-                    select p.Match(opcode, modifier, prefix)).ToList();
+                    where t[p.N]
+                    select p.Match(modifier, instr)).ToList();
         }
 
         /// <summary>
-        /// Given the PLA index, return a list of all opcodes that trigger it
+        /// Given the PLA ID, return a list of all opcodes that trigger it
         /// </summary>
-        public List<string> MatchPLA(ClassPlaEntry.Modifier modifier, int index)
+        public List<string> MatchPLA(ClassPlaEntry.Modifier modifier, int id)
         {
             var m = new List<string>();
 
             // Find the pla with a given index
             foreach (ClassPlaEntry p in pla)
             {
-                if (p.GetN() == index)
+                if (p.N == id)
                 {
-                    ClassPlaEntry.Prefix prefix = p.GetPrefix();
-
                     // For each possible opcode...
                     for (int i = 0; i < 256; i++)
                     {
-                        String match = p.Match(Convert.ToByte(i), modifier, prefix);
+                        String match = p.Match(modifier, Convert.ToByte(i));
                         if (!string.IsNullOrEmpty(match))
-                            m.Add(string.Format("{2} {0:X02} => {1}", i, match, prefix));
+                            m.Add(string.Format("{0:X02} => {1}", i, match));
                     }
                     return m;
                 }
@@ -212,20 +211,20 @@ namespace z80_pla_checker
         /// resulting opcodes.
         /// Call with a specific test number: 0, 1, 2 or 3
         /// </summary>
-        public void Test(ClassPlaEntry.Modifier modifier, ClassPlaEntry.Prefix prefix, int testnum, StreamWriter w=null)
+        public void Test(ClassPlaEntry.Modifier modifier, int testnum, StreamWriter w=null)
         {
             if (w!=null)
-                w.WriteLine("# START " + modifier + ":" + prefix);
+                w.WriteLine("# START " + modifier + ":");
 
             var test3Result = new List<string>();
-            ClassLog.Log("-------------------------------- " + prefix + " --------------------------------------------------");
+            ClassLog.Log("---------------------------------------------------------------------------");
             for (int y = 0; y < 16; y++)
             {
                 string line = string.Format("{0:X} ", y);
                 for (int x = 0; x < 16; x++)
                 {
                     byte opcode = Convert.ToByte(y * 16 + x);
-                    List<string> match = TableMatch(opcode, modifier, prefix);
+                    List<string> match = TableMatch(modifier, opcode);
                     List<string> final = new List<string>();
 
                     //===============================================================================
@@ -308,7 +307,7 @@ namespace z80_pla_checker
         /// <summary>
         /// Generates a Verilog module with the PLA logic
         /// </summary>
-        public void GenVerilogPla(bool sorted)
+        public void GenVerilogPla()
         {
             string max = (pla.Count() - 1).ToString();
             string module = "";
@@ -323,50 +322,23 @@ namespace z80_pla_checker
             module += @"" + Environment.NewLine;
             module += @"always_comb" + Environment.NewLine;
             module += @"begin" + Environment.NewLine;
-            module += @"    // Compare input bitfield to each PLA entry and assert those that match." + Environment.NewLine;
-            module += @"    // For each input, more than one signal may be asserted." + Environment.NewLine;
-            module += @"" + Environment.NewLine;
 
-            // Two different ways to dump the table whether we want it sorted or not...
-            if (sorted)
+            foreach (var p in pla)
             {
-                // Dump PLA table sorted by the original entry index
-                for (int current = pla.Count; current >= 0; current--)
-                {
-                    foreach (var p in pla)
-                    {
-                        if (current == p.GetN() && !p.Ignored)
-                        {
-                            String bitstream = p.GetBitstream();
-                            module += string.Format("    if ({{prefix[6:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
-                                bitstream, p.GetN(), p.GetComment()) + Environment.NewLine;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Dump PLA table in the order it was read from the file
-                foreach (var p in pla)
-                {
-                    if (p.Ignored)
-                        continue;
-                    String bitstream = p.GetBitstream();
-                    module += string.Format("    if ({{prefix[6:0], opcode[7:0]}} ==? 13'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   {2}",
-                        bitstream, p.GetN(), p.GetComment()) + Environment.NewLine;
-                }
+                if (p.Ignored || p.IsDuplicate())
+                    continue;
+                String bitstream = p.GetBitstream();
+                module += string.Format(@"    if ({{prefix[6:0], opcode[7:0]}} ==? 15'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   // {2}",
+                    bitstream, p.N, p.Comment) + Environment.NewLine;
             }
 
             // Dump all PLA entries that are ignored
             module += @"" + Environment.NewLine;
-            module += @"    // PLA table entries that are ignored (not used)" + Environment.NewLine;
+            module += @"    // Duplicate or ignored entries" + Environment.NewLine;
             foreach (var p in pla)
             {
-                if (p.Ignored)
-                {
-                    module += string.Format("    pla[{0,3}]=1'b0;   {1}",
-                        p.GetN(), p.GetComment()) + Environment.NewLine;
-                }
+                if (p.Ignored || p.IsDuplicate())
+                    module += string.Format(@"    pla[{0,3}]=1'b0;   // {1}", p.N, p.Comment) + Environment.NewLine;
             }
 
             module += @"end" + Environment.NewLine;

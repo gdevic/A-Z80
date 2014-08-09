@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassLog.cs" />
-    <Compile Include="ClassOpTable.cs" />
     <Compile Include="ClassPLA.cs" />
     <Compile Include="ClassPLAEntry.cs" />
     <Compile Include="FormMain.cs">

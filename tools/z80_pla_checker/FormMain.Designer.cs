@@ -184,6 +184,8 @@
             // 
             // btXX
             // 
+            this.btXX.Checked = true;
+            this.btXX.CheckState = System.Windows.Forms.CheckState.Checked;
             this.btXX.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btXX.Image = ((System.Drawing.Image)(resources.GetObject("btXX.Image")));
             this.btXX.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -264,6 +266,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "Z80 PLA";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip.ResumeLayout(false);
