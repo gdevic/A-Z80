@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 06 08:30:41 2014"
+// CREATED		"Sun Aug 10 16:20:06 2014"
 
 module inc_dec_2bit(
 	carry_borrow_in,
@@ -42,11 +42,11 @@ wire	SYNTHESIZED_WIRE_0;
 
 
 
-assign	SYNTHESIZED_WIRE_0 = carry_borrow_in & dec0_in;
+assign	SYNTHESIZED_WIRE_0 = dec0_in & carry_borrow_in;
 
-assign	carry_borrow_out = carry_borrow_in & dec0_in & dec1_in;
+assign	carry_borrow_out = dec0_in & dec1_in & carry_borrow_in;
 
-assign	d1_out = SYNTHESIZED_WIRE_0 ^ d1_in;
+assign	d1_out = d1_in ^ SYNTHESIZED_WIRE_0;
 
 assign	d0_out = carry_borrow_in ^ d0_in;
 
