@@ -14,18 +14,18 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 06 08:32:07 2014"
+// CREATED		"Sun Aug 10 13:35:19 2014"
 
 module data_switch(
-	ctl_sw_up,
-	ctl_sw_down,
+	sw_up_en,
+	sw_down_en,
 	db_down,
 	db_up
 );
 
 
-input wire	ctl_sw_up;
-input wire	ctl_sw_down;
+input wire	sw_up_en;
+input wire	sw_down_en;
 inout wire	[7:0] db_down;
 inout wire	[7:0] db_up;
 
@@ -33,23 +33,23 @@ inout wire	[7:0] db_up;
 
 
 
-assign	db_up[7] = ctl_sw_up ? db_down[7] : 1'bz;
-assign	db_up[6] = ctl_sw_up ? db_down[6] : 1'bz;
-assign	db_up[5] = ctl_sw_up ? db_down[5] : 1'bz;
-assign	db_up[4] = ctl_sw_up ? db_down[4] : 1'bz;
-assign	db_up[3] = ctl_sw_up ? db_down[3] : 1'bz;
-assign	db_up[2] = ctl_sw_up ? db_down[2] : 1'bz;
-assign	db_up[1] = ctl_sw_up ? db_down[1] : 1'bz;
-assign	db_up[0] = ctl_sw_up ? db_down[0] : 1'bz;
+assign	db_up[7] = sw_up_en ? db_down[7] : 1'bz;
+assign	db_up[6] = sw_up_en ? db_down[6] : 1'bz;
+assign	db_up[5] = sw_up_en ? db_down[5] : 1'bz;
+assign	db_up[4] = sw_up_en ? db_down[4] : 1'bz;
+assign	db_up[3] = sw_up_en ? db_down[3] : 1'bz;
+assign	db_up[2] = sw_up_en ? db_down[2] : 1'bz;
+assign	db_up[1] = sw_up_en ? db_down[1] : 1'bz;
+assign	db_up[0] = sw_up_en ? db_down[0] : 1'bz;
 
-assign	db_down[7] = ctl_sw_down ? db_up[7] : 1'bz;
-assign	db_down[6] = ctl_sw_down ? db_up[6] : 1'bz;
-assign	db_down[5] = ctl_sw_down ? db_up[5] : 1'bz;
-assign	db_down[4] = ctl_sw_down ? db_up[4] : 1'bz;
-assign	db_down[3] = ctl_sw_down ? db_up[3] : 1'bz;
-assign	db_down[2] = ctl_sw_down ? db_up[2] : 1'bz;
-assign	db_down[1] = ctl_sw_down ? db_up[1] : 1'bz;
-assign	db_down[0] = ctl_sw_down ? db_up[0] : 1'bz;
+assign	db_down[7] = sw_down_en ? db_up[7] : 1'bz;
+assign	db_down[6] = sw_down_en ? db_up[6] : 1'bz;
+assign	db_down[5] = sw_down_en ? db_up[5] : 1'bz;
+assign	db_down[4] = sw_down_en ? db_up[4] : 1'bz;
+assign	db_down[3] = sw_down_en ? db_up[3] : 1'bz;
+assign	db_down[2] = sw_down_en ? db_up[2] : 1'bz;
+assign	db_down[1] = sw_down_en ? db_up[1] : 1'bz;
+assign	db_down[0] = sw_down_en ? db_up[0] : 1'bz;
 
 
 endmodule

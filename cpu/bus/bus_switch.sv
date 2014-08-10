@@ -12,25 +12,25 @@
 
 module bus_switch
 (
-    input wire bus_sw_1u,               // Input for the SW1 upstream
-    input wire bus_sw_1d,               // Input for the SW1 downstream
-
-    input wire bus_sw_2u,               // Input for the SW2 upstream
-    input wire bus_sw_2d,               // Input for the SW2 downstream
+    input wire ctl_sw_1u,               // Control input for the SW1 upstream
+    input wire ctl_sw_1d,               // Control input for the SW1 downstream
+    
+    input wire ctl_sw_2u,               // Control input for the SW2 upstream
+    input wire ctl_sw_2d,               // Control input for the SW2 downstream
 
     //--------------------------------------------------------------------
-    
-    output wire ctl_sw_1u,              // SW1 upstream
-    output wire ctl_sw_1d,              // SW1 downstream
-    
-    output wire ctl_sw_2u,              // SW2 upstream
-    output wire ctl_sw_2d               // SW2 downstream
+
+    output wire bus_sw_1u,              // SW1 upstream
+    output wire bus_sw_1d,              // SW1 downstream
+
+    output wire bus_sw_2u,              // SW2 upstream
+    output wire bus_sw_2d               // SW2 downstream
 );
 
-assign ctl_sw_1u = bus_sw_1u;
-assign ctl_sw_1d = bus_sw_1d;
+assign bus_sw_1u = ctl_sw_1u;
+assign bus_sw_1d = ctl_sw_1d;
 
-assign ctl_sw_2u = bus_sw_2u;
-assign ctl_sw_2d = bus_sw_2d;
+assign bus_sw_2u = ctl_sw_2u;
+assign bus_sw_2d = ctl_sw_2d;
 
 endmodule

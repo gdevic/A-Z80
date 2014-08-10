@@ -4,11 +4,11 @@ K3
 cModel Technology
 Z0 d$ROOT\cpu\toplevel\simulation\modelsim
 vaddress_latch
-Z1 !s100 dQ_lk;Yl?cXaXek4MWGO^3
-Z2 IZCf_zKI5U;?7zoDKg^3XQ3
+Z1 !s100 _1S6Sb@^Ue<BkJE[NB3132
+Z2 I7TRW>d@n9nUk_gA`4P0od0
 Z3 V:YjGhhKc^ACD7jDC5jh>j3
 Z4 d$ROOT/toplevel/simulation/modelsim
-Z5 w1406478153
+Z5 w1407690739
 Z6 8$ROOT/bus/address_latch.v
 Z7 F$ROOT/bus/address_latch.v
 L0 19
@@ -17,7 +17,7 @@ r1
 31
 Z9 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/address_latch.v|
 Z10 o-work work -O0
-Z11 !s108 1407679083.110000
+Z11 !s108 1407702235.736000
 Z12 !s107 P:/A-Z80/cpu/bus/address_latch.v|
 !i10b 1
 !s85 0
@@ -36,7 +36,7 @@ r1
 31
 Z19 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/address_pins.v|
 R10
-Z20 !s108 1407679083.262000
+Z20 !s108 1407702235.818000
 Z21 !s107 P:/A-Z80/cpu/bus/address_pins.v|
 !i10b 1
 !s85 0
@@ -46,314 +46,313 @@ Z22 !s100 2`zXY3e9X4T=LzaW2NMdO3
 Z23 IJ^nJW4d[l<3Mzm6h^9J`f1
 Z24 VW_TYK5oae>4J4a_mUHRY<0
 R4
-R5
-Z25 8$ROOT/alu/alu.v
-Z26 F$ROOT/alu/alu.v
+Z25 w1406478153
+Z26 8$ROOT/alu/alu.v
+Z27 F$ROOT/alu/alu.v
 L0 19
 R8
 r1
 31
-Z27 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu.v|
+Z28 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu.v|
 R10
-Z28 !s108 1407679081.947000
-Z29 !s107 P:/A-Z80/cpu/alu/alu.v|
+Z29 !s108 1407702234.591000
+Z30 !s107 P:/A-Z80/cpu/alu/alu.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_bit_select
-Z30 !s100 7P@S6KQUk>UF0iTCY[aF30
-Z31 Im:cjh_Ja_0dga[G9AIQee2
-Z32 VdMO?ECEm8RcUAX=4dV2];1
+Z31 !s100 7P@S6KQUk>UF0iTCY[aF30
+Z32 Im:cjh_Ja_0dga[G9AIQee2
+Z33 VdMO?ECEm8RcUAX=4dV2];1
 R4
-R5
-Z33 8$ROOT/alu/alu_bit_select.v
-Z34 F$ROOT/alu/alu_bit_select.v
+R25
+Z34 8$ROOT/alu/alu_bit_select.v
+Z35 F$ROOT/alu/alu_bit_select.v
 L0 19
 R8
 r1
 31
-Z35 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_bit_select.v|
+Z36 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_bit_select.v|
 R10
-Z36 !s108 1407679082.048000
-Z37 !s107 P:/A-Z80/cpu/alu/alu_bit_select.v|
+Z37 !s108 1407702234.676000
+Z38 !s107 P:/A-Z80/cpu/alu/alu_bit_select.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_control
-Z38 !s100 edN11]27fZ=Qb:Q=m6`4F2
-Z39 Ih[EE9>TSoXT_cJ;egYT2R0
-Z40 VeBX`1S`kPJAIMP<K4z6]k3
+Z39 !s100 edN11]27fZ=Qb:Q=m6`4F2
+Z40 Ih[EE9>TSoXT_cJ;egYT2R0
+Z41 VeBX`1S`kPJAIMP<K4z6]k3
 R4
-Z41 w1406525730
-Z42 8$ROOT/alu/alu_control.v
-Z43 F$ROOT/alu/alu_control.v
+Z42 w1406525730
+Z43 8$ROOT/alu/alu_control.v
+Z44 F$ROOT/alu/alu_control.v
 L0 19
 R8
 r1
 31
-Z44 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_control.v|
+Z45 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_control.v|
 R10
-Z45 !s108 1407679082.128000
-Z46 !s107 P:/A-Z80/cpu/alu/alu_control.v|
+Z46 !s108 1407702234.757000
+Z47 !s107 P:/A-Z80/cpu/alu/alu_control.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_core
-Z47 !s100 6D>Okl^L[ajj4lYUi_Fj92
-Z48 If<oZDW_43SCI?gMA^DjJ30
-Z49 V>ASdXI5d]CH0^]lnMLcMH1
+Z48 !s100 6D>Okl^L[ajj4lYUi_Fj92
+Z49 If<oZDW_43SCI?gMA^DjJ30
+Z50 V>ASdXI5d]CH0^]lnMLcMH1
 R4
-R5
-Z50 8$ROOT/alu/alu_core.v
-Z51 F$ROOT/alu/alu_core.v
+R25
+Z51 8$ROOT/alu/alu_core.v
+Z52 F$ROOT/alu/alu_core.v
 L0 19
 R8
 r1
 31
-Z52 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_core.v|
+Z53 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_core.v|
 R10
-Z53 !s108 1407679082.212000
-Z54 !s107 P:/A-Z80/cpu/alu/alu_core.v|
+Z54 !s108 1407702234.839000
+Z55 !s107 P:/A-Z80/cpu/alu/alu_core.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_flags
-Z55 !s100 G17QYg85Tn2RDSR5KU:_R2
-Z56 IMg=z@V;d2U16N_A2dCHcQ3
-Z57 Vmz@0Q_I``elSX5?Nk>cBX0
+Z56 !s100 G17QYg85Tn2RDSR5KU:_R2
+Z57 IMg=z@V;d2U16N_A2dCHcQ3
+Z58 Vmz@0Q_I``elSX5?Nk>cBX0
 R4
-R5
-Z58 8$ROOT/alu/alu_flags.v
-Z59 F$ROOT/alu/alu_flags.v
+R25
+Z59 8$ROOT/alu/alu_flags.v
+Z60 F$ROOT/alu/alu_flags.v
 L0 19
 R8
 r1
 31
-Z60 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_flags.v|
+Z61 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_flags.v|
 R10
-Z61 !s108 1407679082.291000
-Z62 !s107 P:/A-Z80/cpu/alu/alu_flags.v|
+Z62 !s108 1407702234.918000
+Z63 !s107 P:/A-Z80/cpu/alu/alu_flags.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_2
-Z63 !s100 J`ZNn_@cX^U>X6ZLek3z63
-Z64 IJ77YTaEGB^<EzJ]4QH5Ze1
-Z65 V;B2d^O5Zia_6^;mMoMTII0
+Z64 !s100 J`ZNn_@cX^U>X6ZLek3z63
+Z65 IJ77YTaEGB^<EzJ]4QH5Ze1
+Z66 V;B2d^O5Zia_6^;mMoMTII0
 R4
-R5
-Z66 8$ROOT/alu/alu_mux_2.v
-Z67 F$ROOT/alu/alu_mux_2.v
+R25
+Z67 8$ROOT/alu/alu_mux_2.v
+Z68 F$ROOT/alu/alu_mux_2.v
 L0 19
 R8
 r1
 31
-Z68 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_2.v|
+Z69 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_2.v|
 R10
-Z69 !s108 1407679082.371000
-Z70 !s107 P:/A-Z80/cpu/alu/alu_mux_2.v|
+Z70 !s108 1407702235.001000
+Z71 !s107 P:/A-Z80/cpu/alu/alu_mux_2.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_2z
-Z71 !s100 AIEXFRP:;lcH72oi6U5VV2
-Z72 I2hW==<=3IdMB<bZ8Jn>]U0
-Z73 VRScbVnhUBb2aDKO[:;T4;0
+Z72 !s100 AIEXFRP:;lcH72oi6U5VV2
+Z73 I2hW==<=3IdMB<bZ8Jn>]U0
+Z74 VRScbVnhUBb2aDKO[:;T4;0
 R4
-R5
-Z74 8$ROOT/alu/alu_mux_2z.v
-Z75 F$ROOT/alu/alu_mux_2z.v
+R25
+Z75 8$ROOT/alu/alu_mux_2z.v
+Z76 F$ROOT/alu/alu_mux_2z.v
 L0 19
 R8
 r1
 31
-Z76 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_2z.v|
+Z77 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_2z.v|
 R10
-Z77 !s108 1407679082.448000
-Z78 !s107 P:/A-Z80/cpu/alu/alu_mux_2z.v|
+Z78 !s108 1407702235.080000
+Z79 !s107 P:/A-Z80/cpu/alu/alu_mux_2z.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_3z
-Z79 !s100 IQEmNe08el:^Ga<lL=7k;2
-Z80 I95M4:98d9]S3MoCWTA<2A3
-Z81 VlzYZc:?FX<Ob4PU3Go48E1
+Z80 !s100 IQEmNe08el:^Ga<lL=7k;2
+Z81 I95M4:98d9]S3MoCWTA<2A3
+Z82 VlzYZc:?FX<Ob4PU3Go48E1
 R4
-R5
-Z82 8$ROOT/alu/alu_mux_3z.v
-Z83 F$ROOT/alu/alu_mux_3z.v
+R25
+Z83 8$ROOT/alu/alu_mux_3z.v
+Z84 F$ROOT/alu/alu_mux_3z.v
 L0 19
 R8
 r1
 31
-Z84 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_3z.v|
+Z85 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_3z.v|
 R10
-Z85 !s108 1407679082.527000
-Z86 !s107 P:/A-Z80/cpu/alu/alu_mux_3z.v|
+Z86 !s108 1407702235.162000
+Z87 !s107 P:/A-Z80/cpu/alu/alu_mux_3z.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_4
-Z87 !s100 ^HaDBHJMM@[lHZQ3DhNS<0
-Z88 IiP0]ZiclSCA4ogIcC7ml21
-Z89 VP:oRaRJlhAE6J:c<TW`mk0
+Z88 !s100 ^HaDBHJMM@[lHZQ3DhNS<0
+Z89 IiP0]ZiclSCA4ogIcC7ml21
+Z90 VP:oRaRJlhAE6J:c<TW`mk0
 R4
-R5
-Z90 8$ROOT/alu/alu_mux_4.v
-Z91 F$ROOT/alu/alu_mux_4.v
+R25
+Z91 8$ROOT/alu/alu_mux_4.v
+Z92 F$ROOT/alu/alu_mux_4.v
 L0 19
 R8
 r1
 31
-Z92 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_4.v|
+Z93 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_4.v|
 R10
-Z93 !s108 1407679082.609000
-Z94 !s107 P:/A-Z80/cpu/alu/alu_mux_4.v|
+Z94 !s108 1407702235.241000
+Z95 !s107 P:/A-Z80/cpu/alu/alu_mux_4.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_mux_8
-Z95 !s100 WVCiSachJhb1mneY`8Z3I3
-Z96 ILfo8F[e>fB<6z6]?55@Rm1
-Z97 VT@ijT63F;:E1?f]L:TM2R1
+Z96 !s100 WVCiSachJhb1mneY`8Z3I3
+Z97 ILfo8F[e>fB<6z6]?55@Rm1
+Z98 VT@ijT63F;:E1?f]L:TM2R1
 R4
-R5
-Z98 8$ROOT/alu/alu_mux_8.v
-Z99 F$ROOT/alu/alu_mux_8.v
+R25
+Z99 8$ROOT/alu/alu_mux_8.v
+Z100 F$ROOT/alu/alu_mux_8.v
 L0 19
 R8
 r1
 31
-Z100 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_8.v|
+Z101 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_mux_8.v|
 R10
-Z101 !s108 1407679082.689000
-Z102 !s107 P:/A-Z80/cpu/alu/alu_mux_8.v|
+Z102 !s108 1407702235.323000
+Z103 !s107 P:/A-Z80/cpu/alu/alu_mux_8.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_prep_daa
-Z103 !s100 ?i]BS]B<1jV0i<?XMD_XY1
-Z104 I]bC<^c=jzdAMl_M0[PTl:2
-Z105 VL4K^cH:7WI4=<Ygk_F[<Z3
+Z104 !s100 ?i]BS]B<1jV0i<?XMD_XY1
+Z105 I]bC<^c=jzdAMl_M0[PTl:2
+Z106 VL4K^cH:7WI4=<Ygk_F[<Z3
 R4
-R5
-Z106 8$ROOT/alu/alu_prep_daa.v
-Z107 F$ROOT/alu/alu_prep_daa.v
+R25
+Z107 8$ROOT/alu/alu_prep_daa.v
+Z108 F$ROOT/alu/alu_prep_daa.v
 L0 19
 R8
 r1
 31
-Z108 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_prep_daa.v|
+Z109 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_prep_daa.v|
 R10
-Z109 !s108 1407679082.777000
-Z110 !s107 P:/A-Z80/cpu/alu/alu_prep_daa.v|
+Z110 !s108 1407702235.408000
+Z111 !s107 P:/A-Z80/cpu/alu/alu_prep_daa.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_prep_flags
-Z111 !s100 ^kLbJMED5OjUS2@C5M3]E0
-Z112 Il1<CmK28Lkh4J9D@@T`mi1
-Z113 VPB<HAS[`^D8DKSokF6NTF2
+Z112 !s100 ^kLbJMED5OjUS2@C5M3]E0
+Z113 Il1<CmK28Lkh4J9D@@T`mi1
+Z114 VPB<HAS[`^D8DKSokF6NTF2
 R4
-R5
-Z114 8$ROOT/alu/alu_prep_flags.v
-Z115 F$ROOT/alu/alu_prep_flags.v
+R25
+Z115 8$ROOT/alu/alu_prep_flags.v
+Z116 F$ROOT/alu/alu_prep_flags.v
 L0 19
 R8
 r1
 31
-Z116 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_prep_flags.v|
+Z117 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_prep_flags.v|
 R10
-Z117 !s108 1407679082.852000
-Z118 !s107 P:/A-Z80/cpu/alu/alu_prep_flags.v|
+Z118 !s108 1407702235.500000
+Z119 !s107 P:/A-Z80/cpu/alu/alu_prep_flags.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_select
-Z119 !s100 ezUfhNba^<6mnHUKLW7NR3
-Z120 IG3f9?BHo]zA=HD[lVG=5g2
-Z121 V_7QeZ`SY3eP?]c3S1iPK[0
+Z120 !s100 ezUfhNba^<6mnHUKLW7NR3
+Z121 IG3f9?BHo]zA=HD[lVG=5g2
+Z122 V_7QeZ`SY3eP?]c3S1iPK[0
 R4
-Z122 w1406522044
-Z123 8$ROOT/alu/alu_select.v
-Z124 F$ROOT/alu/alu_select.v
+Z123 w1406522044
+Z124 8$ROOT/alu/alu_select.v
+Z125 F$ROOT/alu/alu_select.v
 L0 19
 R8
 r1
 31
-Z125 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_select.v|
+Z126 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_select.v|
 R10
-Z126 !s108 1407679084.783000
-Z127 !s107 P:/A-Z80/cpu/alu/alu_select.v|
+Z127 !s108 1407702237.324000
+Z128 !s107 P:/A-Z80/cpu/alu/alu_select.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_shifter_core
-Z128 !s100 EF_l@c7_JkCPAGTY;ALee3
-Z129 I:`ILFX67NlPD]5iaGe51g1
-Z130 VbIg>PW_V_DEl;jXJ`X:Lh1
+Z129 !s100 EF_l@c7_JkCPAGTY;ALee3
+Z130 I:`ILFX67NlPD]5iaGe51g1
+Z131 VbIg>PW_V_DEl;jXJ`X:Lh1
 R4
-R5
-Z131 8$ROOT/alu/alu_shifter_core.v
-Z132 F$ROOT/alu/alu_shifter_core.v
+R25
+Z132 8$ROOT/alu/alu_shifter_core.v
+Z133 F$ROOT/alu/alu_shifter_core.v
 L0 19
 R8
 r1
 31
-Z133 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_shifter_core.v|
+Z134 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_shifter_core.v|
 R10
-Z134 !s108 1407679082.931000
-Z135 !s107 P:/A-Z80/cpu/alu/alu_shifter_core.v|
+Z135 !s108 1407702235.576000
+Z136 !s107 P:/A-Z80/cpu/alu/alu_shifter_core.v|
 !i10b 1
 !s85 0
 !s101 -O0
 valu_slice
-Z136 !s100 @Yokf=hWM9_3>;<j=fDKN2
-Z137 IlY>ljZUDc84WT1joN[[LW0
-Z138 V>FE0=Vc=UPG3e5HDTLe9?2
+Z137 !s100 @Yokf=hWM9_3>;<j=fDKN2
+Z138 IlY>ljZUDc84WT1joN[[LW0
+Z139 V>FE0=Vc=UPG3e5HDTLe9?2
 R4
-R5
-Z139 8$ROOT/alu/alu_slice.v
-Z140 F$ROOT/alu/alu_slice.v
+R25
+Z140 8$ROOT/alu/alu_slice.v
+Z141 F$ROOT/alu/alu_slice.v
 L0 19
 R8
 r1
 31
-Z141 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_slice.v|
+Z142 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/alu/alu_slice.v|
 R10
-Z142 !s108 1407679083.014000
-Z143 !s107 P:/A-Z80/cpu/alu/alu_slice.v|
+Z143 !s108 1407702235.657000
+Z144 !s107 P:/A-Z80/cpu/alu/alu_slice.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vbus_ff
-Z144 !s100 m:aJgPKe_cL:Zb2Szo;`O2
-Z145 IBB=Q>XFonJk<g;Gco`[022
-Z146 VKC9zEMd=0V^@WZSmlI]UI2
+Z145 !s100 m:aJgPKe_cL:Zb2Szo;`O2
+Z146 IBB=Q>XFonJk<g;Gco`[022
+Z147 VKC9zEMd=0V^@WZSmlI]UI2
 R4
-Z147 w1406604545
-Z148 8$ROOT/bus/bus_ff.v
-Z149 F$ROOT/bus/bus_ff.v
+Z148 w1406604545
+Z149 8$ROOT/bus/bus_ff.v
+Z150 F$ROOT/bus/bus_ff.v
 L0 19
 R8
 r1
 31
-Z150 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/bus_ff.v|
+Z151 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/bus_ff.v|
 R10
-Z151 !s108 1407679084.682000
-Z152 !s107 P:/A-Z80/cpu/bus/bus_ff.v|
+Z152 !s108 1407702237.236000
+Z153 !s107 P:/A-Z80/cpu/bus/bus_ff.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vbus_switch
-Z153 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z154 !s100 o:oYo9c]FY2RHl>[RD`=F2
-Z155 IY=TBzD60nMWX14NdGBL803
-Z156 VAGEngLQE5`KiB2Y_8H^fY1
+Z154 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z155 IM[7<nnEfCXOc82_XUOjmD3
+Z156 V@l[H7O<Fc7NL;lh_9SKWJ1
 Z157 !s105 bus_switch_sv_unit
 S1
 R4
-Z158 w1407502256
+Z158 w1407702289
 Z159 8$ROOT/bus/bus_switch.sv
 Z160 F$ROOT/bus/bus_switch.sv
 L0 13
@@ -362,545 +361,546 @@ r1
 31
 Z161 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/bus/bus_switch.sv|
 Z162 o-work work -sv -O0
-Z163 !s108 1407679085.230000
-Z164 !s107 P:/A-Z80/cpu/bus/bus_switch.sv|
 !i10b 1
+Z163 !s100 f;_HKf832QIf9FWW=IUWU0
 !s85 0
+Z164 !s108 1407702325.453000
+Z165 !s107 P:/A-Z80/cpu/bus/bus_switch.sv|
 !s101 -O0
 vbus_zero
-Z165 !s100 bfM0zOE92PZ>H?T<`mm^d0
-Z166 IW54Zh@64THTB<HSbZmh870
-Z167 V:a?9]T1knL91QQ_dYCL3T2
+Z166 !s100 bfM0zOE92PZ>H?T<`mm^d0
+Z167 IW54Zh@64THTB<HSbZmh870
+Z168 V:a?9]T1knL91QQ_dYCL3T2
 R4
-Z168 w1406604429
-Z169 8$ROOT/bus/bus_zero.v
-Z170 F$ROOT/bus/bus_zero.v
+Z169 w1406604429
+Z170 8$ROOT/bus/bus_zero.v
+Z171 F$ROOT/bus/bus_zero.v
 L0 19
 R8
 r1
 31
-Z171 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/bus_zero.v|
+Z172 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/bus_zero.v|
 R10
-Z172 !s108 1407679084.373000
-Z173 !s107 P:/A-Z80/cpu/bus/bus_zero.v|
+Z173 !s108 1407702236.925000
+Z174 !s107 P:/A-Z80/cpu/bus/bus_zero.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vclk_delay
-Z174 !s100 mi<D3>^7Ql6[Hg[Gcd7LG3
-Z175 INJ2b6]FRRik]P1P[_V_=Z3
-Z176 VVlEoZoKQMiUkaoR1C;J]^1
+Z175 !s100 mi<D3>^7Ql6[Hg[Gcd7LG3
+Z176 INJ2b6]FRRik]P1P[_V_=Z3
+Z177 VVlEoZoKQMiUkaoR1C;J]^1
 R4
-Z177 w1407605229
-Z178 8$ROOT/control/clk_delay.v
-Z179 F$ROOT/control/clk_delay.v
+Z178 w1407605229
+Z179 8$ROOT/control/clk_delay.v
+Z180 F$ROOT/control/clk_delay.v
 L0 19
 R8
 r1
 31
-Z180 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/clk_delay.v|
+Z181 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/clk_delay.v|
 R10
-Z181 !s108 1407679085.061000
-Z182 !s107 P:/A-Z80/cpu/control/clk_delay.v|
+Z182 !s108 1407702237.533000
+Z183 !s107 P:/A-Z80/cpu/control/clk_delay.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vcontrol_pins_n
-Z183 !s100 [O6SKWUDg6AUzJ5KVS8C[2
-Z184 I1I`YDLQ665j5UM7[DT9F?0
-Z185 V`S46ABdJbUd1T@`^B=3R:1
+Z184 !s100 [O6SKWUDg6AUzJ5KVS8C[2
+Z185 I1I`YDLQ665j5UM7[DT9F?0
+Z186 V`S46ABdJbUd1T@`^B=3R:1
 R4
-Z186 w1407678625
-Z187 8$ROOT/bus/control_pins_n.v
-Z188 F$ROOT/bus/control_pins_n.v
+Z187 w1407678625
+Z188 8$ROOT/bus/control_pins_n.v
+Z189 F$ROOT/bus/control_pins_n.v
 L0 19
 R8
 r1
 31
-Z189 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/control_pins_n.v|
+Z190 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/control_pins_n.v|
 R10
+Z191 !s108 1407702237.950000
+Z192 !s107 P:/A-Z80/cpu/bus/control_pins_n.v|
 !i10b 1
 !s85 0
-Z190 !s108 1407679085.401000
-Z191 !s107 P:/A-Z80/cpu/bus/control_pins_n.v|
 !s101 -O0
 vdata_pins
-Z192 !s100 ZGO?kT>WY<c1VNP>X=_fO3
-Z193 IYGEGPXZ3;gTL4XV4zXdi80
-Z194 VC[LHaTGl0BEm?HTmN6:RX0
+Z193 !s100 ZGO?kT>WY<c1VNP>X=_fO3
+Z194 IYGEGPXZ3;gTL4XV4zXdi80
+Z195 VC[LHaTGl0BEm?HTmN6:RX0
 R4
-Z195 w1407598565
-Z196 8$ROOT/bus/data_pins.v
-Z197 F$ROOT/bus/data_pins.v
+Z196 w1407695530
+Z197 8$ROOT/bus/data_pins.v
+Z198 F$ROOT/bus/data_pins.v
 L0 19
 R8
 r1
 31
-Z198 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/data_pins.v|
+Z199 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/data_pins.v|
 R10
-Z199 !s108 1407679083.340000
-Z200 !s107 P:/A-Z80/cpu/bus/data_pins.v|
+Z200 !s108 1407702235.900000
+Z201 !s107 P:/A-Z80/cpu/bus/data_pins.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vdata_switch
-Z201 !s100 g3<l:kDbJnhnTbjUB:]1I3
-Z202 IXY^O7Yn]OSS`M<MzfEfeH0
-Z203 VAEgm25X2L3]EO<1Iji_R43
+Z202 !s100 h>5_G^eX_P:QkRRH^_`^43
+Z203 I:2GR82bo4Ad9Z[a>_5o7k3
+Z204 VoAQdFj@7_nRGck6:oYGoJ3
 R4
-R5
-Z204 8$ROOT/bus/data_switch.v
-Z205 F$ROOT/bus/data_switch.v
+Z205 w1407695719
+Z206 8$ROOT/bus/data_switch.v
+Z207 F$ROOT/bus/data_switch.v
 L0 19
 R8
 r1
 31
-Z206 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/data_switch.v|
+Z208 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/data_switch.v|
 R10
-Z207 !s108 1407679083.420000
-Z208 !s107 P:/A-Z80/cpu/bus/data_switch.v|
+Z209 !s108 1407702235.979000
+Z210 !s107 P:/A-Z80/cpu/bus/data_switch.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vdecode_state
-Z209 !s100 j6AdoEI53YNjoYSI1jA7Y1
-Z210 ICJh[L:H=]2a=3CY2RR[z91
-Z211 V`C4:V1lWC7jfN@a7zk1=:0
+Z211 !s100 j6AdoEI53YNjoYSI1jA7Y1
+Z212 ICJh[L:H=]2a=3CY2RR[z91
+Z213 V`C4:V1lWC7jfN@a7zk1=:0
 R4
-Z212 w1407588040
-Z213 8$ROOT/control/decode_state.v
-Z214 F$ROOT/control/decode_state.v
+Z214 w1407588040
+Z215 8$ROOT/control/decode_state.v
+Z216 F$ROOT/control/decode_state.v
 L0 19
 R8
 r1
 31
-Z215 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/decode_state.v|
+Z217 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/decode_state.v|
 R10
-Z216 !s108 1407679085.146000
-Z217 !s107 P:/A-Z80/cpu/control/decode_state.v|
+Z218 !s108 1407702237.614000
+Z219 !s107 P:/A-Z80/cpu/control/decode_state.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vexecute
-R153
-Z218 !s100 m>df2On4jSbo95JC8Mi5B2
-Z219 IWz44NLW9DmD_];T0meMQ92
-Z220 V=C=2jVj5Y[LeZQg6nl0G@3
-Z221 !s105 execute_sv_unit
+R154
+Z220 !s100 kCBfDRdAA<o]gC8<njNJ?2
+Z221 Io=8ZbFbY7l3f@>3aD=<Vz2
+Z222 VNn@Nn_9D>@F^6TioLCdDH0
+Z223 !s105 execute_sv_unit
 S1
 R4
-Z222 w1407673694
-Z223 8$ROOT/control/execute.sv
-Z224 F$ROOT/control/execute.sv
-Z225 F../../../control/exec_module.i
-Z226 F../../../control/exec_zero.i
-Z227 F../../../control/exec_matrix.i
+Z224 w1407696997
+Z225 8$ROOT/control/execute.sv
+Z226 F$ROOT/control/execute.sv
+Z227 F../../../control/exec_module.i
+Z228 F../../../control/exec_zero.i
+Z229 F../../../control/exec_matrix.i
 L0 10
 R8
 r1
 31
-Z228 !s90 -reportprogress|300|-work|work|-source|-sv|+incdir+../../../control|P:/A-Z80/cpu/control/execute.sv|
-Z229 o-work work -source -sv -O0
-Z230 !s92 -work work -source -sv +incdir+../../../control -O0
-Z231 !s108 1407679083.683000
-Z232 !s107 ../../../control/exec_matrix.i|../../../control/exec_zero.i|../../../control/exec_module.i|P:/A-Z80/cpu/control/execute.sv|
+Z230 !s90 -reportprogress|300|-work|work|-source|-sv|+incdir+../../../control|P:/A-Z80/cpu/control/execute.sv|
+Z231 o-work work -source -sv -O0
+Z232 !s92 -work work -source -sv +incdir+../../../control -O0
+Z233 !s108 1407702236.236000
+Z234 !s107 ../../../control/exec_matrix.i|../../../control/exec_zero.i|../../../control/exec_module.i|P:/A-Z80/cpu/control/execute.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vinc_dec
-Z233 !s100 8zk1F[_LMRX@MIHGocCmm1
-Z234 IGlAPSz30OimiRM;bRa>ja3
-Z235 VQ`2Uo8>[b@JPm_hmm@;C>1
+Z235 !s100 8zk1F[_LMRX@MIHGocCmm1
+Z236 IGlAPSz30OimiRM;bRa>ja3
+Z237 VQ`2Uo8>[b@JPm_hmm@;C>1
 R4
-R5
-Z236 8$ROOT/bus/inc_dec.v
-Z237 F$ROOT/bus/inc_dec.v
+R25
+Z238 8$ROOT/bus/inc_dec.v
+Z239 F$ROOT/bus/inc_dec.v
 L0 19
 R8
 r1
 31
-Z238 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/inc_dec.v|
+Z240 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/inc_dec.v|
 R10
-Z239 !s108 1407679083.504000
-Z240 !s107 P:/A-Z80/cpu/bus/inc_dec.v|
+Z241 !s108 1407702236.062000
+Z242 !s107 P:/A-Z80/cpu/bus/inc_dec.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vinc_dec_2bit
-Z241 !s100 f<IRAL9;]T`R6mIf_H1k01
-Z242 IVob;6cAdaWbDg65MCR=EC0
-Z243 VdbU1O6H?3T32fVKYa?=jh1
+Z243 !s100 f<IRAL9;]T`R6mIf_H1k01
+Z244 IVob;6cAdaWbDg65MCR=EC0
+Z245 VdbU1O6H?3T32fVKYa?=jh1
 R4
-R5
-Z244 8$ROOT/bus/inc_dec_2bit.v
-Z245 F$ROOT/bus/inc_dec_2bit.v
+R25
+Z246 8$ROOT/bus/inc_dec_2bit.v
+Z247 F$ROOT/bus/inc_dec_2bit.v
 L0 19
 R8
 r1
 31
-Z246 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/inc_dec_2bit.v|
+Z248 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/bus/inc_dec_2bit.v|
 R10
-Z247 !s108 1407679083.587000
-Z248 !s107 P:/A-Z80/cpu/bus/inc_dec_2bit.v|
+Z249 !s108 1407702236.143000
+Z250 !s107 P:/A-Z80/cpu/bus/inc_dec_2bit.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vinterrupts
-Z249 !s100 E1QkfMXAQJhOhMCa>dP492
-Z250 IG2oC:[P4f4^`Mn3NBl8IL2
-Z251 Vo0I^cJ7dfh6S;WN[[m<GT3
+Z251 !s100 E1QkfMXAQJhOhMCa>dP492
+Z252 IG2oC:[P4f4^`Mn3NBl8IL2
+Z253 Vo0I^cJ7dfh6S;WN[[m<GT3
 R4
-Z252 w1407634949
-Z253 8$ROOT/control/interrupts.v
-Z254 F$ROOT/control/interrupts.v
+Z254 w1407634949
+Z255 8$ROOT/control/interrupts.v
+Z256 F$ROOT/control/interrupts.v
 L0 19
 R8
 r1
 31
-Z255 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/interrupts.v|
+Z257 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/interrupts.v|
 R10
-Z256 !s108 1407679084.967000
-Z257 !s107 P:/A-Z80/cpu/control/interrupts.v|
+Z258 !s108 1407702237.452000
+Z259 !s107 P:/A-Z80/cpu/control/interrupts.v|
 !i10b 1
 !s85 0
 !s101 -O0
 Yintf
-R153
-Z258 Im>0Rl3lA57h[06e`C:mB21
-Z259 Ve1OYK7GeheLKLn;5ZD1fD2
-Z260 !s105 test_top_sv_unit
+R154
+Z260 Im>0Rl3lA57h[06e`C:mB21
+Z261 Ve1OYK7GeheLKLn;5ZD1fD2
+Z262 !s105 test_top_sv_unit
 S1
-Z261 d$ROOT\cpu\toplevel\simulation\modelsim
-Z262 w1405096273
-Z263 F$ROOT/cpu/toplevel/z80.svh
-Z264 8$ROOT/cpu/toplevel/test_top.sv
-Z265 F$ROOT/cpu/toplevel/test_top.sv
+Z263 d$ROOT\cpu\toplevel\simulation\modelsim
+Z264 w1405096273
+Z265 F$ROOT/cpu/toplevel/z80.svh
+Z266 8$ROOT/cpu/toplevel/test_top.sv
+Z267 F$ROOT/cpu/toplevel/test_top.sv
 L0 5
 R8
-Z266 !s107 $ROOT/cpu/toplevel/z80.svh|$ROOT/cpu/toplevel/test_top.sv|
-Z267 !s90 -reportprogress|300|-work|work|-sv|+incdir+$ROOT/cpu/toplevel|$ROOT/cpu/toplevel/test_top.sv|
+Z268 !s107 $ROOT/cpu/toplevel/z80.svh|$ROOT/cpu/toplevel/test_top.sv|
+Z269 !s90 -reportprogress|300|-work|work|-sv|+incdir+$ROOT/cpu/toplevel|$ROOT/cpu/toplevel/test_top.sv|
 R162
-Z268 !s92 -work work -sv +incdir+$ROOT/cpu/toplevel -O0
-Z269 !s100 G_6Um^UiZJcA]hz:69GZ`0
-Z270 !s108 1405096282.624000
+Z270 !s92 -work work -sv +incdir+$ROOT/cpu/toplevel -O0
+Z271 !s100 G_6Um^UiZJcA]hz:69GZ`0
+Z272 !s108 1405096282.624000
 !i10b 1
 !s101 -O0
 vir
-Z271 !s100 37KSP9dlSoA3;cHg:3]>?3
-Z272 IQmA1UHIJk>]6Ti>oXGd__1
-Z273 V?g002iX1_jk?Bl87ai^N:3
+Z273 !s100 37KSP9dlSoA3;cHg:3]>?3
+Z274 IQmA1UHIJk>]6Ti>oXGd__1
+Z275 V?g002iX1_jk?Bl87ai^N:3
 R4
-R5
-Z274 8$ROOT/control/ir.v
-Z275 F$ROOT/control/ir.v
+R25
+Z276 8$ROOT/control/ir.v
+Z277 F$ROOT/control/ir.v
 L0 19
 R8
 r1
 31
-Z276 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/ir.v|
+Z278 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/ir.v|
 R10
-Z277 !s108 1407679083.770000
-Z278 !s107 P:/A-Z80/cpu/control/ir.v|
+Z279 !s108 1407702236.327000
+Z280 !s107 P:/A-Z80/cpu/control/ir.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vpin_control
-R153
-Z279 !s100 Eime7Bl8e0M_7j5YTWUZl0
-Z280 I9Wf58ko2Z7nL[;A9eoRZ83
-Z281 V^2b]HRkz5nNJ7Fo8V;e<A3
-Z282 !s105 pin_control_sv_unit
+R154
+Z281 !s100 Eime7Bl8e0M_7j5YTWUZl0
+Z282 I9Wf58ko2Z7nL[;A9eoRZ83
+Z283 V^2b]HRkz5nNJ7Fo8V;e<A3
+Z284 !s105 pin_control_sv_unit
 S1
 R4
-Z283 w1407631905
-Z284 8$ROOT/control/pin_control.sv
-Z285 F$ROOT/control/pin_control.sv
+Z285 w1407631905
+Z286 8$ROOT/control/pin_control.sv
+Z287 F$ROOT/control/pin_control.sv
 L0 12
 R8
 r1
 31
-Z286 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pin_control.sv|
+Z288 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pin_control.sv|
 R162
-Z287 !s108 1407679083.848000
-Z288 !s107 P:/A-Z80/cpu/control/pin_control.sv|
+Z289 !s108 1407702236.412000
+Z290 !s107 P:/A-Z80/cpu/control/pin_control.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vpla_decode
-R153
-Z289 !s100 l`VZ[>;3UkaM1FTYPH?:41
-Z290 I0DGYVBK>ELGQX6YZ4C_>Z2
-Z291 V;I`nX33K9BUY;?of9JQi:0
-Z292 !s105 pla_decode_sv_unit
+R154
+Z291 !s100 l`VZ[>;3UkaM1FTYPH?:41
+Z292 I0DGYVBK>ELGQX6YZ4C_>Z2
+Z293 V;I`nX33K9BUY;?of9JQi:0
+Z294 !s105 pla_decode_sv_unit
 S1
 R4
-Z293 w1407559862
-Z294 8$ROOT/control/pla_decode.sv
-Z295 F$ROOT/control/pla_decode.sv
+Z295 w1407559862
+Z296 8$ROOT/control/pla_decode.sv
+Z297 F$ROOT/control/pla_decode.sv
 L0 4
 R8
 r1
 31
-Z296 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pla_decode.sv|
+Z298 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/control/pla_decode.sv|
 R162
-Z297 !s108 1407679083.933000
-Z298 !s107 P:/A-Z80/cpu/control/pla_decode.sv|
+Z299 !s108 1407702236.501000
+Z300 !s107 P:/A-Z80/cpu/control/pla_decode.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vram
-R153
-Z299 !s100 Pi]Y8?I<EE4>`19Z4T;bM0
-Z300 IW0JDWM83N6iJ>zeKPnWBm0
-Z301 VGbDZ`Z455F1bkgAY>?[_`1
-Z302 !s105 tb_ram_sv_unit
+R154
+Z301 !s100 Pi]Y8?I<EE4>`19Z4T;bM0
+Z302 IW0JDWM83N6iJ>zeKPnWBm0
+Z303 VGbDZ`Z455F1bkgAY>?[_`1
+Z304 !s105 tb_ram_sv_unit
 S1
 R4
-Z303 w1407677589
-Z304 8$ROOT/toplevel/tb_ram.sv
-Z305 F$ROOT/toplevel/tb_ram.sv
+Z305 w1407677589
+Z306 8$ROOT/toplevel/tb_ram.sv
+Z307 F$ROOT/toplevel/tb_ram.sv
 L0 2
 R8
 r1
 31
-Z306 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/toplevel/tb_ram.sv|
+Z308 !s90 -reportprogress|300|-work|work|-sv|P:/A-Z80/cpu/toplevel/tb_ram.sv|
 R162
-Z307 !s108 1407679085.318000
-Z308 !s107 P:/A-Z80/cpu/toplevel/tb_ram.sv|
+Z309 !s108 1407702237.781000
+Z310 !s107 P:/A-Z80/cpu/toplevel/tb_ram.sv|
 !i10b 1
 !s85 0
 !s101 -O0
 vRamChip
-R153
-Z309 I0z7^<6Gl59UFH4mTF`5;R0
-Z310 V4fff<:g6kNmQjHb>m53]a3
-R302
+R154
+Z311 I0z7^<6Gl59UFH4mTF`5;R0
+Z312 V4fff<:g6kNmQjHb>m53]a3
+R304
 S1
 R4
-Z311 w1407675733
-R304
-R305
+Z313 w1407675733
+R306
+R307
 L0 9
 R8
 r1
 31
-R306
-R162
-Z312 n@ram@chip
 R308
-Z313 !s100 ?WCATRKSWZl@iWdaF_cJD0
-Z314 !s108 1407676017.208000
+R162
+Z314 n@ram@chip
+R310
+Z315 !s100 ?WCATRKSWZl@iWdaF_cJD0
+Z316 !s108 1407676017.208000
 !i10b 1
 !s85 0
 !s101 -O0
 vreg_control
-Z315 !s100 c<L:zmCgV0GfSgh[;EAXJ2
-Z316 ICg5C:N41OATYGDIb<:m_Z3
-Z317 VT?LW7jdjofdIYgok[FfEE2
+Z317 !s100 c<L:zmCgV0GfSgh[;EAXJ2
+Z318 ICg5C:N41OATYGDIb<:m_Z3
+Z319 VT?LW7jdjofdIYgok[FfEE2
 R4
-Z318 w1407588885
-Z319 8$ROOT/registers/reg_control.v
-Z320 F$ROOT/registers/reg_control.v
+Z320 w1407588885
+Z321 8$ROOT/registers/reg_control.v
+Z322 F$ROOT/registers/reg_control.v
 L0 19
 R8
 r1
 31
-Z321 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_control.v|
+Z323 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_control.v|
 R10
-Z322 !s108 1407679084.108000
-Z323 !s107 P:/A-Z80/cpu/registers/reg_control.v|
+Z324 !s108 1407702236.675000
+Z325 !s107 P:/A-Z80/cpu/registers/reg_control.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vreg_file
-Z324 !s100 @@WNh@YS=BNk0K3n61n6P3
-Z325 IO3n48CT29Acd3FEmA^=@L2
-Z326 VbzgJLJ8AFURBXFFK7GeiT1
+Z326 !s100 @@WNh@YS=BNk0K3n61n6P3
+Z327 IO3n48CT29Acd3FEmA^=@L2
+Z328 VbzgJLJ8AFURBXFFK7GeiT1
 R4
-R5
-Z327 8$ROOT/registers/reg_file.v
-Z328 F$ROOT/registers/reg_file.v
+R25
+Z329 8$ROOT/registers/reg_file.v
+Z330 F$ROOT/registers/reg_file.v
 L0 19
 R8
 r1
 31
-Z329 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_file.v|
+Z331 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_file.v|
 R10
-Z330 !s108 1407679084.192000
-Z331 !s107 P:/A-Z80/cpu/registers/reg_file.v|
+Z332 !s108 1407702236.762000
+Z333 !s107 P:/A-Z80/cpu/registers/reg_file.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vreg_latch
-Z332 !s100 ;0>D5:3E^VU8LRCTAlE=@2
-Z333 I^jHPHaL4TFDbAJ2mlHYkY3
-Z334 V1z@U<jce=LBN0WTEW^Q<F0
+Z334 !s100 ;0>D5:3E^VU8LRCTAlE=@2
+Z335 I^jHPHaL4TFDbAJ2mlHYkY3
+Z336 V1z@U<jce=LBN0WTEW^Q<F0
 R4
-R5
-Z335 8$ROOT/registers/reg_latch.v
-Z336 F$ROOT/registers/reg_latch.v
+R25
+Z337 8$ROOT/registers/reg_latch.v
+Z338 F$ROOT/registers/reg_latch.v
 L0 19
 R8
 r1
 31
-Z337 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_latch.v|
+Z339 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/registers/reg_latch.v|
 R10
-Z338 !s108 1407679084.281000
-Z339 !s107 P:/A-Z80/cpu/registers/reg_latch.v|
+Z340 !s108 1407702236.845000
+Z341 !s107 P:/A-Z80/cpu/registers/reg_latch.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vsequencer
-Z340 !s100 :b4WAJh^gKL1]>hOO^IgD3
-Z341 I>hG_EGHi^=HO4zhSGld6[2
-Z342 V;e8IWYDk8IKVR_cIG_[IU3
+Z342 !s100 :b4WAJh^gKL1]>hOO^IgD3
+Z343 I>hG_EGHi^=HO4zhSGld6[2
+Z344 V;e8IWYDk8IKVR_cIG_[IU3
 R4
-Z343 w1407645717
-Z344 8$ROOT/control/sequencer.v
-Z345 F$ROOT/control/sequencer.v
+Z345 w1407645717
+Z346 8$ROOT/control/sequencer.v
+Z347 F$ROOT/control/sequencer.v
 L0 19
 R8
 r1
 31
-Z346 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/sequencer.v|
+Z348 !s90 -reportprogress|300|-work|work|P:/A-Z80/cpu/control/sequencer.v|
 R10
-Z347 !s108 1407679084.023000
-Z348 !s107 P:/A-Z80/cpu/control/sequencer.v|
+Z349 !s108 1407702236.592000
+Z350 !s107 P:/A-Z80/cpu/control/sequencer.v|
 !i10b 1
 !s85 0
 !s101 -O0
 4test
-R153
-Z349 I5=ORIiI@cA?SOkT>^1b_92
-Z350 Vk<3<[f=78GX=_HO53D;7>3
-R260
+R154
+Z351 I5=ORIiI@cA?SOkT>^1b_92
+Z352 Vk<3<[f=78GX=_HO53D;7>3
+R262
 S1
-R261
-Z351 w1404827977
-R264
-R265
-L0 9
-R8
+R263
+Z353 w1404827977
 R266
 R267
-R162
+L0 9
+R8
 R268
-Z352 !s108 1404829213.309000
-Z353 !s100 D85:BhC<Fe`z`gDQAM4FM1
+R269
+R162
+R270
+Z354 !s108 1404829213.309000
+Z355 !s100 D85:BhC<Fe`z`gDQAM4FM1
 !i10b 1
 !s101 -O0
 vtest_bench
-R153
-!i10b 1
-Z354 !s100 T;8Th1kRfoLUGQ>4LVcdW0
-Z355 IZWh4JEkF6Bn4]1@_ag1:P3
-Z356 VEJNK5ZO7TWUP1egUA9^TR1
-R260
+R154
+Z356 !s100 T;8Th1kRfoLUGQ>4LVcdW0
+Z357 IZWh4JEkF6Bn4]1@_ag1:P3
+Z358 VEJNK5ZO7TWUP1egUA9^TR1
+R262
 S1
 R4
-Z357 w1407679197
-Z358 8$ROOT/toplevel/test_top.sv
-Z359 F$ROOT/toplevel/test_top.sv
+Z359 w1407693271
+Z360 8$ROOT/toplevel/test_top.sv
+Z361 F$ROOT/toplevel/test_top.sv
 L0 11
 R8
 r1
-!s85 0
 31
-Z360 !s108 1407679210.398000
-Z361 !s107 ../../../toplevel/z80.svh|P:/A-Z80/cpu/toplevel/test_top.sv|
-Z362 !s90 -reportprogress|300|-work|work|-sv|+incdir+../../../toplevel|P:/A-Z80/cpu/toplevel/test_top.sv|
-!s101 -O0
+Z362 !s108 1407702237.008000
+Z363 !s107 ../../../toplevel/z80.svh|P:/A-Z80/cpu/toplevel/test_top.sv|
+Z364 !s90 -reportprogress|300|-work|work|-sv|+incdir+../../../toplevel|P:/A-Z80/cpu/toplevel/test_top.sv|
 R162
-Z363 !s92 -work work -sv +incdir+../../../toplevel -O0
-vtest_top
-R153
+Z365 !s92 -work work -sv +incdir+../../../toplevel -O0
 !i10b 1
-!s100 0Q8:<bX1D9hf;fbV:gLUB0
-IfFzlNT]H4eVTQ0eE?mPEM1
-Z364 V]_CV]KXJo@;n:@feULdZW0
-R260
+!s85 0
+!s101 -O0
+vtest_top
+R154
+Z366 !s100 0Q8:<bX1D9hf;fbV:gLUB0
+Z367 IfFzlNT]H4eVTQ0eE?mPEM1
+Z368 V]_CV]KXJo@;n:@feULdZW0
+R262
 S1
 R4
-R357
-R358
 R359
+R360
+R361
 L0 29
 R8
 r1
-!s85 0
 31
-R360
-R361
 R362
-!s101 -O0
-R162
 R363
-Yz80_if
-R153
+R364
+R162
+R365
 !i10b 1
-Z365 !s100 :RKI5YW0WVMmCm>6gj0k:3
-Z366 I:hQnW`2l:E`LXBoYET4I=1
-Z367 V]2N[OeL`]O==NO?L4NiRl2
-R260
+!s85 0
+!s101 -O0
+Yz80_if
+R154
+!i10b 1
+Z369 !s100 :RKI5YW0WVMmCm>6gj0k:3
+Z370 I:hQnW`2l:E`LXBoYET4I=1
+Z371 V]2N[OeL`]O==NO?L4NiRl2
+Z372 !s105 z80_top_sv_unit
 S1
 R4
-R357
-Z368 F../../../toplevel/z80.svh
-R358
-R359
+Z373 w1407702500
+Z374 F../../../toplevel/z80.svh
+Z375 8$ROOT/toplevel/z80_top.sv
+Z376 F$ROOT/toplevel/z80_top.sv
 L0 5
 R8
 r1
 !s85 0
 31
-R360
-R361
-R362
+Z377 !s108 1407702512.377000
+Z378 !s107 ../../../toplevel/globals.i|../../../toplevel/z80.svh|P:/A-Z80/cpu/toplevel/z80_top.sv|
+Z379 !s90 -reportprogress|300|-work|work|-sv|+incdir+../../../toplevel|P:/A-Z80/cpu/toplevel/z80_top.sv|
 !s101 -O0
 R162
-R363
+R365
 Yz80_ifc
-R153
-Z369 I3S?_aNXaJg6TVlQg^AW0a1
-Z370 V0Wn6W;BX;8KN;Z45?4mWL3
-R260
+R154
+Z380 I3S?_aNXaJg6TVlQg^AW0a1
+Z381 V0Wn6W;BX;8KN;Z45?4mWL3
+R262
 S1
-R261
-Z371 w1404853245
 R263
-R264
+Z382 w1404853245
 R265
-L0 5
-R8
 R266
 R267
-R162
+L0 5
+R8
 R268
-Z372 !s100 A6Z2=AX;FGKOzPJNUVzj63
-Z373 !s108 1404853248.609000
+R269
+R162
+R270
+Z383 !s100 A6Z2=AX;FGKOzPJNUVzj63
+Z384 !s108 1404853248.609000
 !i10b 1
 !s101 -O0
 vz80_top
-R153
-Z374 I`A`5fHf[aZjk4D[:iBdGB1
-Z375 V97U0[ZMABmhhnzI5R3FGk0
-Z376 !s105 z80_top_sv_unit
+R154
+!i10b 1
+!s100 5Jo@ZN=3T@:BQ_:fVQ4eC2
+IMT:jLcbcN3oXW@D_ba7271
+Z385 V97U0[ZMABmhhnzI5R3FGk0
+R372
 S1
 R4
-Z377 w1407679069
-Z378 8$ROOT/toplevel/z80_top.sv
-Z379 F$ROOT/toplevel/z80_top.sv
-Z380 F../../../toplevel/globals.i
+R373
+R375
+R376
+Z386 F../../../toplevel/globals.i
 L0 8
 R8
 r1
-31
-Z381 !s108 1407679084.578000
-Z382 !s107 ../../../toplevel/globals.i|../../../toplevel/z80.svh|P:/A-Z80/cpu/toplevel/z80_top.sv|
-Z383 !s90 -reportprogress|300|-work|work|-sv|+incdir+../../../toplevel|P:/A-Z80/cpu/toplevel/z80_top.sv|
-R162
-R363
-Z384 !s100 3?7]KnHa4l:O1_Efo7gT;2
-!i10b 1
 !s85 0
+31
+R377
+R378
+R379
 !s101 -O0
+R162
+R365

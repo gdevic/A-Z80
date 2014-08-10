@@ -75,7 +75,7 @@ set_global_assignment -name VERILOG_FILE ../control/interrupts.v
 set_global_assignment -name VERILOG_FILE ../control/decode_state.v
 set_global_assignment -name VERILOG_FILE ../control/clk_delay.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pin_control.sv
-set_global_assignment -name VERILOG_FILE ../bus/control_pins_p.v
+set_global_assignment -name VERILOG_FILE ../bus/control_pins_n.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec_2bit.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec.v
 set_global_assignment -name VERILOG_FILE ../bus/data_switch.v

@@ -107,5 +107,11 @@ output logic ctl_bus_ff_oe,
 // Module: bus/bus_zero.v
 output logic ctl_bus_zero_oe,
 
+// Module: bus/bus_switch.sv
+output logic ctl_sw_1u,
+output logic ctl_sw_1d,
+output logic ctl_sw_2u,
+output logic ctl_sw_2d,
+
 // Module: bus/data_pins.v
 output logic ctl_bus_db_oe,

@@ -79,6 +79,7 @@ begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_we = 1;             // Incrementer to the abus
         ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
+        ctl_reg_sel_ir = 1;
     end
     
     //----------------------------------------------------------
@@ -101,15 +102,12 @@ begin
     
     //----------------------------------------------------------
     // T2:  increment AL and write it back to PC
-    //      Read opcode from DB
+    //      Read opcode from external data pins into the data latch
     if (M1 && T2) begin
         ctl_inc_cy = 1;         // Increment!
-        ctl_al_we = 1;          // Write to latch
         ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
         ctl_bus_inc_we = 1;
     
-        ctl_ir_we = 1;
-        
         // When servicing interrupts, depending on the interrupt mode:
         // IM0 : (nothing special here)
         // IM1 : Force FF on the bus and execute it (RST38 instruction)
@@ -129,7 +127,13 @@ begin
 
     //----------------------------------------------------------
     // T3:  R => AB
+    //      Read opcode byte from the data latch into the IR
     if (M1 && T3) begin
+        ctl_reg_sel_ir = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1; ctl_reg_sys_oe = 1;
+        ctl_al_we = 1;
+
+        ctl_bus_db_oe = 1;
+        ctl_ir_we = 1;
     end
 
     //----------------------------------------------------------
@@ -137,6 +141,11 @@ begin
     //
     // At T4, evaluate continuation flags for some instructions that need more than 4T
     if (M1 && T4) begin
+        ctl_inc_cy = 1; ctl_inc_limit6 = 1; // Increment but limit to 6 bits for "R" register
+        ctl_inc_dec = 1; // TEST!!
+        ctl_reg_sel_ir = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
+        ctl_bus_inc_we = 1;
+
         nextM = !contM1;
         setM1 = !contM1 & !contM2;
     end

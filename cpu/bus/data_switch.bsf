@@ -26,15 +26,15 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "ctl_sw_up" (rect 0 0 60 14)(font "Arial" (font_size 8)))
-		(text "ctl_sw_up" (rect 21 27 81 41)(font "Arial" (font_size 8)))
+		(text "sw_up_en" (rect 0 0 61 14)(font "Arial" (font_size 8)))
+		(text "sw_up_en" (rect 21 27 82 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
 		(pt 0 48)
 		(input)
-		(text "ctl_sw_down" (rect 0 0 79 14)(font "Arial" (font_size 8)))
-		(text "ctl_sw_down" (rect 21 43 100 57)(font "Arial" (font_size 8)))
+		(text "sw_down_en" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "sw_down_en" (rect 21 43 101 57)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port

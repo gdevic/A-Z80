@@ -28,9 +28,6 @@ wire fMRead;
 wire fMWrite;
 wire fIORead;
 wire fIOWrite;
-wire setM1ss;
-wire setM1cc;
-wire setM1bz;
 
 // Module: control/exec_module.i
 wire ctl_ir_we;
@@ -118,6 +115,10 @@ wire ctl_ab_mux_inc;
 wire ctl_inc_limit6;
 wire ctl_bus_ff_oe;
 wire ctl_bus_zero_oe;
+wire ctl_sw_1u;
+wire ctl_sw_1d;
+wire ctl_sw_2u;
+wire ctl_sw_2d;
 wire ctl_bus_db_oe;
 
 // Module: control/interrupts.v
@@ -244,10 +245,10 @@ wire [15:0] address;
 wire [15:0] A;
 
 // Module: bus/bus_switch.sv
-wire ctl_sw_1u;
-wire ctl_sw_1d;
-wire ctl_sw_2u;
-wire ctl_sw_2d;
+wire bus_sw_1u;
+wire bus_sw_1d;
+wire bus_sw_2u;
+wire bus_sw_2d;
 
 // Module: bus/control_pins_p.v
 wire nM1;
