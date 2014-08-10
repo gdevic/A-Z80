@@ -65,6 +65,8 @@ set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL OFF
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
 set_global_assignment -name VERILOG_FILE ../control/ir.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pla_decode.sv
 set_global_assignment -name VERILOG_FILE ../control/sequencer.v
@@ -81,8 +83,8 @@ set_global_assignment -name VERILOG_FILE ../bus/bus_zero.v
 set_global_assignment -name VERILOG_FILE ../bus/bus_ff.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../bus/bus_switch.sv
 set_global_assignment -name VERILOG_FILE ../bus/data_pins.v
-set_global_assignment -name VERILOG_FILE ../bus/address_pins.v
 set_global_assignment -name VERILOG_FILE ../bus/address_latch.v
+set_global_assignment -name VERILOG_FILE ../bus/address_pins.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_control.v
@@ -102,6 +104,4 @@ set_global_assignment -name VERILOG_FILE ../alu/alu_mux_2.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_core.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_bit_select.v
 set_global_assignment -name SYSTEMVERILOG_FILE z80_top.sv
-set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
-set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
