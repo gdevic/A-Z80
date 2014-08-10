@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Jul 10 18:54:06 2014"
+// CREATED		"Sun Aug 10 12:12:19 2014"
 
 module address_latch(
 	ctl_bus_inc_we,
@@ -41,9 +41,9 @@ output wire	address_is_1;
 inout wire	[15:0] abus;
 output wire	[15:0] address;
 
-wire	SYNTHESIZED_WIRE_0;
-reg	[15:0] SYNTHESIZED_WIRE_9;
-wire	[15:0] SYNTHESIZED_WIRE_10;
+wire	[15:0] SYNTHESIZED_WIRE_9;
+wire	SYNTHESIZED_WIRE_1;
+reg	[15:0] SYNTHESIZED_WIRE_10;
 wire	[15:0] SYNTHESIZED_WIRE_3;
 wire	[15:0] SYNTHESIZED_WIRE_4;
 wire	SYNTHESIZED_WIRE_5;
@@ -52,13 +52,13 @@ wire	[15:0] SYNTHESIZED_WIRE_7;
 
 
 
-assign	SYNTHESIZED_WIRE_4 = {SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0,SYNTHESIZED_WIRE_0} & SYNTHESIZED_WIRE_9;
+assign	SYNTHESIZED_WIRE_4 = {ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc} & SYNTHESIZED_WIRE_9;
 
-assign	SYNTHESIZED_WIRE_3 = {ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc} & SYNTHESIZED_WIRE_10;
+assign	SYNTHESIZED_WIRE_3 = {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1} & SYNTHESIZED_WIRE_10;
 
 assign	address = SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4;
 
-assign	SYNTHESIZED_WIRE_0 =  ~ctl_ab_mux_inc;
+assign	SYNTHESIZED_WIRE_1 =  ~ctl_ab_mux_inc;
 
 assign	SYNTHESIZED_WIRE_5 =  ~ctl_inc_zero;
 
@@ -82,10 +82,10 @@ assign	abus[1] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[1] : 1'bz;
 assign	abus[0] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[0] : 1'bz;
 
 
-always@(ctl_al_we or SYNTHESIZED_WIRE_10)
+always@(ctl_al_we or abus)
 begin
 if (ctl_al_we)
-	SYNTHESIZED_WIRE_9 <= SYNTHESIZED_WIRE_10;
+	SYNTHESIZED_WIRE_10 <= abus;
 end
 
 
@@ -93,9 +93,9 @@ inc_dec	b2v_inst_inc_dec(
 	.limit6(ctl_inc_limit6),
 	.decrement(ctl_inc_dec),
 	.carry_in(ctl_inc_cy),
-	.d(abus),
+	.d(SYNTHESIZED_WIRE_10),
 	.address_is_1(address_is_1),
-	.address(SYNTHESIZED_WIRE_10));
+	.address(SYNTHESIZED_WIRE_9));
 
 
 endmodule

@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY bus_ff
+set_global_assignment -name TOP_LEVEL_ENTITY address_latch
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:06:27  MAY 16, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
