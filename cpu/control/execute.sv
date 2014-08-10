@@ -31,6 +31,7 @@ module execute
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
+    input wire reset,
     input wire in_intr,                 // Servicing maskable interrupt
     input wire in_nmi,                  // Servicing non-maskable interrupt
     input wire im1,                     // Interrupt Mode 1
@@ -61,16 +62,25 @@ logic contM2;                           // Continue with the next M cycle
 
 always_comb
 begin
-    contM1 = 0; contM2 = 0;
-    nextM = 0;  setM1 = 0;
-    fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;  
-
     //----------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent the
     // generation of latches
     //----------------------------------------------------------
     `include "exec_zero.i"
 
+    contM1 = 0; contM2 = 0;
+    nextM = 0;  setM1 = 0;
+    fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;  
+    
+    //----------------------------------------------------------
+    // Reset control: Set PC to 0
+    //----------------------------------------------------------
+    if (reset) begin
+        ctl_inc_zero = 1;               // Force 0 to the output of incrementer
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
+        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
+    end
+    
     //----------------------------------------------------------
     // State-based signal assignment
     //----------------------------------------------------------
@@ -82,15 +92,23 @@ begin
     // M1 is a fetch phase
     if (M1) fFetch = 1;
 
-    if (M1 && T1) begin     // T1: PC => AB
-        ctl_reg_sel_pc = 1;
+    //----------------------------------------------------------
+    // T1:  PC => AB
+    if (M1 && T1) begin
+        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1; ctl_reg_sys_oe = 1;
         ctl_al_we = 1;
     end
     
-    if (M1 && T2) begin     // T2: Incr(PC); Get opcode from DB
+    //----------------------------------------------------------
+    // T2:  increment AL and write it back to PC
+    //      Read opcode from DB
+    if (M1 && T2) begin
+        ctl_inc_cy = 1;         // Increment!
+        ctl_al_we = 1;          // Write to latch
+        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
+        ctl_bus_inc_we = 1;
     
         ctl_ir_we = 1;
-        ctl_bus_inc_we = 1;
         
         // When servicing interrupts, depending on the interrupt mode:
         // IM0 : (nothing special here)
@@ -109,9 +127,14 @@ begin
         end
     end
 
+    //----------------------------------------------------------
+    // T3:  R => AB
     if (M1 && T3) begin
     end
 
+    //----------------------------------------------------------
+    // T4:  increment AL and write it back to R
+    //
     // At T4, evaluate continuation flags for some instructions that need more than 4T
     if (M1 && T4) begin
         nextM = !contM1;

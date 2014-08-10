@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sat Aug 09 09:01:58 2014"
+// CREATED		"Sun Aug 10 08:50:25 2014"
 
 module control_pins_n(
 	nINT,
@@ -91,9 +91,6 @@ assign	clk = CPUCLK;
 
 assign	nM1 =  ~m1;
 
-assign	mwait = nWAIT;
-
-
 assign	nMREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
 
 assign	nIORQ = pin_control_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
@@ -109,6 +106,8 @@ assign	SYNTHESIZED_WIRE_4 =  ~rfsh;
 assign	busrq =  ~nBUSRQ;
 
 assign	nHALT =  ~in_halt;
+
+assign	mwait =  ~nWAIT;
 
 assign	nBUSACK =  ~busack;
 

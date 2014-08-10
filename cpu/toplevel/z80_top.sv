@@ -76,7 +76,7 @@ data_switch sw1 ( .ctl_sw_up(bus_sw_1u), .ctl_sw_down(bus_sw_1d), .db_up(db[7:0]
 data_pins   data_pins ( .*, .db(db[7:0]), .D(z80.D[7:0]) );
 
 // External control pins connecting to the interface pins
-control_pins_p control_pins ( .*,
+control_pins_n control_pins ( .*,
     .nM1     (z80.nM1),
     .nMREQ   (z80.nMREQ),
     .nIORQ   (z80.nIORQ),

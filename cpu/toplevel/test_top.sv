@@ -3,6 +3,8 @@
 //--------------------------------------------------------------
 `timescale 100 ps/ 100 ps
 `define TD  #1
+`define CLR 1
+`define SET 0
 
 `include "z80.svh"
 
@@ -10,38 +12,29 @@ module test_bench(z80_if.tb z);
 
 assign clk = z.CLK;
 
-initial begin
+initial begin : init
     $display("Test: Start of test at %d", $time);
-    z.nINT <= 0;
-    z.nNMI <= 0;
-    z.nRESET <= 1;
-    z.nBUSRQ <= 0;
+    z.nWAIT <= `CLR;
+    z.nINT <= `CLR;
+    z.nNMI <= `CLR;
+    z.nRESET <= `SET;
+    z.nBUSRQ <= `CLR;
 
     repeat (3) @(posedge clk);
-    z.nRESET <= 0;
-
-end
+    z.nRESET <= `CLR;
+end : init
 
 endmodule
 
 module test_top();
 
-bit clk = 0;
-bit reset = 0;
-
+bit clk = 1;
 initial repeat (20) `TD clk = ~clk;
 
-initial begin : assert_reset
-    reset = 1;
-    repeat (3) `TD reset = 1;
-    reset = 0;
-end : assert_reset
+z80_if z80(clk);            // Instantiate the Z80 bus interface
+z80_top dut(z80);           // Create an instance of our Z80 design
+test_bench tb(z80);         // Create an instance of the test bench
 
-// Instantiate the bus interface to the design
-z80_if z80(clk);
-// Create an instance of our Z80 design
-z80_top dut(z80);
-// Create an instance of the test bench
-test_bench tb(z80);
+ram ram( .Address(z80.A), .Data(z80.D), .CS(z80.nMREQ), .WE(z80.nWR), .OE(z80.nRD) );
 
 endmodule
