@@ -23,10 +23,6 @@ module execute
     output logic fIORead,
     output logic fIOWrite,
     
-    output logic setM1ss,
-    output logic setM1cc,
-    output logic setM1bz,
-    
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
     //----------------------------------------------------------
@@ -65,8 +61,9 @@ logic contM2;                           // Continue with the next M cycle
 
 always_comb
 begin
-    contM1 = 0;
-    contM2 = 0;
+    contM1 = 0; contM2 = 0;
+    nextM = 0;  setM1 = 0;
+    fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;  
 
     //----------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent the

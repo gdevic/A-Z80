@@ -126,7 +126,8 @@ assign busack = busack_latch;
 
 // This signal determines the T-clock cycle of each function at which
 // we test for the WAIT; the WAIT is then latched at the negative edge of a clock
-logic testW =   (fFetch   &~in_intr & T2) |
+logic testW;
+assign testW =  (fFetch   &~in_intr & T2) |
                 (fFetch   & in_intr & Tw2) |
                 (fMRead   & T2) |
                 (fMWrite  & T2) |
