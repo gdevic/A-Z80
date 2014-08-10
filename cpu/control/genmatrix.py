@@ -26,7 +26,7 @@ with open(fname, 'rb') as csvFile:
     for row in reader:
         content.append('\t'.join(row))
 
-# Search for the section that contains the list of control wires
+# Search for the section that contains a list of control wires
 for line in content:
     col = line.split('\t')          # Split the string into a list of columns
     col_clean = filter(None, col)   # Removed all empty fields (between the separators)
