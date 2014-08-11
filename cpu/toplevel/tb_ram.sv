@@ -11,7 +11,7 @@ assign Data = (!CS && !OE) ? Mem[Address] : {8{1'bz}};
 
 // Read the initial content of the RAM memory from file
 initial begin : init
-    $readmemh("ram.txt", Mem);
+    $readmemh("ram.hex", Mem);
 end : init
 
 always @(CS or WE)
