@@ -60,6 +60,16 @@ logic contM1;                           // Continue M1 cycle
 // Instructions that use M2 immediately after M1/T4 set this at M1/T4
 logic contM2;                           // Continue with the next M cycle
 
+`define GP_REG_AF       2'h3
+`define SYS_REG_PC      2'h0
+`define SYS_REG_IR      2'h1
+`define SYS_REG_WZ      2'h3
+
+`define FLAGS_ALL_SEL   ctl_flags_sz_we=1; ctl_flags_xy_we=1; ctl_flags_hf_we=1; ctl_flags_pf_we=1; ctl_flags_nf_we=1; ctl_flags_cf_we=1; 
+
+wire [1:0] op54;
+assign op54 = { pla[104], pla[103] };
+
 always_comb
 begin
     //----------------------------------------------------------
@@ -68,8 +78,10 @@ begin
     //----------------------------------------------------------
     `include "exec_zero.i"
 
+    // Reset internal control wires
     contM1 = 0; contM2 = 0;
     nextM = 0;  setM1 = 0;
+    // Reset global machine cycle function
     fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;  
     
     //----------------------------------------------------------
@@ -78,8 +90,9 @@ begin
     if (reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_we = 1;             // Incrementer to the abus
-        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
-        ctl_reg_sel_ir = 1;
+        ctl_reg_sys_sel = `SYS_REG_PC;  // Select PC
+        ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+        // TODO: IR ?!
     end
     
     //----------------------------------------------------------
@@ -87,16 +100,18 @@ begin
     //----------------------------------------------------------
     `include "exec_matrix.i"
 
-    //----------------------------------------------------------
+    //========================================================================
     // Default M1 fetch cycle execution
-    //----------------------------------------------------------
-    // M1 is a fetch phase
+    //========================================================================
+    // M1 is always a fetch phase
     if (M1) fFetch = 1;
 
     //----------------------------------------------------------
     // T1:  PC => AB
     if (M1 && T1) begin
-        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1; ctl_reg_sys_oe = 1;
+        ctl_reg_sys_sel = `SYS_REG_PC;  // Select PC
+        ctl_reg_sys_hilo = 2'b11;       // 16-bit width
+        ctl_reg_sys_oe = 1;             // Write it onto the bus
         ctl_al_we = 1;
     end
     
@@ -104,9 +119,10 @@ begin
     // T2:  increment AL and write it back to PC
     //      Read opcode from external data pins into the data latch
     if (M1 && T2) begin
-        ctl_inc_cy = 1;         // Increment!
-        ctl_reg_sel_pc = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
-        ctl_bus_inc_we = 1;
+        ctl_inc_cy = 1;                 // Increment!
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
+        ctl_reg_sys_sel = `SYS_REG_PC;  // Select PC
+        ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
     
         // When servicing interrupts, depending on the interrupt mode:
         // IM0 : (nothing special here)
@@ -126,30 +142,98 @@ begin
     end
 
     //----------------------------------------------------------
-    // T3:  R => AB
+    // T3:  IR => AB        SW4=OFF
+    //      AF => ALU       SW1=OFF
     //      Read opcode byte from the data latch into the IR
     if (M1 && T3) begin
-        ctl_reg_sel_ir = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1; ctl_reg_sys_oe = 1;
-        ctl_al_we = 1;
+        // TODO: IR
+        //ctl_al_we = 1;
+        
+        ctl_reg_gp_sel = `GP_REG_AF;    // Select AF
+        ctl_reg_gp_hilo = 2'b11;        // 16-bit width
+        ctl_reg_gp_oe = 1;              // Read register onto the data bus
 
-        ctl_bus_db_oe = 1;
-        ctl_ir_we = 1;
+        ctl_alu_shift_oe = 1;           // ALU input through the shifter
+        ctl_alu_op1_sel_bus = 1;        // Acc=>OP1
+        ctl_alu_op2_sel_bus = 1;        // Acc=>OP2
+        ctl_flags_bus = 1;              // F=>FLAGT
+        `FLAGS_ALL_SEL                  // Select all flags
+        
+        ctl_bus_db_oe = 1;              // Output opcode from the DB latch
+        ctl_ir_we = 1;                  // Write the opcode into the instruction register
     end
 
     //----------------------------------------------------------
-    // T4:  increment AL and write it back to R
+    // T4:  increment and write back to R
     //
     // At T4, evaluate continuation flags for some instructions that need more than 4T
     if (M1 && T4) begin
         ctl_inc_cy = 1; ctl_inc_limit6 = 1; // Increment but limit to 6 bits for "R" register
         ctl_inc_dec = 1; // TEST!!
-        ctl_reg_sel_ir = 1; ctl_reg_sel_sys_hi = 1; ctl_reg_sel_sys_lo = 1;
-        ctl_bus_inc_we = 1;
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
+        ctl_reg_sys_sel = `SYS_REG_IR;  // Select IR
+        ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
 
         nextM = !contM1;
         setM1 = !contM1 & !contM2;
     end
 
+    //========================================================================
+    // Default memory read function signals
+    //========================================================================
+    if (fMRead) begin
+        // T1: PLA entry asserts a register to use as the address
+        if (T1) begin
+            if (ctl_sw_4u==1 || ctl_sw_4d==1) begin
+                ctl_reg_gp_hilo = 2'b11;        // 16-bit width & write
+                ctl_reg_gp_oe = 1;              // Write it onto the bus
+            end else begin
+                ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+                ctl_reg_sys_oe = 1;             // Write it onto the bus
+            end
+            ctl_al_we = 1;
+        end
+
+        // T2: PLA entry asserts a register to write back from the incrementer
+        if (T2) begin
+            ctl_inc_cy = 1;                 // Increment!
+            ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+            ctl_bus_inc_we = 1;
+        end
+
+        // T3: PLA entry can do with a value in DB latch whatever it wants
+        if (T3) begin
+            ctl_bus_db_oe = 1;              // From DB latch flood the value to all buses
+            ctl_sw_1d = 1;
+            ctl_sw_2d = 1;
+        end
+    end
+
+    //========================================================================
+    // Default memory write function signals
+    //========================================================================
+    if (fMWrite) begin
+        // T1: PLA entry asserts a register to use as the address
+        if (T1) begin
+            ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+            ctl_reg_sys_oe = 1;             // Write it onto the bus
+            ctl_al_we = 1;
+        end
+
+        // T2: PLA entry asserts a register to write back from the incrementer
+        if (T2) begin
+            ctl_inc_cy = 1;                 // Increment!
+            ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+            ctl_bus_inc_we = 1;
+        end
+
+        // T3: PLA entry can do with a value in DB latch whatever it wants
+        if (T3) begin
+            ctl_bus_db_oe = 1;              // From DB latch flood the value to all buses
+            ctl_sw_1d = 1;
+            ctl_sw_2d = 1;
+        end
+    end
 end
 
 endmodule

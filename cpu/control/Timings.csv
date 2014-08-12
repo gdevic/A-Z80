@@ -1,20 +1,41 @@
-#if 	pla[0]				Comment	
-#001H T1  AB:000 DB:--  M1						
-#002H T2  AB:000 DB:F3  M1      MREQ RD						
-#003H T3  AB:000 DB:--     RFSH						
-#004H T4  AB:000 DB:--     RFSH MREQ						
-#end						
-						
-#if 	pla[1]				Comment	
-#001H T1  AB:000 DB:--  M1						
-#002H T2  AB:000 DB:F3  M1      MREQ RD						
-#003H T3  AB:000 DB:--     RFSH						
-#004H T4  AB:000 DB:--     RFSH MREQ						
-#end						
-						
-#if 	pla[2]				Comment	
-#001H T1  AB:000 DB:--  M1						
-#002H T2  AB:000 DB:F3  M1      MREQ RD						
-#003H T3  AB:000 DB:--     RFSH						
-#004H T4  AB:000 DB:--     RFSH MREQ						
-#end						
+// 16-bit Load Group								
+#if 	pla[7]				"ld rr,nn"		"4,3,3"	
+#001H T1  AB:000 DB:--  M1								
+#002H T2  AB:000 DB:01  M1      MREQ RD								
+#003H T3  AB:000 DB:--     RFSH								
+#004H T4  AB:000 DB:--     RFSH MREQ						contM2		
+#005H T5  AB:001 DB:-- 					fMRead			ctl_reg_sys_sel=`SYS_REG_PC;
+#006H T6  AB:001 DB:01          MREQ RD 					fMRead			ctl_reg_sys_sel=`SYS_REG_PC;
+#007H T7  AB:001 DB:01          MREQ RD					fMRead	nextM		ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
+#008H T8  AB:002 DB:-- 					fMRead			ctl_reg_sys_sel=`SYS_REG_PC;
+#009H T9  AB:002 DB:02          MREQ RD 					fMRead			ctl_reg_sys_sel=`SYS_REG_PC;
+#010H T10 AB:002 DB:02          MREQ RD 					fMRead	nextM;setM1		ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
+#end								
+								
+#if 	pla[23] && pla[16]				push qq		"5,3,3"	
+#001H T1  AB:000 DB:--  M1								
+#002H T2  AB:000 DB:C5  M1      MREQ RD								
+#003H T3  AB:000 DB:--     RFSH								
+#004H T4  AB:000 DB:--     RFSH MREQ						contM1		
+#005H T5  AB:000 DB:--						nextM		
+#006H T6  AB:002 DB:--					fMWrite			
+#007H T7  AB:002 DB:02          MREQ					fMWrite			
+#008H T8  AB:002 DB:02          MREQ    WR					fMWrite	nextM		
+#009H T9  AB:001 DB:--					fMWrite			
+#010H T10 AB:001 DB:01          MREQ					fMWrite			
+#011H T11 AB:001 DB:01          MREQ    WR 					fMWrite	nextM;setM1		
+#end								
+								
+#if 	pla[23] && !pla[16]				pop qq		"4,3,3"	
+#001H T1  AB:000 DB:--  M1								
+#002H T2  AB:000 DB:C1  M1      MREQ RD								
+#003H T3  AB:000 DB:--     RFSH								
+#004H T4  AB:000 DB:--     RFSH MREQ						contM2		
+#005H T5  AB:001 DB:--					fMRead			
+#006H T6  AB:001 DB:01          MREQ RD					fMRead			
+#007H T7  AB:001 DB:01          MREQ RD					fMRead	nextM		
+#008H T8  AB:002 DB:-- 					fMRead			
+#009H T9  AB:002 DB:02          MREQ RD					fMRead			
+#010H T10 AB:002 DB:02          MREQ RD					fMRead	nextM;setM1		
+#end								
+								

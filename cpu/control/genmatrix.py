@@ -48,16 +48,16 @@ for line in content:
         M = 1
         T = 1
 
-    # We are in a PLA wire logic description, but consider only lines starting with timing
-    # In this section the exact column matters, so we use col instead of col_clean
-    if len(col)>=3 and len(col[0])>20 and col[0][0]=='#' and col[0][1]=='0':
+    # We are in the PLA wire logic description; consider only lines starting with a timing
+    # stamp. In this section the exact column matters, so we use col instead of col_clean:
+    if len(col)>=1 and len(col[0])>20 and col[0][0]=='#' and col[0][1]=='0':
         #==================================================================
         # Print the basic timing condition for this set of control signals
         #==================================================================
         state = "    if (M{0} && T{1}) begin ".format(M, T)
 
         #==================================================================
-        # Column F (index 5) is the IO block control wire
+        # Column F (index 5) is the function control wire (fMRead, ...)
         #==================================================================
         if col[5]!='':
             state += "{0:<12}".format(col[5] + '=1;')
@@ -73,8 +73,15 @@ for line in content:
                 state += "{0:<9}".format(c2 + '=1;')
         else:
             state += "         "
-        imatrix.append(state + ' end')
 
+        #==================================================================
+        # Column I (index 8) are state control assignments; copy them verbatim
+        #==================================================================
+        if col[8]!='':
+            state += ' ' + col[8]
+
+        # Complete and write out the line
+        imatrix.append(state + ' end')
         #==================================================================
         # Increment the state according to control signals
         # Yes, a bit hardcoded but it works

@@ -29,7 +29,7 @@ endmodule
 module test_top();
 
 bit clk = 1;
-initial repeat (20) `TD clk = ~clk;
+initial repeat (50) `TD clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
 z80_top dut(z80);           // Create an instance of our Z80 design
