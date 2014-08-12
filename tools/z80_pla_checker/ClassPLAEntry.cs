@@ -13,7 +13,7 @@ namespace z80_pla_checker
         {
             IXY0 = (1 << 6),                    // IX or IY flag is reset 
             IXY1 = (1 << 5),                    // IX or IY flag is set
-            HALT = (1 << 4),                    // In HALT state
+            NHALT = (1 << 4),                   // Not in HALT state
             ALU  = (1 << 3),                    // ALU operation
             XX = (1 << 2),                      // Regular instruction
             CB = (1 << 1),                      // CB instruction table modifier
@@ -80,8 +80,7 @@ namespace z80_pla_checker
         {
             if (duplicate) return string.Empty;
 
-            // Check the modifiers against the prefix bitfield
-            // If any bit in the prefix is "1", modifier also needs to be "1"
+            // Check the modifiers against the prefix bitfield.
             if ((((int)modifier) & prefix) != prefix)
                 return string.Empty;
 

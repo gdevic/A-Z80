@@ -35,7 +35,7 @@ namespace z80_pla_checker
         {
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
-            ClassLog.Log("Loading " + filename);
+            ClassLog.Log("Loading PLA: " + filename);
 
             try
             {
@@ -154,7 +154,7 @@ namespace z80_pla_checker
             //// INC/DEC variations with register, (hl) or (ix+d)
             //if (t[66] && !(t[53] || t[105])) ; else t[66] = false;
 
-            //// Generic LD r,r' + (hl), IX variations and on top of that HALT
+            //// Generic LD r,r' + (hl), IX variations and on top of that NHALT
             //if (t[61] && !(t[59] || t[103] || t[58] || t[102] || t[95])) ; else t[61] = false;
             //if (t[58] && !t[95]) ; else t[58] = false;
             //if (t[102] && !t[95]) ; else t[102] = false;
@@ -217,7 +217,7 @@ namespace z80_pla_checker
         public void Table(ClassPlaEntry.Modifier modifier, int num)
         {
             var test3Result = new List<string>();
-            ClassLog.Log("---------------------------------------------------------------------------");
+            ClassLog.Log(new string('-', 242));
             for (int y = 0; y < 16; y++)
             {
                 string line = string.Format("{0:X} ", y);
@@ -225,72 +225,37 @@ namespace z80_pla_checker
                 {
                     byte opcode = Convert.ToByte(y * 16 + x);
                     List<string> match = TableMatch(modifier, opcode);
-                    List<string> final = new List<string>();
+                    string entry = "";
 
                     //===============================================================================
                     // Table 0 - Show the number of PLA entries that match each opcode
                     //===============================================================================
-                    string final0 = string.Join(",", match);
-                    if (match.Count == 0)
-                        final0 = ".";
-                    if (match.Count > 1)
-                        final0 = "[" + match.Count + "]";
-                    final.Add(final0);
+                    if (num == 0)
+                    {
+                        entry = string.Join(",", match);
+                        if (match.Count == 0)
+                            entry = ".";
+                        if (match.Count > 1)
+                            entry = "[" + match.Count + "]";
+                    }
 
                     //===============================================================================
                     // Table 1 - For each opcode, show all PLA entries that trigger
                     //===============================================================================
-                    string final1 = "";
-                    foreach (string oneMatch in match)
+                    if (num == 1)
                     {
-                        final1 += oneMatch.Substring(0, 4);
+                        foreach (string oneMatch in match)
+                        {
+                            string n = oneMatch.Substring(1, oneMatch.LastIndexOf(']') - 1);
+                            entry += n + ",";
+                        }
+                        entry = entry.TrimEnd(',');
                     }
-                    final.Add(final1);
-
-                    //===============================================================================
-                    // Table 2 - Use contention rules to identify the executing PLA entry
-                    //===============================================================================
-                    string final2 = "";
-                    string flags = "";
-                    var contenders = new List<int>();
-                    foreach (string oneMatch in match)
-                    {
-                        int lineX = Convert.ToInt32(oneMatch.Substring(1, oneMatch.IndexOf(']') - 1));
-                        contenders.Add(lineX);
-                    }
-
-                    //if (contenders.Contains(16) && contenders.Contains(23)) contenders.Remove(23);
-                    //if (contenders.Contains(28) && contenders.Contains(37)) contenders.Remove(37);
-                    //if (contenders.Contains(52) && contenders.Contains(65)) contenders.Remove(65);
-                    //if (contenders.Contains(95) && contenders.Contains(61)) contenders.Remove(61); OK
-                    //if (contenders.Contains(50) && contenders.Contains(17)) contenders.Remove(17);
-                    //if (contenders.Contains(53) && contenders.Contains(66)) contenders.Remove(66); OK
-                    //if (contenders.Contains(55) && contenders.Contains(70)) contenders.Remove(70);
-                    //if (contenders.Contains(55) && contenders.Contains(72)) contenders.Remove(72);
-                    //if (contenders.Contains(55) && contenders.Contains(73)) contenders.Remove(73);
-                    //if (contenders.Contains(55) && contenders.Contains(74)) contenders.Remove(74);
-
-                    foreach (int n in contenders)
-                    {
-                        final2 += "[" + n + "]";
-                    }
-                    final.Add(final2 + flags);
-
-                    //===============================================================================
-                    // Table 3 - Dump table after contention resolution
-                    //===============================================================================
-                    if (num == 3)
-                    {
-                        test3Result.Add(String.Format("# OPCODE: 0x{0:x2}", opcode));
-                        foreach (string m in match)
-                            test3Result.Add("# pla" + m);
-                    }
-                    final.Add("");
 
                     // -------------------------------------------
-                    if (final[num].Length > 12)
-                        final[num] = final[num].Substring(0, 12);
-                    line += string.Format(" | {0,-12}", final[num]);
+                    if (entry.Length > 12)
+                        entry = entry.Substring(0, 12);
+                    line += string.Format(" | {0,-12}", entry);
                 }
                 ClassLog.Log(line);
             }

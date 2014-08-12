@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadPLATableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opcodeDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.logText = new System.Windows.Forms.RichTextBox();
@@ -66,6 +67,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadPLATableToolStripMenuItem,
+            this.opcodeDirToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -77,6 +79,13 @@
             this.loadPLATableToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.loadPLATableToolStripMenuItem.Text = "Load PLA table...";
             this.loadPLATableToolStripMenuItem.Click += new System.EventHandler(this.LoadPlaTable);
+            // 
+            // opcodeDirToolStripMenuItem
+            // 
+            this.opcodeDirToolStripMenuItem.Name = "opcodeDirToolStripMenuItem";
+            this.opcodeDirToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.opcodeDirToolStripMenuItem.Text = "Opcode dir...";
+            this.opcodeDirToolStripMenuItem.Click += new System.EventHandler(this.SelectOpcodeDir);
             // 
             // exitToolStripMenuItem
             // 
@@ -105,7 +114,6 @@
             this.logText.Location = new System.Drawing.Point(0, 49);
             this.logText.Name = "logText";
             this.logText.ReadOnly = true;
-            this.logText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.logText.ShowSelectionMargin = true;
             this.logText.Size = new System.Drawing.Size(548, 438);
             this.logText.TabIndex = 2;
@@ -162,14 +170,16 @@
             // 
             // btHALT
             // 
+            this.btHALT.Checked = true;
+            this.btHALT.CheckState = System.Windows.Forms.CheckState.Checked;
             this.btHALT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btHALT.Image = ((System.Drawing.Image)(resources.GetObject("btHALT.Image")));
             this.btHALT.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btHALT.Name = "btHALT";
-            this.btHALT.Size = new System.Drawing.Size(41, 22);
-            this.btHALT.Text = "HALT";
-            this.btHALT.ToolTipText = "In HALT state";
-            this.btHALT.Click += new System.EventHandler(this.BtHaltClick);
+            this.btHALT.Size = new System.Drawing.Size(50, 22);
+            this.btHALT.Text = "NHALT";
+            this.btHALT.ToolTipText = "Not in HALT state";
+            this.btHALT.Click += new System.EventHandler(this.BtNHaltClick);
             // 
             // btALU
             // 
@@ -297,6 +307,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadPLATableToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btHALT;
         private System.Windows.Forms.ToolStripButton btALU;
+        private System.Windows.Forms.ToolStripMenuItem opcodeDirToolStripMenuItem;
     }
 }
 

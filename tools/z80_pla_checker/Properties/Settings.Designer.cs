@@ -34,5 +34,17 @@ namespace z80_pla_checker.Properties {
                 this["plaFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string opcodeDir {
+            get {
+                return ((string)(this["opcodeDir"]));
+            }
+            set {
+                this["opcodeDir"] = value;
+            }
+        }
     }
 }

@@ -15,7 +15,16 @@ namespace z80_pla_checker
         /// <summary>
         /// Current modifiers
         /// </summary>
-        private ClassPlaEntry.Modifier modifier = ClassPlaEntry.Modifier.XX;
+        private ClassPlaEntry.Modifier modifier = ClassPlaEntry.Modifier.XX | ClassPlaEntry.Modifier.NHALT;
+
+        /// <summary>
+        /// Various opcode tables we need to display mnemonics
+        /// </summary>
+        private readonly ClassOpcodeTable tableXX__ = new ClassOpcodeTable();
+        private readonly ClassOpcodeTable tableCBXX = new ClassOpcodeTable();
+        private readonly ClassOpcodeTable tableEDXX = new ClassOpcodeTable();
+        private readonly ClassOpcodeTable tableDDXX = new ClassOpcodeTable();
+        private readonly ClassOpcodeTable tableDDCB = new ClassOpcodeTable();
 
         private readonly List<string> commands = new List<string>();
         private int commandsBrowseIndex;
@@ -43,6 +52,16 @@ namespace z80_pla_checker
                 ClassLog.Log("*** Error loading the master input PLA source table ***");
                 return;
             }
+
+            // Load opcode tables from a previously selected directory
+            // We use only IX variation tables since IY's are the same
+            String opFile = Properties.Settings.Default.opcodeDir;
+            char p = Path.DirectorySeparatorChar;
+            tableXX__.Load(opFile + p + "opcodes-xx.txt", 0);
+            tableCBXX.Load(opFile + p + "opcodes-cb-xx.txt", 2);
+            tableEDXX.Load(opFile + p + "opcodes-ed-xx.txt", 2);
+            tableDDXX.Load(opFile + p + "opcodes-dd-xx.txt", 2);
+            tableDDCB.Load(opFile + p + "opcodes-dd-cb.txt", 7);
 
             ClassLog.Log(Command("?"));
         }
@@ -130,6 +149,25 @@ namespace z80_pla_checker
         }
 
         /// <summary>
+        /// Dumps one of the opcode tables depending on the current set of modifiers
+        /// </summary>
+        private void DumpOpcodeTable()
+        {
+            bool cb = (modifier & ClassPlaEntry.Modifier.CB) != 0;
+            bool ed = (modifier & ClassPlaEntry.Modifier.ED) != 0;
+            bool ix = (modifier & ClassPlaEntry.Modifier.IXY1) != 0;
+            if (ix & cb)
+                tableDDCB.Dump();
+            else if (cb)
+                tableCBXX.Dump();
+            else if (ed)
+                tableEDXX.Dump();
+            else if (ix)
+                tableDDXX.Dump();
+            else tableXX__.Dump();
+        }
+
+        /// <summary>
         /// Select the input PLA table file to load
         /// </summary>
         private void LoadPlaTable(object sender, EventArgs e)
@@ -140,6 +178,17 @@ namespace z80_pla_checker
             dlg.FileName = Properties.Settings.Default.plaFileName;
             if (dlg.ShowDialog() == DialogResult.OK)
                 Properties.Settings.Default.plaFileName = dlg.FileName;
+        }
+
+        /// <summary>
+        /// Select the directory that contains opcode tables
+        /// </summary>
+        private void SelectOpcodeDir(object sender, EventArgs e)
+        {
+            var dlg = new FolderBrowserDialog();
+            dlg.Description = "Select the directory containing opcode files (opcodes-xx.txt etc.):";
+            if (dlg.ShowDialog() == DialogResult.OK)
+                Properties.Settings.Default.opcodeDir = dlg.SelectedPath;
         }
 
         /// <summary>
@@ -168,7 +217,7 @@ namespace z80_pla_checker
         {
             btIX0.Checked = (modifier & ClassPlaEntry.Modifier.IXY0) != 0;
             btIX1.Checked = (modifier & ClassPlaEntry.Modifier.IXY1) != 0;
-            btHALT.Checked = (modifier & ClassPlaEntry.Modifier.HALT) != 0;
+            btHALT.Checked = (modifier & ClassPlaEntry.Modifier.NHALT) != 0;
             btALU.Checked = (modifier & ClassPlaEntry.Modifier.ALU) != 0;
             btXX.Checked = (modifier & ClassPlaEntry.Modifier.XX) != 0;
             btCB.Checked = (modifier & ClassPlaEntry.Modifier.CB) != 0;
@@ -201,9 +250,9 @@ namespace z80_pla_checker
             UpdateButtons();
         }
 
-        private void BtHaltClick(object sender, EventArgs e)
+        private void BtNHaltClick(object sender, EventArgs e)
         {
-            modifier ^= ClassPlaEntry.Modifier.HALT;
+            modifier ^= ClassPlaEntry.Modifier.NHALT;
             UpdateButtons();
         }
 
@@ -330,6 +379,7 @@ namespace z80_pla_checker
                             if (tokens.Length > 1)
                                 num = ScanNumber(tokens[1], 10);
                             pla.Table(modifier, num);
+                            DumpOpcodeTable();
                         }
                         break;
                     default:
