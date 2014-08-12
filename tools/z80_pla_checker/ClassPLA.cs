@@ -14,7 +14,11 @@ namespace z80_pla_checker
         /// List of all PLA entries that we read from the input file
         /// </summary>
         private readonly List<ClassPlaEntry> pla = new List<ClassPlaEntry>();
-        //public List<int> IgnoredPla = new List<int>();
+
+        /// <summary>
+        /// List of PLA entries which we want to ignore for various reasons
+        /// </summary>
+        public List<int> IgnoredPla = new List<int>();
 
         /// <summary>
         /// Returns the total number of PLA table entries
@@ -89,30 +93,32 @@ namespace z80_pla_checker
             //IgnoredPla.Add(106);
             //IgnoredPla.Add(107);
 
-            ////============================================================
-            //// This is only temporary!
-            //// Remove op-bits so we the output is more readable
-            //IgnoredPla.Add(99);
-            //IgnoredPla.Add(100);
-            //IgnoredPla.Add(101);
+            //============================================================
+            // Remove op-bits so we the output is more readable
+            IgnoredPla.Add(99);
+            IgnoredPla.Add(100);
+            IgnoredPla.Add(101);
+            IgnoredPla.Add(102);
+            IgnoredPla.Add(103);
+            IgnoredPla.Add(104);
 
-            //// Remove ALU operation entries so the output is more readable
-            //IgnoredPla.Add(88);
-            //IgnoredPla.Add(86);
-            //IgnoredPla.Add(85);
-            //IgnoredPla.Add(84);
-            //IgnoredPla.Add(80);
-            //IgnoredPla.Add(79);
-            //IgnoredPla.Add(78);
-            //IgnoredPla.Add(76);
+            // Remove ALU operation entries so the output is more readable
+            IgnoredPla.Add(88);
+            IgnoredPla.Add(86);
+            IgnoredPla.Add(85);
+            IgnoredPla.Add(84);
+            IgnoredPla.Add(80);
+            IgnoredPla.Add(79);
+            IgnoredPla.Add(78);
+            IgnoredPla.Add(76);
 
-            ////============================================================
-
-            //foreach (var p in pla)
-            //{
-            //    if (IgnoredPla.Contains<int>(p.GetN()))
-            //        p.Ignored = true;
-            //}
+            //============================================================
+            // Mark all PLA entries we decided to ignore
+            foreach (var p in pla)
+            {
+                if (IgnoredPla.Contains<int>(p.N))
+                    p.Ignored = true;
+            }
             return true;
         }
 
@@ -128,8 +134,6 @@ namespace z80_pla_checker
 
         /// <summary>
         /// Find and return all PLA table entries that trigger on a given condition.
-        /// This function performs a more comprehensive matching taking into account
-        /// the inter-PLA entry logic dependencies.
         /// </summary>
         public List<string> TableMatch(ClassPlaEntry.Modifier modifier, byte instr)
         {
@@ -138,6 +142,7 @@ namespace z80_pla_checker
             // First do a simple search to find the list of *all* PLA entries that match
             foreach (var p in pla)
             {
+                if (p.Ignored) continue;
                 String match = p.Match(modifier, instr);
                 t[p.N] = !string.IsNullOrEmpty(match);
             }
@@ -207,15 +212,10 @@ namespace z80_pla_checker
         }
 
         /// <summary>
-        /// Dump opcode table in various ways. This implements several tests on the PLA and the
-        /// resulting opcodes.
-        /// Call with a specific test number: 0, 1, 2 or 3
+        /// Dump opcode table in various ways.
         /// </summary>
-        public void Test(ClassPlaEntry.Modifier modifier, int testnum, StreamWriter w=null)
+        public void Table(ClassPlaEntry.Modifier modifier, int num)
         {
-            if (w!=null)
-                w.WriteLine("# START " + modifier + ":");
-
             var test3Result = new List<string>();
             ClassLog.Log("---------------------------------------------------------------------------");
             for (int y = 0; y < 16; y++)
@@ -228,7 +228,7 @@ namespace z80_pla_checker
                     List<string> final = new List<string>();
 
                     //===============================================================================
-                    // Test 0 - Simply dump PLA entries that match each opcode
+                    // Table 0 - Show the number of PLA entries that match each opcode
                     //===============================================================================
                     string final0 = string.Join(",", match);
                     if (match.Count == 0)
@@ -238,7 +238,7 @@ namespace z80_pla_checker
                     final.Add(final0);
 
                     //===============================================================================
-                    // Test 1
+                    // Table 1 - For each opcode, show all PLA entries that trigger
                     //===============================================================================
                     string final1 = "";
                     foreach (string oneMatch in match)
@@ -248,7 +248,7 @@ namespace z80_pla_checker
                     final.Add(final1);
 
                     //===============================================================================
-                    // Test 2 - Use contention rules to identify the executing PLA entry
+                    // Table 2 - Use contention rules to identify the executing PLA entry
                     //===============================================================================
                     string final2 = "";
                     string flags = "";
@@ -277,9 +277,9 @@ namespace z80_pla_checker
                     final.Add(final2 + flags);
 
                     //===============================================================================
-                    // Test 3 - Dump table after contention resolution
+                    // Table 3 - Dump table after contention resolution
                     //===============================================================================
-                    if (testnum == 3)
+                    if (num == 3)
                     {
                         test3Result.Add(String.Format("# OPCODE: 0x{0:x2}", opcode));
                         foreach (string m in match)
@@ -288,19 +288,11 @@ namespace z80_pla_checker
                     final.Add("");
 
                     // -------------------------------------------
-                    if (final[testnum].Length > 12)
-                        final[testnum] = final[testnum].Substring(0, 12);
-                    line += string.Format(" | {0,-12}", final[testnum]);
+                    if (final[num].Length > 12)
+                        final[num] = final[num].Substring(0, 12);
+                    line += string.Format(" | {0,-12}", final[num]);
                 }
                 ClassLog.Log(line);
-            }
-            if (w!=null)
-            {
-                foreach (string oneMatch in test3Result)
-                {
-                    w.WriteLine(oneMatch);
-                }
-                w.WriteLine("# END");
             }
         }
 

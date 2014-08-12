@@ -310,9 +310,9 @@ namespace z80_pla_checker
                             "p         - Dump the content of the PLA table" + Environment.NewLine +
                             "p [#]     - For a given PLA entry # (dec) show opcodes that trigger it" + Environment.NewLine +
                             "m [#]     - Match opcode # (hex) with a PLA entry (or match 0-FF)" + Environment.NewLine +
-                            "gen       - Generate a Verilog PLA module" + Environment.NewLine +
-                            "test [#]  - Dump opcode table in various ways" + Environment.NewLine +
-                            "cls       - Clear the screen";
+                            "g         - Generate a Verilog PLA module" + Environment.NewLine +
+                            "t [#]     - Show opcode table in various ways" + Environment.NewLine +
+                            "c         - Clear the screen";
                     case "p": if (tokens.Length > 1)
                             MatchOpcodes(modifier, tokens[1]);
                         else
@@ -320,16 +320,16 @@ namespace z80_pla_checker
                         break;
                     case "m": MatchPLA(tokens.Length > 1 ? tokens[1] : "");
                         break;
-                    case "gen": pla.GenVerilogPla();
+                    case "g": pla.GenVerilogPla();
                         break;
-                    case "cls": BtClearClick(null, null);
+                    case "c": BtClearClick(null, null);
                         break;
-                    case "test":
+                    case "t":
                         {
-                            int testnum = 0;
+                            int num = 0;
                             if (tokens.Length > 1)
-                                testnum = ScanNumber(tokens[1], 10);
-                            pla.Test(modifier, testnum);
+                                num = ScanNumber(tokens[1], 10);
+                            pla.Table(modifier, num);
                         }
                         break;
                     default:
