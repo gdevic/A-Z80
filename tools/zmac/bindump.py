@@ -16,5 +16,6 @@ if len(sys.argv) > 2:
 with open(filename, "rb") as f, open(outfile, "w") as o:
     block = f.read(65536)
     for ch in block:
-        print '{0:02X}'.format(ord(ch))
+        #print '{0:02X}'.format(ord(ch))
         o.write('{0:02X}'.format(ord(ch))+"\n")
+print "Created " + outfile
