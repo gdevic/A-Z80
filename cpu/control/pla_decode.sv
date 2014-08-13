@@ -29,7 +29,7 @@ begin
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XXX110)  pla[ 17]=1'b1; else pla[ 17]=1'b0;   // ld r,*
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX011)  pla[ 20]=1'b1; else pla[ 20]=1'b0;   // outx/otxr
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX010)  pla[ 21]=1'b1; else pla[ 21]=1'b0;   // inx/inxr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'b1XX1XXX_11001011)  pla[ 22]=1'b1; else pla[ 22]=1'b0;   // BITS
+    if ({prefix[6:0], opcode[7:0]} ==? 15'b1XXXXXX_11001011)  pla[ 22]=1'b1; else pla[ 22]=1'b0;   // BITS
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XX0X01)  pla[ 23]=1'b1; else pla[ 23]=1'b0;   // push/pop
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11001101)  pla[ 24]=1'b1; else pla[ 24]=1'b0;   // call
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_000XX111)  pla[ 25]=1'b1; else pla[ 25]=1'b0;   // rlca/rla/rrca/rra
@@ -45,7 +45,7 @@ begin
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_1101X011)  pla[ 37]=1'b1; else pla[ 37]=1'b0;   // out (*),a/a,(*)
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_0011X010)  pla[ 38]=1'b1; else pla[ 38]=1'b0;   // ld (**),a/a,(**)
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00001000)  pla[ 39]=1'b1; else pla[ 39]=1'b0;   // ex af,af'
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1X11XX_00110110)  pla[ 40]=1'b1; else pla[ 40]=1'b0;   // ld (hl),*
+    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XX1XX_00110110)  pla[ 40]=1'b1; else pla[ 40]=1'b0;   // ld (hl),*
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX100)  pla[ 42]=1'b1; else pla[ 42]=1'b0;   // call cc,**
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX010)  pla[ 43]=1'b1; else pla[ 43]=1'b0;   // jp cc,**
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11001011)  pla[ 44]=1'b1; else pla[ 44]=1'b0;   // BITS
@@ -53,17 +53,17 @@ begin
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX101)  pla[ 46]=1'b1; else pla[ 46]=1'b0;   // retx
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00011000)  pla[ 47]=1'b1; else pla[ 47]=1'b0;   // jr *
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_001XX000)  pla[ 48]=1'b1; else pla[ 48]=1'b0;   // jr cc,*
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1X1XXX_11001011)  pla[ 49]=1'b1; else pla[ 49]=1'b0;   // BITS
+    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XXXXX_11001011)  pla[ 49]=1'b1; else pla[ 49]=1'b0;   // BITS
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00110110)  pla[ 50]=1'b1; else pla[ 50]=1'b0;   // ld (hl),*
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11101101)  pla[ 51]=1'b1; else pla[ 51]=1'b0;   // EXTD
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_10XXX110)  pla[ 52]=1'b1; else pla[ 52]=1'b0;   // add/sub/and/or/xor/cp (hl)
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_0011010X)  pla[ 53]=1'b1; else pla[ 53]=1'b0;   // inc/dec (hl)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1X1X1X_XXXXXXXX)  pla[ 54]=1'b1; else pla[ 54]=1'b0;   // Every CB with IX/IY
+    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XXX1X_XXXXXXXX)  pla[ 54]=1'b1; else pla[ 54]=1'b0;   // Every CB with IX/IY
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_XXXXX110)  pla[ 55]=1'b1; else pla[ 55]=1'b0;   // cb: op (hl)
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX111)  pla[ 56]=1'b1; else pla[ 56]=1'b0;   // rst, bit 3 at bottom
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_0100X111)  pla[ 57]=1'b1; else pla[ 57]=1'b0;   // ld i,a / ld r,a
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX111XX_01XXX110)  pla[ 58]=1'b1; else pla[ 58]=1'b0;   // ld r, (hl) (and hlt)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX111XX_01110XXX)  pla[ 59]=1'b1; else pla[ 59]=1'b0;   // ld (hl),r (and hlt)
+    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX1X1XX_01XXX110)  pla[ 58]=1'b1; else pla[ 58]=1'b0;   // ld r, (hl) (and hlt)
+    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX1X1XX_01110XXX)  pla[ 59]=1'b1; else pla[ 59]=1'b0;   // ld (hl),r (and hlt)
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_01XXXXXX)  pla[ 61]=1'b1; else pla[ 61]=1'b0;   // ld
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_XXXXXXXX)  pla[ 62]=1'b1; else pla[ 62]=1'b0;   // all f
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX110)  pla[ 64]=1'b1; else pla[ 64]=1'b0;   // add/sub/and/or/xor/cmp a,imm
