@@ -114,6 +114,7 @@
             this.logText.Location = new System.Drawing.Point(0, 49);
             this.logText.Name = "logText";
             this.logText.ReadOnly = true;
+            this.logText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.logText.ShowSelectionMargin = true;
             this.logText.Size = new System.Drawing.Size(548, 438);
             this.logText.TabIndex = 2;

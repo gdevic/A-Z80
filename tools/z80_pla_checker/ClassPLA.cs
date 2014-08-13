@@ -282,7 +282,7 @@ namespace z80_pla_checker
 
             foreach (var p in pla)
             {
-                if (p.Ignored || p.IsDuplicate())
+                if (p.IsDuplicate())
                     continue;
                 String bitstream = p.GetBitstream();
                 module += string.Format(@"    if ({{prefix[6:0], opcode[7:0]}} ==? 15'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   // {2}",
@@ -294,7 +294,7 @@ namespace z80_pla_checker
             module += @"    // Duplicate or ignored entries" + Environment.NewLine;
             foreach (var p in pla)
             {
-                if (p.Ignored || p.IsDuplicate())
+                if (p.IsDuplicate())
                     module += string.Format(@"    pla[{0,3}]=1'b0;   // {1}", p.N, p.Comment) + Environment.NewLine;
             }
 
