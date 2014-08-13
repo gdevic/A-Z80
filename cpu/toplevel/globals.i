@@ -116,6 +116,7 @@ wire ctl_sw_1d;
 wire ctl_sw_2u;
 wire ctl_sw_2d;
 wire ctl_bus_db_oe;
+wire ctl_bus_db_we;
 
 // Module: control/interrupts.v
 wire iff1;
@@ -154,7 +155,6 @@ wire bus_ab_pin_oe;
 wire bus_ab_pin_we;
 wire bus_db_pin_oe;
 wire bus_db_pin_re;
-wire bus_db_we;
 
 // Module: alu/alu_control.v
 wire alu_shift_in;

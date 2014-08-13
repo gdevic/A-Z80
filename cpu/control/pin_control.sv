@@ -55,8 +55,7 @@ module pin_control
     output wire bus_ab_pin_oe,          // Address bus pads: output enable to address pins
     output wire bus_ab_pin_we,          // Address bus pads: write the output pin address latch
     output wire bus_db_pin_oe,          // Data bus pads: output enable
-    output wire bus_db_pin_re,          // Data bus pads: read from the output pin into the latch
-    output wire bus_db_we               // Data bus pads: write from internal DB to its latch
+    output wire bus_db_pin_re           // Data bus pads: read from the output pin into the latch
 );
 
 //============================================================================
@@ -177,12 +176,5 @@ assign bus_db_pin_re =
                    (fMWrite  & 1'h0) |
                    (fIORead  & (T4 & clk)) |
                    (fIOWrite & 1'h0);
-
-// Write data from the internal data bus into the data pad latch
-assign bus_db_we = (fFetch   & 1'h0) |
-                   (fMRead   & 1'h0) |
-                   (fMWrite  & (T1 & clk)) |
-                   (fIORead  & 1'h0) |
-                   (fIOWrite & (T1 & clk));
 
 endmodule

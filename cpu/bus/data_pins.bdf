@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(input)
 	(rect 24 184 200 200)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "bus_db_we" (rect 9 0 63 12)(font "Arial" ))
+	(text "ctl_bus_db_we" (rect 9 0 80 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
