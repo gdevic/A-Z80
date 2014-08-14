@@ -85,3 +85,4 @@ ctl_sw_1d = 0;
 ctl_sw_2u = 0;
 ctl_sw_2d = 0;
 ctl_bus_db_oe = 0;
+ctl_bus_db_we = 0;

@@ -111,3 +111,4 @@ output logic ctl_sw_2d,
 
 // Module: bus/data_pins.v
 output logic ctl_bus_db_oe,
+output logic ctl_bus_db_we,
