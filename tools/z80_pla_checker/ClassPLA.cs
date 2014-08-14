@@ -213,24 +213,32 @@ namespace z80_pla_checker
 
         /// <summary>
         /// Dump opcode table in various ways.
+        /// Returns a "selected" list of opcode numbers, that is, opcodes which were tagged by
+        /// the optional input PLA table number given in arg parameter.
         /// </summary>
-        public void Table(ClassPlaEntry.Modifier modifier, int num)
+        public List<int> Table(ClassPlaEntry.Modifier modifier, int testNum, int arg)
         {
-            var test3Result = new List<string>();
             ClassLog.Log(new string('-', 242));
+            List<int> tagged = new List<int>();
             for (int y = 0; y < 16; y++)
             {
                 string line = string.Format("{0:X} ", y);
                 for (int x = 0; x < 16; x++)
                 {
+                    char prefix = ' ';
                     byte opcode = Convert.ToByte(y * 16 + x);
                     List<string> match = TableMatch(modifier, opcode);
+                    foreach (string oneMatch in match.Where(oneMatch => Convert.ToInt32(oneMatch.Substring(1, oneMatch.LastIndexOf(']') - 1)) == arg))
+                    {
+                        tagged.Add(y * 16 + x);
+                        prefix = '*';
+                    }
                     string entry = "";
 
                     //===============================================================================
                     // Table 0 - Show the number of PLA entries that match each opcode
                     //===============================================================================
-                    if (num == 0)
+                    if (testNum == 0)
                     {
                         entry = string.Join(",", match);
                         if (match.Count == 0)
@@ -242,7 +250,7 @@ namespace z80_pla_checker
                     //===============================================================================
                     // Table 1 - For each opcode, show all PLA entries that trigger
                     //===============================================================================
-                    if (num == 1)
+                    if (testNum == 1)
                     {
                         foreach (string oneMatch in match)
                         {
@@ -255,10 +263,11 @@ namespace z80_pla_checker
                     // -------------------------------------------
                     if (entry.Length > 12)
                         entry = entry.Substring(0, 12);
-                    line += string.Format(" | {0,-12}", entry);
+                    line += string.Format(" |{0}{1,-12}", prefix, entry);
                 }
                 ClassLog.Log(line);
             }
+            return tagged;
         }
 
         /// <summary>

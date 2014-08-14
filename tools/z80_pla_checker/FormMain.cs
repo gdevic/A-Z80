@@ -151,20 +151,20 @@ namespace z80_pla_checker
         /// <summary>
         /// Dumps one of the opcode tables depending on the current set of modifiers
         /// </summary>
-        private void DumpOpcodeTable()
+        private void DumpOpcodeTable(List<int> t)
         {
             bool cb = (modifier & ClassPlaEntry.Modifier.CB) != 0;
             bool ed = (modifier & ClassPlaEntry.Modifier.ED) != 0;
             bool ix = (modifier & ClassPlaEntry.Modifier.IXY1) != 0;
             if (ix & cb)
-                tableDDCB.Dump();
+                tableDDCB.Dump(t);
             else if (cb)
-                tableCBXX.Dump();
+                tableCBXX.Dump(t);
             else if (ed)
-                tableEDXX.Dump();
+                tableEDXX.Dump(t);
             else if (ix)
-                tableDDXX.Dump();
-            else tableXX__.Dump();
+                tableDDXX.Dump(t);
+            else tableXX__.Dump(t);
         }
 
         /// <summary>
@@ -360,7 +360,10 @@ namespace z80_pla_checker
                             "p [#]     - For a given PLA entry # (dec) show opcodes that trigger it" + Environment.NewLine +
                             "m [#]     - Match opcode # (hex) with a PLA entry (or match 0-FF)" + Environment.NewLine +
                             "g         - Generate a Verilog PLA module" + Environment.NewLine +
-                            "t [#]     - Show opcode table in various ways" + Environment.NewLine +
+                            "t [#] <#> - Show opcode table in various ways" + Environment.NewLine +
+                            "            0 - Display number of PLA entries that trigger on each opcode" + Environment.NewLine +
+                            "            1 - For each opcode, display all PLA entry numbers that trigger" + Environment.NewLine +
+                            "            <#> - Add a * to opcodes for which the specified PLA entry triggers" + Environment.NewLine +
                             "c         - Clear the screen";
                     case "p": if (tokens.Length > 1)
                             MatchOpcodes(modifier, tokens[1]);
@@ -375,11 +378,18 @@ namespace z80_pla_checker
                         break;
                     case "t":
                         {
-                            int num = 0;
+                            int arg1 = 0, arg2 = -1;
                             if (tokens.Length > 1)
-                                num = ScanNumber(tokens[1], 10);
-                            pla.Table(modifier, num);
-                            DumpOpcodeTable();
+                                arg1 = ScanNumber(tokens[1], 10);
+                            if (tokens.Length > 2)
+                                arg2 = ScanNumber(tokens[2], 10);
+                            if (arg1 == 0 || arg1 == 1)
+                            {
+                                List<int> tagged = pla.Table(modifier, arg1, arg2);
+                                DumpOpcodeTable(tagged);
+                            }
+                            else
+                                ClassLog.Log("Invalid table number!");
                         }
                         break;
                     default:

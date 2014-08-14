@@ -43,8 +43,9 @@ namespace z80_pla_checker
 
         /// <summary>
         /// Dumps the opcode table in a table format
+        /// The opcode numbers in the list t will be tagged (marked with *)
         /// </summary>
-        public void Dump()
+        public void Dump(List<int> t)
         {
             ClassLog.Log(new string('-', 242));
             for (int y = 0; y < 16; y++)
@@ -57,7 +58,9 @@ namespace z80_pla_checker
                         opcode = op[y * 16 + x];
                     if (opcode.Length > 12)
                         opcode = opcode.Substring(0, 12);
-                    line += string.Format(" | {0,-12}", opcode);
+                    char tag = ' ';
+                    if (t.Contains(y * 16 + x)) tag = '*';
+                    line += string.Format(" |{0}{1,-12}", tag, opcode);
                 }
                 ClassLog.Log(line);
             }
