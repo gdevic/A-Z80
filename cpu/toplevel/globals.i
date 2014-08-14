@@ -32,14 +32,14 @@ wire fIOWrite;
 // Module: control/exec_module.i
 wire ctl_ir_we;
 wire ctl_iffx_clr;
-wire ctl_iffx_set;
 wire ctl_iff1_clr;
 wire ctl_iff1_iff2;
-wire ctl_im_set;
-wire ctl_im_sel3;
-wire ctl_im_sel4;
 wire ctl_in_nmi_clr;
 wire ctl_in_int_clr;
+wire ctl_iffx_we;
+wire ctl_iffx_bit;
+wire ctl_im_we;
+wire [1:0] ctl_im_sel;
 wire ctl_state_iy_set;
 wire ctl_state_ixiy_clr;
 wire ctl_state_ixiy_we;
