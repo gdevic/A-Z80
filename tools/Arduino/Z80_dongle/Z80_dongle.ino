@@ -453,7 +453,7 @@ void loop()
         DumpState(suppressDump);
     }
 
-    // Assert control signals at the requested clock number
+    // Perform various actions at the requested clock number
     // if the count is positive (we start it at -2 to skip initial 2T)
     if (clkCount>=0)
     {
@@ -466,13 +466,13 @@ void loop()
         if (clkCount==clearAtClk)
             zint = nmi = busrq = reset = wait = 1;
         WriteControlPins();
-    }
 
-    // Stop the simulation under some conditions
-    if (clkCount==stopAtClk)
-        sprintf(extraInfo, "Number of clocks reached"), running = false;
-    if (stopAtHalt&!halt)
-        sprintf(extraInfo, "HALT instruction"), running = false;
+        // Stop the simulation under some conditions
+        if (clkCount==stopAtClk)
+            sprintf(extraInfo, "Number of clocks reached"), running = false;
+        if (stopAtHalt&!halt)
+            sprintf(extraInfo, "HALT instruction"), running = false;
+    }
 
     //--------------------------------------------------------
     // Trace/simulation control handler
