@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-# This script reads Z80 instruction timing data from a spreadsheet text file
+# This script reads A-Z80 instruction timing data from a spreadsheet text file
 # and generates a Verilog include file defining the control block execution matrix.
-#
+# Macros in the timing spreadsheet are substituted using a list of keys stored
+# in the macros file.
 # Input timing file is exported from the Excel file as a TAB-delimited text file.
 #
 import string
@@ -11,86 +12,94 @@ import csv
 # Input file exported from a timing spreadsheet:
 fname = "Timings.csv"
 
-# Helper function to shorten the condition string. This strips all extended
-# PLA logic conditions for the purpose of $display-ing a simpler string
-def shortCondition(condString):
-    end = condString.find("]") + 1
-    return condString[0:end]
+# Input file containing macro substitution keys
+kname = "Timings_macros.txt"
 
-imatrix = []
+# Set this to 1 if you want abbreviated matrix (no-action lines removed)
+abbr = 0
 
-# Read the content of a file and using the csv reader remove any quotes from the input fields
-content = []
+# Set this to 1 if you want debug $display() printout on each PLA line
+debug = 1
+
+# Read the content of the macro substitution file
+macros = []
+with open(kname, 'r') as f:
+    for line in f:
+        if len(line.strip())>0 and line[0]!='#':
+            macros.append(line.strip())
+
+def getSubst(key, token):
+    validset = 0
+    for l in macros:
+        lx = l.split(" ")
+        if l.startswith(":"):
+            if validset:
+                return "ERROR: {0} not in {1}".format(token, key)
+            if lx[0][1:]==key:
+                validset = 1
+        elif validset and lx[0]==token:
+            if len(lx)==1:
+                return ""
+            lx.pop(0)
+            s = " ".join(lx)
+            return s.strip()
+    return "ERROR: {0} not in {1}".format(token, key)
+
+# Read the content of a file and using the csv reader and remove any quotes from the input fields
+content = []                            # Content of the spreadsheet timing file
 with open(fname, 'rb') as csvFile:
     reader = csv.reader(csvFile, delimiter='\t', quotechar='"')
     for row in reader:
         content.append('\t'.join(row))
 
-# Search for the section that contains a list of control wires
-for line in content:
-    col = line.split('\t')          # Split the string into a list of columns
-    col_clean = filter(None, col)   # Removed all empty fields (between the separators)
-    if len(col_clean)==0:           # Ignore completely empty lines
+# The first line is special: it contains names of sets for our macro substitutions
+tkeys = {}                              # Spreadsheet table column keys
+tokens = content.pop(0).split('\t')
+for col in range(len(tokens)):
+    if len(tokens[col])==0:
         continue
-    if col_clean[0].startswith("#end"):
+    tkeys[col] = tokens[col]
+
+# Process each line separately (stateless processor)
+imatrix = []    # Verilog execution matrix code
+for line in content:
+    col = line.split('\t')              # Split the string into a list of columns
+    col_clean = filter(None, col)       # Removed all empty fields (between the separators)
+    if len(col_clean)==0:               # Ignore completely empty lines
+        continue
+    
+    if col_clean[0].startswith('//'):      # Print comment lines
+        imatrix.append(col_clean[0])
+
+    if col_clean[0].startswith("#end"):    # Print the end of a condition
         imatrix.append("end\n")
 
-    # Print comment lines
-    if col_clean[0].startswith('//'):
-        imatrix.append(col_clean[0])
-    if col_clean[0].startswith('#if'):
-        condition = col_clean[1]
-        description = col_clean[2]
+    if col_clean[0].startswith('#if'):     # Print the start of a condition
+        s = col_clean[0]
+        tag = s.find(":")
+        condition = s[4:tag]
         imatrix.append("if ({0}) begin".format(condition))
-        imatrix.append("    $display(\"{0} {1}\");".format(shortCondition(condition), description))
+        if debug:
+            imatrix.append("    $display(\"{0}\");".format(s[4:]))
+
+    if col_clean[0].startswith('#0'):            # Timing line
+        # M and T states are hard-coded in the table at the index 1 and 2
+        state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
         
-        # Reset the M and T cycle counters
-        M = 1
-        T = 1
+        # Loop over all other columns and perform verbatim substitution
+        action = ""
+        for i in range(3,len(col)):
+            token = col[i].strip()
+            if i in tkeys and len(token)>0:
+                action += getSubst(tkeys[i], token)
+                if state.find("ERROR")>0:
+                    print "{0} {1}".format(state, action)
+                    break
 
-    # We are in the PLA wire logic description; consider only lines starting with a timing
-    # stamp. In this section the exact column matters, so we use col instead of col_clean:
-    if len(col)>=1 and len(col[0])>20 and col[0][0]=='#' and col[0][1]=='0':
-        #==================================================================
-        # Print the basic timing condition for this set of control signals
-        #==================================================================
-        state = "    if (M{0} && T{1}) begin ".format(M, T)
-
-        #==================================================================
-        # Column F (index 5) is the function control wire (fMRead, ...)
-        #==================================================================
-        if col[5]!='':
-            state += "{0:<12}".format(col[5] + '=1;')
-        else:
-            state += "            "
-
-        #==================================================================
-        # Column G (index 6) is one or more state control wires (nextM and setM1)
-        #==================================================================
-        if col[6]!='':
-            c = col[6].split(';')
-            for c2 in c:
-                state += "{0:<9}".format(c2 + '=1;')
-        else:
-            state += "         "
-
-        #==================================================================
-        # Column I (index 8) are state control assignments; copy them verbatim
-        #==================================================================
-        if col[8]!='':
-            state += ' ' + col[8]
-
-        # Complete and write out the line
-        imatrix.append(state + ' end')
-        #==================================================================
-        # Increment the state according to control signals
-        # Yes, a bit hardcoded but it works
-        #==================================================================
-        T = T + 1
-        if ("nextM" in col[6]) or ("contM1" in col[6]) or ("contM2" in col[6]):
-            M = M + 1
-            T = 1
-    # End of the PLA logic matrix
+        # Complete and write out a line
+        if abbr and len(action)==0:
+            continue
+        imatrix.append("{0} {1} end".format(state, action))
 
 # Create a file containing the logic matrix code
 with open('exec_matrix.i', 'w') as file:
