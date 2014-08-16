@@ -28,6 +28,8 @@ with open(kname, 'r') as f:
         if len(line.strip())>0 and line[0]!='#':
             macros.append(line.strip())
 
+# Function that returns a substitution string given the section name (key)
+# and the macro token
 def getSubst(key, token):
     validset = 0
     for l in macros:
@@ -78,7 +80,7 @@ for line in content:
         s = col_clean[0]
         tag = s.find(":")
         condition = s[4:tag]
-        imatrix.append("if ({0}) begin".format(condition))
+        imatrix.append("if ({0}) begin".format(condition.strip()))
         if debug:
             imatrix.append("    $display(\"{0}\");".format(s[4:]))
 

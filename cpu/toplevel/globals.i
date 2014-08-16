@@ -6,6 +6,11 @@ wire [7:0] opcode;
 // Module: control/pla_decode.sv
 wire [104:0] pla;
 
+// Module: control/reset.v
+wire clrpc;
+wire reset;
+wire nreset;
+
 // Module: control/sequencer.v
 wire M1;
 wire M2;
@@ -256,8 +261,8 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 wire nmi;
-wire reset;
 wire busrq;
 wire clk;
 wire intr;
 wire mwait;
+wire reset_in;

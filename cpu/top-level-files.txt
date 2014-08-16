@@ -5,6 +5,7 @@ synthesis. Every line that does not refer to a valid file is ignored.
 ------ Control block -------
 control/ir.v
 control/pla_decode.sv
+control/reset.v
 control/sequencer.v
 control/execute.sv
 control/exec_module.i

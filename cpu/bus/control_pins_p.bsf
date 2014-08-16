@@ -222,8 +222,8 @@ applicable agreement for further details.
 	(port
 		(pt 192 240)
 		(output)
-		(text "reset" (rect 0 0 29 14)(font "Arial" (font_size 8)))
-		(text "reset" (rect 142 235 171 249)(font "Arial" (font_size 8)))
+		(text "reset_in" (rect 0 0 46 14)(font "Arial" (font_size 8)))
+		(text "reset_in" (rect 125 235 171 249)(font "Arial" (font_size 8)))
 		(line (pt 192 240)(pt 176 240))
 	)
 	(drawing

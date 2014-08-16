@@ -1,4 +1,5 @@
 # This file contains substitute strings for macros used in the timing table
+# This file contains substitute strings for macros used in the timing table
 # Each :key corresponds to a spreadsheet column with the same header string text
 
 #-------------------------------------------------------------------
@@ -19,8 +20,40 @@ fIOWrite        fIOWrite=1;
 1               contM2=1;
 :nextM
 1               nextM=1;
+CC
 :setM1
 1               setM1=1;
+SS
+CC
+E
+
+#-------------------------------------------------------------------
+# Various control groups
+#-------------------------------------------------------------------
+:A:reg_rd
+PC
+HL
+IR
+r16
+A
+
+:A:reg_wr
+PC
+IR
+
+:D:reg_rd
+A
+PC
+r8
+I
+
+:D:reg_wr
+PC
+r8
+
+:DB_pads
+R
+W
 
 #-------------------------------------------------------------------
 :Extra
@@ -35,7 +68,7 @@ SCF             ctl_flags_cf_set=1;
 HALT            
 
 DI_EI           ctl_iffx_bit=op3;       ctl_iffx_we=1;
-IM              ctl_im_sel=op34;        ctl_im_we=1;
+IM              ctl_im_sel=op43;        ctl_im_we=1;
 
 IX_IY           ctl_state_iy_set=op5;   ctl_state_ixiy_we=1;
 ED              ctl_state_tbl_ed_set=1;

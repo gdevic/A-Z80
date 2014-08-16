@@ -36,6 +36,7 @@ module execute
     input wire in_nmi,                  // Servicing non-maskable interrupt
     input wire im1,                     // Interrupt Mode 1
     input wire im2,                     // Interrupt Mode 2
+    input wire use_ixiy,                // Special decode signal
     
     //----------------------------------------------------------
     // Machine and clock cycles
@@ -67,8 +68,18 @@ logic contM2;                           // Continue with the next M cycle
 
 `define FLAGS_ALL_SEL   ctl_flags_sz_we=1; ctl_flags_xy_we=1; ctl_flags_hf_we=1; ctl_flags_pf_we=1; ctl_flags_nf_we=1; ctl_flags_cf_we=1; 
 
+//----------------------------------------------------------
+// Make available different sections of the opcode byte
+//----------------------------------------------------------
 wire [1:0] op54;
+wire [1:0] op43;
+wire op5;
+wire op3;
+
 assign op54 = { pla[104], pla[103] };
+assign op43 = { pla[103], pla[102] };
+assign op5 = pla[104];
+assign op3 = pla[102];
 
 always_comb
 begin

@@ -68,7 +68,9 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 144
 set_global_assignment -name VERILOG_FILE ../control/ir.v
+set_global_assignment -name VERILOG_FILE ../control/mem_cell.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/pla_decode.sv
+set_global_assignment -name VERILOG_FILE ../control/reset.v
 set_global_assignment -name VERILOG_FILE ../control/sequencer.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../control/execute.sv
 set_global_assignment -name VERILOG_FILE ../control/interrupts.v

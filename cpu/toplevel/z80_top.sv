@@ -30,6 +30,7 @@ assign prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, tabl
 
 ir          instruction_reg ( .*, .db(db0[7:0]) );
 pla_decode  pla_decode ( .* );
+reset       reset_block ( .* );
 sequencer   sequencer ( .* );
 execute     execute ( .* );
 interrupts  interrupts ( .* );

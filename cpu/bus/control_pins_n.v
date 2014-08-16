@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Aug 10 08:50:25 2014"
+// CREATED		"Fri Aug 15 23:00:54 2014"
 
 module control_pins_n(
 	nINT,
@@ -41,11 +41,11 @@ module control_pins_n(
 	nHALT,
 	nBUSACK,
 	nmi,
-	reset,
 	busrq,
 	clk,
 	intr,
-	mwait
+	mwait,
+	reset_in
 );
 
 
@@ -73,11 +73,11 @@ output wire	nRFSH;
 output wire	nHALT;
 output wire	nBUSACK;
 output wire	nmi;
-output wire	reset;
 output wire	busrq;
 output wire	clk;
 output wire	intr;
 output wire	mwait;
+output wire	reset_in;
 
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
@@ -115,7 +115,7 @@ assign	intr =  ~nINT;
 
 assign	nmi =  ~nNMI;
 
-assign	reset =  ~nRESET;
+assign	reset_in =  ~nRESET;
 
 assign	SYNTHESIZED_WIRE_3 =  ~wr;
 
