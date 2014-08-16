@@ -21,23 +21,28 @@ abbr = 0
 # Set this to 1 if you want debug $display() printout on each PLA line
 debug = 1
 
-# Read the content of the macro substitution file
+# Read in the content of the macro substitution file
 macros = []
 with open(kname, 'r') as f:
     for line in f:
         if len(line.strip())>0 and line[0]!='#':
             macros.append(line.strip())
 
-# Function that returns a substitution string given the section name (key)
-# and the macro token
+# List of errors / keys and macros that did not match. We stash them as we go
+# and then print at the end so it is easier to find them
+errors = []
+
+# Returns a substitution string given the section name (key) and the macro token
+# This is done by simply traversing macro substitution list of lines and finding
+# a section that starts with a :key
 def getSubst(key, token):
     validset = 0
     for l in macros:
         lx = l.split(" ")
         if l.startswith(":"):
             if validset:
-                return "ERROR: {0} not in {1}".format(token, key)
-            if lx[0][1:]==key:
+                break
+            if l[1:]==key:
                 validset = 1
         elif validset and lx[0]==token:
             if len(lx)==1:
@@ -45,7 +50,10 @@ def getSubst(key, token):
             lx.pop(0)
             s = " ".join(lx)
             return s.strip()
-    return "ERROR: {0} not in {1}".format(token, key)
+    err = "{0} not in {1}".format(token, key)
+    if err not in errors:
+        errors.append(err)
+    return " --- {0} ?? {1} --- ".format(token, key)
 
 # Read the content of a file and using the csv reader and remove any quotes from the input fields
 content = []                            # Content of the spreadsheet timing file
@@ -105,5 +113,11 @@ for line in content:
 
 # Create a file containing the logic matrix code
 with open('exec_matrix.i', 'w') as file:
+    # If there were errors, print them first (and output to the console)
+    if len(errors)>0:
+        for error in errors:
+            print error
+            file.write(error + "\n")
+        file.write("-" * 80 + "\n")
     for item in imatrix:
         file.write("{}\n".format(item))
