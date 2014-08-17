@@ -14,13 +14,11 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 06 08:39:06 2014"
+// CREATED		"Sun Aug 17 16:28:44 2014"
 
 module reg_file(
 	reg_sel_sys_lo,
 	reg_sel_gp_lo,
-	reg_sys_oe,
-	reg_gp_oe,
 	reg_sel_sys_hi,
 	reg_sel_gp_hi,
 	reg_sel_ir,
@@ -39,6 +37,8 @@ module reg_file(
 	reg_sel_bc,
 	reg_sel_af2,
 	reg_sel_af,
+	reg_sys_we,
+	reg_gp_we,
 	db_hi_as,
 	db_hi_ds,
 	db_lo_as,
@@ -48,8 +48,6 @@ module reg_file(
 
 input wire	reg_sel_sys_lo;
 input wire	reg_sel_gp_lo;
-input wire	reg_sys_oe;
-input wire	reg_gp_oe;
 input wire	reg_sel_sys_hi;
 input wire	reg_sel_gp_hi;
 input wire	reg_sel_ir;
@@ -68,6 +66,8 @@ input wire	reg_sel_bc2;
 input wire	reg_sel_bc;
 input wire	reg_sel_af2;
 input wire	reg_sel_af;
+input wire	reg_sys_we;
+input wire	reg_gp_we;
 inout wire	[7:0] db_hi_as;
 inout wire	[7:0] db_hi_ds;
 inout wire	[7:0] db_lo_as;
@@ -135,121 +135,121 @@ wire	SYNTHESIZED_WIRE_83;
 
 
 
-assign	SYNTHESIZED_WIRE_78 = reg_sys_oe & reg_sel_sys_lo & reg_sel_wz;
+assign	SYNTHESIZED_WIRE_78 = SYNTHESIZED_WIRE_84 & reg_sel_sys_lo & reg_sel_wz;
 
-assign	SYNTHESIZED_WIRE_76 = reg_sel_wz & reg_sel_sys_hi & reg_sys_oe;
+assign	SYNTHESIZED_WIRE_76 = reg_sel_wz & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
 
-assign	SYNTHESIZED_WIRE_82 = reg_gp_oe & reg_sel_gp_lo & reg_sel_sp;
+assign	SYNTHESIZED_WIRE_82 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_sp;
 
-assign	SYNTHESIZED_WIRE_80 = reg_sel_sp & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_80 = reg_sel_sp & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_85 =  ~reg_sys_oe;
+assign	SYNTHESIZED_WIRE_84 =  ~reg_sys_we;
 
-assign	SYNTHESIZED_WIRE_71 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_iy;
+assign	SYNTHESIZED_WIRE_71 = reg_sel_gp_lo & reg_gp_we & reg_sel_iy;
 
-assign	SYNTHESIZED_WIRE_74 = reg_sys_oe & reg_sel_sys_lo & reg_sel_pc;
+assign	SYNTHESIZED_WIRE_74 = SYNTHESIZED_WIRE_84 & reg_sel_sys_lo & reg_sel_pc;
 
-assign	SYNTHESIZED_WIRE_67 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_ix;
+assign	SYNTHESIZED_WIRE_67 = reg_sel_gp_lo & reg_gp_we & reg_sel_ix;
 
-assign	SYNTHESIZED_WIRE_55 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_hl2;
+assign	SYNTHESIZED_WIRE_55 = reg_sel_gp_lo & reg_gp_we & reg_sel_hl2;
 
-assign	SYNTHESIZED_WIRE_72 = reg_sel_pc & reg_sel_sys_hi & reg_sys_oe;
+assign	SYNTHESIZED_WIRE_72 = reg_sel_pc & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
 
-assign	SYNTHESIZED_WIRE_59 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_hl;
+assign	SYNTHESIZED_WIRE_59 = reg_sel_gp_lo & reg_gp_we & reg_sel_hl;
 
-assign	SYNTHESIZED_WIRE_47 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_de2;
+assign	SYNTHESIZED_WIRE_47 = reg_sel_gp_lo & reg_gp_we & reg_sel_de2;
 
-assign	SYNTHESIZED_WIRE_51 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_de;
+assign	SYNTHESIZED_WIRE_51 = reg_sel_gp_lo & reg_gp_we & reg_sel_de;
 
-assign	SYNTHESIZED_WIRE_77 = reg_sel_wz & SYNTHESIZED_WIRE_85 & reg_sel_sys_hi;
+assign	SYNTHESIZED_WIRE_77 = reg_sel_wz & reg_sys_we & reg_sel_sys_hi;
 
-assign	SYNTHESIZED_WIRE_84 =  ~reg_gp_oe;
+assign	SYNTHESIZED_WIRE_85 =  ~reg_gp_we;
 
-assign	SYNTHESIZED_WIRE_70 = reg_gp_oe & reg_sel_gp_lo & reg_sel_iy;
+assign	SYNTHESIZED_WIRE_70 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_iy;
 
-assign	SYNTHESIZED_WIRE_68 = reg_sel_iy & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_68 = reg_sel_iy & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_39 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_bc2;
+assign	SYNTHESIZED_WIRE_39 = reg_sel_gp_lo & reg_gp_we & reg_sel_bc2;
 
-assign	SYNTHESIZED_WIRE_43 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_bc;
+assign	SYNTHESIZED_WIRE_43 = reg_sel_gp_lo & reg_gp_we & reg_sel_bc;
 
-assign	SYNTHESIZED_WIRE_31 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_af2;
+assign	SYNTHESIZED_WIRE_31 = reg_sel_gp_lo & reg_gp_we & reg_sel_af2;
 
-assign	SYNTHESIZED_WIRE_81 = reg_sel_sp & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_81 = reg_sel_sp & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_66 = reg_gp_oe & reg_sel_gp_lo & reg_sel_ix;
+assign	SYNTHESIZED_WIRE_66 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_ix;
 
-assign	SYNTHESIZED_WIRE_64 = reg_sel_ix & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_64 = reg_sel_ix & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_35 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_af;
+assign	SYNTHESIZED_WIRE_35 = reg_sel_gp_lo & reg_gp_we & reg_sel_af;
 
-assign	SYNTHESIZED_WIRE_69 = reg_sel_iy & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_69 = reg_sel_iy & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_63 = reg_sel_sys_lo & SYNTHESIZED_WIRE_85 & reg_sel_ir;
+assign	SYNTHESIZED_WIRE_63 = reg_sel_sys_lo & reg_sys_we & reg_sel_ir;
 
-assign	SYNTHESIZED_WIRE_65 = reg_sel_ix & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_65 = reg_sel_ix & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_53 = reg_sel_hl2 & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_53 = reg_sel_hl2 & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_54 = reg_gp_oe & reg_sel_gp_lo & reg_sel_hl2;
+assign	SYNTHESIZED_WIRE_54 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_hl2;
 
-assign	SYNTHESIZED_WIRE_52 = reg_sel_hl2 & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_52 = reg_sel_hl2 & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_57 = reg_sel_hl & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_57 = reg_sel_hl & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_45 = reg_sel_de2 & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_45 = reg_sel_de2 & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_49 = reg_sel_de & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_49 = reg_sel_de & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_37 = reg_sel_bc2 & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_37 = reg_sel_bc2 & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_58 = reg_gp_oe & reg_sel_gp_lo & reg_sel_hl;
+assign	SYNTHESIZED_WIRE_58 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_hl;
 
-assign	SYNTHESIZED_WIRE_56 = reg_sel_hl & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_56 = reg_sel_hl & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_75 = reg_sel_sys_lo & SYNTHESIZED_WIRE_85 & reg_sel_pc;
+assign	SYNTHESIZED_WIRE_75 = reg_sel_sys_lo & reg_sys_we & reg_sel_pc;
 
-assign	SYNTHESIZED_WIRE_41 = reg_sel_bc & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_41 = reg_sel_bc & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_29 = reg_sel_af2 & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_29 = reg_sel_af2 & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_33 = reg_sel_af & SYNTHESIZED_WIRE_84 & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_33 = reg_sel_af & reg_gp_we & reg_sel_gp_hi;
 
-assign	SYNTHESIZED_WIRE_61 = reg_sel_ir & SYNTHESIZED_WIRE_85 & reg_sel_sys_hi;
+assign	SYNTHESIZED_WIRE_61 = reg_sel_ir & reg_sys_we & reg_sel_sys_hi;
 
-assign	SYNTHESIZED_WIRE_46 = reg_gp_oe & reg_sel_gp_lo & reg_sel_de2;
+assign	SYNTHESIZED_WIRE_46 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_de2;
 
-assign	SYNTHESIZED_WIRE_44 = reg_sel_de2 & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_44 = reg_sel_de2 & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_73 = reg_sel_pc & SYNTHESIZED_WIRE_85 & reg_sel_sys_hi;
+assign	SYNTHESIZED_WIRE_73 = reg_sel_pc & reg_sys_we & reg_sel_sys_hi;
 
-assign	SYNTHESIZED_WIRE_79 = reg_sel_sys_lo & SYNTHESIZED_WIRE_85 & reg_sel_wz;
+assign	SYNTHESIZED_WIRE_79 = reg_sel_sys_lo & reg_sys_we & reg_sel_wz;
 
-assign	SYNTHESIZED_WIRE_50 = reg_gp_oe & reg_sel_gp_lo & reg_sel_de;
+assign	SYNTHESIZED_WIRE_50 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_de;
 
-assign	SYNTHESIZED_WIRE_48 = reg_sel_de & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_48 = reg_sel_de & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_38 = reg_gp_oe & reg_sel_gp_lo & reg_sel_bc2;
+assign	SYNTHESIZED_WIRE_38 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_bc2;
 
-assign	SYNTHESIZED_WIRE_36 = reg_sel_bc2 & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_36 = reg_sel_bc2 & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_42 = reg_gp_oe & reg_sel_gp_lo & reg_sel_bc;
+assign	SYNTHESIZED_WIRE_42 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_bc;
 
-assign	SYNTHESIZED_WIRE_40 = reg_sel_bc & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_40 = reg_sel_bc & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_30 = reg_gp_oe & reg_sel_gp_lo & reg_sel_af2;
+assign	SYNTHESIZED_WIRE_30 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_af2;
 
-assign	SYNTHESIZED_WIRE_28 = reg_sel_af2 & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_28 = reg_sel_af2 & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_62 = reg_sys_oe & reg_sel_sys_lo & reg_sel_ir;
+assign	SYNTHESIZED_WIRE_62 = SYNTHESIZED_WIRE_84 & reg_sel_sys_lo & reg_sel_ir;
 
-assign	SYNTHESIZED_WIRE_34 = reg_gp_oe & reg_sel_gp_lo & reg_sel_af;
+assign	SYNTHESIZED_WIRE_34 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_af;
 
-assign	SYNTHESIZED_WIRE_32 = reg_sel_af & reg_sel_gp_hi & reg_gp_oe;
+assign	SYNTHESIZED_WIRE_32 = reg_sel_af & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
-assign	SYNTHESIZED_WIRE_60 = reg_sel_ir & reg_sel_sys_hi & reg_sys_oe;
+assign	SYNTHESIZED_WIRE_60 = reg_sel_ir & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
 
-assign	SYNTHESIZED_WIRE_83 = reg_sel_gp_lo & SYNTHESIZED_WIRE_84 & reg_sel_sp;
+assign	SYNTHESIZED_WIRE_83 = reg_sel_gp_lo & reg_gp_we & reg_sel_sp;
 
 
 reg_latch	b2v_latch_af2_hi(
