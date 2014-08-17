@@ -34,6 +34,11 @@ end
 bit clk = 1;
 initial repeat (30) #1 clk = ~clk;
 
+// Specific to FPGA, some modules in the schematic need to be pre-initialized
+reg fpga_reset = 1;
+always_latch
+    if (clk) fpga_reset <= 0;
+
 //--------------------------------------------------------------
 // Instantiate DUT
 //--------------------------------------------------------------

@@ -12,6 +12,11 @@ module z80_top (z80_if.dut z80);
 //----------------------------------------------------------------------------
 `include "globals.i"
 
+// Specific to FPGA, some modules in the schematic need to be pre-initialized
+reg fpga_reset = 1;
+always_latch
+    if (clk) fpga_reset <= 0;
+
 // Define internal data bus partitions separated by data bus switches
 wire [7:0] db0;         // Segment connecting data pins and IR
 wire [7:0] db1;         // Segment with ALU

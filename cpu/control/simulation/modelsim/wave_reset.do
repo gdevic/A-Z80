@@ -1,10 +1,11 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /test_reset/reset_in
+add wave -noupdate /test_reset/fpga_reset
 add wave -noupdate /test_reset/M1
 add wave -noupdate /test_reset/T2
-add wave -noupdate /test_reset/clrpc
-add wave -noupdate /test_reset/reset
+add wave -noupdate -color Gold /test_reset/clrpc
+add wave -noupdate -color Red /test_reset/reset
 add wave -noupdate /test_reset/nreset
 add wave -noupdate /test_reset/clk
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x1
