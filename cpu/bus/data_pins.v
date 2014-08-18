@@ -14,13 +14,13 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Aug 10 13:32:10 2014"
+// CREATED		"Mon Aug 18 07:11:17 2014"
 
 module data_pins(
 	bus_db_pin_oe,
 	bus_db_pin_re,
-	ctl_bus_db_oe,
 	ctl_bus_db_we,
+	bus_db_oe,
 	D,
 	db
 );
@@ -28,8 +28,8 @@ module data_pins(
 
 input wire	bus_db_pin_oe;
 input wire	bus_db_pin_re;
-input wire	ctl_bus_db_oe;
 input wire	ctl_bus_db_we;
+input wire	bus_db_oe;
 inout wire	[7:0] D;
 inout wire	[7:0] db;
 
@@ -50,14 +50,14 @@ assign	SYNTHESIZED_WIRE_4 = SYNTHESIZED_WIRE_0 | SYNTHESIZED_WIRE_1;
 
 assign	SYNTHESIZED_WIRE_5 = ctl_bus_db_we | bus_db_pin_re;
 
-assign	db[7] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[7] : 1'bz;
-assign	db[6] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[6] : 1'bz;
-assign	db[5] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[5] : 1'bz;
-assign	db[4] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[4] : 1'bz;
-assign	db[3] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[3] : 1'bz;
-assign	db[2] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[2] : 1'bz;
-assign	db[1] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[1] : 1'bz;
-assign	db[0] = ctl_bus_db_oe ? SYNTHESIZED_WIRE_6[0] : 1'bz;
+assign	db[7] = bus_db_oe ? SYNTHESIZED_WIRE_6[7] : 1'bz;
+assign	db[6] = bus_db_oe ? SYNTHESIZED_WIRE_6[6] : 1'bz;
+assign	db[5] = bus_db_oe ? SYNTHESIZED_WIRE_6[5] : 1'bz;
+assign	db[4] = bus_db_oe ? SYNTHESIZED_WIRE_6[4] : 1'bz;
+assign	db[3] = bus_db_oe ? SYNTHESIZED_WIRE_6[3] : 1'bz;
+assign	db[2] = bus_db_oe ? SYNTHESIZED_WIRE_6[2] : 1'bz;
+assign	db[1] = bus_db_oe ? SYNTHESIZED_WIRE_6[1] : 1'bz;
+assign	db[0] = bus_db_oe ? SYNTHESIZED_WIRE_6[0] : 1'bz;
 
 assign	D[7] = bus_db_pin_oe ? SYNTHESIZED_WIRE_6[7] : 1'bz;
 assign	D[6] = bus_db_pin_oe ? SYNTHESIZED_WIRE_6[6] : 1'bz;

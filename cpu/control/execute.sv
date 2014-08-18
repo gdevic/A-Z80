@@ -96,18 +96,12 @@ begin
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0
     //----------------------------------------------------------
-    if (reset && clk) begin
+    if (reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_we = 1;             // Incrementer to the abus
-        ctl_reg_sel_pc = 1;
-        ctl_reg_sys_we = 1;             // Write 0 to PC
-        ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
-    end
-    if (reset && !clk) begin
-        ctl_inc_zero = 1;               // Force 0 to the output of incrementer
-        ctl_bus_inc_we = 1;             // Incrementer to the abus
-        ctl_reg_sel_ir = 1;
-        ctl_reg_sys_we = 1;             // Write 0 to IR
+        ctl_reg_sel_pc = clk;           // Write to the PC on clock up
+        ctl_reg_sel_ir = !clk;          // Write to the IR on clock down
+        ctl_reg_sys_we = 1;             // Perform write
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
     end
     
@@ -141,21 +135,15 @@ begin
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width
         ctl_reg_sys_we = 1;             // Write 16-bit PC
     
+        ctl_bus_db_oe = 1;              // Data pin latch to internal data bus, unless:
         // When servicing interrupts, depending on the interrupt mode:
         // IM0 : (nothing special here)
         // IM1 : Force FF on the bus and execute it (RST38 instruction)
         // IM2 : Force 00 on the bus - later we execute a special CALL on that NOP
         // NMI : Force FF on the bus and execute it (RST38 instruction)
         //       within the RST instruction the target address is conditionally set to 0x66
-        if (in_intr || in_nmi) begin
-            if (in_intr) begin
-                if (im1) ctl_bus_ff_oe = 1;
-                if (im2) ctl_bus_zero_oe = 1;
-            end else    // in_nmi
-                ctl_bus_ff_oe = 1;
-        end else begin
-            ctl_bus_db_oe = 1;
-        end
+        if ((in_intr && im1) || in_nmi) ctl_bus_ff_oe = 1;
+        if (in_intr && im2) ctl_bus_zero_oe = 1;
     end
 
     //----------------------------------------------------------

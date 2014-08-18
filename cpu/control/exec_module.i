@@ -99,11 +99,10 @@ output logic ctl_al_we,
 output logic ctl_ab_mux_inc,
 output logic ctl_inc_limit6,
 
-// Module: bus/bus_ff.v
+// Module: bus/bus_control.v
 output logic ctl_bus_ff_oe,
-
-// Module: bus/bus_zero.v
 output logic ctl_bus_zero_oe,
+output logic ctl_bus_db_oe,
 
 // Module: bus/bus_switch.sv
 output logic ctl_sw_1u,
@@ -112,5 +111,4 @@ output logic ctl_sw_2u,
 output logic ctl_sw_2d,
 
 // Module: bus/data_pins.v
-output logic ctl_bus_db_oe,
 output logic ctl_bus_db_we,

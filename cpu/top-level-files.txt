@@ -29,8 +29,7 @@ bus/address_latch.v
 bus/address_pins.v
 
 --------- Misc bus ---------
-bus/bus_ff.v
-bus/bus_zero.v
+bus/bus_control.v
 bus/bus_switch.sv
 
 ------ I/O pin control -----

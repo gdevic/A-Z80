@@ -81,8 +81,7 @@ set_global_assignment -name VERILOG_FILE ../bus/control_pins_n.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec_2bit.v
 set_global_assignment -name VERILOG_FILE ../bus/inc_dec.v
 set_global_assignment -name VERILOG_FILE ../bus/data_switch.v
-set_global_assignment -name VERILOG_FILE ../bus/bus_zero.v
-set_global_assignment -name VERILOG_FILE ../bus/bus_ff.v
+set_global_assignment -name VERILOG_FILE ../bus/bus_control.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../bus/bus_switch.sv
 set_global_assignment -name VERILOG_FILE ../bus/data_pins.v
 set_global_assignment -name VERILOG_FILE ../bus/address_latch.v

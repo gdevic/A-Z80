@@ -118,11 +118,11 @@ wire ctl_ab_mux_inc;
 wire ctl_inc_limit6;
 wire ctl_bus_ff_oe;
 wire ctl_bus_zero_oe;
+wire ctl_bus_db_oe;
 wire ctl_sw_1u;
 wire ctl_sw_1d;
 wire ctl_sw_2u;
 wire ctl_sw_2d;
-wire ctl_bus_db_oe;
 wire ctl_bus_db_we;
 
 // Module: control/interrupts.v
@@ -246,6 +246,9 @@ wire [15:0] address;
 
 // Module: bus/address_pins.v
 wire [15:0] A;
+
+// Module: bus/bus_control.v
+wire bus_db_oe;
 
 // Module: bus/bus_switch.sv
 wire bus_sw_1u;

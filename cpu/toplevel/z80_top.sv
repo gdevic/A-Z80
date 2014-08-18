@@ -72,9 +72,8 @@ address_pins  address_pins ( .*, .A(z80.A[15:0]) );
 bus_switch bus_switch ( .* );
 data_switch sw2 ( .sw_up_en(bus_sw_2u), .sw_down_en(bus_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]) );
 
-// Generators for 0x00 and 0xFF on the data (instruction) bus
-bus_zero    bus_zero ( .* );
-bus_ff      bus_ff ( .* );
+// Controls writers to the first section of the data bus
+bus_control bus_control ( .* );
 
 data_switch sw1 ( .sw_up_en(bus_sw_1u), .sw_down_en(bus_sw_1d), .db_up(db0[7:0]), .db_down(db1[7:0]) );
 
