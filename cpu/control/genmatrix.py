@@ -9,6 +9,7 @@
 import string
 import sys
 import csv
+import os
 
 # Input file exported from a timing spreadsheet:
 fname = "Timings.csv"
@@ -108,7 +109,7 @@ for line in content:
         condition = s[4:tag]
         imatrix.append("if ({0}) begin".format(condition.strip()))
         if debug:
-            imatrix.append("    $display(\"{0}\");".format(s[4:]))
+            imatrix.append("    $strobe(\"{0}\");".format(s[4:]))
 
     if col_clean[0].startswith('#0'):       # Timing line
         # M and T states are hard-coded in the table at the index 1 and 2
@@ -139,3 +140,6 @@ with open('exec_matrix.i', 'w') as file:
         file.write("-" * 80 + "\n")
     for item in imatrix:
         file.write("{}\n".format(item))
+
+# Touch a file that includes 'exec_matrix.i' to ensure it will recompile correctly
+os.utime("execute.sv", None)

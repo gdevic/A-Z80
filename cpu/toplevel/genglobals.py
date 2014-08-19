@@ -42,3 +42,6 @@ for infile in files:
                 else:
                     file1.write("wire " + wire + ";\n")
                     globals.append(wire)
+
+# Touch a file that includes 'globals.i' to ensure it will recompile correctly
+os.utime("z80_top.sv", None)

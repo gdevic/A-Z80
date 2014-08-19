@@ -44,3 +44,5 @@ for infile in files:
                 else:
                     file0.write(wire + " = 0;\n")                    
 
+# Touch a file that includes 'exec_module.i' and 'exec_zero.i' to ensure it will recompile correctly
+os.utime("execute.sv", None)
