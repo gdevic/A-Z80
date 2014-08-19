@@ -27,7 +27,12 @@ macros = []
 with open(kname, 'r') as f:
     for line in f:
         if len(line.strip())>0 and line[0]!='/':
-            macros.append(line.rstrip())
+            # Wrap up non-starting //-style comments into /* ... */ so the
+            # line can be concatenated while preserving comments
+            if line.find("//")>0:
+                macros.append( line.rstrip().replace("//", "/*", 1) + " */" )
+            else:
+                macros.append(line.rstrip())
 
 # List of errors / keys and macros that did not match. We stash them as we go
 # and then print at the end so it is easier to find them
@@ -42,26 +47,27 @@ def getSubst(key, token):
     validset = False
     for l in macros:
         if multiline==True:
-            # Multiline copies lines until an empty line or a char at [0] is not space
+            # Multiline copies lines until a char at [0] is not a space
             if len(l.strip())==0 or l[0]!=' ':
-                return "\n".join(subst)
+                return '\n' + "\n".join(subst)
             else:
                 subst.append(l)
-        lx = l.split(" ")
-        if l.startswith(":"):
-            if validset:
-                break
+        lx = l.split(' ')               # Split the string and then ignore (duplicate)
+        lx = filter(None, lx)           # spaces in the list left by the split()
+        if l.startswith(":"):           # Find and recognize a matching set (key) section
+            if validset:                # Error if there is a new section going from the macthing one
+                break                   # meaning we did not find our macro in there
             if l[1:]==key:
                 validset = True
         elif validset and lx[0]==token:
             if len(lx)==1:
                 return ""
-            if lx[1]=='\\': # Multi-line macro
+            if lx[1]=='\\':             # Multi-line macro state starts with '\' character
                 multiline = True
                 continue
             lx.pop(0)
             s = " ".join(lx)
-            return s.strip()
+            return ' ' + s.strip()
     err = "{0} not in {1}".format(token, key)
     if err not in errors:
         errors.append(err)
@@ -89,14 +95,14 @@ for line in content:
     col_clean = filter(None, col)       # Removed all empty fields (between the separators)
     if len(col_clean)==0:               # Ignore completely empty lines
         continue
-    
-    if col_clean[0].startswith('//'):       # Print comment lines
+
+    if col_clean[0].startswith('//'):   # Print comment lines
         imatrix.append(col_clean[0])
 
-    if col_clean[0].startswith("#end"):     # Print the end of a condition
+    if col_clean[0].startswith("#end"): # Print the end of a condition
         imatrix.append("end\n")
 
-    if col_clean[0].startswith('#if'):      # Print the start of a condition
+    if col_clean[0].startswith('#if'):  # Print the start of a condition
         s = col_clean[0]
         tag = s.find(":")
         condition = s[4:tag]
@@ -107,21 +113,21 @@ for line in content:
     if col_clean[0].startswith('#0'):       # Timing line
         # M and T states are hard-coded in the table at the index 1 and 2
         state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
-        
+
         # Loop over all other columns and perform verbatim substitution
         action = ""
         for i in range(3,len(col)):
             token = col[i].strip()
             if i in tkeys and len(token)>0:
                 action += getSubst(tkeys[i], token)
-                if state.find("ERROR")>0:
+                if state.find("ERROR")>=0:
                     print "{0} {1}".format(state, action)
                     break
 
         # Complete and write out a line
         if abbr and len(action)==0:
             continue
-        imatrix.append("{0} {1} end".format(state, action))
+        imatrix.append("{0}{1} end".format(state, action))
 
 # Create a file containing the logic matrix code
 with open('exec_matrix.i', 'w') as file:
