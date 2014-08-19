@@ -26,10 +26,6 @@ wire [7:0] db0;         // Segment connecting data pins and IR
 wire [7:0] db1;         // Segment with ALU
 wire [7:0] db2;         // Segment with msb part of the register address-side interface
 
-// Master hold clock signal may be requested by the delay or timing unit
-logic hold_clk;
-assign hold_clk = hold_clk_delay | hold_clk_timing;
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Control block
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +36,7 @@ assign prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, tabl
 ir          instruction_reg ( .*, .db(db0[7:0]) );
 pla_decode  pla_decode ( .* );
 reset       reset_block ( .* );
-sequencer   sequencer ( .* );
+sequencer   sequencer ( .*, .hold_clk1(hold_clk_delay), .hold_clk2(hold_clk_timing) );
 execute     execute ( .* );
 interrupts  interrupts ( .* );
 decode_state decode_state ( .* );

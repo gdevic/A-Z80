@@ -14,25 +14,26 @@ add wave -noupdate -expand -group Pins /test_top/z80/nINT
 add wave -noupdate -expand -group Pins /test_top/z80/nNMI
 add wave -noupdate -expand -group Pins /test_top/z80/nRESET
 add wave -noupdate -expand -group Pins /test_top/z80/nBUSRQ
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/clk
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/reset_in
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/fpga_reset
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/x1
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/x2
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/x3
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/M1
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/T2
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/clrpc
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/reset
-add wave -noupdate -expand -group reset /test_top/dut/reset_block/nreset
+add wave -noupdate -group reset /test_top/dut/reset_block/clk
+add wave -noupdate -group reset /test_top/dut/reset_block/reset_in
+add wave -noupdate -group reset /test_top/dut/reset_block/fpga_reset
+add wave -noupdate -group reset /test_top/dut/reset_block/x1
+add wave -noupdate -group reset /test_top/dut/reset_block/x2
+add wave -noupdate -group reset /test_top/dut/reset_block/x3
+add wave -noupdate -group reset /test_top/dut/reset_block/M1
+add wave -noupdate -group reset /test_top/dut/reset_block/T2
+add wave -noupdate -group reset /test_top/dut/reset_block/clrpc
+add wave -noupdate -group reset /test_top/dut/reset_block/reset
+add wave -noupdate -group reset /test_top/dut/reset_block/nreset
 add wave -noupdate -radix hexadecimal -childformat {{{/test_top/z80/A[15]} -radix hexadecimal} {{/test_top/z80/A[14]} -radix hexadecimal} {{/test_top/z80/A[13]} -radix hexadecimal} {{/test_top/z80/A[12]} -radix hexadecimal} {{/test_top/z80/A[11]} -radix hexadecimal} {{/test_top/z80/A[10]} -radix hexadecimal} {{/test_top/z80/A[9]} -radix hexadecimal} {{/test_top/z80/A[8]} -radix hexadecimal} {{/test_top/z80/A[7]} -radix hexadecimal} {{/test_top/z80/A[6]} -radix hexadecimal} {{/test_top/z80/A[5]} -radix hexadecimal} {{/test_top/z80/A[4]} -radix hexadecimal} {{/test_top/z80/A[3]} -radix hexadecimal} {{/test_top/z80/A[2]} -radix hexadecimal} {{/test_top/z80/A[1]} -radix hexadecimal} {{/test_top/z80/A[0]} -radix hexadecimal}} -subitemconfig {{/test_top/z80/A[15]} {-height 15 -radix hexadecimal} {/test_top/z80/A[14]} {-height 15 -radix hexadecimal} {/test_top/z80/A[13]} {-height 15 -radix hexadecimal} {/test_top/z80/A[12]} {-height 15 -radix hexadecimal} {/test_top/z80/A[11]} {-height 15 -radix hexadecimal} {/test_top/z80/A[10]} {-height 15 -radix hexadecimal} {/test_top/z80/A[9]} {-height 15 -radix hexadecimal} {/test_top/z80/A[8]} {-height 15 -radix hexadecimal} {/test_top/z80/A[7]} {-height 15 -radix hexadecimal} {/test_top/z80/A[6]} {-height 15 -radix hexadecimal} {/test_top/z80/A[5]} {-height 15 -radix hexadecimal} {/test_top/z80/A[4]} {-height 15 -radix hexadecimal} {/test_top/z80/A[3]} {-height 15 -radix hexadecimal} {/test_top/z80/A[2]} {-height 15 -radix hexadecimal} {/test_top/z80/A[1]} {-height 15 -radix hexadecimal} {/test_top/z80/A[0]} {-height 15 -radix hexadecimal}} /test_top/z80/A
 add wave -noupdate -radix hexadecimal /test_top/z80/D
 add wave -noupdate -group sequencer /test_top/dut/sequencer/clk
 add wave -noupdate -group sequencer /test_top/dut/sequencer/nextM
 add wave -noupdate -group sequencer /test_top/dut/sequencer/setM1
-add wave -noupdate -group sequencer /test_top/dut/sequencer/hold_clk
 add wave -noupdate -group sequencer /test_top/dut/sequencer/reset
 add wave -noupdate -group sequencer /test_top/dut/sequencer/T2_en
+add wave -noupdate -group sequencer /test_top/dut/sequencer/hold_clk1
+add wave -noupdate -group sequencer /test_top/dut/sequencer/hold_clk2
 add wave -noupdate -group sequencer /test_top/dut/sequencer/M1
 add wave -noupdate -group sequencer /test_top/dut/sequencer/M2
 add wave -noupdate -group sequencer /test_top/dut/sequencer/M3
@@ -45,10 +46,10 @@ add wave -noupdate -group sequencer /test_top/dut/sequencer/T3
 add wave -noupdate -group sequencer /test_top/dut/sequencer/T4
 add wave -noupdate -group sequencer /test_top/dut/sequencer/T5
 add wave -noupdate -group sequencer /test_top/dut/sequencer/T6
-add wave -noupdate -expand -group {data pins} /test_top/dut/data_pins/bus_db_pin_oe
-add wave -noupdate -expand -group {data pins} /test_top/dut/data_pins/bus_db_pin_re
-add wave -noupdate -expand -group {data pins} /test_top/dut/data_pins/bus_db_oe
-add wave -noupdate -expand -group {data pins} -label {DB Latch} -radix hexadecimal /test_top/dut/data_pins/SYNTHESIZED_WIRE_6
+add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_pin_oe
+add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_pin_re
+add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_oe
+add wave -noupdate -group {data pins} -label {DB Latch} -radix hexadecimal /test_top/dut/data_pins/SYNTHESIZED_WIRE_6
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_bus_inc_we
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_inc_cy
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_inc_dec

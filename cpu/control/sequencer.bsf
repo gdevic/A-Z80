@@ -61,9 +61,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "hold_clk" (rect 0 0 46 14)(font "Arial" (font_size 8)))
-		(text "hold_clk" (rect 21 107 67 121)(font "Arial" (font_size 8)))
+		(text "hold_clk1" (rect 0 0 53 14)(font "Arial" (font_size 8)))
+		(text "hold_clk1" (rect 21 107 74 121)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 16 112))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "hold_clk2" (rect 0 0 53 14)(font "Arial" (font_size 8)))
+		(text "hold_clk2" (rect 21 123 74 137)(font "Arial" (font_size 8)))
+		(line (pt 0 128)(pt 16 128))
 	)
 	(port
 		(pt 120 32)
