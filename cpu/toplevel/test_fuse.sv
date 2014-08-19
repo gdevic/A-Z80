@@ -1,5 +1,5 @@
 //--------------------------------------------------------------
-// Testbench for the top level design
+// Testbench using Fuse Z80 emulator test vectors
 //--------------------------------------------------------------
 `timescale 100 ps/ 100 ps
 `define TD  #1
@@ -8,7 +8,7 @@
 
 `include "z80.svh"
 
-module test_bench_top(z80_if.tb z);
+module test_bench_fuse(z80_if.tb z);
 
 assign clk = z.CLK;
 
@@ -17,23 +17,24 @@ initial begin : init
     z.nWAIT <= `CLR;
     z.nINT <= `CLR;
     z.nNMI <= `CLR;
-    z.nRESET <= `SET;
     z.nBUSRQ <= `CLR;
-
-    repeat (3) @(posedge clk);
+    z.nRESET <= `SET;
     z.nRESET <= `CLR;
+
+    `include "test_fuse.i"
+
 end : init
 
 endmodule
 
-module test_top();
+module test_fuse();
 
 bit clk = 1;
 initial repeat (50) `TD clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
 z80_top dut(z80);           // Create an instance of our Z80 design
-test_bench_top tb(z80);         // Create an instance of the test bench
+test_bench_fuse tb(z80);    // Create an instance of the test bench
 
 ram ram( .Address(z80.A), .Data(z80.D), .CS(z80.nMREQ), .WE(z80.nWR), .OE(z80.nRD) );
 
