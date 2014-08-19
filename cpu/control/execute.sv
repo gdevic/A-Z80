@@ -62,6 +62,12 @@ logic contM1;                           // Continue M1 cycle
 // Instructions that use M2 immediately after M1/T4 set this at M1/T4
 logic contM2;                           // Continue with the next M cycle
 
+//----------------------------------------------------------
+// Define various shortcuts to field naming
+//----------------------------------------------------------
+`define GP_REG_BC       2'h0
+`define GP_REG_DE       2'h1
+`define GP_REG_HL       2'h2
 `define GP_REG_AF       2'h3
 
 `define FLAGS_ALL_SEL   ctl_flags_sz_we=1; ctl_flags_xy_we=1; ctl_flags_hf_we=1; ctl_flags_pf_we=1; ctl_flags_nf_we=1; ctl_flags_cf_we=1; 
@@ -185,6 +191,19 @@ begin
 
         nextM = !contM1;
         setM1 = !contM1 & !contM2;
+    end
+
+    //========================================================================
+    // Default M1 memory read cycle execution
+    //========================================================================
+    // Memory read default base sequence is to increment a register
+    // Register selection varies by the PLA entry
+    if (fMRead && T1) begin
+        ctl_al_we = 1;                  // Write it into the address latch
+    end
+    
+    if (fMRead && T2) begin
+        ctl_inc_cy = 1;                 // Increment address latch
     end
 end
 
