@@ -12,9 +12,9 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II 64-Bit"
+// PROGRAM		"Quartus II"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Aug 17 16:28:44 2014"
+// CREATED		"Tue Aug 19 16:45:32 2014"
 
 module reg_file(
 	reg_sel_sys_lo,
@@ -336,7 +336,7 @@ reg_latch	b2v_latch_de_lo(
 	);
 
 
-reg_latch	b2v_latch_hl2_hi1(
+reg_latch	b2v_latch_hl2_hi(
 	.oen(SYNTHESIZED_WIRE_52),
 	.we(SYNTHESIZED_WIRE_53),
 	.db(db_hi_ds)
