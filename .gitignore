@@ -30,6 +30,8 @@ mgc_location_map
 # Visual Studio temporary files
 *.suo
 *.tss
+*.user
 obj/
 Debug/
 Release/
+*.DotSettings
