@@ -12,10 +12,14 @@ module z80_top (z80_if.dut z80);
 //----------------------------------------------------------------------------
 `include "globals.i"
 
-// Specific to FPGA, some modules in the schematic need to be pre-initialized
-reg fpga_reset = 1;
-always_latch
-    if (clk) fpga_reset <= 0;
+// Specific to Modelsim, some modules in the schematics need to be pre-initialized
+// to avoid starting simulations with unknown values in selected flip flops.
+// When synthesized, the CPU RESET input signal will do the work.
+reg fpga_reset = 0;
+initial begin
+    fpga_reset = 1;
+    #1 fpga_reset = 0;
+end
 
 // Define internal data bus partitions separated by data bus switches
 wire [7:0] db0;         // Segment connecting data pins and IR
