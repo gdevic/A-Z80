@@ -14,12 +14,18 @@ initial begin : init
     $readmemh("ram.hex", Mem);
 end : init
 
+always @(!CS && !OE) begin
+    $strobe("[ram] RD A=%d, D=%d, T=%d", Address, Data, $time);
+end
+
 always @(CS or WE)
-  if (!CS && !WE)
-    Mem[Address] = Data;
+    if (!CS && !WE) begin
+        $strobe("[ram] WR A=%d, D=%d, T=%d", Address, Data, $time);
+        Mem[Address] = Data;
+    end
 
 always @(WE or OE)
-  if (!WE && !OE)
-    $display("[ram] error: OE and WE both active!");
+    if (!WE && !OE)
+        $display("[ram] error: OE and WE both active!");
 
 endmodule
