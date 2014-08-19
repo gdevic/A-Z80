@@ -32,11 +32,8 @@ Simulation
 Each functional block contains a Modelsim simulation profile:
 ./<block>/simulation/modelsim/test_<block>.mpf
 
-Before you can load and simulate them using Modelsim, you need to set up
-the environment by running a set of Python scripts at each functional block:
-./<block>/simulation/modelsim/work/setup.py
-
-Run each one of them to create necessary directories that Modelsim needs.
+Before you can load and simulate modules using Modelsim, you need to set up
+the environment by running a Python script 'modelsim_setup.py'.
 
 Each Modelsim project contains a set of predefined waveform scripts which you can
 load before running a simulation of a particular submodule. The scripts are named
