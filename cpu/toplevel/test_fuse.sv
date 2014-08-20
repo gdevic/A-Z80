@@ -2,7 +2,6 @@
 // Testbench using Fuse Z80 emulator test vectors
 //--------------------------------------------------------------
 `timescale 100 ps/ 100 ps
-`define TD  #1
 `define CLR 1
 `define SET 0
 
@@ -30,7 +29,7 @@ endmodule
 module test_fuse();
 
 bit clk = 1;
-initial repeat (50) `TD clk = ~clk;
+initial repeat (`TOTAL_CLKS) #1 clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
 z80_top dut(z80);           // Create an instance of our Z80 design
