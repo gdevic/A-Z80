@@ -205,6 +205,7 @@ begin
     
     if (fMRead && T2) begin
         ctl_inc_cy = 1;                 // Increment address latch
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
     end
 end
 

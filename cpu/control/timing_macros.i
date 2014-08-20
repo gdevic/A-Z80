@@ -49,8 +49,8 @@ r16
 A
 
 :A:reg wr
-PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Write 16-bit PC
-IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Write 16-bit IR
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
+IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
 SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
 HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4u=1;    // Write 16-bit HL, enable SW4 upstream
 
@@ -72,6 +72,8 @@ I
 :D:reg wr
 PC
 r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Write 8-bit GP register
+rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
+rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)

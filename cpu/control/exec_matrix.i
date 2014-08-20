@@ -15,7 +15,7 @@ if (pla[17] && !pla[50]) begin
     if (M1 && T3) begin  end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */ end
-    if (M2 && T2) begin  fMRead=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
+    if (M2 && T2) begin  fMRead=1; ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; /* Write 8-bit GP register */ ctl_sw_2d=1; ctl_sw_1d=1; ctl_bus_db_oe=1; end
 end
 
@@ -193,12 +193,12 @@ if (pla[7]) begin
     if (M1 && T2) begin  end
     if (M1 && T3) begin  end
     if (M1 && T4) begin  contM2=1; end
-    if (M2 && T1) begin  fMRead=1; end
-    if (M2 && T2) begin  fMRead=1; end
-    if (M2 && T3) begin  fMRead=1; nextM=1; end
-    if (M3 && T1) begin  fMRead=1; end
-    if (M3 && T2) begin  fMRead=1; end
-    if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1; end
+    if (M2 && T1) begin  fMRead=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */ end
+    if (M2 && T2) begin  fMRead=1; ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
+    if (M2 && T3) begin  fMRead=1; nextM=1; ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Write 8-bit GP register low byte */ ctl_sw_2d=1; ctl_sw_1d=1; end
+    if (M3 && T1) begin  fMRead=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */ end
+    if (M3 && T2) begin  fMRead=1; ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
+    if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1; ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Write 8-bit GP register high byte */ ctl_sw_2d=1; ctl_sw_1d=1; end
 end
 
 if (pla[30] && pla[13]) begin
@@ -348,9 +348,9 @@ end
 if (pla[10]) begin
     $display("pla[10] : ex (sp),hl");
     if (M1 && T1) begin  ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */ end
-    if (M1 && T2) begin  ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
+    if (M1 && T2) begin  ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
     if (M1 && T3) begin  ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit IR */ end
-    if (M1 && T4) begin  contM2=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */ end
+    if (M1 && T4) begin  contM2=1; ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */ end
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
