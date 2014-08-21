@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 # This script reads A-Z80 instruction timing data from a spreadsheet text file
 # and generates a Verilog include file defining the control block execution matrix.
 # Macros in the timing spreadsheet are substituted using a list of keys stored
@@ -111,9 +112,15 @@ for line in content:
         if debug:
             imatrix.append("    $display(\"{0}\");".format(s[4:]))
 
-    if col_clean[0].startswith('#0'):       # Timing line
+    # We recognize 2 kinds of timing statements based on the starting characters:
+    # "#0"..        common timings using M and T cycles
+    # "#always"     timing that does not depend on M and T cycles (ex. ALU operations)
+    if col_clean[0].startswith('#0') or col_clean[0].startswith('#always'):
         # M and T states are hard-coded in the table at the index 1 and 2
-        state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
+        if col_clean[0].startswith('#0'):
+            state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
+        else:
+            state = "    begin "
 
         # Loop over all other columns and perform verbatim substitution
         action = ""

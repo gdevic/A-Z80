@@ -171,3 +171,13 @@ IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
 
+ALUOP           ctl_state_alu=1;                            // Activate ALU operation PLA wires
+// ALU operations controlled by a set of ALU PLA entries
+ALU_CP
+ALU_SUB
+ALU_SBC
+ALU_ADC
+ALU_ADD
+ALU_AND
+ALU_OR
+ALU_XOR

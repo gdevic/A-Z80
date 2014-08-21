@@ -416,7 +416,7 @@ if (pla[65] && !pla[52]) begin
     if (M1 && T1) begin  end
     if (M1 && T2) begin  end
     if (M1 && T3) begin  end
-    if (M1 && T4) begin  end
+    if (M1 && T4) begin  ctl_state_alu=1; /* Activate ALU operation PLA wires */ end
 end
 
 if (pla[64]) begin
@@ -1157,5 +1157,45 @@ if (pla[44]) begin
     if (M1 && T2) begin  ctl_state_tbl_cb_set=1; /* CB-table prefix */ end
     if (M1 && T3) begin  end
     if (M1 && T4) begin  end
+end
+
+if (pla[76]) begin
+    $display("pla[76] : ALU CP");
+    begin  end
+end
+
+if (pla[78]) begin
+    $display("pla[78] : ALU SUB");
+    begin  end
+end
+
+if (pla[79]) begin
+    $display("pla[79] : ALU SBC");
+    begin  end
+end
+
+if (pla[80]) begin
+    $display("pla[80] : ALU ADC");
+    begin  end
+end
+
+if (pla[84]) begin
+    $display("pla[84] : ALU ADD");
+    begin  end
+end
+
+if (pla[85]) begin
+    $display("pla[85] : ALU AND");
+    begin  end
+end
+
+if (pla[86]) begin
+    $display("pla[86] : ALU OR");
+    begin  end
+end
+
+if (pla[88]) begin
+    $display("pla[88] : ALU XOR");
+    begin  end
 end
 
