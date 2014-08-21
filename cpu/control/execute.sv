@@ -39,6 +39,8 @@ module execute
     input wire im1,                     // Interrupt Mode 1
     input wire im2,                     // Interrupt Mode 2
     input wire use_ixiy,                // Special decode signal
+    input wire flags_cond_true,         // Flags condition is true
+    input wire flags_zf,                // ZF to test condition
     
     //----------------------------------------------------------
     // Machine and clock cycles

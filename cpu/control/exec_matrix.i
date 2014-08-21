@@ -912,7 +912,7 @@ if (pla[48]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
-    if (M2 && T3) begin  fMRead=1; nextM=1; end
+    if (M2 && T3) begin  fMRead=1; nextM=1; ctl_cond_short=1; setM1=flags_cond_true; end
     if (M3 && T1) begin  end
     if (M3 && T2) begin  end
     if (M3 && T3) begin  end
@@ -937,7 +937,7 @@ if (pla[26]) begin
     if (M1 && T5) begin  nextM=1; end
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
-    if (M2 && T3) begin  fMRead=1; nextM=1; end
+    if (M2 && T3) begin  fMRead=1; nextM=1; setM1=flags_zf; end
     if (M3 && T1) begin  end
     if (M3 && T2) begin  end
     if (M3 && T3) begin  end
@@ -978,7 +978,7 @@ if (pla[42]) begin
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1; end
     if (M3 && T2) begin  fMRead=1; end
-    if (M3 && T3) begin  fMRead=1; end
+    if (M3 && T3) begin  fMRead=1; nextM=flags_cond_true; setM1=flags_cond_true; end
     if (M3 && T4) begin  nextM=1; end
     if (M4 && T1) begin  fMWrite=1; end
     if (M4 && T2) begin  fMWrite=1; end
@@ -1008,7 +1008,7 @@ if (pla[45]) begin
     if (M1 && T2) begin  end
     if (M1 && T3) begin  end
     if (M1 && T4) begin  contM1=1; end
-    if (M1 && T5) begin  nextM=1; end
+    if (M1 && T5) begin  nextM=1; setM1=flags_cond_true; end
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; nextM=1; end

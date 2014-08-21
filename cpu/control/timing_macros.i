@@ -30,12 +30,12 @@ fIOWrite        fIOWrite=1;
 1               contM2=1;
 :nextM
 1               nextM=1;
-CC
+CC              nextM=flags_cond_true;
 :setM1
 1               setM1=1;
-SS
-CC
-E
+SS              ctl_cond_short=1; setM1=flags_cond_true;
+CC              setM1=flags_cond_true;
+E               setM1=flags_zf;
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint
@@ -97,6 +97,59 @@ R       ctl_bus_db_oe=1;
 W       ctl_bus_db_we=1;
 00      ctl_bus_zero_oe=1;  // Force 0x00 on the data bus
 FF      ctl_bus_ff_oe=1;    // Force 0xFF on the data bus
+
+//-----------------------------------------------------------------------------------------
+// ALU
+//-----------------------------------------------------------------------------------------
+:ALU
+<       ctl_alu_oe=1;   // Enable ALU onto the data bus
+// Controls who can write to the ALU internal bus
+sh0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
+sh1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
+op2     ctl_alu_op2_oe=1;                       // OP2 latch
+res     ctl_alu_res_oe=1;                       // Result latch
+op1     ctl_alu_op1_oe=1;                       // OP1 latch
+bs      ctl_alu_bs_oe=1;                        // Bit-selector unit
+
+:ALU:op1
+// Controls a MUX to select the input to the OP1 latch
+b       ctl_alu_op1_sel_bus=1;                  // Internal bus
+l       ctl_alu_op1_sel_low=1;                  // Write low nibble with a high nibble
+0       ctl_alu_op1_sel_zero=1;                 // Zero
+
+:ALU:op2
+// Controls a MUX to select the input to the OP2 latch
+b       ctl_alu_op1_sel_bus=1;                  // Internal bus
+x       ctl_alu_op1_sel_lq=1;                   // Cross-bus wire (see schematic)
+0       ctl_alu_op1_sel_zero=1;                 // Zero
+
+:ALU:phase
+// ALU computational phase: low nibble or high nibble
+// High phase (ctl_alu_op_low=0) is default and not needed to specify
+l       ctl_alu_op_low=1;
+h
+
+//-----------------------------------------------------------------------------------------
+// FLAGT
+//-----------------------------------------------------------------------------------------
+:FLAGT
+<       ctl_flags_oe=1;                         // Enable FLAGT onto the data bus
+>       ctl_flags_bus=1;                        // Load FLAGT from the data bus
+A       ctl_flags_alu=1;                        // Load FLAGT from the ALU
+
+// Write enables for various flag bits and segments
+:SZ
+*       ctl_flags_sz_we=1;
+:XY
+*       ctl_flags_xy_we=1;
+:HF
+*       ctl_flags_hf_we=1;
+:PF
+*       ctl_flags_pf_we=1;
+:NF
+*       ctl_flags_nf_we=1;
+:CF
+*       ctl_flags_cf_we=1;
 
 //-----------------------------------------------------------------------------------------
 // Special sequence macros for some instructions make it simpler for all other entries
