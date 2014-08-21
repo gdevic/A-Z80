@@ -15,7 +15,7 @@
 //-----------------------------------------------------------------------------------------
 :Function
 //-----------------------------------------------------------------------------------------
-fMFetch
+fMFetch         fFetch=1;
 fMRead          fMRead=1;
 fMWrite         fMWrite=1;
 fIORead         fIORead=1;
@@ -65,6 +65,7 @@ HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4u=1;    // Write 16-
 //-----------------------------------------------------------------------------------------
 :D:reg rd
 A
+AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
 PC
 r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Read 8-bit GP register
 I
@@ -95,31 +96,31 @@ rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-
 :DB pads
 R       ctl_bus_db_oe=1;
 W       ctl_bus_db_we=1;
-00      ctl_bus_zero_oe=1;  // Force 0x00 on the data bus
-FF      ctl_bus_ff_oe=1;    // Force 0xFF on the data bus
+00      ctl_bus_zero_oe=1;                      // Force 0x00 on the data bus
+FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 
 //-----------------------------------------------------------------------------------------
 // ALU
 //-----------------------------------------------------------------------------------------
 :ALU
-<       ctl_alu_oe=1;   // Enable ALU onto the data bus
+<       ctl_alu_oe=1;                           // Enable ALU onto the data bus
 // Controls who can write to the ALU internal bus
 sh0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
 sh1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
 op2     ctl_alu_op2_oe=1;                       // OP2 latch
 res     ctl_alu_res_oe=1;                       // Result latch
 op1     ctl_alu_op1_oe=1;                       // OP1 latch
-bs      ctl_alu_bs_oe=1;                        // Bit-selector unit
+bit     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
 :ALU:op1
 // Controls a MUX to select the input to the OP1 latch
-b       ctl_alu_op1_sel_bus=1;                  // Internal bus
-l       ctl_alu_op1_sel_low=1;                  // Write low nibble with a high nibble
+bus     ctl_alu_op1_sel_bus=1;                  // Internal bus
+low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high nibble
 0       ctl_alu_op1_sel_zero=1;                 // Zero
 
 :ALU:op2
 // Controls a MUX to select the input to the OP2 latch
-b       ctl_alu_op1_sel_bus=1;                  // Internal bus
+bus     ctl_alu_op1_sel_bus=1;                  // Internal bus
 x       ctl_alu_op1_sel_lq=1;                   // Cross-bus wire (see schematic)
 0       ctl_alu_op1_sel_zero=1;                 // Zero
 
@@ -181,3 +182,7 @@ ALU_ADD
 ALU_AND
 ALU_OR
 ALU_XOR
+
+// M1 opcode read cycle and the refresh register increment cycle
+IR              ctl_ir_we = 1;          // Write the opcode into the instruction register
+Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
