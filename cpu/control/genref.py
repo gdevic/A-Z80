@@ -33,6 +33,7 @@ for infile in files:
     if len(wires)>0:
         with open('exec_module.i', 'a') as file1, open('exec_zero.i', 'a') as file0:
             print "MODULE: " + infile
+            file0.write("\n// Module: " + infile + "\n")
             file1.write("\n// Module: " + infile + "\n")
             for wire in wires:
                 print "   " + wire
