@@ -37,7 +37,7 @@ assign db_sig = db;
 
 reg_latch reg_latch_inst
 (
-	.oen(oe_sig) ,	// input  oe_sig
+	.oe(oe_sig) ,	// input  oe_sig
 	.we(we_sig) ,	// input  we_sig
 	.db(db_sig[7:0]) 	// inout [7:0] db_sig
 );

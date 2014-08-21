@@ -20,14 +20,14 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 64 64 184 160)
+	(rect 64 64 176 160)
 	(text "reg_latch" (rect 5 0 58 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 21 27 42 41)(font "Arial" (font_size 8)))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 21 27 35 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
@@ -38,13 +38,14 @@ applicable agreement for further details.
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port
-		(pt 120 32)
+		(pt 112 32)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 57 27 99 41)(font "Arial" (font_size 8)))
-		(line (pt 120 32)(pt 104 32)(line_width 3))
+		(text "db[7..0]" (rect 49 27 91 41)(font "Arial" (font_size 8)))
+		(line (pt 112 32)(pt 96 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 104 80)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 96 80))
 	)
+	(fill (color 170 255 0))
 )

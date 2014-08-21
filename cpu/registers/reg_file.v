@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Aug 19 16:45:32 2014"
+// CREATED		"Thu Aug 21 13:56:49 2014"
 
 module reg_file(
 	reg_sel_sys_lo,
@@ -253,196 +253,196 @@ assign	SYNTHESIZED_WIRE_83 = reg_sel_gp_lo & reg_gp_we & reg_sel_sp;
 
 
 reg_latch	b2v_latch_af2_hi(
-	.oen(SYNTHESIZED_WIRE_28),
+	.oe(SYNTHESIZED_WIRE_28),
 	.we(SYNTHESIZED_WIRE_29),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_af2_lo(
-	.oen(SYNTHESIZED_WIRE_30),
+	.oe(SYNTHESIZED_WIRE_30),
 	.we(SYNTHESIZED_WIRE_31),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_af_hi(
-	.oen(SYNTHESIZED_WIRE_32),
+	.oe(SYNTHESIZED_WIRE_32),
 	.we(SYNTHESIZED_WIRE_33),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_af_lo(
-	.oen(SYNTHESIZED_WIRE_34),
+	.oe(SYNTHESIZED_WIRE_34),
 	.we(SYNTHESIZED_WIRE_35),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_bc2_hi(
-	.oen(SYNTHESIZED_WIRE_36),
+	.oe(SYNTHESIZED_WIRE_36),
 	.we(SYNTHESIZED_WIRE_37),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_bc2_lo(
-	.oen(SYNTHESIZED_WIRE_38),
+	.oe(SYNTHESIZED_WIRE_38),
 	.we(SYNTHESIZED_WIRE_39),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_bc_hi(
-	.oen(SYNTHESIZED_WIRE_40),
+	.oe(SYNTHESIZED_WIRE_40),
 	.we(SYNTHESIZED_WIRE_41),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_bc_lo(
-	.oen(SYNTHESIZED_WIRE_42),
+	.oe(SYNTHESIZED_WIRE_42),
 	.we(SYNTHESIZED_WIRE_43),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_de2_hi(
-	.oen(SYNTHESIZED_WIRE_44),
+	.oe(SYNTHESIZED_WIRE_44),
 	.we(SYNTHESIZED_WIRE_45),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_de2_lo(
-	.oen(SYNTHESIZED_WIRE_46),
+	.oe(SYNTHESIZED_WIRE_46),
 	.we(SYNTHESIZED_WIRE_47),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_de_hi(
-	.oen(SYNTHESIZED_WIRE_48),
+	.oe(SYNTHESIZED_WIRE_48),
 	.we(SYNTHESIZED_WIRE_49),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_de_lo(
-	.oen(SYNTHESIZED_WIRE_50),
+	.oe(SYNTHESIZED_WIRE_50),
 	.we(SYNTHESIZED_WIRE_51),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_hl2_hi(
-	.oen(SYNTHESIZED_WIRE_52),
+	.oe(SYNTHESIZED_WIRE_52),
 	.we(SYNTHESIZED_WIRE_53),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_hl2_lo(
-	.oen(SYNTHESIZED_WIRE_54),
+	.oe(SYNTHESIZED_WIRE_54),
 	.we(SYNTHESIZED_WIRE_55),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_hl_hi(
-	.oen(SYNTHESIZED_WIRE_56),
+	.oe(SYNTHESIZED_WIRE_56),
 	.we(SYNTHESIZED_WIRE_57),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_hl_lo(
-	.oen(SYNTHESIZED_WIRE_58),
+	.oe(SYNTHESIZED_WIRE_58),
 	.we(SYNTHESIZED_WIRE_59),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_ir_hi(
-	.oen(SYNTHESIZED_WIRE_60),
+	.oe(SYNTHESIZED_WIRE_60),
 	.we(SYNTHESIZED_WIRE_61),
 	.db(db_hi_as)
 	);
 
 
 reg_latch	b2v_latch_ir_lo(
-	.oen(SYNTHESIZED_WIRE_62),
+	.oe(SYNTHESIZED_WIRE_62),
 	.we(SYNTHESIZED_WIRE_63),
 	.db(db_lo_as)
 	);
 
 
 reg_latch	b2v_latch_ix_hi(
-	.oen(SYNTHESIZED_WIRE_64),
+	.oe(SYNTHESIZED_WIRE_64),
 	.we(SYNTHESIZED_WIRE_65),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_ix_lo(
-	.oen(SYNTHESIZED_WIRE_66),
+	.oe(SYNTHESIZED_WIRE_66),
 	.we(SYNTHESIZED_WIRE_67),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_iy_hi(
-	.oen(SYNTHESIZED_WIRE_68),
+	.oe(SYNTHESIZED_WIRE_68),
 	.we(SYNTHESIZED_WIRE_69),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_iy_lo(
-	.oen(SYNTHESIZED_WIRE_70),
+	.oe(SYNTHESIZED_WIRE_70),
 	.we(SYNTHESIZED_WIRE_71),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_pc_hi(
-	.oen(SYNTHESIZED_WIRE_72),
+	.oe(SYNTHESIZED_WIRE_72),
 	.we(SYNTHESIZED_WIRE_73),
 	.db(db_hi_as)
 	);
 
 
 reg_latch	b2v_latch_pc_lo(
-	.oen(SYNTHESIZED_WIRE_74),
+	.oe(SYNTHESIZED_WIRE_74),
 	.we(SYNTHESIZED_WIRE_75),
 	.db(db_lo_as)
 	);
 
 
 reg_latch	b2v_latch_sp_hi(
-	.oen(SYNTHESIZED_WIRE_76),
+	.oe(SYNTHESIZED_WIRE_76),
 	.we(SYNTHESIZED_WIRE_77),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_sp_lo(
-	.oen(SYNTHESIZED_WIRE_78),
+	.oe(SYNTHESIZED_WIRE_78),
 	.we(SYNTHESIZED_WIRE_79),
 	.db(db_lo_ds)
 	);
 
 
 reg_latch	b2v_latch_wz_hi(
-	.oen(SYNTHESIZED_WIRE_80),
+	.oe(SYNTHESIZED_WIRE_80),
 	.we(SYNTHESIZED_WIRE_81),
 	.db(db_hi_ds)
 	);
 
 
 reg_latch	b2v_latch_wz_lo(
-	.oen(SYNTHESIZED_WIRE_82),
+	.oe(SYNTHESIZED_WIRE_82),
 	.we(SYNTHESIZED_WIRE_83),
 	.db(db_lo_ds)
 	);

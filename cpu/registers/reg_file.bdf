@@ -1581,14 +1581,14 @@ applicable agreement for further details.
 	(rotate90)
 )
 (symbol
-	(rect 792 392 888 512)
+	(rect 792 400 888 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_sp_lo" (rect 4 8 16 63)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1599,34 +1599,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 792 560 888 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_sp_hi" (rect 4 57 16 112)(font "Arial" )(vertical))
+	(rect 792 560 888 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_sp_hi" (rect 4 49 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1636,19 +1637,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 936 392 1032 512)
+	(rect 936 400 1032 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_wz_lo" (rect 4 8 16 63)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1659,34 +1661,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 936 560 1032 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_wz_hi" (rect 4 57 16 112)(font "Arial" )(vertical))
+	(rect 936 560 1032 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_wz_hi" (rect 4 49 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1696,19 +1699,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1096 392 1192 512)
+	(rect 1096 400 1192 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_iy_lo" (rect 4 8 16 61)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1719,34 +1723,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1096 560 1192 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_iy_hi" (rect 4 59 16 112)(font "Arial" )(vertical))
+	(rect 1096 560 1192 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_iy_hi" (rect 4 51 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1756,19 +1761,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1240 392 1336 512)
+	(rect 1240 400 1336 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_ix_lo" (rect 4 8 16 59)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1779,34 +1785,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1240 560 1336 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_ix_hi" (rect 4 61 16 112)(font "Arial" )(vertical))
+	(rect 1240 560 1336 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_ix_hi" (rect 4 53 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1816,19 +1823,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1384 392 1480 512)
+	(rect 1384 400 1480 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_hl2_lo" (rect 4 8 16 65)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1839,26 +1847,27 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1528 392 1624 512)
+	(rect 1528 400 1624 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_hl_lo" (rect 4 8 16 59)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1869,34 +1878,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1528 560 1624 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_hl_hi" (rect 4 61 16 112)(font "Arial" )(vertical))
+	(rect 1528 560 1624 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_hl_hi" (rect 4 53 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1906,19 +1916,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1672 392 1768 512)
+	(rect 1672 400 1768 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_de2_lo" (rect 4 8 16 69)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1929,34 +1940,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1672 560 1768 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_de2_hi" (rect 4 51 16 112)(font "Arial" )(vertical))
+	(rect 1672 560 1768 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_de2_hi" (rect 4 43 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -1966,19 +1978,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1816 392 1912 512)
+	(rect 1816 400 1912 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_de_lo" (rect 4 8 16 63)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -1989,34 +2002,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1816 560 1912 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_de_hi" (rect 4 57 16 112)(font "Arial" )(vertical))
+	(rect 1816 560 1912 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_de_hi" (rect 4 49 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2026,19 +2040,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1960 392 2056 512)
+	(rect 1960 400 2056 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_bc2_lo" (rect 4 8 16 69)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2049,34 +2064,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 1960 560 2056 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_bc2_hi" (rect 4 51 16 112)(font "Arial" )(vertical))
+	(rect 1960 560 2056 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_bc2_hi" (rect 4 43 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2086,19 +2102,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2104 392 2200 512)
+	(rect 2104 400 2200 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_bc_lo" (rect 4 8 16 63)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2109,34 +2126,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2104 560 2200 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_bc_hi" (rect 4 57 16 112)(font "Arial" )(vertical))
+	(rect 2104 560 2200 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_bc_hi" (rect 4 49 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2146,19 +2164,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2248 392 2344 512)
+	(rect 2248 400 2344 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_af2_lo" (rect 4 8 16 68)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2169,34 +2188,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2248 560 2344 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_af2_hi" (rect 4 52 16 112)(font "Arial" )(vertical))
+	(rect 2248 560 2344 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_af2_hi" (rect 4 44 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2206,19 +2226,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2392 392 2488 512)
+	(rect 2392 400 2488 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_af_lo" (rect 4 8 16 62)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2229,34 +2250,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 2392 560 2488 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_af_hi" (rect 4 58 16 112)(font "Arial" )(vertical))
+	(rect 2392 560 2488 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_af_hi" (rect 4 50 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2266,19 +2288,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 352 392 448 512)
+	(rect 352 400 448 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_ir_lo" (rect 4 8 16 57)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2289,34 +2312,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 352 560 448 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_ir_hi" (rect 4 63 16 112)(font "Arial" )(vertical))
+	(rect 352 560 448 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_ir_hi" (rect 4 55 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2326,19 +2350,20 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 496 392 592 512)
+	(rect 496 400 592 512)
 	(text "reg_latch" (rect 82 5 96 58)(font "Arial" (font_size 8))(vertical))
 	(text "latch_pc_lo" (rect 4 8 16 63)(font "Arial" )(vertical))
 	(port
 		(pt 64 0)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 21 69 42)(font "Arial" (font_size 8))(vertical))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 21 69 35)(font "Arial" (font_size 8))(vertical))
 		(line (pt 64 0)(pt 64 16))
 	)
 	(port
@@ -2349,34 +2374,35 @@ applicable agreement for further details.
 		(line (pt 48 0)(pt 48 16))
 	)
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(bidir)
 		(text "db[7..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
-		(text "db[7..0]" (rect 55 57 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104)(line_width 3))
+		(text "db[7..0]" (rect 55 49 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(rotate270)
+	(fill (color 170 255 0))
 )
 (symbol
-	(rect 496 560 592 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_pc_hi" (rect 4 57 16 112)(font "Arial" )(vertical))
+	(rect 496 560 592 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_pc_hi" (rect 4 49 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -2386,9 +2412,10 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (symbol
 	(rect 232 232 280 264)
@@ -3688,22 +3715,22 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 1384 560 1480 680)
-	(text "reg_latch" (rect 82 62 96 115)(font "Arial" (font_size 8))(vertical))
-	(text "latch_hl2_hi" (rect 4 49 16 106)(font "Arial" )(vertical))
+	(rect 1384 560 1480 672)
+	(text "reg_latch" (rect 82 54 96 107)(font "Arial" (font_size 8))(vertical))
+	(text "latch_hl2_hi" (rect 4 47 16 104)(font "Arial" )(vertical))
 	(port
-		(pt 64 120)
+		(pt 64 112)
 		(input)
-		(text "oen" (rect 0 0 21 14)(font "Arial" (font_size 8)))
-		(text "oen" (rect 55 78 69 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 64 120)(pt 64 104))
+		(text "oe" (rect 0 0 14 14)(font "Arial" (font_size 8)))
+		(text "oe" (rect 55 77 69 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 64 112)(pt 64 96))
 	)
 	(port
-		(pt 48 120)
+		(pt 48 112)
 		(input)
 		(text "we" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "we" (rect 39 81 53 99)(font "Arial" (font_size 8))(vertical))
-		(line (pt 48 120)(pt 48 104))
+		(text "we" (rect 39 73 53 91)(font "Arial" (font_size 8))(vertical))
+		(line (pt 48 112)(pt 48 96))
 	)
 	(port
 		(pt 64 0)
@@ -3713,9 +3740,10 @@ applicable agreement for further details.
 		(line (pt 64 0)(pt 64 16)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 80 104)(fill (color 170 255 0)))
+		(rectangle (rect 16 16 80 96))
 	)
 	(flipx_rotate90)
+	(fill (color 170 255 0))
 )
 (connector
 	(pt 648 344)
@@ -3742,14 +3770,6 @@ applicable agreement for further details.
 	(pt 688 400)
 )
 (connector
-	(pt 360 376)
-	(pt 400 376)
-)
-(connector
-	(pt 400 376)
-	(pt 400 392)
-)
-(connector
 	(pt 360 696)
 	(pt 360 728)
 )
@@ -3762,141 +3782,48 @@ applicable agreement for further details.
 	(pt 800 728)
 )
 (connector
-	(pt 944 376)
-	(pt 984 376)
-)
-(connector
-	(pt 984 376)
-	(pt 984 392)
-)
-(connector
 	(pt 944 696)
 	(pt 944 728)
-)
-(connector
-	(pt 1104 376)
-	(pt 1144 376)
-)
-(connector
-	(pt 1144 376)
-	(pt 1144 392)
 )
 (connector
 	(pt 1104 696)
 	(pt 1104 728)
 )
 (connector
-	(pt 1248 376)
-	(pt 1288 376)
-)
-(connector
-	(pt 1288 376)
-	(pt 1288 392)
-)
-(connector
 	(pt 1248 696)
 	(pt 1248 728)
-)
-(connector
-	(pt 1392 376)
-	(pt 1432 376)
-)
-(connector
-	(pt 1432 376)
-	(pt 1432 392)
 )
 (connector
 	(pt 1392 696)
 	(pt 1392 728)
 )
 (connector
-	(pt 1536 376)
-	(pt 1576 376)
-)
-(connector
-	(pt 1576 376)
-	(pt 1576 392)
-)
-(connector
 	(pt 1536 696)
 	(pt 1536 728)
-)
-(connector
-	(pt 1680 376)
-	(pt 1720 376)
-)
-(connector
-	(pt 1720 376)
-	(pt 1720 392)
 )
 (connector
 	(pt 1680 696)
 	(pt 1680 728)
 )
 (connector
-	(pt 1824 376)
-	(pt 1864 376)
-)
-(connector
-	(pt 1864 376)
-	(pt 1864 392)
-)
-(connector
 	(pt 1824 696)
 	(pt 1824 728)
-)
-(connector
-	(pt 1968 376)
-	(pt 2008 376)
-)
-(connector
-	(pt 2008 376)
-	(pt 2008 392)
 )
 (connector
 	(pt 1968 696)
 	(pt 1968 728)
 )
 (connector
-	(pt 2112 376)
-	(pt 2152 376)
-)
-(connector
-	(pt 2152 376)
-	(pt 2152 392)
-)
-(connector
 	(pt 2112 696)
 	(pt 2112 728)
-)
-(connector
-	(pt 2256 376)
-	(pt 2296 376)
-)
-(connector
-	(pt 2296 376)
-	(pt 2296 392)
 )
 (connector
 	(pt 2256 696)
 	(pt 2256 728)
 )
 (connector
-	(pt 2400 376)
-	(pt 2440 376)
-)
-(connector
-	(pt 2440 376)
-	(pt 2440 392)
-)
-(connector
 	(pt 2400 696)
 	(pt 2400 728)
-)
-(connector
-	(pt 416 528)
-	(pt 456 528)
-	(bus)
 )
 (connector
 	(pt 456 360)
@@ -3909,21 +3836,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 504 376)
-	(pt 544 376)
-)
-(connector
 	(pt 600 528)
 	(pt 560 528)
 	(bus)
-)
-(connector
-	(pt 544 376)
-	(pt 544 392)
-)
-(connector
-	(pt 360 696)
-	(pt 400 696)
 )
 (connector
 	(pt 456 712)
@@ -3931,32 +3846,8 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 416 560)
-	(pt 416 544)
-	(bus)
-)
-(connector
-	(pt 456 544)
-	(pt 416 544)
-	(bus)
-)
-(connector
 	(pt 600 712)
 	(pt 600 544)
-	(bus)
-)
-(connector
-	(pt 504 696)
-	(pt 544 696)
-)
-(connector
-	(pt 560 544)
-	(pt 560 560)
-	(bus)
-)
-(connector
-	(pt 600 544)
-	(pt 560 544)
 	(bus)
 )
 (connector
@@ -3983,33 +3874,6 @@ applicable agreement for further details.
 	(pt 1040 712)
 	(pt 1040 544)
 	(bus)
-)
-(connector
-	(pt 800 696)
-	(pt 840 696)
-)
-(connector
-	(pt 856 544)
-	(pt 856 560)
-	(bus)
-)
-(connector
-	(pt 896 544)
-	(pt 856 544)
-	(bus)
-)
-(connector
-	(pt 800 376)
-	(pt 840 376)
-)
-(connector
-	(pt 896 528)
-	(pt 856 528)
-	(bus)
-)
-(connector
-	(pt 840 376)
-	(pt 840 392)
 )
 (connector
 	(pt 1160 528)
@@ -4159,160 +4023,6 @@ applicable agreement for further details.
 (connector
 	(pt 2496 712)
 	(pt 2496 544)
-	(bus)
-)
-(connector
-	(pt 944 696)
-	(pt 984 696)
-)
-(connector
-	(pt 1000 544)
-	(pt 1000 560)
-	(bus)
-)
-(connector
-	(pt 1040 544)
-	(pt 1000 544)
-	(bus)
-)
-(connector
-	(pt 1104 696)
-	(pt 1144 696)
-)
-(connector
-	(pt 1160 544)
-	(pt 1160 560)
-	(bus)
-)
-(connector
-	(pt 1200 544)
-	(pt 1160 544)
-	(bus)
-)
-(connector
-	(pt 1248 696)
-	(pt 1288 696)
-)
-(connector
-	(pt 1304 544)
-	(pt 1304 560)
-	(bus)
-)
-(connector
-	(pt 1344 544)
-	(pt 1304 544)
-	(bus)
-)
-(connector
-	(pt 1392 696)
-	(pt 1432 696)
-)
-(connector
-	(pt 1448 544)
-	(pt 1448 560)
-	(bus)
-)
-(connector
-	(pt 1488 544)
-	(pt 1448 544)
-	(bus)
-)
-(connector
-	(pt 1536 696)
-	(pt 1576 696)
-)
-(connector
-	(pt 1632 544)
-	(pt 1592 544)
-	(bus)
-)
-(connector
-	(pt 1592 544)
-	(pt 1592 560)
-	(bus)
-)
-(connector
-	(pt 1680 696)
-	(pt 1720 696)
-)
-(connector
-	(pt 1736 544)
-	(pt 1736 560)
-	(bus)
-)
-(connector
-	(pt 1776 544)
-	(pt 1736 544)
-	(bus)
-)
-(connector
-	(pt 1824 696)
-	(pt 1864 696)
-)
-(connector
-	(pt 1880 544)
-	(pt 1880 560)
-	(bus)
-)
-(connector
-	(pt 1920 544)
-	(pt 1880 544)
-	(bus)
-)
-(connector
-	(pt 1968 696)
-	(pt 2008 696)
-)
-(connector
-	(pt 2024 544)
-	(pt 2024 560)
-	(bus)
-)
-(connector
-	(pt 2064 544)
-	(pt 2024 544)
-	(bus)
-)
-(connector
-	(pt 2112 696)
-	(pt 2152 696)
-)
-(connector
-	(pt 2168 544)
-	(pt 2168 560)
-	(bus)
-)
-(connector
-	(pt 2208 544)
-	(pt 2168 544)
-	(bus)
-)
-(connector
-	(pt 2256 696)
-	(pt 2296 696)
-)
-(connector
-	(pt 2312 544)
-	(pt 2312 560)
-	(bus)
-)
-(connector
-	(pt 2352 544)
-	(pt 2312 544)
-	(bus)
-)
-(connector
-	(pt 2400 696)
-	(pt 2440 696)
-)
-(connector
-	(pt 2456 544)
-	(pt 2456 560)
-	(bus)
-)
-(connector
-	(pt 2496 544)
-	(pt 2456 544)
 	(bus)
 )
 (connector
@@ -5744,10 +5454,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 416 344)
-	(pt 416 392)
-)
-(connector
 	(pt 408 792)
 	(pt 408 808)
 )
@@ -5758,10 +5464,6 @@ applicable agreement for further details.
 (connector
 	(pt 424 792)
 	(pt 424 824)
-)
-(connector
-	(pt 560 344)
-	(pt 560 392)
 )
 (connector
 	(pt 552 792)
@@ -5776,10 +5478,6 @@ applicable agreement for further details.
 	(pt 568 824)
 )
 (connector
-	(pt 1160 344)
-	(pt 1160 392)
-)
-(connector
 	(pt 1152 792)
 	(pt 1152 808)
 )
@@ -5790,10 +5488,6 @@ applicable agreement for further details.
 (connector
 	(pt 1168 792)
 	(pt 1168 824)
-)
-(connector
-	(pt 1304 344)
-	(pt 1304 392)
 )
 (connector
 	(pt 1296 792)
@@ -5808,10 +5502,6 @@ applicable agreement for further details.
 	(pt 1312 824)
 )
 (connector
-	(pt 1448 344)
-	(pt 1448 392)
-)
-(connector
 	(pt 1440 792)
 	(pt 1440 808)
 )
@@ -5822,10 +5512,6 @@ applicable agreement for further details.
 (connector
 	(pt 1456 792)
 	(pt 1456 824)
-)
-(connector
-	(pt 1592 344)
-	(pt 1592 392)
 )
 (connector
 	(pt 1584 792)
@@ -5840,10 +5526,6 @@ applicable agreement for further details.
 	(pt 1600 824)
 )
 (connector
-	(pt 1736 344)
-	(pt 1736 392)
-)
-(connector
 	(pt 1728 792)
 	(pt 1728 808)
 )
@@ -5854,10 +5536,6 @@ applicable agreement for further details.
 (connector
 	(pt 1744 792)
 	(pt 1744 824)
-)
-(connector
-	(pt 1880 344)
-	(pt 1880 392)
 )
 (connector
 	(pt 1872 792)
@@ -5872,10 +5550,6 @@ applicable agreement for further details.
 	(pt 1888 824)
 )
 (connector
-	(pt 2024 344)
-	(pt 2024 392)
-)
-(connector
 	(pt 2016 792)
 	(pt 2016 808)
 )
@@ -5886,10 +5560,6 @@ applicable agreement for further details.
 (connector
 	(pt 2032 792)
 	(pt 2032 824)
-)
-(connector
-	(pt 2168 344)
-	(pt 2168 392)
 )
 (connector
 	(pt 2160 792)
@@ -5904,10 +5574,6 @@ applicable agreement for further details.
 	(pt 2176 824)
 )
 (connector
-	(pt 2312 344)
-	(pt 2312 392)
-)
-(connector
 	(pt 2304 792)
 	(pt 2304 808)
 )
@@ -5918,10 +5584,6 @@ applicable agreement for further details.
 (connector
 	(pt 2320 792)
 	(pt 2320 824)
-)
-(connector
-	(pt 2456 344)
-	(pt 2456 392)
 )
 (connector
 	(pt 2448 792)
@@ -5936,10 +5598,6 @@ applicable agreement for further details.
 	(pt 2464 824)
 )
 (connector
-	(pt 856 344)
-	(pt 856 392)
-)
-(connector
 	(pt 848 792)
 	(pt 848 808)
 )
@@ -5950,10 +5608,6 @@ applicable agreement for further details.
 (connector
 	(pt 864 792)
 	(pt 864 824)
-)
-(connector
-	(pt 1000 344)
-	(pt 1000 392)
 )
 (connector
 	(pt 992 792)
@@ -5968,30 +5622,9 @@ applicable agreement for further details.
 	(pt 1008 824)
 )
 (connector
-	(pt 856 512)
-	(pt 856 528)
-	(bus)
-)
-(connector
-	(pt 856 680)
-	(pt 856 728)
-)
-(connector
-	(pt 840 680)
-	(pt 840 696)
-)
-(connector
 	(pt 1000 512)
 	(pt 1000 528)
 	(bus)
-)
-(connector
-	(pt 1000 680)
-	(pt 1000 728)
-)
-(connector
-	(pt 984 680)
-	(pt 984 696)
 )
 (connector
 	(pt 1160 512)
@@ -5999,25 +5632,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 1160 680)
-	(pt 1160 728)
-)
-(connector
-	(pt 1144 680)
-	(pt 1144 696)
-)
-(connector
 	(pt 1304 512)
 	(pt 1304 528)
 	(bus)
-)
-(connector
-	(pt 1304 680)
-	(pt 1304 728)
-)
-(connector
-	(pt 1288 680)
-	(pt 1288 696)
 )
 (connector
 	(pt 1448 512)
@@ -6025,25 +5642,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 1448 680)
-	(pt 1448 728)
-)
-(connector
-	(pt 1432 680)
-	(pt 1432 696)
-)
-(connector
 	(pt 1592 512)
 	(pt 1592 528)
 	(bus)
-)
-(connector
-	(pt 1592 680)
-	(pt 1592 728)
-)
-(connector
-	(pt 1576 680)
-	(pt 1576 696)
 )
 (connector
 	(pt 1736 512)
@@ -6051,25 +5652,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 1736 680)
-	(pt 1736 728)
-)
-(connector
-	(pt 1720 680)
-	(pt 1720 696)
-)
-(connector
 	(pt 1880 512)
 	(pt 1880 528)
 	(bus)
-)
-(connector
-	(pt 1880 680)
-	(pt 1880 728)
-)
-(connector
-	(pt 1864 680)
-	(pt 1864 696)
 )
 (connector
 	(pt 2024 512)
@@ -6077,25 +5662,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 2024 680)
-	(pt 2024 728)
-)
-(connector
-	(pt 2008 680)
-	(pt 2008 696)
-)
-(connector
 	(pt 2168 512)
 	(pt 2168 528)
 	(bus)
-)
-(connector
-	(pt 2168 680)
-	(pt 2168 728)
-)
-(connector
-	(pt 2152 680)
-	(pt 2152 696)
 )
 (connector
 	(pt 2312 512)
@@ -6103,51 +5672,14 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 2312 680)
-	(pt 2312 728)
-)
-(connector
-	(pt 2296 680)
-	(pt 2296 696)
-)
-(connector
 	(pt 2456 512)
 	(pt 2456 528)
 	(bus)
 )
 (connector
-	(pt 2456 680)
-	(pt 2456 728)
-)
-(connector
-	(pt 2440 680)
-	(pt 2440 696)
-)
-(connector
-	(pt 416 512)
-	(pt 416 528)
-	(bus)
-)
-(connector
-	(pt 416 680)
-	(pt 416 728)
-)
-(connector
-	(pt 400 680)
-	(pt 400 696)
-)
-(connector
 	(pt 560 512)
 	(pt 560 528)
 	(bus)
-)
-(connector
-	(pt 560 680)
-	(pt 560 728)
-)
-(connector
-	(pt 544 680)
-	(pt 544 696)
 )
 (connector
 	(pt 360 344)
@@ -6385,6 +5917,502 @@ applicable agreement for further details.
 	(pt 688 208)
 	(pt 688 312)
 )
+(connector
+	(pt 360 696)
+	(pt 400 696)
+)
+(connector
+	(pt 456 544)
+	(pt 416 544)
+	(bus)
+)
+(connector
+	(pt 416 544)
+	(pt 416 560)
+	(bus)
+)
+(connector
+	(pt 416 672)
+	(pt 416 728)
+)
+(connector
+	(pt 400 672)
+	(pt 400 696)
+)
+(connector
+	(pt 456 528)
+	(pt 416 528)
+	(bus)
+)
+(connector
+	(pt 360 376)
+	(pt 400 376)
+)
+(connector
+	(pt 416 528)
+	(pt 416 512)
+	(bus)
+)
+(connector
+	(pt 416 344)
+	(pt 416 400)
+)
+(connector
+	(pt 400 376)
+	(pt 400 400)
+)
+(connector
+	(pt 504 376)
+	(pt 544 376)
+)
+(connector
+	(pt 560 344)
+	(pt 560 400)
+)
+(connector
+	(pt 544 376)
+	(pt 544 400)
+)
+(connector
+	(pt 504 696)
+	(pt 544 696)
+)
+(connector
+	(pt 600 544)
+	(pt 560 544)
+	(bus)
+)
+(connector
+	(pt 560 544)
+	(pt 560 560)
+	(bus)
+)
+(connector
+	(pt 560 672)
+	(pt 560 728)
+)
+(connector
+	(pt 544 672)
+	(pt 544 696)
+)
+(connector
+	(pt 896 528)
+	(pt 856 528)
+	(bus)
+)
+(connector
+	(pt 800 376)
+	(pt 840 376)
+)
+(connector
+	(pt 856 528)
+	(pt 856 512)
+	(bus)
+)
+(connector
+	(pt 856 344)
+	(pt 856 400)
+)
+(connector
+	(pt 840 376)
+	(pt 840 400)
+)
+(connector
+	(pt 944 376)
+	(pt 984 376)
+)
+(connector
+	(pt 1000 344)
+	(pt 1000 400)
+)
+(connector
+	(pt 984 376)
+	(pt 984 400)
+)
+(connector
+	(pt 1104 376)
+	(pt 1144 376)
+)
+(connector
+	(pt 1160 344)
+	(pt 1160 400)
+)
+(connector
+	(pt 1144 376)
+	(pt 1144 400)
+)
+(connector
+	(pt 1248 376)
+	(pt 1288 376)
+)
+(connector
+	(pt 1304 344)
+	(pt 1304 400)
+)
+(connector
+	(pt 1288 376)
+	(pt 1288 400)
+)
+(connector
+	(pt 1392 376)
+	(pt 1432 376)
+)
+(connector
+	(pt 1448 344)
+	(pt 1448 400)
+)
+(connector
+	(pt 1432 376)
+	(pt 1432 400)
+)
+(connector
+	(pt 1536 376)
+	(pt 1576 376)
+)
+(connector
+	(pt 1592 344)
+	(pt 1592 400)
+)
+(connector
+	(pt 1576 376)
+	(pt 1576 400)
+)
+(connector
+	(pt 1680 376)
+	(pt 1720 376)
+)
+(connector
+	(pt 1736 344)
+	(pt 1736 400)
+)
+(connector
+	(pt 1720 376)
+	(pt 1720 400)
+)
+(connector
+	(pt 1824 376)
+	(pt 1864 376)
+)
+(connector
+	(pt 1880 344)
+	(pt 1880 400)
+)
+(connector
+	(pt 1864 376)
+	(pt 1864 400)
+)
+(connector
+	(pt 1968 376)
+	(pt 2008 376)
+)
+(connector
+	(pt 2024 344)
+	(pt 2024 400)
+)
+(connector
+	(pt 2008 376)
+	(pt 2008 400)
+)
+(connector
+	(pt 2112 376)
+	(pt 2152 376)
+)
+(connector
+	(pt 2168 344)
+	(pt 2168 400)
+)
+(connector
+	(pt 2152 376)
+	(pt 2152 400)
+)
+(connector
+	(pt 2256 376)
+	(pt 2296 376)
+)
+(connector
+	(pt 2312 344)
+	(pt 2312 400)
+)
+(connector
+	(pt 2296 376)
+	(pt 2296 400)
+)
+(connector
+	(pt 2400 376)
+	(pt 2440 376)
+)
+(connector
+	(pt 2456 344)
+	(pt 2456 400)
+)
+(connector
+	(pt 2440 376)
+	(pt 2440 400)
+)
+(connector
+	(pt 2400 696)
+	(pt 2440 696)
+)
+(connector
+	(pt 2496 544)
+	(pt 2456 544)
+	(bus)
+)
+(connector
+	(pt 2456 544)
+	(pt 2456 560)
+	(bus)
+)
+(connector
+	(pt 2456 672)
+	(pt 2456 728)
+)
+(connector
+	(pt 2440 672)
+	(pt 2440 696)
+)
+(connector
+	(pt 2256 696)
+	(pt 2296 696)
+)
+(connector
+	(pt 2352 544)
+	(pt 2312 544)
+	(bus)
+)
+(connector
+	(pt 2312 544)
+	(pt 2312 560)
+	(bus)
+)
+(connector
+	(pt 2312 672)
+	(pt 2312 728)
+)
+(connector
+	(pt 2296 672)
+	(pt 2296 696)
+)
+(connector
+	(pt 2112 696)
+	(pt 2152 696)
+)
+(connector
+	(pt 2208 544)
+	(pt 2168 544)
+	(bus)
+)
+(connector
+	(pt 2168 544)
+	(pt 2168 560)
+	(bus)
+)
+(connector
+	(pt 2168 672)
+	(pt 2168 728)
+)
+(connector
+	(pt 2152 672)
+	(pt 2152 696)
+)
+(connector
+	(pt 1968 696)
+	(pt 2008 696)
+)
+(connector
+	(pt 2064 544)
+	(pt 2024 544)
+	(bus)
+)
+(connector
+	(pt 2024 544)
+	(pt 2024 560)
+	(bus)
+)
+(connector
+	(pt 2024 672)
+	(pt 2024 728)
+)
+(connector
+	(pt 2008 672)
+	(pt 2008 696)
+)
+(connector
+	(pt 1824 696)
+	(pt 1864 696)
+)
+(connector
+	(pt 1920 544)
+	(pt 1880 544)
+	(bus)
+)
+(connector
+	(pt 1880 544)
+	(pt 1880 560)
+	(bus)
+)
+(connector
+	(pt 1880 672)
+	(pt 1880 728)
+)
+(connector
+	(pt 1864 672)
+	(pt 1864 696)
+)
+(connector
+	(pt 1680 696)
+	(pt 1720 696)
+)
+(connector
+	(pt 1776 544)
+	(pt 1736 544)
+	(bus)
+)
+(connector
+	(pt 1736 544)
+	(pt 1736 560)
+	(bus)
+)
+(connector
+	(pt 1736 672)
+	(pt 1736 728)
+)
+(connector
+	(pt 1720 672)
+	(pt 1720 696)
+)
+(connector
+	(pt 1536 696)
+	(pt 1576 696)
+)
+(connector
+	(pt 1632 544)
+	(pt 1592 544)
+	(bus)
+)
+(connector
+	(pt 1592 544)
+	(pt 1592 560)
+	(bus)
+)
+(connector
+	(pt 1592 672)
+	(pt 1592 728)
+)
+(connector
+	(pt 1576 672)
+	(pt 1576 696)
+)
+(connector
+	(pt 1392 696)
+	(pt 1432 696)
+)
+(connector
+	(pt 1488 544)
+	(pt 1448 544)
+	(bus)
+)
+(connector
+	(pt 1448 544)
+	(pt 1448 560)
+	(bus)
+)
+(connector
+	(pt 1448 672)
+	(pt 1448 728)
+)
+(connector
+	(pt 1432 672)
+	(pt 1432 696)
+)
+(connector
+	(pt 1248 696)
+	(pt 1288 696)
+)
+(connector
+	(pt 1344 544)
+	(pt 1304 544)
+	(bus)
+)
+(connector
+	(pt 1304 544)
+	(pt 1304 560)
+	(bus)
+)
+(connector
+	(pt 1304 672)
+	(pt 1304 728)
+)
+(connector
+	(pt 1288 672)
+	(pt 1288 696)
+)
+(connector
+	(pt 1104 696)
+	(pt 1144 696)
+)
+(connector
+	(pt 1200 544)
+	(pt 1160 544)
+	(bus)
+)
+(connector
+	(pt 1160 544)
+	(pt 1160 560)
+	(bus)
+)
+(connector
+	(pt 1160 672)
+	(pt 1160 728)
+)
+(connector
+	(pt 1144 672)
+	(pt 1144 696)
+)
+(connector
+	(pt 944 696)
+	(pt 984 696)
+)
+(connector
+	(pt 1040 544)
+	(pt 1000 544)
+	(bus)
+)
+(connector
+	(pt 1000 544)
+	(pt 1000 560)
+	(bus)
+)
+(connector
+	(pt 1000 672)
+	(pt 1000 728)
+)
+(connector
+	(pt 984 672)
+	(pt 984 696)
+)
+(connector
+	(pt 800 696)
+	(pt 840 696)
+)
+(connector
+	(pt 896 544)
+	(pt 856 544)
+	(bus)
+)
+(connector
+	(pt 856 544)
+	(pt 856 560)
+	(bus)
+)
+(connector
+	(pt 856 672)
+	(pt 856 728)
+)
+(connector
+	(pt 840 672)
+	(pt 840 696)
+)
 (junction (pt 456 360))
 (junction (pt 600 360))
 (junction (pt 648 360))
@@ -6559,7 +6587,7 @@ applicable agreement for further details.
 	(rect 32 888 353 949)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_file" (rect 56 2 182 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Aug 19 16:45:23 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Thu Aug 21 23:56:24 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

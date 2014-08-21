@@ -45,12 +45,12 @@ def RegOut(reg, hex):
 
 def RegIn(reg, hex):
     global total_clks
-    ftest.write("#1 force dut.reg_file.b2v_latch_" + reg + "_lo.oen=1;\n")
-    ftest.write("   force dut.reg_file.b2v_latch_" + reg + "_hi.oen=1;\n")
+    ftest.write("#1 force dut.reg_file.b2v_latch_" + reg + "_lo.oe=1;\n")
+    ftest.write("   force dut.reg_file.b2v_latch_" + reg + "_hi.oe=1;\n")
     ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_lo.db!=8'h" + hex[2:] +  ") $display(\"Reg " + reg + " mismatch: %h/" + hex[2:] +  "\",dut.reg_file.b2v_latch_" + reg + "_lo.db);\n")
     ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_hi.db!=8'h" + hex[0:2] + ") $display(\"Reg " + reg + " mismatch: %h/" + hex[0:2] + "\",dut.reg_file.b2v_latch_" + reg + "_hi.db);\n")
-    ftest.write("#1 release dut.reg_file.b2v_latch_" + reg + "_lo.oen;\n")
-    ftest.write("   release dut.reg_file.b2v_latch_" + reg + "_hi.oen;\n")
+    ftest.write("#1 release dut.reg_file.b2v_latch_" + reg + "_lo.oe;\n")
+    ftest.write("   release dut.reg_file.b2v_latch_" + reg + "_hi.oe;\n")
     total_clks = total_clks + 2
 
 # Read each test from the testdat.in file
