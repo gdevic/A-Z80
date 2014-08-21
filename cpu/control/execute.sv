@@ -207,6 +207,10 @@ begin
         ctl_inc_cy = 1;                 // Increment address latch
         ctl_bus_inc_we = 1;             // Incrementer to the abus
     end
+    
+    if (fMRead && T3) begin
+        ctl_bus_db_oe = 1;              // Data pin latch to internal data bus    
+    end
 end
 
 endmodule

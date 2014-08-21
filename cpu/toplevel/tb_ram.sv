@@ -15,12 +15,12 @@ initial begin : init
 end : init
 
 always @(!CS && !OE) begin
-    $strobe("[ram] RD A=%d, D=%d, T=%d", Address, Data, $time);
+    $strobe("[ram] RD A=%H, D=%H", Address, Data);
 end
 
 always @(CS or WE)
     if (!CS && !WE) begin
-        $strobe("[ram] WR A=%d, D=%d, T=%d", Address, Data, $time);
+        $strobe("[ram] WR A=%H, D=%H", Address, Data);
         Mem[Address] = Data;
     end
 
