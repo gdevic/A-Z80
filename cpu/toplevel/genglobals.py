@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 # This script reads and parses selected Verilog and SystemVerilog modules
 # and generates a set of Verilog include files for the Z80 top-level block.
 #
