@@ -24,6 +24,10 @@ abbr = 0
 # Set this to 1 if you want debug $display() printout on each PLA line
 debug = 1
 
+# Print this string in front of every line that starts with "ctl_". This helps
+# formatting the output to be more readable.
+ctl_prefix = "\n"+" "*19
+
 # Read in the content of the macro substitution file
 macros = []
 with open(kname, 'r') as f:
@@ -109,7 +113,7 @@ for line in content:
         tag = s.find(":")
         condition = s[4:tag]
         imatrix.append("if ({0}) begin".format(condition.strip()))
-        if debug:
+        if debug and len(s[tag:])>1:    # Print only in debug and there is something to print
             imatrix.append("    $display(\"{0}\");".format(s[4:]))
 
     # We recognize 2 kinds of timing statements based on the starting characters:
@@ -127,7 +131,10 @@ for line in content:
         for i in range(3,len(col)):
             token = col[i].strip()
             if i in tkeys and len(token)>0:
-                action += getSubst(tkeys[i], token)
+                macro = getSubst(tkeys[i], token)
+                if macro.strip().startswith("ctl_"):
+                    action += ctl_prefix
+                action += macro
                 if state.find("ERROR")>=0:
                     print "{0} {1}".format(state, action)
                     break
