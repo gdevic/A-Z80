@@ -11,7 +11,7 @@ Prerequisites:
 
 A-Z80 consists of several functional blocks and a top-level module:
 ./alu       contains ALU block, ALU control and flags logic
-./bus       contains data bus switches, chip pin logic, address latch and incrementer
+./bus       contains data bus switches, pin logic, address latch and incrementer
 ./register  contains CPU register file and register control logic
 ./control   contains PLA, sequencer and other control blocks
 ./toplevel  integrates all sub-modules into a top-level design
@@ -29,18 +29,20 @@ exported to Verilog for simulation and the top-level integration.
 
 Simulation
 ==========
-Each functional block contains a Modelsim simulation profile:
+Before you can load and simulate modules using Modelsim, you need to set up
+the environment by running a Python script 'modelsim_setup.py'. It will create
+relative file path mapping to the source files in all module project folders.
+
+Each functional block - and the top level - contains a Modelsim simulation profile:
 ./<block>/simulation/modelsim/test_<block>.mpf
 
-Before you can load and simulate modules using Modelsim, you need to set up
-the environment by running a Python script 'modelsim_setup.py'.
+Once you start ModelSim by opening a *.mpf file within a module, create a library:
+ModelSim> vlib work
+After that you can compile all module/project sources (Compile->Compile All).
 
-Each Modelsim project contains a set of predefined waveform scripts which you can
-load before running a simulation of a particular submodule. The scripts are named
-according to a sub-module to test:
-./<block>/simulation/modelsim/wave_<submodule>.do
-
-All tests and test benches are written in SystemVerilog (and have extension *.sv).
+Each project also contains a set of predefined waveform scripts which you can
+load before running a simulation of a particular test:
+./<block>/simulation/modelsim/wave_<test>.do
 
 ----------------------------------------------------------------------------------
 Email me if you have any questions,
