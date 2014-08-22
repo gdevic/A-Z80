@@ -11,6 +11,8 @@ module test_bench_fuse(z80_if.tb z);
 
 assign clk = z.CLK;
 
+integer f;
+
 initial begin : init
     $display("Test: Start of test at %d", $time);
     z.nWAIT <= `CLR;
@@ -20,7 +22,10 @@ initial begin : init
     z.nRESET <= `SET;
     z.nRESET <= `CLR;
 
+    // Run all the tests and write the result to a file
+    f = $fopen("fuse.result.txt");
     `include "test_fuse.i"
+    $fclose(f);
 
 end : init
 

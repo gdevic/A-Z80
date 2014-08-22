@@ -5,10 +5,10 @@
 import os
 
 # Start with a test name (this is a string, see tests files)
-start_test = "03"
+start_test = "00"
 
 # Number of tests to run, use -1 to run all tests
-run_tests = 1
+run_tests = 3
 
 with open('fuse/tests.in') as f1:
     t1 = f1.read().splitlines()
@@ -47,8 +47,8 @@ def RegIn(reg, hex):
     global total_clks
     ftest.write("#1 force dut.reg_file.b2v_latch_" + reg + "_lo.oe=1;\n")
     ftest.write("   force dut.reg_file.b2v_latch_" + reg + "_hi.oe=1;\n")
-    ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_lo.db!=8'h" + hex[2:] +  ") $display(\"Reg " + reg + " mismatch: %h/" + hex[2:] +  "\",dut.reg_file.b2v_latch_" + reg + "_lo.db);\n")
-    ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_hi.db!=8'h" + hex[0:2] + ") $display(\"Reg " + reg + " mismatch: %h/" + hex[0:2] + "\",dut.reg_file.b2v_latch_" + reg + "_hi.db);\n")
+    ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_lo.db!=8'h" + hex[2:] +  ") $fdisplay(f,\"Reg " + reg + " mismatch: %h/" + hex[2:] +  "\",dut.reg_file.b2v_latch_" + reg + "_lo.db);\n")
+    ftest.write("   if (dut.reg_file.b2v_latch_" + reg + "_hi.db!=8'h" + hex[0:2] + ") $fdisplay(f,\"Reg " + reg + " mismatch: %h/" + hex[0:2] + "\",dut.reg_file.b2v_latch_" + reg + "_hi.db);\n")
     ftest.write("#1 release dut.reg_file.b2v_latch_" + reg + "_lo.oe;\n")
     ftest.write("   release dut.reg_file.b2v_latch_" + reg + "_hi.oe;\n")
     total_clks = total_clks + 2
@@ -66,7 +66,7 @@ while True:
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC
     # I R IFF1 IFF2 IM <halted> <tstates>
     name = t1.pop(0)
-    ftest.write("$display(\"Test configuration " + name + "\");\n\n")
+    ftest.write("$fdisplay(f,\"Test configuration " + name + "\");\n\n")
     r = t1.pop(0).split(' ')
     r = filter(None, r)
     # 0  1  2  3  4   5   6   7   8  9  10 11   (index)
@@ -106,7 +106,7 @@ while True:
 
     ftest.write("#1 force dut.z80_top.fpga_reset=0;\n")
     total_clks = total_clks + 1
-    ftest.write("   $display(\"Releasing reset\");\n")
+    ftest.write("   $fdisplay(f,\"Releasing reset\");\n")
 
     # Read and parse the tests expected list which contains the expected results of our run,
     # including the number of clocks for a particular instruction
@@ -131,7 +131,7 @@ while True:
 
     # Now we can issue register reading commands
     # We are guided on what to read and check by the content of "test.expected" file
-    ftest.write("   $display(\"Reading result\");\n")
+    ftest.write("   $fdisplay(f,\"Reading result\");\n")
     ftest.write("   force dut.z80_top.fpga_reset=1;\n")
 
     # Read the result: registers and memory
@@ -164,12 +164,12 @@ while True:
             d = m.pop(0)
             if d=="-1":
                 break
-            ftest.write("   if (ram.Mem[" + str(address) + "]!=8'h" + d + ") $display(\"Mem mismatch: %h/" + d + "\",ram.Mem[" + str(address) + "]);\n")
+            ftest.write("   if (ram.Mem[" + str(address) + "]!=8'h" + d + ") $fdisplay(f,\"Mem mismatch: %h/" + d + "\",ram.Mem[" + str(address) + "]);\n")
             address = address+1
 
 # Write out the total number of clocks that this set of tests takes to execute
 ftest.write("`define TOTAL_CLKS " + str(total_clks + 1) + "\n")
-ftest.write("$display(\"*** Test completed ***\");\n")
+ftest.write("$fdisplay(f,\"*** Test completed ***\");\n")
 
 # Touch a file that includes 'test_fuse.i' to ensure it will recompile correctly
 os.utime("test_fuse.sv", None)
