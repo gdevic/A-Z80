@@ -181,7 +181,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 32 1184 208 1200)
+	(rect 32 1216 208 1232)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_pc" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
@@ -197,7 +197,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 32 1216 208 1232)
+	(rect 32 1184 208 1200)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_ir" (rect 9 0 73 12)(font "Arial" ))
 	(pt 176 8)
@@ -213,7 +213,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 32 1248 208 1264)
+	(rect 32 1288 208 1304)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sel_wz" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
@@ -248,6 +248,22 @@ applicable agreement for further details.
 	(rect 32 1088 208 1104)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_reg_sys_we" (rect 9 0 85 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 32 1256 208 1272)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ctl_reg_not_pc" (rect 9 0 80 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -421,7 +437,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1144 1248 1320 1264)
+	(rect 1144 1288 1320 1304)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_wz" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
@@ -437,7 +453,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1144 1184 1320 1200)
+	(rect 1144 1224 1320 1240)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_pc" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
@@ -453,7 +469,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 1144 1216 1320 1232)
+	(rect 1144 1184 1320 1200)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_sel_ir" (rect 90 0 137 12)(font "Arial" ))
 	(pt 0 8)
@@ -2142,6 +2158,63 @@ applicable agreement for further details.
 		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
 	)
 )
+(symbol
+	(rect 680 1208 744 1256)
+	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "inst11" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 42 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 12)(pt 30 12))
+		(line (pt 14 37)(pt 31 37))
+		(line (pt 14 12)(pt 14 37))
+		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
+	)
+)
+(symbol
+	(rect 584 1248 632 1280)
+	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst13" (rect 3 21 32 33)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 13 16))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(line (pt 39 16)(pt 48 16))
+	)
+	(drawing
+		(line (pt 13 25)(pt 13 7))
+		(line (pt 13 7)(pt 31 16))
+		(line (pt 13 25)(pt 31 16))
+		(circle (rect 31 12 39 20))
+	)
+)
 (connector
 	(pt 616 680)
 	(pt 600 680)
@@ -3089,18 +3162,6 @@ applicable agreement for further details.
 	(pt 1144 1160)
 )
 (connector
-	(pt 208 1192)
-	(pt 1144 1192)
-)
-(connector
-	(pt 208 1224)
-	(pt 1144 1224)
-)
-(connector
-	(pt 208 1256)
-	(pt 1144 1256)
-)
-(connector
 	(text "ctl_reg_gp_hilo[1]" (rect 1030 112 1116 124)(font "Arial" ))
 	(pt 1008 128)
 	(pt 1144 128)
@@ -3135,6 +3196,38 @@ applicable agreement for further details.
 (connector
 	(pt 408 168)
 	(pt 408 184)
+)
+(connector
+	(pt 208 1192)
+	(pt 1144 1192)
+)
+(connector
+	(pt 744 1232)
+	(pt 1144 1232)
+)
+(connector
+	(pt 680 1224)
+	(pt 208 1224)
+)
+(connector
+	(pt 680 1240)
+	(pt 656 1240)
+)
+(connector
+	(pt 656 1240)
+	(pt 656 1264)
+)
+(connector
+	(pt 656 1264)
+	(pt 632 1264)
+)
+(connector
+	(pt 208 1264)
+	(pt 584 1264)
+)
+(connector
+	(pt 208 1296)
+	(pt 1144 1296)
 )
 (junction (pt 1008 1128))
 (junction (pt 600 624))
@@ -3209,11 +3302,12 @@ applicable agreement for further details.
 (text "General Purpose registers control" (rect 592 32 820 48)(font "Arial" (font_size 10)))
 (text "Set 0" (rect 752 264 781 278)(font "Arial" (font_size 8)))
 (text "Set 1" (rect 752 248 781 262)(font "Arial" (font_size 8)))
+(text "Block PC (use for override to WZ, HL for jumps)" (rect 232 1248 503 1262)(font "Arial" (font_size 8)))
 (title_block
-	(rect 32 1288 353 1349)
+	(rect 32 1336 353 1397)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_control" (rect 56 2 212 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sun Aug 17 16:45:07 2014" (rect 56 3 237 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Thu Aug 21 23:48:56 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

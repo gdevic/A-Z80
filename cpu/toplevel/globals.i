@@ -106,6 +106,7 @@ wire ctl_reg_sel_ir;
 wire ctl_reg_sel_wz;
 wire ctl_reg_gp_we;
 wire ctl_reg_sys_we;
+wire ctl_reg_not_pc;
 wire [1:0] ctl_reg_gp_hilo;
 wire [1:0] ctl_reg_gp_sel;
 wire [1:0] ctl_reg_sys_hilo;
