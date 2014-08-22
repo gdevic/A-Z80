@@ -30,51 +30,80 @@ fIOWrite        fIOWrite=1;
 1               contM2=1;
 :nextM
 1               nextM=1;
-CC              nextM=flags_cond_true;
+CC              nextM=!flags_cond_true;
 :setM1
 1               setM1=1;
-SS              ctl_cond_short=1; setM1=flags_cond_true;
-CC              setM1=flags_cond_true;
+SS              ctl_cond_short=1; setM1=!flags_cond_true;
+CC              setM1=!flags_cond_true;
 E               setM1=flags_zf;
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint
 //-----------------------------------------------------------------------------------------
 :A:reg rd
-PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
-IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit IR
-SP      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1;   // Read 16-bit SP, enable SW4 downstream
+// General purpose registers
+r16     ctl_reg_gp_sel=op54; ctl_sw_4d=1;                           // Read 16-bit general purpose register, enable SW4 downstream
 HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1;                     // Read 16-bit HL, enable SW4 downstream
-r16
-A
+SP      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1;   // Read 16-bit SP, enable SW4 downstream
+
+// System registers
+WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit WZ
+IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit IR
+PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
+
+// Conditional assertions of WZ, HL instead of PC
+WZ!     ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; // Use WZ instead of PC (for jumps)
+WZ? \
+    if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
+        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
+    end
+
+HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1;   // Use HL, enable SW4 downstream (for jumps)
 
 :A:reg wr
-PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
-IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
-SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
+// General purpose registers
 HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4u=1;    // Write 16-bit HL, enable SW4 upstream
+SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
+// System registers
+WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit WZ
+IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer
 //-----------------------------------------------------------------------------------------
 :inc/dec
--       ctl_inc_dec=1; // Decrement address latch!
+-       ctl_inc_dec=1;                      // Decrement address latch!
+R       ctl_bus_inc_we=1;                   // Output enable incrementer latch to the abus
+W       ctl_al_we=1;                        // Write a value from the abus to the address latch
+R-      ctl_bus_inc_we=1; ctl_inc_dec=1;    // Decrement address latch and output it to abus
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint
 //-----------------------------------------------------------------------------------------
 :D:reg rd
-A
+// General purpose registers
+A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
-PC
 r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Read 8-bit GP register
-I
+r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!op0,op0}; // Read 8-bit GP register selected by op[2:0]
+rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;      // Read 8-bit GP register high byte
+rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;      // Read 8-bit GP register low byte
+// System registers
+I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3};   // Read either I or R based on op3 (0 or 1)
+P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
+C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
 
 :D:reg wr
-PC
+// General purpose registers
+A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Write 8-bit GP register
 rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
+// System registers
+I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; // Write either I or R based on op3 (0 or 1)
+W       ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
+Z       ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)
@@ -94,16 +123,19 @@ rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-
 // Data bus latches and pads control
 //-----------------------------------------------------------------------------------------
 :DB pads
-R       ctl_bus_db_oe=1;
-W       ctl_bus_db_we=1;
+R       ctl_bus_db_oe=1;                        // Read DB pads to internal data bus
+W       ctl_bus_db_we=1;                        // Write DB pads with internal data bus value
 00      ctl_bus_zero_oe=1;                      // Force 0x00 on the data bus
 FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 
 //-----------------------------------------------------------------------------------------
 // ALU
 //-----------------------------------------------------------------------------------------
-:ALU
+:ALU oe
 <       ctl_alu_oe=1;                           // Enable ALU onto the data bus
+>
+
+:ALU bus
 // Controls who can write to the ALU internal bus
 sh0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
 sh1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
@@ -184,5 +216,5 @@ ALU_OR
 ALU_XOR
 
 // M1 opcode read cycle and the refresh register increment cycle
-IR              ctl_ir_we = 1;          // Write the opcode into the instruction register
+OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits

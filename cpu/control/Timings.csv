@@ -1,1134 +1,1134 @@
-A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	inc/dec	D:reg rd	D:reg wr	SW2	SW1	DB pads	ALU	FLAGT	ALU:op1	ALU:op2		SZ	XY	HF	PF	NF	CF		ALU:phase		Special	
-																															
-// 8-bit Load Group																															
-																															
-"#if pla[61] : ld r,r'"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[17] && !pla[50] : ld r,n"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																							
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																						
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1					r8	<	<	R																
-#end																															
-																															
-"#if pla[58] : ld r,(hl)"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:003 DB:--	2	1	fMRead					HL																							
-#006H T6  AB:003 DB:03          MREQ RD	2	2	fMRead																												
-#007H T7  AB:003 DB:03          MREQ RD	2	3	fMRead			1	1					r8	<	<	R																
-#end																															
-																															
-"#if use_ixiy && pla[58] : ld r,(ix+d)"			"4,3,5,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:4E  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																							
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																									
-#012H T8  AB:002 DB:--	3	1	fMRead																												
-#013H T9  AB:002 DB:--	3	2	fMRead																												
-#014H T10 AB:002 DB:--	3	3	fMRead																												
-#015H T11 AB:002 DB:--	3	4																													
-#016H T12 AB:002 DB:--	3	5				1																									
-#017H T13 AB:001 DB:--	4	1	fMRead																												
-#018H T14 AB:001 DB:4E          MREQ RD	4	2	fMRead																												
-#019H T15 AB:001 DB:4E          MREQ RD	4	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[59] : ld (hl),r"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:70  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8		3>	>	W																
-#005H T5  AB:001 DB:--	2	1	fMWrite					HL																							
-#006H T6  AB:001 DB:01          MREQ	2	2	fMWrite																												
-#007H T7  AB:001 DB:01          MREQ    WR	2	3	fMWrite			1	1																								
-#end																															
-																															
-"#if use_ixiy && pla[59] : ld (ix+d),r"			"4,3,5,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:70  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																							
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																									
-#012H T8  AB:002 DB:--	3	1	fMRead																												
-#013H T9  AB:002 DB:--	3	2	fMRead																												
-#014H T10 AB:002 DB:--	3	3	fMRead																												
-#015H T11 AB:002 DB:--	3	4																													
-#016H T12 AB:002 DB:--	3	5				1																									
-#017H T13 AB:000 DB:--	4	1	fMWrite																												
-#018H T14 AB:000 DB:46          MREQ	4	2	fMWrite																												
-#019H T15 AB:000 DB:46          MREQ    WR	4	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[50] && !pla[40] : ld (hl),n"			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:36  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																							
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		 	1																									
-#008H T8  AB:001 DB:--	3	1	fMWrite					HL																							
-#009H T9  AB:001 DB:01          MREQ	3	2	fMWrite																												
-#010H T10 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[40] : ld (ix+d),n"			"4,3,5,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:36  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																							
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																									
-#012H T8  AB:003 DB:--	3	1	fMRead																												
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																												
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead																												
-#015H T11 AB:003 DB:--	3	4																													
-#016H T12 AB:003 DB:--	3	5				1																									
-#017H T13 AB:002 DB:--	4	1	fMWrite																												
-#018H T14 AB:002 DB:02          MREQ	4	2	fMWrite																												
-#019H T15 AB:002 DB:02          MREQ    WR	4	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[8] && pla[13] : ld (rr),a"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:02  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						A				W																
-#005H T5  AB:001 DB:--	2	1	fMWrite					r16																							
-#006H T6  AB:001 DB:FF          MREQ	2	2	fMWrite																												
-#007H T7  AB:001 DB:FF          MREQ    WR	2	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[8] && !pla[13] : ld a,(rr)"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:0A  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:002 DB:--	2	1	fMRead					r16																							
-#006H T6  AB:002 DB:02          MREQ RD	2	2	fMRead																												
-#007H T7  AB:002 DB:02          MREQ RD	2	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[38] && pla[13] : ld (nn),a"			"4,3,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:32  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1																									
-#011H T11 AB:001 DB:--	4	1	fMWrite																												
-#012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite																												
-#013H T13 AB:001 DB:FE          MREQ    WR	4	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[38] && !pla[13] : ld a,(nn)"			"4,3,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:3A  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1																									
-#011H T11 AB:001 DB:--	4	1	fMRead																												
-#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead																												
-#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[83] : ld a,i/a,r"			5																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#009H T5  AB:001 DB:--	1	5				1	1				I																				
-#end																															
-																															
-"#if pla[57] : ld i,a/r,a"			5																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:47  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#009H T5  AB:001 DB:--	1	5				1	1																								
-#end																															
-																															
-// 16-bit Load Group																															
-																															
-"#if pla[7] : ld rr,nn"			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:01  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																							
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																						
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						rl	<	<																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																							
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																						
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					rh	<	<																	
-#end																															
-																															
-"#if pla[30] && pla[13] : ld (nn),hl"			"4,3,3,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:22  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1																									
-#011H T11 AB:001 DB:--	4	1	fMWrite																												
-#012H T12 AB:001 DB:01          MREQ	4	2	fMWrite																												
-#013H T13 AB:001 DB:01          MREQ    WR	4	3	fMWrite			1																									
-#014H T14 AB:002 DB:--	5	1	fMWrite																												
-#015H T15 AB:002 DB:02          MREQ	5	2	fMWrite																												
-#016H T16 AB:002 DB:02          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[30] && !pla[13] : ld hl,(nn)"			"4,3,3,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:2A  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1																									
-#011H T11 AB:001 DB:--	4	1	fMRead																												
-#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead																												
-#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1																									
-#014H T14 AB:002 DB:--	5	1	fMRead																												
-#015H T15 AB:002 DB:02          MREQ RD	5	2	fMRead																												
-#016H T16 AB:002 DB:02          MREQ RD	5	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[31] && pla[33] : ld (nn),rr"			"4,3,3,3,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead																												
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:003 DB:--	3	1	fMRead																												
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																												
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1																									
-#015H T11 AB:001 DB:--	4	1	fMWrite																												
-#016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite																												
-#017H T13 AB:001 DB:FF          MREQ    WR	4	3	fMWrite			1																									
-#018H T14 AB:002 DB:--	5	1	fMWrite																												
-#019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite																												
-#020H T16 AB:002 DB:C3          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[31] && !pla[33] : ld rr,(nn)"			"4,3,3,3,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead																												
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:003 DB:--	3	1	fMRead																												
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																												
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1																									
-#015H T11 AB:001 DB:--	4	1	fMRead																												
-#016H T12 AB:001 DB:FF          MREQ RD	4	2	fMRead																												
-#017H T13 AB:001 DB:FF          MREQ RD	4	3	fMRead			1																									
-#018H T14 AB:002 DB:--	5	1	fMRead																												
-#019H T15 AB:002 DB:C3          MREQ RD	5	2	fMRead																												
-#020H T16 AB:002 DB:C3          MREQ RD	5	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[5] : ld sp,hl"			6																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:F9  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5																													
-#006H T6  AB:000 DB:--	1	6				1	1																								
-#end																															
-																															
-#if pla[23] && pla[16] : push qq			"5,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C5  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5				1		SP																							
-#006H T6  AB:002 DB:--	2	1	fMWrite						SP	-																					
-#007H T7  AB:002 DB:02          MREQ	2	2	fMWrite																												
-#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite			1		SP																							
-#009H T9  AB:001 DB:--	3	1	fMWrite						SP	-																					
-#010H T10 AB:001 DB:01          MREQ	3	2	fMWrite																												
-#011H T11 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[23] && !pla[16] : pop qq			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C1  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead					SP																							
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						SP																						
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead					SP																							
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						SP																						
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-"// Exchange, Block Transfer and Search Groups"																															
-																															
-"#if pla[2] : ex de,hl"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:EB  M1      MREQ RD	1	2	fMFetch																											Ex_DE_HL	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[39] : ex af,af'"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:08  M1      MREQ RD	1	2	fMFetch																											Ex_AF_AF'	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[1] : exx			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:D9  M1      MREQ RD	1	2	fMFetch																											EXX	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[10] : ex (sp),hl"			"4,3,4,3,5"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																							
-#002H T2  AB:000 DB:E3  M1      MREQ RD	1	2	fMFetch						PC																						
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR																							
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1				IR																						
-#005H T5  AB:0FD DB:--	2	1	fMRead																												
-#006H T6  AB:0FD DB:03          MREQ RD	2	2	fMRead																												
-#007H T7  AB:0FD DB:03          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:0FE DB:--	3	1	fMRead																												
-#009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead																												
-#010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead																												
-#011H T11 AB:0FE DB:-- 	3	4				1																									
-#012H T12 AB:0FE DB:--	4	1	fMWrite																												
-#013H T13 AB:0FE DB:00          MREQ	4	2	fMWrite																												
-#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite			1																									
-#015H T15 AB:0FD DB:--	5	1	fMWrite																												
-#016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite																												
-#017H T17 AB:0FD DB:01          MREQ    WR 	5	3	fMWrite																												
-#018H T18 AB:0FD DB:01	5	4																													
-#019H T19 AB:0FD DB:01	5	5				1	1																								
-#end																															
-																															
-#if pla[12] : ldi/ldir/ldd/lddr			"4,3,5,(5)"																												
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																												
-#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch																												
-#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																												
-#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#039H T5  AB:000 DB:--	2	1	fMRead																												
-#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																												
-#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																									
-#042H T8  AB:000 DB:--	3	1	fMWrite																												
-#043H T9  AB:000 DB:21          MREQ	3	2	fMWrite																												
-#044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite																												
-#045H T11 AB:000 DB:21	3	4																													
-#046H T12 AB:000 DB:21	3	5				1																									
-#047H T13 AB:000 DB:--	4	1																													
-#048H T14 AB:000 DB:--	4	2																													
-#049H T15 AB:000 DB:--	4	3																													
-#050H T16 AB:000 DB:--	4	4																													
-#051H T17 AB:000 DB:--	4	5				1	1																								
-#end																															
-																															
-#if pla[11] : cpi/cpir/cpd/cpdr			"4,3,5,(5)"																												
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																												
-#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch																												
-#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																												
-#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#039H T5  AB:000 DB:--	2	1	fMRead																												
-#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																												
-#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																									
-#042H T8  AB:000 DB:--	3	1																													
-#043H T9  AB:000 DB:--	3	2																													
-#044H T10 AB:000 DB:--	3	3																													
-#045H T11 AB:000 DB:--	3	4																													
-#046H T12 AB:000 DB:--	3	5				1																									
-#047H T13 AB:000 DB:--	4	1																													
-#048H T14 AB:000 DB:--	4	2																													
-#049H T15 AB:000 DB:--	4	3																													
-#050H T16 AB:000 DB:--	4	4																													
-#051H T17 AB:000 DB:--	4	5				1	1																								
-#end																															
-																															
-// 8-bit Arithmetic and Logic Group																															
-																															
-"#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																											ALUOP	
-#end																															
-																															
-"#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C6  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																								
-#end																															
-																															
-#if !use_ixiy && pla[52] : add/sub/and/or/xor/cp (hl)			"4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:86  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																								
-#end																															
-																															
-#if use_ixiy && pla[52] : add/sub/and/or/xor/cp (ix+d)			"4,3,5,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:86  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead																												
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		1																										
-#012H T8  AB:002 DB:--	3	1																													
-#013H T9  AB:002 DB:--	3	2																													
-#014H T10 AB:002 DB:--	3	3																													
-#015H T11 AB:002 DB:--	3	4																													
-#016H T12 AB:002 DB:--	3	5			1																										
-#017H T13 AB:000 DB:--	4	1	fMRead																												
-#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																												
-#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1	1																								
-#end																															
-																															
-#if !use_ixiy && pla[66] && !pla[53] : inc/dec r			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if !use_ixiy && pla[53] : inc/dec (hl)			"4,4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:34  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead																												
-#008H T8  AB:001 DB:--	2	4				1																									
-#009H T9  AB:001 DB:--	3	1	fMWrite																												
-#010H T10 AB:001 DB:02          MREQ	3	2	fMWrite																												
-#011H T11 AB:001 DB:02          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-#if use_ixiy && pla[53] : inc/dec (ix+d)			"4,3,5,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:34  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead																												
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		1																										
-#012H T8  AB:002 DB:--	3	1																													
-#013H T9  AB:002 DB:--	3	2																													
-#014H T10 AB:002 DB:--	3	3																													
-#015H T11 AB:002 DB:--	3	4																													
-#016H T12 AB:002 DB:--	3	5			1																										
-#017H T13 AB:002 DB:--	4	1	fMRead																												
-#018H T14 AB:002 DB:01          MREQ RD	4	2	fMRead																												
-#019H T15 AB:002 DB:01          MREQ RD	4	3	fMRead																												
-#020H T16 AB:002 DB:--	4	4			1																										
-#021H T17 AB:002 DB:--	3	1	fMWrite																												
-#022H T18 AB:002 DB:02          MREQ	3	2	fMWrite																												
-#023H T19 AB:002 DB:02          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[53] && pla[75] : dec (hl)			"4,4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:34  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead																												
-#008H T8  AB:001 DB:--	2	4				1																									
-#009H T9  AB:001 DB:--	3	1	fMWrite																												
-#010H T10 AB:001 DB:02          MREQ	3	2	fMWrite																												
-#011H T11 AB:001 DB:02          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-// 16-bit Arithmetic Group																															
-																															
-"#if pla[69] : add hl,ss"			"4,4,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:09  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:000 DB:--	2	1																													
-#006H T6  AB:000 DB:--	2	2																													
-#007H T7  AB:000 DB:--	2	3																													
-#008H T8  AB:000 DB:--	2	4				1																									
-#009H T9  AB:000 DB:--	3	1																													
-#010H T10 AB:000 DB:--	3	2																													
-#011H T11 AB:000 DB:--	3	3				1	1																								
-#end																															
-																															
-"#if pla[68] : adc/sbc hl,ss"			"4,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:001 DB:--	2	1																													
-#010H T6  AB:001 DB:--	2	2																													
-#011H T7  AB:001 DB:--	2	3																													
-#012H T8  AB:001 DB:--	2	4				1																									
-#013H T9  AB:001 DB:--	3	1																													
-#014H T10 AB:001 DB:--	3	2																													
-#015H T11 AB:001 DB:--	3	3				1	1																								
-#end																															
-																															
-#if pla[9] : inc/dec ss			6																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:03  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5																													
-#006H T6  AB:000 DB:--	1	6				1	1																								
-#end																															
-																															
-// General Purpose Arithmetic and CPU Control Groups																															
-																															
-#if pla[77] : daa			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:27  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[81] : cpl			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:2F  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[82] : neg			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:44  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[89] : ccf			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:3F  M1      MREQ RD	1	2	fMFetch																											CCF	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[92] : scf			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:37  M1      MREQ RD	1	2	fMFetch																											SCF	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[95] : halt			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:76  M1      MREQ RD	1	2	fMFetch																											HALT	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[97] : di/ei			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:F3  M1      MREQ RD	1	2	fMFetch																											DI_EI	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[96] : im n			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:46  M1      MREQ RD	1	2	fMFetch																											IM	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-// Rotate and Shift Group																															
-																															
-#if pla[25] : rlca/rla/rrca/rra			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:07  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[70] && !pla[55] : rlc r			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[70] && pla[55] : rlc (hl)			"4,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:006 DB:--	2	1	fMRead																												
-#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																												
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																												
-#012H T8  AB:006 DB:--	2	4				1																									
-#013H T9  AB:006 DB:--	3	1	fMWrite																												
-#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																												
-#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[15] && op3 : rld			"4,3,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:000 DB:--	2	1	fMRead																												
-#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																												
-#011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:000 DB:--	3	1																													
-#013H T9  AB:000 DB:--	3	2																													
-#014H T10 AB:000 DB:--	3	3																													
-#015H T11 AB:000 DB:--	3	4				1																									
-#016H T12 AB:000 DB:--	4	1	fMWrite																												
-#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																												
-#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[15] && !op3 : rrd			"4,3,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:000 DB:--	2	1	fMRead																												
-#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																												
-#011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:000 DB:--	3	1																													
-#013H T9  AB:000 DB:--	3	2																													
-#014H T10 AB:000 DB:--	3	3																													
-#015H T11 AB:000 DB:--	3	4				1																									
-#016H T12 AB:000 DB:--	4	1	fMWrite																												
-#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																												
-#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																								
-#end																															
-																															
-// Bit Manipulation Group																															
-																															
-"#if pla[72] && !pla[55] : bit b,r"			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[72] && pla[55] : bit b,(hl)"			"4,4"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:006 DB:--	2	1	fMRead																												
-#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																												
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																												
-#012H T8  AB:006 DB:--	2	4				1	1																								
-#end																															
-																															
-"#if pla[74] && !pla[55] : set b,r"			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[74] && pla[55] : set b,(hl)"			"4,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:006 DB:--	2	1	fMRead																												
-#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																												
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																												
-#012H T8  AB:006 DB:--	2	4				1																									
-#013H T9  AB:006 DB:--	3	1	fMWrite																												
-#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																												
-#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[73] && !pla[55] : res b,r"			4																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-"#if pla[73] && pla[55] : res b,(hl)"			"4,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:006 DB:--	2	1	fMRead																												
-#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																												
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																												
-#012H T8  AB:006 DB:--	2	4				1																									
-#013H T9  AB:006 DB:--	3	1	fMWrite																												
-#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																												
-#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-// Input and Output Groups																															
-																															
-"#if pla[37] && pla[28] : out (n),a"			"4,3,4"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:D3  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:001 DB:--	3	1	fIOWrite																												
-#009H T9  AB:001 DB:03                  WR IORQ	3	2	fIOWrite																												
-#010H T10 AB:001 DB:03                  WR IORQ	3	3	fIOWrite																												
-#011H T11 AB:001 DB:03                  WR IORQ	3	4	fIOWrite			1	1																								
-#end																															
-																															
-"#if pla[37] && !pla[28] : in a,(n)"			"4,3,4"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:DB  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:001 DB:--	3	1	fIORead																												
-#009H T9  AB:001 DB:--               RD    IORQ	3	2	fIORead																												
-#010H T10 AB:001 DB:--               RD    IORQ	3	3	fIORead																												
-#011H T11 AB:001 DB:--               RD    IORQ	3	4	fIORead			1	1																								
-#end																															
-																															
-"#if pla[27] && !pla[34] : in r,(c)"			"4,4"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:0FF DB:--	2	1	fIORead																												
-#010H T6  AB:0FF DB:--               RD    IORQ	2	2	fIORead																												
-#011H T7  AB:0FF DB:--               RD    IORQ	2	3	fIORead																												
-#012H T8  AB:0FF DB:--               RD    IORQ	2	4	fIORead			1	1																								
-#end																															
-																															
-"#if pla[27] && pla[34] : out (c),r"			"4,4"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:41  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:0FF DB:--	2	1	fIOWrite																												
-#010H T6  AB:0FF DB:C3                  WR IORQ	2	2	fIOWrite																												
-#011H T7  AB:0FF DB:C3                  WR IORQ	2	3	fIOWrite																												
-#012H T8  AB:0FF DB:C3                  WR IORQ	2	4	fIOWrite			1	1																								
-#end																															
-																															
-#if pla[91] && pla[21] : ini/inir/ind/indr			"5,4,3,(5)"																												
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																												
-#036H T2  AB:00A DB:B2  M1      MREQ RD	1	2	fMFetch																												
-#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																												
-#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#039H T5  AB:004 DB:--	1	5				1																									
-#040H T6  AB:000 DB:--	2	1	fIORead																												
-#041H T7  AB:000 DB:--               RD    IORQ	2	2	fIORead																												
-#042H T8  AB:000 DB:--               RD    IORQ	2	3	fIORead																												
-#043H T9  AB:000 DB:--               RD    IORQ	2	4	fIORead			1																									
-#044H T10 AB:000 DB:--	3	1	fMWrite																												
-#045H T11 AB:000 DB:B1          MREQ	3	2	fMWrite																												
-#046H T12 AB:000 DB:B1          MREQ    WR	3	3	fMWrite			1																									
-#047H T13 AB:000 DB:--	4	1																													
-#048H T14 AB:000 DB:--	4	2																													
-#049H T15 AB:000 DB:--	4	3																													
-#050H T16 AB:000 DB:--	4	4																													
-#051H T17 AB:000 DB:--	4	5				1	1																								
-#end																															
-																															
-#if pla[91] && pla[20] : outi/outir/outd/outdr			"5,4,3,(5)"																												
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																												
-#036H T2  AB:00A DB:B3  M1      MREQ RD	1	2	fMFetch																												
-#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																												
-#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#039H T5  AB:004 DB:--	1	5				1																									
-#040H T6  AB:000 DB:--	2	1	fIORead																												
-#041H T7  AB:000 DB:21          MREQ RD	2	2	fIORead																												
-#042H T8  AB:000 DB:21          MREQ RD	2	3	fIORead																												
-#043H T9  AB:000 DB:--	2	4	fIORead			1																									
-#044H T10 AB:000 DB:21                  WR IORQ	3	1	fMWrite																												
-#045H T11 AB:000 DB:21                  WR IORQ	3	2	fMWrite																												
-#046H T12 AB:000 DB:21                  WR IORQ	3	3	fMWrite			1																									
-#047H T13 AB:000 DB:--	4	1																													
-#048H T14 AB:000 DB:--	4	2																													
-#049H T15 AB:000 DB:--	4	3																													
-#050H T16 AB:000 DB:--	4	4																													
-#051H T17 AB:000 DB:--	4	5				1	1																								
-#end																															
-																															
-// Jump Group																															
-																															
-#if pla[29] : jp nn			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C3  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-"#if pla[43] : jp cc,nn"			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C2  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-#if pla[47] : jr e			"4,3,5"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:18  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:001 DB:--	3	1																													
-#009H T9  AB:001 DB:--	3	2																													
-#010H T10 AB:001 DB:--	3	3																													
-#011H T11 AB:001 DB:--	3	4																													
-#012H T12 AB:001 DB:--	3	5				1	1																								
-#end																															
-																															
-"#if pla[48] : jr ss,e"			"4,3,(5)"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:20  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	SS																								
-#008H T8  AB:001 DB:--	3	1																													
-#009H T9  AB:001 DB:--	3	2																													
-#010H T10 AB:001 DB:--	3	3																													
-#011H T11 AB:001 DB:--	3	4																													
-#012H T12 AB:001 DB:--	3	5				1	1																								
-#end																															
-																															
-#if pla[6] : jp hl			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:E9  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[26] : djnz e			"5,3,(5)"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:10  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5				1																									
-#006H T6  AB:001 DB:--	2	1	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1	E																								
-#009H T9  AB:001 DB:--	3	1																													
-#010H T10 AB:001 DB:--	3	2																													
-#011H T11 AB:001 DB:--	3	3																													
-#012H T12 AB:001 DB:--	3	4																													
-#013H T13 AB:001 DB:--	3	5				1	1																								
-#end																															
-																															
-// Call and Return Group																															
-																															
-#if pla[24] : call nn			"4,3,4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:CD  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead																												
-#011H T11 AB:002 DB:--	3	4				1																									
-#012H T12 AB:000 DB:--	4	1	fMWrite																												
-#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite																												
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1																									
-#015H T15 AB:0FF DB:--	5	1	fMWrite																												
-#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite																												
-#017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[42] : call cc,nn"			"4,3,3/(4,3,4,3,3)"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C4  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:001 DB:--	2	1	fMRead																												
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:002 DB:--	3	1	fMRead																												
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			CC	CC																								
-#011H T11 AB:002 DB:--	3	4				1																									
-#012H T12 AB:000 DB:--	4	1	fMWrite																												
-#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite																												
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1																									
-#015H T15 AB:0FF DB:--	5	1	fMWrite																												
-#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite																												
-#017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[35] : ret			"4,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C9  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#005H T5  AB:0FF DB:--	2	1	fMRead																												
-#006H T6  AB:0FF DB:01          MREQ RD	2	2	fMRead																												
-#007H T7  AB:0FF DB:01          MREQ RD	2	3	fMRead			1																									
-#008H T8  AB:000 DB:--	3	1	fMRead																												
-#009H T9  AB:000 DB:C9          MREQ RD	3	2	fMRead																												
-#010H T10 AB:000 DB:C9          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-#if pla[45] : ret cc			"5/(5,3,3)"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C0  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5				1	CC																								
-#006H T6  AB:001 DB:--	2	1	fMRead																												
-#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead																												
-#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1																									
-#009H T9  AB:002 DB:--	3	1	fMRead																												
-#010H T10 AB:002 DB:02          MREQ RD	3	2	fMRead																												
-#011H T11 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-#if pla[46] : reti/retn			"4,3,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:45  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:001 DB:--	2	1	fMRead																												
-#010H T6  AB:001 DB:45          MREQ RD	2	2	fMRead																												
-#011H T7  AB:001 DB:45          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:002 DB:--	3	1	fMRead																												
-#013H T9  AB:002 DB:01          MREQ RD	3	2	fMRead																												
-#014H T10 AB:002 DB:01          MREQ RD	3	3	fMRead			1	1																								
-#end																															
-																															
-#if pla[56] : rst p			"5,3,3"																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:C7  M1      MREQ RD	1	2	fMFetch																												
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#005H T5  AB:000 DB:--	1	5				1																									
-#006H T6  AB:000 DB:--	2	1	fMWrite																												
-#007H T7  AB:000 DB:00          MREQ	2	2	fMWrite																												
-#008H T8  AB:000 DB:00          MREQ    WR	2	3	fMWrite			1																									
-#009H T9  AB:0FF DB:--	3	1	fMWrite																												
-#010H T10 AB:0FF DB:01          MREQ	3	2	fMWrite																												
-#011H T11 AB:0FF DB:01          MREQ    WR	3	3	fMWrite			1	1																								
-#end																															
-																															
-// CB-Table opcodes																															
-																															
-#if pla[49] : Every CB with IX/IY			"4,3,5,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:CB  M1      MREQ RD	1	2	fMFetch																												
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:002 DB:--	2	1	fMRead																												
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																												
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:003 DB:--	3	1	fMRead																												
-#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead																												
-#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead																												
-#015H T11 AB:003 DB:--	3	4																													
-#016H T12 AB:003 DB:--	3	5				1																									
-#017H T13 AB:000 DB:--	4	1																													
-#018H T14 AB:000 DB:DD          MREQ RD	4	2																													
-#019H T15 AB:000 DB:DD          MREQ RD	4	3																													
-#end																															
-																															
-"#if pla[54] && pla[70] && !pla[55] : rlc (ix+d),r"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-#if pla[54] && pla[70] && pla[55] : rlc (ix+d)																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[54] && pla[72] && !pla[55] : bit b,(ix+d)"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-																															
-#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																								
-#end																															
-																															
-"#if pla[54] && pla[72] && pla[55] : bit b,(ix+d)"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-																															
-#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																								
-#end																															
-																															
-"#if pla[54] && pla[74] && !pla[55] : set b,(ix+d),r"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[54] && pla[74] && pla[55] : set b,(ix+d)"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[54] && pla[73] && !pla[55] : res b,(ix+d),r"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-"#if pla[54] && pla[73] && pla[55] : res b,(ix+d)"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																												
-																															
-#029H T17 AB:002 DB:--	5	1	fMWrite																												
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																												
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																								
-#end																															
-																															
-// Special Purposes PLA Entries																															
-																															
-#if pla[3] : IX/IY			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:DD  M1      MREQ RD	1	2	fMFetch																											IX_IY	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[51] : ED prefix			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:ED  M1      MREQ RD	1	2	fMFetch																											ED	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-"#end Only set ED ff and clear CB, XX ff"																															
-																															
-#if pla[44] : CB prefix			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																												
-#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch																											CB	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												
-#end																															
-																															
-#if pla[76] : ALU CP																															
-#always																														ALU_CP	
-#end																															
-																															
-#if pla[78] : ALU SUB																															
-#always																														ALU_SUB	
-#end																															
-																															
-#if pla[79] : ALU SBC																															
-#always																														ALU_SBC	
-#end																															
-																															
-#if pla[80] : ALU ADC																															
-#always																														ALU_ADC	
-#end																															
-																															
-#if pla[84] : ALU ADD																															
-#always																														ALU_ADD	
-#end																															
-																															
-#if pla[85] : ALU AND																															
-#always																														ALU_AND	
-#end																															
-																															
-#if pla[86] : ALU OR																															
-#always																														ALU_OR	
-#end																															
-																															
-#if pla[88] : ALU XOR																															
-#always																														ALU_XOR	
-#end																															
-																															
-// Default instruction fetch (M1) state machine																															
-#if M1 :																															
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																							
-#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch						PC																						
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR			AF				R	sh0	>	bus	bus		*	*	*	*	*	*				IR	
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch						IR																					Limit6	
-#end																															
+A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	inc/dec	D:reg rd	D:reg wr	SW2	SW1	DB pads	ALU oe	ALU bus	FLAGT	ALU:op1	ALU:op2		SZ	XY	HF	PF	NF	CF		ALU:phase		Special	
+																																
+// 8-bit Load Group																																
+																																
+"#if pla[61] : ld r,r'"			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<			<	op1															
+#002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		3>				sh0		bus													
+#end																																
+																																
+"#if pla[17] && !pla[50] : ld r,n"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<	<	R																	
+#002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																									
+#end																																
+																																
+"#if pla[58] : ld r,(hl)"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<	<	R																	
+#002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:003 DB:--	2	1	fMRead					HL																								
+#006H T6  AB:003 DB:03          MREQ RD	2	2	fMRead																													
+#007H T7  AB:003 DB:03          MREQ RD	2	3	fMRead			1	1																									
+#end																																
+																																
+"#if use_ixiy && pla[58] : ld r,(ix+d)"			"4,3,5,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:4E  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
+#012H T8  AB:002 DB:--	3	1	fMRead																													
+#013H T9  AB:002 DB:--	3	2	fMRead																													
+#014H T10 AB:002 DB:--	3	3	fMRead																													
+#015H T11 AB:002 DB:--	3	4																														
+#016H T12 AB:002 DB:--	3	5				1																										
+#017H T13 AB:001 DB:--	4	1	fMRead																													
+#018H T14 AB:001 DB:4E          MREQ RD	4	2	fMRead																													
+#019H T15 AB:001 DB:4E          MREQ RD	4	3	fMRead			1	1																									
+#end																																
+																																
+"#if pla[59] : ld (hl),r"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:70  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8		3>	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMWrite					HL																								
+#006H T6  AB:001 DB:01          MREQ	2	2	fMWrite																													
+#007H T7  AB:001 DB:01          MREQ    WR	2	3	fMWrite			1	1																									
+#end																																
+																																
+"#if use_ixiy && pla[59] : ld (ix+d),r"			"4,3,5,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:70  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
+#012H T8  AB:002 DB:--	3	1	fMRead																													
+#013H T9  AB:002 DB:--	3	2	fMRead																													
+#014H T10 AB:002 DB:--	3	3	fMRead																													
+#015H T11 AB:002 DB:--	3	4																														
+#016H T12 AB:002 DB:--	3	5				1																										
+#017H T13 AB:000 DB:--	4	1	fMWrite																													
+#018H T14 AB:000 DB:46          MREQ	4	2	fMWrite																													
+#019H T15 AB:000 DB:46          MREQ    WR	4	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[50] && !pla[40] : ld (hl),n"			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:36  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		 	1																										
+#008H T8  AB:001 DB:--	3	1	fMWrite					HL																								
+#009H T9  AB:001 DB:01          MREQ	3	2	fMWrite																													
+#010H T10 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[40] : ld (ix+d),n"			"4,3,5,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:36  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
+#012H T8  AB:003 DB:--	3	1	fMRead																													
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																													
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead																													
+#015H T11 AB:003 DB:--	3	4																														
+#016H T12 AB:003 DB:--	3	5				1																										
+#017H T13 AB:002 DB:--	4	1	fMWrite																													
+#018H T14 AB:002 DB:02          MREQ	4	2	fMWrite																													
+#019H T15 AB:002 DB:02          MREQ    WR	4	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[8] && pla[13] : ld (rr),a"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:02  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						A		>	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMWrite					r16																								
+#006H T6  AB:001 DB:FF          MREQ	2	2	fMWrite																													
+#007H T7  AB:001 DB:FF          MREQ    WR	2	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[8] && !pla[13] : ld a,(rr)"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<	<	R																	
+#002H T2  AB:000 DB:0A  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:002 DB:--	2	1	fMRead					r16																								
+#006H T6  AB:002 DB:02          MREQ RD	2	2	fMRead																													
+#007H T7  AB:002 DB:02          MREQ RD	2	3	fMRead			1	1																									
+#end																																
+																																
+"#if pla[38] && pla[13] : ld (nn),a"			"4,3,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:32  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMWrite					WZ			A		>	>	W																	
+#012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite						WZ																							
+#013H T13 AB:001 DB:FE          MREQ    WR	4	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[38] && !pla[13] : ld a,(nn)"			"4,3,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<	<	R																	
+#002H T2  AB:000 DB:3A  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMRead					WZ																								
+#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ																							
+#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1	1																									
+#end																																
+																																
+"#if pla[83] : ld a,i/a,r"			5																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<	<		<	op1															
+#006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#009H T5  AB:001 DB:--	1	5				1	1				I/R		>			>	sh0		bus													
+#end																																
+																																
+"#if pla[57] : ld i,a/r,a"			5																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:47  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							A		>	>		>	sh0		bus													
+#009H T5  AB:001 DB:--	1	5				1	1					I/R	<	<		<	op1															
+#end																																
+																																
+// 16-bit Load Group																																
+																																
+"#if pla[7] : ld rr,nn"			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									rh	<	<	R																	
+#002H T2  AB:000 DB:01  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																										
+#008H T8  AB:002 DB:--	3	1	fMRead					PC				rl	<	<	R																	
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																									
+#end																																
+																																
+"#if pla[30] && pla[13] : ld (nn),hl"			"4,3,3,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:22  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMWrite					WZ			rl		>	>	W																	
+#012H T12 AB:001 DB:01          MREQ	4	2	fMWrite						WZ																							
+#013H T13 AB:001 DB:01          MREQ    WR	4	3	fMWrite			1																										
+#014H T14 AB:002 DB:--	5	1	fMWrite					WZ			rh		>	>	W																	
+#015H T15 AB:002 DB:02          MREQ	5	2	fMWrite						WZ																							
+#016H T16 AB:002 DB:02          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[30] && !pla[13] : ld hl,(nn)"			"4,3,3,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:2A  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMRead					WZ																								
+#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ																							
+#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1						rl	<	<	R																	
+#014H T14 AB:002 DB:--	5	1	fMRead					WZ																								
+#015H T15 AB:002 DB:02          MREQ RD	5	2	fMRead						WZ																							
+#016H T16 AB:002 DB:02          MREQ RD	5	3	fMRead			1	1					rh	<	<	R																	
+#end																																
+																																
+"#if pla[31] && pla[33] : ld (nn),rr"			"4,3,3,3,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC																							
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#012H T8  AB:003 DB:--	3	1	fMRead					PC																								
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC																							
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#015H T11 AB:001 DB:--	4	1	fMWrite					WZ			rl		>	>	W																	
+#016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite						WZ																							
+#017H T13 AB:001 DB:FF          MREQ    WR	4	3	fMWrite			1																										
+#018H T14 AB:002 DB:--	5	1	fMWrite					WZ			rh		>	>	W																	
+#019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite						WZ																							
+#020H T16 AB:002 DB:C3          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[31] && !pla[33] : ld rr,(nn)"			"4,3,3,3,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC																							
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#012H T8  AB:003 DB:--	3	1	fMRead					PC																								
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC																							
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
+#015H T11 AB:001 DB:--	4	1	fMRead					WZ																								
+#016H T12 AB:001 DB:FF          MREQ RD	4	2	fMRead						WZ																							
+#017H T13 AB:001 DB:FF          MREQ RD	4	3	fMRead			1						rl	<	<	R																	
+#018H T14 AB:002 DB:--	5	1	fMRead					WZ																								
+#019H T15 AB:002 DB:C3          MREQ RD	5	2	fMRead						WZ																							
+#020H T16 AB:002 DB:C3          MREQ RD	5	3	fMRead			1	1					rh	<	<	R																	
+#end																																
+																																
+"#if pla[5] : ld sp,hl"			6																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:F9  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5						HL		W																						
+#006H T6  AB:000 DB:--	1	6				1	1		SP	R																						
+#end																																
+																																
+#if pla[23] && pla[16] : push qq			"5,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:C5  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5				1		SP		W																						
+#006H T6  AB:002 DB:--	2	1	fMWrite								rh		3>	>	W																	
+#007H T7  AB:002 DB:02          MREQ	2	2	fMWrite						SP	R-																						
+#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite			1		SP		W																						
+#009H T9  AB:001 DB:--	3	1	fMWrite								rl		3>	>	W																	
+#010H T10 AB:001 DB:01          MREQ	3	2	fMWrite						SP	R-																						
+#011H T11 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[23] && !pla[16] : pop qq			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:C1  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					SP																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						SP																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						rl	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					SP																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						SP																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					rh	<	<	R																	
+#end																																
+																																
+"// Exchange, Block Transfer and Search Groups"																																
+																																
+"#if pla[2] : ex de,hl"			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:EB  M1      MREQ RD	1	2	fMFetch																												Ex_DE_HL	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+"#if pla[39] : ex af,af'"			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:08  M1      MREQ RD	1	2	fMFetch																												Ex_AF_AF'	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[1] : exx			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:D9  M1      MREQ RD	1	2	fMFetch																												EXX	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+"#if pla[10] : ex (sp),hl"			"4,3,4,3,5"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																								
+#002H T2  AB:000 DB:E3  M1      MREQ RD	1	2	fMFetch						PC																							
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR																								
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1				IR																							
+#005H T5  AB:0FD DB:--	2	1	fMRead					SP																								
+#006H T6  AB:0FD DB:03          MREQ RD	2	2	fMRead						SP																							
+#007H T7  AB:0FD DB:03          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:0FE DB:--	3	1	fMRead					SP																								
+#009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead						SP																							
+#010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead									W	<	<	R																	
+#011H T11 AB:0FE DB:-- 	3	4				1		SP		W																						
+#012H T12 AB:0FE DB:--	4	1	fMWrite								rh		3>	>	W																	
+#013H T13 AB:0FE DB:00          MREQ	4	2	fMWrite						SP	R-																						
+#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
+#015H T15 AB:0FD DB:--	5	1	fMWrite								rl		3>	>	W																	
+#016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite						SP	R-																						
+#017H T17 AB:0FD DB:01          MREQ    WR 	5	3	fMWrite																													
+#018H T18 AB:0FD DB:01	5	4						WZ		W																						
+#019H T19 AB:0FD DB:01	5	5				1	1		HL	R																						
+#end																																
+																																
+#if pla[12] : ldi/ldir/ldd/lddr			"4,3,5,(5)"																													
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch																													
+#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch																													
+#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																													
+#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#039H T5  AB:000 DB:--	2	1	fMRead																													
+#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																													
+#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																										
+#042H T8  AB:000 DB:--	3	1	fMWrite																													
+#043H T9  AB:000 DB:21          MREQ	3	2	fMWrite																													
+#044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite																													
+#045H T11 AB:000 DB:21	3	4																														
+#046H T12 AB:000 DB:21	3	5				1																										
+#047H T13 AB:000 DB:--	4	1																														
+#048H T14 AB:000 DB:--	4	2																														
+#049H T15 AB:000 DB:--	4	3																														
+#050H T16 AB:000 DB:--	4	4																														
+#051H T17 AB:000 DB:--	4	5				1	1																									
+#end																																
+																																
+#if pla[11] : cpi/cpir/cpd/cpdr			"4,3,5,(5)"																													
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch																													
+#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch																													
+#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																													
+#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#039H T5  AB:000 DB:--	2	1	fMRead																													
+#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																													
+#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																										
+#042H T8  AB:000 DB:--	3	1																														
+#043H T9  AB:000 DB:--	3	2																														
+#044H T10 AB:000 DB:--	3	3																														
+#045H T11 AB:000 DB:--	3	4																														
+#046H T12 AB:000 DB:--	3	5				1																										
+#047H T13 AB:000 DB:--	4	1																														
+#048H T14 AB:000 DB:--	4	2																														
+#049H T15 AB:000 DB:--	4	3																														
+#050H T16 AB:000 DB:--	4	4																														
+#051H T17 AB:000 DB:--	4	5				1	1																									
+#end																																
+																																
+// 8-bit Arithmetic and Logic Group																																
+																																
+"#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																												ALUOP	
+#end																																
+																																
+"#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:C6  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																									
+#end																																
+																																
+#if !use_ixiy && pla[52] : add/sub/and/or/xor/cp (hl)			"4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:86  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																									
+#end																																
+																																
+#if use_ixiy && pla[52] : add/sub/and/or/xor/cp (ix+d)			"4,3,5,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:86  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead																													
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		1																											
+#012H T8  AB:002 DB:--	3	1																														
+#013H T9  AB:002 DB:--	3	2																														
+#014H T10 AB:002 DB:--	3	3																														
+#015H T11 AB:002 DB:--	3	4																														
+#016H T12 AB:002 DB:--	3	5			1																											
+#017H T13 AB:000 DB:--	4	1	fMRead																													
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																													
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1	1																									
+#end																																
+																																
+#if !use_ixiy && pla[66] && !pla[53] : inc/dec r			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if !use_ixiy && pla[53] : inc/dec (hl)			"4,4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:34  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead																													
+#008H T8  AB:001 DB:--	2	4				1																										
+#009H T9  AB:001 DB:--	3	1	fMWrite																													
+#010H T10 AB:001 DB:02          MREQ	3	2	fMWrite																													
+#011H T11 AB:001 DB:02          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+#if use_ixiy && pla[53] : inc/dec (ix+d)			"4,3,5,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:34  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead																													
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		1																											
+#012H T8  AB:002 DB:--	3	1																														
+#013H T9  AB:002 DB:--	3	2																														
+#014H T10 AB:002 DB:--	3	3																														
+#015H T11 AB:002 DB:--	3	4																														
+#016H T12 AB:002 DB:--	3	5			1																											
+#017H T13 AB:002 DB:--	4	1	fMRead																													
+#018H T14 AB:002 DB:01          MREQ RD	4	2	fMRead																													
+#019H T15 AB:002 DB:01          MREQ RD	4	3	fMRead																													
+#020H T16 AB:002 DB:--	4	4			1																											
+#021H T17 AB:002 DB:--	3	1	fMWrite																													
+#022H T18 AB:002 DB:02          MREQ	3	2	fMWrite																													
+#023H T19 AB:002 DB:02          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[53] && pla[75] : dec (hl)			"4,4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:34  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead																													
+#008H T8  AB:001 DB:--	2	4				1																										
+#009H T9  AB:001 DB:--	3	1	fMWrite																													
+#010H T10 AB:001 DB:02          MREQ	3	2	fMWrite																													
+#011H T11 AB:001 DB:02          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+// 16-bit Arithmetic Group																																
+																																
+"#if pla[69] : add hl,ss"			"4,4,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:09  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:000 DB:--	2	1																														
+#006H T6  AB:000 DB:--	2	2																														
+#007H T7  AB:000 DB:--	2	3																														
+#008H T8  AB:000 DB:--	2	4				1																										
+#009H T9  AB:000 DB:--	3	1																														
+#010H T10 AB:000 DB:--	3	2																														
+#011H T11 AB:000 DB:--	3	3				1	1																									
+#end																																
+																																
+"#if pla[68] : adc/sbc hl,ss"			"4,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:001 DB:--	2	1																														
+#010H T6  AB:001 DB:--	2	2																														
+#011H T7  AB:001 DB:--	2	3																														
+#012H T8  AB:001 DB:--	2	4				1																										
+#013H T9  AB:001 DB:--	3	1																														
+#014H T10 AB:001 DB:--	3	2																														
+#015H T11 AB:001 DB:--	3	3				1	1																									
+#end																																
+																																
+#if pla[9] : inc/dec ss			6																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:03  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5																														
+#006H T6  AB:000 DB:--	1	6				1	1																									
+#end																																
+																																
+// General Purpose Arithmetic and CPU Control Groups																																
+																																
+#if pla[77] : daa			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:27  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[81] : cpl			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:2F  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[82] : neg			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:44  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[89] : ccf			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:3F  M1      MREQ RD	1	2	fMFetch																												CCF	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[92] : scf			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:37  M1      MREQ RD	1	2	fMFetch																												SCF	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[95] : halt			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:76  M1      MREQ RD	1	2	fMFetch																												HALT	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[97] : di/ei			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:F3  M1      MREQ RD	1	2	fMFetch																												DI_EI	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[96] : im n			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:46  M1      MREQ RD	1	2	fMFetch																												IM	
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+// Rotate and Shift Group																																
+																																
+#if pla[25] : rlca/rla/rrca/rra			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:07  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[70] && !pla[55] : rlc r			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[70] && pla[55] : rlc (hl)			"4,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:006 DB:--	2	1	fMRead																													
+#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																													
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																													
+#012H T8  AB:006 DB:--	2	4				1																										
+#013H T9  AB:006 DB:--	3	1	fMWrite																													
+#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																													
+#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[15] && op3 : rld			"4,3,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:000 DB:--	2	1	fMRead																													
+#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																													
+#011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																										
+#012H T8  AB:000 DB:--	3	1																														
+#013H T9  AB:000 DB:--	3	2																														
+#014H T10 AB:000 DB:--	3	3																														
+#015H T11 AB:000 DB:--	3	4				1																										
+#016H T12 AB:000 DB:--	4	1	fMWrite																													
+#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																													
+#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[15] && !op3 : rrd			"4,3,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:000 DB:--	2	1	fMRead																													
+#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																													
+#011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																										
+#012H T8  AB:000 DB:--	3	1																														
+#013H T9  AB:000 DB:--	3	2																														
+#014H T10 AB:000 DB:--	3	3																														
+#015H T11 AB:000 DB:--	3	4				1																										
+#016H T12 AB:000 DB:--	4	1	fMWrite																													
+#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																													
+#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																									
+#end																																
+																																
+// Bit Manipulation Group																																
+																																
+"#if pla[72] && !pla[55] : bit b,r"			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+"#if pla[72] && pla[55] : bit b,(hl)"			"4,4"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:006 DB:--	2	1	fMRead																													
+#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																													
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																													
+#012H T8  AB:006 DB:--	2	4				1	1																									
+#end																																
+																																
+"#if pla[74] && !pla[55] : set b,r"			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+"#if pla[74] && pla[55] : set b,(hl)"			"4,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:006 DB:--	2	1	fMRead																													
+#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																													
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																													
+#012H T8  AB:006 DB:--	2	4				1																										
+#013H T9  AB:006 DB:--	3	1	fMWrite																													
+#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																													
+#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[73] && !pla[55] : res b,r"			4																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+"#if pla[73] && pla[55] : res b,(hl)"			"4,4,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:006 DB:--	2	1	fMRead																													
+#010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																													
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																													
+#012H T8  AB:006 DB:--	2	4				1																										
+#013H T9  AB:006 DB:--	3	1	fMWrite																													
+#014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																													
+#015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+// Input and Output Groups																																
+																																
+"#if pla[37] && pla[28] : out (n),a"			"4,3,4"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:D3  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																										
+#008H T8  AB:001 DB:--	3	1	fIOWrite																													
+#009H T9  AB:001 DB:03                  WR IORQ	3	2	fIOWrite																													
+#010H T10 AB:001 DB:03                  WR IORQ	3	3	fIOWrite																													
+#011H T11 AB:001 DB:03                  WR IORQ	3	4	fIOWrite			1	1																									
+#end																																
+																																
+"#if pla[37] && !pla[28] : in a,(n)"			"4,3,4"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:DB  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																										
+#008H T8  AB:001 DB:--	3	1	fIORead																													
+#009H T9  AB:001 DB:--               RD    IORQ	3	2	fIORead																													
+#010H T10 AB:001 DB:--               RD    IORQ	3	3	fIORead																													
+#011H T11 AB:001 DB:--               RD    IORQ	3	4	fIORead			1	1																									
+#end																																
+																																
+"#if pla[27] && !pla[34] : in r,(c)"			"4,4"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:0FF DB:--	2	1	fIORead																													
+#010H T6  AB:0FF DB:--               RD    IORQ	2	2	fIORead																													
+#011H T7  AB:0FF DB:--               RD    IORQ	2	3	fIORead																													
+#012H T8  AB:0FF DB:--               RD    IORQ	2	4	fIORead			1	1																									
+#end																																
+																																
+"#if pla[27] && pla[34] : out (c),r"			"4,4"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:41  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:0FF DB:--	2	1	fIOWrite																													
+#010H T6  AB:0FF DB:C3                  WR IORQ	2	2	fIOWrite																													
+#011H T7  AB:0FF DB:C3                  WR IORQ	2	3	fIOWrite																													
+#012H T8  AB:0FF DB:C3                  WR IORQ	2	4	fIOWrite			1	1																									
+#end																																
+																																
+#if pla[91] && pla[21] : ini/inir/ind/indr			"5,4,3,(5)"																													
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch																													
+#036H T2  AB:00A DB:B2  M1      MREQ RD	1	2	fMFetch																													
+#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																													
+#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#039H T5  AB:004 DB:--	1	5				1																										
+#040H T6  AB:000 DB:--	2	1	fIORead																													
+#041H T7  AB:000 DB:--               RD    IORQ	2	2	fIORead																													
+#042H T8  AB:000 DB:--               RD    IORQ	2	3	fIORead																													
+#043H T9  AB:000 DB:--               RD    IORQ	2	4	fIORead			1																										
+#044H T10 AB:000 DB:--	3	1	fMWrite																													
+#045H T11 AB:000 DB:B1          MREQ	3	2	fMWrite																													
+#046H T12 AB:000 DB:B1          MREQ    WR	3	3	fMWrite			1																										
+#047H T13 AB:000 DB:--	4	1																														
+#048H T14 AB:000 DB:--	4	2																														
+#049H T15 AB:000 DB:--	4	3																														
+#050H T16 AB:000 DB:--	4	4																														
+#051H T17 AB:000 DB:--	4	5				1	1																									
+#end																																
+																																
+#if pla[91] && pla[20] : outi/outir/outd/outdr			"5,4,3,(5)"																													
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch																													
+#036H T2  AB:00A DB:B3  M1      MREQ RD	1	2	fMFetch																													
+#037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																													
+#038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#039H T5  AB:004 DB:--	1	5				1																										
+#040H T6  AB:000 DB:--	2	1	fIORead																													
+#041H T7  AB:000 DB:21          MREQ RD	2	2	fIORead																													
+#042H T8  AB:000 DB:21          MREQ RD	2	3	fIORead																													
+#043H T9  AB:000 DB:--	2	4	fIORead			1																										
+#044H T10 AB:000 DB:21                  WR IORQ	3	1	fMWrite																													
+#045H T11 AB:000 DB:21                  WR IORQ	3	2	fMWrite																													
+#046H T12 AB:000 DB:21                  WR IORQ	3	3	fMWrite			1																										
+#047H T13 AB:000 DB:--	4	1																														
+#048H T14 AB:000 DB:--	4	2																														
+#049H T15 AB:000 DB:--	4	3																														
+#050H T16 AB:000 DB:--	4	4																														
+#051H T17 AB:000 DB:--	4	5				1	1																									
+#end																																
+																																
+// Jump Group																																
+																																
+#if pla[29] : jp nn			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ!																								
+#002H T2  AB:000 DB:C3  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#end																																
+																																
+"#if pla[43] : jp cc,nn"			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ?																								
+#002H T2  AB:000 DB:C2  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#end																																
+																																
+#if pla[47] : jr e			"4,3,5"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:18  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																										
+#008H T8  AB:001 DB:--	3	1																														
+#009H T9  AB:001 DB:--	3	2																														
+#010H T10 AB:001 DB:--	3	3																														
+#011H T11 AB:001 DB:--	3	4																														
+#012H T12 AB:001 DB:--	3	5				1	1																									
+#end																																
+																																
+"#if pla[48] : jr ss,e"			"4,3,(5)"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:20  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead																													
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	SS																									
+#008H T8  AB:001 DB:--	3	1																														
+#009H T9  AB:001 DB:--	3	2																														
+#010H T10 AB:001 DB:--	3	3																														
+#011H T11 AB:001 DB:--	3	4																														
+#012H T12 AB:001 DB:--	3	5				1	1																									
+#end																																
+																																
+#if pla[6] : jp hl			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					HL!																								
+#002H T2  AB:000 DB:E9  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[26] : djnz e			"5,3,(5)"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:10  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5				1																										
+#006H T6  AB:001 DB:--	2	1	fMRead																													
+#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead																													
+#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1	E																									
+#009H T9  AB:001 DB:--	3	1																														
+#010H T10 AB:001 DB:--	3	2																														
+#011H T11 AB:001 DB:--	3	3																														
+#012H T12 AB:001 DB:--	3	4																														
+#013H T13 AB:001 DB:--	3	5				1	1																									
+#end																																
+																																
+// Call and Return Group																																
+																																
+#if pla[24] : call nn			"4,3,4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ!																								
+#002H T2  AB:000 DB:CD  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	<	<	R																	
+#011H T11 AB:002 DB:--	3	4				1		SP		W																						
+#012H T12 AB:000 DB:--	4	1	fMWrite								P		>	>	W																	
+#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																						
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
+#015H T15 AB:0FF DB:--	5	1	fMWrite								C		>	>	W																	
+#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																						
+#017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[42] : call cc,nn"			"4,3,3/(4,3,4,3,3)"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ?																								
+#002H T2  AB:000 DB:C4  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			CC	CC					W	<	<	R																	
+#011H T11 AB:002 DB:--	3	4				1		SP		W																						
+#012H T12 AB:000 DB:--	4	1	fMWrite								P		>	>	W																	
+#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																						
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
+#015H T15 AB:0FF DB:--	5	1	fMWrite								C		>	>	W																	
+#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																						
+#017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[35] : ret			"4,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ!																								
+#002H T2  AB:000 DB:C9  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:0FF DB:--	2	1	fMRead					SP																								
+#006H T6  AB:0FF DB:01          MREQ RD	2	2	fMRead						SP																							
+#007H T7  AB:0FF DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#008H T8  AB:000 DB:--	3	1	fMRead					SP																								
+#009H T9  AB:000 DB:C9          MREQ RD	3	2	fMRead						SP																							
+#010H T10 AB:000 DB:C9          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#end																																
+																																
+#if pla[45] : ret cc			"5/(5,3,3)"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					WZ?																								
+#002H T2  AB:000 DB:C0  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5				1	CC																									
+#006H T6  AB:001 DB:--	2	1	fMRead					SP																								
+#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead						SP																							
+#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
+#009H T9  AB:002 DB:--	3	1	fMRead					SP																								
+#010H T10 AB:002 DB:02          MREQ RD	3	2	fMRead						SP																							
+#011H T11 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#end																																
+																																
+#if pla[46] : reti/retn			"4,3,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:45  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:001 DB:--	2	1	fMRead																													
+#010H T6  AB:001 DB:45          MREQ RD	2	2	fMRead																													
+#011H T7  AB:001 DB:45          MREQ RD	2	3	fMRead			1																										
+#012H T8  AB:002 DB:--	3	1	fMRead																													
+#013H T9  AB:002 DB:01          MREQ RD	3	2	fMRead																													
+#014H T10 AB:002 DB:01          MREQ RD	3	3	fMRead			1	1																									
+#end																																
+																																
+#if pla[56] : rst p			"5,3,3"																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:C7  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
+#005H T5  AB:000 DB:--	1	5				1																										
+#006H T6  AB:000 DB:--	2	1	fMWrite																													
+#007H T7  AB:000 DB:00          MREQ	2	2	fMWrite																													
+#008H T8  AB:000 DB:00          MREQ    WR	2	3	fMWrite			1																										
+#009H T9  AB:0FF DB:--	3	1	fMWrite																													
+#010H T10 AB:0FF DB:01          MREQ	3	2	fMWrite																													
+#011H T11 AB:0FF DB:01          MREQ    WR	3	3	fMWrite			1	1																									
+#end																																
+																																
+// CB-Table opcodes																																
+																																
+#if pla[49] : Every CB with IX/IY			"4,3,5,3"																													
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:CB  M1      MREQ RD	1	2	fMFetch																													
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#009H T5  AB:002 DB:--	2	1	fMRead																													
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																										
+#012H T8  AB:003 DB:--	3	1	fMRead																													
+#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead																													
+#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead																													
+#015H T11 AB:003 DB:--	3	4																														
+#016H T12 AB:003 DB:--	3	5				1																										
+#017H T13 AB:000 DB:--	4	1																														
+#018H T14 AB:000 DB:DD          MREQ RD	4	2																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3																														
+#end																																
+																																
+"#if pla[54] && pla[70] && !pla[55] : rlc (ix+d),r"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+#if pla[54] && pla[70] && pla[55] : rlc (ix+d)																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[54] && pla[72] && !pla[55] : bit b,(ix+d)"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+																																
+#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																									
+#end																																
+																																
+"#if pla[54] && pla[72] && pla[55] : bit b,(ix+d)"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+																																
+#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																									
+#end																																
+																																
+"#if pla[54] && pla[74] && !pla[55] : set b,(ix+d),r"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[54] && pla[74] && pla[55] : set b,(ix+d)"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[54] && pla[73] && !pla[55] : res b,(ix+d),r"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+"#if pla[54] && pla[73] && pla[55] : res b,(ix+d)"																																
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																													
+																																
+#029H T17 AB:002 DB:--	5	1	fMWrite																													
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																													
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																									
+#end																																
+																																
+// Special Purposes PLA Entries																																
+																																
+#if pla[3] : IX/IY			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:DD  M1      MREQ RD	1	2	fMFetch																												IX_IY	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[51] : ED prefix			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:ED  M1      MREQ RD	1	2	fMFetch																												ED	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+"#end Only set ED ff and clear CB, XX ff"																																
+																																
+#if pla[44] : CB prefix			4																													
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch																												CB	
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																													
+#end																																
+																																
+#if pla[76] : ALU CP																																
+#always																															ALU_CP	
+#end																																
+																																
+#if pla[78] : ALU SUB																																
+#always																															ALU_SUB	
+#end																																
+																																
+#if pla[79] : ALU SBC																																
+#always																															ALU_SBC	
+#end																																
+																																
+#if pla[80] : ALU ADC																																
+#always																															ALU_ADC	
+#end																																
+																																
+#if pla[84] : ALU ADD																																
+#always																															ALU_ADD	
+#end																																
+																																
+#if pla[85] : ALU AND																																
+#always																															ALU_AND	
+#end																																
+																																
+#if pla[86] : ALU OR																																
+#always																															ALU_OR	
+#end																																
+																																
+#if pla[88] : ALU XOR																																
+#always																															ALU_XOR	
+#end																																
+																																
+// Default instruction fetch (M1) state machine																																
+#if M1 :																																
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																								
+#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch						PC																							
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR			AF				R		sh0	>	bus	bus		*	*	*	*	*	*				OpcodeIR	
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch						IR																						Limit6	
+#end																																

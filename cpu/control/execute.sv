@@ -73,20 +73,22 @@ logic contM2;                           // Continue with the next M cycle
 `define GP_REG_HL       2'h2
 `define GP_REG_AF       2'h3
 
-//`define FLAGS_ALL_SEL   ctl_flags_sz_we=1; ctl_flags_xy_we=1; ctl_flags_hf_we=1; ctl_flags_pf_we=1; ctl_flags_nf_we=1; ctl_flags_cf_we=1;
-
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------
 wire [1:0] op54;
 wire [1:0] op43;
+wire [1:0] op21;
 wire op5;
 wire op3;
+wire op0;
 
 assign op54 = { pla[104], pla[103] };
 assign op43 = { pla[103], pla[102] };
+assign op21 = { pla[101], pla[100] };
 assign op5 = pla[104];
 assign op3 = pla[102];
+assign op0 = pla[99];
 
 always_comb
 begin
@@ -119,6 +121,35 @@ begin
     //----------------------------------------------------------
     `include "exec_matrix.i"
 
+    //========================================================================
+    // Default T-cycle executions
+    //========================================================================
+    if (T1) begin
+        ctl_al_we = 1;                  // Write a value on the address bus to address latch
+    end
+    
+    if (T2) begin
+        ctl_inc_cy = 1;                 // Increment address latch
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
+    end
+
+    if (T3) begin
+        ctl_al_we = 1;                  // Write a value on the address bus to address latch
+    end
+
+    if (T4) begin
+        ctl_inc_cy = 1;                 // Increment address latch
+        ctl_bus_inc_we = 1;             // Incrementer to the abus
+    end
+    
+    if (M1 & T4) begin
+        ctl_inc_dec = 1;                // TEST: Decrement R!
+
+        nextM = !contM1;                // Complete the default M1 cycle
+        setM1 = !contM1 & !contM2;
+    end
+
+/*
     //========================================================================
     // Default M1 fetch cycle execution
     //========================================================================
@@ -212,6 +243,7 @@ begin
     if (fMRead && T3) begin
         ctl_bus_db_oe = 1;              // Data pin latch to internal data bus
     end
+*/
 end
 
 endmodule
