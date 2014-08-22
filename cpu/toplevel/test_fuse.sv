@@ -14,13 +14,12 @@ assign clk = z.CLK;
 integer f;
 
 initial begin : init
-    $display("Test: Start of test at %d", $time);
     z.nWAIT <= `CLR;
     z.nINT <= `CLR;
     z.nNMI <= `CLR;
     z.nBUSRQ <= `CLR;
     z.nRESET <= `SET;
-    z.nRESET <= `CLR;
+#1  z.nRESET <= `CLR;
 
     // Run all the tests and write the result to a file
     f = $fopen("fuse.result.txt");
