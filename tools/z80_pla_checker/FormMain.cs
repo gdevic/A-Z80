@@ -364,6 +364,7 @@ namespace z80_pla_checker
                             "            0 - Display number of PLA entries that trigger on each opcode" + Environment.NewLine +
                             "            1 - For each opcode, display all PLA entry numbers that trigger" + Environment.NewLine +
                             "            <#> - Add a * to opcodes for which the specified PLA entry triggers" + Environment.NewLine +
+                            "q 101000... Query PLA table string" + Environment.NewLine +
                             "c         - Clear the screen";
                     case "p": if (tokens.Length > 1)
                             MatchOpcodes(modifier, tokens[1]);
@@ -391,6 +392,8 @@ namespace z80_pla_checker
                             else
                                 ClassLog.Log("Invalid table number!");
                         }
+                        break;
+                    case "q": pla.QueryPla(tokens[1].Trim());
                         break;
                     default:
                         return "?";

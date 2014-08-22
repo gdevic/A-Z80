@@ -271,6 +271,24 @@ namespace z80_pla_checker
         }
 
         /// <summary>
+        /// Query PLA table string given as a vector of 0's and 1's
+        /// This vector is coped from a ModelSim simulation run. The function will decode PLA string
+        /// into a set of PLA entries that are being triggered ("1")
+        /// </summary>
+        public void QueryPla(String bits)
+        {
+            int max = pla.Count();
+            if (bits.Count() != max)
+            {
+                ClassLog.Log("Invalid PLA length - the bit array should be " + max + " and it is " + bits.Count());
+                return;
+            }
+            for (int i = 0; i < max; i++)
+                if (bits[max - i - 1] == '1')
+                    ClassLog.Log(string.Format(@"pla[{0,3}] = 1;   // {1}", pla[i].N, pla[i].Comment));
+        }
+
+        /// <summary>
         /// Generates a Verilog module with the PLA logic
         /// </summary>
         public void GenVerilogPla()
