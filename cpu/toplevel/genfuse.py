@@ -5,10 +5,10 @@
 import os
 
 # Start with a test name (this is a string, see tests files)
-start_test = "00"
+start_test = "03"
 
 # Number of tests to run, use -1 to run all tests
-run_tests = 3
+run_tests = 1
 
 with open('fuse/tests.in') as f1:
     t1 = f1.read().splitlines()
@@ -164,7 +164,7 @@ while True:
             d = m.pop(0)
             if d=="-1":
                 break
-            ftest.write("   if (ram.Mem[" + str(address) + "]!=8'h" + d + ") $display(\"Mem mismatch: " + d + "\");\n")
+            ftest.write("   if (ram.Mem[" + str(address) + "]!=8'h" + d + ") $display(\"Mem mismatch: %h/" + d + "\",ram.Mem[" + str(address) + "]);\n")
             address = address+1
 
 # Write out the total number of clocks that this set of tests takes to execute

@@ -44,7 +44,7 @@ if (pla[58]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */ end
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit HL, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
@@ -80,7 +80,7 @@ if (pla[59]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T1) begin  fMWrite=1;
-                    ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */ end
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit HL, enable SW4 downstream */ end
     if (M2 && T2) begin  fMWrite=1; end
     if (M2 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -117,7 +117,7 @@ if (pla[50] && !pla[40]) begin
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMWrite=1;
-                    ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */ end
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit HL, enable SW4 downstream */ end
     if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -153,7 +153,7 @@ if (pla[8] && pla[13]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T1) begin  fMWrite=1;
-                    ctl_reg_gp_sel=op54; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */ end
+                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */ end
     if (M2 && T2) begin  fMWrite=1; end
     if (M2 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -169,7 +169,7 @@ if (pla[8] && !pla[13]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=op54; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */ end
+                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
@@ -491,10 +491,10 @@ if (pla[5]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM1=1; end
     if (M1 && T5) begin 
-                    ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit HL, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M1 && T6) begin  nextM=1; setM1=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; /* Output enable incrementer latch to the abus */ end
 end
 
@@ -505,7 +505,7 @@ if (pla[23] && pla[16]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM1=1; end
     if (M1 && T5) begin  nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
@@ -513,10 +513,10 @@ if (pla[23] && pla[16]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M2 && T3) begin  fMWrite=1; nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Read 8-bit GP register low byte */
@@ -524,7 +524,7 @@ if (pla[23] && pla[16]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M3 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -536,18 +536,18 @@ if (pla[23] && !pla[16]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Write 8-bit GP register low byte */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Write 8-bit GP register high byte */
                     ctl_sw_2d=1;
@@ -594,25 +594,25 @@ if (pla[10]) begin
     if (M1 && T4) begin  fFetch=1; contM2=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */ end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M3 && T3) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
@@ -620,10 +620,10 @@ if (pla[10]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Read 8-bit GP register low byte */
@@ -631,14 +631,14 @@ if (pla[10]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M5 && T3) begin  fMWrite=1; end
     if (M5 && T4) begin 
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T5) begin  nextM=1; setM1=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
                     ctl_bus_inc_we=1; /* Output enable incrementer latch to the abus */ end
 end
 
@@ -833,8 +833,12 @@ if (pla[9]) begin
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM1=1; end
-    if (M1 && T5) begin  end
-    if (M1 && T6) begin  nextM=1; setM1=1; end
+    if (M1 && T5) begin 
+                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
+    if (M1 && T6) begin  nextM=1; setM1=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit general purpose register, enable SW4 upstream */
+                    ctl_bus_inc_we=1; ctl_inc_dec=op3; /* Used for INC/DEC: decrement if op3 is set */ end
 end
 
 // General Purpose Arithmetic and CPU Control Groups
@@ -1231,7 +1235,7 @@ end
 if (pla[6]) begin
     $display("pla[6] : jp hl");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1; /* Use HL, enable SW4 downstream (for jumps) */ end
+                    ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Use HL, enable SW4 downstream (for jumps) */ end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; end
@@ -1281,7 +1285,7 @@ if (pla[24]) begin
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
@@ -1289,10 +1293,10 @@ if (pla[24]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
@@ -1300,7 +1304,7 @@ if (pla[24]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -1333,7 +1337,7 @@ if (pla[42]) begin
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
@@ -1341,10 +1345,10 @@ if (pla[42]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
@@ -1352,7 +1356,7 @@ if (pla[42]) begin
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_bus_inc_we=1; ctl_inc_dec=1; /* Decrement address latch and output it to abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -1365,18 +1369,18 @@ if (pla[35]) begin
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
                     ctl_sw_2d=1;
@@ -1395,18 +1399,18 @@ if (pla[45]) begin
     if (M1 && T4) begin  fFetch=1; contM1=1; end
     if (M1 && T5) begin  nextM=1; setM1=!flags_cond_true; end
     if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1; /* Read 16-bit SP, enable SW4 downstream */ end
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
                     ctl_sw_2d=1;

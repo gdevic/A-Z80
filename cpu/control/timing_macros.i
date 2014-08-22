@@ -42,9 +42,9 @@ E               setM1=flags_zf;
 //-----------------------------------------------------------------------------------------
 :A:reg rd
 // General purpose registers
-r16     ctl_reg_gp_sel=op54; ctl_sw_4d=1;                           // Read 16-bit general purpose register, enable SW4 downstream
-HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1;                     // Read 16-bit HL, enable SW4 downstream
-SP      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4d=1;   // Read 16-bit SP, enable SW4 downstream
+r16     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;    // Read 16-bit general purpose register, enable SW4 downstream
+HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit HL, enable SW4 downstream
+SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit SP, enable SW4 downstream
 
 // System registers
 WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit WZ
@@ -58,12 +58,13 @@ WZ? \
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end
 
-HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4d=1;   // Use HL, enable SW4 downstream (for jumps)
+HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; // Use HL, enable SW4 downstream (for jumps)
 
 :A:reg wr
 // General purpose registers
-HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_sw_4u=1;    // Write 16-bit HL, enable SW4 upstream
-SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
+r16     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit general purpose register, enable SW4 upstream
+HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit HL, enable SW4 upstream
+SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
 // System registers
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit WZ
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
@@ -77,6 +78,7 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-
 R       ctl_bus_inc_we=1;                   // Output enable incrementer latch to the abus
 W       ctl_al_we=1;                        // Write a value from the abus to the address latch
 R-      ctl_bus_inc_we=1; ctl_inc_dec=1;    // Decrement address latch and output it to abus
++/-     ctl_bus_inc_we=1; ctl_inc_dec=op3;  // Used for INC/DEC: decrement if op3 is set
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint
