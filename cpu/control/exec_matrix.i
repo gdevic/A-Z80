@@ -3,14 +3,14 @@
 if (pla[61]) begin
     $display("pla[61] : ld r,r'");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; /* Write 8-bit GP register */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; /* Write 8-bit GP register */
                     ctl_sw_2u=1;
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_op1_oe=1; /* OP1 latch */ end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!op0,op0}; /* Read 8-bit GP register selected by op[2:0] */
+                    ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
                     ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */ end
@@ -19,7 +19,7 @@ end
 if (pla[17] && !pla[50]) begin
     $display("pla[17] && !pla[50] : ld r,n");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; /* Write 8-bit GP register */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; /* Write 8-bit GP register */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
@@ -38,7 +38,7 @@ end
 if (pla[58]) begin
     $display("pla[58] : ld r,(hl)");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; /* Write 8-bit GP register */
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; /* Write 8-bit GP register */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
@@ -79,7 +79,7 @@ if (pla[59]) begin
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
-                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; /* Read 8-bit GP register */
+                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};/* Read 8-bit GP register */
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
@@ -769,11 +769,23 @@ end
 // 8-bit Arithmetic and Logic Group
 if (pla[65] && !pla[52]) begin
     $display("pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_sw_2u=1;
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_state_alu=1; ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */ end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_state_alu=1; /* Activate ALU operation PLA wires */ end
+                    ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
+                    ctl_sw_2d=1;
+                    ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_state_alu=1; ctl_alu_op_low=1; /* Activate ALU operation on low nibble */ end
 end
 
 if (pla[64]) begin
@@ -1695,7 +1707,8 @@ end
 
 if (pla[84]) begin
     $display("pla[84] : ALU ADD");
-    begin  end
+    begin 
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; end
 end
 
 if (pla[85]) begin
@@ -1726,10 +1739,10 @@ if (M1) begin
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
                     ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;

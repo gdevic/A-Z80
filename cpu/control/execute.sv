@@ -76,19 +76,34 @@ logic contM2;                           // Continue with the next M cycle
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------
+wire op5;
+wire op4;
+wire op3;
+wire op2;
+wire op1;
+wire op0;
+assign op5 = pla[104];
+assign op4 = pla[103];
+assign op3 = pla[102];
+assign op2 = pla[101];
+assign op1 = pla[100];
+assign op0 = pla[99];
+
 wire [1:0] op54;
 wire [1:0] op43;
 wire [1:0] op21;
-wire op5;
-wire op3;
-wire op0;
 
 assign op54 = { pla[104], pla[103] };
 assign op43 = { pla[103], pla[102] };
 assign op21 = { pla[101], pla[100] };
-assign op5 = pla[104];
-assign op3 = pla[102];
-assign op0 = pla[99];
+
+//-----------------------------------------------------------
+// 8-bit register selections needs to swizzle mux for A and F
+//-----------------------------------------------------------
+wire rsel3;
+wire rsel0;
+assign rsel3 = op3 ^ (op4 & op5);
+assign rsel0 = op0 ^ (op1 & op2);
 
 always_comb
 begin

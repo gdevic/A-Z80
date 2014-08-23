@@ -92,19 +92,20 @@ R-      ctl_bus_inc_we=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable whi
 // General purpose registers
 A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
-r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Read 8-bit GP register
-r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!op0,op0}; // Read 8-bit GP register selected by op[2:0]
-rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;      // Read 8-bit GP register high byte
-rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;      // Read 8-bit GP register low byte
+r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};// Read 8-bit GP register
+r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
+rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
+rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 // System registers
-I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3};   // Read either I or R based on op3 (0 or 1)
+I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3};      // Read either I or R based on op3 (0 or 1)
 P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
 C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
 
 :D:reg wr
 // General purpose registers
 A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
-r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!op3,op3}; // Write 8-bit GP register
+F       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; // Write 8-bit GP register
 rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
 // System registers
@@ -135,18 +136,18 @@ FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 //-----------------------------------------------------------------------------------------
 // ALU
 //-----------------------------------------------------------------------------------------
-:ALU oe
+:ALU
+// Controls the master ALU output enable and the ALU input, only one can be active at a time
 <       ctl_alu_oe=1;                           // Enable ALU onto the data bus
->
+>s0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
+>s1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
+>bs     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
 :ALU bus
-// Controls who can write to the ALU internal bus
-sh0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
-sh1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
+// Controls the writer to the internal ALU bus
+op1     ctl_alu_op1_oe=1;                       // OP1 latch
 op2     ctl_alu_op2_oe=1;                       // OP2 latch
 res     ctl_alu_res_oe=1;                       // Result latch
-op1     ctl_alu_op1_oe=1;                       // OP1 latch
-bit     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
 :ALU:op1
 // Controls a MUX to select the input to the OP1 latch
@@ -156,15 +157,9 @@ low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high 
 
 :ALU:op2
 // Controls a MUX to select the input to the OP2 latch
-bus     ctl_alu_op1_sel_bus=1;                  // Internal bus
-x       ctl_alu_op1_sel_lq=1;                   // Cross-bus wire (see schematic)
-0       ctl_alu_op1_sel_zero=1;                 // Zero
-
-:ALU:phase
-// ALU computational phase: low nibble or high nibble
-// High phase (ctl_alu_op_low=0) is default and not needed to specify
-l       ctl_alu_op_low=1;
-h
+bus     ctl_alu_op2_sel_bus=1;                  // Internal bus
+x       ctl_alu_op2_sel_lq=1;                   // Cross-bus wire (see schematic)
+0       ctl_alu_op2_sel_zero=1;                 // Zero
 
 //-----------------------------------------------------------------------------------------
 // FLAGT
@@ -210,13 +205,16 @@ IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
 
-ALUOP           ctl_state_alu=1;                            // Activate ALU operation PLA wires
+// ALU computational phase: low nibble or high nibble
+ALUOP_L         ctl_state_alu=1; ctl_alu_op_low=1;          // Activate ALU operation on low nibble
+ALUOP_H         ctl_state_alu=1; ctl_alu_sel_op2_high=1;    // Activate ALU operation on high nibble
+
 // ALU operations controlled by a set of ALU PLA entries
 ALU_CP
 ALU_SUB
 ALU_SBC
 ALU_ADC
-ALU_ADD
+ALU_ADD         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0;
 ALU_AND
 ALU_OR
 ALU_XOR
