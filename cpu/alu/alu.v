@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Jun 17 00:01:26 2014"
+// CREATED		"Sat Aug 23 12:55:24 2014"
 
 module alu(
 	alu_core_R,
@@ -99,43 +99,43 @@ inout wire	[7:0] db;
 output wire	[3:0] test_db_high;
 output wire	[3:0] test_db_low;
 
+wire	[3:0] alu_op1;
+wire	[3:0] alu_op2;
 wire	[3:0] db_high;
 wire	[3:0] db_low;
+reg	[3:0] op1_high;
+reg	[3:0] op1_low;
+reg	[3:0] op2_high;
+reg	[3:0] op2_low;
+wire	[3:0] result;
 wire	[3:0] SYNTHESIZED_WIRE_0;
 wire	[3:0] SYNTHESIZED_WIRE_1;
-wire	[3:0] SYNTHESIZED_WIRE_48;
+wire	[3:0] SYNTHESIZED_WIRE_2;
 wire	[3:0] SYNTHESIZED_WIRE_3;
-wire	[3:0] SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_30;
 wire	[3:0] SYNTHESIZED_WIRE_5;
-reg	[3:0] SYNTHESIZED_WIRE_49;
-reg	[3:0] SYNTHESIZED_WIRE_50;
-wire	SYNTHESIZED_WIRE_51;
+wire	[3:0] SYNTHESIZED_WIRE_7;
+wire	[3:0] SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_9;
+wire	[3:0] SYNTHESIZED_WIRE_10;
+wire	[3:0] SYNTHESIZED_WIRE_11;
 wire	[3:0] SYNTHESIZED_WIRE_12;
+wire	[3:0] SYNTHESIZED_WIRE_13;
+wire	[3:0] SYNTHESIZED_WIRE_14;
 wire	[3:0] SYNTHESIZED_WIRE_15;
 wire	[3:0] SYNTHESIZED_WIRE_16;
-wire	SYNTHESIZED_WIRE_17;
-wire	[3:0] SYNTHESIZED_WIRE_18;
+reg	[3:0] SYNTHESIZED_WIRE_31;
+wire	SYNTHESIZED_WIRE_18;
 wire	[3:0] SYNTHESIZED_WIRE_19;
-wire	[3:0] SYNTHESIZED_WIRE_20;
+wire	SYNTHESIZED_WIRE_20;
 wire	[3:0] SYNTHESIZED_WIRE_21;
-wire	[3:0] SYNTHESIZED_WIRE_22;
+wire	SYNTHESIZED_WIRE_22;
 wire	[3:0] SYNTHESIZED_WIRE_23;
-wire	[3:0] SYNTHESIZED_WIRE_24;
-reg	[3:0] SYNTHESIZED_WIRE_52;
-wire	[3:0] SYNTHESIZED_WIRE_53;
-reg	[3:0] SYNTHESIZED_WIRE_54;
-wire	SYNTHESIZED_WIRE_28;
-reg	[3:0] SYNTHESIZED_WIRE_55;
-wire	[3:0] SYNTHESIZED_WIRE_33;
-wire	SYNTHESIZED_WIRE_34;
-wire	[3:0] SYNTHESIZED_WIRE_35;
-wire	SYNTHESIZED_WIRE_36;
-wire	[3:0] SYNTHESIZED_WIRE_37;
-wire	SYNTHESIZED_WIRE_38;
-wire	[3:0] SYNTHESIZED_WIRE_40;
-wire	SYNTHESIZED_WIRE_41;
-wire	[3:0] SYNTHESIZED_WIRE_46;
-wire	[3:0] SYNTHESIZED_WIRE_47;
+wire	SYNTHESIZED_WIRE_24;
+wire	[3:0] SYNTHESIZED_WIRE_25;
+wire	SYNTHESIZED_WIRE_26;
+wire	[3:0] SYNTHESIZED_WIRE_28;
+wire	[3:0] SYNTHESIZED_WIRE_29;
 
 
 
@@ -156,11 +156,11 @@ alu_core	b2v_core(
 	.S(alu_core_S),
 	.V(alu_core_V),
 	.R(alu_core_R),
-	.op1(SYNTHESIZED_WIRE_48),
-	.op2(SYNTHESIZED_WIRE_3),
+	.op1(alu_op1),
+	.op2(alu_op2),
 	.cy_out(alu_core_cf_out),
 	.vf_out(alu_vf_out),
-	.result(SYNTHESIZED_WIRE_53));
+	.result(result));
 
 assign	db[3] = alu_oe ? db_low[3] : 1'bz;
 assign	db[2] = alu_oe ? db_low[2] : 1'bz;
@@ -186,94 +186,115 @@ alu_shifter_core	b2v_input_shift(
 	.db(db),
 	.shift_db0(alu_shift_db0),
 	.shift_db7(alu_shift_db7),
-	.out_high(SYNTHESIZED_WIRE_47),
-	.out_low(SYNTHESIZED_WIRE_46));
+	.out_high(SYNTHESIZED_WIRE_29),
+	.out_low(SYNTHESIZED_WIRE_28));
 
-assign	SYNTHESIZED_WIRE_48 = SYNTHESIZED_WIRE_4 | SYNTHESIZED_WIRE_5;
+assign	alu_op1 = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_3;
 
-assign	SYNTHESIZED_WIRE_28 =  ~alu_op_low;
+assign	SYNTHESIZED_WIRE_18 =  ~alu_op_low;
 
-assign	db_low[3] = alu_op2_oe ? SYNTHESIZED_WIRE_49[3] : 1'bz;
-assign	db_low[2] = alu_op2_oe ? SYNTHESIZED_WIRE_49[2] : 1'bz;
-assign	db_low[1] = alu_op2_oe ? SYNTHESIZED_WIRE_49[1] : 1'bz;
-assign	db_low[0] = alu_op2_oe ? SYNTHESIZED_WIRE_49[0] : 1'bz;
+assign	db_low[3] = alu_op2_oe ? op2_low[3] : 1'bz;
+assign	db_low[2] = alu_op2_oe ? op2_low[2] : 1'bz;
+assign	db_low[1] = alu_op2_oe ? op2_low[1] : 1'bz;
+assign	db_low[0] = alu_op2_oe ? op2_low[0] : 1'bz;
 
-assign	db_high[3] = alu_op2_oe ? SYNTHESIZED_WIRE_50[3] : 1'bz;
-assign	db_high[2] = alu_op2_oe ? SYNTHESIZED_WIRE_50[2] : 1'bz;
-assign	db_high[1] = alu_op2_oe ? SYNTHESIZED_WIRE_50[1] : 1'bz;
-assign	db_high[0] = alu_op2_oe ? SYNTHESIZED_WIRE_50[0] : 1'bz;
+assign	db_high[3] = alu_op2_oe ? op2_high[3] : 1'bz;
+assign	db_high[2] = alu_op2_oe ? op2_high[2] : 1'bz;
+assign	db_high[1] = alu_op2_oe ? op2_high[1] : 1'bz;
+assign	db_high[0] = alu_op2_oe ? op2_high[0] : 1'bz;
 
-assign	SYNTHESIZED_WIRE_12 =  ~SYNTHESIZED_WIRE_49;
+assign	SYNTHESIZED_WIRE_5 =  ~op2_low;
 
-assign	SYNTHESIZED_WIRE_15 =  ~SYNTHESIZED_WIRE_50;
+assign	SYNTHESIZED_WIRE_7 =  ~op2_high;
 
-assign	SYNTHESIZED_WIRE_20 = SYNTHESIZED_WIRE_49 & {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51};
+assign	SYNTHESIZED_WIRE_12 = op2_low & {SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30};
 
-assign	SYNTHESIZED_WIRE_19 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_12;
+assign	SYNTHESIZED_WIRE_11 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_5;
 
-assign	SYNTHESIZED_WIRE_22 = SYNTHESIZED_WIRE_50 & {SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51,SYNTHESIZED_WIRE_51};
+assign	SYNTHESIZED_WIRE_14 = op2_high & {SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30,SYNTHESIZED_WIRE_30};
 
-assign	SYNTHESIZED_WIRE_21 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_15;
+assign	SYNTHESIZED_WIRE_13 = {alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg,alu_sel_op2_neg} & SYNTHESIZED_WIRE_7;
 
-assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_16 & {SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17,SYNTHESIZED_WIRE_17};
+assign	SYNTHESIZED_WIRE_16 = SYNTHESIZED_WIRE_8 & {SYNTHESIZED_WIRE_9,SYNTHESIZED_WIRE_9,SYNTHESIZED_WIRE_9,SYNTHESIZED_WIRE_9};
 
-assign	SYNTHESIZED_WIRE_23 = {alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high} & SYNTHESIZED_WIRE_18;
+assign	SYNTHESIZED_WIRE_15 = {alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high,alu_sel_op2_high} & SYNTHESIZED_WIRE_10;
 
-assign	SYNTHESIZED_WIRE_16 = SYNTHESIZED_WIRE_19 | SYNTHESIZED_WIRE_20;
+assign	SYNTHESIZED_WIRE_8 = SYNTHESIZED_WIRE_11 | SYNTHESIZED_WIRE_12;
 
-assign	SYNTHESIZED_WIRE_18 = SYNTHESIZED_WIRE_21 | SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_10 = SYNTHESIZED_WIRE_13 | SYNTHESIZED_WIRE_14;
 
-assign	SYNTHESIZED_WIRE_3 = SYNTHESIZED_WIRE_23 | SYNTHESIZED_WIRE_24;
+assign	alu_op2 = SYNTHESIZED_WIRE_15 | SYNTHESIZED_WIRE_16;
 
-assign	SYNTHESIZED_WIRE_51 =  ~alu_sel_op2_neg;
+assign	SYNTHESIZED_WIRE_30 =  ~alu_sel_op2_neg;
 
-assign	SYNTHESIZED_WIRE_17 =  ~alu_sel_op2_high;
+assign	SYNTHESIZED_WIRE_9 =  ~alu_sel_op2_high;
 
-assign	db_low[3] = alu_res_oe ? SYNTHESIZED_WIRE_52[3] : 1'bz;
-assign	db_low[2] = alu_res_oe ? SYNTHESIZED_WIRE_52[2] : 1'bz;
-assign	db_low[1] = alu_res_oe ? SYNTHESIZED_WIRE_52[1] : 1'bz;
-assign	db_low[0] = alu_res_oe ? SYNTHESIZED_WIRE_52[0] : 1'bz;
+assign	db_low[3] = alu_res_oe ? SYNTHESIZED_WIRE_31[3] : 1'bz;
+assign	db_low[2] = alu_res_oe ? SYNTHESIZED_WIRE_31[2] : 1'bz;
+assign	db_low[1] = alu_res_oe ? SYNTHESIZED_WIRE_31[1] : 1'bz;
+assign	db_low[0] = alu_res_oe ? SYNTHESIZED_WIRE_31[0] : 1'bz;
 
-assign	db_high[3] = alu_res_oe ? SYNTHESIZED_WIRE_53[3] : 1'bz;
-assign	db_high[2] = alu_res_oe ? SYNTHESIZED_WIRE_53[2] : 1'bz;
-assign	db_high[1] = alu_res_oe ? SYNTHESIZED_WIRE_53[1] : 1'bz;
-assign	db_high[0] = alu_res_oe ? SYNTHESIZED_WIRE_53[0] : 1'bz;
+assign	db_high[3] = alu_res_oe ? result[3] : 1'bz;
+assign	db_high[2] = alu_res_oe ? result[2] : 1'bz;
+assign	db_high[1] = alu_res_oe ? result[1] : 1'bz;
+assign	db_high[0] = alu_res_oe ? result[0] : 1'bz;
 
-assign	SYNTHESIZED_WIRE_5 = SYNTHESIZED_WIRE_54 & {alu_op_low,alu_op_low,alu_op_low,alu_op_low};
+assign	SYNTHESIZED_WIRE_3 = op1_low & {alu_op_low,alu_op_low,alu_op_low,alu_op_low};
 
-assign	SYNTHESIZED_WIRE_4 = {SYNTHESIZED_WIRE_28,SYNTHESIZED_WIRE_28,SYNTHESIZED_WIRE_28,SYNTHESIZED_WIRE_28} & SYNTHESIZED_WIRE_55;
+assign	SYNTHESIZED_WIRE_2 = {SYNTHESIZED_WIRE_18,SYNTHESIZED_WIRE_18,SYNTHESIZED_WIRE_18,SYNTHESIZED_WIRE_18} & op1_high;
 
 
-always@(alu_op_low or SYNTHESIZED_WIRE_53)
+always@(alu_op_low or result)
 begin
 if (alu_op_low)
-	SYNTHESIZED_WIRE_52 <= SYNTHESIZED_WIRE_53;
+	SYNTHESIZED_WIRE_31 <= result;
 end
 
-assign	db_low[3] = alu_op1_oe ? SYNTHESIZED_WIRE_54[3] : 1'bz;
-assign	db_low[2] = alu_op1_oe ? SYNTHESIZED_WIRE_54[2] : 1'bz;
-assign	db_low[1] = alu_op1_oe ? SYNTHESIZED_WIRE_54[1] : 1'bz;
-assign	db_low[0] = alu_op1_oe ? SYNTHESIZED_WIRE_54[0] : 1'bz;
 
-assign	db_high[3] = alu_op1_oe ? SYNTHESIZED_WIRE_55[3] : 1'bz;
-assign	db_high[2] = alu_op1_oe ? SYNTHESIZED_WIRE_55[2] : 1'bz;
-assign	db_high[1] = alu_op1_oe ? SYNTHESIZED_WIRE_55[1] : 1'bz;
-assign	db_high[0] = alu_op1_oe ? SYNTHESIZED_WIRE_55[0] : 1'bz;
-
-
-always@(SYNTHESIZED_WIRE_34 or SYNTHESIZED_WIRE_33)
+always@(SYNTHESIZED_WIRE_20 or SYNTHESIZED_WIRE_19)
 begin
-if (SYNTHESIZED_WIRE_34)
-	SYNTHESIZED_WIRE_55 <= SYNTHESIZED_WIRE_33;
+if (SYNTHESIZED_WIRE_20)
+	op1_high <= SYNTHESIZED_WIRE_19;
 end
+
+
+always@(SYNTHESIZED_WIRE_22 or SYNTHESIZED_WIRE_21)
+begin
+if (SYNTHESIZED_WIRE_22)
+	op1_low <= SYNTHESIZED_WIRE_21;
+end
+
+
+always@(SYNTHESIZED_WIRE_24 or SYNTHESIZED_WIRE_23)
+begin
+if (SYNTHESIZED_WIRE_24)
+	op2_high <= SYNTHESIZED_WIRE_23;
+end
+
+
+always@(SYNTHESIZED_WIRE_26 or SYNTHESIZED_WIRE_25)
+begin
+if (SYNTHESIZED_WIRE_26)
+	op2_low <= SYNTHESIZED_WIRE_25;
+end
+
+assign	db_low[3] = alu_op1_oe ? op1_low[3] : 1'bz;
+assign	db_low[2] = alu_op1_oe ? op1_low[2] : 1'bz;
+assign	db_low[1] = alu_op1_oe ? op1_low[1] : 1'bz;
+assign	db_low[0] = alu_op1_oe ? op1_low[0] : 1'bz;
+
+assign	db_high[3] = alu_op1_oe ? op1_high[3] : 1'bz;
+assign	db_high[2] = alu_op1_oe ? op1_high[2] : 1'bz;
+assign	db_high[1] = alu_op1_oe ? op1_high[1] : 1'bz;
+assign	db_high[0] = alu_op1_oe ? op1_high[0] : 1'bz;
 
 
 alu_mux_2z	b2v_op1_latch_mux_high(
 	.sel_a(alu_op1_sel_bus),
 	.sel_zero(alu_op1_sel_zero),
 	.a(db_high),
-	.ena_out(SYNTHESIZED_WIRE_34),
-	.Q2(SYNTHESIZED_WIRE_33));
+	.ena_out(SYNTHESIZED_WIRE_20),
+	.Q2(SYNTHESIZED_WIRE_19));
 
 
 alu_mux_3z	b2v_op1_latch_mux_low(
@@ -282,22 +303,8 @@ alu_mux_3z	b2v_op1_latch_mux_low(
 	.sel_zero(alu_op1_sel_zero),
 	.a(db_low),
 	.b(db_high),
-	.ena_out(SYNTHESIZED_WIRE_36),
-	.Q(SYNTHESIZED_WIRE_35));
-
-
-always@(SYNTHESIZED_WIRE_36 or SYNTHESIZED_WIRE_35)
-begin
-if (SYNTHESIZED_WIRE_36)
-	SYNTHESIZED_WIRE_54 <= SYNTHESIZED_WIRE_35;
-end
-
-
-always@(SYNTHESIZED_WIRE_38 or SYNTHESIZED_WIRE_37)
-begin
-if (SYNTHESIZED_WIRE_38)
-	SYNTHESIZED_WIRE_50 <= SYNTHESIZED_WIRE_37;
-end
+	.ena_out(SYNTHESIZED_WIRE_22),
+	.Q(SYNTHESIZED_WIRE_21));
 
 
 alu_mux_3z	b2v_op2_latch_mux_high(
@@ -306,8 +313,8 @@ alu_mux_3z	b2v_op2_latch_mux_high(
 	.sel_zero(alu_op2_sel_zero),
 	.a(db_high),
 	.b(db_low),
-	.ena_out(SYNTHESIZED_WIRE_38),
-	.Q(SYNTHESIZED_WIRE_37));
+	.ena_out(SYNTHESIZED_WIRE_24),
+	.Q(SYNTHESIZED_WIRE_23));
 
 
 alu_mux_3z	b2v_op2_latch_mux_low(
@@ -315,21 +322,14 @@ alu_mux_3z	b2v_op2_latch_mux_low(
 	.sel_b(alu_op2_sel_lq),
 	.sel_zero(alu_op2_sel_zero),
 	.a(db_low),
-	.b(SYNTHESIZED_WIRE_48),
-	.ena_out(SYNTHESIZED_WIRE_41),
-	.Q(SYNTHESIZED_WIRE_40));
-
-
-always@(SYNTHESIZED_WIRE_41 or SYNTHESIZED_WIRE_40)
-begin
-if (SYNTHESIZED_WIRE_41)
-	SYNTHESIZED_WIRE_49 <= SYNTHESIZED_WIRE_40;
-end
+	.b(alu_op1),
+	.ena_out(SYNTHESIZED_WIRE_26),
+	.Q(SYNTHESIZED_WIRE_25));
 
 
 alu_prep_daa	b2v_prep_daa(
-	.high(SYNTHESIZED_WIRE_55),
-	.low(SYNTHESIZED_WIRE_54),
+	.high(op1_high),
+	.low(op1_low),
 	.low_gt_9(alu_low_gt_9),
 	.high_gt_9(alu_high_gt_9),
 	.high_eq_9(alu_high_eq_9));
@@ -337,23 +337,23 @@ alu_prep_daa	b2v_prep_daa(
 
 alu_prep_flags	b2v_prep_flags(
 	.parity_in(alu_parity_in),
-	.high(SYNTHESIZED_WIRE_53),
-	.low(SYNTHESIZED_WIRE_52),
+	.high(result),
+	.low(SYNTHESIZED_WIRE_31),
 	.parity_out(alu_parity_out),
 	.zero(alu_zero),
 	.xf(alu_xf_out),
 	.yf(alu_yf_out),
 	.sf(alu_sf_out));
 
-assign	db_low[3] = alu_shift_oe ? SYNTHESIZED_WIRE_46[3] : 1'bz;
-assign	db_low[2] = alu_shift_oe ? SYNTHESIZED_WIRE_46[2] : 1'bz;
-assign	db_low[1] = alu_shift_oe ? SYNTHESIZED_WIRE_46[1] : 1'bz;
-assign	db_low[0] = alu_shift_oe ? SYNTHESIZED_WIRE_46[0] : 1'bz;
+assign	db_low[3] = alu_shift_oe ? SYNTHESIZED_WIRE_28[3] : 1'bz;
+assign	db_low[2] = alu_shift_oe ? SYNTHESIZED_WIRE_28[2] : 1'bz;
+assign	db_low[1] = alu_shift_oe ? SYNTHESIZED_WIRE_28[1] : 1'bz;
+assign	db_low[0] = alu_shift_oe ? SYNTHESIZED_WIRE_28[0] : 1'bz;
 
-assign	db_high[3] = alu_shift_oe ? SYNTHESIZED_WIRE_47[3] : 1'bz;
-assign	db_high[2] = alu_shift_oe ? SYNTHESIZED_WIRE_47[2] : 1'bz;
-assign	db_high[1] = alu_shift_oe ? SYNTHESIZED_WIRE_47[1] : 1'bz;
-assign	db_high[0] = alu_shift_oe ? SYNTHESIZED_WIRE_47[0] : 1'bz;
+assign	db_high[3] = alu_shift_oe ? SYNTHESIZED_WIRE_29[3] : 1'bz;
+assign	db_high[2] = alu_shift_oe ? SYNTHESIZED_WIRE_29[2] : 1'bz;
+assign	db_high[1] = alu_shift_oe ? SYNTHESIZED_WIRE_29[1] : 1'bz;
+assign	db_high[0] = alu_shift_oe ? SYNTHESIZED_WIRE_29[0] : 1'bz;
 
 assign	test_db_high = db_high;
 assign	test_db_low = db_low;
