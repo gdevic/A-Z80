@@ -12,9 +12,9 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II"
+// PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Aug 21 13:56:49 2014"
+// CREATED		"Sat Aug 23 00:53:25 2014"
 
 module reg_file(
 	reg_sel_sys_lo,
@@ -135,13 +135,13 @@ wire	SYNTHESIZED_WIRE_83;
 
 
 
-assign	SYNTHESIZED_WIRE_78 = SYNTHESIZED_WIRE_84 & reg_sel_sys_lo & reg_sel_wz;
+assign	SYNTHESIZED_WIRE_82 = SYNTHESIZED_WIRE_84 & reg_sel_sys_lo & reg_sel_wz;
 
-assign	SYNTHESIZED_WIRE_76 = reg_sel_wz & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
+assign	SYNTHESIZED_WIRE_80 = reg_sel_wz & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
 
-assign	SYNTHESIZED_WIRE_82 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_sp;
+assign	SYNTHESIZED_WIRE_78 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_sp;
 
-assign	SYNTHESIZED_WIRE_80 = reg_sel_sp & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
+assign	SYNTHESIZED_WIRE_76 = reg_sel_sp & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
 assign	SYNTHESIZED_WIRE_84 =  ~reg_sys_we;
 
@@ -161,7 +161,7 @@ assign	SYNTHESIZED_WIRE_47 = reg_sel_gp_lo & reg_gp_we & reg_sel_de2;
 
 assign	SYNTHESIZED_WIRE_51 = reg_sel_gp_lo & reg_gp_we & reg_sel_de;
 
-assign	SYNTHESIZED_WIRE_77 = reg_sel_wz & reg_sys_we & reg_sel_sys_hi;
+assign	SYNTHESIZED_WIRE_81 = reg_sel_wz & reg_sys_we & reg_sel_sys_hi;
 
 assign	SYNTHESIZED_WIRE_85 =  ~reg_gp_we;
 
@@ -175,7 +175,7 @@ assign	SYNTHESIZED_WIRE_43 = reg_sel_gp_lo & reg_gp_we & reg_sel_bc;
 
 assign	SYNTHESIZED_WIRE_31 = reg_sel_gp_lo & reg_gp_we & reg_sel_af2;
 
-assign	SYNTHESIZED_WIRE_81 = reg_sel_sp & reg_gp_we & reg_sel_gp_hi;
+assign	SYNTHESIZED_WIRE_77 = reg_sel_sp & reg_gp_we & reg_sel_gp_hi;
 
 assign	SYNTHESIZED_WIRE_66 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_ix;
 
@@ -223,7 +223,7 @@ assign	SYNTHESIZED_WIRE_44 = reg_sel_de2 & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
 assign	SYNTHESIZED_WIRE_73 = reg_sel_pc & reg_sys_we & reg_sel_sys_hi;
 
-assign	SYNTHESIZED_WIRE_79 = reg_sel_sys_lo & reg_sys_we & reg_sel_wz;
+assign	SYNTHESIZED_WIRE_83 = reg_sel_sys_lo & reg_sys_we & reg_sel_wz;
 
 assign	SYNTHESIZED_WIRE_50 = SYNTHESIZED_WIRE_85 & reg_sel_gp_lo & reg_sel_de;
 
@@ -249,7 +249,7 @@ assign	SYNTHESIZED_WIRE_32 = reg_sel_af & reg_sel_gp_hi & SYNTHESIZED_WIRE_85;
 
 assign	SYNTHESIZED_WIRE_60 = reg_sel_ir & reg_sel_sys_hi & SYNTHESIZED_WIRE_84;
 
-assign	SYNTHESIZED_WIRE_83 = reg_sel_gp_lo & reg_gp_we & reg_sel_sp;
+assign	SYNTHESIZED_WIRE_79 = reg_sel_gp_lo & reg_gp_we & reg_sel_sp;
 
 
 reg_latch	b2v_latch_af2_hi(
