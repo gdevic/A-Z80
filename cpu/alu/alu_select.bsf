@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 296 368)
+	(rect 16 16 296 336)
 	(text "alu_select" (rect 5 0 62 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 336 25 348)(font "Arial" ))
+	(text "inst" (rect 8 304 25 316)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -143,13 +143,6 @@ applicable agreement for further details.
 		(line (pt 0 288)(pt 16 288))
 	)
 	(port
-		(pt 0 304)
-		(input)
-		(text "ctl_alu_core_cf_in" (rect 0 0 105 14)(font "Arial" (font_size 8)))
-		(text "ctl_alu_core_cf_in" (rect 21 299 126 313)(font "Arial" (font_size 8)))
-		(line (pt 0 304)(pt 16 304))
-	)
-	(port
 		(pt 280 32)
 		(output)
 		(text "alu_oe" (rect 0 0 37 14)(font "Arial" (font_size 8)))
@@ -268,14 +261,7 @@ applicable agreement for further details.
 		(text "alu_core_S" (rect 195 283 259 297)(font "Arial" (font_size 8)))
 		(line (pt 280 288)(pt 264 288))
 	)
-	(port
-		(pt 280 304)
-		(output)
-		(text "alu_core_cf_in" (rect 0 0 84 14)(font "Arial" (font_size 8)))
-		(text "alu_core_cf_in" (rect 175 299 259 313)(font "Arial" (font_size 8)))
-		(line (pt 280 304)(pt 264 304))
-	)
 	(drawing
-		(rectangle (rect 16 16 264 336))
+		(rectangle (rect 16 16 264 304))
 	)
 )

@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Jul 28 00:35:30 2014"
+// CREATED		"Sat Aug 23 16:51:23 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -36,6 +36,7 @@ module alu_control(
 	alu_vf_out,
 	iff2,
 	address_is_1,
+	ctl_alu_core_cf_in,
 	ctl_pf_sel,
 	op543,
 	alu_shift_in,
@@ -47,6 +48,7 @@ module alu_control(
 	daa_cf_out,
 	pf_sel,
 	alu_op_low,
+	alu_core_cf_in,
 	db
 );
 
@@ -70,6 +72,7 @@ input wire	ctl_cond_short;
 input wire	alu_vf_out;
 input wire	iff2;
 input wire	address_is_1;
+input wire	ctl_alu_core_cf_in;
 input wire	[1:0] ctl_pf_sel;
 input wire	[2:0] op543;
 output wire	alu_shift_in;
@@ -81,6 +84,7 @@ output wire	flags_cond_true;
 output wire	daa_cf_out;
 output wire	pf_sel;
 output wire	alu_op_low;
+output wire	alu_core_cf_in;
 output wire	[7:0] db;
 
 wire	flags_cf_int;
@@ -88,11 +92,11 @@ wire	[7:0] out;
 wire	[2:0] sel;
 reg	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
-wire	SYNTHESIZED_WIRE_23;
-wire	SYNTHESIZED_WIRE_24;
-wire	SYNTHESIZED_WIRE_7;
 wire	SYNTHESIZED_WIRE_25;
+wire	SYNTHESIZED_WIRE_26;
+wire	SYNTHESIZED_WIRE_6;
+wire	SYNTHESIZED_WIRE_27;
+wire	SYNTHESIZED_WIRE_9;
 wire	SYNTHESIZED_WIRE_10;
 wire	SYNTHESIZED_WIRE_11;
 wire	SYNTHESIZED_WIRE_12;
@@ -103,13 +107,15 @@ wire	SYNTHESIZED_WIRE_16;
 wire	SYNTHESIZED_WIRE_17;
 wire	SYNTHESIZED_WIRE_18;
 wire	SYNTHESIZED_WIRE_19;
-wire	SYNTHESIZED_WIRE_26;
+wire	SYNTHESIZED_WIRE_20;
 wire	SYNTHESIZED_WIRE_21;
+wire	SYNTHESIZED_WIRE_28;
+wire	SYNTHESIZED_WIRE_23;
 
 assign	alu_op_low = ctl_alu_op_low;
-assign	daa_cf_out = SYNTHESIZED_WIRE_11;
-assign	SYNTHESIZED_WIRE_26 = 0;
-assign	SYNTHESIZED_WIRE_21 = 1;
+assign	daa_cf_out = SYNTHESIZED_WIRE_10;
+assign	SYNTHESIZED_WIRE_28 = 0;
+assign	SYNTHESIZED_WIRE_23 = 1;
 
 
 
@@ -126,9 +132,9 @@ assign	db[0] = ctl_daa_oe ? out[0] : 1'bz;
 
 assign	alu_shift_right = ctl_shift_en & op543[0];
 
-assign	alu_parity_in = SYNTHESIZED_WIRE_0 & SYNTHESIZED_WIRE_1;
+assign	alu_parity_in = ctl_alu_op_low | SYNTHESIZED_WIRE_0;
 
-assign	sel[2] = op543[2] & SYNTHESIZED_WIRE_2;
+assign	sel[2] = op543[2] & SYNTHESIZED_WIRE_1;
 
 assign	sel[0] = op543[0];
 
@@ -136,47 +142,53 @@ assign	sel[0] = op543[0];
 assign	sel[1] = op543[1];
 
 
-assign	out[1] = SYNTHESIZED_WIRE_23;
+assign	out[1] = SYNTHESIZED_WIRE_25;
 
 
-assign	out[2] = SYNTHESIZED_WIRE_23;
+assign	out[2] = SYNTHESIZED_WIRE_25;
 
 
-assign	out[5] = SYNTHESIZED_WIRE_24;
+assign	out[5] = SYNTHESIZED_WIRE_26;
 
 
-assign	out[6] = SYNTHESIZED_WIRE_24;
+assign	out[6] = SYNTHESIZED_WIRE_26;
 
 
-assign	alu_shift_left = ctl_shift_en & SYNTHESIZED_WIRE_7;
+assign	alu_shift_left = ctl_shift_en & SYNTHESIZED_WIRE_6;
 
-assign	SYNTHESIZED_WIRE_25 = flags_hf | alu_low_gt_9;
+assign	SYNTHESIZED_WIRE_27 = flags_hf | alu_low_gt_9;
 
-assign	SYNTHESIZED_WIRE_12 = SYNTHESIZED_WIRE_25 & alu_high_eq_9;
+assign	SYNTHESIZED_WIRE_11 = SYNTHESIZED_WIRE_27 & alu_high_eq_9;
 
-assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_25 | ctl_daa_66;
+assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_27 | ctl_daa_66;
 
-assign	SYNTHESIZED_WIRE_11 = flags_cf_int | alu_high_gt_9;
+assign	SYNTHESIZED_WIRE_10 = flags_cf_int | alu_high_gt_9;
 
-assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_10 | ctl_daa_66;
+assign	SYNTHESIZED_WIRE_26 = SYNTHESIZED_WIRE_9 | ctl_daa_66;
 
-assign	SYNTHESIZED_WIRE_10 = SYNTHESIZED_WIRE_11 | SYNTHESIZED_WIRE_12;
+assign	SYNTHESIZED_WIRE_9 = SYNTHESIZED_WIRE_10 | SYNTHESIZED_WIRE_11;
 
-assign	SYNTHESIZED_WIRE_14 = alu_shift_db0 & op543[0];
+assign	SYNTHESIZED_WIRE_13 = alu_shift_db0 & op543[0];
 
-assign	SYNTHESIZED_WIRE_15 = alu_shift_db7 & SYNTHESIZED_WIRE_13;
+assign	SYNTHESIZED_WIRE_14 = alu_shift_db7 & SYNTHESIZED_WIRE_12;
 
-assign	shift_cf_out = SYNTHESIZED_WIRE_14 | SYNTHESIZED_WIRE_15;
+assign	shift_cf_out = SYNTHESIZED_WIRE_13 | SYNTHESIZED_WIRE_14;
+
+assign	SYNTHESIZED_WIRE_17 = SYNTHESIZED_WIRE_15 & flags_hf;
+
+assign	SYNTHESIZED_WIRE_16 = ctl_alu_op_low & ctl_alu_core_cf_in;
+
+assign	alu_core_cf_in = SYNTHESIZED_WIRE_16 | SYNTHESIZED_WIRE_17;
 
 
 alu_mux_8	b2v_inst_cond_mux(
-	.in0(SYNTHESIZED_WIRE_16),
+	.in0(SYNTHESIZED_WIRE_18),
 	.in1(flags_zf),
-	.in2(SYNTHESIZED_WIRE_17),
+	.in2(SYNTHESIZED_WIRE_19),
 	.in3(flags_cf_int),
-	.in4(SYNTHESIZED_WIRE_18),
+	.in4(SYNTHESIZED_WIRE_20),
 	.in5(flags_pf),
-	.in6(SYNTHESIZED_WIRE_19),
+	.in6(SYNTHESIZED_WIRE_21),
 	.in7(flags_sf),
 	.sel(sel),
 	.out(flags_cond_true));
@@ -196,10 +208,10 @@ alu_mux_8	b2v_inst_shift_mux(
 	.in1(alu_shift_db0),
 	.in2(flags_cf_int),
 	.in3(flags_cf_int),
-	.in4(SYNTHESIZED_WIRE_26),
+	.in4(SYNTHESIZED_WIRE_28),
 	.in5(alu_shift_db7),
-	.in6(SYNTHESIZED_WIRE_21),
-	.in7(SYNTHESIZED_WIRE_26),
+	.in6(SYNTHESIZED_WIRE_23),
+	.in7(SYNTHESIZED_WIRE_28),
 	.sel(op543),
 	.out(alu_shift_in));
 
@@ -210,21 +222,21 @@ if (ctl_alu_op_low)
 	SYNTHESIZED_WIRE_0 <= alu_parity_out;
 end
 
-assign	SYNTHESIZED_WIRE_7 =  ~op543[0];
+assign	SYNTHESIZED_WIRE_6 =  ~op543[0];
 
-assign	SYNTHESIZED_WIRE_13 =  ~op543[0];
+assign	SYNTHESIZED_WIRE_12 =  ~op543[0];
 
-assign	SYNTHESIZED_WIRE_1 =  ~ctl_alu_op_low;
+assign	SYNTHESIZED_WIRE_15 =  ~ctl_alu_op_low;
 
-assign	SYNTHESIZED_WIRE_16 =  ~flags_zf;
+assign	SYNTHESIZED_WIRE_18 =  ~flags_zf;
 
-assign	SYNTHESIZED_WIRE_17 =  ~flags_cf_int;
+assign	SYNTHESIZED_WIRE_19 =  ~flags_cf_int;
 
-assign	SYNTHESIZED_WIRE_18 =  ~flags_pf;
+assign	SYNTHESIZED_WIRE_20 =  ~flags_pf;
 
-assign	SYNTHESIZED_WIRE_19 =  ~flags_sf;
+assign	SYNTHESIZED_WIRE_21 =  ~flags_sf;
 
-assign	SYNTHESIZED_WIRE_2 =  ~ctl_cond_short;
+assign	SYNTHESIZED_WIRE_1 =  ~ctl_cond_short;
 
 
 assign	flags_cf_int = flags_cf;

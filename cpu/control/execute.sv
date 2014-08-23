@@ -73,6 +73,10 @@ logic contM2;                           // Continue with the next M cycle
 `define GP_REG_HL       2'h2
 `define GP_REG_AF       2'h3
 
+`define PFSEL_P         2'h0
+`define PFSEL_V         2'h1
+`define PFSEL_IFF2      2'h2
+`define PFSEL_A1        2'h3
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------

@@ -31,6 +31,7 @@ output logic ctl_daa_66,
 output logic ctl_daa_oe,
 output logic ctl_alu_op_low,
 output logic ctl_cond_short,
+output logic ctl_alu_core_cf_in,
 output logic [1:0] ctl_pf_sel,
 
 // Module: alu/alu_select.v
@@ -51,7 +52,6 @@ output logic ctl_alu_sel_op2_high,
 output logic ctl_alu_core_R,
 output logic ctl_alu_core_V,
 output logic ctl_alu_core_S,
-output logic ctl_alu_core_cf_in,
 
 // Module: alu/alu_flags.v
 output logic ctl_flags_oe,

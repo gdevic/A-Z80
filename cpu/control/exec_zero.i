@@ -31,6 +31,7 @@ ctl_daa_66 = 0;
 ctl_daa_oe = 0;
 ctl_alu_op_low = 0;
 ctl_cond_short = 0;
+ctl_alu_core_cf_in = 0;
 ctl_pf_sel = 0;
 
 // Module: alu/alu_select.v
@@ -51,7 +52,6 @@ ctl_alu_sel_op2_high = 0;
 ctl_alu_core_R = 0;
 ctl_alu_core_V = 0;
 ctl_alu_core_S = 0;
-ctl_alu_core_cf_in = 0;
 
 // Module: alu/alu_flags.v
 ctl_flags_oe = 0;

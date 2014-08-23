@@ -389,10 +389,10 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 // 8-bit Arithmetic and Logic Group																															
 																															
 "#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u				<	res												ALUOP_H	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			A	<	res				*	*		*	0	*			ALUOP_H	
 #002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch									F	u			<															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				>s0			bus										ALUOP_L	
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			A	>s0			bus			*	*	*	0	*			ALUOP_L	
 #end																															
 																															
 "#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																												

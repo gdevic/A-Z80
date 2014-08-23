@@ -180,6 +180,8 @@ A       ctl_flags_alu=1;                        // Load FLAGT from the ALU
 *       ctl_flags_pf_we=1;
 :NF
 *       ctl_flags_nf_we=1;
+0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;
+1       ctl_flags_nf_we=1; ctl_flags_nf_set=1;
 :CF
 *       ctl_flags_cf_we=1;
 
@@ -214,7 +216,7 @@ ALU_CP
 ALU_SUB
 ALU_SBC
 ALU_ADC
-ALU_ADD         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0;
+ALU_ADD         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V;
 ALU_AND
 ALU_OR
 ALU_XOR

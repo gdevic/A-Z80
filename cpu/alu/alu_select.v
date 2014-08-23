@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Jul 27 23:34:04 2014"
+// CREATED		"Sat Aug 23 14:44:24 2014"
 
 module alu_select(
 	ctl_alu_oe,
@@ -34,7 +34,6 @@ module alu_select(
 	ctl_alu_core_R,
 	ctl_alu_core_V,
 	ctl_alu_core_S,
-	ctl_alu_core_cf_in,
 	alu_oe,
 	alu_shift_oe,
 	alu_op2_oe,
@@ -51,8 +50,7 @@ module alu_select(
 	alu_sel_op2_high,
 	alu_core_R,
 	alu_core_V,
-	alu_core_S,
-	alu_core_cf_in
+	alu_core_S
 );
 
 
@@ -73,7 +71,6 @@ input wire	ctl_alu_sel_op2_high;
 input wire	ctl_alu_core_R;
 input wire	ctl_alu_core_V;
 input wire	ctl_alu_core_S;
-input wire	ctl_alu_core_cf_in;
 output wire	alu_oe;
 output wire	alu_shift_oe;
 output wire	alu_op2_oe;
@@ -91,7 +88,6 @@ output wire	alu_sel_op2_high;
 output wire	alu_core_R;
 output wire	alu_core_V;
 output wire	alu_core_S;
-output wire	alu_core_cf_in;
 
 
 assign	alu_oe = ctl_alu_oe;
@@ -111,7 +107,6 @@ assign	alu_sel_op2_high = ctl_alu_sel_op2_high;
 assign	alu_core_R = ctl_alu_core_R;
 assign	alu_core_V = ctl_alu_core_V;
 assign	alu_core_S = ctl_alu_core_S;
-assign	alu_core_cf_in = ctl_alu_core_cf_in;
 
 
 

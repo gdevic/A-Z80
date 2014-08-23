@@ -59,6 +59,7 @@ wire ctl_daa_66;
 wire ctl_daa_oe;
 wire ctl_alu_op_low;
 wire ctl_cond_short;
+wire ctl_alu_core_cf_in;
 wire [1:0] ctl_pf_sel;
 wire ctl_alu_oe;
 wire ctl_alu_shift_oe;
@@ -77,7 +78,6 @@ wire ctl_alu_sel_op2_high;
 wire ctl_alu_core_R;
 wire ctl_alu_core_V;
 wire ctl_alu_core_S;
-wire ctl_alu_core_cf_in;
 wire ctl_flags_oe;
 wire ctl_flags_bus;
 wire ctl_flags_alu;
@@ -174,6 +174,7 @@ wire flags_cond_true;
 wire daa_cf_out;
 wire pf_sel;
 wire alu_op_low;
+wire alu_core_cf_in;
 wire [7:0] db;
 
 // Module: alu/alu_select.v
@@ -194,7 +195,6 @@ wire alu_sel_op2_high;
 wire alu_core_R;
 wire alu_core_V;
 wire alu_core_S;
-wire alu_core_cf_in;
 
 // Module: alu/alu_flags.v
 wire flags_sf;
