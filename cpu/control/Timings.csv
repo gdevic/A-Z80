@@ -3,28 +3,28 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 // 8-bit Load Group																																
 																																
 "#if pla[61] : ld r,r'"			4																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<			<	op1															
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	u			<	op1															
 #002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		3>				sh0		bus													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				sh0		bus													
 #end																																
 																																
 "#if pla[17] && !pla[50] : ld r,n"			"4,3"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<	<	R																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	d	<	R																	
 #002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																									
 #end																																
 																																
 "#if pla[58] : ld r,(hl)"			"4,3"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<	<	R																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	d	<	R																	
 #002H T2  AB:000 DB:46  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:003 DB:--	2	1	fMRead					HL																								
+#005H T5  AB:003 DB:--	2	1	fMRead					HL		W																						
 #006H T6  AB:003 DB:03          MREQ RD	2	2	fMRead																													
 #007H T7  AB:003 DB:03          MREQ RD	2	3	fMRead			1	1																									
 #end																																
@@ -34,7 +34,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:4E  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W																						
 #010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
 #012H T8  AB:002 DB:--	3	1	fMRead																													
@@ -51,8 +51,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
 #002H T2  AB:000 DB:70  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8		3>	>	W																	
-#005H T5  AB:001 DB:--	2	1	fMWrite					HL																								
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8		u	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMWrite					HL		W																						
 #006H T6  AB:001 DB:01          MREQ	2	2	fMWrite																													
 #007H T7  AB:001 DB:01          MREQ    WR	2	3	fMWrite			1	1																									
 #end																																
@@ -62,8 +62,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:70  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																						
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
 #012H T8  AB:002 DB:--	3	1	fMRead																													
 #013H T9  AB:002 DB:--	3	2	fMRead																													
@@ -80,10 +80,10 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:36  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		 	1																										
-#008H T8  AB:001 DB:--	3	1	fMWrite					HL																								
+#008H T8  AB:001 DB:--	3	1	fMWrite					HL		W																						
 #009H T9  AB:001 DB:01          MREQ	3	2	fMWrite																													
 #010H T10 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																									
 #end																																
@@ -93,11 +93,11 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:36  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead																													
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																						
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																										
-#012H T8  AB:003 DB:--	3	1	fMRead																													
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																													
+#012H T8  AB:003 DB:--	3	1	fMRead					PC		W+																						
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
 #014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead																													
 #015H T11 AB:003 DB:--	3	4																														
 #016H T12 AB:003 DB:--	3	5				1																										
@@ -110,19 +110,19 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
 #002H T2  AB:000 DB:02  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						A		>	>	W																	
-#005H T5  AB:001 DB:--	2	1	fMWrite					r16																								
-#006H T6  AB:001 DB:FF          MREQ	2	2	fMWrite																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						A		u	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMWrite					r16		W+																						
+#006H T6  AB:001 DB:FF          MREQ	2	2	fMWrite						WZ	R+																						
 #007H T7  AB:001 DB:FF          MREQ    WR	2	3	fMWrite			1	1																									
 #end																																
 																																
 "#if pla[8] && !pla[13] : ld a,(rr)"			"4,3"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<	<	R																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	d	<	R																	
 #002H T2  AB:000 DB:0A  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:002 DB:--	2	1	fMRead					r16																								
-#006H T6  AB:002 DB:02          MREQ RD	2	2	fMRead																													
+#005H T5  AB:002 DB:--	2	1	fMRead					r16		W+																						
+#006H T6  AB:002 DB:02          MREQ RD	2	2	fMRead						WZ	R+																						
 #007H T7  AB:002 DB:02          MREQ RD	2	3	fMRead			1	1																									
 #end																																
 																																
@@ -131,61 +131,61 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:32  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#011H T11 AB:001 DB:--	4	1	fMWrite					WZ			A		>	>	W																	
-#012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite						WZ																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMWrite					WZ		W+	A		u	>	W																	
+#012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite						WZ	R+																						
 #013H T13 AB:001 DB:FE          MREQ    WR	4	3	fMWrite			1	1																									
 #end																																
 																																
 "#if pla[38] && !pla[13] : ld a,(nn)"			"4,3,3,3"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<	<	R																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	d	<	R																	
 #002H T2  AB:000 DB:3A  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#011H T11 AB:001 DB:--	4	1	fMRead					WZ																								
-#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMRead					WZ		W+																						
+#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ	R+																						
 #013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1	1																									
 #end																																
 																																
 "#if pla[83] : ld a,i/a,r"			5																													
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<	<		<	op1															
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	u	<		<	op1															
 #006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1																												
-#009H T5  AB:001 DB:--	1	5				1	1				I/R		>			>	sh0		bus													
+#009H T5  AB:001 DB:--	1	5				1	1				I/R		d			>	sh0		bus													
 #end																																
 																																
 "#if pla[57] : ld i,a/r,a"			5																													
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																													
 #006H T2  AB:001 DB:47  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							A		>	>		>	sh0		bus													
-#009H T5  AB:001 DB:--	1	5				1	1					I/R	<	<		<	op1															
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							A		d	>		>	sh0		bus													
+#009H T5  AB:001 DB:--	1	5				1	1					I/R	u	<		<	op1															
 #end																																
 																																
 // 16-bit Load Group																																
 																																
 "#if pla[7] : ld rr,nn"			"4,3,3"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									rh	<	<	R																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									rh	d	<	R																USE_SP	
 #002H T2  AB:000 DB:01  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																										
-#008H T8  AB:002 DB:--	3	1	fMRead					PC				rl	<	<	R																	
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+		rl	d	<	R																USE_SP	
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1																									
 #end																																
 																																
@@ -194,17 +194,17 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:22  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#011H T11 AB:001 DB:--	4	1	fMWrite					WZ			rl		>	>	W																	
-#012H T12 AB:001 DB:01          MREQ	4	2	fMWrite						WZ																							
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMWrite					WZ		W+	rl		u	>	W																	
+#012H T12 AB:001 DB:01          MREQ	4	2	fMWrite						WZ	R+																						
 #013H T13 AB:001 DB:01          MREQ    WR	4	3	fMWrite			1																										
-#014H T14 AB:002 DB:--	5	1	fMWrite					WZ			rh		>	>	W																	
-#015H T15 AB:002 DB:02          MREQ	5	2	fMWrite						WZ																							
+#014H T14 AB:002 DB:--	5	1	fMWrite					WZ		W+	rh		u	>	W																	
+#015H T15 AB:002 DB:02          MREQ	5	2	fMWrite						WZ	R+																						
 #016H T16 AB:002 DB:02          MREQ    WR	5	3	fMWrite			1	1																									
 #end																																
 																																
@@ -213,18 +213,18 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:2A  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#011H T11 AB:001 DB:--	4	1	fMRead					WZ																								
-#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ																							
-#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1						rl	<	<	R																	
-#014H T14 AB:002 DB:--	5	1	fMRead					WZ																								
-#015H T15 AB:002 DB:02          MREQ RD	5	2	fMRead						WZ																							
-#016H T16 AB:002 DB:02          MREQ RD	5	3	fMRead			1	1					rh	<	<	R																	
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#011H T11 AB:001 DB:--	4	1	fMRead					WZ		W+																						
+#012H T12 AB:001 DB:01          MREQ RD	4	2	fMRead						WZ	R+																						
+#013H T13 AB:001 DB:01          MREQ RD	4	3	fMRead			1						rl	d	<	R																	
+#014H T14 AB:002 DB:--	5	1	fMRead					WZ		W+																						
+#015H T15 AB:002 DB:02          MREQ RD	5	2	fMRead						WZ	R+																						
+#016H T16 AB:002 DB:02          MREQ RD	5	3	fMRead			1	1					rh	d	<	R																	
 #end																																
 																																
 "#if pla[31] && pla[33] : ld (nn),rr"			"4,3,3,3,3"																													
@@ -232,17 +232,17 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC																							
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#012H T8  AB:003 DB:--	3	1	fMRead					PC																								
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC																							
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#015H T11 AB:001 DB:--	4	1	fMWrite					WZ			rl		>	>	W																	
-#016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite						WZ																							
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																						
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#012H T8  AB:003 DB:--	3	1	fMRead					PC		W+																						
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#015H T11 AB:001 DB:--	4	1	fMWrite					WZ		W+	rl		u	>	W																	
+#016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite						WZ	R+																						
 #017H T13 AB:001 DB:FF          MREQ    WR	4	3	fMWrite			1																										
-#018H T14 AB:002 DB:--	5	1	fMWrite					WZ			rh		>	>	W																	
-#019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite						WZ																							
+#018H T14 AB:002 DB:--	5	1	fMWrite					WZ		W+	rh		u	>	W																	
+#019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite						WZ	R+																						
 #020H T16 AB:002 DB:C3          MREQ    WR	5	3	fMWrite			1	1																									
 #end																																
 																																
@@ -251,18 +251,18 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:43  M1      MREQ RD	1	2	fMFetch																													
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#009H T5  AB:002 DB:--	2	1	fMRead					PC																								
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC																							
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#012H T8  AB:003 DB:--	3	1	fMRead					PC																								
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC																							
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	<	<	R																	
-#015H T11 AB:001 DB:--	4	1	fMRead					WZ																								
-#016H T12 AB:001 DB:FF          MREQ RD	4	2	fMRead						WZ																							
-#017H T13 AB:001 DB:FF          MREQ RD	4	3	fMRead			1						rl	<	<	R																	
-#018H T14 AB:002 DB:--	5	1	fMRead					WZ																								
-#019H T15 AB:002 DB:C3          MREQ RD	5	2	fMRead						WZ																							
-#020H T16 AB:002 DB:C3          MREQ RD	5	3	fMRead			1	1					rh	<	<	R																	
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																						
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#012H T8  AB:003 DB:--	3	1	fMRead					PC		W+																						
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead			1						W	d	<	R																	
+#015H T11 AB:001 DB:--	4	1	fMRead					WZ		W+																						
+#016H T12 AB:001 DB:FF          MREQ RD	4	2	fMRead						WZ	R+																						
+#017H T13 AB:001 DB:FF          MREQ RD	4	3	fMRead			1						rl	d	<	R																	
+#018H T14 AB:002 DB:--	5	1	fMRead					WZ		W+																						
+#019H T15 AB:002 DB:C3          MREQ RD	5	2	fMRead						WZ	R+																						
+#020H T16 AB:002 DB:C3          MREQ RD	5	3	fMRead			1	1					rh	d	<	R																	
 #end																																
 																																
 "#if pla[5] : ld sp,hl"			6																													
@@ -279,11 +279,11 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C5  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
-#005H T5  AB:000 DB:--	1	5				1		SP		W																						
-#006H T6  AB:002 DB:--	2	1	fMWrite								rh		3>	>	W																	
+#005H T5  AB:000 DB:--	1	5				1		SP		W-																						
+#006H T6  AB:002 DB:--	2	1	fMWrite							<-	rh		u	>	W																	
 #007H T7  AB:002 DB:02          MREQ	2	2	fMWrite						SP	R-																						
-#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite			1		SP		W																						
-#009H T9  AB:001 DB:--	3	1	fMWrite								rl		3>	>	W																	
+#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite			1		SP		W-																						
+#009H T9  AB:001 DB:--	3	1	fMWrite							<-	rl		u	>	W																	
 #010H T10 AB:001 DB:01          MREQ	3	2	fMWrite						SP	R-																						
 #011H T11 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																									
 #end																																
@@ -293,12 +293,12 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C1  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					SP																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						SP																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						rl	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					SP																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						SP																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					rh	<	<	R																	
+#005H T5  AB:001 DB:--	2	1	fMRead					SP		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						SP	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						rl	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					SP		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						SP	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					rh	d	<	R																	
 #end																																
 																																
 "// Exchange, Block Transfer and Search Groups"																																
@@ -325,21 +325,21 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #end																																
 																																
 "#if pla[10] : ex (sp),hl"			"4,3,4,3,5"																													
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																								
-#002H T2  AB:000 DB:E3  M1      MREQ RD	1	2	fMFetch						PC																							
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR																								
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1				IR																							
-#005H T5  AB:0FD DB:--	2	1	fMRead					SP																								
-#006H T6  AB:0FD DB:03          MREQ RD	2	2	fMRead						SP																							
-#007H T7  AB:0FD DB:03          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:0FE DB:--	3	1	fMRead					SP																								
-#009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead						SP																							
-#010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead									W	<	<	R																	
-#011H T11 AB:0FE DB:-- 	3	4				1		SP		W																						
-#012H T12 AB:0FE DB:--	4	1	fMWrite								rh		3>	>	W																	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch																													
+#002H T2  AB:000 DB:E3  M1      MREQ RD	1	2	fMFetch																													
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
+#005H T5  AB:0FD DB:--	2	1	fMRead					SP		W+																						
+#006H T6  AB:0FD DB:03          MREQ RD	2	2	fMRead						SP	R+																						
+#007H T7  AB:0FD DB:03          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:0FE DB:--	3	1	fMRead					SP		W+																						
+#009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead						SP	R+																						
+#010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead									W	d	<	R																	
+#011H T11 AB:0FE DB:-- 	3	4				1		SP		W-																						
+#012H T12 AB:0FE DB:--	4	1	fMWrite							<-	rh		u	>	W																	
 #013H T13 AB:0FE DB:00          MREQ	4	2	fMWrite						SP	R-																						
-#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
-#015H T15 AB:0FD DB:--	5	1	fMWrite								rl		3>	>	W																	
+#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite			1		SP		W-																						
+#015H T15 AB:0FD DB:--	5	1	fMWrite							<-	rl		u	>	W																	
 #016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite						SP	R-																						
 #017H T17 AB:0FD DB:01          MREQ    WR 	5	3	fMWrite																													
 #018H T18 AB:0FD DB:01	5	4						WZ		W																						
@@ -812,12 +812,12 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C3  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	d	<	R																	
 #end																																
 																																
 "#if pla[43] : jp cc,nn"			"4,3,3"																													
@@ -825,12 +825,12 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C2  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	d	<	R																	
 #end																																
 																																
 #if pla[47] : jr e			"4,3,5"																													
@@ -893,17 +893,17 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:CD  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	<	<	R																	
-#011H T11 AB:002 DB:--	3	4				1		SP		W																						
-#012H T12 AB:000 DB:--	4	1	fMWrite								P		>	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	d	<	R																	
+#011H T11 AB:002 DB:--	3	4				1		SP		W-																						
+#012H T12 AB:000 DB:--	4	1	fMWrite							<-	P		u	>	W																	
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																						
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
-#015H T15 AB:0FF DB:--	5	1	fMWrite								C		>	>	W																	
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W-																						
+#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	C		u	>	W																	
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																						
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																									
 #end																																
@@ -913,17 +913,17 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C4  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:001 DB:--	2	1	fMRead					PC																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:002 DB:--	3	1	fMRead					PC																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC																							
-#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			CC	CC					W	<	<	R																	
-#011H T11 AB:002 DB:--	3	4				1		SP		W																						
-#012H T12 AB:000 DB:--	4	1	fMWrite								P		>	>	W																	
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																						
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:002 DB:--	3	1	fMRead					PC		W+																						
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			CC	CC					W	d	<	R																	
+#011H T11 AB:002 DB:--	3	4				1		SP		W-																						
+#012H T12 AB:000 DB:--	4	1	fMWrite							<-	P		u	>	W																	
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																						
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W																						
-#015H T15 AB:0FF DB:--	5	1	fMWrite								C		>	>	W																	
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W-																						
+#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	C		u	>	W																	
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																						
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																									
 #end																																
@@ -933,12 +933,12 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2  AB:000 DB:C9  M1      MREQ RD	1	2	fMFetch																													
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																											
-#005H T5  AB:0FF DB:--	2	1	fMRead					SP																								
-#006H T6  AB:0FF DB:01          MREQ RD	2	2	fMRead						SP																							
-#007H T7  AB:0FF DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#008H T8  AB:000 DB:--	3	1	fMRead					SP																								
-#009H T9  AB:000 DB:C9          MREQ RD	3	2	fMRead						SP																							
-#010H T10 AB:000 DB:C9          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#005H T5  AB:0FF DB:--	2	1	fMRead					SP		W+																						
+#006H T6  AB:0FF DB:01          MREQ RD	2	2	fMRead						SP	R+																						
+#007H T7  AB:0FF DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#008H T8  AB:000 DB:--	3	1	fMRead					SP		W+																						
+#009H T9  AB:000 DB:C9          MREQ RD	3	2	fMRead						SP	R+																						
+#010H T10 AB:000 DB:C9          MREQ RD	3	3	fMRead			1	1					W	d	<	R																	
 #end																																
 																																
 #if pla[45] : ret cc			"5/(5,3,3)"																													
@@ -947,12 +947,12 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																													
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																												
 #005H T5  AB:000 DB:--	1	5				1	CC																									
-#006H T6  AB:001 DB:--	2	1	fMRead					SP																								
-#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead						SP																							
-#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	<	<	R																	
-#009H T9  AB:002 DB:--	3	1	fMRead					SP																								
-#010H T10 AB:002 DB:02          MREQ RD	3	2	fMRead						SP																							
-#011H T11 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	<	<	R																	
+#006H T6  AB:001 DB:--	2	1	fMRead					SP		W+																						
+#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead						SP	R+																						
+#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1						Z	d	<	R																	
+#009H T9  AB:002 DB:--	3	1	fMRead					SP		W+																						
+#010H T10 AB:002 DB:02          MREQ RD	3	2	fMRead						SP	R+																						
+#011H T11 AB:002 DB:02          MREQ RD	3	3	fMRead			1	1					W	d	<	R																	
 #end																																
 																																
 #if pla[46] : reti/retn			"4,3,3"																													
@@ -1127,8 +1127,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																
 // Default instruction fetch (M1) state machine																																
 #if M1 :																																
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC																								
-#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch						PC																							
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR			AF				R		sh0	>	bus	bus		*	*	*	*	*	*				OpcodeIR	
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch						IR																						Limit6	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC		W+																						
+#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch						PC	R+																						
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR		W+	AF				R		sh0	>	bus	bus		*	*	*	*	*	*				OpcodeIR	
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch						IR	R+																					Limit6	
 #end																																

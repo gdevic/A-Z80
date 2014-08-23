@@ -47,7 +47,7 @@ HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16
 SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit SP, enable SW4 downstream
 
 // System registers
-WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit WZ
+WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;      // Select 16-bit WZ
 IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit IR
 PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
 
@@ -74,11 +74,16 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-
 // Controls the address latch incrementer
 //-----------------------------------------------------------------------------------------
 :inc/dec
--       ctl_inc_dec=1;                      // Decrement address latch!
-R       ctl_bus_inc_we=1;                   // Output enable incrementer latch to the abus
-W       ctl_al_we=1;                        // Write a value from the abus to the address latch
-R-      ctl_bus_inc_we=1; ctl_inc_dec=1;    // Decrement address latch and output it to abus
-+/-     ctl_bus_inc_we=1; ctl_inc_dec=op3;  // Used for INC/DEC: decrement if op3 is set
+W       ctl_al_we=1;                                        // Write a value from the abus to the address latch
+W+      ctl_al_we=1; ctl_inc_cy=1;                          // Write latch and start incrementing
+W-      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1;           // Write latch and start decrementing
+
+R       ctl_bus_inc_we=1;                                   // Output enable incrementer to the abus
+R+      ctl_bus_inc_we=1; ctl_inc_cy=1;                     // Output enable while holding to increment
+R-      ctl_bus_inc_we=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable while holding to decrement
++/-     ctl_bus_inc_we=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for INC/DEC: decrement if op3 is set
+
+<-      ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1;      // MUX output to apads while holding to decrement (for push)
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint
@@ -111,11 +116,8 @@ Z       ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
 // Switches on the data bus for each direction (upstream, downstream)
 //-----------------------------------------------------------------------------------------
 :SW2
-<       ctl_sw_2d=1;
->       ctl_sw_2u=1;
-// This version of the SW2 upstream macro is conditioned by the register selection r8 (op3 bit)
-// since it merges two 8-bit busses (Register File High with Low)
-3>      ctl_sw_2u=!op3;
+d       ctl_sw_2d=1;
+u       ctl_sw_2u=1;
 
 :SW1
 <       ctl_sw_1d=1;
@@ -190,6 +192,8 @@ A       ctl_flags_alu=1;                        // Load FLAGT from the ALU
 // Special sequence macros for some instructions make it simpler for all other entries
 //-----------------------------------------------------------------------------------------
 :Special
+USE_SP          ctl_reg_use_sp=1;                           // For 16-bit loads: use SP instead of AF
+
 Ex_DE_HL        ctl_reg_ex_de_hl=1;                         // EX DE,HL
 Ex_AF_AF'       ctl_reg_ex_af=1;                            // EX AF,AF'
 EXX             ctl_reg_exx=1;                              // EXX
