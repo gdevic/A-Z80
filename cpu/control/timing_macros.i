@@ -149,17 +149,17 @@ op1     ctl_alu_op1_oe=1;                       // OP1 latch
 op2     ctl_alu_op2_oe=1;                       // OP2 latch
 res     ctl_alu_res_oe=1;                       // Result latch
 
+:ALU:op2
+// Controls a MUX to select the input to the OP2 latch
+bus     ctl_alu_op2_sel_bus=1;                  // Internal bus
+lq      ctl_alu_op2_sel_lq=1;                   // Cross-bus wire (see schematic)
+0       ctl_alu_op2_sel_zero=1;                 // Zero
+
 :ALU:op1
 // Controls a MUX to select the input to the OP1 latch
 bus     ctl_alu_op1_sel_bus=1;                  // Internal bus
 low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high nibble
 0       ctl_alu_op1_sel_zero=1;                 // Zero
-
-:ALU:op2
-// Controls a MUX to select the input to the OP2 latch
-bus     ctl_alu_op2_sel_bus=1;                  // Internal bus
-x       ctl_alu_op2_sel_lq=1;                   // Cross-bus wire (see schematic)
-0       ctl_alu_op2_sel_zero=1;                 // Zero
 
 //-----------------------------------------------------------------------------------------
 // FLAGT
@@ -167,7 +167,7 @@ x       ctl_alu_op2_sel_lq=1;                   // Cross-bus wire (see schematic
 :FLAGT
 <       ctl_flags_oe=1;                         // Enable FLAGT onto the data bus
 >       ctl_flags_bus=1;                        // Load FLAGT from the data bus
-A       ctl_flags_alu=1;                        // Load FLAGT from the ALU
+alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 
 // Write enables for various flag bits and segments
 :SZ
@@ -211,15 +211,19 @@ CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
 ALUOP_L         ctl_state_alu=1; ctl_alu_op_low=1;          // Activate ALU operation on low nibble
 ALUOP_H         ctl_state_alu=1; ctl_alu_sel_op2_high=1;    // Activate ALU operation on high nibble
 
+// ALU computation with forced "OR" operation; used to compute flags on a value that is in both op2 and op1 latches
+ALUOP_L_OR      ctl_alu_op_low=1;       ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+ALUOP_H_OR      ctl_alu_sel_op2_high=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+
 // ALU operations controlled by a set of ALU PLA entries
 ALU_CP
 ALU_SUB
 ALU_SBC
 ALU_ADC
 ALU_ADD         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V;
-ALU_AND
-ALU_OR
-ALU_XOR
+ALU_AND         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+ALU_OR          ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+ALU_XOR         ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register

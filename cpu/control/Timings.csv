@@ -1,4 +1,4 @@
-A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	inc/dec	D:reg rd	D:reg wr	SW2	SW1	DB pads	FLAGT	ALU	ALU bus	ALU:op1	ALU:op2		SZ	XY	HF	PF	NF	CF			Special	
+A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	inc/dec	D:reg rd	D:reg wr	SW2	SW1	DB pads	FLAGT	ALU	ALU bus	ALU:op2	ALU:op1		SZ	XY	HF	PF	NF	CF			Special	
 																															
 // 8-bit Load Group																															
 																															
@@ -6,7 +6,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	u				<	op1													
 #002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch																												
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				>s0		bus												
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				>s0			bus											
 #end																															
 																															
 "#if pla[17] && !pla[50] : ld r,n"			"4,3"																												
@@ -163,14 +163,14 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch																												
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1																											
-#009H T5  AB:001 DB:--	1	5				1	1				I/R		d				>s0		bus												
+#009H T5  AB:001 DB:--	1	5				1	1				I/R		d				>s0			bus											
 #end																															
 																															
 "#if pla[57] : ld i,a/r,a"			5																												
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
 #006H T2  AB:001 DB:47  M1      MREQ RD	1	2	fMFetch																												
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							A		d	>			>s0		bus												
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							A		d	>			>s0			bus											
 #009H T5  AB:001 DB:--	1	5				1	1					I/R	u	<			<	op1													
 #end																															
 																															
@@ -389,10 +389,10 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 // 8-bit Arithmetic and Logic Group																															
 																															
 "#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																												
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			A	<	res				*	*		*	0	*			ALUOP_H	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res				*	*		*	0	*			ALUOP_H	
 #002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch									F	u			<															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																												
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			A	>s0			bus			*	*	*	0	*			ALUOP_L	
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			alu	>s0		bus			*	*	*	*	0	*			ALUOP_L	
 #end																															
 																															
 "#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																												
@@ -618,37 +618,37 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #end																															
 																															
 #if pla[15] && op3 : rld			"4,3,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																												
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	u			alu	<	res				*	*		*	0				ALUOP_H_OR	
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	u			<															
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:000 DB:--	2	1	fMRead																												
-#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																												
+#009H T5  AB:000 DB:--	2	1	fMRead					HL		W+																					
+#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead						WZ	R+																					
 #011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:000 DB:--	3	1																													
+#012H T8  AB:000 DB:--	3	1											d	<	R		>s0		lq											ALUOP_L	
 #013H T9  AB:000 DB:--	3	2																													
 #014H T10 AB:000 DB:--	3	3																													
-#015H T11 AB:000 DB:--	3	4				1																									
-#016H T12 AB:000 DB:--	4	1	fMWrite																												
-#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																												
-#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																								
+#015H T11 AB:000 DB:--	3	4				1							d	<	R		>s0			low										ALUOP_H	
+#016H T12 AB:000 DB:--	4	1	fMWrite										u	>	W		<	op2													
+#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite															op1	bus												
+#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1									alu						*	*	*	*	0				ALUOP_L_OR	
 #end																															
 																															
 #if pla[15] && !op3 : rrd			"4,3,4,3"																												
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																												
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch																												
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	u			alu	<	res				*	*		*	0				ALUOP_H_OR	
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	u			<															
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																												
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																										
-#009H T5  AB:000 DB:--	2	1	fMRead																												
-#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead																												
+#009H T5  AB:000 DB:--	2	1	fMRead					HL		W+																					
+#010H T6  AB:000 DB:ED          MREQ RD	2	2	fMRead						WZ	R+																					
 #011H T7  AB:000 DB:ED          MREQ RD	2	3	fMRead			1																									
-#012H T8  AB:000 DB:--	3	1																													
-#013H T9  AB:000 DB:--	3	2																													
-#014H T10 AB:000 DB:--	3	3																													
-#015H T11 AB:000 DB:--	3	4				1																									
-#016H T12 AB:000 DB:--	4	1	fMWrite																												
-#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																												
-#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1																								
+#012H T8  AB:000 DB:--	3	1											d	<	R		>s0		lq	low										ALUOP_L	
+#013H T9  AB:000 DB:--	3	2											u	>	W		<	op2													
+#014H T10 AB:000 DB:--	3	3									A						>s0		lq											ALUOP_L	
+#015H T11 AB:000 DB:--	3	4				1							d	<	R		>s0			low										ALUOP_H	
+#016H T12 AB:000 DB:--	4	1	fMWrite										u	>	W		<	op2													
+#017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite															op1	bus												
+#018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite			1	1									alu						*	*	*	*	0				ALUOP_L_OR	
 #end																															
 																															
 // Bit Manipulation Group																															
