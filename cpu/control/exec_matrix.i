@@ -1020,10 +1020,37 @@ end
 // Rotate and Shift Group
 if (pla[25]) begin
     $display("pla[25] : rlca/rla/rrca/rra");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_sw_2u=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0;
+                    ctl_flags_cf_we=1;
+                    ctl_alu_sel_op2_high=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_sel_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_sw_2d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=1; ctl_shift_en=1; /* Shifter unit AND shift enable! */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0;
+                    ctl_flags_cf_we=1;
+                    ctl_flags_cf2_we=1;
+                    ctl_alu_op_low=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P; end
 end
 
 if (pla[70] && !pla[55]) begin
@@ -1851,8 +1878,7 @@ if (M1) begin
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
-                    ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */ if (!lda) ctl_alu_shift_oe=1; /* Override default ALU load */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
                     ctl_flags_sz_we=1;

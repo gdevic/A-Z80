@@ -59,8 +59,6 @@ ctl_flags_bus = 0;
 ctl_flags_alu = 0;
 ctl_flags_nf_set = 0;
 ctl_daa = 0;
-ctl_flags_we_cf2 = 0;
-ctl_flags_use_cf2 = 0;
 ctl_flags_cf_set = 0;
 ctl_flags_cf_cpl = 0;
 ctl_flags_cf_we = 0;
@@ -69,6 +67,8 @@ ctl_flags_xy_we = 0;
 ctl_flags_hf_we = 0;
 ctl_flags_pf_we = 0;
 ctl_flags_nf_we = 0;
+ctl_flags_sel_cf2 = 0;
+ctl_flags_cf2_we = 0;
 
 // Module: registers/reg_file.v
 ctl_sw_4d = 0;

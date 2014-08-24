@@ -143,6 +143,10 @@ FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 >s1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
 >bs     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
+// This case is used with the default fetch (M1) state machine:
+// If lda variable is set, loading of A into ACCT is overriden by a PLA entry
+>s?     if (!lda) ctl_alu_shift_oe=1;           // Override default ALU load
+
 :ALU bus
 // Controls the writer to the internal ALU bus
 op1     ctl_alu_op1_oe=1;                       // OP1 latch
@@ -184,6 +188,9 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 1       ctl_flags_nf_we=1; ctl_flags_nf_set=1;
 :CF
 *       ctl_flags_cf_we=1;
+:CF2
+W       ctl_flags_cf2_we=1;
+R       ctl_flags_sel_cf2=1;
 
 //-----------------------------------------------------------------------------------------
 // Special sequence macros for some instructions make it simpler for all other entries
@@ -206,6 +213,9 @@ IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
 IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
+
+// Override to the default load of A to ACCT during the M1/T2 cycle
+LD_ACCT         lda=1;                                      // Explicit load of ACCT through a different path
 
 // ALU computational phase: low nibble or high nibble
 ALUOP_L         ctl_state_alu=1; ctl_alu_op_low=1;          // Activate ALU operation on low nibble
