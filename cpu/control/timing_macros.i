@@ -138,8 +138,9 @@ FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 //-----------------------------------------------------------------------------------------
 :ALU
 // Controls the master ALU output enable and the ALU input, only one can be active at a time
+// >bs if set, will override >s0 which is used by bit instructions to override default M1/T3 load
 <       ctl_alu_oe=1;                           // Enable ALU onto the data bus
->s0     ctl_alu_shift_oe=1;                     // Shifter unit without shift-enable
+>s0     ctl_alu_shift_oe=!ctl_alu_bs_oe;        // Shifter unit without shift-enable
 >s1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
 >bs     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
@@ -171,6 +172,9 @@ ADD     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in
 AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
 OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
 XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
+
+NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
 
 PLA     ctl_state_alu=1;                        // Assert the ALU PLA modifier to determine operation
 

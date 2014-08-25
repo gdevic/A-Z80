@@ -31,7 +31,7 @@ wire [7:0] db2;         // Segment with msb part of the register address-side in
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Collect the PLA instruction decode prefix bitfield
 logic [6:0] prefix;
-assign prefix = { use_ixiy, ~use_ixiy, in_halt, in_alu, table_xx, table_cb, table_ed };
+assign prefix = { ~use_ixiy, use_ixiy, in_halt, in_alu, table_xx, table_cb, table_ed };
 
 ir          instruction_reg ( .*, .db(db0[7:0]) );
 pla_decode  pla_decode ( .* );
