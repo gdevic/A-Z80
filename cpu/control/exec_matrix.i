@@ -1028,7 +1028,7 @@ if (pla[25]) begin
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
@@ -1048,7 +1048,7 @@ if (pla[25]) begin
                     ctl_alu_shift_oe=1; ctl_shift_en=1; /* Shifter unit AND shift enable! */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
@@ -1088,7 +1088,7 @@ if (pla[15] && op3) begin
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1134,7 +1134,7 @@ if (pla[15] && op3) begin
                     ctl_alu_op2_sel_bus=1; /* Internal bus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1; setM1=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1151,7 +1151,7 @@ if (pla[15] && !op3) begin
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1207,7 +1207,7 @@ if (pla[15] && !op3) begin
                     ctl_alu_op2_sel_bus=1; /* Internal bus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1; setM1=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1223,7 +1223,7 @@ if (pla[72] && !pla[55]) begin
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1241,8 +1241,8 @@ if (pla[72] && !pla[55]) begin
                     ctl_sw_2d=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op2_sel_bus=1; /* Internal bus */
-                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
@@ -1266,18 +1266,12 @@ end
 if (pla[74] && !pla[55]) begin
     $display("pla[74] && !pla[55] : set b,r");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; /* Write 8-bit GP register selected by op[2:0] */
                     ctl_sw_2u=1;
-                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; end
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */ end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2u=1;
@@ -1287,16 +1281,10 @@ if (pla[74] && !pla[55]) begin
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
-                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op2_sel_bus=1; /* Internal bus */
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; end
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */ end
 end
 
 if (pla[74] && pla[55]) begin
@@ -1317,18 +1305,12 @@ end
 if (pla[73] && !pla[55]) begin
     $display("pla[73] && !pla[55] : res b,r");
     if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; /* Write 8-bit GP register selected by op[2:0] */
                     ctl_sw_2u=1;
-                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
-                    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; end
+                    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */ end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2u=1;
@@ -1338,16 +1320,10 @@ if (pla[73] && !pla[55]) begin
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
-                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; end
+                    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */ end
 end
 
 if (pla[73] && pla[55]) begin
@@ -1934,25 +1910,25 @@ end
 if (pla[84]) begin
     $display("pla[84] : ALU ADD");
     begin 
-                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V; end
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_V; end
 end
 
 if (pla[85]) begin
     $display("pla[85] : ALU AND");
     begin 
-                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P; end
 end
 
 if (pla[86]) begin
     $display("pla[86] : ALU OR");
     begin 
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P; end
 end
 
 if (pla[88]) begin
     $display("pla[88] : ALU XOR");
     begin 
-                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P; end
 end
 
 // Default instruction fetch (M1) state machine

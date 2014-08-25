@@ -106,6 +106,7 @@ C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
 A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 F       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
 r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; // Write 8-bit GP register
+r8'     ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; // Write 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
 // System registers
@@ -168,13 +169,13 @@ CP
 SUB
 SBC
 ADC
-ADD     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V;
-AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
+ADD     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_V;
+AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
+OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
+XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
 
-NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
+NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
 
 PLA     ctl_state_alu=1;                        // Assert the ALU PLA modifier to determine operation
 

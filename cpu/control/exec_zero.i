@@ -31,7 +31,8 @@ ctl_daa_66 = 0;
 ctl_daa_oe = 0;
 ctl_alu_op_low = 0;
 ctl_cond_short = 0;
-ctl_alu_core_cf_in = 0;
+ctl_alu_core_cf_set = 0;
+ctl_alu_core_cf_clr = 0;
 ctl_pf_sel = 0;
 
 // Module: alu/alu_select.v
