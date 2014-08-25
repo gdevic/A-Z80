@@ -149,17 +149,35 @@ op1     ctl_alu_op1_oe=1;                       // OP1 latch
 op2     ctl_alu_op2_oe=1;                       // OP2 latch
 res     ctl_alu_res_oe=1;                       // Result latch
 
-:ALU:op2
+:op2 latch
 // Controls a MUX to select the input to the OP2 latch
 bus     ctl_alu_op2_sel_bus=1;                  // Internal bus
 lq      ctl_alu_op2_sel_lq=1;                   // Cross-bus wire (see schematic)
 0       ctl_alu_op2_sel_zero=1;                 // Zero
 
-:ALU:op1
+:op1 latch
 // Controls a MUX to select the input to the OP1 latch
 bus     ctl_alu_op1_sel_bus=1;                  // Internal bus
 low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high nibble
 0       ctl_alu_op1_sel_zero=1;                 // Zero
+
+:operation
+// Sets the ALU core operation (function)
+CP
+SUB
+SBC
+ADC
+ADD     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V;
+AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
+XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
+
+PLA     ctl_state_alu=1;                        // Assert the ALU PLA modifier to determine operation
+
+:nibble
+// ALU computational phase: low nibble or high nibble
+L       ctl_alu_op_low=1;                       // Activate ALU operation on low nibble
+H       ctl_alu_sel_op2_high=1;                 // Activate ALU operation on high nibble
 
 //-----------------------------------------------------------------------------------------
 // FLAGT
@@ -209,27 +227,6 @@ IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
 IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
-
-// Override to the default load of A to ACCT during the M1/T2 cycle
-LD_ACCT         lda=1;                                      // Explicit load of ACCT through a different path
-
-// ALU computational phase: low nibble or high nibble
-ALUOP_L         ctl_state_alu=1; ctl_alu_op_low=1;          // Activate ALU operation on low nibble
-ALUOP_H         ctl_state_alu=1; ctl_alu_sel_op2_high=1;    // Activate ALU operation on high nibble
-
-// ALU computation with forced "OR" operation; used to compute flags on a value that is in both op2 and op1 latches
-ALUOP_L_OR      ctl_alu_op_low=1;       ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-ALUOP_H_OR      ctl_alu_sel_op2_high=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-
-// ALU operations controlled by a set of ALU PLA entries
-ALU_CP
-ALU_SUB
-ALU_SBC
-ALU_ADC
-ALU_ADD         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_in=0; ctl_pf_sel=`PFSEL_V;
-ALU_AND         ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-ALU_OR          ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_pf_sel=`PFSEL_P;
-ALU_XOR         ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register
