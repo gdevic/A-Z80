@@ -4,13 +4,29 @@
 #
 import os
 
-# Start with a test name (this is a string, see tests files)
+# Start with this test name (this is a string; see tests files)
 start_test = "00"
 
-# Number of tests to run, use -1 to run all tests
+# Number of tests to run; use -1 to run all tests
 run_tests = 1
 
-with open('fuse/tests.in') as f1:
+# Set this to 1 to use regression test files instead of 'tests.*'
+# It will run all regression tests (start_test, run_tests are ignored)
+regress = 1
+
+#------------------------------------------------------------------------------
+# Determine which test files to use
+tests_in = 'fuse/tests.in'
+tests_expected = 'fuse/tests.expected'
+
+# Regression testing executes all regression tests
+if regress:
+    tests_in = 'fuse/regress.in'
+    tests_expected = 'fuse/regress.expected'
+    start_test = "00"
+    run_tests = -1
+
+with open(tests_in) as f1:
     t1 = f1.read().splitlines()
 # Remove all tests until the one we need to start with. Tests are separated by empty lines.
 while t1[0]!=start_test:
@@ -18,7 +34,7 @@ while t1[0]!=start_test:
         pass
 t1 = filter(None, t1)   # Filter out empty lines
 
-with open('fuse/tests.expected') as f2:
+with open(tests_expected) as f2:
     t2 = f2.read().splitlines()
 while t2[0]!=start_test:
     while len(t2.pop(0))>0:
