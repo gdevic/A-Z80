@@ -294,7 +294,7 @@ alu_mux_2z	b2v_op1_latch_mux_high(
 	.sel_zero(alu_op1_sel_zero),
 	.a(db_high),
 	.ena_out(SYNTHESIZED_WIRE_20),
-	.Q2(SYNTHESIZED_WIRE_19));
+	.Q(SYNTHESIZED_WIRE_19));
 
 
 alu_mux_3z	b2v_op1_latch_mux_low(

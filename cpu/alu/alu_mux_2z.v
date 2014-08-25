@@ -12,7 +12,7 @@
 // Altera or its authorized distributors.  Please refer to the 
 // applicable agreement for further details.
 
-// PROGRAM		"Quartus II 64-Bit"
+// PROGRAM		"Quartus II"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
 // CREATED		"Tue May 20 18:23:39 2014"
 
@@ -21,7 +21,7 @@ module alu_mux_2z(
 	sel_zero,
 	a,
 	ena_out,
-	Q2
+	Q
 );
 
 
@@ -29,7 +29,7 @@ input wire	sel_a;
 input wire	sel_zero;
 input wire	[3:0] a;
 output wire	ena_out;
-output wire	[3:0] Q2;
+output wire	[3:0] Q;
 
 wire	[3:0] SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
@@ -41,7 +41,7 @@ assign	SYNTHESIZED_WIRE_0 = a & {sel_a,sel_a,sel_a,sel_a};
 
 assign	ena_out = sel_zero | sel_a;
 
-assign	Q2 = SYNTHESIZED_WIRE_0 & {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1};
+assign	Q = SYNTHESIZED_WIRE_0 & {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1};
 
 assign	SYNTHESIZED_WIRE_1 =  ~sel_zero;
 
