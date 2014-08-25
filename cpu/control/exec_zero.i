@@ -92,13 +92,13 @@ ctl_reg_gp_sel = 0;
 ctl_reg_sys_hilo = 0;
 
 // Module: bus/address_latch.v
-ctl_bus_inc_we = 0;
 ctl_inc_cy = 0;
 ctl_inc_dec = 0;
 ctl_inc_zero = 0;
 ctl_al_we = 0;
 ctl_ab_mux_inc = 0;
 ctl_inc_limit6 = 0;
+ctl_bus_inc_oe = 0;
 
 // Module: bus/bus_control.v
 ctl_bus_ff_oe = 0;

@@ -127,7 +127,7 @@ begin
     //----------------------------------------------------------
     if (reset && !fpga_reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
-        ctl_bus_inc_we = 1;             // Incrementer to the abus
+        ctl_bus_inc_oe = 1;             // Incrementer to the abus
         ctl_reg_sel_pc = clk;           // Write to the PC on clock up
         ctl_reg_sel_ir = !clk;          // Write to the IR on clock down
         ctl_reg_sys_we = 1;             // Perform write

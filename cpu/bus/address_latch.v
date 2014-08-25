@@ -17,26 +17,26 @@
 // CREATED		"Sun Aug 10 12:12:19 2014"
 
 module address_latch(
-	ctl_bus_inc_we,
 	ctl_inc_cy,
 	ctl_inc_dec,
 	ctl_inc_zero,
 	ctl_al_we,
 	ctl_ab_mux_inc,
 	ctl_inc_limit6,
+	ctl_bus_inc_oe,
 	address_is_1,
 	abus,
 	address
 );
 
 
-input wire	ctl_bus_inc_we;
 input wire	ctl_inc_cy;
 input wire	ctl_inc_dec;
 input wire	ctl_inc_zero;
 input wire	ctl_al_we;
 input wire	ctl_ab_mux_inc;
 input wire	ctl_inc_limit6;
+input wire	ctl_bus_inc_oe;
 output wire	address_is_1;
 inout wire	[15:0] abus;
 output wire	[15:0] address;
@@ -64,22 +64,22 @@ assign	SYNTHESIZED_WIRE_5 =  ~ctl_inc_zero;
 
 assign	SYNTHESIZED_WIRE_7 = {SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5,SYNTHESIZED_WIRE_5} & SYNTHESIZED_WIRE_9;
 
-assign	abus[15] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[15] : 1'bz;
-assign	abus[14] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[14] : 1'bz;
-assign	abus[13] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[13] : 1'bz;
-assign	abus[12] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[12] : 1'bz;
-assign	abus[11] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[11] : 1'bz;
-assign	abus[10] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[10] : 1'bz;
-assign	abus[9] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[9] : 1'bz;
-assign	abus[8] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[8] : 1'bz;
-assign	abus[7] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[7] : 1'bz;
-assign	abus[6] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[6] : 1'bz;
-assign	abus[5] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[5] : 1'bz;
-assign	abus[4] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[4] : 1'bz;
-assign	abus[3] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[3] : 1'bz;
-assign	abus[2] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[2] : 1'bz;
-assign	abus[1] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[1] : 1'bz;
-assign	abus[0] = ctl_bus_inc_we ? SYNTHESIZED_WIRE_7[0] : 1'bz;
+assign	abus[15] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[15] : 1'bz;
+assign	abus[14] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[14] : 1'bz;
+assign	abus[13] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[13] : 1'bz;
+assign	abus[12] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[12] : 1'bz;
+assign	abus[11] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[11] : 1'bz;
+assign	abus[10] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[10] : 1'bz;
+assign	abus[9] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[9] : 1'bz;
+assign	abus[8] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[8] : 1'bz;
+assign	abus[7] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[7] : 1'bz;
+assign	abus[6] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[6] : 1'bz;
+assign	abus[5] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[5] : 1'bz;
+assign	abus[4] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[4] : 1'bz;
+assign	abus[3] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[3] : 1'bz;
+assign	abus[2] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[2] : 1'bz;
+assign	abus[1] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[1] : 1'bz;
+assign	abus[0] = ctl_bus_inc_oe ? SYNTHESIZED_WIRE_7[0] : 1'bz;
 
 
 always@(ctl_al_we or abus)

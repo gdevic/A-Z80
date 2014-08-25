@@ -5,7 +5,7 @@ add wave -noupdate -radix hexadecimal /test_bus/db_sig
 add wave -noupdate -color Gold -itemcolor Gold -radix hexadecimal /test_bus/address_sig
 add wave -noupdate /test_bus/ctl_ab_mux_inc_sig
 add wave -noupdate /test_bus/ctl_al_we_sig
-add wave -noupdate /test_bus/ctl_bus_inc_we_sig
+add wave -noupdate /test_bus/ctl_bus_inc_oe_sig
 add wave -noupdate /test_bus/ctl_inc_dec_sig
 add wave -noupdate /test_bus/ctl_inc_limit6_sig
 add wave -noupdate /test_bus/ctl_inc_cy_sig

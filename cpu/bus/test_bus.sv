@@ -11,7 +11,7 @@ wire [15:0] address_sig;    // Final address ouput
 // ----------------- INPUT CONTROL -----------------
 reg ctl_ab_mux_inc_sig;     // Mux for the final address output
 reg ctl_al_we_sig;          // Write enable to address latch
-reg ctl_bus_inc_we_sig;     // Write incrementer onto the internal data bus
+reg ctl_bus_inc_oe_sig;     // Write incrementer onto the internal data bus
 
 // ----------------- INC/DEC -----------------
 reg ctl_inc_dec_sig;        // Perform decrement (1) or increment (0)
@@ -26,7 +26,7 @@ initial begin
     db = 'z;
     ctl_ab_mux_inc_sig = 0;
     ctl_al_we_sig = 0;
-    ctl_bus_inc_we_sig = 0;
+    ctl_bus_inc_oe_sig = 0;
     ctl_inc_dec_sig = 0;
     ctl_inc_limit6_sig = 0;
     ctl_inc_cy_sig = 0;
@@ -59,13 +59,13 @@ initial begin
     //------------------------------------------------------------
     // Test the tri-state db
     #1  db = 'z;
-        ctl_bus_inc_we_sig = 1;     // Output latched value (AA55)
-    #1  ctl_bus_inc_we_sig = 0;     // Disable it for a cycle
+        ctl_bus_inc_oe_sig = 1;     // Output latched value (AA55)
+    #1  ctl_bus_inc_oe_sig = 0;     // Disable it for a cycle
         
     //------------------------------------------------------------
     // Test the force-to-zero
     #1  ctl_inc_zero_sig = 1;
-        ctl_bus_inc_we_sig = 1;     // Output zero
+        ctl_bus_inc_oe_sig = 1;     // Output zero
 
     #1 $display("End of test");
 end
@@ -76,7 +76,7 @@ assign db_sig = db;
 // Instantiate address latch block
 address_latch address_latch_inst
 (
-	.ctl_bus_inc_we(ctl_bus_inc_we_sig) ,	// input  ctl_bus_inc_we_sig
+	.ctl_bus_inc_oe(ctl_bus_inc_oe_sig) ,	// input  ctl_bus_inc_oe_sig
 	.ctl_inc_limit6(ctl_inc_limit6_sig) ,	// input  ctl_inc_limit6_sig
 	.ctl_inc_cy(ctl_inc_cy_sig) ,	// input  ctl_inc_cy_sig
 	.ctl_inc_dec(ctl_inc_dec_sig) ,	// input  ctl_inc_dec_sig

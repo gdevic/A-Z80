@@ -40,8 +40,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "ctl_bus_inc_we" (rect 0 0 90 14)(font "Arial" (font_size 8)))
-		(text "ctl_bus_inc_we" (rect 21 59 111 73)(font "Arial" (font_size 8)))
+		(text "ctl_bus_inc_oe" (rect 0 0 86 14)(font "Arial" (font_size 8)))
+		(text "ctl_bus_inc_oe" (rect 21 59 107 73)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port

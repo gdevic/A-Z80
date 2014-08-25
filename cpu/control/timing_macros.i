@@ -78,10 +78,10 @@ W       ctl_al_we=1;                                        // Write a value fro
 W+      ctl_al_we=1; ctl_inc_cy=1;                          // Write latch and start incrementing
 W-      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1;           // Write latch and start decrementing
 
-R       ctl_bus_inc_we=1;                                   // Output enable incrementer to the abus
-R+      ctl_bus_inc_we=1; ctl_inc_cy=1;                     // Output enable while holding to increment
-R-      ctl_bus_inc_we=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable while holding to decrement
-+/-     ctl_bus_inc_we=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for INC/DEC: decrement if op3 is set
+R       ctl_bus_inc_oe=1;                                   // Output enable incrementer to the abus
+R+      ctl_bus_inc_oe=1; ctl_inc_cy=1;                     // Output enable while holding to increment
+R-      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable while holding to decrement
++/-     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for INC/DEC: decrement if op3 is set
 
 <-      ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1;      // MUX output to apads while holding to decrement (for push)
 

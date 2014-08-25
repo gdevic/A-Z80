@@ -50,7 +50,7 @@ add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_pin_oe
 add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_pin_re
 add wave -noupdate -group {data pins} /test_top/dut/data_pins/bus_db_oe
 add wave -noupdate -group {data pins} -label {DB Latch} -radix hexadecimal /test_top/dut/data_pins/SYNTHESIZED_WIRE_6
-add wave -noupdate -group al /test_top/dut/address_latch/ctl_bus_inc_we
+add wave -noupdate -group al /test_top/dut/address_latch/ctl_bus_inc_oe
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_inc_cy
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_inc_dec
 add wave -noupdate -group al /test_top/dut/address_latch/ctl_inc_zero
