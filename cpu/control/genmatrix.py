@@ -51,6 +51,8 @@ def getSubst(key, token):
     subst = []
     multiline = False
     validset = False
+    if key=="Comments":                 # Special case: ignore "Comments" column!
+        return ""
     for l in macros:
         if multiline==True:
             # Multiline copies lines until a char at [0] is not a space
