@@ -143,10 +143,6 @@ FF      ctl_bus_ff_oe=1;                        // Force 0xFF on the data bus
 >s1     ctl_alu_shift_oe=1; ctl_shift_en=1;     // Shifter unit AND shift enable!
 >bs     ctl_alu_bs_oe=1;                        // Bit-selector unit
 
-// This case is used with the default fetch (M1) state machine:
-// If lda variable is set, loading of A into ACCT is overriden by a PLA entry
->s?     if (!lda) ctl_alu_shift_oe=1;           // Override default ALU load
-
 :ALU bus
 // Controls the writer to the internal ALU bus
 op1     ctl_alu_op1_oe=1;                       // OP1 latch

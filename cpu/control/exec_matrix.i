@@ -1878,7 +1878,8 @@ if (M1) begin
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_flags_bus=1; /* Load FLAGT from the data bus */ if (!lda) ctl_alu_shift_oe=1; /* Override default ALU load */
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=1; /* Shifter unit without shift-enable */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
                     ctl_flags_sz_we=1;
