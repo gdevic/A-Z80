@@ -77,8 +77,6 @@ output logic ctl_sw_4u,
 
 // Module: registers/reg_control.v
 output logic ctl_reg_exx,
-output logic ctl_reg_use_ixiy,
-output logic ctl_reg_use_ix,
 output logic ctl_reg_ex_af,
 output logic ctl_reg_ex_de_hl,
 output logic ctl_reg_use_sp,

@@ -77,8 +77,6 @@ ctl_sw_4u = 0;
 
 // Module: registers/reg_control.v
 ctl_reg_exx = 0;
-ctl_reg_use_ixiy = 0;
-ctl_reg_use_ix = 0;
 ctl_reg_ex_af = 0;
 ctl_reg_ex_de_hl = 0;
 ctl_reg_use_sp = 0;

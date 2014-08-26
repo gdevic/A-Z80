@@ -18,8 +18,6 @@
 
 module reg_control(
 	ctl_reg_exx,
-	ctl_reg_use_ixiy,
-	ctl_reg_use_ix,
 	ctl_reg_ex_af,
 	ctl_reg_ex_de_hl,
 	ctl_reg_use_sp,
@@ -30,6 +28,8 @@ module reg_control(
 	ctl_reg_gp_we,
 	ctl_reg_sys_we,
 	ctl_reg_not_pc,
+	use_ixiy,
+	use_ix,
 	ctl_reg_gp_hilo,
 	ctl_reg_gp_sel,
 	ctl_reg_sys_hilo,
@@ -57,8 +57,6 @@ module reg_control(
 
 
 input wire	ctl_reg_exx;
-input wire	ctl_reg_use_ixiy;
-input wire	ctl_reg_use_ix;
 input wire	ctl_reg_ex_af;
 input wire	ctl_reg_ex_de_hl;
 input wire	ctl_reg_use_sp;
@@ -69,6 +67,8 @@ input wire	ctl_reg_sel_wz;
 input wire	ctl_reg_gp_we;
 input wire	ctl_reg_sys_we;
 input wire	ctl_reg_not_pc;
+input wire	use_ixiy;
+input wire	use_ix;
 input wire	[1:0] ctl_reg_gp_hilo;
 input wire	[1:0] ctl_reg_gp_sel;
 input wire	[1:0] ctl_reg_sys_hilo;
@@ -160,7 +160,7 @@ assign	reg_sel_sp = SYNTHESIZED_WIRE_60 & ctl_reg_use_sp;
 
 assign	SYNTHESIZED_WIRE_5 =  ~ctl_reg_use_sp;
 
-assign	reg_sel_ix = SYNTHESIZED_WIRE_61 & ctl_reg_use_ix;
+assign	reg_sel_ix = SYNTHESIZED_WIRE_61 & use_ix;
 
 assign	SYNTHESIZED_WIRE_39 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_58;
 
@@ -208,17 +208,17 @@ assign	SYNTHESIZED_WIRE_32 =  ~ctl_reg_not_pc;
 
 assign	SYNTHESIZED_WIRE_36 =  ~ctl_reg_gp_sel[1];
 
-assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_70 & ctl_reg_use_ixiy;
+assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_70 & use_ixiy;
 
 assign	SYNTHESIZED_WIRE_45 =  ~ctl_reg_gp_sel[0];
 
 assign	SYNTHESIZED_WIRE_42 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_68;
 
-assign	SYNTHESIZED_WIRE_34 =  ~ctl_reg_use_ixiy;
+assign	SYNTHESIZED_WIRE_34 =  ~use_ixiy;
 
 assign	SYNTHESIZED_WIRE_66 = ctl_reg_gp_sel[0] & SYNTHESIZED_WIRE_36;
 
-assign	SYNTHESIZED_WIRE_10 =  ~ctl_reg_use_ix;
+assign	SYNTHESIZED_WIRE_10 =  ~use_ix;
 
 assign	SYNTHESIZED_WIRE_63 =  ~SYNTHESIZED_WIRE_65;
 

@@ -97,8 +97,6 @@ wire ctl_flags_cf2_we;
 wire ctl_sw_4d;
 wire ctl_sw_4u;
 wire ctl_reg_exx;
-wire ctl_reg_use_ixiy;
-wire ctl_reg_use_ix;
 wire ctl_reg_ex_af;
 wire ctl_reg_ex_de_hl;
 wire ctl_reg_use_sp;

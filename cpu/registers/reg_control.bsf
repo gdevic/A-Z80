@@ -68,15 +68,15 @@ applicable agreement for further details.
 	(port
 		(pt 0 128)
 		(input)
-		(text "ctl_reg_use_ixiy" (rect 0 0 93 14)(font "Arial" (font_size 8)))
-		(text "ctl_reg_use_ixiy" (rect 21 123 114 137)(font "Arial" (font_size 8)))
+		(text "use_ixiy" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "use_ixiy" (rect 21 123 68 137)(font "Arial" (font_size 8)))
 		(line (pt 0 128)(pt 16 128))
 	)
 	(port
 		(pt 0 144)
 		(input)
-		(text "ctl_reg_use_ix" (rect 0 0 83 14)(font "Arial" (font_size 8)))
-		(text "ctl_reg_use_ix" (rect 21 139 104 153)(font "Arial" (font_size 8)))
+		(text "use_ix" (rect 0 0 37 14)(font "Arial" (font_size 8)))
+		(text "use_ix" (rect 21 139 58 153)(font "Arial" (font_size 8)))
 		(line (pt 0 144)(pt 16 144))
 	)
 	(port
