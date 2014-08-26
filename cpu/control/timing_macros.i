@@ -92,6 +92,8 @@ R-      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable whi
 // General purpose registers
 A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
+L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
 r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};// Read 8-bit GP register
 r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte

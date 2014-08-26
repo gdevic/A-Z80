@@ -35,8 +35,8 @@ if (pla[17] && !pla[50]) begin
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
-if (pla[58]) begin
-    $display("pla[58] : ld r,(hl)");
+if (~use_ixiy && pla[58]) begin
+    $display("~use_ixiy && pla[58] : ld r,(hl)");
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; /* Write 8-bit GP register */
                     ctl_sw_2d=1;
@@ -54,21 +54,61 @@ end
 
 if (use_ixiy && pla[58]) begin
     $display("use_ixiy && pla[58] : ld r,(ix+d)");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; /* Write 8-bit GP register */
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
-    if (M2 && T2) begin  fMRead=1; end
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+    if (M2 && T2) begin  fMRead=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
-    if (M3 && T1) begin  fMRead=1; end
-    if (M3 && T2) begin  fMRead=1; end
-    if (M3 && T3) begin  fMRead=1; end
-    if (M3 && T4) begin  end
-    if (M3 && T5) begin  nextM=1; end
-    if (M4 && T1) begin  fMRead=1; end
+    if (M3 && T1) begin 
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_cf_we=1; end
+    if (M3 && T2) begin 
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2d=1;
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_V;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_flags_cf_we=1; end
+    if (M3 && T3) begin 
+                    ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_V;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_flags_cf_we=1; end
+    if (M3 && T4) begin 
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
+                    ctl_sw_2d=1;
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_flags_cf_we=1; end
+    if (M3 && T5) begin  nextM=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
+                    ctl_sw_2u=1;
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_flags_cf_we=1; end
+    if (M4 && T1) begin  fMRead=1;
+                    ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
