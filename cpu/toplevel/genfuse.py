@@ -91,7 +91,7 @@ while True:
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC
     # I R IFF1 IFF2 IM <halted> <tstates>
     name = t1.pop(0)
-    ftest.write("$fdisplay(f,\"Test configuration " + name + "\");\n\n")
+    ftest.write("$fdisplay(f,\"Testing opcode " + name + "\");\n\n")
     name = name.split(" ")[0]
     r = t1.pop(0).split(' ')
     r = filter(None, r)
@@ -191,7 +191,7 @@ while True:
     # I R IFF1 IFF2 IM <halted> <tstates?>
     RegRead("ir", s[0]+s[1])
 
-    # Read memory configurations until an empty line or -1 at the end
+    # Read memory configuration until an empty line or -1 at the end
     while True:
         m = t2.pop(0).split(' ')
         m = filter(None, m)
