@@ -389,30 +389,30 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 // 8-bit Arithmetic and Logic Group																																	
 																																	
 "#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	0	*				
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	?	*				
 #002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch									F	u			<																	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			alu	>s0		bus		PLA	L		*	*	*	*	0					
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			alu	>s0		bus		PLA	L		*	*	*	*	?					
 #end																																	
 																																	
 "#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	0	*				
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	?	*				
 #002H T2  AB:000 DB:C6  M1      MREQ RD	1	2	fMFetch									F	u			<																	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8'		d			alu	>s0		bus		PLA	L		*	*	*	*	0					
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1						r8'		d			alu	>s0		bus		PLA	L		*	*	*	*	?					
 #005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																							
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1						d	<	R	alu	>s0		bus		PLA	L		*	*	*	*	0					
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1						d	<	R	alu	>s0		bus		PLA	L		*	*	*	*	?					
 #end																																	
 																																	
 #if !use_ixiy && pla[52] : add/sub/and/or/xor/cp (hl)			"4,3"																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	0	*				
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	u			alu	<	res			PLA	H		*	*		*	?	*				
 #002H T2  AB:000 DB:86  M1      MREQ RD	1	2	fMFetch									F	u			<																	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																												
 #005H T5  AB:001 DB:--	2	1	fMRead					HL		W+																							
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						WZ	R+																							
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1						d	<	R	alu	>s0		bus		PLA	L		*	*	*	*	0					
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1						d	<	R	alu	>s0		bus		PLA	L		*	*	*	*	?					
 #end																																	
 																																	
 #if use_ixiy && pla[52] : add/sub/and/or/xor/cp (ix+d)			"4,3,5,3"																														
@@ -1094,35 +1094,35 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 "#end Only set CB ff and clear ED, XX ff"																																	
 																																	
 #if pla[76] : ALU CP																																	
-#always																					SUB												CP is SUB
+#always																					CP							1					
 #end																																	
 																																	
 #if pla[78] : ALU SUB																																	
-#always																					SUB												
+#always																					SUB							1					
 #end																																	
 																																	
 #if pla[79] : ALU SBC																																	
-#always																					SBC												
+#always																					SBC							1					
 #end																																	
 																																	
 #if pla[80] : ALU ADC																																	
-#always																					ADC												
+#always																					ADC							0					
 #end																																	
 																																	
 #if pla[84] : ALU ADD																																	
-#always																					ADD												
+#always																					ADD							0					
 #end																																	
 																																	
 #if pla[85] : ALU AND																																	
-#always																					AND												
+#always																					AND							0					
 #end																																	
 																																	
 #if pla[86] : ALU OR																																	
-#always																					OR												
+#always																					OR							0					
 #end																																	
 																																	
 #if pla[88] : ALU XOR																																	
-#always																					XOR												
+#always																					XOR							0					
 #end																																	
 																																	
 // Default instruction fetch (M1) state machine																																	

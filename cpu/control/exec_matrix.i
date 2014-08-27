@@ -847,7 +847,6 @@ if (pla[65] && !pla[52]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
@@ -865,8 +864,7 @@ if (pla[65] && !pla[52]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_pf_we=1; end
 end
 
 if (pla[64]) begin
@@ -882,7 +880,6 @@ if (pla[64]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
@@ -900,8 +897,7 @@ if (pla[64]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_pf_we=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
@@ -920,8 +916,7 @@ if (pla[64]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_pf_we=1; end
 end
 
 if (!use_ixiy && pla[52]) begin
@@ -937,7 +932,6 @@ if (!use_ixiy && pla[52]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
@@ -963,8 +957,7 @@ if (!use_ixiy && pla[52]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_pf_we=1; end
 end
 
 if (use_ixiy && pla[52]) begin
@@ -2038,7 +2031,8 @@ if (pla[76]) begin
                                                                                      ctl_flags_cf_set=1;
     end else begin
         ctl_alu_core_hf=1;
-    end end
+    end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
 end
 
 if (pla[78]) begin
@@ -2051,7 +2045,8 @@ if (pla[78]) begin
                                                                                      ctl_flags_cf_set=1;
     end else begin
         ctl_alu_core_hf=1;
-    end end
+    end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
 end
 
 if (pla[79]) begin
@@ -2064,7 +2059,8 @@ if (pla[79]) begin
                                                                                                          ctl_flags_cf_cpl=1;
     end else begin
         ctl_alu_core_hf=1;
-    end end
+    end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
 end
 
 if (pla[80]) begin
@@ -2075,7 +2071,8 @@ if (pla[80]) begin
     if (ctl_alu_op_low) begin
     end else begin
         ctl_alu_core_hf=1;
-    end end
+    end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[84]) begin
@@ -2087,25 +2084,29 @@ if (pla[84]) begin
                                                                                      ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
     end else begin
         ctl_alu_core_hf=1;
-    end end
+    end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[85]) begin
     $display("pla[85] : ALU AND");
     begin 
-                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[86]) begin
     $display("pla[86] : ALU OR");
     begin 
-                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[88]) begin
     $display("pla[88] : ALU XOR");
     begin 
-                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P; end
+                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 // Default instruction fetch (M1) state machine
