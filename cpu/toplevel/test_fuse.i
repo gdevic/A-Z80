@@ -5,7 +5,7 @@ force dut.reg_file.reg_sys_we=0;
 force dut.z80_top.fpga_reset=1;
 #2
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration 00");
+$fdisplay(f,"Test configuration 00      NOP");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -200,7 +200,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration ed67");
+$fdisplay(f,"Test configuration ed67    RRD");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -398,7 +398,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[47582]!==8'h69) $fdisplay(f,"* Mem[b9de]=%h !=69",ram.Mem[47582]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration ed6f");
+$fdisplay(f,"Test configuration ed6f    RLD");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -596,7 +596,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[16444]!==8'h45) $fdisplay(f,"* Mem[403c]=%h !=45",ram.Mem[16444]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration 81");
+$fdisplay(f,"Test configuration 81      ADD A,C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -792,7 +792,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration cb41");
+$fdisplay(f,"Test configuration cb41    BIT 0,C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -989,7 +989,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration cb93");
+$fdisplay(f,"Test configuration cb93    RES 2,E");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1186,7 +1186,7 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Test configuration cbe5");
+$fdisplay(f,"Test configuration cbe5    SET 4,L");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;

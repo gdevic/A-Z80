@@ -29,14 +29,14 @@ if regress:
 with open(tests_in) as f1:
     t1 = f1.read().splitlines()
 # Remove all tests until the one we need to start with. Tests are separated by empty lines.
-while t1[0]!=start_test:
+while t1[0].split(" ")[0]!=start_test:
     while len(t1.pop(0))>0:
         pass
 t1 = filter(None, t1)   # Filter out empty lines
 
 with open(tests_expected) as f2:
     t2 = f2.read().splitlines()
-while t2[0]!=start_test:
+while t2[0].split(" ")[0]!=start_test:
     while len(t2.pop(0))>0:
         pass
 
@@ -92,6 +92,7 @@ while True:
     # I R IFF1 IFF2 IM <halted> <tstates>
     name = t1.pop(0)
     ftest.write("$fdisplay(f,\"Test configuration " + name + "\");\n\n")
+    name = name.split(" ")[0]
     r = t1.pop(0).split(' ')
     r = filter(None, r)
     # 0  1  2  3  4   5   6   7   8  9  10 11   (index)
@@ -144,7 +145,7 @@ while True:
 
     # Read and parse the tests expected list which contains the expected results of our run,
     # including the number of clocks for a particular instruction
-    xname = t2.pop(0)
+    xname = t2.pop(0).split()[0]
     if name!=xname:
         print("Test " + name + " does not correspond to test.expected " + xname)
         break
