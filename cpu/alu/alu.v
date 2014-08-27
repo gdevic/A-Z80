@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sat Aug 23 12:55:24 2014"
+// CREATED		"Tue Aug 26 20:34:42 2014"
 
 module alu(
 	alu_core_R,
@@ -340,10 +340,7 @@ alu_prep_flags	b2v_prep_flags(
 	.high(result),
 	.low(SYNTHESIZED_WIRE_31),
 	.parity_out(alu_parity_out),
-	.zero(alu_zero),
-	.xf(alu_xf_out),
-	.yf(alu_yf_out),
-	.sf(alu_sf_out));
+	.zero(alu_zero));
 
 assign	db_low[3] = alu_shift_oe ? SYNTHESIZED_WIRE_28[3] : 1'bz;
 assign	db_low[2] = alu_shift_oe ? SYNTHESIZED_WIRE_28[2] : 1'bz;
@@ -355,6 +352,9 @@ assign	db_high[2] = alu_shift_oe ? SYNTHESIZED_WIRE_29[2] : 1'bz;
 assign	db_high[1] = alu_shift_oe ? SYNTHESIZED_WIRE_29[1] : 1'bz;
 assign	db_high[0] = alu_shift_oe ? SYNTHESIZED_WIRE_29[0] : 1'bz;
 
+assign	alu_sf_out = db_high[3];
+assign	alu_yf_out = db_high[1];
+assign	alu_xf_out = db_low[3];
 assign	test_db_high = db_high;
 assign	test_db_low = db_low;
 

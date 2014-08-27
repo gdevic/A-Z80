@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 176 144)
+	(rect 16 16 176 112)
 	(text "alu_prep_flags" (rect 5 0 89 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 112 25 124)(font "Arial" ))
+	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -58,28 +58,7 @@ applicable agreement for further details.
 		(text "zero" (rect 114 43 139 57)(font "Arial" (font_size 8)))
 		(line (pt 160 48)(pt 144 48))
 	)
-	(port
-		(pt 160 64)
-		(output)
-		(text "xf" (rect 0 0 11 14)(font "Arial" (font_size 8)))
-		(text "xf" (rect 128 59 139 73)(font "Arial" (font_size 8)))
-		(line (pt 160 64)(pt 144 64))
-	)
-	(port
-		(pt 160 80)
-		(output)
-		(text "yf" (rect 0 0 11 14)(font "Arial" (font_size 8)))
-		(text "yf" (rect 128 75 139 89)(font "Arial" (font_size 8)))
-		(line (pt 160 80)(pt 144 80))
-	)
-	(port
-		(pt 160 96)
-		(output)
-		(text "sf" (rect 0 0 11 14)(font "Arial" (font_size 8)))
-		(text "sf" (rect 128 91 139 105)(font "Arial" (font_size 8)))
-		(line (pt 160 96)(pt 144 96))
-	)
 	(drawing
-		(rectangle (rect 16 16 144 112))
+		(rectangle (rect 16 16 144 80))
 	)
 )
