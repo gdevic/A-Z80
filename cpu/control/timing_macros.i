@@ -167,17 +167,47 @@ low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high 
 
 :operation
 // Sets the ALU core operation (function)
-CP
-SUB
-SBC
-ADC
-ADD     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_V;
-AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
-OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
-XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
+//------------------------------------------------------------------------------------------------------------------------------------------------
+SUB \
+    ctl_alu_sel_op2_neg=1;
+        ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                                                     ctl_flags_cf_set=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+//------------------------------------------------------------------------------------------------------------------------------------------------
+SBC \
+    ctl_alu_sel_op2_neg=1;
+        ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                                                                         ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+//------------------------------------------------------------------------------------------------------------------------------------------------
+ADC \
+        ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+//------------------------------------------------------------------------------------------------------------------------------------------------
+ADD \
+        ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                                                     ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+//------------------------------------------------------------------------------------------------------------------------------------------------
+AND                            ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;                     ctl_pf_sel=`PFSEL_P;
+OR                             ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+XOR                            ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0;                                         ctl_pf_sel=`PFSEL_P;
 
-NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_alu_core_cf_set=1; ctl_pf_sel=`PFSEL_P;
-NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_alu_core_cf_clr=0; ctl_pf_sel=`PFSEL_P;
+NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;                     ctl_pf_sel=`PFSEL_P;
+NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+//------------------------------------------------------------------------------------------------------------------------------------------------
 
 PLA     ctl_state_alu=1;                        // Assert the ALU PLA modifier to determine operation
 
@@ -205,7 +235,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 *       ctl_flags_pf_we=1;
 :NF
 *       ctl_flags_nf_we=1;
-0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;
+0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;  // Means we are not setting it
 1       ctl_flags_nf_we=1; ctl_flags_nf_set=1;
 :CF
 *       ctl_flags_cf_we=1;
