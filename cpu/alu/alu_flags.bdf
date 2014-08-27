@@ -117,7 +117,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 1000 200 1016)
+	(rect 24 1008 200 1024)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_flags_nf_set" (rect 9 0 89 12)(font "Arial" ))
 	(pt 176 8)
@@ -872,38 +872,6 @@ applicable agreement for further details.
 	(rect 304 944 368 992)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "inst13" (rect 3 37 32 49)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 14 16))
-	)
-	(port
-		(pt 0 32)
-		(input)
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(line (pt 0 32)(pt 14 32))
-	)
-	(port
-		(pt 64 24)
-		(output)
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(line (pt 42 24)(pt 64 24))
-	)
-	(drawing
-		(line (pt 14 12)(pt 30 12))
-		(line (pt 14 37)(pt 31 37))
-		(line (pt 14 12)(pt 14 37))
-		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
-	)
-)
-(symbol
-	(rect 304 992 368 1040)
-	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "inst14" (rect 3 37 32 49)(font "Arial" ))
 	(port
 		(pt 0 16)
 		(input)
@@ -2197,10 +2165,6 @@ applicable agreement for further details.
 	(pt 384 984)
 )
 (connector
-	(pt 368 1016)
-	(pt 384 1016)
-)
-(connector
 	(pt 384 1016)
 	(pt 384 1000)
 )
@@ -2323,10 +2287,6 @@ applicable agreement for further details.
 (connector
 	(pt 304 976)
 	(pt 272 976)
-)
-(connector
-	(pt 304 1024)
-	(pt 256 1024)
 )
 (connector
 	(pt 272 1112)
@@ -2507,10 +2467,6 @@ applicable agreement for further details.
 (connector
 	(pt 304 736)
 	(pt 200 736)
-)
-(connector
-	(pt 304 1008)
-	(pt 200 1008)
 )
 (connector
 	(pt 304 336)
@@ -2886,14 +2842,6 @@ applicable agreement for further details.
 	(pt 256 888)
 )
 (connector
-	(pt 256 888)
-	(pt 256 1024)
-)
-(connector
-	(pt 256 1024)
-	(pt 256 1144)
-)
-(connector
 	(pt 232 600)
 	(pt 304 600)
 )
@@ -3035,6 +2983,14 @@ applicable agreement for further details.
 	(pt 568 1224)
 	(pt 568 1304)
 )
+(connector
+	(pt 256 888)
+	(pt 256 1144)
+)
+(connector
+	(pt 200 1016)
+	(pt 384 1016)
+)
 (junction (pt 768 192))
 (junction (pt 656 192))
 (junction (pt 272 168))
@@ -3075,7 +3031,6 @@ applicable agreement for further details.
 (junction (pt 656 592))
 (junction (pt 656 864))
 (junction (pt 904 1224))
-(junction (pt 256 1024))
 (junction (pt 552 248))
 (junction (pt 552 512))
 (junction (pt 224 1248))
@@ -3098,7 +3053,7 @@ applicable agreement for further details.
 	(rect 24 1456 345 1517)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_flags" (rect 56 2 194 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Aug 26 08:45:44 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Wed Aug 27 07:43:23 2014" (rect 56 3 242 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
