@@ -1080,10 +1080,12 @@ if (pla[9]) begin
     if (M1 && T4) begin  fFetch=1; contM1=1; end
     if (M1 && T5) begin 
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */
-                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
+                    ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M1 && T6) begin  nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit general purpose register, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3; /* Used for INC/DEC: decrement if op3 is set */ end
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3; /* Used for INC/DEC: decrement if op3 is set */
+                    ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
 end
 
 // General Purpose Arithmetic and CPU Control Groups
