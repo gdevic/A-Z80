@@ -1196,23 +1196,90 @@ end
 
 if (pla[70] && !pla[55]) begin
     $display("pla[70] && !pla[55] : rlc r");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; /* Write 8-bit GP register selected by op[2:0] */
+                    ctl_sw_2u=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_cf_we=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_sel_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
+                    ctl_sw_2d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=1; ctl_shift_en=1; /* Shifter unit AND shift enable! */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_cf2_we=1; end
 end
 
 if (pla[70] && pla[55]) begin
     $display("pla[70] && pla[55] : rlc (hl)");
     if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_sel_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
-    if (M2 && T1) begin  fMRead=1; end
+    if (M2 && T1) begin  fMRead=1;
+                    ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit HL, enable SW4 downstream */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; end
-    if (M2 && T4) begin  nextM=1; end
-    if (M3 && T1) begin  fMWrite=1; end
+    if (M2 && T4) begin  nextM=1;
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=1; ctl_shift_en=1; /* Shifter unit AND shift enable! */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_cf2_we=1; end
+    if (M3 && T1) begin  fMWrite=1;
+                    ctl_sw_2u=1;
+                    ctl_sw_1u=1;
+                    ctl_bus_db_we=1; /* Write DB pads with internal data bus value */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_cf_we=1; end
     if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
@@ -1363,7 +1430,6 @@ if (pla[72] && !pla[55]) begin
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
@@ -1390,14 +1456,40 @@ end
 
 if (pla[72] && pla[55]) begin
     $display("pla[72] && pla[55] : bit b,(hl)");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
-    if (M1 && T3) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+                    ctl_sw_2u=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin  fFetch=1;
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; end
-    if (M2 && T4) begin  nextM=1; setM1=1; end
+    if (M2 && T4) begin  nextM=1; setM1=1;
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[74] && !pla[55]) begin
