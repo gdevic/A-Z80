@@ -165,7 +165,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 592 200 608)
+	(rect 24 1152 200 1168)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "alu_core_cf_out" (rect 9 0 88 12)(font "Arial" ))
 	(pt 176 8)
@@ -1830,63 +1830,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 736 1408 784 1440)
-	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
-	(text "inst65" (rect 3 21 32 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7))
-		(line (pt 13 7)(pt 31 16))
-		(line (pt 13 25)(pt 31 16))
-		(circle (rect 31 12 39 20))
-	)
-)
-(symbol
-	(rect 824 1200 888 1248)
-	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
-	(text "inst66" (rect 3 37 32 49)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 14 16))
-	)
-	(port
-		(pt 0 32)
-		(input)
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
-		(line (pt 0 32)(pt 14 32))
-	)
-	(port
-		(pt 64 24)
-		(output)
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(line (pt 42 24)(pt 64 24))
-	)
-	(drawing
-		(line (pt 14 12)(pt 30 12))
-		(line (pt 14 37)(pt 31 37))
-		(line (pt 14 12)(pt 14 37))
-		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
-	)
-)
-(symbol
 	(rect 288 1264 384 1360)
 	(text "alu_mux_2" (rect 5 0 66 14)(font "Arial" (font_size 8)))
 	(text "inst_mux_cf" (rect 8 80 69 92)(font "Arial" ))
@@ -2013,6 +1956,40 @@ applicable agreement for further details.
 		(line (pt 13 7)(pt 31 16))
 		(line (pt 13 25)(pt 31 16))
 		(circle (rect 31 12 39 20))
+	)
+)
+(symbol
+	(rect 824 1200 888 1248)
+	(text "XOR" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst18" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 11 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 11 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 49 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 13)(pt 25 13))
+		(line (pt 14 36)(pt 25 36))
+		(arc (pt 7 29)(pt 7 19)(rect -14 8 19 41))
+		(arc (pt 49 24)(pt 25 13)(rect -6 13 57 76))
+		(arc (pt 25 35)(pt 49 24)(rect -6 -27 57 36))
+		(arc (pt 8 36)(pt 8 12)(rect -21 7 14 42))
 	)
 )
 (connector
@@ -2605,14 +2582,6 @@ applicable agreement for further details.
 	(pt 256 1144)
 )
 (connector
-	(pt 304 1160)
-	(pt 232 1160)
-)
-(connector
-	(pt 232 600)
-	(pt 232 1160)
-)
-(connector
 	(pt 576 336)
 	(pt 552 336)
 )
@@ -2925,10 +2894,6 @@ applicable agreement for further details.
 	(pt 256 1144)
 )
 (connector
-	(pt 200 600)
-	(pt 232 600)
-)
-(connector
 	(pt 232 600)
 	(pt 304 600)
 )
@@ -2973,10 +2938,6 @@ applicable agreement for further details.
 	(pt 552 1304)
 )
 (connector
-	(pt 568 1224)
-	(pt 568 1304)
-)
-(connector
 	(pt 464 1312)
 	(pt 488 1312)
 )
@@ -3013,10 +2974,6 @@ applicable agreement for further details.
 	(pt 488 1200)
 )
 (connector
-	(pt 552 1208)
-	(pt 600 1208)
-)
-(connector
 	(pt 368 1216)
 	(pt 488 1216)
 )
@@ -3049,16 +3006,34 @@ applicable agreement for further details.
 	(pt 200 1408)
 )
 (connector
-	(pt 808 1424)
-	(pt 784 1424)
-)
-(connector
 	(pt 808 1232)
 	(pt 808 1424)
 )
 (connector
+	(pt 232 600)
+	(pt 232 1160)
+)
+(connector
+	(pt 200 1160)
+	(pt 232 1160)
+)
+(connector
+	(pt 232 1160)
+	(pt 304 1160)
+)
+(connector
 	(pt 200 1424)
-	(pt 736 1424)
+	(pt 808 1424)
+)
+(connector
+	(text "latch_cf" (rect 560 1192 600 1204)(font "Arial" ))
+	(pt 552 1208)
+	(pt 600 1208)
+)
+(connector
+	(text "latch_cf2" (rect 552 1249 564 1295)(font "Arial" )(vertical))
+	(pt 568 1224)
+	(pt 568 1304)
 )
 (junction (pt 768 192))
 (junction (pt 656 192))
@@ -3101,10 +3076,10 @@ applicable agreement for further details.
 (junction (pt 656 864))
 (junction (pt 904 1224))
 (junction (pt 256 1024))
-(junction (pt 232 600))
 (junction (pt 552 248))
 (junction (pt 552 512))
 (junction (pt 224 1248))
+(junction (pt 232 1160))
 (text "Connect flags directly to other modules" (rect 864 184 1085 198)(font "Arial" (font_size 8)))
 (text "Carry Flag" (rect 480 1080 550 1096)(font "Arial" (font_size 10)))
 (text "Parity Flag" (rect 480 808 554 824)(font "Arial" (font_size 10)))
@@ -3123,7 +3098,7 @@ applicable agreement for further details.
 	(rect 24 1456 345 1517)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_flags" (rect 56 2 194 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sun Aug 24 17:13:52 2014" (rect 56 3 237 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Aug 26 08:45:44 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
