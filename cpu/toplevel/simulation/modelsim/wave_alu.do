@@ -2,23 +2,23 @@ onerror {resume}
 quietly virtual function -install /test_fuse/dut/alu -env /test_fuse { &{/test_fuse/dut/alu/op1_high, /test_fuse/dut/alu/op1_low }} OP1
 quietly virtual function -install /test_fuse/dut/alu -env /test_fuse { &{/test_fuse/dut/alu/op2_high, /test_fuse/dut/alu/op2_low }} OP2
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/CLK
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nM1
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nMREQ
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nIORQ
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nRD
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nWR
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } /test_fuse/z80/nRFSH
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } -radix hexadecimal /test_fuse/z80/A
-add wave -noupdate -expand -group {pads
+add wave -noupdate -group {pads
 } -radix hexadecimal -childformat {{{/test_fuse/z80/D[7]} -radix hexadecimal} {{/test_fuse/z80/D[6]} -radix hexadecimal} {{/test_fuse/z80/D[5]} -radix hexadecimal} {{/test_fuse/z80/D[4]} -radix hexadecimal} {{/test_fuse/z80/D[3]} -radix hexadecimal} {{/test_fuse/z80/D[2]} -radix hexadecimal} {{/test_fuse/z80/D[1]} -radix hexadecimal} {{/test_fuse/z80/D[0]} -radix hexadecimal}} -subitemconfig {{/test_fuse/z80/D[7]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[6]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[5]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[4]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[3]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[2]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[1]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[0]} {-height 15 -radix hexadecimal}} /test_fuse/z80/D
 add wave -noupdate -expand -group {clk
 } -expand -group T /test_fuse/dut/sequencer/T1
@@ -137,35 +137,38 @@ add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/alu_core_cf_i
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/db
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/out
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/sel
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_oe
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_bus
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_alu
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/alu_sf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/alu_yf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/alu_xf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_nf_set
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/alu_zero
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/shift_cf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/alu_core_cf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/daa_cf_out
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_daa
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_set
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_cpl
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/pf_sel
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_sz_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_xy_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_hf_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_pf_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_nf_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_sel_cf2
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf2_we
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/flags_sf
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/flags_zf
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/flags_hf
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/flags_pf
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/flags_cf
-add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags/db
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_oe
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_bus
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_alu
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/alu_sf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/alu_yf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/alu_xf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_nf_set
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/alu_zero
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/shift_cf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/alu_core_cf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/daa_cf_out
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_daa
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_set
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_cpl
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/pf_sel
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_sz_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_xy_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_hf_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_hf_cpl
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_pf_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_nf_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_sel_cf2
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/ctl_flags_cf2_we
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_sf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_zf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_hf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_pf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_cf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/flags_nf
+add wave -noupdate -expand -group {alu flags} /test_fuse/dut/alu_flags/db
+add wave -noupdate /test_fuse/dut/alu_flags/ctl_flags_hf_cpl
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select/ctl_alu_oe
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select/ctl_alu_shift_oe
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select/ctl_alu_op2_oe
@@ -251,7 +254,7 @@ add wave -noupdate -group alu -color Green -radix hexadecimal /test_fuse/dut/alu
 add wave -noupdate -group alu -radix hexadecimal /test_fuse/dut/alu/op2_high
 add wave -noupdate -group alu -radix hexadecimal /test_fuse/dut/alu/op2_low
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3900 ps} 0}
+WaveRestoreCursors {{Cursor 2} {3700 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 163
 configure wave -valuecolwidth 53
@@ -267,4 +270,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {3500 ps}
+WaveRestoreZoom {3 ns} {5 ns}

@@ -93,6 +93,7 @@ wire ctl_flags_pf_we;
 wire ctl_flags_nf_we;
 wire ctl_flags_sel_cf2;
 wire ctl_flags_cf2_we;
+wire ctl_flags_hf_cpl;
 wire ctl_sw_4d;
 wire ctl_sw_4u;
 wire ctl_reg_exx;
@@ -200,6 +201,7 @@ wire flags_zf;
 wire flags_hf;
 wire flags_pf;
 wire flags_cf;
+wire flags_nf;
 
 // Module: alu/alu.v
 wire alu_zero;

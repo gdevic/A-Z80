@@ -836,8 +836,7 @@ end
 // 8-bit Arithmetic and Logic Group
 if (pla[65] && !pla[52]) begin
     $display("pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r");
-    if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+    if (M1 && T1) begin  fFetch=1; /* Register to be written is decided elsewhere */
                     ctl_sw_2u=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
@@ -845,13 +844,14 @@ if (pla[65] && !pla[52]) begin
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2u=1;
-                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
+                    ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
@@ -869,8 +869,7 @@ end
 
 if (pla[64]) begin
     $display("pla[64] : add/sub/and/or/xor/cmp a,n");
-    if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+    if (M1 && T1) begin  fFetch=1; /* Register to be written is decided elsewhere */
                     ctl_sw_2u=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
@@ -878,13 +877,14 @@ if (pla[64]) begin
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2u=1;
-                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
+                    ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
@@ -900,7 +900,8 @@ if (pla[64]) begin
                     ctl_flags_pf_we=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */
+                    ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
@@ -921,8 +922,7 @@ end
 
 if (!use_ixiy && pla[52]) begin
     $display("!use_ixiy && pla[52] : add/sub/and/or/xor/cp (hl)");
-    if (M1 && T1) begin  fFetch=1;
-                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+    if (M1 && T1) begin  fFetch=1; /* Register to be written is decided elsewhere */
                     ctl_sw_2u=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
@@ -930,13 +930,14 @@ if (!use_ixiy && pla[52]) begin
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2u=1;
-                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
+                    ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
@@ -2047,6 +2048,9 @@ if (pla[78]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
 end
 
 if (pla[79]) begin
@@ -2061,6 +2065,9 @@ if (pla[79]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
 end
 
 if (pla[80]) begin
@@ -2073,6 +2080,9 @@ if (pla[80]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
 end
 
 if (pla[84]) begin
@@ -2086,6 +2096,9 @@ if (pla[84]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
 end
 
 if (pla[85]) begin
@@ -2093,6 +2106,11 @@ if (pla[85]) begin
     begin 
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF */ end
 end
 
 if (pla[86]) begin
@@ -2100,6 +2118,11 @@ if (pla[86]) begin
     begin 
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF */ end
 end
 
 if (pla[88]) begin
@@ -2107,6 +2130,11 @@ if (pla[88]) begin
     begin 
                     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_pf_sel=`PFSEL_P;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_xy_we=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF */ end
 end
 
 // Default instruction fetch (M1) state machine

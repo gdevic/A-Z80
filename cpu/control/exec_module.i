@@ -69,6 +69,7 @@ output logic ctl_flags_pf_we,
 output logic ctl_flags_nf_we,
 output logic ctl_flags_sel_cf2,
 output logic ctl_flags_cf2_we,
+output logic ctl_flags_hf_cpl,
 
 // Module: registers/reg_file.v
 output logic ctl_sw_4d,

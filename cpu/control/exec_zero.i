@@ -69,6 +69,7 @@ ctl_flags_pf_we = 0;
 ctl_flags_nf_we = 0;
 ctl_flags_sel_cf2 = 0;
 ctl_flags_cf2_we = 0;
+ctl_flags_hf_cpl = 0;
 
 // Module: registers/reg_file.v
 ctl_sw_4d = 0;

@@ -40,7 +40,8 @@ module execute
     input wire im2,                     // Interrupt Mode 2
     input wire use_ixiy,                // Special decode signal
     input wire flags_cond_true,         // Flags condition is true
-    input wire flags_zf,                // ZF to test condition
+    input wire flags_zf,                // ZF to test a condition
+    input wire flags_nf,                // NF to test for subtraction
 
     //----------------------------------------------------------
     // Machine and clock cycles

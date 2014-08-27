@@ -309,7 +309,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 640 200 656)
+	(rect 24 632 200 648)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_flags_hf_we" (rect 9 0 86 12)(font "Arial" ))
 	(pt 176 8)
@@ -376,6 +376,22 @@ applicable agreement for further details.
 	(rect 24 1240 200 1256)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_flags_cf2_we" (rect 9 0 92 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 24 648 200 664)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ctl_flags_hf_cpl" (rect 9 0 88 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -456,6 +472,22 @@ applicable agreement for further details.
 	(rect 920 1216 1096 1232)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "flags_cf" (rect 90 0 131 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 864 1024 1040 1040)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "flags_nf" (rect 90 0 131 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -1322,7 +1354,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 696 576 744 608)
+	(rect 696 584 744 616)
 	(text "TRI" (rect 1 0 16 10)(font "Arial" (font_size 6)))
 	(text "inst52" (rect 3 21 32 33)(font "Arial" ))
 	(port
@@ -1573,7 +1605,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 576 560 640 640)
+	(rect 504 560 568 640)
 	(text "LATCH" (rect 1 0 31 10)(font "Arial" (font_size 6)))
 	(text "inst_latch_hf" (rect 3 68 66 80)(font "Arial" ))
 	(port
@@ -1960,6 +1992,40 @@ applicable agreement for further details.
 		(arc (pt 8 36)(pt 8 12)(rect -21 7 14 42))
 	)
 )
+(symbol
+	(rect 600 576 664 624)
+	(text "XOR" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst14" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 11 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 11 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 49 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 13)(pt 25 13))
+		(line (pt 14 36)(pt 25 36))
+		(arc (pt 7 29)(pt 7 19)(rect -14 8 19 41))
+		(arc (pt 49 24)(pt 25 13)(rect -6 13 57 76))
+		(arc (pt 25 35)(pt 49 24)(rect -6 -27 57 36))
+		(arc (pt 8 36)(pt 8 12)(rect -21 7 14 42))
+	)
+)
 (connector
 	(pt 368 160)
 	(pt 384 160)
@@ -2213,10 +2279,6 @@ applicable agreement for further details.
 	(pt 696 456)
 )
 (connector
-	(pt 464 584)
-	(pt 576 584)
-)
-(connector
 	(pt 464 720)
 	(pt 576 720)
 )
@@ -2231,10 +2293,6 @@ applicable agreement for further details.
 (connector
 	(pt 464 992)
 	(pt 576 992)
-)
-(connector
-	(pt 640 1000)
-	(pt 696 1000)
 )
 (connector
 	(pt 200 128)
@@ -2325,14 +2383,6 @@ applicable agreement for further details.
 	(pt 680 424)
 )
 (connector
-	(pt 720 576)
-	(pt 720 560)
-)
-(connector
-	(pt 720 560)
-	(pt 680 560)
-)
-(connector
 	(pt 720 712)
 	(pt 720 696)
 )
@@ -2391,10 +2441,6 @@ applicable agreement for further details.
 (connector
 	(pt 288 528)
 	(pt 768 528)
-)
-(connector
-	(pt 768 528)
-	(pt 768 592)
 )
 (connector
 	(pt 304 688)
@@ -2486,14 +2532,6 @@ applicable agreement for further details.
 	(pt 656 328)
 )
 (connector
-	(pt 864 624)
-	(pt 656 624)
-)
-(connector
-	(pt 656 624)
-	(pt 656 592)
-)
-(connector
 	(pt 864 896)
 	(pt 656 896)
 )
@@ -2548,30 +2586,6 @@ applicable agreement for further details.
 (connector
 	(pt 200 248)
 	(pt 552 248)
-)
-(connector
-	(pt 576 736)
-	(pt 552 736)
-)
-(connector
-	(pt 576 464)
-	(pt 552 464)
-)
-(connector
-	(pt 200 512)
-	(pt 552 512)
-)
-(connector
-	(pt 576 600)
-	(pt 488 600)
-)
-(connector
-	(pt 488 600)
-	(pt 488 648)
-)
-(connector
-	(pt 200 648)
-	(pt 488 648)
 )
 (connector
 	(pt 576 872)
@@ -2683,14 +2697,6 @@ applicable agreement for further details.
 	(pt 680 424)
 )
 (connector
-	(pt 680 424)
-	(pt 680 560)
-)
-(connector
-	(pt 680 560)
-	(pt 680 696)
-)
-(connector
 	(pt 680 696)
 	(pt 680 832)
 )
@@ -2721,15 +2727,6 @@ applicable agreement for further details.
 	(pt 824 456)
 )
 (connector
-	(pt 744 592)
-	(pt 768 592)
-)
-(connector
-	(text "db[4]" (rect 791 576 815 588)(font "Arial" ))
-	(pt 768 592)
-	(pt 824 592)
-)
-(connector
 	(pt 744 728)
 	(pt 768 728)
 )
@@ -2737,11 +2734,6 @@ applicable agreement for further details.
 	(text "db[3]" (rect 790 712 814 724)(font "Arial" ))
 	(pt 768 728)
 	(pt 824 728)
-)
-(connector
-	(pt 824 592)
-	(pt 824 728)
-	(bus)
 )
 (connector
 	(pt 744 864)
@@ -2801,25 +2793,12 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 824 456)
-	(pt 824 592)
-	(bus)
-)
-(connector
 	(pt 640 328)
 	(pt 656 328)
 )
 (connector
 	(pt 656 328)
 	(pt 696 328)
-)
-(connector
-	(pt 640 592)
-	(pt 656 592)
-)
-(connector
-	(pt 656 592)
-	(pt 696 592)
 )
 (connector
 	(pt 640 864)
@@ -2852,14 +2831,6 @@ applicable agreement for further details.
 (connector
 	(pt 552 248)
 	(pt 552 336)
-)
-(connector
-	(pt 552 464)
-	(pt 552 512)
-)
-(connector
-	(pt 552 512)
-	(pt 552 736)
 )
 (connector
 	(pt 600 1240)
@@ -2991,6 +2962,129 @@ applicable agreement for further details.
 	(pt 200 1016)
 	(pt 384 1016)
 )
+(connector
+	(pt 864 1032)
+	(pt 656 1032)
+)
+(connector
+	(pt 656 1032)
+	(pt 656 1000)
+)
+(connector
+	(pt 640 1000)
+	(pt 656 1000)
+)
+(connector
+	(pt 656 1000)
+	(pt 696 1000)
+)
+(connector
+	(pt 576 736)
+	(pt 472 736)
+)
+(connector
+	(pt 200 512)
+	(pt 472 512)
+)
+(connector
+	(pt 576 464)
+	(pt 472 464)
+)
+(connector
+	(pt 472 464)
+	(pt 472 512)
+)
+(connector
+	(pt 472 512)
+	(pt 472 736)
+)
+(connector
+	(pt 680 560)
+	(pt 720 560)
+)
+(connector
+	(pt 680 424)
+	(pt 680 560)
+)
+(connector
+	(pt 680 560)
+	(pt 680 696)
+)
+(connector
+	(pt 720 560)
+	(pt 720 584)
+)
+(connector
+	(pt 768 528)
+	(pt 768 600)
+)
+(connector
+	(pt 824 456)
+	(pt 824 600)
+	(bus)
+)
+(connector
+	(pt 824 600)
+	(pt 824 728)
+	(bus)
+)
+(connector
+	(pt 744 600)
+	(pt 768 600)
+)
+(connector
+	(text "db[4]" (rect 791 584 815 596)(font "Arial" ))
+	(pt 768 600)
+	(pt 824 600)
+)
+(connector
+	(pt 464 584)
+	(pt 504 584)
+)
+(connector
+	(pt 488 600)
+	(pt 504 600)
+)
+(connector
+	(pt 568 592)
+	(pt 600 592)
+)
+(connector
+	(pt 488 640)
+	(pt 200 640)
+)
+(connector
+	(pt 488 600)
+	(pt 488 640)
+)
+(connector
+	(pt 864 624)
+	(pt 672 624)
+)
+(connector
+	(pt 672 624)
+	(pt 672 600)
+)
+(connector
+	(pt 664 600)
+	(pt 672 600)
+)
+(connector
+	(pt 672 600)
+	(pt 696 600)
+)
+(connector
+	(pt 200 656)
+	(pt 584 656)
+)
+(connector
+	(pt 584 656)
+	(pt 584 608)
+)
+(connector
+	(pt 584 608)
+	(pt 600 608)
+)
 (junction (pt 768 192))
 (junction (pt 656 192))
 (junction (pt 272 168))
@@ -3016,8 +3110,6 @@ applicable agreement for further details.
 (junction (pt 768 328))
 (junction (pt 768 456))
 (junction (pt 824 456))
-(junction (pt 768 592))
-(junction (pt 824 592))
 (junction (pt 768 728))
 (junction (pt 824 728))
 (junction (pt 768 864))
@@ -3028,13 +3120,16 @@ applicable agreement for further details.
 (junction (pt 824 192))
 (junction (pt 824 328))
 (junction (pt 656 328))
-(junction (pt 656 592))
 (junction (pt 656 864))
 (junction (pt 904 1224))
 (junction (pt 552 248))
-(junction (pt 552 512))
 (junction (pt 224 1248))
 (junction (pt 232 1160))
+(junction (pt 656 1000))
+(junction (pt 472 512))
+(junction (pt 768 600))
+(junction (pt 824 600))
+(junction (pt 672 600))
 (text "Connect flags directly to other modules" (rect 864 184 1085 198)(font "Arial" (font_size 8)))
 (text "Carry Flag" (rect 480 1080 550 1096)(font "Arial" (font_size 10)))
 (text "Parity Flag" (rect 480 808 554 824)(font "Arial" (font_size 10)))
@@ -3053,7 +3148,7 @@ applicable agreement for further details.
 	(rect 24 1456 345 1517)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_flags" (rect 56 2 194 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Wed Aug 27 07:43:23 2014" (rect 56 3 242 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Wed Aug 27 08:33:49 2014" (rect 56 3 242 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

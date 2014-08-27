@@ -104,6 +104,7 @@ P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
 C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
 
 :D:reg wr
+?       // Register to be written is decided elsewhere
 // General purpose registers
 A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 F       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
@@ -238,6 +239,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 *       ctl_flags_sz_we=1;
 :XY
 *       ctl_flags_xy_we=1;
+?
 :HF
 *       ctl_flags_hf_we=1;
 :PF
@@ -249,6 +251,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 ?
 :CF
 *       ctl_flags_cf_we=1;
+0       ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; // Clear CF
 :CF2
 W       ctl_flags_cf2_we=1;
 R       ctl_flags_sel_cf2=1;
@@ -274,6 +277,10 @@ IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
 IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
+
+// If the NF is set, complement HF and CF on the way out to the bus
+// This is used to correctly set those flags after subtraction operations
+?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register
