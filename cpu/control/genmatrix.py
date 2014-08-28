@@ -119,12 +119,15 @@ for line in content:
             imatrix.append("    $display(\"{0}\");".format(s[4:]))
 
     # We recognize 2 kinds of timing statements based on the starting characters:
-    # "#0"..        common timings using M and T cycles
+    # "#0"..        common timings using M and T cycles (M being optional)
     # "#always"     timing that does not depend on M and T cycles (ex. ALU operations)
     if col_clean[0].startswith('#0') or col_clean[0].startswith('#always'):
         # M and T states are hard-coded in the table at the index 1 and 2
         if col_clean[0].startswith('#0'):
-            state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
+            if col[1]=='?':     # M is optional, use '?' to skip it
+                state = "    if (T{0}) begin ".format(col[2])
+            else:
+                state = "    if (M{0} && T{1}) begin ".format(col[1], col[2])
         else:
             state = "    begin "
 

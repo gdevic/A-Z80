@@ -65,6 +65,8 @@ module execute
 logic contM1;                           // Continue M1 cycle
 // Instructions that use M2 immediately after M1/T4 set this at M1/T4
 logic contM2;                           // Continue with the next M cycle
+// Activates the state machine to compute WZ=IX+d; takes 5T cycles
+logic ixy_d;                            // Compute WX=IX+d
 //----------------------------------------------------------
 // Define various shortcuts to field naming
 //----------------------------------------------------------
@@ -120,8 +122,9 @@ begin
     // Reset internal control wires
     contM1 = 0; contM2 = 0;
     nextM = 0;  setM1 = 0;
-    // Reset global machine cycle function
+    // Reset global machine cycle functions
     fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
+    ixy_d = 0;
 
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0

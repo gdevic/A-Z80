@@ -37,11 +37,11 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																							
 #010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																											
-#012H T8  AB:002 DB:--	3	1											d	<	R		>s0			bus													
-#013H T9  AB:002 DB:--	3	2									L		d				>s0		bus		L	ADD				*			*				
-#014H T10 AB:002 DB:--	3	3										Z	u				<	res			H	ADD				*			*				
-#015H T11 AB:002 DB:--	3	4									H		d				>s0		bus		L	ADC				*			*				
-#016H T12 AB:002 DB:--	3	5				1						W	u				<	res			H	ADC				*			*				
+#012H T8  AB:002 DB:--	3	1																														WZ=IX+d	
+#013H T9  AB:002 DB:--	3	2																														WZ=IX+d	
+#014H T10 AB:002 DB:--	3	3																														WZ=IX+d	
+#015H T11 AB:002 DB:--	3	4																														WZ=IX+d	
+#016H T12 AB:002 DB:--	3	5				1																										WZ=IX+d	
 #017H T13 AB:001 DB:--	4	1	fMRead					WZ		W																							
 #018H T14 AB:001 DB:4E          MREQ RD	4	2	fMRead																														
 #019H T15 AB:001 DB:4E          MREQ RD	4	3	fMRead			1	1																										
@@ -992,11 +992,11 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																							
 #010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																											
-#012H T8  AB:003 DB:--	3	1	fMRead										d	<	R		>s0			bus													
-#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead								L		d			alu	>s0		bus		L	ADD				*							
-#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead									Z	u			alu	<	res			H	ADD							*				
-#015H T11 AB:003 DB:--	3	4									H		d			alu	>s0		bus	0	L	ADC				*							
-#016H T12 AB:003 DB:--	3	5				1						W	u			alu	<	res			H	ADC							*				
+#012H T8  AB:003 DB:--	3	1	fMRead																													WZ=IX+d	
+#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead																													WZ=IX+d	
+#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead																													WZ=IX+d	
+#015H T11 AB:003 DB:--	3	4																														WZ=IX+d	
+#016H T12 AB:003 DB:--	3	5				1																										WZ=IX+d	
 #017H T13 AB:000 DB:--	4	1									AF				R	>	>s0		bus	bus				*	*	*	*	*	*			OpcodeIR	Loads instruction register; starts the execute cycle
 #018H T14 AB:000 DB:DD          MREQ RD	4	2																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3																															
@@ -1133,6 +1133,15 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #always																						XOR						0					
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									A													*								Store result to A
 #002H T2  AB:000 DB:A8  M1      MREQ RD	1	2	fMFetch																										0				XOR clears CF
+#end																																	
+																																	
+// State machine to compute (IX+d)																																	
+#if ixy_d : Compute WZ=IX+d																																	
+#001H T1 any M-cycle	?	1											d	<	R		>s0			bus													"Reads ""d"" from the data latch"
+#002H T2	?	2									L		d			alu	>s0		bus		L	ADD				*							
+#003H T3	?	3										Z	u			alu	<	res			H	ADD							*				
+#004H T4	?	4									H		d			alu	>s0		bus	0	L	ADC				*							
+#005H T5	?	5										W	u			alu	<	res			H	ADC							*				Stores result into WZ
 #end																																	
 																																	
 // Default instruction fetch (M1) state machine																																	

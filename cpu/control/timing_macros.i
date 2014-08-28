@@ -277,6 +277,8 @@ IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
 ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
 CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
 
+WZ=IX+d         ixy_d=1;                                    // Compute WZ=IX+d
+
 // If the NF is set, complement HF and CF on the way out to the bus
 // This is used to correctly set those flags after subtraction operations
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
