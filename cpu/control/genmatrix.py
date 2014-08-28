@@ -134,15 +134,19 @@ for line in content:
         # Loop over all other columns and perform verbatim substitution
         action = ""
         for i in range(3,len(col)):
-            token = col[i].strip()
-            if i in tkeys and len(token)>0:
-                macro = getSubst(tkeys[i], token)
-                if macro.strip().startswith("ctl_"):
-                    action += ctl_prefix
-                action += macro
-                if state.find("ERROR")>=0:
-                    print "{0} {1}".format(state, action)
-                    break
+            # There may be multiple tokens separated by commas
+            tokList = col[i].strip().split(',')
+            tokList =  filter(None, tokList)   # Filter out empty lines
+            for token in tokList:
+                token = token.strip()
+                if i in tkeys and len(token)>0:
+                    macro = getSubst(tkeys[i], token)
+                    if macro.strip().startswith("ctl_"):
+                        action += ctl_prefix
+                    action += macro
+                    if state.find("ERROR")>=0:
+                        print "{0} {1}".format(state, action)
+                        break
 
         # Complete and write out a line
         if abbr and len(action)==0:
