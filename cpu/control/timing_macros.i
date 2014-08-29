@@ -251,7 +251,8 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 ?
 :CF
 *       ctl_flags_cf_we=1;
-0       ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; // Clear CF
+0       ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; // Clear CF going into the ALU core
+1       ctl_flags_cf_set=1;                     // Set CF going into the ALU core
 :CF2
 W       ctl_flags_cf2_we=1;
 R       ctl_flags_sel_cf2=1;
@@ -285,8 +286,11 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 // If the NF is set, complement HF and CF on the way out to the bus
 // This is used to correctly set those flags after subtraction operations
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
+?NF_HF          ctl_flags_hf_cpl=flags_nf;
 
 ?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
+
+NEG_OP2         ctl_alu_sel_op2_neg=1;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register
