@@ -61,10 +61,9 @@ wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
 wire	SYNTHESIZED_WIRE_3;
-wire	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_8;
 wire	SYNTHESIZED_WIRE_6;
 wire	SYNTHESIZED_WIRE_7;
-wire	SYNTHESIZED_WIRE_11;
 
 assign	in_alu = ctl_state_alu;
 assign	table_cb = SYNTHESIZED_WIRE_3;
@@ -73,9 +72,7 @@ assign	use_ix = SYNTHESIZED_WIRE_1;
 
 
 
-assign	SYNTHESIZED_WIRE_11 = ctl_state_ixiy_we | ctl_state_ixiy_clr;
-
-assign	SYNTHESIZED_WIRE_10 = ctl_state_tbl_clr | ctl_state_tbl_ed_set | ctl_state_tbl_cb_set;
+assign	SYNTHESIZED_WIRE_8 = ctl_state_tbl_clr | ctl_state_tbl_ed_set | ctl_state_tbl_cb_set;
 
 assign	SYNTHESIZED_WIRE_6 = ctl_state_halt_clr | ctl_state_halt_set;
 
@@ -83,12 +80,12 @@ assign	use_ixiy = SYNTHESIZED_WIRE_0 | SYNTHESIZED_WIRE_1;
 
 assign	table_xx = ~(SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_3);
 
-assign	SYNTHESIZED_WIRE_7 =  ~ctl_state_iy_set;
+assign	SYNTHESIZED_WIRE_7 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
 
 
 mem_cell	b2v_instCB(
 	.D(ctl_state_tbl_cb_set),
-	.we(SYNTHESIZED_WIRE_10),
+	.we(SYNTHESIZED_WIRE_8),
 	.clk(clk),
 	.reset(reset),
 	.Q(SYNTHESIZED_WIRE_3));
@@ -96,7 +93,7 @@ mem_cell	b2v_instCB(
 
 mem_cell	b2v_instED(
 	.D(ctl_state_tbl_ed_set),
-	.we(SYNTHESIZED_WIRE_10),
+	.we(SYNTHESIZED_WIRE_8),
 	.clk(clk),
 	.reset(reset),
 	.Q(SYNTHESIZED_WIRE_2));
@@ -112,7 +109,7 @@ mem_cell	b2v_instHALT(
 
 mem_cell	b2v_instIX1(
 	.D(SYNTHESIZED_WIRE_7),
-	.we(SYNTHESIZED_WIRE_11),
+	.we(ctl_state_ixiy_we),
 	.clk(clk),
 	.reset(reset),
 	.Q(SYNTHESIZED_WIRE_1));
@@ -120,7 +117,7 @@ mem_cell	b2v_instIX1(
 
 mem_cell	b2v_instIY1(
 	.D(ctl_state_iy_set),
-	.we(SYNTHESIZED_WIRE_11),
+	.we(ctl_state_ixiy_we),
 	.clk(clk),
 	.reset(reset),
 	.Q(SYNTHESIZED_WIRE_0));
