@@ -213,7 +213,7 @@ ADD \
 //------------------------------------------------------------------------------------------------------------------------------------------------
 AND                            ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;                     ctl_pf_sel=`PFSEL_P;
 OR                             ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
-XOR                            ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0;                                         ctl_pf_sel=`PFSEL_P;
+XOR                            ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
 
 NAND    ctl_alu_sel_op2_neg=1; ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;                     ctl_pf_sel=`PFSEL_P;
 NOR     ctl_alu_sel_op2_neg=1; ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
