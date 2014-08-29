@@ -256,6 +256,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 :CF2
 W       ctl_flags_cf2_we=1;
 R       ctl_flags_sel_cf2=1;
+0       ctl_flags_cf2_we=1; ctl_flags_cf2_clr=1;// Clear CF2 flag
 
 //-----------------------------------------------------------------------------------------
 // Special sequence macros for some instructions make it simpler for all other entries
@@ -288,7 +289,7 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
 ?NF_HF          ctl_flags_hf_cpl=flags_nf;
 
-?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
+?SF_NEG         ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf;
 
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 

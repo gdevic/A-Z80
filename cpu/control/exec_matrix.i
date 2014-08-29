@@ -2368,7 +2368,7 @@ if (ixy_d) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_cf_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_clr=1;/* Clear CF2 flag */ end
     if (T4) begin 
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -2382,7 +2382,8 @@ if (ixy_d) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_hf_we=1;
-                    ctl_alu_sel_op2_neg=flags_sf; end
+                    ctl_flags_sel_cf2=1;
+                    ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf; end
     if (T5) begin 
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */
@@ -2396,7 +2397,7 @@ if (ixy_d) begin
     if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
-                    ctl_alu_sel_op2_neg=flags_sf;
+                    ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf;
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */ end
 end
 
