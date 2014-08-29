@@ -114,8 +114,9 @@ rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
 // System registers
 I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; // Write either I or R based on op3 (0 or 1)
-W       ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b10;
-Z       ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01;
+// This strict selection is used in the (IX+d) state machine to be able to both write to W and output WZ to the address latch
+W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; // Selecting strictly W
+Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; // Selecting strictly Z
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)
@@ -273,15 +274,19 @@ HALT
 DI_EI           ctl_iffx_bit=op3; ctl_iffx_we=1;            // DI/EI
 IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
 
-IX_IY           ctl_state_iy_set=op5; ctl_state_ixiy_we=1;  // IX/IY prefix
-ED              ctl_state_tbl_ed_set=1;                     // ED-table prefix
-CB              ctl_state_tbl_cb_set=1;                     // CB-table prefix
-
 WZ=IX+d         ixy_d=1;                                    // Compute WZ=IX+d
+IX_IY           ctl_state_ixiy_we=1; ctl_state_iy_set=op5; setIXIY=1;   // IX/IY prefix
+CLR_IX_IY       ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY;       // Clear IX/IY flag
+
+CB              ctl_state_tbl_cb_set=1; setCBED=1;          // CB-table prefix
+ED              ctl_state_tbl_ed_set=1; setCBED=1;          // ED-table prefix
+CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefix
 
 // If the NF is set, complement HF and CF on the way out to the bus
 // This is used to correctly set those flags after subtraction operations
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
+
+?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register

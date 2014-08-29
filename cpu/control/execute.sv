@@ -42,6 +42,7 @@ module execute
     input wire flags_cond_true,         // Flags condition is true
     input wire flags_zf,                // ZF to test a condition
     input wire flags_nf,                // NF to test for subtraction
+    input wire flags_sf,                // SF to test for 8-bit sign of a value
 
     //----------------------------------------------------------
     // Machine and clock cycles
@@ -65,8 +66,11 @@ module execute
 logic contM1;                           // Continue M1 cycle
 // Instructions that use M2 immediately after M1/T4 set this at M1/T4
 logic contM2;                           // Continue with the next M cycle
-// Activates the state machine to compute WZ=IX+d; takes 5T cycles
+// Activates a state machine to compute WZ=IX+d; takes 5T cycles
 logic ixy_d;                            // Compute WX=IX+d
+// Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
+logic setIXIY;                          // Set IX/IY flag at the next T cycle
+logic setCBED;                          // Set CB or ED flag at the next T cycle
 //----------------------------------------------------------
 // Define various shortcuts to field naming
 //----------------------------------------------------------
@@ -125,6 +129,7 @@ begin
     // Reset global machine cycle functions
     fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d = 0;
+    setIXIY = 0; setCBED = 0;
 
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0
