@@ -104,8 +104,10 @@ wire ctl_reg_sel_pc;
 wire ctl_reg_sel_ir;
 wire ctl_reg_sel_wz;
 wire ctl_reg_gp_we;
-wire ctl_reg_sys_we;
 wire ctl_reg_not_pc;
+wire ctl_reg_sys_we_lo;
+wire ctl_reg_sys_we_hi;
+wire ctl_reg_sys_we;
 wire [1:0] ctl_reg_gp_hilo;
 wire [1:0] ctl_reg_gp_sel;
 wire [1:0] ctl_reg_sys_hilo;
@@ -239,7 +241,8 @@ wire reg_sel_gp_lo;
 wire reg_sel_sys_lo;
 wire reg_sel_sys_hi;
 wire reg_gp_we;
-wire reg_sys_we;
+wire reg_sys_we_lo;
+wire reg_sys_we_hi;
 
 // Module: bus/address_latch.v
 wire address_is_1;

@@ -138,15 +138,15 @@ applicable agreement for further details.
 	(port
 		(pt 0 288)
 		(input)
-		(text "reg_sys_we" (rect 0 0 73 14)(font "Arial" (font_size 8)))
-		(text "reg_sys_we" (rect 21 283 94 297)(font "Arial" (font_size 8)))
+		(text "reg_gp_we" (rect 0 0 66 14)(font "Arial" (font_size 8)))
+		(text "reg_gp_we" (rect 21 283 87 297)(font "Arial" (font_size 8)))
 		(line (pt 0 288)(pt 16 288))
 	)
 	(port
 		(pt 0 304)
 		(input)
-		(text "reg_gp_we" (rect 0 0 66 14)(font "Arial" (font_size 8)))
-		(text "reg_gp_we" (rect 21 299 87 313)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_lo" (rect 0 0 89 14)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_lo" (rect 21 299 110 313)(font "Arial" (font_size 8)))
 		(line (pt 0 304)(pt 16 304))
 	)
 	(port
@@ -166,16 +166,23 @@ applicable agreement for further details.
 	(port
 		(pt 0 352)
 		(input)
-		(text "reg_sel_sys_hi" (rect 0 0 87 14)(font "Arial" (font_size 8)))
-		(text "reg_sel_sys_hi" (rect 21 347 108 361)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_hi" (rect 0 0 89 14)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_hi" (rect 21 347 110 361)(font "Arial" (font_size 8)))
 		(line (pt 0 352)(pt 16 352))
 	)
 	(port
 		(pt 0 368)
 		(input)
-		(text "reg_sel_gp_hi" (rect 0 0 80 14)(font "Arial" (font_size 8)))
-		(text "reg_sel_gp_hi" (rect 21 363 101 377)(font "Arial" (font_size 8)))
+		(text "reg_sel_sys_hi" (rect 0 0 87 14)(font "Arial" (font_size 8)))
+		(text "reg_sel_sys_hi" (rect 21 363 108 377)(font "Arial" (font_size 8)))
 		(line (pt 0 368)(pt 16 368))
+	)
+	(port
+		(pt 0 384)
+		(input)
+		(text "reg_sel_gp_hi" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "reg_sel_gp_hi" (rect 21 379 101 393)(font "Arial" (font_size 8)))
+		(line (pt 0 384)(pt 16 384))
 	)
 	(port
 		(pt 224 32)

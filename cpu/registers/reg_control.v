@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Aug 21 23:49:22 2014"
+// CREATED		"Thu Aug 28 23:30:07 2014"
 
 module reg_control(
 	ctl_reg_exx,
@@ -26,10 +26,12 @@ module reg_control(
 	ctl_reg_sel_ir,
 	ctl_reg_sel_wz,
 	ctl_reg_gp_we,
-	ctl_reg_sys_we,
 	ctl_reg_not_pc,
 	use_ixiy,
 	use_ix,
+	ctl_reg_sys_we_lo,
+	ctl_reg_sys_we_hi,
+	ctl_reg_sys_we,
 	ctl_reg_gp_hilo,
 	ctl_reg_gp_sel,
 	ctl_reg_sys_hilo,
@@ -52,7 +54,8 @@ module reg_control(
 	reg_sel_sys_lo,
 	reg_sel_sys_hi,
 	reg_gp_we,
-	reg_sys_we
+	reg_sys_we_lo,
+	reg_sys_we_hi
 );
 
 
@@ -65,10 +68,12 @@ input wire	ctl_reg_sel_pc;
 input wire	ctl_reg_sel_ir;
 input wire	ctl_reg_sel_wz;
 input wire	ctl_reg_gp_we;
-input wire	ctl_reg_sys_we;
 input wire	ctl_reg_not_pc;
 input wire	use_ixiy;
 input wire	use_ix;
+input wire	ctl_reg_sys_we_lo;
+input wire	ctl_reg_sys_we_hi;
+input wire	ctl_reg_sys_we;
 input wire	[1:0] ctl_reg_gp_hilo;
 input wire	[1:0] ctl_reg_gp_sel;
 input wire	[1:0] ctl_reg_sys_hilo;
@@ -91,7 +96,8 @@ output wire	reg_sel_gp_lo;
 output wire	reg_sel_sys_lo;
 output wire	reg_sel_sys_hi;
 output wire	reg_gp_we;
-output wire	reg_sys_we;
+output wire	reg_sys_we_lo;
+output wire	reg_sys_we_hi;
 
 wire	SYNTHESIZED_WIRE_57;
 wire	SYNTHESIZED_WIRE_58;
@@ -142,7 +148,6 @@ assign	reg_sel_gp_lo = ctl_reg_gp_hilo[0];
 assign	reg_sel_sys_lo = ctl_reg_sys_hilo[0];
 assign	reg_sel_sys_hi = ctl_reg_sys_hilo[1];
 assign	reg_gp_we = ctl_reg_gp_we;
-assign	reg_sys_we = ctl_reg_sys_we;
 assign	SYNTHESIZED_WIRE_71 = 1;
 assign	SYNTHESIZED_WIRE_72 = 1;
 assign	SYNTHESIZED_WIRE_73 = 1;
@@ -200,6 +205,8 @@ assign	SYNTHESIZED_WIRE_57 = SYNTHESIZED_WIRE_30 & SYNTHESIZED_WIRE_31;
 
 assign	SYNTHESIZED_WIRE_67 =  ~SYNTHESIZED_WIRE_69;
 
+assign	reg_sys_we_hi = ctl_reg_sys_we | ctl_reg_sys_we_hi;
+
 assign	reg_sel_pc = ctl_reg_sel_pc & SYNTHESIZED_WIRE_32;
 
 assign	SYNTHESIZED_WIRE_64 = SYNTHESIZED_WIRE_70 & SYNTHESIZED_WIRE_34;
@@ -207,6 +214,8 @@ assign	SYNTHESIZED_WIRE_64 = SYNTHESIZED_WIRE_70 & SYNTHESIZED_WIRE_34;
 assign	SYNTHESIZED_WIRE_32 =  ~ctl_reg_not_pc;
 
 assign	SYNTHESIZED_WIRE_36 =  ~ctl_reg_gp_sel[1];
+
+assign	reg_sys_we_lo = ctl_reg_sys_we_lo | ctl_reg_sys_we;
 
 assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_70 & use_ixiy;
 
