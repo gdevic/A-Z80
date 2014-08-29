@@ -123,6 +123,30 @@ if (pla[17] && !pla[50]) begin
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
+if (pla[40]) begin
+    $display("pla[40] : ld (ix+d),n");
+    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T3) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1; contM2=1; end
+    if (M2 && T1) begin  fMRead=1;
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+    if (M2 && T2) begin  fMRead=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
+    if (M2 && T3) begin  fMRead=1; nextM=1; end
+    if (M3 && T1) begin  fMRead=1;
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ ixy_d=1; /* Compute WZ=IX+d */ end
+    if (M3 && T2) begin  fMRead=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ ixy_d=1; /* Compute WZ=IX+d */ end
+    if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
+    if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
+    if (M3 && T5) begin  nextM=1; ixy_d=1; /* Compute WZ=IX+d */ end
+end
+
 if (pla[50] && !pla[40]) begin
     $display("pla[50] && !pla[40] : ld (hl),n");
     if (M1 && T1) begin  fFetch=1; end
@@ -141,26 +165,6 @@ if (pla[50] && !pla[40]) begin
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
-end
-
-if (pla[40]) begin
-    $display("pla[40] : ld (ix+d),n");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
-    if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; contM2=1; end
-    if (M2 && T1) begin  fMRead=1;
-                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
-    if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
-    if (M2 && T3) begin  fMRead=1; nextM=1; end
-    if (M3 && T1) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
-    if (M3 && T2) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
-    if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
-    if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
-    if (M3 && T5) begin  nextM=1; ixy_d=1; /* Compute WZ=IX+d */ end
     if (M4 && T1) begin  fMWrite=1; end
     if (M4 && T2) begin  fMWrite=1; end
     if (M4 && T3) begin  fMWrite=1; nextM=1; setM1=1; end

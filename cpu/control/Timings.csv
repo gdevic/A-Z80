@@ -77,6 +77,21 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1	1																										
 #end																																	
 																																	
+"#if pla[40] : ld (ix+d),n"			"4,3,5,3"																														
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
+#006H T2  AB:001 DB:36  M1      MREQ RD	1	2	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
+#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																							
+#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
+#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																											
+#012H T8  AB:003 DB:--	3	1	fMRead					PC		W+																						WZ=IX+d	
+#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead						PC	R+																						WZ=IX+d	
+#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead																													WZ=IX+d	"Reads ""n"" at the same time"
+#015H T11 AB:003 DB:--	3	4																														WZ=IX+d	
+#016H T12 AB:003 DB:--	3	5				1																										WZ=IX+d	Clears the IX/IY and ...
+#end																																	
+																																	
 "#if pla[50] && !pla[40] : ld (hl),n"			"4,3,3"																														
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																														
 #002H T2  AB:000 DB:36  M1      MREQ RD	1	2	fMFetch																														
@@ -88,22 +103,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #008H T8  AB:001 DB:--	3	1	fMWrite					HL		W																							
 #009H T9  AB:001 DB:01          MREQ	3	2	fMWrite																														
 #010H T10 AB:001 DB:01          MREQ    WR	3	3	fMWrite			1	1																										
-#end																																	
 																																	
-"#if pla[40] : ld (ix+d),n"			"4,3,5,3"																														
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:36  M1      MREQ RD	1	2	fMFetch																														
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																							
-#010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
-#011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead		 	1																											
-#012H T8  AB:003 DB:--	3	1	fMRead																													WZ=IX+d	
-#013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead																													WZ=IX+d	
-#014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead																													WZ=IX+d	
-#015H T11 AB:003 DB:--	3	4																														WZ=IX+d	
-#016H T12 AB:003 DB:--	3	5				1																										WZ=IX+d	
-#017H T13 AB:002 DB:--	4	1	fMWrite																														
+#017H T13 AB:002 DB:--	4	1	fMWrite																														...continues here
 #018H T14 AB:002 DB:02          MREQ	4	2	fMWrite																														
 #019H T15 AB:002 DB:02          MREQ    WR	4	3	fMWrite			1	1																										
 #end																																	
