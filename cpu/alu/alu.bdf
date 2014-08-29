@@ -2986,12 +2986,6 @@ applicable agreement for further details.
 	(pt 2120 288)
 )
 (connector
-	(pt 2184 392)
-	(pt 2072 392)
-	(bus)
-	(color 0 0 255)
-)
-(connector
 	(pt 2040 592)
 	(pt 2032 592)
 )
@@ -3248,12 +3242,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "result[3..0]" (rect 1942 472 1995 484)(font "Arial" ))
-	(pt 1936 488)
-	(pt 2016 488)
-	(bus)
-)
-(connector
 	(pt 2016 488)
 	(pt 2056 488)
 	(bus)
@@ -3502,6 +3490,19 @@ applicable agreement for further details.
 	(pt 1688 432)
 	(bus)
 	(color 255 0 0)
+)
+(connector
+	(text "result_hi[3..0]" (rect 1942 472 2009 484)(font "Arial" ))
+	(pt 1936 488)
+	(pt 2016 488)
+	(bus)
+)
+(connector
+	(text "result_lo[3..0]" (rect 2094 376 2161 388)(font "Arial" ))
+	(pt 2184 392)
+	(pt 2072 392)
+	(bus)
+	(color 0 0 255)
 )
 (junction (pt 640 288))
 (junction (pt 1072 376))
