@@ -12,6 +12,8 @@ module test_bench_fuse(z80_if.tb z);
 assign clk = z.CLK;
 
 integer f;
+// Instead of the PC register, we read the address of the next instruction
+logic [15:0] pc;
 
 initial begin : init
     z.nWAIT <= `CLR;

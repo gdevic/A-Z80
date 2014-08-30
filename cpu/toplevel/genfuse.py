@@ -165,7 +165,8 @@ while True:
     ftest.write("#" + str(ticks) + " // Execute\n")
 
     ftest.write("   force dut.reg_control.ctl_reg_sys_we=0;\n")
-    ftest.write("#4 force dut.reg_file.reg_gp_we=0;\n")
+    ftest.write("#2 pc=z.A;\n")
+    ftest.write("#2 force dut.reg_file.reg_gp_we=0;\n")
     ftest.write("   force dut.z80_top.fpga_reset=1;\n")
     total_clks = total_clks + 4
 
@@ -186,7 +187,10 @@ while True:
     RegRead("ix", r[8])
     RegRead("iy", r[9])
     RegRead("sp", r[10])
-    RegRead("pc", r[11])
+    #RegRead("pc", r[11]) Instead of PC, we read the address bus of the next instruction
+    ftest.write("#2 if (pc!==16'h" + r[11] +  ") $fdisplay(f,\"* PC=%h !=" + r[11] +  "\",pc);\n")
+    total_clks = total_clks + 2
+
     # 0 1 2    3    4  5        6          (index)
     # I R IFF1 IFF2 IM <halted> <tstates?>
     RegRead("ir", s[0]+s[1])
