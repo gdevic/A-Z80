@@ -33,7 +33,7 @@ fIOWrite        fIOWrite=1;
 CC              nextM=!flags_cond_true;
 :setM1
 1               setM1=1;
-SS              ctl_cond_short=1; setM1=!flags_cond_true;
+SS              ctl_eval_cond=1; ctl_cond_short=1; setM1=!flags_cond_true;
 CC              setM1=!flags_cond_true;
 E               setM1=flags_zf;
 
@@ -300,5 +300,6 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 
 // M1 opcode read cycle and the refresh register increment cycle
-OpcodeIR        ctl_ir_we = 1;          // Write the opcode into the instruction register
+OpcodeIR        ctl_ir_we=1;            // Write the opcode into the instruction register
+EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits

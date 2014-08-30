@@ -2096,7 +2096,7 @@ if (pla[48]) begin
     if (M2 && T1) begin  fMRead=1; end
     if (M2 && T2) begin  fMRead=1; end
     if (M2 && T3) begin  fMRead=1; nextM=1;
-                    ctl_cond_short=1; setM1=!flags_cond_true; end
+                    ctl_eval_cond=1; ctl_cond_short=1; setM1=!flags_cond_true; end
     if (M3 && T1) begin  end
     if (M3 && T2) begin  end
     if (M3 && T3) begin  end
@@ -2371,7 +2371,7 @@ if (pla[49]) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1;
                     ctl_flags_cf_we=1;
-                    ctl_ir_we = 1; /* Write the opcode into the instruction register */ end
+                    ctl_ir_we=1; /* Write the opcode into the instruction register */ end
     if (M4 && T2) begin  end
     if (M4 && T3) begin  end
 end
@@ -2681,7 +2681,8 @@ if (M1) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1;
                     ctl_flags_cf_we=1;
-                    ctl_ir_we = 1; /* Write the opcode into the instruction register */ end
+                    ctl_ir_we=1; /* Write the opcode into the instruction register */
+                    ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */
