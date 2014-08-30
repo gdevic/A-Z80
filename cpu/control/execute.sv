@@ -139,7 +139,9 @@ begin
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
         ctl_reg_sel_pc = clk;           // Write to the PC on clock up
         ctl_reg_sel_ir = !clk;          // Write to the IR on clock down
-        ctl_reg_sys_we = 1;             // Perform write
+// TODO: Find a cleaner way to condition this out!
+// Comment this out when running Fuse tests since we don't want to mess up PC/IR
+//        ctl_reg_sys_we = 1;             // Perform write
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
     end
 
