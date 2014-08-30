@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Aug 26 20:38:49 2014"
+// CREATED		"Sat Aug 30 18:25:26 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -37,6 +37,7 @@ module alu_control(
 	iff2,
 	address_is_1,
 	ctl_alu_core_hf,
+	ctl_eval_cond,
 	ctl_pf_sel,
 	op543,
 	alu_shift_in,
@@ -73,6 +74,7 @@ input wire	alu_vf_out;
 input wire	iff2;
 input wire	address_is_1;
 input wire	ctl_alu_core_hf;
+input wire	ctl_eval_cond;
 input wire	[1:0] ctl_pf_sel;
 input wire	[2:0] op543;
 output wire	alu_shift_in;
@@ -80,13 +82,14 @@ output wire	alu_shift_right;
 output wire	alu_shift_left;
 output wire	shift_cf_out;
 output wire	alu_parity_in;
-output wire	flags_cond_true;
+output reg	flags_cond_true;
 output wire	daa_cf_out;
 output wire	pf_sel;
 output wire	alu_op_low;
 output wire	alu_core_cf_in;
 output wire	[7:0] db;
 
+wire	condition;
 wire	[7:0] out;
 wire	[2:0] sel;
 reg	SYNTHESIZED_WIRE_0;
@@ -182,6 +185,13 @@ assign	alu_core_cf_in = SYNTHESIZED_WIRE_16 | SYNTHESIZED_WIRE_17;
 assign	SYNTHESIZED_WIRE_15 =  ~ctl_alu_core_hf;
 
 
+always@(ctl_eval_cond or condition)
+begin
+if (ctl_eval_cond)
+	flags_cond_true <= condition;
+end
+
+
 alu_mux_8	b2v_inst_cond_mux(
 	.in0(SYNTHESIZED_WIRE_18),
 	.in1(flags_zf),
@@ -192,7 +202,7 @@ alu_mux_8	b2v_inst_cond_mux(
 	.in6(SYNTHESIZED_WIRE_21),
 	.in7(flags_sf),
 	.sel(sel),
-	.out(flags_cond_true));
+	.out(condition));
 
 
 alu_mux_4	b2v_inst_pf_sel(

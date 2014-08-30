@@ -32,6 +32,7 @@ output logic ctl_daa_oe,
 output logic ctl_alu_op_low,
 output logic ctl_cond_short,
 output logic ctl_alu_core_hf,
+output logic ctl_eval_cond,
 output logic [1:0] ctl_pf_sel,
 
 // Module: alu/alu_select.v

@@ -60,6 +60,7 @@ wire ctl_daa_oe;
 wire ctl_alu_op_low;
 wire ctl_cond_short;
 wire ctl_alu_core_hf;
+wire ctl_eval_cond;
 wire [1:0] ctl_pf_sel;
 wire ctl_alu_oe;
 wire ctl_alu_shift_oe;
