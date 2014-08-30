@@ -99,9 +99,9 @@ r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};// Read 8-bit GP reg
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 // System registers
-I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3};      // Read either I or R based on op3 (0 or 1)
-P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10;
-C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01;
+I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4u=1; // Read either I or R based on op3 (0 or 1)
+P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1; 
+C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; 
 
 :D:reg wr
 ?       // Register to be written is decided elsewhere
@@ -113,7 +113,7 @@ r8'     ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; //
 rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-bit GP register low byte
 // System registers
-I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; // Write either I or R based on op3 (0 or 1)
+I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4d=1; // Write either I or R based on op3 (0 or 1)
 // This strict selection is used in the (IX+d) state machine to be able to both write to W and output WZ to the address latch
 W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; // Selecting strictly W
 Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; // Selecting strictly Z
@@ -244,6 +244,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 *       ctl_flags_hf_we=1;
 :PF
 *       ctl_flags_pf_we=1;
+iff2    ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_IFF2;
 :NF
 *       ctl_flags_nf_we=1;
 0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;  // Means we are not setting it
