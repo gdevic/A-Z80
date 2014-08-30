@@ -86,6 +86,14 @@ while True:
         break
     run_tests = run_tests-1
 
+    # Clear opcode register before starting a new instruction
+    ftest.write("force dut.instruction_reg.ctl_ir_we=1;\n")
+    ftest.write("   force dut.instruction_reg.db=0;\n")
+    ftest.write("#1 release dut.instruction_reg.ctl_ir_we;\n")
+    ftest.write("   release dut.instruction_reg.db;\n")
+    ftest.write("#1 ")
+    total_clks = total_clks + 2
+
     # Format of the test.in file:
     # <arbitrary test description>
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC

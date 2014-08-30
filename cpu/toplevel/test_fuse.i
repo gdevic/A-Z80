@@ -5,7 +5,11 @@ force dut.reg_control.ctl_reg_sys_we=0;
 force dut.z80_top.fpga_reset=1;
 #2
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 00      NOP");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 00      NOP");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -118,7 +122,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -186,13 +191,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -200,7 +200,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode ed67    RRD");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode ed67    RRD");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -315,7 +319,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #30 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -383,13 +388,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -398,7 +398,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[47582]!==8'h69) $fdisplay(f,"* Mem[b9de]=%h !=69",ram.Mem[47582]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode ed6f    RLD");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode ed6f    RLD");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -513,7 +517,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #30 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -581,13 +586,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -596,7 +596,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[16444]!==8'h45) $fdisplay(f,"* Mem[403c]=%h !=45",ram.Mem[16444]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 81      ADD A,C");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 81      ADD A,C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -710,7 +714,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -778,13 +783,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -792,7 +792,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb41    BIT 0,C");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb41    BIT 0,C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -907,7 +911,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -975,13 +980,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -989,7 +989,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb93    RES 2,E");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb93    RES 2,E");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1104,7 +1108,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -1172,13 +1177,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -1186,7 +1186,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cbe5    SET 4,L");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cbe5    SET 4,L");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1301,7 +1305,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -1369,13 +1374,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -1383,7 +1383,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 8c      ADC A,H");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 8c      ADC A,H");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1497,7 +1501,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -1565,13 +1570,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -1579,7 +1579,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 92      SUB D");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 92      SUB D");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1693,7 +1697,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -1761,13 +1766,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -1775,7 +1775,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 9d      SBC A,L");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 9d      SBC A,L");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -1889,7 +1893,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -1957,13 +1962,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -1971,7 +1971,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode a3      AND E");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode a3      AND E");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -2085,7 +2089,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -2153,13 +2158,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -2167,7 +2167,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode ae      XOR (HL)");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode ae      XOR (HL)");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -2281,7 +2285,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #8 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -2349,13 +2354,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -2363,7 +2363,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode b4      OR H");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode b4      OR H");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -2477,7 +2481,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -2545,13 +2550,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -2559,7 +2559,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode bf      CP A");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode bf      CP A");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -2673,7 +2677,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -2741,13 +2746,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -2755,7 +2755,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 43      LD B,E");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 43      LD B,E");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -2869,7 +2873,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -2937,13 +2942,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -2951,7 +2951,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 6e      LD L,(HL)");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 6e      LD L,(HL)");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -3065,7 +3069,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #8 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -3133,13 +3138,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -3147,7 +3147,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode e3      EX (SP),HL");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode e3      EX (SP),HL");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -3262,7 +3266,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #32 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -3330,13 +3335,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h03) $fdisplay(f,"* Reg sp s=%h !=03",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -3346,7 +3346,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (ram.Mem[884]!==8'h4d) $fdisplay(f,"* Mem[374]=%h !=4d",ram.Mem[884]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 03      INC BC");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 03      INC BC");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -3459,7 +3463,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #6 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -3527,13 +3532,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -3541,7 +3541,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 3b      DEC SP");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 3b      DEC SP");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -3654,7 +3658,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #6 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -3722,13 +3727,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h9d) $fdisplay(f,"* Reg sp s=%h !=9d",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -3736,7 +3736,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 07      RLCA");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 07      RLCA");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -3849,7 +3853,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -3917,13 +3922,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -3931,7 +3931,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode 1f      RRA");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode 1f      RRA");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -4044,7 +4048,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #2 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -4112,13 +4117,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h01) $fdisplay(f,"* Reg pc c=%h !=01",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -4126,7 +4126,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb09    RRC C");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb09    RRC C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -4241,7 +4245,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -4309,13 +4314,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -4323,7 +4323,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb11    RL C");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb11    RL C");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -4438,7 +4442,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -4506,13 +4511,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -4520,7 +4520,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb36    SLL (HL)*");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb36    SLL (HL)*");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -4635,7 +4639,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #24 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -4703,13 +4708,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -4718,7 +4718,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[27960]!==8'he3) $fdisplay(f,"* Mem[6d38]=%h !=e3",ram.Mem[27960]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb52    BIT 2,D");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb52    BIT 2,D");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -4833,7 +4837,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -4901,13 +4906,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -4915,7 +4915,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cb93    RES 2,E");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cb93    RES 2,E");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -5030,7 +5034,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -5098,13 +5103,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -5112,7 +5112,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode cbc4    SET 0,H");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode cbc4    SET 0,H");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -5227,7 +5231,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #10 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -5295,13 +5300,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h02) $fdisplay(f,"* Reg pc c=%h !=02",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -5309,7 +5309,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -5424,7 +5428,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #32 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -5492,13 +5497,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h03) $fdisplay(f,"* Reg pc c=%h !=03",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -5507,7 +5507,11 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
 #1    if (ram.Mem[44668]!==8'h4f) $fdisplay(f,"* Mem[ae7c]=%h !=4f",ram.Mem[44668]);
 #1
 //--------------------------------------------------------------------------------
-$fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
+force dut.instruction_reg.ctl_ir_we=1;
+   force dut.instruction_reg.db=0;
+#1 release dut.instruction_reg.ctl_ir_we;
+   release dut.instruction_reg.db;
+#1 $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
 
 force dut.reg_file.b2v_latch_af_lo.we=1;
    force dut.reg_file.b2v_latch_af_hi.we=1;
@@ -5623,7 +5627,8 @@ force dut.reg_file.b2v_latch_af_lo.we=1;
 #1
 #32 // Execute
    force dut.reg_control.ctl_reg_sys_we=0;
-#4 force dut.reg_file.reg_gp_we=0;
+#2 pc=z.A;
+#2 force dut.reg_file.reg_gp_we=0;
    force dut.z80_top.fpga_reset=1;
 force dut.reg_file.b2v_latch_af_lo.oe=1;
    force dut.reg_file.b2v_latch_af_hi.oe=1;
@@ -5691,13 +5696,8 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    if (dut.reg_file.b2v_latch_sp_hi.db!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file.b2v_latch_sp_hi.db);
    release dut.reg_file.b2v_latch_sp_lo.oe;
    release dut.reg_file.b2v_latch_sp_hi.oe;
-#1 force dut.reg_file.b2v_latch_pc_lo.oe=1;
-   force dut.reg_file.b2v_latch_pc_hi.oe=1;
-#1 if (dut.reg_file.b2v_latch_pc_lo.db!==8'h03) $fdisplay(f,"* Reg pc c=%h !=03",dut.reg_file.b2v_latch_pc_lo.db);
-   if (dut.reg_file.b2v_latch_pc_hi.db!==8'h00) $fdisplay(f,"* Reg pc p=%h !=00",dut.reg_file.b2v_latch_pc_hi.db);
-   release dut.reg_file.b2v_latch_pc_lo.oe;
-   release dut.reg_file.b2v_latch_pc_hi.oe;
-#1 force dut.reg_file.b2v_latch_ir_lo.oe=1;
+#1 #2 if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
+force dut.reg_file.b2v_latch_ir_lo.oe=1;
    force dut.reg_file.b2v_latch_ir_hi.oe=1;
 #1 if (dut.reg_file.b2v_latch_ir_lo.db!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file.b2v_latch_ir_lo.db);
    if (dut.reg_file.b2v_latch_ir_hi.db!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file.b2v_latch_ir_hi.db);
@@ -5705,5 +5705,5 @@ force dut.reg_file.b2v_latch_af_lo.oe=1;
    release dut.reg_file.b2v_latch_ir_hi.oe;
 #1 #1
 //--------------------------------------------------------------------------------
-`define TOTAL_CLKS 2227
+`define TOTAL_CLKS 2285
 $fdisplay(f,"=== Tests completed ===");
