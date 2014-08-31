@@ -42,6 +42,7 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_tbl_ed_set
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_tbl_cb_set
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_alu
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_repeat_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_shift_en
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_daa_66
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_daa_oe
@@ -130,6 +131,7 @@ add wave -noupdate -expand -group control/decode_state.v /test_fuse/dut/table_xx
 add wave -noupdate -expand -group control/decode_state.v /test_fuse/dut/use_ix
 add wave -noupdate -expand -group control/decode_state.v /test_fuse/dut/use_ixiy
 add wave -noupdate -expand -group control/decode_state.v /test_fuse/dut/in_alu
+add wave -noupdate -expand -group control/decode_state.v /test_fuse/dut/repeat_en
 add wave -noupdate -expand -group control/clk_delay.v /test_fuse/dut/Tw1
 add wave -noupdate -expand -group control/clk_delay.v /test_fuse/dut/Tw2
 add wave -noupdate -expand -group control/clk_delay.v /test_fuse/dut/hold_clk_delay

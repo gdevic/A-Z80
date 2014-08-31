@@ -24,6 +24,7 @@ ctl_state_tbl_clr = 0;
 ctl_state_tbl_ed_set = 0;
 ctl_state_tbl_cb_set = 0;
 ctl_state_alu = 0;
+ctl_repeat_we = 0;
 
 // Module: alu/alu_control.v
 ctl_shift_en = 0;

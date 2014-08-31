@@ -40,6 +40,7 @@ module execute
     input wire im2,                     // Interrupt Mode 2
     input wire use_ixiy,                // Special decode signal
     input wire flags_cond_true,         // Flags condition is true
+    input wire repeat_en,               // Enable repeat of a block instruction
     input wire flags_zf,                // ZF to test a condition
     input wire flags_nf,                // NF to test for subtraction
     input wire flags_sf,                // SF to test for 8-bit sign of a value
@@ -71,6 +72,9 @@ logic ixy_d;                            // Compute WX=IX+d
 // Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
 logic setIXIY;                          // Set IX/IY flag at the next T cycle
 logic setCBED;                          // Set CB or ED flag at the next T cycle
+// Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
+logic nonRep;                           // Non-repeating block instruction
+
 //----------------------------------------------------------
 // Define various shortcuts to field naming
 //----------------------------------------------------------
@@ -82,7 +86,7 @@ logic setCBED;                          // Set CB or ED flag at the next T cycle
 `define PFSEL_P         2'h0
 `define PFSEL_V         2'h1
 `define PFSEL_IFF2      2'h2
-`define PFSEL_A1        2'h3
+`define PFSEL_REP       2'h3
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------
@@ -130,6 +134,7 @@ begin
     fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d = 0;
     setIXIY = 0; setCBED = 0;
+    nonRep = 0;
 
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0

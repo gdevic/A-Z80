@@ -54,6 +54,7 @@ wire ctl_state_tbl_clr;
 wire ctl_state_tbl_ed_set;
 wire ctl_state_tbl_cb_set;
 wire ctl_state_alu;
+wire ctl_repeat_we;
 wire ctl_shift_en;
 wire ctl_daa_66;
 wire ctl_daa_oe;
@@ -146,6 +147,7 @@ wire table_xx;
 wire use_ix;
 wire use_ixiy;
 wire in_alu;
+wire repeat_en;
 
 // Module: control/clk_delay.v
 wire Tw1;

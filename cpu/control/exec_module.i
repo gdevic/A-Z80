@@ -24,6 +24,7 @@ output logic ctl_state_tbl_clr,
 output logic ctl_state_tbl_ed_set,
 output logic ctl_state_tbl_cb_set,
 output logic ctl_state_alu,
+output logic ctl_repeat_we,
 
 // Module: alu/alu_control.v
 output logic ctl_shift_en,

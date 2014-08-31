@@ -173,8 +173,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 368)
 		(input)
-		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "address_is_1" (rect 21 363 98 377)(font "Arial" (font_size 8)))
+		(text "repeat_en" (rect 0 0 57 14)(font "Arial" (font_size 8)))
+		(text "repeat_en" (rect 21 363 78 377)(font "Arial" (font_size 8)))
 		(line (pt 0 368)(pt 16 368))
 	)
 	(port
