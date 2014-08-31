@@ -43,7 +43,6 @@ module execute
     input wire flags_zf,                // ZF to test a condition
     input wire flags_nf,                // NF to test for subtraction
     input wire flags_sf,                // SF to test for 8-bit sign of a value
-    input wire flags_cf,                // CF used for 16-bit offset calculations
 
     //----------------------------------------------------------
     // Machine and clock cycles

@@ -33,7 +33,7 @@ fIOWrite        fIOWrite=1;
 CC              nextM=!flags_cond_true;
 :setM1
 1               setM1=1;
-SS              ctl_eval_cond=1; ctl_cond_short=1; setM1=!flags_cond_true;
+SS              setM1=!flags_cond_true;
 CC              setM1=!flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
 
@@ -63,7 +63,7 @@ NZ?WZ \
     if (!flags_zf) begin             // If ZF is not set, use WZ instead of PC (for DJNZ)
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end
-    
+
 HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; // Use HL, enable SW4 downstream (for jumps)
 
 :A:reg wr
@@ -303,11 +303,11 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
 ?NF_HF          ctl_flags_hf_cpl=flags_nf;
 
-?CF_NEG         ctl_alu_sel_op2_neg=flags_cf;
-
+?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we=1;            // Write the opcode into the instruction register
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
+CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
