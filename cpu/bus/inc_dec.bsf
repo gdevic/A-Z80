@@ -58,13 +58,6 @@ applicable agreement for further details.
 		(text "address[15..0]" (rect 97 27 179 41)(font "Arial" (font_size 8)))
 		(line (pt 200 32)(pt 184 32)(line_width 3))
 	)
-	(port
-		(pt 200 48)
-		(output)
-		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "address_is_1" (rect 102 43 179 57)(font "Arial" (font_size 8)))
-		(line (pt 200 48)(pt 184 48))
-	)
 	(drawing
 		(rectangle (rect 16 16 184 112))
 	)

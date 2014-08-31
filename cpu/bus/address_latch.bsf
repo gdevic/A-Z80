@@ -75,16 +75,16 @@ applicable agreement for further details.
 	(port
 		(pt 224 48)
 		(output)
-		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "address_is_1" (rect 126 43 203 57)(font "Arial" (font_size 8)))
-		(line (pt 224 48)(pt 208 48))
+		(text "address[15..0]" (rect 0 0 82 14)(font "Arial" (font_size 8)))
+		(text "address[15..0]" (rect 121 43 203 57)(font "Arial" (font_size 8)))
+		(line (pt 224 48)(pt 208 48)(line_width 3))
 	)
 	(port
 		(pt 224 64)
 		(output)
-		(text "address[15..0]" (rect 0 0 82 14)(font "Arial" (font_size 8)))
-		(text "address[15..0]" (rect 121 59 203 73)(font "Arial" (font_size 8)))
-		(line (pt 224 64)(pt 208 64)(line_width 3))
+		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
+		(text "address_is_1" (rect 126 59 203 73)(font "Arial" (font_size 8)))
+		(line (pt 224 64)(pt 208 64))
 	)
 	(port
 		(pt 224 32)
