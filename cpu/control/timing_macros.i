@@ -125,6 +125,7 @@ I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_
 // This strict selection is used in the (IX+d) state machine to be able to both write to W and output WZ to the address latch
 W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; // Selecting strictly W
 Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; // Selecting strictly Z
+WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)
@@ -313,3 +314,4 @@ CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condi
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
 
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
+MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked

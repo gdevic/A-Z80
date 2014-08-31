@@ -2576,16 +2576,42 @@ end
 
 if (pla[56]) begin
     $display("pla[56] : rst p");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Use WZ instead of PC (for jumps) */ end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; contM1=1; end
-    if (M1 && T5) begin  nextM=1; end
-    if (M2 && T1) begin  fMWrite=1; end
-    if (M2 && T2) begin  fMWrite=1; end
-    if (M2 && T3) begin  fMWrite=1; nextM=1; end
-    if (M3 && T1) begin  fMWrite=1; end
-    if (M3 && T2) begin  fMWrite=1; end
+    if (M1 && T4) begin  fFetch=1; contM1=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_op1_oe=1; /* OP1 latch */
+                    ctl_alu_op1_sel_zero=1; /* Zero */
+                    ctl_sw_mask543_en=1; /* RST instruction needs opcode masked */ end
+    if (M1 && T5) begin  nextM=1;
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
+                    ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+    if (M2 && T1) begin  fMWrite=1;
+                    ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
+                    ctl_sw_2u=1;
+                    ctl_sw_1u=1;
+                    ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
+    if (M2 && T2) begin  fMWrite=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+    if (M2 && T3) begin  fMWrite=1; nextM=1;
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
+                    ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+    if (M3 && T1) begin  fMWrite=1;
+                    ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
+                    ctl_sw_2u=1;
+                    ctl_sw_1u=1;
+                    ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
+    if (M3 && T2) begin  fMWrite=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
