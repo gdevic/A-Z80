@@ -2115,19 +2115,116 @@ end
 
 if (pla[26]) begin
     $display("pla[26] : djnz e");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+    if (!flags_zf) begin             /* If ZF is not set, use WZ instead of PC (for DJNZ) */
+        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
+    end end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; contM1=1; end
-    if (M1 && T5) begin  nextM=1; end
-    if (M2 && T1) begin  fMRead=1; end
-    if (M2 && T2) begin  fMRead=1; end
+    if (M1 && T4) begin  fFetch=1; contM1=1;
+                    ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
+                    ctl_sw_2d=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_zero=1; /* Zero */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_hf_we=1;
+                    ctl_alu_sel_op2_neg=1; end
+    if (M1 && T5) begin  nextM=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_sz_we=1;
+                    ctl_alu_sel_op2_neg=1; end
+    if (M2 && T1) begin  fMRead=1;
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+    if (M2 && T2) begin  fMRead=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=flags_zf; end
-    if (M3 && T1) begin  end
-    if (M3 && T2) begin  end
-    if (M3 && T3) begin  end
-    if (M3 && T4) begin  end
-    if (M3 && T5) begin  nextM=1; setM1=1; end
+    if (M3 && T1) begin 
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */ end
+    if (M3 && T2) begin 
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
+                    ctl_sw_2d=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_hf_we=1; end
+    if (M3 && T3) begin 
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; /* Selecting strictly Z */
+                    ctl_sw_2u=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_cf_we=1; end
+    if (M3 && T4) begin 
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_zero=1; /* Zero */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (!ctl_alu_op_low) begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_hf_we=1;
+                    ctl_alu_sel_op2_neg=flags_cf; end
+    if (M3 && T5) begin  nextM=1; setM1=1;
+                    ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; /* Selecting strictly W */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (!ctl_alu_op_low) begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_alu_sel_op2_neg=flags_cf; end
 end
 
 // Call and Return Group
@@ -2592,8 +2689,7 @@ if (ixy_d) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op2_sel_bus=1; /* Internal bus */
-                    ctl_flags_sz_we=1; end
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */ end
     if (T2) begin 
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
@@ -2638,7 +2734,7 @@ if (ixy_d) begin
     end
                     ctl_flags_hf_we=1;
                     ctl_flags_sel_cf2=1;
-                    ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf; end
+                    ctl_alu_sel_op2_neg=flags_cf; end
     if (T5) begin 
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */
@@ -2652,7 +2748,8 @@ if (ixy_d) begin
     if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
-                    ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf;
+                    ctl_flags_sel_cf2=1;
+                    ctl_alu_sel_op2_neg=flags_cf;
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */ end
 end
 

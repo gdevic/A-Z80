@@ -880,19 +880,19 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #end																																	
 																																	
 #if pla[26] : djnz e			"5,3,(5)"																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																														
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					NZ?WZ																									
 #002H T2  AB:000 DB:10  M1      MREQ RD	1	2	fMFetch																														
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																													
-#005H T5  AB:000 DB:--	1	5				1																											
-#006H T6  AB:001 DB:--	2	1	fMRead																														
-#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead																														
-#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1	E																										
-#009H T9  AB:001 DB:--	3	1																															
-#010H T10 AB:001 DB:--	3	2																															
-#011H T11 AB:001 DB:--	3	3																															
-#012H T12 AB:001 DB:--	3	4																															
-#013H T13 AB:001 DB:--	3	5				1	1																										
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1							B		d			alu	>s0		0	bus	L	ADD				*						NEG_OP2	B=B-1
+#005H T5  AB:000 DB:--	1	5				1						B				alu	<	res			H	ADD		*								NEG_OP2	
+#006H T6  AB:001 DB:--	2	1	fMRead					PC		W+																							
+#007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
+#008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead			1	ZF																										
+#009H T9  AB:001 DB:--	3	1											d	<	R	alu	>s0		bus														"Reads ""e"" from the data latch"
+#010H T10 AB:001 DB:--	3	2									PCl		d			alu	>s0			bus	L	ADD				*							
+#011H T11 AB:001 DB:--	3	3										Z	u			alu	<	res			H	ADD							*				
+#012H T12 AB:001 DB:--	3	4									PCh					alu	>s0		0	bus	L	ADC				*						?CF_NEG	
+#013H T13 AB:001 DB:--	3	5				1	1	WZ		W		W				alu	<	res			H	ADC										?CF_NEG	
 #end																																	
 																																	
 // Call and Return Group																																	
@@ -909,10 +909,10 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																							
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	d	<	R																		
 #011H T11 AB:002 DB:--	3	4				1		SP		W-																							
-#012H T12 AB:000 DB:--	4	1	fMWrite							<-	P		u	>	W																		
+#012H T12 AB:000 DB:--	4	1	fMWrite							<-	PCh		u	>	W																		
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																							
 #014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W-																							
-#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	C		u	>	W																		
+#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	PCl		u	>	W																		
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																							
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
@@ -929,10 +929,10 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead						PC	R+																							
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead			CC	CC					W	d	<	R																		
 #011H T11 AB:002 DB:--	3	4				1		SP		W-																							
-#012H T12 AB:000 DB:--	4	1	fMWrite							<-	P		u	>	W																		
+#012H T12 AB:000 DB:--	4	1	fMWrite							<-	PCh		u	>	W																		
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite						SP	R-																							
 #014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite			1		SP		W-																							
-#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	C		u	>	W																		
+#015H T15 AB:0FF DB:--	5	1	fMWrite							<-	PCl		u	>	W																		
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite						SP	R-																							
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
@@ -1146,11 +1146,11 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																	
 // State machine to compute (IX+d)																																	
 #if ixy_d : Compute WZ=IX+d																																	
-#001H T1 any M-cycle	?	1											d	<	R	alu	>s0		bus					*									"Reads ""d"" from the data latch"
+#001H T1 any M-cycle	?	1											d	<	R	alu	>s0		bus														"Reads ""d"" from the data latch"
 #002H T2	?	2									L		d			alu	>s0			bus	L	ADD				*							
 #003H T3	?	3										Z	u			alu	<	res			H	ADD								0			
-#004H T4	?	4									H					alu	>s0		0	bus	L	ADC				*				R		?SF_NEG	Stores result into WZ
-#005H T5	?	5						WZ		W		W				alu	<	res			H	ADC										"?SF_NEG, CLR_IX_IY"	and disables any further use of IX/IY
+#004H T4	?	4									H					alu	>s0		0	bus	L	ADC				*				R		?CF_NEG	Stores result into WZ
+#005H T5	?	5						WZ		W		W				alu	<	res			H	ADC								R		"?CF_NEG, CLR_IX_IY"	and disables any further use of IX/IY
 #end																																	
 																																	
 // Default instruction fetch (M1) state machine																																	

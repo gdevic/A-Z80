@@ -35,7 +35,7 @@ CC              nextM=!flags_cond_true;
 1               setM1=1;
 SS              ctl_eval_cond=1; ctl_cond_short=1; setM1=!flags_cond_true;
 CC              setM1=!flags_cond_true;
-E               setM1=flags_zf;
+ZF              setM1=flags_zf; // Used in DJNZ
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint
@@ -58,6 +58,12 @@ WZ? \
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end
 
+// Conditional assertion to use WZ if the Z flag is not set (used in DJNZ)
+NZ?WZ \
+    if (!flags_zf) begin             // If ZF is not set, use WZ instead of PC (for DJNZ)
+        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
+    end
+    
 HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; // Use HL, enable SW4 downstream (for jumps)
 
 :A:reg wr
@@ -92,6 +98,7 @@ R-      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable whi
 // General purpose registers
 A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
 r8      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};// Read 8-bit GP register
@@ -100,14 +107,15 @@ rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP reg
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 // System registers
 I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4u=1; // Read either I or R based on op3 (0 or 1)
-P       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1; 
-C       ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; 
+PCh     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
+PCl     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
 
 :D:reg wr
 ?       // Register to be written is decided elsewhere
 // General purpose registers
 A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 F       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01;
+B       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 r8      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; // Write 8-bit GP register
 r8'     ctl_reg_gp_we=1; ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0}; // Write 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; // Write 8-bit GP register high byte
@@ -179,7 +187,7 @@ CP \
     end
 //------------------------------------------------------------------------------------------------------------------------------------------------
 SUB \
-    
+
     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1; ctl_pf_sel=`PFSEL_V;
     if (ctl_alu_op_low) begin
                                                               ctl_flags_cf_set=1;
@@ -295,7 +303,7 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
 ?NF_HF          ctl_flags_hf_cpl=flags_nf;
 
-?SF_NEG         ctl_alu_sel_op2_neg=flags_sf; ctl_flags_cf_set=flags_sf; ctl_flags_cf_cpl=flags_sf;
+?CF_NEG         ctl_alu_sel_op2_neg=flags_cf;
 
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 
