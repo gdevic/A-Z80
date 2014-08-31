@@ -2544,16 +2544,34 @@ end
 
 if (pla[46]) begin
     $display("pla[46] : reti/retn");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Use WZ instead of PC (for jumps) */ end
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; contM2=1; end
-    if (M2 && T1) begin  fMRead=1; end
-    if (M2 && T2) begin  fMRead=1; end
-    if (M2 && T3) begin  fMRead=1; nextM=1; end
-    if (M3 && T1) begin  fMRead=1; end
-    if (M3 && T2) begin  fMRead=1; end
-    if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1; end
+    if (M1 && T4) begin  fFetch=1; contM2=1;
+                    ctl_iff1_iff2=1; /* RETN copies IFF2 into IFF1 */ end
+    if (M2 && T1) begin  fMRead=1;
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+    if (M2 && T2) begin  fMRead=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
+    if (M2 && T3) begin  fMRead=1; nextM=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; /* Selecting strictly Z */
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
+    if (M3 && T1) begin  fMRead=1;
+                    ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
+                    ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
+    if (M3 && T2) begin  fMRead=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
+    if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; /* Selecting strictly W */
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
 end
 
 if (pla[56]) begin

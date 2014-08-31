@@ -311,3 +311,5 @@ OpcodeIR        ctl_ir_we=1;            // Write the opcode into the instruction
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
+
+RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
