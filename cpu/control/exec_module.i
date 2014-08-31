@@ -113,6 +113,7 @@ output logic ctl_sw_1u,
 output logic ctl_sw_1d,
 output logic ctl_sw_2u,
 output logic ctl_sw_2d,
+output logic ctl_sw_mask543_en,
 
 // Module: bus/data_pins.v
 output logic ctl_bus_db_we,

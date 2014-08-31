@@ -127,6 +127,7 @@ wire ctl_sw_1u;
 wire ctl_sw_1d;
 wire ctl_sw_2u;
 wire ctl_sw_2d;
+wire ctl_sw_mask543_en;
 wire ctl_bus_db_we;
 
 // Module: control/interrupts.v
@@ -261,6 +262,7 @@ wire bus_sw_1u;
 wire bus_sw_1d;
 wire bus_sw_2u;
 wire bus_sw_2d;
+wire bus_sw_mask543_en;
 
 // Module: bus/control_pins_p.v
 wire nM1;

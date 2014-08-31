@@ -113,6 +113,7 @@ ctl_sw_1u = 0;
 ctl_sw_1d = 0;
 ctl_sw_2u = 0;
 ctl_sw_2d = 0;
+ctl_sw_mask543_en = 0;
 
 // Module: bus/data_pins.v
 ctl_bus_db_we = 0;
