@@ -728,6 +728,31 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																	
 // Input and Output Groups																																	
 																																	
+"#if pla[37] && !pla[28] : in a,(n)"			"4,3,4"																														
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	d	<	R																		
+#002H T2  AB:000 DB:DB  M1      MREQ RD	1	2	fMFetch																														
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																												
+#005H T5  AB:001 DB:--	2	1	fMRead					PC		W+																							
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
+#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																											
+#008H T8  AB:001 DB:--	3	1	fIORead					A		W				<	R																		
+#009H T9  AB:001 DB:--               RD    IORQ	3	2	fIORead																														
+#010H T10 AB:001 DB:--               RD    IORQ	3	3	fIORead																														
+#011H T11 AB:001 DB:--               RD    IORQ	3	4	fIORead			1	1																										
+#end																																	
+																																	
+"#if pla[27] && !pla[34] : in r,(c)"			"4,4"																														
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8	d	<	R	alu		res			H	OR		*	*		*	0					
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	u			<																	
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
+#009H T5  AB:0FF DB:--	2	1	fIORead					BC		W																							
+#010H T6  AB:0FF DB:--               RD    IORQ	2	2	fIORead																														
+#011H T7  AB:0FF DB:--               RD    IORQ	2	3	fIORead																														
+#012H T8  AB:0FF DB:--               RD    IORQ	2	4	fIORead			1	1						d	<	R	alu	>s0		bus	bus	L	OR		*	*	*	*	0					
+#end																																	
+																																	
 "#if pla[37] && pla[28] : out (n),a"			"4,3,4"																														
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																														
 #002H T2  AB:000 DB:D3  M1      MREQ RD	1	2	fMFetch																														
@@ -740,31 +765,6 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #009H T9  AB:001 DB:03                  WR IORQ	3	2	fIOWrite																														
 #010H T10 AB:001 DB:03                  WR IORQ	3	3	fIOWrite																														
 #011H T11 AB:001 DB:03                  WR IORQ	3	4	fIOWrite			1	1																										
-#end																																	
-																																	
-"#if pla[37] && !pla[28] : in a,(n)"			"4,3,4"																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch																														
-#002H T2  AB:000 DB:DB  M1      MREQ RD	1	2	fMFetch																														
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#005H T5  AB:001 DB:--	2	1	fMRead																														
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																														
-#007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead			1																											
-#008H T8  AB:001 DB:--	3	1	fIORead																														
-#009H T9  AB:001 DB:--               RD    IORQ	3	2	fIORead																														
-#010H T10 AB:001 DB:--               RD    IORQ	3	3	fIORead																														
-#011H T11 AB:001 DB:--               RD    IORQ	3	4	fIORead			1	1																										
-#end																																	
-																																	
-"#if pla[27] && !pla[34] : in r,(c)"			"4,4"																														
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:0FF DB:--	2	1	fIORead																														
-#010H T6  AB:0FF DB:--               RD    IORQ	2	2	fIORead																														
-#011H T7  AB:0FF DB:--               RD    IORQ	2	3	fIORead																														
-#012H T8  AB:0FF DB:--               RD    IORQ	2	4	fIORead			1	1																										
 #end																																	
 																																	
 "#if pla[27] && pla[34] : out (c),r"			"4,4"																														

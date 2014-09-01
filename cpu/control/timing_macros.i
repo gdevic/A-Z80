@@ -43,10 +43,11 @@ BR              setM1=nonRep | !repeat_en;
 //-----------------------------------------------------------------------------------------
 :A:reg rd
 // General purpose registers
-r16     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;    // Read 16-bit general purpose register, enable SW4 downstream
-BC      ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit BC, enable SW4 downstream
-DE      ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit DE, enable SW4 downstream
-HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit HL, enable SW4 downstream
+A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_sw_4d=1;  // Read 8-bit general purpose A register, enable SW4 downstream
+r16     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;        // Read 16-bit general purpose register, enable SW4 downstream
+BC      ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;  // Read 16-bit BC, enable SW4 downstream
+DE      ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;  // Read 16-bit DE, enable SW4 downstream
+HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;  // Read 16-bit HL, enable SW4 downstream
 SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit SP, enable SW4 downstream
 
 // System registers
