@@ -349,43 +349,47 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #019H T19 AB:0FD DB:01	5	5				1	1		HL	R																							
 #end																																	
 																																	
+#if pla[0] : Non-repeating version of a block instruction			"4,3,5,(5)"																														
+#always																																NonRep	
+#end																																	
+																																	
 #if pla[12] : ldi/ldir/ldd/lddr			"4,3,5,(5)"																														
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																														
-#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch																														
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch													alu	<	res			H	ADD			*		REP	0					
+#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch									F	u			<																	
 #037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																														
 #038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#039H T5  AB:000 DB:--	2	1	fMRead																														
-#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																														
-#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																											
-#042H T8  AB:000 DB:--	3	1	fMWrite																														
-#043H T9  AB:000 DB:21          MREQ	3	2	fMWrite																														
+#039H T5  AB:000 DB:--	2	1	fMRead					HL		W?																							
+#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead						HL	R?																							
+#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1							d	<	R	alu	>s0		bus		L	ADD			*	*							
+#042H T8  AB:000 DB:--	3	1	fMWrite					DE		W?																							
+#043H T9  AB:000 DB:21          MREQ	3	2	fMWrite						DE	R?																							
 #044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite																														
-#045H T11 AB:000 DB:21	3	4																															
-#046H T12 AB:000 DB:21	3	5				1																											
-#047H T13 AB:000 DB:--	4	1																															
-#048H T14 AB:000 DB:--	4	2																															
-#049H T15 AB:000 DB:--	4	3																															
-#050H T16 AB:000 DB:--	4	4																															
+#045H T11 AB:000 DB:21	3	4						BC		W-																							
+#046H T12 AB:000 DB:21	3	5				1	BR		BC	R-																						WriteBC=1	Update repeat flag latch
+#047H T13 AB:000 DB:--	4	1						PC		W-																							
+#048H T14 AB:000 DB:--	4	2							PC	R-																							
+#049H T15 AB:000 DB:--	4	3						PC		W-																							
+#050H T16 AB:000 DB:--	4	4							PC	R-																							
 #051H T17 AB:000 DB:--	4	5				1	1																										
 #end																																	
 																																	
 #if pla[11] : cpi/cpir/cpd/cpdr			"4,3,5,(5)"																														
-#035H T1  AB:00A DB:--  M1	1	1	fMFetch																														
-#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch																														
+#035H T1  AB:00A DB:--  M1	1	1	fMFetch													alu	<	res			H	SUB		*	*		REP	1					
+#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch									F	u			<																?NF_HF	
 #037H T3  AB:004 DB:--     RFSH	1	3	fMFetch																														
 #038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#039H T5  AB:000 DB:--	2	1	fMRead																														
-#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead																														
-#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1																											
+#039H T5  AB:000 DB:--	2	1	fMRead					HL		W?																							
+#040H T6  AB:000 DB:21          MREQ RD	2	2	fMRead						HL	R?																							
+#041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead			1							d	<	R	alu	>s0		bus		L	SUB		*	*	*				W			
 #042H T8  AB:000 DB:--	3	1																															
 #043H T9  AB:000 DB:--	3	2																															
 #044H T10 AB:000 DB:--	3	3																															
-#045H T11 AB:000 DB:--	3	4																															
-#046H T12 AB:000 DB:--	3	5				1																											
-#047H T13 AB:000 DB:--	4	1																															
-#048H T14 AB:000 DB:--	4	2																															
-#049H T15 AB:000 DB:--	4	3																															
-#050H T16 AB:000 DB:--	4	4																															
+#045H T11 AB:000 DB:--	3	4						BC		W-																							
+#046H T12 AB:000 DB:--	3	5				1	BR		BC	R-																						WriteBC=1	Update repeat flag latch
+#047H T13 AB:000 DB:--	4	1						PC		W-																							
+#048H T14 AB:000 DB:--	4	2							PC	R-																							
+#049H T15 AB:000 DB:--	4	3						PC		W-																							
+#050H T16 AB:000 DB:--	4	4							PC	R-																							
 #051H T17 AB:000 DB:--	4	5				1	1																										
 #end																																	
 																																	

@@ -36,6 +36,7 @@ CC              nextM=!flags_cond_true;
 SS              setM1=!flags_cond_true;
 CC              setM1=!flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
+BR              setM1=nonRep | !repeat_en;
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint
@@ -43,6 +44,8 @@ ZF              setM1=flags_zf; // Used in DJNZ
 :A:reg rd
 // General purpose registers
 r16     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;    // Read 16-bit general purpose register, enable SW4 downstream
+BC      ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit BC, enable SW4 downstream
+DE      ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit DE, enable SW4 downstream
 HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit HL, enable SW4 downstream
 SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit SP, enable SW4 downstream
 
@@ -69,6 +72,8 @@ HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_
 :A:reg wr
 // General purpose registers
 r16     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit general purpose register, enable SW4 upstream
+BC      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit BC, enable SW4 upstream
+DE      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit BC, enable SW4 upstream
 HL      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit HL, enable SW4 upstream
 SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; // Write 16-bit SP, enable SW4 upstream
 // System registers
@@ -83,10 +88,12 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-
 W       ctl_al_we=1;                                        // Write a value from the abus to the address latch
 W+      ctl_al_we=1; ctl_inc_cy=1;                          // Write latch and start incrementing
 W-      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1;           // Write latch and start decrementing
+W?      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=op3;         // Used for repeat instructions: decrement if op3 is set
 
 R       ctl_bus_inc_oe=1;                                   // Output enable incrementer to the abus
 R+      ctl_bus_inc_oe=1; ctl_inc_cy=1;                     // Output enable while holding to increment
 R-      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable while holding to decrement
+R?      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for repeat instructions: decrement if op3 is set
 +/-     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for INC/DEC: decrement if op3 is set
 
 <-      ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1;      // MUX output to apads while holding to decrement (for push)
@@ -259,6 +266,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 *       ctl_flags_pf_we=1;
 V       ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
 iff2    ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_IFF2;
+REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 :NF
 *       ctl_flags_nf_we=1;
 0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;  // Means we are not setting it
@@ -315,3 +323,5 @@ Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
 
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
 MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
+NonRep          nonRep=1;               // Non-repeating block instruction
+WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
