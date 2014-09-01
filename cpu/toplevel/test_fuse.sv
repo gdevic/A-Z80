@@ -42,5 +42,6 @@ z80_top dut(z80);           // Create an instance of our Z80 design
 test_bench_fuse tb(z80);    // Create an instance of the test bench
 
 ram ram( .Address(z80.A), .Data(z80.D), .CS(z80.nMREQ), .WE(z80.nWR), .OE(z80.nRD) );
+io  io( .Address(z80.A), .Data(z80.D), .CS(z80.nIORQ), .WE(z80.nWR), .OE(z80.nRD) );
 
 endmodule

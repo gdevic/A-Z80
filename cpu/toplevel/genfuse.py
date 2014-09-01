@@ -125,7 +125,7 @@ while True:
     RegWrite("ir", s[0]+s[1])
     # TODO: Store IFF1/IFF2, IM, in_halt
 
-    # Read memory configuration until the line contains only -1
+    # Read memory configuration from the test.in until the line contains only -1
     while True:
         m = t1.pop(0).split(' ')
         if m[0]=="-1":
@@ -137,6 +137,24 @@ while True:
                 break
             ftest.write("   ram.Mem[" + str(address) + "] = 8'h" + d + ";\n")
             address = address+1
+
+    # We need to prepare the IO map to be able to handle IN/OUT instructions.
+    # Copy tests.out (so we don't modify it just yet), parse all PR and PW (port read, write)
+    # statements and then fill in our IO map (for IO reads) or stack the check statements to be
+    # used below after the opcode has executed (for IO writes)
+    check_io = []               # List of check statements (for OUT instructions)
+    t2b = list(t2)
+    while True:
+        m = t2b.pop(0).split(' ')
+        m = filter(None, m)
+        if len(m)==0 or m[0]=="-1":
+            break
+        if len(m)==4 and m[1]=="PR":
+            address = int(m[2],16)
+            ftest.write("   io.IO[" + str(address) + "] = 8'h" + m[3] + ";\n")
+        if len(m)==4 and m[1]=="PW":
+            address = int(m[2],16)
+            check_io.append("   if (io.IO[" + str(address) + "]!==8'h" + m[3] + ") $fdisplay(f,\"* IO[" + hex(address)[2:] + "]=%h !=" + m[3] + "\",io.IO[" + str(address) + "]);\n")
 
     # Prepare instruction to be run. By releasing the fpga_reset, internal CPU reset will be active
     # for 1T and the engine will try to clear PC and IR registers. We need to prevent that by forcing
@@ -216,6 +234,9 @@ while True:
                 break
             ftest.write("   if (ram.Mem[" + str(address) + "]!==8'h" + d + ") $fdisplay(f,\"* Mem[" + hex(address)[2:] + "]=%h !=" + d + "\",ram.Mem[" + str(address) + "]);\n")
             address = address+1
+    # Read a list of IO checks that was compiled while parsing the initial condition
+    while len(check_io)>0:
+        ftest.write(check_io.pop(0))
 
     ftest.write("#1\n")
     total_clks = total_clks + 1
