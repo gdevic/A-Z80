@@ -609,14 +609,21 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch								A		d		R	alu	>s1		bus	bus	L	OR			*	*		0		W			
 #end																																	
 																																	
-#if pla[70] && !pla[55] : rlc r			4																														
+#if ~use_ixiy && pla[70] && !pla[55] : rlc r			4																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	u			alu	<	res			H	OR		*	*	*	*	0	*				
 #006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	u			<														R			
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d		R	alu	>s1		bus	bus	L	OR		*	*	*	*	0		W			
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch			1	1				r8'		d		R	alu	>s1		bus	bus	L	OR		*	*	*	*	0		W			
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1							d	<	R	alu	>s1		bus	bus	L	OR		*	*	*	*	0		W			
+#029H T17 AB:002 DB:--	5	1	fMWrite										u	>	W	alu	<	res			H	OR		*	*	*	*	0	*				
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
 																																	
-#if pla[70] && pla[55] : rlc (hl)			"4,4,3"																														
+#if ~use_ixiy && pla[70] && pla[55] : rlc (hl)			"4,4,3"																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
 #006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	u			<														R			
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
@@ -666,64 +673,102 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																	
 // Bit Manipulation Group																																	
 																																	
-"#if pla[72] && !pla[55] : bit b,r"			4																														
+"#if ~use_ixiy && pla[72] && !pla[55] : bit b,r"			4																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch													alu	<	res			H	AND		*		*	*	0					
 #006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	u			<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d			alu	>s0			bus	L	AND		*	*	*	*	0					
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch			1	1				r8'		d			alu	>s0			bus	L	AND		*	*	*	*	0					
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead																														...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead																														
+#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*	*	*	*	0					
 #end																																	
 																																	
-"#if pla[72] && pla[55] : bit b,(hl)"			"4,4"																														
+"#if ~use_ixiy && pla[72] && pla[55] : bit b,(hl)"			"4,4"																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch													alu	<	res			H	AND		*		*	*	0					
 #006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch									F	u			<																	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:006 DB:--	2	1	fMRead																														
+#009H T5  AB:006 DB:--	2	1	fMRead					HL		W																							
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																														
 #011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																														
 #012H T8  AB:006 DB:--	2	4				1	1						d	<	R	alu	>s0			bus	L	AND		*	*	*	*	0					
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead																														
+#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*	*	*	*	0					
 #end																																	
 																																	
-"#if pla[74] && !pla[55] : set b,r"			4																														
+"#if ~use_ixiy && pla[74] && !pla[55] : set b,r"			4																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	u				<	res			H	OR											
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	u			<																	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				>s0			bus	L	OR											
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch			1	1				r8'		d				>s0			bus	L	OR											
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1							d	<	R	alu	>s0			bus	L	OR											
+#029H T17 AB:002 DB:--	5	1	fMWrite										u	>	W		<	res			H	OR											
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
 																																	
-"#if pla[74] && pla[55] : set b,(hl)"			"4,4,3"																														
+"#if ~use_ixiy && pla[74] && pla[55] : set b,(hl)"			"4,4,3"																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
 #006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																														
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:006 DB:--	2	1	fMRead																														
+#009H T5  AB:006 DB:--	2	1	fMRead					HL		W																							
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																														
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																														
-#012H T8  AB:006 DB:--	2	4				1																											
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead										d	<	R		>s0			bus	L	OR											
+#012H T8  AB:006 DB:--	2	4				1							u	>	W		<	res			H	OR											
 #013H T9  AB:006 DB:--	3	1	fMWrite																														
 #014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																														
 #015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																										
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1							d	<	R	alu	>s0			bus	L	OR											
+#029H T17 AB:002 DB:--	5	1	fMWrite										u	>	W		<	res			H	OR											
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
 																																	
-"#if pla[73] && !pla[55] : res b,r"			4																														
+"#if ~use_ixiy && pla[73] && !pla[55] : res b,r"			4																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	u				<	res			H	NAND											
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	u			<																	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch								r8'		d				>s0			bus	L	NAND											
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch			1	1				r8'		d				>s0			bus	L	NAND											
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1							d	<	R	alu	>s0			bus	L	NAND											
+#029H T17 AB:002 DB:--	5	1	fMWrite										u	>	W		<	res			H	NAND											
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
 																																	
-"#if pla[73] && pla[55] : res b,(hl)"			"4,4,3"																														
+"#if ~use_ixiy && pla[73] && pla[55] : res b,(hl)"			"4,4,3"																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
 #006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																														
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch														>bs																Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:006 DB:--	2	1	fMRead																														
+#009H T5  AB:006 DB:--	2	1	fMRead					HL		W																							
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																														
-#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																														
-#012H T8  AB:006 DB:--	2	4				1																											
+#011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead										d	<	R		>s0			bus	L	NAND											
+#012H T8  AB:006 DB:--	2	4				1							u	>	W		<	res			H	NAND											
 #013H T9  AB:006 DB:--	3	1	fMWrite																														
 #014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																														
 #015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite			1	1																										
+																																	
+#017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
+#018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
+#019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead			1							d	<	R	alu	>s0			bus	L	NAND											
+#029H T17 AB:002 DB:--	5	1	fMWrite										u	>	W		<	res			H	NAND											
+#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
+#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
 #end																																	
 																																	
 // Input and Output Groups																																	
@@ -771,8 +816,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
 #006H T2  AB:001 DB:41  M1      MREQ RD	1	2	fMFetch																														
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
-#009H T5  AB:0FF DB:--	2	1	fIOWrite																														
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1						r8		u	>	W																		
+#009H T5  AB:0FF DB:--	2	1	fIOWrite					BC		W																							
 #010H T6  AB:0FF DB:C3                  WR IORQ	2	2	fIOWrite																														
 #011H T7  AB:0FF DB:C3                  WR IORQ	2	3	fIOWrite																														
 #012H T8  AB:0FF DB:C3                  WR IORQ	2	4	fIOWrite			1	1																										
@@ -997,90 +1042,21 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																	
 // CB-Table opcodes																																	
 																																	
-#if pla[49] : Every CB with IX/IY			"4,3,5,3"																														
+#if pla[49] : Every CB with IX/IY			"4,3,5,+"																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
 #006H T2  AB:001 DB:CB  M1      MREQ RD	1	2	fMFetch																														
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													CB	
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch		1																												
 #009H T5  AB:002 DB:--	2	1	fMRead					PC		W+																							
 #010H T6  AB:002 DB:01          MREQ RD	2	2	fMRead						PC	R+																							
 #011H T7  AB:002 DB:01          MREQ RD	2	3	fMRead			1																											
-#012H T8  AB:003 DB:--	3	1	fMRead																													WZ=IX+d	
-#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead																													WZ=IX+d	
-#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead																													WZ=IX+d	
+#012H T8  AB:003 DB:--	3	1	fMRead					PC		W+																						WZ=IX+d	
+#013H T9  AB:003 DB:00          MREQ RD	3	2	fMRead						PC	R+																						WZ=IX+d	
+#014H T10 AB:003 DB:00          MREQ RD	3	3	fMRead																													WZ=IX+d	Loads the opcode byte in parallel
 #015H T11 AB:003 DB:--	3	4																														WZ=IX+d	
 #016H T12 AB:003 DB:--	3	5				1																										WZ=IX+d	
-#017H T13 AB:000 DB:--	4	1									AF				R	>	>s0		bus	bus				*	*	*	*	*	*			OpcodeIR	Loads instruction register; starts the execute cycle
-#018H T14 AB:000 DB:DD          MREQ RD	4	2																															
-#019H T15 AB:000 DB:DD          MREQ RD	4	3																															
-#end																																	
-																																	
-"#if pla[54] && pla[70] && !pla[55] : rlc (ix+d),r"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
-#end																																	
-																																	
-#if pla[54] && pla[70] && pla[55] : rlc (ix+d)																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[72] && !pla[55] : bit b,(ix+d)"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[72] && pla[55] : bit b,(ix+d)"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#019H T15 AB:000 DB:DD          MREQ RD	4	3				1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[74] && !pla[55] : set b,(ix+d),r"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[74] && pla[55] : set b,(ix+d)"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[73] && !pla[55] : res b,(ix+d),r"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
-#end																																	
-																																	
-"#if pla[54] && pla[73] && pla[55] : res b,(ix+d)"																																	
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																														
-																																	
-#029H T17 AB:002 DB:--	5	1	fMWrite																														
-#030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																														
-#031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite			1	1																										
+#017H T13 AB:000 DB:--	4	1													R		>bs		bus	bus												OpcodeIR	Loads instruction register; starts the execute cycle
+// Loading a new instruction immediately changes PLA wires and continues into the new effective instructions' M4/T1 cycle																																	
 #end																																	
 																																	
 // Special Purposes PLA Entries																																	
