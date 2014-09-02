@@ -46,7 +46,7 @@ pin_control pin_control ( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ALU and ALU control, including the flags
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-alu_control alu_control ( .*, .db(db1[7:0]), .op543(db0[5:3]) );
+alu_control alu_control ( .*, .db(db1[7:0]), .op543({pla[104],pla[103],pla[102]}) );
 alu_select  alu_select ( .* );
 alu_flags   alu_flags ( .*, .db(db1[7:0]) );
 alu         alu ( .*, .db(db2[7:0]), .bsel(db0[5:3]) );
