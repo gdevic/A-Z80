@@ -199,6 +199,20 @@ while True:
     # Now we can issue register reading commands
     # We are guided on what to read and check by the content of "test.expected" file
 
+    # Special case are the register exchange instructions and there are 3 of them.
+    # The exchange operations are not tested directly; instead, the latches that control register bank access are
+    if xname=="08":                 # EX AF,AF1
+        r[0],r[4] = r[4],r[0]
+        ftest.write("   if (dut.reg_control.bank_af!==1) $fdisplay(f,\"* Bank AF!=1\");\n")
+    if xname=="eb":                 # EX DE,HL
+        r[2],r[3] = r[3],r[2]
+        ftest.write("   if (dut.reg_control.bank_hl_de1!==1) $fdisplay(f,\"* Bank HL/DE!=1\");\n")
+    if xname=="d9":                 # EXX
+        r[1],r[5] = r[5],r[1]
+        r[2],r[6] = r[6],r[2]
+        r[3],r[7] = r[7],r[3]
+        ftest.write("   if (dut.reg_control.bank_exx!==1) $fdisplay(f,\"* Bank EXX!=1\");\n")
+
     # Read the result: registers and memory
     # 0  1  2  3  4   5   6   7   8  9  10 11   (index)
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC
