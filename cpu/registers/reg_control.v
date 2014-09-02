@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Aug 28 23:30:07 2014"
+// CREATED		"Mon Sep 01 22:40:26 2014"
 
 module reg_control(
 	ctl_reg_exx,
@@ -99,6 +99,10 @@ output wire	reg_gp_we;
 output wire	reg_sys_we_lo;
 output wire	reg_sys_we_hi;
 
+reg	bank_af;
+reg	bank_exx;
+reg	bank_hl_de1;
+reg	bank_hl_de2;
 wire	SYNTHESIZED_WIRE_57;
 wire	SYNTHESIZED_WIRE_58;
 wire	SYNTHESIZED_WIRE_2;
@@ -107,27 +111,23 @@ wire	SYNTHESIZED_WIRE_60;
 wire	SYNTHESIZED_WIRE_5;
 wire	SYNTHESIZED_WIRE_61;
 wire	SYNTHESIZED_WIRE_10;
-reg	SYNTHESIZED_WIRE_62;
+wire	SYNTHESIZED_WIRE_62;
 wire	SYNTHESIZED_WIRE_63;
 wire	SYNTHESIZED_WIRE_64;
-reg	SYNTHESIZED_WIRE_65;
-wire	SYNTHESIZED_WIRE_66;
-wire	SYNTHESIZED_WIRE_67;
+wire	SYNTHESIZED_WIRE_65;
 wire	SYNTHESIZED_WIRE_21;
 wire	SYNTHESIZED_WIRE_23;
-reg	SYNTHESIZED_WIRE_68;
 wire	SYNTHESIZED_WIRE_24;
 wire	SYNTHESIZED_WIRE_25;
-reg	SYNTHESIZED_WIRE_69;
 wire	SYNTHESIZED_WIRE_30;
 wire	SYNTHESIZED_WIRE_31;
 wire	SYNTHESIZED_WIRE_32;
-wire	SYNTHESIZED_WIRE_70;
+wire	SYNTHESIZED_WIRE_66;
 wire	SYNTHESIZED_WIRE_34;
 wire	SYNTHESIZED_WIRE_36;
-wire	SYNTHESIZED_WIRE_71;
+wire	SYNTHESIZED_WIRE_67;
 wire	SYNTHESIZED_WIRE_39;
-wire	SYNTHESIZED_WIRE_72;
+wire	SYNTHESIZED_WIRE_68;
 wire	SYNTHESIZED_WIRE_42;
 wire	SYNTHESIZED_WIRE_43;
 wire	SYNTHESIZED_WIRE_44;
@@ -138,8 +138,8 @@ wire	SYNTHESIZED_WIRE_48;
 wire	SYNTHESIZED_WIRE_49;
 wire	SYNTHESIZED_WIRE_50;
 wire	SYNTHESIZED_WIRE_51;
-wire	SYNTHESIZED_WIRE_73;
-wire	SYNTHESIZED_WIRE_74;
+wire	SYNTHESIZED_WIRE_69;
+wire	SYNTHESIZED_WIRE_70;
 
 assign	reg_sel_wz = ctl_reg_sel_wz;
 assign	reg_sel_ir = ctl_reg_sel_ir;
@@ -148,10 +148,10 @@ assign	reg_sel_gp_lo = ctl_reg_gp_hilo[0];
 assign	reg_sel_sys_lo = ctl_reg_sys_hilo[0];
 assign	reg_sel_sys_hi = ctl_reg_sys_hilo[1];
 assign	reg_gp_we = ctl_reg_gp_we;
-assign	SYNTHESIZED_WIRE_71 = 1;
-assign	SYNTHESIZED_WIRE_72 = 1;
-assign	SYNTHESIZED_WIRE_73 = 1;
-assign	SYNTHESIZED_WIRE_74 = 1;
+assign	SYNTHESIZED_WIRE_67 = 1;
+assign	SYNTHESIZED_WIRE_68 = 1;
+assign	SYNTHESIZED_WIRE_69 = 1;
+assign	SYNTHESIZED_WIRE_70 = 1;
 
 
 
@@ -171,45 +171,45 @@ assign	SYNTHESIZED_WIRE_39 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_58;
 
 assign	reg_sel_iy = SYNTHESIZED_WIRE_61 & SYNTHESIZED_WIRE_10;
 
-assign	reg_sel_af2 = SYNTHESIZED_WIRE_62 & SYNTHESIZED_WIRE_59;
+assign	reg_sel_af2 = bank_af & SYNTHESIZED_WIRE_59;
 
-assign	SYNTHESIZED_WIRE_2 =  ~SYNTHESIZED_WIRE_62;
+assign	SYNTHESIZED_WIRE_2 =  ~bank_af;
 
-assign	SYNTHESIZED_WIRE_49 = SYNTHESIZED_WIRE_63 & SYNTHESIZED_WIRE_64;
+assign	SYNTHESIZED_WIRE_49 = SYNTHESIZED_WIRE_62 & SYNTHESIZED_WIRE_63;
 
-assign	SYNTHESIZED_WIRE_48 = SYNTHESIZED_WIRE_65 & SYNTHESIZED_WIRE_66;
+assign	SYNTHESIZED_WIRE_48 = bank_hl_de2 & SYNTHESIZED_WIRE_64;
 
-assign	SYNTHESIZED_WIRE_44 = SYNTHESIZED_WIRE_67 & SYNTHESIZED_WIRE_64;
+assign	SYNTHESIZED_WIRE_44 = SYNTHESIZED_WIRE_65 & SYNTHESIZED_WIRE_63;
 
-assign	SYNTHESIZED_WIRE_51 = SYNTHESIZED_WIRE_65 & SYNTHESIZED_WIRE_64;
+assign	SYNTHESIZED_WIRE_51 = bank_hl_de2 & SYNTHESIZED_WIRE_63;
 
-assign	SYNTHESIZED_WIRE_50 = SYNTHESIZED_WIRE_63 & SYNTHESIZED_WIRE_66;
+assign	SYNTHESIZED_WIRE_50 = SYNTHESIZED_WIRE_62 & SYNTHESIZED_WIRE_64;
 
 assign	reg_sel_de = SYNTHESIZED_WIRE_58 & SYNTHESIZED_WIRE_21;
 
 assign	reg_sel_hl = SYNTHESIZED_WIRE_58 & SYNTHESIZED_WIRE_23;
 
-assign	reg_sel_de2 = SYNTHESIZED_WIRE_68 & SYNTHESIZED_WIRE_24;
+assign	reg_sel_de2 = bank_exx & SYNTHESIZED_WIRE_24;
 
-assign	reg_sel_hl2 = SYNTHESIZED_WIRE_68 & SYNTHESIZED_WIRE_25;
+assign	reg_sel_hl2 = bank_exx & SYNTHESIZED_WIRE_25;
 
-assign	SYNTHESIZED_WIRE_43 = SYNTHESIZED_WIRE_69 & SYNTHESIZED_WIRE_66;
+assign	SYNTHESIZED_WIRE_43 = bank_hl_de1 & SYNTHESIZED_WIRE_64;
 
-assign	SYNTHESIZED_WIRE_58 =  ~SYNTHESIZED_WIRE_68;
+assign	SYNTHESIZED_WIRE_58 =  ~bank_exx;
 
-assign	SYNTHESIZED_WIRE_47 = SYNTHESIZED_WIRE_69 & SYNTHESIZED_WIRE_64;
+assign	SYNTHESIZED_WIRE_47 = bank_hl_de1 & SYNTHESIZED_WIRE_63;
 
-assign	SYNTHESIZED_WIRE_46 = SYNTHESIZED_WIRE_67 & SYNTHESIZED_WIRE_66;
+assign	SYNTHESIZED_WIRE_46 = SYNTHESIZED_WIRE_65 & SYNTHESIZED_WIRE_64;
 
 assign	SYNTHESIZED_WIRE_57 = SYNTHESIZED_WIRE_30 & SYNTHESIZED_WIRE_31;
 
-assign	SYNTHESIZED_WIRE_67 =  ~SYNTHESIZED_WIRE_69;
+assign	SYNTHESIZED_WIRE_65 =  ~bank_hl_de1;
 
 assign	reg_sys_we_hi = ctl_reg_sys_we | ctl_reg_sys_we_hi;
 
 assign	reg_sel_pc = ctl_reg_sel_pc & SYNTHESIZED_WIRE_32;
 
-assign	SYNTHESIZED_WIRE_64 = SYNTHESIZED_WIRE_70 & SYNTHESIZED_WIRE_34;
+assign	SYNTHESIZED_WIRE_63 = SYNTHESIZED_WIRE_66 & SYNTHESIZED_WIRE_34;
 
 assign	SYNTHESIZED_WIRE_32 =  ~ctl_reg_not_pc;
 
@@ -217,55 +217,55 @@ assign	SYNTHESIZED_WIRE_36 =  ~ctl_reg_gp_sel[1];
 
 assign	reg_sys_we_lo = ctl_reg_sys_we_lo | ctl_reg_sys_we;
 
-assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_70 & use_ixiy;
+assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_66 & use_ixiy;
 
 assign	SYNTHESIZED_WIRE_45 =  ~ctl_reg_gp_sel[0];
 
-assign	SYNTHESIZED_WIRE_42 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_68;
+assign	SYNTHESIZED_WIRE_42 = ctl_reg_ex_de_hl & bank_exx;
 
 assign	SYNTHESIZED_WIRE_34 =  ~use_ixiy;
 
-assign	SYNTHESIZED_WIRE_66 = ctl_reg_gp_sel[0] & SYNTHESIZED_WIRE_36;
+assign	SYNTHESIZED_WIRE_64 = ctl_reg_gp_sel[0] & SYNTHESIZED_WIRE_36;
 
 assign	SYNTHESIZED_WIRE_10 =  ~use_ix;
 
-assign	SYNTHESIZED_WIRE_63 =  ~SYNTHESIZED_WIRE_65;
+assign	SYNTHESIZED_WIRE_62 =  ~bank_hl_de2;
 
 
-always@(posedge SYNTHESIZED_WIRE_39 or negedge nreset or negedge SYNTHESIZED_WIRE_71)
+always@(posedge SYNTHESIZED_WIRE_39 or negedge nreset or negedge SYNTHESIZED_WIRE_67)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_69 <= 0;
+	bank_hl_de1 <= 0;
 	end
 else
-if (!SYNTHESIZED_WIRE_71)
+if (!SYNTHESIZED_WIRE_67)
 	begin
-	SYNTHESIZED_WIRE_69 <= 1;
+	bank_hl_de1 <= 1;
 	end
 else
-	SYNTHESIZED_WIRE_69 <= SYNTHESIZED_WIRE_69 ^ SYNTHESIZED_WIRE_71;
+	bank_hl_de1 <= bank_hl_de1 ^ SYNTHESIZED_WIRE_67;
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_42 or negedge nreset or negedge SYNTHESIZED_WIRE_72)
+always@(posedge SYNTHESIZED_WIRE_42 or negedge nreset or negedge SYNTHESIZED_WIRE_68)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_65 <= 0;
+	bank_hl_de2 <= 0;
 	end
 else
-if (!SYNTHESIZED_WIRE_72)
+if (!SYNTHESIZED_WIRE_68)
 	begin
-	SYNTHESIZED_WIRE_65 <= 1;
+	bank_hl_de2 <= 1;
 	end
 else
-	SYNTHESIZED_WIRE_65 <= SYNTHESIZED_WIRE_65 ^ SYNTHESIZED_WIRE_72;
+	bank_hl_de2 <= bank_hl_de2 ^ SYNTHESIZED_WIRE_68;
 end
 
 assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_43 | SYNTHESIZED_WIRE_44;
 
-assign	SYNTHESIZED_WIRE_70 = SYNTHESIZED_WIRE_45 & ctl_reg_gp_sel[1];
+assign	SYNTHESIZED_WIRE_66 = SYNTHESIZED_WIRE_45 & ctl_reg_gp_sel[1];
 
 
 assign	SYNTHESIZED_WIRE_21 = SYNTHESIZED_WIRE_46 | SYNTHESIZED_WIRE_47;
@@ -284,37 +284,37 @@ assign	SYNTHESIZED_WIRE_30 =  ~ctl_reg_gp_sel[0];
 assign	SYNTHESIZED_WIRE_31 =  ~ctl_reg_gp_sel[1];
 
 
-always@(posedge ctl_reg_exx or negedge nreset or negedge SYNTHESIZED_WIRE_73)
+always@(posedge ctl_reg_exx or negedge nreset or negedge SYNTHESIZED_WIRE_69)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_68 <= 0;
+	bank_exx <= 0;
 	end
 else
-if (!SYNTHESIZED_WIRE_73)
+if (!SYNTHESIZED_WIRE_69)
 	begin
-	SYNTHESIZED_WIRE_68 <= 1;
+	bank_exx <= 1;
 	end
 else
-	SYNTHESIZED_WIRE_68 <= SYNTHESIZED_WIRE_68 ^ SYNTHESIZED_WIRE_73;
+	bank_exx <= bank_exx ^ SYNTHESIZED_WIRE_69;
 end
 
-assign	reg_sel_bc2 = SYNTHESIZED_WIRE_57 & SYNTHESIZED_WIRE_68;
+assign	reg_sel_bc2 = SYNTHESIZED_WIRE_57 & bank_exx;
 
 
-always@(posedge ctl_reg_ex_af or negedge nreset or negedge SYNTHESIZED_WIRE_74)
+always@(posedge ctl_reg_ex_af or negedge nreset or negedge SYNTHESIZED_WIRE_70)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_62 <= 0;
+	bank_af <= 0;
 	end
 else
-if (!SYNTHESIZED_WIRE_74)
+if (!SYNTHESIZED_WIRE_70)
 	begin
-	SYNTHESIZED_WIRE_62 <= 1;
+	bank_af <= 1;
 	end
 else
-	SYNTHESIZED_WIRE_62 <= SYNTHESIZED_WIRE_62 ^ SYNTHESIZED_WIRE_74;
+	bank_af <= bank_af ^ SYNTHESIZED_WIRE_70;
 end
 
 
