@@ -689,7 +689,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #017H T13 AB:000 DB:--	4	1	fMRead																														...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead																														
-#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*	*	*	*	0					
+#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*		*	*	0					
 #end																																	
 																																	
 "#if ~use_ixiy && pla[72] && pla[55] : bit b,(hl)"			"4,4"																														
@@ -705,7 +705,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #017H T13 AB:000 DB:--	4	1	fMRead					WZ		W																							...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																														
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead																														
-#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*	*	*	*	0					
+#020H T16 AB:000 DB:--	4	4				1	1						d	<	R	alu	>s0			bus	L	AND		*		*	*	0					
 #end																																	
 																																	
 "#if ~use_ixiy && pla[74] && !pla[55] : set b,r"			4																														
@@ -1137,7 +1137,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #002H T2	?	2									L		d			alu	>s0			bus	L	ADD				*							
 #003H T3	?	3										Z	u			alu	<	res			H	ADD								0			
 #004H T4	?	4									H					alu	>s0		0	bus	L	ADC				*				R		?SF_NEG	Stores result into WZ
-#005H T5	?	5						WZ		W		W				alu	<	res			H	ADC								R		"?SF_NEG, CLR_IX_IY"	and disables any further use of IX/IY
+#005H T5	?	5						WZ		W		W				alu	<	res			H	ADC			*					R		"?SF_NEG, CLR_IX_IY"	and disables any further use of IX/IY
 #end																																	
 																																	
 // Default instruction fetch (M1) state machine																																	

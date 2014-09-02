@@ -1988,7 +1988,6 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
@@ -2047,7 +2046,6 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_pf_sel=`PFSEL_P;
                     ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
@@ -3259,6 +3257,7 @@ if (ixy_d) begin
     if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
+                    ctl_flags_xy_we=1;
                     ctl_flags_sel_cf2=1;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */ end
