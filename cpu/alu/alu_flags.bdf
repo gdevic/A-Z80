@@ -229,7 +229,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 1440 200 1456)
+	(rect 24 1448 200 1464)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_flags_cf_cpl" (rect 9 0 88 12)(font "Arial" ))
 	(pt 176 8)
@@ -485,7 +485,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 920 1216 1096 1232)
+	(rect 904 1296 1080 1312)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "flags_cf" (rect 90 0 131 12)(font "Arial" ))
 	(pt 0 8)
@@ -504,6 +504,22 @@ applicable agreement for further details.
 	(rect 864 1024 1040 1040)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "flags_nf" (rect 90 0 131 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 904 1200 1080 1216)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "flags_cf_latch" (rect 90 0 160 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -1813,7 +1829,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 728 1192 792 1240)
+	(rect 712 1272 776 1320)
 	(text "OR2" (rect 1 0 19 10)(font "Arial" (font_size 6)))
 	(text "inst64" (rect 3 37 32 49)(font "Arial" ))
 	(port
@@ -1882,7 +1898,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 600 1176 696 1272)
+	(rect 584 1256 680 1352)
 	(text "alu_mux_2" (rect 5 0 66 14)(font "Arial" (font_size 8)))
 	(text "inst_mux_cf2" (rect 8 80 75 92)(font "Arial" ))
 	(port
@@ -1975,7 +1991,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 824 1200 888 1248)
+	(rect 808 1280 872 1328)
 	(text "XOR" (rect 1 0 21 10)(font "Arial" (font_size 6)))
 	(text "inst18" (rect 3 37 32 49)(font "Arial" ))
 	(port
@@ -2613,36 +2629,8 @@ applicable agreement for further details.
 	(pt 656 864)
 )
 (connector
-	(pt 656 1136)
-	(pt 696 1136)
-)
-(connector
 	(pt 464 1128)
 	(pt 480 1128)
-)
-(connector
-	(pt 656 1136)
-	(pt 656 1168)
-)
-(connector
-	(pt 568 1224)
-	(pt 600 1224)
-)
-(connector
-	(pt 696 1208)
-	(pt 728 1208)
-)
-(connector
-	(pt 792 1216)
-	(pt 824 1216)
-)
-(connector
-	(pt 904 1168)
-	(pt 656 1168)
-)
-(connector
-	(pt 904 1168)
-	(pt 904 1224)
 )
 (connector
 	(pt 304 1144)
@@ -2882,14 +2870,6 @@ applicable agreement for further details.
 	(pt 696 864)
 )
 (connector
-	(pt 888 1224)
-	(pt 904 1224)
-)
-(connector
-	(pt 904 1224)
-	(pt 920 1224)
-)
-(connector
 	(pt 256 752)
 	(pt 256 888)
 )
@@ -2904,10 +2884,6 @@ applicable agreement for further details.
 (connector
 	(pt 552 248)
 	(pt 552 336)
-)
-(connector
-	(pt 568 1304)
-	(pt 552 1304)
 )
 (connector
 	(pt 464 1312)
@@ -2964,16 +2940,6 @@ applicable agreement for further details.
 (connector
 	(pt 232 1160)
 	(pt 304 1160)
-)
-(connector
-	(text "latch_cf" (rect 560 1192 600 1204)(font "Arial" ))
-	(pt 552 1208)
-	(pt 600 1208)
-)
-(connector
-	(text "latch_cf2" (rect 552 1249 564 1295)(font "Arial" )(vertical))
-	(pt 568 1224)
-	(pt 568 1304)
 )
 (connector
 	(pt 256 888)
@@ -3107,42 +3073,6 @@ applicable agreement for further details.
 	(pt 600 608)
 )
 (connector
-	(pt 600 1240)
-	(pt 584 1240)
-)
-(connector
-	(pt 728 1224)
-	(pt 712 1224)
-)
-(connector
-	(pt 824 1232)
-	(pt 808 1232)
-)
-(connector
-	(pt 584 1240)
-	(pt 584 1408)
-)
-(connector
-	(pt 584 1408)
-	(pt 200 1408)
-)
-(connector
-	(pt 712 1224)
-	(pt 712 1432)
-)
-(connector
-	(pt 712 1432)
-	(pt 200 1432)
-)
-(connector
-	(pt 808 1232)
-	(pt 808 1448)
-)
-(connector
-	(pt 200 1448)
-	(pt 808 1448)
-)
-(connector
 	(pt 448 1296)
 	(pt 488 1296)
 )
@@ -3177,6 +3107,95 @@ applicable agreement for further details.
 (connector
 	(pt 200 1376)
 	(pt 240 1376)
+)
+(connector
+	(pt 696 1136)
+	(pt 656 1136)
+)
+(connector
+	(pt 568 1408)
+	(pt 200 1408)
+)
+(connector
+	(pt 656 1136)
+	(pt 656 1240)
+)
+(connector
+	(pt 552 1304)
+	(pt 584 1304)
+)
+(connector
+	(text "latch_cf" (rect 592 1192 632 1204)(font "Arial" ))
+	(pt 568 1288)
+	(pt 584 1288)
+)
+(connector
+	(pt 568 1208)
+	(pt 568 1288)
+)
+(connector
+	(pt 568 1320)
+	(pt 584 1320)
+)
+(connector
+	(pt 568 1408)
+	(pt 568 1320)
+)
+(connector
+	(pt 200 1432)
+	(pt 696 1432)
+)
+(connector
+	(pt 680 1288)
+	(pt 712 1288)
+)
+(connector
+	(pt 696 1304)
+	(pt 712 1304)
+)
+(connector
+	(pt 696 1432)
+	(pt 696 1304)
+)
+(connector
+	(pt 200 1456)
+	(pt 792 1456)
+)
+(connector
+	(pt 776 1296)
+	(pt 808 1296)
+)
+(connector
+	(pt 792 1312)
+	(pt 808 1312)
+)
+(connector
+	(pt 792 1456)
+	(pt 792 1312)
+)
+(connector
+	(pt 656 1240)
+	(pt 888 1240)
+)
+(connector
+	(pt 888 1304)
+	(pt 888 1240)
+)
+(connector
+	(pt 872 1304)
+	(pt 888 1304)
+)
+(connector
+	(pt 888 1304)
+	(pt 904 1304)
+)
+(connector
+	(pt 552 1208)
+	(pt 568 1208)
+)
+(connector
+	(pt 568 1208)
+	(pt 904 1208)
 )
 (junction (pt 768 192))
 (junction (pt 656 192))
@@ -3214,7 +3233,6 @@ applicable agreement for further details.
 (junction (pt 824 328))
 (junction (pt 656 328))
 (junction (pt 656 864))
-(junction (pt 904 1224))
 (junction (pt 552 248))
 (junction (pt 224 1248))
 (junction (pt 232 1160))
@@ -3223,6 +3241,8 @@ applicable agreement for further details.
 (junction (pt 768 600))
 (junction (pt 824 600))
 (junction (pt 672 600))
+(junction (pt 568 1208))
+(junction (pt 888 1304))
 (text "Connect flags directly to other modules" (rect 864 184 1085 198)(font "Arial" (font_size 8)))
 (text "Carry Flag" (rect 480 1080 550 1096)(font "Arial" (font_size 10)))
 (text "Parity Flag" (rect 480 808 554 824)(font "Arial" (font_size 10)))
@@ -3233,15 +3253,15 @@ applicable agreement for further details.
 (text "X Flag" (rect 480 672 522 688)(font "Arial" (font_size 10)))
 (text "H Flag" (rect 480 536 524 552)(font "Arial" (font_size 10)))
 (text "Flag latches" (rect 472 40 555 56)(font "Arial" (font_size 10)))
-(text "Force set" (rect 728 1248 782 1262)(font "Arial" (font_size 8)))
-(text "Force complement" (rect 824 1256 927 1270)(font "Arial" (font_size 8)))
+(text "Force set" (rect 720 1328 774 1342)(font "Arial" (font_size 8)))
+(text "Force complement" (rect 808 1336 911 1350)(font "Arial" (font_size 8)))
 (text "Primary latch" (rect 496 1152 569 1166)(font "Arial" (font_size 8)))
-(text "Secondary latch" (rect 488 1384 581 1398)(font "Arial" (font_size 8)))
+(text "Secondary latch" (rect 480 1376 573 1390)(font "Arial" (font_size 8)))
 (title_block
-	(rect 24 1480 345 1541)
+	(rect 24 1488 345 1549)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_flags" (rect 56 2 194 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Wed Aug 27 08:33:49 2014" (rect 56 3 242 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Sep 01 23:24:57 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

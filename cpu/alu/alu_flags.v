@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Wed Aug 27 08:34:02 2014"
+// CREATED		"Mon Sep 01 23:25:07 2014"
 
 module alu_flags(
 	ctl_flags_oe,
@@ -48,6 +48,7 @@ module alu_flags(
 	flags_pf,
 	flags_cf,
 	flags_nf,
+	flags_cf_latch,
 	db
 );
 
@@ -83,10 +84,10 @@ output wire	flags_hf;
 output wire	flags_pf;
 output wire	flags_cf;
 output wire	flags_nf;
+output wire	flags_cf_latch;
 inout wire	[7:0] db;
 
 reg	latch_cf;
-reg	latch_cf2;
 wire	SYNTHESIZED_WIRE_0;
 reg	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
@@ -126,6 +127,7 @@ wire	SYNTHESIZED_WIRE_35;
 wire	SYNTHESIZED_WIRE_36;
 wire	SYNTHESIZED_WIRE_37;
 wire	SYNTHESIZED_WIRE_38;
+reg	SYNTHESIZED_WIRE_39;
 
 assign	flags_sf = SYNTHESIZED_WIRE_20;
 assign	flags_zf = SYNTHESIZED_WIRE_21;
@@ -223,7 +225,7 @@ end
 always@(ctl_flags_cf2_we or SYNTHESIZED_WIRE_31)
 begin
 if (ctl_flags_cf2_we)
-	latch_cf2 <= SYNTHESIZED_WIRE_31;
+	SYNTHESIZED_WIRE_39 <= SYNTHESIZED_WIRE_31;
 end
 
 
@@ -285,9 +287,10 @@ alu_mux_2	b2v_inst_mux_cf(
 
 alu_mux_2	b2v_inst_mux_cf2(
 	.in0(latch_cf),
-	.in1(latch_cf2),
+	.in1(SYNTHESIZED_WIRE_39),
 	.sel1(ctl_flags_sel_cf2),
 	.out(SYNTHESIZED_WIRE_28));
 
+assign	flags_cf_latch = latch_cf;
 
 endmodule

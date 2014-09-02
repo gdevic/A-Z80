@@ -388,6 +388,22 @@ applicable agreement for further details.
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
 )
 (pin
+	(input)
+	(rect 32 304 208 320)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "flags_cf_latch" (rect 9 0 79 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(output)
 	(rect 648 256 824 272)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
@@ -2148,15 +2164,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "flags_cf" (rect 127 296 168 308)(font "Arial" ))
-	(pt 128 312)
-	(pt 400 312)
-)
-(connector
-	(pt 400 312)
-	(pt 448 312)
-)
-(connector
 	(pt 288 1184)
 	(pt 288 1264)
 )
@@ -2555,6 +2562,14 @@ applicable agreement for further details.
 	(pt 208 1456)
 	(pt 360 1456)
 )
+(connector
+	(pt 208 312)
+	(pt 400 312)
+)
+(connector
+	(pt 400 312)
+	(pt 448 312)
+)
 (junction (pt 456 152))
 (junction (pt 320 216))
 (junction (pt 320 168))
@@ -2581,7 +2596,6 @@ applicable agreement for further details.
 (junction (pt 288 96))
 (junction (pt 232 520))
 (junction (pt 328 640))
-(junction (pt 400 312))
 (junction (pt 264 1168))
 (junction (pt 288 1264))
 (junction (pt 288 1184))
@@ -2593,6 +2607,7 @@ applicable agreement for further details.
 (junction (pt 656 992))
 (junction (pt 656 1024))
 (junction (pt 232 1584))
+(junction (pt 400 312))
 (text "Bit that is shifted in depends on the opcode:" (rect 576 288 824 302)(font "Arial" (font_size 8)))
 (text "000 RLC -> old D[7]" (rect 576 304 685 318)(font "Arial" (font_size 8)))
 (text "001 RRC -> old D[0]" (rect 576 320 686 334)(font "Arial" (font_size 8)))
@@ -2616,7 +2631,7 @@ applicable agreement for further details.
 	(rect 32 1688 353 1749)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / alu_control" (rect 56 2 209 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sun Aug 31 11:24:29 2014" (rect 56 3 237 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Sep 01 23:26:27 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

@@ -209,6 +209,7 @@ wire flags_hf;
 wire flags_pf;
 wire flags_cf;
 wire flags_nf;
+wire flags_cf_latch;
 
 // Module: alu/alu.v
 wire alu_zero;

@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Aug 31 11:24:40 2014"
+// CREATED		"Mon Sep 01 23:26:35 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -38,6 +38,7 @@ module alu_control(
 	ctl_alu_core_hf,
 	ctl_eval_cond,
 	repeat_en,
+	flags_cf_latch,
 	ctl_pf_sel,
 	op543,
 	alu_shift_in,
@@ -75,6 +76,7 @@ input wire	iff2;
 input wire	ctl_alu_core_hf;
 input wire	ctl_eval_cond;
 input wire	repeat_en;
+input wire	flags_cf_latch;
 input wire	[1:0] ctl_pf_sel;
 input wire	[2:0] op543;
 output wire	alu_shift_in;
@@ -217,8 +219,8 @@ alu_mux_4	b2v_inst_pf_sel(
 alu_mux_8	b2v_inst_shift_mux(
 	.in0(alu_shift_db7),
 	.in1(alu_shift_db0),
-	.in2(flags_cf),
-	.in3(flags_cf),
+	.in2(flags_cf_latch),
+	.in3(flags_cf_latch),
 	.in4(SYNTHESIZED_WIRE_28),
 	.in5(alu_shift_db7),
 	.in6(SYNTHESIZED_WIRE_23),
