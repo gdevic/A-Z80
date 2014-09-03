@@ -93,6 +93,7 @@ ctl_reg_sys_we_hi = 0;
 ctl_reg_sys_we = 0;
 ctl_reg_gp_hilo = 0;
 ctl_reg_gp_sel = 0;
+ctl_reg_in = 0;
 ctl_reg_sys_hilo = 0;
 
 // Module: bus/address_latch.v

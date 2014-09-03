@@ -93,6 +93,7 @@ output logic ctl_reg_sys_we_hi,
 output logic ctl_reg_sys_we,
 output logic [1:0] ctl_reg_gp_hilo,
 output logic [1:0] ctl_reg_gp_sel,
+output logic [1:0] ctl_reg_in,
 output logic [1:0] ctl_reg_sys_hilo,
 
 // Module: bus/address_latch.v

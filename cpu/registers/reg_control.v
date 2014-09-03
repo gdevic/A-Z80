@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Sep 01 22:40:26 2014"
+// CREATED		"Tue Sep 02 21:28:52 2014"
 
 module reg_control(
 	ctl_reg_exx,
@@ -34,6 +34,7 @@ module reg_control(
 	ctl_reg_sys_we,
 	ctl_reg_gp_hilo,
 	ctl_reg_gp_sel,
+	ctl_reg_in,
 	ctl_reg_sys_hilo,
 	reg_sel_bc,
 	reg_sel_bc2,
@@ -55,7 +56,10 @@ module reg_control(
 	reg_sel_sys_hi,
 	reg_gp_we,
 	reg_sys_we_lo,
-	reg_sys_we_hi
+	reg_sys_we_hi,
+	reg_in_hi,
+	reg_in_lo,
+	reg_out
 );
 
 
@@ -76,6 +80,7 @@ input wire	ctl_reg_sys_we_hi;
 input wire	ctl_reg_sys_we;
 input wire	[1:0] ctl_reg_gp_hilo;
 input wire	[1:0] ctl_reg_gp_sel;
+input wire	[1:0] ctl_reg_in;
 input wire	[1:0] ctl_reg_sys_hilo;
 output wire	reg_sel_bc;
 output wire	reg_sel_bc2;
@@ -98,6 +103,9 @@ output wire	reg_sel_sys_hi;
 output wire	reg_gp_we;
 output wire	reg_sys_we_lo;
 output wire	reg_sys_we_hi;
+output wire	reg_in_hi;
+output wire	reg_in_lo;
+output wire	reg_out;
 
 reg	bank_af;
 reg	bank_exx;
@@ -148,6 +156,8 @@ assign	reg_sel_gp_lo = ctl_reg_gp_hilo[0];
 assign	reg_sel_sys_lo = ctl_reg_sys_hilo[0];
 assign	reg_sel_sys_hi = ctl_reg_sys_hilo[1];
 assign	reg_gp_we = ctl_reg_gp_we;
+assign	reg_in_hi = ctl_reg_in[1];
+assign	reg_in_lo = ctl_reg_in[0];
 assign	SYNTHESIZED_WIRE_67 = 1;
 assign	SYNTHESIZED_WIRE_68 = 1;
 assign	SYNTHESIZED_WIRE_69 = 1;
@@ -226,6 +236,8 @@ assign	SYNTHESIZED_WIRE_42 = ctl_reg_ex_de_hl & bank_exx;
 assign	SYNTHESIZED_WIRE_34 =  ~use_ixiy;
 
 assign	SYNTHESIZED_WIRE_64 = ctl_reg_gp_sel[0] & SYNTHESIZED_WIRE_36;
+
+assign	reg_out = ~(ctl_reg_in[0] | ctl_reg_in[1]);
 
 assign	SYNTHESIZED_WIRE_10 =  ~use_ix;
 
