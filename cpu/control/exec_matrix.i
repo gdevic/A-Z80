@@ -1562,10 +1562,46 @@ end
 // General Purpose Arithmetic and CPU Control Groups
 if (pla[77]) begin
     $display("pla[77] : daa");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_cf_we=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_sw_2d=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_cf_we=1;
+                    ctl_daa_oe=1; /* Write DAA correction factor to the bus */ end
 end
 
 if (pla[81]) begin

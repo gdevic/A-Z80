@@ -323,6 +323,7 @@ CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condi
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
 
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
+DAA             ctl_daa_oe=1;           // Write DAA correction factor to the bus
 MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
 NonRep          nonRep=1;               // Non-repeating block instruction
 WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
