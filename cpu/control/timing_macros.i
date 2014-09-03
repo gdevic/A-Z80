@@ -277,6 +277,7 @@ REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 *       ctl_flags_cf_we=1;
 0       ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; // Clear CF going into the ALU core
 1       ctl_flags_cf_set=1;                     // Set CF going into the ALU core
+^       ctl_flags_cf_we=1;  ctl_flags_cf_cpl=1; // CCF
 :CF2
 W       ctl_flags_cf2_we=1;
 R       ctl_flags_sel_cf2=1;
@@ -291,9 +292,6 @@ USE_SP          ctl_reg_use_sp=1;                           // For 16-bit loads:
 Ex_DE_HL        ctl_reg_ex_de_hl=1;                         // EX DE,HL
 Ex_AF_AF'       ctl_reg_ex_af=1;                            // EX AF,AF'
 EXX             ctl_reg_exx=1;                              // EXX
-
-CCF             ctl_flags_cf_cpl=1;                         // CCF
-SCF             ctl_flags_cf_set=1;                         // SCF
 
 HALT
 
@@ -312,7 +310,7 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 // This is used to correctly set those flags after subtraction operations
 ?NF_HF_CF       ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf;
 ?NF_HF          ctl_flags_hf_cpl=flags_nf;
-
+?~CF_HF         ctl_flags_hf_cpl=!flags_cf;  // Used for CCF
 ?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 

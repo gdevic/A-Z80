@@ -1570,10 +1570,30 @@ end
 
 if (pla[81]) begin
     $display("pla[81] : cpl");
-    if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+                    ctl_alu_sel_op2_neg=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_hf_cpl=flags_nf; end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_op1_sel_zero=1; /* Zero */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+                    ctl_alu_sel_op2_neg=1; end
 end
 
 if (pla[82]) begin
@@ -1622,20 +1642,51 @@ end
 
 if (pla[89]) begin
     $display("pla[89] : ccf");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_cf_we=1; ctl_flags_cf_cpl=1; /* CCF */ end
     if (M1 && T2) begin  fFetch=1;
-                    ctl_flags_cf_cpl=1; /* CCF */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_hf_cpl=!flags_cf; /* Used for CCF */ end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[92]) begin
     $display("pla[92] : scf");
-    if (M1 && T1) begin  fFetch=1; end
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
     if (M1 && T2) begin  fFetch=1;
-                    ctl_flags_cf_set=1; /* SCF */ end
+                    ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_cf_set=1; /* Set CF going into the ALU core */ end
     if (M1 && T3) begin  fFetch=1; end
-    if (M1 && T4) begin  fFetch=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_pf_sel=`PFSEL_P;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
 end
 
 if (pla[95]) begin
