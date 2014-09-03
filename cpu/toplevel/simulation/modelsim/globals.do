@@ -101,6 +101,7 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_s
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_sys_we
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_gp_hilo
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_gp_sel
+add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_in
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_sys_hilo
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_inc_cy
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_inc_dec
@@ -183,6 +184,7 @@ add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_hf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_pf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_cf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_nf
+add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_cf_latch
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_zero
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_parity_out
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_high_eq_9
@@ -218,6 +220,9 @@ add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_sel
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_gp_we
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_sys_we_lo
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_sys_we_hi
+add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_in_hi
+add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_in_lo
+add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out
 add wave -noupdate -expand -group bus/address_latch.v /test_fuse/dut/address_is_1
 add wave -noupdate -expand -group bus/address_latch.v -radix hexadecimal /test_fuse/dut/address
 add wave -noupdate -expand -group bus/address_pins.v -radix hexadecimal /test_fuse/dut/A
