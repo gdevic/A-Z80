@@ -364,8 +364,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #042H T8  AB:000 DB:--	3	1	fMWrite					DE		W?																							
 #043H T9  AB:000 DB:21          MREQ	3	2	fMWrite						DE	R?																							
 #044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite																														
-#045H T11 AB:000 DB:21	3	4						BC		W-																							
-#046H T12 AB:000 DB:21	3	5				1	BR		BC	R-																						WriteBC=1	Update repeat flag latch
+#045H T11 AB:000 DB:21	3	4						BC		W-																						WriteBC=1	Update repeat flag latch
+#046H T12 AB:000 DB:21	3	5				1	BR		BC	R-																							
 #047H T13 AB:000 DB:--	4	1						PC		W-																							
 #048H T14 AB:000 DB:--	4	2							PC	R-																							
 #049H T15 AB:000 DB:--	4	3						PC		W-																							
@@ -384,8 +384,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #042H T8  AB:000 DB:--	3	1																															
 #043H T9  AB:000 DB:--	3	2																															
 #044H T10 AB:000 DB:--	3	3																															
-#045H T11 AB:000 DB:--	3	4						BC		W-																							
-#046H T12 AB:000 DB:--	3	5				1	BR		BC	R-																						WriteBC=1	Update repeat flag latch
+#045H T11 AB:000 DB:--	3	4						BC		W-																						WriteBC=1	Update repeat flag latch
+#046H T12 AB:000 DB:--	3	5				1	BRZ		BC	R-																							
 #047H T13 AB:000 DB:--	4	1						PC		W-																							
 #048H T14 AB:000 DB:--	4	2							PC	R-																							
 #049H T15 AB:000 DB:--	4	3						PC		W-																							
