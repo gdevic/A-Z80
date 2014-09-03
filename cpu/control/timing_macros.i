@@ -315,6 +315,7 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 ?~CF_HF         ctl_flags_hf_cpl=!flags_cf;  // Used for CCF
 ?SF_NEG         ctl_alu_sel_op2_neg=flags_sf;
 NEG_OP2         ctl_alu_sel_op2_neg=1;
+?NF_SUB         ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=!flags_nf;
 
 // M1 opcode read cycle and the refresh register increment cycle
 OpcodeIR        ctl_ir_we=1;            // Write the opcode into the instruction register
