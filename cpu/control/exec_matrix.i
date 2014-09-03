@@ -1084,8 +1084,8 @@ if (!use_ixiy && pla[52]) begin
                     ctl_flags_pf_we=1; end
 end
 
-if (!use_ixiy && pla[66] && !pla[53]) begin
-    $display("!use_ixiy && pla[66] && !pla[53] : inc/dec r");
+if (pla[66] && !pla[53]) begin
+    $display("pla[66] && !pla[53] : inc/dec r");
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; ctl_reg_in=2'b11; /* Write 8-bit GP register */
                     ctl_sw_2u=1;
@@ -1129,8 +1129,20 @@ if (!use_ixiy && pla[66] && !pla[53]) begin
                     ctl_flags_cf2_we=1; end
 end
 
-if (!use_ixiy && pla[75]) begin
-    $display("!use_ixiy && pla[75] : dec");
+if (pla[75]) begin
+    $display("pla[75] : dec");
+    if (M1 && T1) begin  fFetch=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF going into the ALU core */
+                    ctl_alu_sel_op2_neg=1; end
+    if (M1 && T4) begin  fFetch=1;
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF going into the ALU core */
+                    ctl_alu_sel_op2_neg=1; end
+end
+
+if ((M2 || M4) && pla[75]) begin
+    $display("(M2 || M4) && pla[75] : dec");
     begin 
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1;
                     ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF going into the ALU core */
