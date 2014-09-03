@@ -279,9 +279,11 @@ REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 1       ctl_flags_cf_set=1;                     // Set CF going into the ALU core
 ^       ctl_flags_cf_we=1;  ctl_flags_cf_cpl=1; // CCF
 :CF2
-W       ctl_flags_cf2_we=1;
-R       ctl_flags_sel_cf2=1;
-0       ctl_flags_cf2_we=1; ctl_flags_cf2_clr=1;// Clear CF2 flag
+R       ctl_flags_use_cf2=1;
+W       ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0;
+W.sh    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1;
+W.daa   ctl_flags_cf2_we=1; ctl_flags_cf2_sel=2;
+W.0     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=3;
 
 //-----------------------------------------------------------------------------------------
 // Special sequence macros for some instructions make it simpler for all other entries

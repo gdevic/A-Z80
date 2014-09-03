@@ -881,7 +881,7 @@ if (pla[11]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M3 && T1) begin  end
     if (M3 && T2) begin  end
     if (M3 && T3) begin  end
@@ -1101,7 +1101,7 @@ if (pla[66] && !pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
@@ -1126,7 +1126,7 @@ if (pla[66] && !pla[53]) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
 end
 
 if (pla[75]) begin
@@ -1202,7 +1202,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M2 && T4) begin  nextM=1;
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
@@ -1219,7 +1219,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M3 && T1) begin  fMWrite=1; end
     if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
@@ -1245,7 +1245,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M4 && T4) begin  nextM=1;
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
@@ -1262,7 +1262,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M5 && T1) begin  fMWrite=1; end
     if (M5 && T2) begin  fMWrite=1; end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
@@ -1734,7 +1734,7 @@ if (pla[25]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
@@ -1747,7 +1747,7 @@ if (pla[25]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
 end
 
 if (~use_ixiy && pla[70] && !pla[55]) begin
@@ -1770,7 +1770,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; nextM=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
@@ -1786,7 +1786,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
@@ -1806,7 +1806,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
@@ -1833,7 +1833,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
-                    ctl_flags_sel_cf2=1; end
+                    ctl_flags_use_cf2=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1; end
     if (M2 && T1) begin  fMRead=1;
@@ -1856,7 +1856,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
@@ -1893,7 +1893,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
-                    ctl_flags_cf2_we=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
@@ -3321,6 +3321,7 @@ if (ixy_d) begin
     end else begin
         ctl_alu_core_hf=1;
     end
+                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1; end
     if (T3) begin 
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -3331,12 +3332,11 @@ if (ixy_d) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                    
     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                                                    ctl_pf_sel=`PFSEL_V;
-    if (ctl_alu_op_low) begin
-                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-    end else begin
+    if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_clr=1;/* Clear CF2 flag */ end
+                    ctl_flags_xy_we=1;
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (T4) begin 
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -3349,8 +3349,9 @@ if (ixy_d) begin
     if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
+                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_sel_cf2=1;
+                    ctl_flags_use_cf2=1;
                     ctl_alu_sel_op2_neg=flags_sf; end
     if (T5) begin 
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -3366,7 +3367,6 @@ if (ixy_d) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_xy_we=1;
-                    ctl_flags_sel_cf2=1;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */ end
 end
