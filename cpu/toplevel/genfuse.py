@@ -164,8 +164,8 @@ while True:
     # Similarly, we let the execution continues 2T into the next instruction but we prevent
     # it from writing to system registers so it cannot update PC and IR (again)
     ftest.write("#1 force dut.z80_top.fpga_reset=0;\n")
-    ftest.write("#2 release dut.reg_control.ctl_reg_sys_we;\n")
-    ftest.write("#5 release dut.reg_file.reg_gp_we;\n")
+    ftest.write("#3 release dut.reg_control.ctl_reg_sys_we;\n") # Hold for 3T to have an overlap (avoids a glich)
+    ftest.write("#4 release dut.reg_file.reg_gp_we;\n")
     ftest.write("#1\n")
     total_clks = total_clks + 9
 
