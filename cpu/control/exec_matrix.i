@@ -1275,9 +1275,9 @@ if (pla[69]) begin
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
-                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
-    if (M1 && T3) begin  fFetch=1;
+                    ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+    if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
