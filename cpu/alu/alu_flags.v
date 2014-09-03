@@ -85,7 +85,8 @@ output wire	flags_nf;
 output wire	flags_cf_latch;
 inout wire	[7:0] db;
 
-reg	latch_cf;
+reg	flags_xf;
+reg	flags_yf;
 wire	SYNTHESIZED_WIRE_0;
 reg	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
@@ -106,11 +107,11 @@ wire	SYNTHESIZED_WIRE_16;
 wire	SYNTHESIZED_WIRE_17;
 reg	SYNTHESIZED_WIRE_18;
 reg	SYNTHESIZED_WIRE_19;
-reg	SYNTHESIZED_WIRE_20;
-wire	SYNTHESIZED_WIRE_21;
+wire	SYNTHESIZED_WIRE_20;
+reg	SYNTHESIZED_WIRE_21;
 reg	SYNTHESIZED_WIRE_22;
-reg	SYNTHESIZED_WIRE_23;
-reg	SYNTHESIZED_WIRE_24;
+wire	SYNTHESIZED_WIRE_23;
+wire	SYNTHESIZED_WIRE_24;
 wire	SYNTHESIZED_WIRE_25;
 wire	SYNTHESIZED_WIRE_26;
 wire	SYNTHESIZED_WIRE_27;
@@ -121,22 +122,22 @@ wire	SYNTHESIZED_WIRE_31;
 wire	SYNTHESIZED_WIRE_32;
 wire	SYNTHESIZED_WIRE_33;
 wire	SYNTHESIZED_WIRE_34;
-wire	SYNTHESIZED_WIRE_35;
-wire	SYNTHESIZED_WIRE_36;
-reg	SYNTHESIZED_WIRE_37;
-wire	SYNTHESIZED_WIRE_38;
+reg	SYNTHESIZED_WIRE_35;
+reg	SYNTHESIZED_WIRE_36;
+wire	SYNTHESIZED_WIRE_37;
 
 assign	flags_sf = SYNTHESIZED_WIRE_18;
 assign	flags_zf = SYNTHESIZED_WIRE_19;
-assign	flags_hf = SYNTHESIZED_WIRE_21;
-assign	flags_pf = SYNTHESIZED_WIRE_23;
-assign	flags_cf = SYNTHESIZED_WIRE_25;
-assign	flags_nf = SYNTHESIZED_WIRE_24;
-assign	SYNTHESIZED_WIRE_38 = 0;
+assign	flags_hf = SYNTHESIZED_WIRE_20;
+assign	flags_pf = SYNTHESIZED_WIRE_21;
+assign	flags_cf = SYNTHESIZED_WIRE_23;
+assign	flags_nf = SYNTHESIZED_WIRE_22;
+assign	flags_cf_latch = SYNTHESIZED_WIRE_35;
+assign	SYNTHESIZED_WIRE_37 = 0;
 
 
 
-assign	SYNTHESIZED_WIRE_28 = ctl_flags_cf_we & SYNTHESIZED_WIRE_0;
+assign	SYNTHESIZED_WIRE_26 = ctl_flags_cf_we & SYNTHESIZED_WIRE_0;
 
 assign	SYNTHESIZED_WIRE_4 = db[7] & ctl_flags_bus;
 
@@ -148,7 +149,7 @@ assign	SYNTHESIZED_WIRE_13 = pf_sel & ctl_flags_alu;
 
 assign	SYNTHESIZED_WIRE_15 = db[1] & ctl_flags_bus;
 
-assign	SYNTHESIZED_WIRE_21 = SYNTHESIZED_WIRE_1 ^ ctl_flags_hf_cpl;
+assign	SYNTHESIZED_WIRE_20 = SYNTHESIZED_WIRE_1 ^ ctl_flags_hf_cpl;
 
 assign	SYNTHESIZED_WIRE_17 = db[0] & ctl_flags_bus;
 
@@ -156,30 +157,30 @@ assign	SYNTHESIZED_WIRE_16 = ctl_flags_alu & alu_core_cf_out;
 
 assign	SYNTHESIZED_WIRE_0 =  ~ctl_flags_cf2_we;
 
-assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_2 ^ ctl_flags_cf_cpl;
+assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_2 ^ ctl_flags_cf_cpl;
 
 assign	SYNTHESIZED_WIRE_3 = alu_sf_out & ctl_flags_alu;
 
 
 assign	SYNTHESIZED_WIRE_6 = db[6] & ctl_flags_bus;
 
-assign	SYNTHESIZED_WIRE_33 = SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4;
+assign	SYNTHESIZED_WIRE_31 = SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4;
 
-assign	SYNTHESIZED_WIRE_36 = SYNTHESIZED_WIRE_5 | SYNTHESIZED_WIRE_6;
+assign	SYNTHESIZED_WIRE_34 = SYNTHESIZED_WIRE_5 | SYNTHESIZED_WIRE_6;
 
-assign	SYNTHESIZED_WIRE_35 = SYNTHESIZED_WIRE_7 | SYNTHESIZED_WIRE_8;
+assign	SYNTHESIZED_WIRE_33 = SYNTHESIZED_WIRE_7 | SYNTHESIZED_WIRE_8;
 
-assign	SYNTHESIZED_WIRE_30 = SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_10;
+assign	SYNTHESIZED_WIRE_28 = SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_10;
 
-assign	SYNTHESIZED_WIRE_34 = SYNTHESIZED_WIRE_11 | SYNTHESIZED_WIRE_12;
+assign	SYNTHESIZED_WIRE_32 = SYNTHESIZED_WIRE_11 | SYNTHESIZED_WIRE_12;
 
-assign	SYNTHESIZED_WIRE_32 = SYNTHESIZED_WIRE_13 | SYNTHESIZED_WIRE_14;
+assign	SYNTHESIZED_WIRE_30 = SYNTHESIZED_WIRE_13 | SYNTHESIZED_WIRE_14;
 
-assign	SYNTHESIZED_WIRE_31 = ctl_flags_nf_set | SYNTHESIZED_WIRE_15;
+assign	SYNTHESIZED_WIRE_29 = ctl_flags_nf_set | SYNTHESIZED_WIRE_15;
 
 assign	SYNTHESIZED_WIRE_5 = alu_zero & ctl_flags_alu;
 
-assign	SYNTHESIZED_WIRE_27 = SYNTHESIZED_WIRE_16 | SYNTHESIZED_WIRE_17;
+assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_16 | SYNTHESIZED_WIRE_17;
 
 assign	db[7] = ctl_flags_oe ? SYNTHESIZED_WIRE_18 : 1'bz;
 
@@ -187,21 +188,21 @@ assign	SYNTHESIZED_WIRE_8 = db[5] & ctl_flags_bus;
 
 assign	db[6] = ctl_flags_oe ? SYNTHESIZED_WIRE_19 : 1'bz;
 
-assign	db[5] = ctl_flags_oe ? SYNTHESIZED_WIRE_20 : 1'bz;
+assign	db[5] = ctl_flags_oe ? flags_yf : 1'bz;
 
-assign	db[4] = ctl_flags_oe ? SYNTHESIZED_WIRE_21 : 1'bz;
+assign	db[4] = ctl_flags_oe ? SYNTHESIZED_WIRE_20 : 1'bz;
 
-assign	db[3] = ctl_flags_oe ? SYNTHESIZED_WIRE_22 : 1'bz;
+assign	db[3] = ctl_flags_oe ? flags_xf : 1'bz;
 
-assign	db[2] = ctl_flags_oe ? SYNTHESIZED_WIRE_23 : 1'bz;
+assign	db[2] = ctl_flags_oe ? SYNTHESIZED_WIRE_21 : 1'bz;
 
-assign	db[1] = ctl_flags_oe ? SYNTHESIZED_WIRE_24 : 1'bz;
+assign	db[1] = ctl_flags_oe ? SYNTHESIZED_WIRE_22 : 1'bz;
 
-assign	db[0] = ctl_flags_oe ? SYNTHESIZED_WIRE_25 : 1'bz;
+assign	db[0] = ctl_flags_oe ? SYNTHESIZED_WIRE_23 : 1'bz;
 
 assign	SYNTHESIZED_WIRE_7 = alu_yf_out & ctl_flags_alu;
 
-assign	SYNTHESIZED_WIRE_2 = ctl_flags_cf_set | SYNTHESIZED_WIRE_26;
+assign	SYNTHESIZED_WIRE_2 = ctl_flags_cf_set | SYNTHESIZED_WIRE_24;
 
 assign	SYNTHESIZED_WIRE_10 = db[4] & ctl_flags_bus;
 
@@ -210,84 +211,83 @@ assign	SYNTHESIZED_WIRE_9 = alu_core_cf_out & ctl_flags_alu;
 assign	SYNTHESIZED_WIRE_12 = db[3] & ctl_flags_bus;
 
 
-always@(SYNTHESIZED_WIRE_28 or SYNTHESIZED_WIRE_27)
+always@(SYNTHESIZED_WIRE_26 or SYNTHESIZED_WIRE_25)
 begin
-if (SYNTHESIZED_WIRE_28)
-	latch_cf <= SYNTHESIZED_WIRE_27;
+if (SYNTHESIZED_WIRE_26)
+	SYNTHESIZED_WIRE_35 <= SYNTHESIZED_WIRE_25;
 end
 
 
-always@(ctl_flags_cf2_we or SYNTHESIZED_WIRE_29)
+always@(ctl_flags_cf2_we or SYNTHESIZED_WIRE_27)
 begin
 if (ctl_flags_cf2_we)
-	SYNTHESIZED_WIRE_37 <= SYNTHESIZED_WIRE_29;
+	SYNTHESIZED_WIRE_36 <= SYNTHESIZED_WIRE_27;
 end
 
 
-always@(ctl_flags_hf_we or SYNTHESIZED_WIRE_30)
+always@(ctl_flags_hf_we or SYNTHESIZED_WIRE_28)
 begin
 if (ctl_flags_hf_we)
-	SYNTHESIZED_WIRE_1 <= SYNTHESIZED_WIRE_30;
+	SYNTHESIZED_WIRE_1 <= SYNTHESIZED_WIRE_28;
 end
 
 
-always@(ctl_flags_nf_we or SYNTHESIZED_WIRE_31)
+always@(ctl_flags_nf_we or SYNTHESIZED_WIRE_29)
 begin
 if (ctl_flags_nf_we)
-	SYNTHESIZED_WIRE_24 <= SYNTHESIZED_WIRE_31;
+	SYNTHESIZED_WIRE_22 <= SYNTHESIZED_WIRE_29;
 end
 
 
-always@(ctl_flags_pf_we or SYNTHESIZED_WIRE_32)
+always@(ctl_flags_pf_we or SYNTHESIZED_WIRE_30)
 begin
 if (ctl_flags_pf_we)
-	SYNTHESIZED_WIRE_23 <= SYNTHESIZED_WIRE_32;
+	SYNTHESIZED_WIRE_21 <= SYNTHESIZED_WIRE_30;
 end
 
 
-always@(ctl_flags_sz_we or SYNTHESIZED_WIRE_33)
+always@(ctl_flags_sz_we or SYNTHESIZED_WIRE_31)
 begin
 if (ctl_flags_sz_we)
-	SYNTHESIZED_WIRE_18 <= SYNTHESIZED_WIRE_33;
+	SYNTHESIZED_WIRE_18 <= SYNTHESIZED_WIRE_31;
 end
 
 
-always@(ctl_flags_xy_we or SYNTHESIZED_WIRE_34)
+always@(ctl_flags_xy_we or SYNTHESIZED_WIRE_32)
 begin
 if (ctl_flags_xy_we)
-	SYNTHESIZED_WIRE_22 <= SYNTHESIZED_WIRE_34;
+	flags_xf <= SYNTHESIZED_WIRE_32;
 end
 
 
-always@(ctl_flags_xy_we or SYNTHESIZED_WIRE_35)
+always@(ctl_flags_xy_we or SYNTHESIZED_WIRE_33)
 begin
 if (ctl_flags_xy_we)
-	SYNTHESIZED_WIRE_20 <= SYNTHESIZED_WIRE_35;
+	flags_yf <= SYNTHESIZED_WIRE_33;
 end
 
 
-always@(ctl_flags_sz_we or SYNTHESIZED_WIRE_36)
+always@(ctl_flags_sz_we or SYNTHESIZED_WIRE_34)
 begin
 if (ctl_flags_sz_we)
-	SYNTHESIZED_WIRE_19 <= SYNTHESIZED_WIRE_36;
+	SYNTHESIZED_WIRE_19 <= SYNTHESIZED_WIRE_34;
 end
 
 
 alu_mux_2	b2v_inst_mux_cf(
-	.in0(latch_cf),
-	.in1(SYNTHESIZED_WIRE_37),
+	.in0(SYNTHESIZED_WIRE_35),
+	.in1(SYNTHESIZED_WIRE_36),
 	.sel1(ctl_flags_use_cf2),
-	.out(SYNTHESIZED_WIRE_26));
+	.out(SYNTHESIZED_WIRE_24));
 
 
 alu_mux_4	b2v_inst_mux_cf2(
 	.in0(alu_core_cf_out),
 	.in1(shift_cf_out),
 	.in2(daa_cf_out),
-	.in3(SYNTHESIZED_WIRE_38),
+	.in3(SYNTHESIZED_WIRE_37),
 	.sel(ctl_flags_cf2_sel),
-	.out(SYNTHESIZED_WIRE_29));
+	.out(SYNTHESIZED_WIRE_27));
 
-assign	flags_cf_latch = latch_cf;
 
 endmodule

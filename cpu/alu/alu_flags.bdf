@@ -2322,16 +2322,8 @@ applicable agreement for further details.
 	(pt 576 448)
 )
 (connector
-	(pt 640 456)
-	(pt 696 456)
-)
-(connector
 	(pt 464 720)
 	(pt 576 720)
-)
-(connector
-	(pt 640 728)
-	(pt 696 728)
 )
 (connector
 	(pt 464 856)
@@ -3003,7 +2995,6 @@ applicable agreement for further details.
 	(pt 584 1304)
 )
 (connector
-	(text "latch_cf" (rect 592 1192 632 1204)(font "Arial" ))
 	(pt 568 1288)
 	(pt 584 1288)
 )
@@ -3151,6 +3142,16 @@ applicable agreement for further details.
 (connector
 	(pt 304 1248)
 	(pt 440 1248)
+)
+(connector
+	(text "flags_yf" (rect 652 440 694 452)(font "Arial" ))
+	(pt 640 456)
+	(pt 696 456)
+)
+(connector
+	(text "flags_xf" (rect 648 712 689 724)(font "Arial" ))
+	(pt 640 728)
+	(pt 696 728)
 )
 (junction (pt 768 192))
 (junction (pt 656 192))
