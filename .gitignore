@@ -35,3 +35,6 @@ obj/
 Debug/
 Release/
 *.DotSettings
+
+# ZMAC assembler output directory
+zout/
