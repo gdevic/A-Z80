@@ -1,6 +1,9 @@
 // I/O Model
 module io (Address, Data, CS, WE, OE);
 
+// Set this to 1 if you want debug printout on each IO access
+int debug = 0;
+
 input [15:0] Address;
 inout [7:0] Data;
 input CS, WE, OE;
@@ -15,12 +18,17 @@ initial begin : init
 end : init
 
 always @(!CS && !OE) begin
-    $strobe("[IO] IN A=%H, D=%H", Address, Data);
+    if (debug)
+        $strobe("[IO] IN A=%H, D=%H", Address, Data);
 end
 
 always @(CS or WE)
     if (!CS && !WE) begin
-        $strobe("[IO] OUT A=%H, D=%H", Address, Data);
+        if (debug)
+            $strobe("[IO] OUT A=%H, D=%H", Address, Data);
+        if (Address==2222) begin
+            $write("%c", Data);
+        end
         IO[Address] = Data;
     end
 
