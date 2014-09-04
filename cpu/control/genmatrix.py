@@ -19,10 +19,10 @@ fname = "Timings.csv"
 kname = "timing_macros.i"
 
 # Set this to 1 if you want abbreviated matrix (no-action lines removed)
-abbr = 0
+abbr = 1
 
 # Set this to 1 if you want debug $display() printout on each PLA line
-debug = 1
+debug = 0
 
 # Print this string in front of every line that starts with "ctl_". This helps
 # formatting the output to be more readable.
