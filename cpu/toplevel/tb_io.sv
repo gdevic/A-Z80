@@ -12,6 +12,11 @@ reg [7:0] IO [0:1<<16];
 
 assign Data = (!CS && !OE) ? IO[Address] : {8{1'bz}};
 
+// When printing a text through this IO service, work around the
+// fact that IO lasts 2T so we would be printing on each clock
+// and thus see duplicate characters
+int even = 0;
+
 // Read the initial content of the IO map from file
 initial begin : init
     $readmemh("io.hex", IO);
@@ -27,7 +32,10 @@ always @(CS or WE)
         if (debug)
             $strobe("[IO] OUT A=%H, D=%H", Address, Data);
         if (Address==2222) begin
-            $write("%c", Data);
+            // Print only every 2T
+            if (even)
+                $write("%c", Data);
+            even = even ^ 1;
         end
         IO[Address] = Data;
     end
