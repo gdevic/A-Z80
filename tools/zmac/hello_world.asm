@@ -10,5 +10,5 @@ die:
     jr die
 
 hello:
-    db  10,13,'Hello, World!',10,13,'$'
+    db  13,10,'Hello, World!',13,10,'$'
 end
