@@ -10,7 +10,8 @@ input CS, WE, OE;
 
 reg [7:0] Mem [0:1<<16];
 
-assign Data = (!CS && !OE) ? Mem[Address] : {8{1'bz}};
+// Return data at the specified memory address; return 0x76 for non-initialized memory
+assign Data = (!CS && !OE) ? (Mem[Address]===8'hxx) ? 8'h76 : Mem[Address] : {8{1'bz}};
 
 // Read the initial content of the RAM memory from a file
 initial begin : init
