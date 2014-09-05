@@ -133,7 +133,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 656 216 672)
+	(rect 40 664 216 680)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_in_int_clr" (rect 9 0 70 12)(font "Arial" ))
 	(pt 176 8)
@@ -149,7 +149,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 576 216 592)
+	(rect 40 584 216 600)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "intr" (rect 9 0 24 12)(font "Arial" ))
 	(pt 176 8)
@@ -856,38 +856,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 448 432 512 512)
-	(text "LATCH" (rect 1 0 31 10)(font "Arial" (font_size 6)))
-	(text "instIN_NMI" (rect 3 68 58 80)(font "Arial" ))
-	(port
-		(pt 0 24)
-		(input)
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(line (pt 0 24)(pt 12 24))
-	)
-	(port
-		(pt 0 40)
-		(input)
-		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
-		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
-		(line (pt 0 40)(pt 12 40))
-	)
-	(port
-		(pt 64 32)
-		(output)
-		(text "Q" (rect 45 28 50 40)(font "Courier New" (bold)))
-		(text "Q" (rect 45 28 50 40)(font "Courier New" (bold)))
-		(line (pt 53 32)(pt 64 32))
-	)
-	(drawing
-		(line (pt 12 12)(pt 52 12))
-		(line (pt 12 68)(pt 52 68))
-		(line (pt 12 68)(pt 12 12))
-		(line (pt 52 68)(pt 52 12))
-	)
-)
-(symbol
 	(rect 568 584 640 664)
 	(text "DLATCH" (rect 1 -1 38 9)(font "Arial" (font_size 6)))
 	(text "instIN_INT" (rect 3 68 46 78)(font "Arial" (font_size 6)))
@@ -936,7 +904,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 272 648 336 696)
+	(rect 272 656 336 704)
 	(text "NOR2" (rect 1 0 26 10)(font "Arial" (font_size 6)))
 	(text "inst12" (rect 3 37 32 49)(font "Arial" ))
 	(port
@@ -1002,7 +970,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 472 552 536 600)
+	(rect 472 560 536 608)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "inst20" (rect 3 37 32 49)(font "Arial" ))
 	(port
@@ -1204,6 +1172,69 @@ applicable agreement for further details.
 		(circle (rect 31 12 39 20))
 	)
 )
+(symbol
+	(rect 448 432 520 512)
+	(text "DLATCH" (rect 1 -1 38 9)(font "Arial" (font_size 6)))
+	(text "inst2" (rect 3 68 21 78)(font "Arial" (font_size 6)))
+	(port
+		(pt 40 80)
+		(input)
+		(text "CLRN" (rect 21 59 44 71)(font "Courier New" (bold)))
+		(text "CLRN" (rect 31 58 54 70)(font "Courier New" (bold)))
+		(line (pt 40 80)(pt 40 76))
+	)
+	(port
+		(pt 0 24)
+		(input)
+		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
+		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
+		(line (pt 0 24)(pt 12 24))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
+		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
+		(line (pt 0 40)(pt 12 40))
+	)
+	(port
+		(pt 40 0)
+		(input)
+		(text "PRN" (rect 23 14 40 26)(font "Courier New" (bold)))
+		(text "PRN" (rect 32 11 49 23)(font "Courier New" (bold)))
+		(line (pt 40 4)(pt 40 0))
+	)
+	(port
+		(pt 72 32)
+		(output)
+		(text "Q" (rect 52 28 57 40)(font "Courier New" (bold)))
+		(text "Q" (rect 52 28 57 40)(font "Courier New" (bold)))
+		(line (pt 60 32)(pt 72 32))
+	)
+	(drawing
+		(line (pt 12 12)(pt 60 12))
+		(line (pt 12 68)(pt 60 68))
+		(line (pt 12 68)(pt 12 12))
+		(line (pt 60 68)(pt 60 12))
+		(circle (rect 36 4 44 12))
+		(circle (rect 36 68 44 76))
+	)
+)
+(symbol
+	(rect 472 392 504 408)
+	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
+	(text "inst4" (rect 3 5 26 17)(font "Arial" )(invisible))
+	(port
+		(pt 16 16)
+		(output)
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 19 7 24 19)(font "Courier New" (bold))(invisible))
+		(line (pt 16 16)(pt 16 8))
+	)
+	(drawing
+		(line (pt 8 8)(pt 24 8))
+	)
+)
 (connector
 	(pt 216 272)
 	(pt 272 272)
@@ -1223,10 +1254,6 @@ applicable agreement for further details.
 (connector
 	(pt 384 544)
 	(pt 384 504)
-)
-(connector
-	(pt 336 544)
-	(pt 384 544)
 )
 (connector
 	(text "reset" (rect 222 536 246 548)(font "Arial" ))
@@ -1278,18 +1305,6 @@ applicable agreement for further details.
 	(pt 432 472)
 )
 (connector
-	(pt 216 664)
-	(pt 272 664)
-)
-(connector
-	(pt 336 672)
-	(pt 608 672)
-)
-(connector
-	(pt 608 672)
-	(pt 608 664)
-)
-(connector
 	(pt 432 472)
 	(pt 432 624)
 )
@@ -1308,23 +1323,6 @@ applicable agreement for further details.
 (connector
 	(pt 568 608)
 	(pt 552 608)
-)
-(connector
-	(pt 552 608)
-	(pt 552 576)
-)
-(connector
-	(pt 536 576)
-	(pt 552 576)
-)
-(connector
-	(text "iff1" (rect 377 552 394 564)(font "Arial" ))
-	(pt 472 568)
-	(pt 368 568)
-)
-(connector
-	(pt 216 584)
-	(pt 472 584)
 )
 (connector
 	(pt 656 464)
@@ -1425,14 +1423,6 @@ applicable agreement for further details.
 (connector
 	(pt 432 624)
 	(pt 568 624)
-)
-(connector
-	(pt 512 464)
-	(pt 656 464)
-)
-(connector
-	(pt 656 464)
-	(pt 768 464)
 )
 (connector
 	(pt 416 192)
@@ -1544,14 +1534,67 @@ applicable agreement for further details.
 	(pt 256 984)
 )
 (connector
-	(text "reset" (rect 222 664 246 676)(font "Arial" ))
-	(pt 272 680)
-	(pt 216 680)
-)
-(connector
 	(pt 216 784)
 	(pt 240 784)
 	(bus)
+)
+(connector
+	(pt 520 464)
+	(pt 656 464)
+)
+(connector
+	(pt 656 464)
+	(pt 768 464)
+)
+(connector
+	(pt 488 512)
+	(pt 488 544)
+)
+(connector
+	(pt 336 544)
+	(pt 384 544)
+)
+(connector
+	(pt 384 544)
+	(pt 488 544)
+)
+(connector
+	(pt 488 432)
+	(pt 488 408)
+)
+(connector
+	(pt 552 608)
+	(pt 552 584)
+)
+(connector
+	(pt 552 584)
+	(pt 536 584)
+)
+(connector
+	(text "iff1" (rect 377 560 394 572)(font "Arial" ))
+	(pt 472 576)
+	(pt 368 576)
+)
+(connector
+	(pt 216 592)
+	(pt 472 592)
+)
+(connector
+	(pt 608 680)
+	(pt 336 680)
+)
+(connector
+	(pt 608 664)
+	(pt 608 680)
+)
+(connector
+	(text "reset" (rect 222 672 246 684)(font "Arial" ))
+	(pt 272 688)
+	(pt 216 688)
+)
+(connector
+	(pt 216 672)
+	(pt 272 672)
 )
 (junction (pt 384 280))
 (junction (pt 432 624))
@@ -1563,6 +1606,7 @@ applicable agreement for further details.
 (junction (pt 304 120))
 (junction (pt 432 976))
 (junction (pt 488 1016))
+(junction (pt 384 544))
 (text "IM (Interrupt Mode) register" (rect 312 736 496 752)(font "Arial" (font_size 10)))
 (text "IFF1 and IFF2 flags" (rect 328 32 460 48)(font "Arial" (font_size 10)))
 (text "INT and NMI state flags" (rect 320 352 479 368)(font "Arial" (font_size 10)))
