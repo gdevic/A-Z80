@@ -81,7 +81,8 @@ SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_r
 // System registers
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit WZ, enable SW4 upstream
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
-PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
+// PC will not be written to if we are in HALT state (PC is not being incremented)
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer
@@ -296,12 +297,11 @@ W.0     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=3;
 :Special
 USE_SP          ctl_reg_use_sp=1;                           // For 16-bit loads: use SP instead of AF
 
+// A few more specific states and instructions:
 Ex_DE_HL        ctl_reg_ex_de_hl=1;                         // EX DE,HL
 Ex_AF_AF'       ctl_reg_ex_af=1;                            // EX AF,AF'
 EXX             ctl_reg_exx=1;                              // EXX
-
-HALT
-
+HALT            ctl_state_halt_set=1;                       // Enter HALT state
 DI_EI           ctl_iffx_bit=op3; ctl_iffx_we=1;            // DI/EI
 IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
 
@@ -322,8 +322,11 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 ?NF_SUB         ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=!flags_nf;
 
-// M1 opcode read cycle and the refresh register increment cycle
-OpcodeIR        ctl_ir_we=1;            // Write the opcode into the instruction register
+// M1 opcode read cycle and the refresh register increment cycle:
+// Write the opcode into the instruction register unless we are in halt mode, in which case
+// NOP (0x00) is pushed on the bus instead
+OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt;
+
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits

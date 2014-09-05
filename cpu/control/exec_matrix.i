@@ -13,7 +13,7 @@ if (pla[17] && !pla[50]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
@@ -46,7 +46,7 @@ if (use_ixiy && pla[58]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -84,7 +84,7 @@ if (use_ixiy && pla[59]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -126,14 +126,14 @@ if (pla[40]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -149,7 +149,7 @@ if (pla[50] && !pla[40]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMWrite=1;
@@ -207,7 +207,7 @@ if (pla[38] && pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -218,7 +218,7 @@ if (pla[38] && pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -251,7 +251,7 @@ if (pla[38] && !pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -262,7 +262,7 @@ if (pla[38] && !pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -341,7 +341,7 @@ if (pla[7]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
@@ -353,7 +353,7 @@ if (pla[7]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
@@ -367,7 +367,7 @@ if (pla[30] && pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -378,7 +378,7 @@ if (pla[30] && pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -418,7 +418,7 @@ if (pla[30] && !pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -429,7 +429,7 @@ if (pla[30] && !pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -469,7 +469,7 @@ if (pla[31] && pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -480,7 +480,7 @@ if (pla[31] && pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -522,7 +522,7 @@ if (pla[31] && !pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -533,7 +533,7 @@ if (pla[31] && !pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -792,13 +792,13 @@ if (pla[12]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T2) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T4) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
@@ -863,13 +863,13 @@ if (pla[11]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T2) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T4) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
@@ -940,7 +940,7 @@ if (pla[64]) begin
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_sw_2d=1;
@@ -965,7 +965,7 @@ if (use_ixiy && pla[52]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -1108,7 +1108,7 @@ if (use_ixiy && pla[53]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -1665,7 +1665,8 @@ end
 if (pla[95]) begin
     if (M1 && T1) begin  fFetch=1; end
     if (M1 && T2) begin  fFetch=1; end
-    if (M1 && T3) begin  fFetch=1; end
+    if (M1 && T3) begin  fFetch=1;
+                    ctl_state_halt_set=1; /* Enter HALT state */ end
     if (M1 && T4) begin  fFetch=1; end
 end
 
@@ -2316,7 +2317,7 @@ if (pla[37] && !pla[28]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fIORead=1;
@@ -2380,7 +2381,7 @@ if (pla[37] && pla[28]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_sw_4d=1; /* Read 8-bit general purpose A register, enable SW4 downstream */
@@ -2474,13 +2475,13 @@ if (pla[91] && pla[21]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T2) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T4) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
@@ -2544,13 +2545,13 @@ if (pla[91] && pla[20]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T2) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Write latch and start decrementing */ end
     if (M4 && T4) begin 
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
@@ -2566,7 +2567,7 @@ if (pla[29]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -2577,7 +2578,7 @@ if (pla[29]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -2598,7 +2599,7 @@ if (pla[43]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -2609,7 +2610,7 @@ if (pla[43]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -2628,7 +2629,7 @@ if (pla[47]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin 
@@ -2712,7 +2713,7 @@ if (pla[48]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=!flags_cond_true; end
     if (M3 && T1) begin 
@@ -2834,7 +2835,7 @@ if (pla[26]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=flags_zf; /* Used in DJNZ */ end
     if (M3 && T1) begin 
@@ -2916,7 +2917,7 @@ if (pla[24]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -2927,7 +2928,7 @@ if (pla[24]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -2973,7 +2974,7 @@ if (pla[42]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
@@ -2984,7 +2985,7 @@ if (pla[42]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M3 && T3) begin  fMRead=1; nextM=!flags_cond_true; setM1=!flags_cond_true;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
@@ -3163,14 +3164,14 @@ if (pla[49]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M2 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -3180,7 +3181,7 @@ if (pla[49]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=1; /* Write the opcode into the instruction register */ end
+                    ctl_ir_we=1; ctl_bus_zero_oe=in_halt; end
 // Loading a new instruction immediately changes PLA wires and continues into the new effective instructions' M4/T1 cycle
 end
 
@@ -3401,7 +3402,7 @@ if (M1) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; ctl_inc_cy=1; /* Write latch and start incrementing */ end
     if (M1 && T2) begin  fFetch=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; /* Write 16-bit PC */
                     ctl_bus_inc_oe=1; ctl_inc_cy=1; /* Output enable while holding to increment */
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */
                     ctl_state_tbl_clr=!setCBED; /* Clear CB/ED prefix */ end
@@ -3420,7 +3421,7 @@ if (M1) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1;
                     ctl_flags_cf_we=1;
-                    ctl_ir_we=1; /* Write the opcode into the instruction register */
+                    ctl_ir_we=1; ctl_bus_zero_oe=in_halt;
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin  fFetch=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */

@@ -36,6 +36,7 @@ module execute
     input wire clk,                     // Internal clock signal
     input wire in_intr,                 // Servicing maskable interrupt
     input wire in_nmi,                  // Servicing non-maskable interrupt
+    input wire in_halt,                 // Currently in HALT mode
     input wire im1,                     // Interrupt Mode 1
     input wire im2,                     // Interrupt Mode 2
     input wire use_ixiy,                // Special decode signal
