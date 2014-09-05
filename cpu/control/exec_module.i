@@ -12,7 +12,6 @@ output logic ctl_in_int_clr,
 output logic ctl_iffx_we,
 output logic ctl_iffx_bit,
 output logic ctl_im_we,
-output logic [1:0] ctl_im_sel,
 
 // Module: control/decode_state.v
 output logic ctl_state_iy_set,

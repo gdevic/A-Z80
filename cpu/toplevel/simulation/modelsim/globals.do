@@ -32,7 +32,6 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_in_in
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iffx_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iffx_bit
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_im_we
-add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_im_sel
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_iy_set
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_ixiy_clr
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_ixiy_we
@@ -72,7 +71,6 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_bus
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_alu
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_nf_set
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_daa
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_cf_set
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_cf_cpl
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_cf_we
@@ -81,10 +79,11 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_hf_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_pf_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_nf_we
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_sel_cf2
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_cf2_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_hf_cpl
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_cf2_clr
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_use_cf2
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_hf2_we
+add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_flags_cf2_sel
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_sw_4d
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_sw_4u
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_exx
@@ -185,6 +184,7 @@ add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_pf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_cf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_nf
 add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_cf_latch
+add wave -noupdate -expand -group alu/alu_flags.v /test_fuse/dut/flags_hf2
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_zero
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_parity_out
 add wave -noupdate -expand -group alu/alu.v /test_fuse/dut/alu_high_eq_9

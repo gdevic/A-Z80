@@ -38,7 +38,7 @@ pla_decode  pla_decode ( .* );
 reset       reset_block ( .* );
 sequencer   sequencer ( .*, .hold_clk1(hold_clk_delay), .hold_clk2(hold_clk_timing) );
 execute     execute ( .* );
-interrupts  interrupts ( .* );
+interrupts  interrupts ( .*, .db(db0[4:3]) );
 decode_state decode_state ( .* );
 clk_delay   clk_delay ( .* );
 pin_control pin_control ( .* );

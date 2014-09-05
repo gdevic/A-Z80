@@ -1680,9 +1680,9 @@ end
 
 if (pla[96]) begin
     if (M1 && T1) begin  fFetch=1; end
-    if (M1 && T2) begin  fFetch=1;
-                    ctl_im_sel=op43; ctl_im_we=1; /* IM n */ end
-    if (M1 && T3) begin  fFetch=1; end
+    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T3) begin  fFetch=1;
+                    ctl_im_we=1; /* IM n ('n' is read by opcode[4:3]) */ end
     if (M1 && T4) begin  fFetch=1; end
 end
 

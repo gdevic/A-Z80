@@ -29,7 +29,8 @@ module interrupts(
 	ctl_iffx_we,
 	ctl_iffx_bit,
 	ctl_im_we,
-	ctl_im_sel,
+	clk,
+	db,
 	iff1,
 	iff2,
 	im1,
@@ -51,7 +52,8 @@ input wire	intr;
 input wire	ctl_iffx_we;
 input wire	ctl_iffx_bit;
 input wire	ctl_im_we;
-input wire	[1:0] ctl_im_sel;
+input wire	clk;
+input wire	[1:0] db;
 output wire	iff1;
 output wire	iff2;
 output reg	im1;
@@ -60,140 +62,146 @@ output wire	in_nmi;
 output wire	in_intr;
 
 reg	iff_ALTERA_SYNTHESIZED1;
-reg	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
+wire	SYNTHESIZED_WIRE_0;
+reg	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
-reg	SYNTHESIZED_WIRE_3;
-wire	SYNTHESIZED_WIRE_4;
-wire	SYNTHESIZED_WIRE_24;
-wire	SYNTHESIZED_WIRE_6;
-reg	SYNTHESIZED_WIRE_7;
-wire	SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_3;
+reg	SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_5;
+wire	SYNTHESIZED_WIRE_27;
+wire	SYNTHESIZED_WIRE_7;
+reg	SYNTHESIZED_WIRE_8;
 wire	SYNTHESIZED_WIRE_9;
-wire	SYNTHESIZED_WIRE_11;
-wire	SYNTHESIZED_WIRE_25;
-wire	SYNTHESIZED_WIRE_13;
+wire	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_12;
+wire	SYNTHESIZED_WIRE_28;
 wire	SYNTHESIZED_WIRE_14;
+wire	SYNTHESIZED_WIRE_29;
 wire	SYNTHESIZED_WIRE_16;
-wire	SYNTHESIZED_WIRE_17;
 wire	SYNTHESIZED_WIRE_18;
-wire	SYNTHESIZED_WIRE_19;
-reg	SYNTHESIZED_WIRE_20;
+wire	SYNTHESIZED_WIRE_20;
 wire	SYNTHESIZED_WIRE_21;
 wire	SYNTHESIZED_WIRE_22;
-wire	SYNTHESIZED_WIRE_23;
+reg	SYNTHESIZED_WIRE_23;
+wire	SYNTHESIZED_WIRE_24;
+wire	SYNTHESIZED_WIRE_25;
+wire	SYNTHESIZED_WIRE_26;
 
-assign	iff2 = SYNTHESIZED_WIRE_7;
-assign	in_nmi = SYNTHESIZED_WIRE_0;
-assign	SYNTHESIZED_WIRE_9 = 1;
-assign	SYNTHESIZED_WIRE_11 = 1;
-assign	SYNTHESIZED_WIRE_14 = 1;
-assign	SYNTHESIZED_WIRE_17 = 1;
-assign	SYNTHESIZED_WIRE_22 = 1;
-assign	SYNTHESIZED_WIRE_23 = 1;
-
-
-
-assign	SYNTHESIZED_WIRE_8 = ctl_iffx_we | ctl_iff1_iff2;
-
-assign	SYNTHESIZED_WIRE_25 =  ~reset;
-
-assign	SYNTHESIZED_WIRE_1 =  ~ctl_im_sel[0];
-
-assign	SYNTHESIZED_WIRE_18 = ~(reset | ctl_in_int_clr);
-
-assign	SYNTHESIZED_WIRE_2 =  ~SYNTHESIZED_WIRE_0;
-
-assign	SYNTHESIZED_WIRE_16 = ctl_im_sel[1] & ctl_im_sel[0];
-
-assign	SYNTHESIZED_WIRE_13 = ctl_im_sel[1] & SYNTHESIZED_WIRE_1;
+assign	iff2 = SYNTHESIZED_WIRE_8;
+assign	in_nmi = SYNTHESIZED_WIRE_1;
+assign	SYNTHESIZED_WIRE_10 = 1;
+assign	SYNTHESIZED_WIRE_12 = 1;
+assign	SYNTHESIZED_WIRE_16 = 1;
+assign	SYNTHESIZED_WIRE_20 = 1;
+assign	SYNTHESIZED_WIRE_25 = 1;
+assign	SYNTHESIZED_WIRE_26 = 1;
 
 
 
+assign	SYNTHESIZED_WIRE_9 = ctl_iffx_we | ctl_iff1_iff2;
 
-assign	in_intr = SYNTHESIZED_WIRE_2 & SYNTHESIZED_WIRE_3;
+assign	SYNTHESIZED_WIRE_29 = ctl_im_we & SYNTHESIZED_WIRE_0;
 
-assign	SYNTHESIZED_WIRE_19 = iff_ALTERA_SYNTHESIZED1 & intr;
+assign	SYNTHESIZED_WIRE_28 =  ~reset;
+
+assign	SYNTHESIZED_WIRE_2 =  ~db[0];
+
+assign	SYNTHESIZED_WIRE_21 = ~(reset | ctl_in_int_clr);
+
+assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_1;
+
+assign	SYNTHESIZED_WIRE_18 = db[1] & db[0];
+
+assign	SYNTHESIZED_WIRE_14 = db[1] & SYNTHESIZED_WIRE_2;
 
 
 
-assign	SYNTHESIZED_WIRE_24 = ~(reset | ctl_iffx_clr);
 
-assign	SYNTHESIZED_WIRE_6 = ~(ctl_iff1_clr | SYNTHESIZED_WIRE_4);
+assign	in_intr = SYNTHESIZED_WIRE_3 & SYNTHESIZED_WIRE_4;
 
-assign	SYNTHESIZED_WIRE_4 =  ~SYNTHESIZED_WIRE_24;
-
-assign	SYNTHESIZED_WIRE_21 = ~(reset | ctl_in_nmi_clr);
+assign	SYNTHESIZED_WIRE_22 = iff_ALTERA_SYNTHESIZED1 & intr;
 
 
-always@(SYNTHESIZED_WIRE_6 or SYNTHESIZED_WIRE_9 or SYNTHESIZED_WIRE_8 or SYNTHESIZED_WIRE_7)
+
+assign	SYNTHESIZED_WIRE_0 =  ~clk;
+
+assign	SYNTHESIZED_WIRE_27 = ~(reset | ctl_iffx_clr);
+
+assign	SYNTHESIZED_WIRE_7 = ~(ctl_iff1_clr | SYNTHESIZED_WIRE_5);
+
+assign	SYNTHESIZED_WIRE_5 =  ~SYNTHESIZED_WIRE_27;
+
+assign	SYNTHESIZED_WIRE_24 = ~(reset | ctl_in_nmi_clr);
+
+
+always@(SYNTHESIZED_WIRE_7 or SYNTHESIZED_WIRE_10 or SYNTHESIZED_WIRE_9 or SYNTHESIZED_WIRE_8)
 begin
-if (~SYNTHESIZED_WIRE_6)
+if (~SYNTHESIZED_WIRE_7)
 		iff_ALTERA_SYNTHESIZED1 <= 1'b0;
-else if (~SYNTHESIZED_WIRE_9)
+else if (~SYNTHESIZED_WIRE_10)
 		iff_ALTERA_SYNTHESIZED1 <= 1'b1;
-else if (SYNTHESIZED_WIRE_8)
-	iff_ALTERA_SYNTHESIZED1 <= SYNTHESIZED_WIRE_7;
+else if (SYNTHESIZED_WIRE_9)
+	iff_ALTERA_SYNTHESIZED1 <= SYNTHESIZED_WIRE_8;
 end
 
 
-always@(SYNTHESIZED_WIRE_24 or SYNTHESIZED_WIRE_11 or ctl_iffx_we or ctl_iffx_bit)
+always@(SYNTHESIZED_WIRE_27 or SYNTHESIZED_WIRE_12 or ctl_iffx_we or ctl_iffx_bit)
 begin
-if (~SYNTHESIZED_WIRE_24)
-		SYNTHESIZED_WIRE_7 <= 1'b0;
-else if (~SYNTHESIZED_WIRE_11)
-		SYNTHESIZED_WIRE_7 <= 1'b1;
+if (~SYNTHESIZED_WIRE_27)
+		SYNTHESIZED_WIRE_8 <= 1'b0;
+else if (~SYNTHESIZED_WIRE_12)
+		SYNTHESIZED_WIRE_8 <= 1'b1;
 else if (ctl_iffx_we)
-	SYNTHESIZED_WIRE_7 <= ctl_iffx_bit;
+	SYNTHESIZED_WIRE_8 <= ctl_iffx_bit;
 end
 
 
-always@(SYNTHESIZED_WIRE_25 or SYNTHESIZED_WIRE_14 or ctl_im_we or SYNTHESIZED_WIRE_13)
+always@(SYNTHESIZED_WIRE_28 or SYNTHESIZED_WIRE_16 or SYNTHESIZED_WIRE_29 or SYNTHESIZED_WIRE_14)
 begin
-if (~SYNTHESIZED_WIRE_25)
+if (~SYNTHESIZED_WIRE_28)
 		im1 <= 1'b0;
-else if (~SYNTHESIZED_WIRE_14)
+else if (~SYNTHESIZED_WIRE_16)
 		im1 <= 1'b1;
-else if (ctl_im_we)
-	im1 <= SYNTHESIZED_WIRE_13;
+else if (SYNTHESIZED_WIRE_29)
+	im1 <= SYNTHESIZED_WIRE_14;
 end
 
 
-always@(SYNTHESIZED_WIRE_25 or SYNTHESIZED_WIRE_17 or ctl_im_we or SYNTHESIZED_WIRE_16)
+always@(SYNTHESIZED_WIRE_28 or SYNTHESIZED_WIRE_20 or SYNTHESIZED_WIRE_29 or SYNTHESIZED_WIRE_18)
 begin
-if (~SYNTHESIZED_WIRE_25)
+if (~SYNTHESIZED_WIRE_28)
 		im2 <= 1'b0;
-else if (~SYNTHESIZED_WIRE_17)
+else if (~SYNTHESIZED_WIRE_20)
 		im2 <= 1'b1;
-else if (ctl_im_we)
-	im2 <= SYNTHESIZED_WIRE_16;
+else if (SYNTHESIZED_WIRE_29)
+	im2 <= SYNTHESIZED_WIRE_18;
 end
 
 
-always@(SYNTHESIZED_WIRE_18 or setM1 or SYNTHESIZED_WIRE_19)
-begin
-if (~SYNTHESIZED_WIRE_18)
-		SYNTHESIZED_WIRE_3 <= 1'b0;
-else if (setM1)
-	SYNTHESIZED_WIRE_3 <= SYNTHESIZED_WIRE_19;
-end
-
-
-always@(setM1 or SYNTHESIZED_WIRE_20)
-begin
-if (setM1)
-	SYNTHESIZED_WIRE_0 <= SYNTHESIZED_WIRE_20;
-end
-
-
-always@(SYNTHESIZED_WIRE_21 or SYNTHESIZED_WIRE_23 or nmi or SYNTHESIZED_WIRE_22)
+always@(SYNTHESIZED_WIRE_21 or setM1 or SYNTHESIZED_WIRE_22)
 begin
 if (~SYNTHESIZED_WIRE_21)
-		SYNTHESIZED_WIRE_20 <= 1'b0;
-else if (~SYNTHESIZED_WIRE_23)
-		SYNTHESIZED_WIRE_20 <= 1'b1;
+		SYNTHESIZED_WIRE_4 <= 1'b0;
+else if (setM1)
+	SYNTHESIZED_WIRE_4 <= SYNTHESIZED_WIRE_22;
+end
+
+
+always@(setM1 or SYNTHESIZED_WIRE_23)
+begin
+if (setM1)
+	SYNTHESIZED_WIRE_1 <= SYNTHESIZED_WIRE_23;
+end
+
+
+always@(SYNTHESIZED_WIRE_24 or SYNTHESIZED_WIRE_26 or nmi or SYNTHESIZED_WIRE_25)
+begin
+if (~SYNTHESIZED_WIRE_24)
+		SYNTHESIZED_WIRE_23 <= 1'b0;
+else if (~SYNTHESIZED_WIRE_26)
+		SYNTHESIZED_WIRE_23 <= 1'b1;
 else if (nmi)
-	SYNTHESIZED_WIRE_20 <= SYNTHESIZED_WIRE_22;
+	SYNTHESIZED_WIRE_23 <= SYNTHESIZED_WIRE_25;
 end
 
 

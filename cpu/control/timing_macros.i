@@ -303,7 +303,7 @@ Ex_AF_AF'       ctl_reg_ex_af=1;                            // EX AF,AF'
 EXX             ctl_reg_exx=1;                              // EXX
 HALT            ctl_state_halt_set=1;                       // Enter HALT state
 DI_EI           ctl_iffx_bit=op3; ctl_iffx_we=1;            // DI/EI
-IM              ctl_im_sel=op43; ctl_im_we=1;               // IM n
+IM              ctl_im_we=1;                                // IM n ('n' is read by opcode[4:3])
 
 WZ=IX+d         ixy_d=1;                                    // Compute WZ=IX+d
 IX_IY           ctl_state_ixiy_we=1; ctl_state_iy_set=op5; setIXIY=1;   // IX/IY prefix

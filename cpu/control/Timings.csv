@@ -600,8 +600,8 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 																																	
 #if pla[96] : im n			4																														
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																														
-#006H T2  AB:001 DB:46  M1      MREQ RD	1	2	fMFetch																													IM	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														
+#006H T2  AB:001 DB:46  M1      MREQ RD	1	2	fMFetch																														
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																													IM	M1/T3 reads in mode # from opcode[4:3]
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch																														
 #end																																	
 																																	
