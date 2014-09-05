@@ -14,7 +14,7 @@ input CS, WE, OE;
 reg [7:0] IO [0:1<<16];
 
 // Return data at the specified IO address; return 0xFF for non-initialized IO
-assign Data = (!CS && !OE) ? (IO[Address]==8'hxx) ? 8'hFF : IO[Address] : {8{1'bz}};
+assign Data = (!CS && !OE) ? (IO[Address]===8'hxx) ? 8'hFF : IO[Address] : {8{1'bz}};
 
 // When printing a text through this IO service, work around the
 // fact that IO lasts 2T so we would be printing on each clock
