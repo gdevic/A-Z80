@@ -73,7 +73,7 @@ bus_switch bus_switch ( .* );
 data_switch sw2 ( .sw_up_en(bus_sw_2u), .sw_down_en(bus_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]) );
 
 // Controls writers to the first section of the data bus
-bus_control bus_control ( .* );
+bus_control bus_control ( .*, .db(db0[7:0]) );
 
 data_switch_mask sw1 ( .sw_mask543_en(bus_sw_mask543_en), .sw_up_en(bus_sw_1u), .sw_down_en(bus_sw_1d), .db_up(db0[7:0]), .db_down(db1[7:0]) );
 
