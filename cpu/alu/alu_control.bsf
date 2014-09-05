@@ -110,8 +110,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 224)
 		(input)
-		(text "ctl_daa_66" (rect 0 0 62 14)(font "Arial" (font_size 8)))
-		(text "ctl_daa_66" (rect 21 219 83 233)(font "Arial" (font_size 8)))
+		(text "ctl_66_oe" (rect 0 0 55 14)(font "Arial" (font_size 8)))
+		(text "ctl_66_oe" (rect 21 219 76 233)(font "Arial" (font_size 8)))
 		(line (pt 0 224)(pt 16 224))
 	)
 	(port

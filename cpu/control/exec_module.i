@@ -27,12 +27,12 @@ output logic ctl_repeat_we,
 
 // Module: alu/alu_control.v
 output logic ctl_shift_en,
-output logic ctl_daa_66,
 output logic ctl_daa_oe,
 output logic ctl_alu_op_low,
 output logic ctl_cond_short,
 output logic ctl_alu_core_hf,
 output logic ctl_eval_cond,
+output logic ctl_66_oe,
 output logic [1:0] ctl_pf_sel,
 
 // Module: alu/alu_select.v

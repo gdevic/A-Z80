@@ -43,12 +43,12 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_alu
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_repeat_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_shift_en
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_daa_66
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_daa_oe
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_alu_op_low
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_cond_short
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_alu_core_hf
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_eval_cond
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_66_oe
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_pf_sel
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_alu_oe
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_alu_shift_oe
