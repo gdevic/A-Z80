@@ -26,10 +26,10 @@ lp2:
     push af
     pop bc
 
-    ld  a,c
+    ld  a,b
     ld  hl, text+13
     call tohex
-    ld  a,b
+    ld  a,c
     ld  hl, text+18
     call tohex
 
