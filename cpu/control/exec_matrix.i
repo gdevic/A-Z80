@@ -1522,8 +1522,10 @@ if (pla[77]) begin
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_use_cf2=1;
                     ctl_flags_hf_cpl=flags_nf; end
-    if (M1 && T3) begin  fFetch=1; end
+    if (M1 && T3) begin  fFetch=1;
+                    ctl_flags_hf2_we=1; /* Write HF2 flag (DAA only) */ end
     if (M1 && T4) begin  fFetch=1;
                     ctl_sw_2d=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -1539,6 +1541,7 @@ if (pla[77]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; /* Clear CF going into the ALU core */
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=2;
                     ctl_daa_oe=1; /* Write DAA correction factor to the bus */
                     ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=!flags_nf; end
 end

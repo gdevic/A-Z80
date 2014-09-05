@@ -264,6 +264,7 @@ alu     ctl_flags_alu=1;                        // Load FLAGT from the ALU
 ?
 :HF
 *       ctl_flags_hf_we=1;
+W2      ctl_flags_hf2_we=1;                     // Write HF2 flag (DAA only)
 :PF
 *       ctl_flags_pf_we=1;
 P       ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
