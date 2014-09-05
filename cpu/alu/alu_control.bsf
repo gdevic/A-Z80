@@ -124,8 +124,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 256)
 		(input)
-		(text "flags_hf" (rect 0 0 47 14)(font "Arial" (font_size 8)))
-		(text "flags_hf" (rect 21 251 68 265)(font "Arial" (font_size 8)))
+		(text "flags_hf2" (rect 0 0 54 14)(font "Arial" (font_size 8)))
+		(text "flags_hf2" (rect 21 251 75 265)(font "Arial" (font_size 8)))
 		(line (pt 0 256)(pt 16 256))
 	)
 	(port
@@ -190,6 +190,13 @@ applicable agreement for further details.
 		(text "ctl_alu_core_hf" (rect 0 0 88 14)(font "Arial" (font_size 8)))
 		(text "ctl_alu_core_hf" (rect 21 395 109 409)(font "Arial" (font_size 8)))
 		(line (pt 0 400)(pt 16 400))
+	)
+	(port
+		(pt 0 416)
+		(input)
+		(text "flags_hf" (rect 0 0 47 14)(font "Arial" (font_size 8)))
+		(text "flags_hf" (rect 21 411 68 425)(font "Arial" (font_size 8)))
+		(line (pt 0 416)(pt 16 416))
 	)
 	(port
 		(pt 232 32)
