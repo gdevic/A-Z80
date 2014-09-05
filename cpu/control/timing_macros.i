@@ -81,8 +81,8 @@ SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_r
 // System registers
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit WZ, enable SW4 upstream
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
-// PC will not be written to if we are in HALT state (PC is not being incremented)
-PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=!in_halt; ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
+// PC will not be written to if we are in HALT, INTR or NMI state (PC is not being incremented)
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=!(in_halt | in_intr | in_nmi); ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer
@@ -147,6 +147,7 @@ u       ctl_sw_2u=1;
 :SW1
 <       ctl_sw_1d=1;
 >       ctl_sw_1u=1;
+?
 
 //-----------------------------------------------------------------------------------------
 // Data bus latches and pads control
@@ -322,17 +323,22 @@ CLR_CB_ED       ctl_state_tbl_clr=!setCBED;                 // Clear CB/ED prefi
 NEG_OP2         ctl_alu_sel_op2_neg=1;
 ?NF_SUB         ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=!flags_nf;
 
-// M1 opcode read cycle and the refresh register increment cycle:
-// Write the opcode into the instruction register unless we are in halt mode, in which case
-// NOP (0x00) is pushed on the bus instead
-OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt;
+// M1 opcode read cycle and the refresh register increment cycle
+// Write the opcode into the instruction register unless:
+// 1. We are in HALT mode: push NOP (0x00) on the bus instead
+// 2. We are in INTR mode (IM1): push RST38 (0xFF) on the bus instead
+// 3. We are in NMI mode: push RST38 (0xFF) on the bus instead
+OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & im1) | in_nmi;
+
+// RST instruction uses opcode[5:3] to specify a vector unless it is executed through NMI
+// in which case it disables SW1 and uses a generated 0x66 as the target vector
+MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
+RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
 
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
-
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
 DAA             ctl_daa_oe=1;           // Write DAA correction factor to the bus
-MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
 NonRep          nonRep=1;               // Non-repeating block instruction
 WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
