@@ -76,6 +76,8 @@ logic setIXIY;                          // Set IX/IY flag at the next T cycle
 logic setCBED;                          // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
 logic nonRep;                           // Non-repeating block instruction
+// Suspends incrementing PC through address latch when NMI is being serviced
+logic inc;                              // Defaults to 1 unless servicing NMI
 
 //----------------------------------------------------------
 // Define various shortcuts to field naming
@@ -137,6 +139,7 @@ begin
     ixy_d = 0;
     setIXIY = 0; setCBED = 0;
     nonRep = 0;
+    inc = 1;
 
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0

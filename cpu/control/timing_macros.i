@@ -81,25 +81,25 @@ SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_r
 // System registers
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit WZ, enable SW4 upstream
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
-// PC will not be written to if we are in HALT, INTR or NMI state (PC is not being incremented)
-PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=!(in_halt | in_intr | in_nmi); ctl_reg_sys_hilo=2'b11; // Write 16-bit PC
+// PC will not be incremented if we are in HALT, INTR or NMI state
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; inc=!(in_halt | in_intr | in_nmi); // Write 16-bit PC and control incrementer
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer
 //-----------------------------------------------------------------------------------------
 :inc/dec
 W       ctl_al_we=1;                                        // Write a value from the abus to the address latch
-W+      ctl_al_we=1; ctl_inc_cy=1;                          // Write latch and start incrementing
-W-      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=1;           // Write latch and start decrementing
-W?      ctl_al_we=1; ctl_inc_cy=1; ctl_inc_dec=op3;         // Used for repeat instructions: decrement if op3 is set
+W+      ctl_al_we=1; ctl_inc_cy=inc;                        // Write latch and start incrementing
+W-      ctl_al_we=1; ctl_inc_cy=inc; ctl_inc_dec=1;         // Write latch and start decrementing
+W?      ctl_al_we=1; ctl_inc_cy=inc; ctl_inc_dec=op3;       // Used for repeat instructions: decrement if op3 is set
 
 R       ctl_bus_inc_oe=1;                                   // Output enable incrementer to the abus
-R+      ctl_bus_inc_oe=1; ctl_inc_cy=1;                     // Output enable while holding to increment
-R-      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=1;      // Output enable while holding to decrement
-R?      ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for repeat instructions: decrement if op3 is set
-+/-     ctl_bus_inc_oe=1; ctl_inc_cy=1; ctl_inc_dec=op3;    // Used for INC/DEC: decrement if op3 is set
+R+      ctl_bus_inc_oe=1; ctl_inc_cy=inc;                   // Output enable while holding to increment
+R-      ctl_bus_inc_oe=1; ctl_inc_cy=inc; ctl_inc_dec=1;    // Output enable while holding to decrement
+R?      ctl_bus_inc_oe=1; ctl_inc_cy=inc; ctl_inc_dec=op3;  // Used for repeat instructions: decrement if op3 is set
++/-     ctl_bus_inc_oe=1; ctl_inc_cy=inc; ctl_inc_dec=op3;  // Used for INC/DEC: decrement if op3 is set
 
-<-      ctl_ab_mux_inc=1; ctl_inc_cy=1; ctl_inc_dec=1;      // MUX output to apads while holding to decrement (for push)
+<-      ctl_ab_mux_inc=1; ctl_inc_cy=inc; ctl_inc_dec=1;    // MUX output to apads while holding to decrement (for push)
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint
@@ -333,13 +333,18 @@ OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & i
 // RST instruction uses opcode[5:3] to specify a vector unless it is executed through NMI
 // in which case it disables SW1 and uses a generated 0x66 as the target vector
 MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
-RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
+// Based on the in_nmi state, several things are set:
+// 1. Disable SW1 so the opcode will not get onto db1 bus
+// 2. Generate 0x66 on the db1 bus which will be used as the target vector address
+// 3. Clear IFF1
+RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi; ctl_iff1_clr=in_nmi;
+RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1 (restores it)
 CLR_NMI         ctl_in_nmi_clr=1;
+NO_INTS         ctl_no_ints=1;          // Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD)
 
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
-RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1
 DAA             ctl_daa_oe=1;           // Write DAA correction factor to the bus
 NonRep          nonRep=1;               // Non-repeating block instruction
 WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
