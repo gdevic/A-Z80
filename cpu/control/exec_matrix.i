@@ -1061,7 +1061,8 @@ if (pla[66] && !pla[53]) begin
                     ctl_flags_hf_cpl=flags_nf; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};/* Read 8-bit GP register */
+    if (op4 & op5 & !op3) ctl_bus_zero_oe=1;                /* Trying to read flags? Put 0 on the bus instead. */
+    else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; end /* Read 8-bit GP register */
                     ctl_sw_2d=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
@@ -1676,7 +1677,7 @@ if (pla[97]) begin
                     ctl_iffx_bit=op3; ctl_iffx_we=1; /* DI/EI */ end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_no_ints=1; /* Disable interrupt generation for this opcode */ end
+                    ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
 
 if (pla[96]) begin
@@ -2405,7 +2406,8 @@ if (pla[27] && pla[34]) begin
     if (M1 && T2) begin  fFetch=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
-                    ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3};/* Read 8-bit GP register */
+    if (op4 & op5 & !op3) ctl_bus_zero_oe=1;                /* Trying to read flags? Put 0 on the bus instead. */
+    else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; end /* Read 8-bit GP register */
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
@@ -3202,7 +3204,7 @@ if (pla[44]) begin
                     ctl_state_tbl_cb_set=1; setCBED=1; /* CB-table prefix */ end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_no_ints=1; /* Disable interrupt generation for this opcode */ end
+                    ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
 
 if (pla[51]) begin
@@ -3211,7 +3213,7 @@ if (pla[51]) begin
                     ctl_state_tbl_ed_set=1; setCBED=1; /* ED-table prefix */ end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_no_ints=1; /* Disable interrupt generation for this opcode */ end
+                    ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
 
 if (pla[76]) begin
@@ -3411,8 +3413,8 @@ if (M1) begin
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */
                     ctl_state_tbl_clr=!setCBED; /* Clear CB/ED prefix */ end
     if (M1 && T3) begin  fFetch=1;
-                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; /* Write a value from the abus to the address latch */
+                    ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit IR */
+                    ctl_al_we=1; ctl_inc_cy=inc; /* Write latch and start incrementing */
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_flags_bus=1; /* Load FLAGT from the data bus */
@@ -3428,8 +3430,8 @@ if (M1) begin
                     ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & im1) | in_nmi;
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin  fFetch=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */
+                    ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */
+                    ctl_bus_inc_oe=1; ctl_inc_cy=inc; /* Output enable while holding to increment */
                     ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end
 end
 
