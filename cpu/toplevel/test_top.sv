@@ -25,6 +25,17 @@ initial begin : init
     z.nRESET <= `CLR;
 end : init
 
+// Infuse a NMI at a certain clock
+initial begin : nmi_once
+//    #500    z.nNMI <= `SET;
+//    #1      z.nNMI <= `CLR;
+end : nmi_once
+
+always begin : nmi_rep
+//#500   z.nNMI <= `SET;
+//#1  z.nNMI <= `CLR;
+end : nmi_rep
+
 endmodule
 
 module test_top();
