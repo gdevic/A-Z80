@@ -27,13 +27,16 @@ end : init
 
 // Infuse a NMI at a certain clock
 initial begin : nmi_once
-//    #500    z.nNMI <= `SET;
-//    #1      z.nNMI <= `CLR;
+    repeat (100) @(posedge clk);
+//    z.nNMI <= `SET;
+    repeat (1) @(posedge clk);
+    z.nNMI <= `CLR;
 end : nmi_once
 
+// Test sending a periodic NMI
 always begin : nmi_rep
-//#500   z.nNMI <= `SET;
-//#1  z.nNMI <= `CLR;
+//    #5000 z.nNMI <= `SET;
+    #2    z.nNMI <= `CLR;
 end : nmi_rep
 
 endmodule
