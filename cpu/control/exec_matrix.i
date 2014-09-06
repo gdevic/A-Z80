@@ -3116,7 +3116,8 @@ end
 if (pla[56]) begin
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Use WZ instead of PC (for jumps) */ end
-    if (M1 && T2) begin  fFetch=1; end
+    if (M1 && T2) begin  fFetch=1;
+                    ctl_in_nmi_clr=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM1=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_reg_in=2'b11;

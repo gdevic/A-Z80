@@ -334,6 +334,7 @@ OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & i
 // in which case it disables SW1 and uses a generated 0x66 as the target vector
 MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
 RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
+CLR_NMI         ctl_in_nmi_clr=1;
 
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
