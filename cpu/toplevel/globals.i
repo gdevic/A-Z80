@@ -44,6 +44,7 @@ wire ctl_in_int_clr;
 wire ctl_iffx_we;
 wire ctl_iffx_bit;
 wire ctl_im_we;
+wire ctl_no_ints;
 wire ctl_state_iy_set;
 wire ctl_state_ixiy_clr;
 wire ctl_state_ixiy_we;

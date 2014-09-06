@@ -12,6 +12,7 @@ ctl_in_int_clr = 0;
 ctl_iffx_we = 0;
 ctl_iffx_bit = 0;
 ctl_im_we = 0;
+ctl_no_ints = 0;
 
 // Module: control/decode_state.v
 ctl_state_iy_set = 0;
