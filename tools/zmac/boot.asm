@@ -39,4 +39,23 @@ boot:
     ld  sp,32768
     ; Jump into the executable at 100h
     jmp 100h
+
+;---------------------------------------------------------------------
+; NMI handler
+;---------------------------------------------------------------------
+    org 066h
+    push af
+    push bc
+    push de
+    push hl
+    ld  de,nmi_msg
+    ld  c,9
+    call 5
+    pop hl
+    pop de
+    pop bc
+    pop af
+    retn
+nmi_msg:
+    db  "_NMI_",'$'
 end
