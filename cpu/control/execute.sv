@@ -5,7 +5,6 @@
 //
 // This module implements the instruction execute state logic.
 //============================================================================
-`timescale 1ns/ 100 ps
 
 module execute
 (

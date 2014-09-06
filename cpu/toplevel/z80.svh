@@ -1,6 +1,12 @@
-
 `ifndef Z80_IFC
 `define Z80_IFC
+
+// 5 MHz for a functional simulation (no delay timings)
+`timescale 100 ns/ 100 ns
+
+// Define set and clear for the negative logic pins
+`define CLR 1
+`define SET 0
 
 interface z80_if (input logic CLK);
     logic nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nBUSACK;

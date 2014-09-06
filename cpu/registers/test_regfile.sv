@@ -1,5 +1,8 @@
 // Test register file block
-`timescale 100 ps/ 100 ps
+
+// 5 MHz for a functional simulation (no delay timings)
+`timescale 100 ns/ 100 ns
+
 module test_regfile;
 
 // We have 4 Bi-directional buses that can also be 3-stated:

@@ -1,10 +1,6 @@
 //--------------------------------------------------------------
 // Testbench using Fuse Z80 emulator test vectors
 //--------------------------------------------------------------
-`timescale 100 ps/ 100 ps
-`define CLR 1
-`define SET 0
-
 `include "z80.svh"
 
 module test_bench_fuse(z80_if.tb z);

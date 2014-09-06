@@ -8,7 +8,6 @@
 // (which are processed by genglobals.py) to appear in the list of global
 // control signals ("globals.i") for consistency.
 //============================================================================
-`timescale 100 ps/ 100 ps
 
 module bus_switch
 (

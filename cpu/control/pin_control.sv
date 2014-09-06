@@ -7,7 +7,6 @@
 // All the signalling is internally positive which is better suited to an FPGA
 // implementation. Signals are inverted outside this module.
 //============================================================================
-`timescale 100 ps/ 100 ps
 
 module pin_control
 (

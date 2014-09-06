@@ -1,11 +1,6 @@
 //--------------------------------------------------------------
 // Testbench for the top level design
 //--------------------------------------------------------------
-`timescale 100 ps/ 100 ps
-`define TD  #1
-`define CLR 1
-`define SET 0
-
 `include "z80.svh"
 
 module test_bench_top(z80_if.tb z);
@@ -20,7 +15,7 @@ initial begin : init
     z.nBUSRQ <= `CLR;
     force dut.z80_top.fpga_reset=1;
     z.nRESET <= `SET;
-    #2 force dut.z80_top.fpga_reset=0;
+#2  force dut.z80_top.fpga_reset=0;
     repeat (3) @(posedge clk);
     z.nRESET <= `CLR;
 end : init
@@ -46,7 +41,7 @@ module test_top();
 bit clk = 1;
 // Comment out a version that is needed (time-limited or unlimited)
 //initial repeat (10000) `TD clk = ~clk;
-initial forever `TD clk = ~clk;
+initial forever #1 clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
 z80_top dut(z80);           // Create an instance of our Z80 design

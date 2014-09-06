@@ -1,5 +1,8 @@
 // Test PLA decode and combinatorial static execute
-`timescale 1ns/ 100 ps
+
+// 5 MHz for a functional simulation (no delay timings)
+`timescale 100 ns/ 100 ns
+
 module test_decode;
 
 reg [7:0] ir_sig;

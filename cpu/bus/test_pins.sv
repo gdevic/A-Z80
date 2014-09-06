@@ -1,5 +1,8 @@
 // Test address and data pins blocks
-`timescale 100 ps/ 100 ps
+
+// 5 MHz for a functional simulation (no delay timings)
+`timescale 100 ns/ 100 ns
+
 module test_pins;
 
 // ------------------------ ADDRESS PINS ---------------------
