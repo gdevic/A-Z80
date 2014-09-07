@@ -20,15 +20,15 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 216 112)
+	(rect 64 64 264 160)
 	(text "alu_bit_select" (rect 5 0 82 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
-		(pt 0 32)
+		(pt 0 48)
 		(input)
 		(text "bsel[2..0]" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "bsel[2..0]" (rect 21 27 72 41)(font "Arial" (font_size 8)))
-		(line (pt 0 32)(pt 16 32)(line_width 3))
+		(text "bsel[2..0]" (rect 21 43 72 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
 	)
 	(port
 		(pt 200 32)
@@ -38,13 +38,14 @@ applicable agreement for further details.
 		(line (pt 200 32)(pt 184 32)(line_width 3))
 	)
 	(port
-		(pt 200 48)
+		(pt 200 64)
 		(output)
 		(text "bs_out_high[3..0]" (rect 0 0 97 14)(font "Arial" (font_size 8)))
-		(text "bs_out_high[3..0]" (rect 82 43 179 57)(font "Arial" (font_size 8)))
-		(line (pt 200 48)(pt 184 48)(line_width 3))
+		(text "bs_out_high[3..0]" (rect 82 59 179 73)(font "Arial" (font_size 8)))
+		(line (pt 200 64)(pt 184 64)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 184 80))
 	)
+	(fill (color 217 255 255))
 )

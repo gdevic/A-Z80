@@ -52,7 +52,6 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"
 set_global_assignment -name FITTER_EFFORT "FAST FIT"
-set_global_assignment -name BDF_FILE alu_prep_flags.bdf
 set_global_assignment -name BDF_FILE alu_mux_8.bdf
 set_global_assignment -name BDF_FILE alu_core.bdf
 set_global_assignment -name BDF_FILE alu_bit_select.bdf
