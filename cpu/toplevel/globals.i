@@ -96,6 +96,7 @@ wire ctl_flags_cf2_we;
 wire ctl_flags_hf_cpl;
 wire ctl_flags_use_cf2;
 wire ctl_flags_hf2_we;
+wire ctl_flags_nf_clr;
 wire [1:0] ctl_flags_cf2_sel;
 wire ctl_sw_4d;
 wire ctl_sw_4u;

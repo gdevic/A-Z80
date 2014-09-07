@@ -72,6 +72,7 @@ ctl_flags_cf2_we = 0;
 ctl_flags_hf_cpl = 0;
 ctl_flags_use_cf2 = 0;
 ctl_flags_hf2_we = 0;
+ctl_flags_nf_clr = 0;
 ctl_flags_cf2_sel = 0;
 
 // Module: registers/reg_file.v
