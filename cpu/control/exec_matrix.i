@@ -292,7 +292,7 @@ if (pla[83]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_IFF2;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -311,7 +311,7 @@ if (pla[83]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (pla[57]) begin
@@ -738,7 +738,7 @@ if (pla[12]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_use_cf2=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
@@ -1042,7 +1042,7 @@ if (!use_ixiy && pla[52]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
                     ctl_flags_cf_we=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_sw_2d=1;
@@ -1097,7 +1097,7 @@ if (pla[66] && !pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
 end
@@ -1168,7 +1168,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M2 && T4) begin  nextM=1;
@@ -1210,7 +1210,7 @@ if (!use_ixiy && pla[53]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M4 && T4) begin  nextM=1;
@@ -1242,7 +1242,7 @@ if (pla[69]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
@@ -1328,7 +1328,7 @@ if (op3 && pla[68]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T3) begin  fFetch=1; end
     if (M1 && T4) begin  fFetch=1; contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
@@ -1644,7 +1644,7 @@ if (pla[89]) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; ctl_flags_cf_cpl=1; /* CCF */ end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
@@ -1657,7 +1657,7 @@ if (pla[89]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (pla[92]) begin
@@ -1668,7 +1668,7 @@ if (pla[92]) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
@@ -1680,7 +1680,7 @@ if (pla[92]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (pla[95]) begin
@@ -1720,7 +1720,7 @@ if (pla[25]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
@@ -1738,7 +1738,7 @@ if (pla[25]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
 end
 
@@ -1755,7 +1755,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
@@ -1775,7 +1775,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -1794,7 +1794,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
@@ -1809,7 +1809,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; end
     if (M5 && T2) begin  fMWrite=1; end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
@@ -1842,7 +1842,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
@@ -1857,7 +1857,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; end
     if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
@@ -1878,7 +1878,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_sw_2u=1;
@@ -1893,7 +1893,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_we=1; end
     if (M5 && T2) begin  fMWrite=1; end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
@@ -1911,7 +1911,7 @@ if (pla[15] && op3) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -1955,7 +1955,7 @@ if (pla[15] && op3) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (pla[15] && !op3) begin
@@ -1970,7 +1970,7 @@ if (pla[15] && !op3) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -2026,7 +2026,7 @@ if (pla[15] && !op3) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 // Bit Manipulation Group
@@ -2040,7 +2040,7 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -2058,7 +2058,7 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M4 && T1) begin  fMRead=1; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; end
@@ -2073,7 +2073,7 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;
                     ctl_flags_sz_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (~use_ixiy && pla[72] && pla[55]) begin
@@ -2086,7 +2086,7 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -2111,7 +2111,7 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */ end
@@ -2128,7 +2128,7 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;
                     ctl_flags_sz_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (~use_ixiy && pla[74] && !pla[55]) begin
@@ -2366,7 +2366,7 @@ if (pla[27] && !pla[34]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -2391,7 +2391,7 @@ if (pla[27] && !pla[34]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
 end
 
 if (pla[37] && pla[28]) begin
@@ -2490,10 +2490,12 @@ if (pla[91] && pla[21]) begin
                     ctl_flags_xy_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M2 && T4) begin  fIORead=1; nextM=1;
-                    ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "bus" */
                     ctl_alu_sel_op2_neg=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2596,7 +2598,8 @@ if (pla[91] && pla[20]) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_hf_we=1; end
+                    ctl_flags_hf_we=1;
+                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "bus" */ end
     if (M3 && T3) begin  fIOWrite=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
@@ -3340,7 +3343,7 @@ if (pla[80]) begin
     if (!ctl_alu_op_low) begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
                     ctl_flags_xy_we=1;
@@ -3356,7 +3359,7 @@ if (pla[84]) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
                     ctl_flags_xy_we=1;
@@ -3366,7 +3369,7 @@ end
 if (pla[85]) begin
     begin 
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
                     ctl_flags_xy_we=1;
@@ -3378,7 +3381,7 @@ end
 if (pla[86]) begin
     begin 
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
                     ctl_flags_xy_we=1;
@@ -3390,7 +3393,7 @@ end
 if (pla[88]) begin
     begin 
                     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T1) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
                     ctl_flags_xy_we=1;
@@ -3496,7 +3499,7 @@ if (M1) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
                     ctl_flags_cf_we=1;
                     ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & im1) | in_nmi;
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end

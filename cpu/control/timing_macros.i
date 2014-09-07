@@ -109,7 +109,6 @@ R?      ctl_bus_inc_oe=1; ctl_inc_cy=inc; ctl_inc_dec=op3;  // Used for repeat i
 A       ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
 AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
 B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
-C       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b01;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
 r8 \    // r8 addressing does not allow reading F register (A and F are also indexed as swapped) (ex. in OUT (c),r)
@@ -279,9 +278,10 @@ REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 ?
 -
 :NF
-*       ctl_flags_nf_we=1;
-0       ctl_flags_nf_we=1; ctl_flags_nf_set=0;  // Means we are not setting it
+*       ctl_flags_nf_we=1;                      // Previous NF, to be used when loading FLAGT
+0       ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
 1       ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+S       ctl_flags_nf_we=1;                      // Sign bit, to be used with FLAGT source set to "bus"
 ?
 :CF
 *       ctl_flags_cf_we=1;

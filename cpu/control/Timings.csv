@@ -844,7 +844,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #040H T6  AB:000 DB:--	2	1	fIORead					BC		W																							
 #041H T7  AB:000 DB:--               RD    IORQ	2	2	fIORead								B					alu	>s0		0	bus	L	ADD		*	*	*						NEG_OP2	
 #042H T8  AB:000 DB:--               RD    IORQ	2	3	fIORead									B				alu	<	res			H	ADD		*	*							NEG_OP2	
-#043H T9  AB:000 DB:--               RD    IORQ	2	4	fIORead			1					C		d				>s0			bus												NEG_OP2	
+#043H T9  AB:000 DB:--               RD    IORQ	2	4	fIORead			1							d	<	R		>s0			bus								S				NEG_OP2	
 #044H T10 AB:000 DB:--	3	1	fMWrite					HL		W?																							
 #045H T11 AB:000 DB:B1          MREQ	3	2	fMWrite						HL	R?																							
 #046H T12 AB:000 DB:B1          MREQ    WR	3	3	fMWrite			1	BRZ				B						>s0				L	XOR											
@@ -865,7 +865,7 @@ A-Z80 Timing Table	M_	T_	Function	contM1	contM2	nextM	setM1	A:reg rd	A:reg wr	in
 #041H T7  AB:000 DB:21          MREQ RD	2	2	fMRead						HL	R?																							
 #042H T8  AB:000 DB:21          MREQ RD	2	3	fMRead			1					L		d				>s0			bus													
 #043H T9  AB:000 DB:--	3	1	fIOWrite					BC		W																							
-#044H T10 AB:000 DB:21                  WR IORQ	3	2	fIOWrite										d	<	R	alu	>s0		bus		L	ADD				*							
+#044H T10 AB:000 DB:21                  WR IORQ	3	2	fIOWrite										d	<	R	alu	>s0		bus		L	ADD				*		S					
 #045H T11 AB:000 DB:21                  WR IORQ	3	3	fIOWrite													alu	<	res			H	ADD							*				
 #046H T12 AB:000 DB:21                  WR IORQ	3	4	fIOWrite			1	BRZ				B						>s0				L	XOR											
 #047H T13 AB:000 DB:--	4	1						PC		W-																							
