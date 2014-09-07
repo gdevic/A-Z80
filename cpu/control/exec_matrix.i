@@ -732,19 +732,14 @@ end
 if (pla[12]) begin
     if (M1 && T1) begin  fFetch=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
-                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
-                   
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;
-    if (ctl_alu_op_low) begin
-                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-    end else begin
-        ctl_alu_core_hf=1;
-    end
+                    ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=0; /* Means we are not setting it */
+                    ctl_flags_use_cf2=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -772,11 +767,23 @@ if (pla[12]) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1; end
+                    ctl_flags_hf_we=1;
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit DE, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_al_we=1; ctl_inc_cy=inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_use_cf2=1; end
     if (M3 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_bus_inc_oe=1; ctl_inc_cy=inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
@@ -808,6 +815,7 @@ if (pla[11]) begin
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_op1_sel_zero=1; /* Zero */
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                    
     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
@@ -816,10 +824,10 @@ if (pla[11]) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
-                    ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
+                    ctl_flags_nf_we=1; ctl_flags_nf_set=1;
+                    ctl_flags_use_cf2=1; end
     if (M1 && T2) begin  fFetch=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
@@ -848,10 +856,22 @@ if (pla[11]) begin
     end else begin
         ctl_alu_core_hf=1;
     end
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
+    if (M3 && T1) begin 
+                    ctl_flags_alu=1; /* Load FLAGT from the ALU */
+                    ctl_alu_oe=1; /* Enable ALU onto the data bus */
+                    ctl_alu_res_oe=1; /* Result latch */
+                    ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
+                   
+    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
+    if (ctl_alu_op_low) begin
+                                                              ctl_flags_cf_set=1;
+    end else begin
+        ctl_alu_core_hf=1;
+    end
+                    ctl_flags_sz_we=1;
+                    ctl_flags_use_cf2=1; end
     if (M3 && T4) begin 
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
                     ctl_al_we=1; ctl_inc_cy=inc; ctl_inc_dec=1; /* Write latch and start decrementing */
