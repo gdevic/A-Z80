@@ -88,10 +88,10 @@ add wave -noupdate -expand -group busses -group switches /test_top/dut/bus_switc
 add wave -noupdate -expand -group busses -group switches /test_top/dut/bus_switch/bus_sw_2u
 add wave -noupdate -expand -group busses -group switches /test_top/dut/bus_switch/bus_sw_2d
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1300 ps} 0}
+WaveRestoreCursors {{Cursor 1} {2763700 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 203
-configure wave -valuecolwidth 39
+configure wave -valuecolwidth 40
 configure wave -justifyvalue right
 configure wave -signalnamewidth 2
 configure wave -snapdistance 10
@@ -104,4 +104,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {8400 ps}
+WaveRestoreZoom {2738700 ns} {2765 us}

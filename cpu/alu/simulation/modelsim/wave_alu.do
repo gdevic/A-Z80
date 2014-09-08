@@ -45,12 +45,12 @@ add wave -noupdate /test_alu/cf
 add wave -noupdate /test_alu/pf
 add wave -noupdate /test_alu/hf
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {900 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1100 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 206
-configure wave -valuecolwidth 100
-configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -namecolwidth 180
+configure wave -valuecolwidth 58
+configure wave -justifyvalue right
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -59,6 +59,6 @@ configure wave -gridoffset 0
 configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 1
-configure wave -timelineunits ps
+configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {1200 ps}
+WaveRestoreZoom {0 ns} {2400 ns}

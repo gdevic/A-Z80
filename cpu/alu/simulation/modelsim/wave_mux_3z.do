@@ -8,12 +8,12 @@ add wave -noupdate /test_mux_3z/sel_b_sig
 add wave -noupdate /test_mux_3z/sel_zero_sig
 add wave -noupdate /test_mux_3z/ena_out_sig
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
-quietly wave cursor active 0
-configure wave -namecolwidth 150
-configure wave -valuecolwidth 100
-configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+WaveRestoreCursors {{Cursor 1} {600 ns} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 118
+configure wave -valuecolwidth 59
+configure wave -justifyvalue right
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -22,6 +22,6 @@ configure wave -gridoffset 0
 configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 1
-configure wave -timelineunits ps
+configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {1 ns}
+WaveRestoreZoom {0 ns} {3800 ns}

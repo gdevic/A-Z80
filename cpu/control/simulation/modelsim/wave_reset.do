@@ -12,10 +12,12 @@ add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x1
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x2
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x3
 TreeUpdate [SetDefaultTree]
-configure wave -namecolwidth 150
-configure wave -valuecolwidth 40
-configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+WaveRestoreCursors {{Cursor 1} {3000 ns} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 112
+configure wave -valuecolwidth 73
+configure wave -justifyvalue right
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -24,6 +26,6 @@ configure wave -gridoffset 0
 configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 1
-configure wave -timelineunits ps
+configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {4 ns}
+WaveRestoreZoom {0 ns} {13700 ns}

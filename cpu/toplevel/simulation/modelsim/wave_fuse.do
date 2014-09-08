@@ -51,8 +51,6 @@ add wave -noupdate -group {regfile
 add wave -noupdate -group {regfile
 } /test_fuse/dut/reg_control/reg_in_lo
 add wave -noupdate -group {regfile
-} /test_fuse/dut/reg_control/reg_out
-add wave -noupdate -group {regfile
 } -color Thistle /test_fuse/dut/reg_file/reg_gp_we
 add wave -noupdate -group {regfile
 } -color Gold /test_fuse/dut/reg_file/reg_sel_gp_lo
@@ -125,7 +123,6 @@ add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/ctl_shift_en
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/alu_low_gt_9
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/alu_high_gt_9
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/alu_high_eq_9
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/ctl_daa_66
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/ctl_daa_oe
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/flags_hf
 add wave -noupdate -group {alu control} /test_fuse/dut/alu_control/ctl_alu_op_low
@@ -304,7 +301,7 @@ add wave -noupdate -group state /test_fuse/dut/decode_state/use_ixiy
 add wave -noupdate -group state /test_fuse/dut/decode_state/in_alu
 add wave -noupdate -group state /test_fuse/dut/decode_state/repeat_en
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {4100 ps} 0}
+WaveRestoreCursors {{Cursor 1} {228500 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 163
 configure wave -valuecolwidth 53
@@ -318,6 +315,6 @@ configure wave -gridoffset 0
 configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 0
-configure wave -timelineunits ps
+configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {5600 ps}
+WaveRestoreZoom {203100 ns} {229900 ns}
