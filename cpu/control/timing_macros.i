@@ -39,6 +39,7 @@ CC              setM1=!flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
 BR              setM1=nonRep | !repeat_en;
 BRZ             setM1=nonRep | !repeat_en | flags_zf;
+INT             setM1=!(in_intr & im2); // RST interrupt extension
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint
@@ -55,6 +56,7 @@ SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_
 // System registers
 WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;      // Select 16-bit WZ
 IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit IR
+I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;      // Select 8-bit I register
 PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
 
 // Conditional assertions of WZ, HL instead of PC
@@ -84,6 +86,7 @@ WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
 // PC will not be incremented if we are in HALT, INTR or NMI state
 PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); // Write 16-bit PC and control incrementer
+>       ctl_sw_4u=1;
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer
@@ -119,12 +122,14 @@ r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};// Read 8-bit GP reg
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 // System registers
+Z       ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; // Selecting strictly Z
 I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4u=1; // Read either I or R based on op3 (0 or 1)
 PCh     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
 PCl     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
+>l      ctl_reg_out_lo=1; // Pass only low 8-bit value out of the register file
 
 :D:reg wr
-?       ctl_reg_in=2'b11; // Register to be written is decided elsewhere
+?       ctl_reg_in=2'b11; // 16-bit register to be written is decided elsewhere
 // General purpose registers
 A       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11;
 F       ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
@@ -135,10 +140,11 @@ rh      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; ctl_reg_in=
 rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11; // Write 8-bit GP register low byte
 // System registers
 I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4d=1; ctl_reg_in=2'b11; // Write either I or R based on op3 (0 or 1)
+WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_reg_in=2'b11;
 // This strict selection is used in the (IX+d) state machine to be able to both write to W and output WZ to the address latch
 W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; // Selecting strictly W
 Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; // Selecting strictly Z
-WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_reg_in=2'b11;
+<l      ctl_reg_in=2'b01; // Pass only low 8-bit value into the register file
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)
@@ -330,18 +336,21 @@ NEG_OP2         ctl_alu_sel_op2_neg=1;
 // M1 opcode read cycle and the refresh register increment cycle
 // Write the opcode into the instruction register unless:
 // 1. We are in HALT mode: push NOP (0x00) on the bus instead
-// 2. We are in INTR mode (IM1): push RST38 (0xFF) on the bus instead
+// 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) on the bus instead
 // 3. We are in NMI mode: push RST38 (0xFF) on the bus instead
-OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & im1) | in_nmi;
+OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
 
-// RST instruction uses opcode[5:3] to specify a vector unless it is executed through NMI
-// in which case it disables SW1 and uses a generated 0x66 as the target vector
-MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
+// RST instruction uses opcode[5:3] to specify a vector and this control passes those 3 bits through
+MASK_543        ctl_sw_mask543_en=!((in_intr & im2) | in_nmi);
 // Based on the in_nmi state, several things are set:
 // 1. Disable SW1 so the opcode will not get onto db1 bus
 // 2. Generate 0x66 on the db1 bus which will be used as the target vector address
 // 3. Clear IFF1 (done by the nmi logic on posedge of in_nmi)
 RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
+// Based on the in_intr state, several things are set:
+// 1. IM1 mode, force 0xFF on the db0 bus
+// 2. Clear IFF1 and IFF2 (done by the intr logic on posedge of in_intr)
+RST_INT         ctl_bus_ff_oe=in_intr & im1;
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1 (restores it)
 NO_INTS         ctl_no_ints=1;          // Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD)
 

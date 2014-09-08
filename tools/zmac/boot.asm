@@ -37,7 +37,9 @@ lp0:
 boot:
     ; Set the stack pointer
     ld  sp,32768
+    ld  de,0
     ; Jump into the executable at 100h
+    im 2
     ei
     jmp 100h
 
@@ -45,17 +47,18 @@ boot:
 ; RST38 (also INT M0)  handler
 ;---------------------------------------------------------------------
     org 038h
+    push de
+    ld  de,int_msg
+int_common:
     push af
     push bc
-    push de
     push hl
-    ld  de,int_msg
     ld  c,9
     call 5
     pop hl
-    pop de
     pop bc
     pop af
+    pop de
     ei
     reti
 int_msg:
@@ -79,5 +82,17 @@ int_msg:
     retn
 nmi_msg:
     db  "_NMI_",'$'
+
+;---------------------------------------------------------------------
+; IM2 vector address and the handler (to push 0x80 by the IORQ)
+;---------------------------------------------------------------------
+    org 080h
+    dw  im2_handler
+im2_handler:
+    push de
+    ld  de,int_im2_msg
+    jmp int_common
+int_im2_msg:
+    db  "_IM2_",'$'
 
 end

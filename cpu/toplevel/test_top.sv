@@ -36,7 +36,7 @@ end : nmi_rep
 
 // Infuse an INT at a certain clock
 initial begin : int_once
-    repeat (100) @(posedge clk);
+    repeat (500) @(posedge clk);
 //    z.nINT <= `SET;
     repeat (23) @(posedge clk);
     z.nINT <= `CLR;
@@ -44,7 +44,7 @@ end : int_once
 
 // Test sending a periodic INT
 always begin : int_rep
-//    #5000 z.nINT <= `SET;
+//    #10000 z.nINT <= `SET;
     #23   z.nINT <= `CLR;
 end : int_rep
 
