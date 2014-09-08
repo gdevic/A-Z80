@@ -4,11 +4,7 @@
 ctl_ir_we = 0;
 
 // Module: control/interrupts.v
-ctl_iffx_clr = 0;
-ctl_iff1_clr = 0;
 ctl_iff1_iff2 = 0;
-ctl_in_nmi_clr = 0;
-ctl_in_int_clr = 0;
 ctl_iffx_we = 0;
 ctl_iffx_bit = 0;
 ctl_im_we = 0;

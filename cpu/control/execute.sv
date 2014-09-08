@@ -134,7 +134,8 @@ begin
     contM1 = 0; contM2 = 0;
     nextM = 0;  setM1 = 0;
     // Reset global machine cycle functions
-    fFetch = 0; fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
+    fFetch = M1;    // Fetch is simply always M1
+    fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d = 0;
     setIXIY = 0; setCBED = 0;
     nonRep = 0;

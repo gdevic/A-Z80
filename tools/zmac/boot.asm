@@ -38,7 +38,28 @@ boot:
     ; Set the stack pointer
     ld  sp,32768
     ; Jump into the executable at 100h
+    ei
     jmp 100h
+
+;---------------------------------------------------------------------
+; RST38 (also INT M0)  handler
+;---------------------------------------------------------------------
+    org 038h
+    push af
+    push bc
+    push de
+    push hl
+    ld  de,int_msg
+    ld  c,9
+    call 5
+    pop hl
+    pop de
+    pop bc
+    pop af
+    ei
+    reti
+int_msg:
+    db  "_INT_",'$'
 
 ;---------------------------------------------------------------------
 ; NMI handler
@@ -58,4 +79,5 @@ boot:
     retn
 nmi_msg:
     db  "_NMI_",'$'
+
 end

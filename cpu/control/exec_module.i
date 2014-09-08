@@ -4,11 +4,7 @@
 output logic ctl_ir_we,
 
 // Module: control/interrupts.v
-output logic ctl_iffx_clr,
-output logic ctl_iff1_clr,
 output logic ctl_iff1_iff2,
-output logic ctl_in_nmi_clr,
-output logic ctl_in_int_clr,
 output logic ctl_iffx_we,
 output logic ctl_iffx_bit,
 output logic ctl_im_we,

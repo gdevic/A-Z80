@@ -15,7 +15,8 @@
 //-----------------------------------------------------------------------------------------
 :Function
 //-----------------------------------------------------------------------------------------
-fMFetch         fFetch=1;
+//Fetch is M1
+fMFetch
 fMRead          fMRead=1;
 fMWrite         fMWrite=1;
 fIORead         fIORead=1;
@@ -339,10 +340,9 @@ MASK_543        ctl_sw_mask543_en=1;    // RST instruction needs opcode masked
 // Based on the in_nmi state, several things are set:
 // 1. Disable SW1 so the opcode will not get onto db1 bus
 // 2. Generate 0x66 on the db1 bus which will be used as the target vector address
-// 3. Clear IFF1
-RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi; ctl_iff1_clr=in_nmi;
+// 3. Clear IFF1 (done by the nmi logic on posedge of in_nmi)
+RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
 RETN            ctl_iff1_iff2=1;        // RETN copies IFF2 into IFF1 (restores it)
-CLR_NMI         ctl_in_nmi_clr=1;
 NO_INTS         ctl_no_ints=1;          // Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD)
 
 EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the opcode[5:3]
