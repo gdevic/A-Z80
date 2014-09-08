@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Sep 02 10:37:44 2014"
+// CREATED		"Mon Sep 08 08:21:17 2014"
 
 module reg_file(
 	reg_sel_sys_lo,
@@ -40,9 +40,10 @@ module reg_file(
 	reg_gp_we,
 	reg_sys_we_lo,
 	reg_sys_we_hi,
-	reg_out,
 	reg_in_lo,
 	reg_in_hi,
+	reg_out_lo,
+	reg_out_hi,
 	db_hi_as,
 	db_hi_ds,
 	db_lo_as,
@@ -73,9 +74,10 @@ input wire	reg_sel_af;
 input wire	reg_gp_we;
 input wire	reg_sys_we_lo;
 input wire	reg_sys_we_hi;
-input wire	reg_out;
 input wire	reg_in_lo;
 input wire	reg_in_hi;
+input wire	reg_out_lo;
+input wire	reg_out_hi;
 inout wire	[7:0] db_hi_as;
 inout wire	[7:0] db_hi_ds;
 inout wire	[7:0] db_lo_as;
@@ -496,14 +498,14 @@ assign	db_hi_as[2] = ctl_sw_4d ? gdfx_temp1[2] : 1'bz;
 assign	db_hi_as[1] = ctl_sw_4d ? gdfx_temp1[1] : 1'bz;
 assign	db_hi_as[0] = ctl_sw_4d ? gdfx_temp1[0] : 1'bz;
 
-assign	db_lo_ds[7] = reg_out ? gdfx_temp0[7] : 1'bz;
-assign	db_lo_ds[6] = reg_out ? gdfx_temp0[6] : 1'bz;
-assign	db_lo_ds[5] = reg_out ? gdfx_temp0[5] : 1'bz;
-assign	db_lo_ds[4] = reg_out ? gdfx_temp0[4] : 1'bz;
-assign	db_lo_ds[3] = reg_out ? gdfx_temp0[3] : 1'bz;
-assign	db_lo_ds[2] = reg_out ? gdfx_temp0[2] : 1'bz;
-assign	db_lo_ds[1] = reg_out ? gdfx_temp0[1] : 1'bz;
-assign	db_lo_ds[0] = reg_out ? gdfx_temp0[0] : 1'bz;
+assign	db_lo_ds[7] = reg_out_lo ? gdfx_temp0[7] : 1'bz;
+assign	db_lo_ds[6] = reg_out_lo ? gdfx_temp0[6] : 1'bz;
+assign	db_lo_ds[5] = reg_out_lo ? gdfx_temp0[5] : 1'bz;
+assign	db_lo_ds[4] = reg_out_lo ? gdfx_temp0[4] : 1'bz;
+assign	db_lo_ds[3] = reg_out_lo ? gdfx_temp0[3] : 1'bz;
+assign	db_lo_ds[2] = reg_out_lo ? gdfx_temp0[2] : 1'bz;
+assign	db_lo_ds[1] = reg_out_lo ? gdfx_temp0[1] : 1'bz;
+assign	db_lo_ds[0] = reg_out_lo ? gdfx_temp0[0] : 1'bz;
 
 assign	gdfx_temp0[7] = reg_in_lo ? db_lo_ds[7] : 1'bz;
 assign	gdfx_temp0[6] = reg_in_lo ? db_lo_ds[6] : 1'bz;
@@ -514,14 +516,14 @@ assign	gdfx_temp0[2] = reg_in_lo ? db_lo_ds[2] : 1'bz;
 assign	gdfx_temp0[1] = reg_in_lo ? db_lo_ds[1] : 1'bz;
 assign	gdfx_temp0[0] = reg_in_lo ? db_lo_ds[0] : 1'bz;
 
-assign	db_hi_ds[7] = reg_out ? gdfx_temp1[7] : 1'bz;
-assign	db_hi_ds[6] = reg_out ? gdfx_temp1[6] : 1'bz;
-assign	db_hi_ds[5] = reg_out ? gdfx_temp1[5] : 1'bz;
-assign	db_hi_ds[4] = reg_out ? gdfx_temp1[4] : 1'bz;
-assign	db_hi_ds[3] = reg_out ? gdfx_temp1[3] : 1'bz;
-assign	db_hi_ds[2] = reg_out ? gdfx_temp1[2] : 1'bz;
-assign	db_hi_ds[1] = reg_out ? gdfx_temp1[1] : 1'bz;
-assign	db_hi_ds[0] = reg_out ? gdfx_temp1[0] : 1'bz;
+assign	db_hi_ds[7] = reg_out_hi ? gdfx_temp1[7] : 1'bz;
+assign	db_hi_ds[6] = reg_out_hi ? gdfx_temp1[6] : 1'bz;
+assign	db_hi_ds[5] = reg_out_hi ? gdfx_temp1[5] : 1'bz;
+assign	db_hi_ds[4] = reg_out_hi ? gdfx_temp1[4] : 1'bz;
+assign	db_hi_ds[3] = reg_out_hi ? gdfx_temp1[3] : 1'bz;
+assign	db_hi_ds[2] = reg_out_hi ? gdfx_temp1[2] : 1'bz;
+assign	db_hi_ds[1] = reg_out_hi ? gdfx_temp1[1] : 1'bz;
+assign	db_hi_ds[0] = reg_out_hi ? gdfx_temp1[0] : 1'bz;
 
 assign	gdfx_temp1[7] = reg_in_hi ? db_hi_ds[7] : 1'bz;
 assign	gdfx_temp1[6] = reg_in_hi ? db_hi_ds[6] : 1'bz;

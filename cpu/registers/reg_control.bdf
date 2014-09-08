@@ -324,6 +324,22 @@ applicable agreement for further details.
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
 )
 (pin
+	(input)
+	(rect 32 1488 208 1504)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "ctl_reg_out_lo" (rect 9 0 77 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(output)
 	(rect 1144 216 1320 232)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
@@ -661,7 +677,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 752 1440 928 1456)
+	(rect 824 1440 1000 1456)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_in_hi" (rect 90 0 133 12)(font "Arial" ))
 	(pt 0 8)
@@ -677,7 +693,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 752 1464 928 1480)
+	(rect 824 1464 1000 1480)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reg_in_lo" (rect 90 0 133 12)(font "Arial" ))
 	(pt 0 8)
@@ -693,9 +709,25 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 752 1520 928 1536)
+	(rect 824 1512 1000 1528)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "reg_out" (rect 90 0 126 12)(font "Arial" ))
+	(text "reg_out_hi" (rect 90 0 140 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 824 1552 1000 1568)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "reg_out_lo" (rect 90 0 140 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -2427,6 +2459,63 @@ applicable agreement for further details.
 		(circle (rect 46 20 54 28))
 	)
 )
+(symbol
+	(rect 240 1480 288 1512)
+	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst28" (rect 3 21 32 33)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 13 16))
+	)
+	(port
+		(pt 48 16)
+		(output)
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(line (pt 39 16)(pt 48 16))
+	)
+	(drawing
+		(line (pt 13 25)(pt 13 7))
+		(line (pt 13 7)(pt 31 16))
+		(line (pt 13 25)(pt 31 16))
+		(circle (rect 31 12 39 20))
+	)
+)
+(symbol
+	(rect 728 1496 792 1544)
+	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "inst29" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 42 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 12)(pt 30 12))
+		(line (pt 14 37)(pt 31 37))
+		(line (pt 14 12)(pt 14 37))
+		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
+	)
+)
 (connector
 	(pt 616 680)
 	(pt 600 680)
@@ -3478,12 +3567,32 @@ applicable agreement for further details.
 	(pt 840 544)
 )
 (connector
+	(pt 576 1520)
+	(pt 544 1520)
+)
+(connector
+	(pt 544 1520)
+	(pt 544 1448)
+)
+(connector
+	(pt 576 1536)
+	(pt 528 1536)
+)
+(connector
+	(pt 528 1536)
+	(pt 528 1472)
+)
+(connector
 	(pt 464 1432)
 	(pt 464 1448)
 )
 (connector
 	(pt 440 1432)
 	(pt 440 1472)
+)
+(connector
+	(pt 672 1528)
+	(pt 672 1560)
 )
 (connector
 	(pt 208 1432)
@@ -3496,42 +3605,54 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 576 1520)
-	(pt 544 1520)
-)
-(connector
-	(pt 544 1520)
-	(pt 544 1448)
-)
-(connector
 	(pt 464 1448)
 	(pt 544 1448)
-)
-(connector
-	(text "ctl_reg_in[1]" (rect 637 1432 697 1444)(font "Arial" ))
-	(pt 544 1448)
-	(pt 752 1448)
-)
-(connector
-	(pt 576 1536)
-	(pt 528 1536)
-)
-(connector
-	(pt 528 1536)
-	(pt 528 1472)
 )
 (connector
 	(pt 440 1472)
 	(pt 528 1472)
 )
 (connector
-	(text "ctl_reg_in[0]" (rect 635 1456 695 1468)(font "Arial" ))
+	(text "ctl_reg_in[1]" (rect 709 1432 769 1444)(font "Arial" ))
+	(pt 544 1448)
+	(pt 824 1448)
+)
+(connector
+	(text "ctl_reg_in[0]" (rect 707 1456 767 1468)(font "Arial" ))
 	(pt 528 1472)
-	(pt 752 1472)
+	(pt 824 1472)
+)
+(connector
+	(pt 672 1560)
+	(pt 824 1560)
+)
+(connector
+	(pt 792 1520)
+	(pt 824 1520)
 )
 (connector
 	(pt 640 1528)
-	(pt 752 1528)
+	(pt 672 1528)
+)
+(connector
+	(pt 672 1528)
+	(pt 728 1528)
+)
+(connector
+	(pt 728 1512)
+	(pt 672 1512)
+)
+(connector
+	(pt 672 1512)
+	(pt 672 1496)
+)
+(connector
+	(pt 672 1496)
+	(pt 288 1496)
+)
+(connector
+	(pt 208 1496)
+	(pt 240 1496)
 )
 (junction (pt 600 624))
 (junction (pt 264 312))
@@ -3593,6 +3714,7 @@ applicable agreement for further details.
 (junction (pt 440 1432))
 (junction (pt 544 1448))
 (junction (pt 528 1472))
+(junction (pt 672 1528))
 (text "BC" (rect 440 120 456 134)(font "Arial" (font_size 8)))
 (text "2'b00" (rect 328 120 358 134)(font "Arial" (font_size 8)))
 (text "2'b01" (rect 328 280 358 294)(font "Arial" (font_size 8)))
@@ -3612,9 +3734,9 @@ applicable agreement for further details.
 (text "Set 1" (rect 752 248 781 262)(font "Arial" (font_size 8)))
 (text "Block PC (use for override to WZ, HL for jumps)" (rect 232 1328 503 1342)(font "Arial" (font_size 8)))
 (text "Register gate control" (rect 520 1408 661 1424)(font "Arial" (font_size 10)))
-(text "Register file gate by default enables data \"out\", unless specifically directed to enable \"in\"" (rect 672 1496 1174 1510)(font "Arial" (font_size 8)))
+(text "Register file gate by default enables data \"out\", unless specifically directed to enable \"in\"" (rect 704 1408 1206 1422)(font "Arial" (font_size 8)))
 (title_block
-	(rect 32 1472 353 1533)
+	(rect 32 1536 353 1597)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_control" (rect 56 2 212 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
 	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Sep 02 21:26:18 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))

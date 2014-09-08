@@ -24,14 +24,11 @@ add wave -noupdate -expand -group control/execute.sv /test_fuse/dut/fMWrite
 add wave -noupdate -expand -group control/execute.sv /test_fuse/dut/fIORead
 add wave -noupdate -expand -group control/execute.sv /test_fuse/dut/fIOWrite
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_ir_we
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iffx_clr
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iff1_clr
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iff1_iff2
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_in_nmi_clr
-add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_in_int_clr
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iffx_we
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_iffx_bit
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_im_we
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_no_ints
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_iy_set
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_ixiy_clr
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_state_ixiy_we
@@ -83,6 +80,7 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_hf_cpl
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_use_cf2
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_hf2_we
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_flags_nf_clr
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_flags_cf2_sel
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_sw_4d
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_sw_4u
@@ -98,6 +96,7 @@ add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_n
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_sys_we_lo
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_sys_we_hi
 add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_sys_we
+add wave -noupdate -expand -group control/exec_module.i /test_fuse/dut/ctl_reg_out_lo
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_gp_hilo
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_gp_sel
 add wave -noupdate -expand -group control/exec_module.i -radix hexadecimal /test_fuse/dut/ctl_reg_in
@@ -222,7 +221,8 @@ add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_sys
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_sys_we_hi
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_in_hi
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_in_lo
-add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out
+add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out_hi
+add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out_lo
 add wave -noupdate -expand -group bus/address_latch.v /test_fuse/dut/address_is_1
 add wave -noupdate -expand -group bus/address_latch.v -radix hexadecimal /test_fuse/dut/address
 add wave -noupdate -expand -group bus/address_pins.v -radix hexadecimal /test_fuse/dut/A

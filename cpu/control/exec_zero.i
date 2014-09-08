@@ -88,6 +88,7 @@ ctl_reg_not_pc = 0;
 ctl_reg_sys_we_lo = 0;
 ctl_reg_sys_we_hi = 0;
 ctl_reg_sys_we = 0;
+ctl_reg_out_lo = 0;
 ctl_reg_gp_hilo = 0;
 ctl_reg_gp_sel = 0;
 ctl_reg_in = 0;

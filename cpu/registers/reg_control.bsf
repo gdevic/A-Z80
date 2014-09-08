@@ -157,6 +157,13 @@ applicable agreement for further details.
 		(line (pt 0 320)(pt 16 320)(line_width 3))
 	)
 	(port
+		(pt 0 336)
+		(input)
+		(text "ctl_reg_out_lo" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "ctl_reg_out_lo" (rect 21 331 101 345)(font "Arial" (font_size 8)))
+		(line (pt 0 336)(pt 16 336))
+	)
+	(port
 		(pt 264 32)
 		(output)
 		(text "reg_gp_we" (rect 0 0 66 14)(font "Arial" (font_size 8)))
@@ -320,9 +327,16 @@ applicable agreement for further details.
 	(port
 		(pt 264 400)
 		(output)
-		(text "reg_out" (rect 0 0 43 14)(font "Arial" (font_size 8)))
-		(text "reg_out" (rect 200 395 243 409)(font "Arial" (font_size 8)))
+		(text "reg_out_hi" (rect 0 0 60 14)(font "Arial" (font_size 8)))
+		(text "reg_out_hi" (rect 183 395 243 409)(font "Arial" (font_size 8)))
 		(line (pt 264 400)(pt 248 400))
+	)
+	(port
+		(pt 264 416)
+		(output)
+		(text "reg_out_lo" (rect 0 0 60 14)(font "Arial" (font_size 8)))
+		(text "reg_out_lo" (rect 183 411 243 425)(font "Arial" (font_size 8)))
+		(line (pt 264 416)(pt 248 416))
 	)
 	(drawing
 		(rectangle (rect 16 16 248 432))

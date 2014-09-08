@@ -408,23 +408,6 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 2584 32 2600 208)
-	(text "INPUT" (rect 0 133 10 161)(font "Arial" (font_size 6))(vertical))
-	(text "reg_out" (rect 0 9 12 45)(font "Arial" )(vertical))
-	(pt 8 176)
-	(drawing
-		(line (pt 12 92)(pt 12 117))
-		(line (pt 4 92)(pt 4 117))
-		(line (pt 8 121)(pt 8 176))
-		(line (pt 12 92)(pt 4 92))
-		(line (pt 4 117)(pt 8 121))
-		(line (pt 12 117)(pt 8 121))
-	)
-	(flipy_rotate90)
-	(text "VCC" (rect 7 136 17 156)(font "Arial" (font_size 6))(vertical))
-)
-(pin
-	(input)
 	(rect 2536 32 2552 208)
 	(text "INPUT" (rect 0 133 10 161)(font "Arial" (font_size 6))(vertical))
 	(text "reg_in_lo" (rect 0 9 12 52)(font "Arial" )(vertical))
@@ -456,6 +439,40 @@ applicable agreement for further details.
 	)
 	(flipy_rotate90)
 	(text "VCC" (rect 7 136 17 156)(font "Arial" (font_size 6))(vertical))
+)
+(pin
+	(input)
+	(rect 2560 40 2576 208)
+	(text "INPUT" (rect 0 125 10 153)(font "Arial" (font_size 6))(vertical))
+	(text "reg_out_lo" (rect 0 5 12 56)(font "Arial" )(vertical))
+	(pt 8 168)
+	(drawing
+		(line (pt 12 84)(pt 12 109))
+		(line (pt 4 84)(pt 4 109))
+		(line (pt 8 113)(pt 8 168))
+		(line (pt 12 84)(pt 4 84))
+		(line (pt 4 109)(pt 8 113))
+		(line (pt 12 109)(pt 8 113))
+	)
+	(flipy_rotate90)
+	(text "VCC" (rect 7 128 17 148)(font "Arial" (font_size 6))(vertical))
+)
+(pin
+	(input)
+	(rect 2576 40 2592 208)
+	(text "INPUT" (rect 0 125 10 153)(font "Arial" (font_size 6))(vertical))
+	(text "reg_out_hi" (rect 0 5 12 56)(font "Arial" )(vertical))
+	(pt 8 168)
+	(drawing
+		(line (pt 12 84)(pt 12 109))
+		(line (pt 4 84)(pt 4 109))
+		(line (pt 8 113)(pt 8 168))
+		(line (pt 12 84)(pt 4 84))
+		(line (pt 4 109)(pt 8 113))
+		(line (pt 12 109)(pt 8 113))
+	)
+	(flipy_rotate90)
+	(text "VCC" (rect 7 128 17 148)(font "Arial" (font_size 6))(vertical))
 )
 (pin
 	(bidir)
@@ -6644,14 +6661,6 @@ applicable agreement for further details.
 	(pt 2640 416)
 )
 (connector
-	(pt 2640 416)
-	(pt 2640 312)
-)
-(connector
-	(pt 2592 312)
-	(pt 2640 312)
-)
-(connector
 	(pt 2592 760)
 	(pt 2528 760)
 )
@@ -6750,10 +6759,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 2592 312)
-	(pt 2592 328)
-)
-(connector
 	(pt 2528 208)
 	(pt 2528 760)
 )
@@ -6762,8 +6767,28 @@ applicable agreement for further details.
 	(pt 2544 400)
 )
 (connector
-	(pt 2592 208)
-	(pt 2592 312)
+	(pt 2592 328)
+	(pt 2592 320)
+)
+(connector
+	(pt 2592 320)
+	(pt 2568 320)
+)
+(connector
+	(pt 2568 320)
+	(pt 2568 208)
+)
+(connector
+	(pt 2640 304)
+	(pt 2640 416)
+)
+(connector
+	(pt 2584 208)
+	(pt 2584 304)
+)
+(connector
+	(pt 2584 304)
+	(pt 2640 304)
 )
 (junction (pt 216 232))
 (junction (pt 216 840))
@@ -6934,7 +6959,6 @@ applicable agreement for further details.
 (junction (pt 2656 232))
 (junction (pt 2552 360))
 (junction (pt 2552 712))
-(junction (pt 2592 312))
 (junction (pt 2632 360))
 (junction (pt 2632 712))
 (text "SW4" (rect 640 792 681 810)(font "Arial" (color 0 0 0)(font_size 12)))
@@ -6945,7 +6969,7 @@ applicable agreement for further details.
 	(rect 32 888 353 949)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_file" (rect 56 2 182 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Sep 02 10:37:32 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Sep 08 01:41:44 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
