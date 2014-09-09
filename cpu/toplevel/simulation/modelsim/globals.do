@@ -225,27 +225,27 @@ add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out
 add wave -noupdate -expand -group registers/reg_control.v /test_fuse/dut/reg_out_lo
 add wave -noupdate -expand -group bus/address_latch.v /test_fuse/dut/address_is_1
 add wave -noupdate -expand -group bus/address_latch.v -radix hexadecimal /test_fuse/dut/address
-add wave -noupdate -expand -group bus/address_pins.v -radix hexadecimal /test_fuse/dut/A
+add wave -noupdate -expand -group bus/address_pins.v -radix hexadecimal /test_fuse/dut/abus
 add wave -noupdate -expand -group bus/bus_control.v /test_fuse/dut/bus_db_oe
 add wave -noupdate -expand -group bus/bus_switch.sv /test_fuse/dut/bus_sw_1u
 add wave -noupdate -expand -group bus/bus_switch.sv /test_fuse/dut/bus_sw_1d
 add wave -noupdate -expand -group bus/bus_switch.sv /test_fuse/dut/bus_sw_2u
 add wave -noupdate -expand -group bus/bus_switch.sv /test_fuse/dut/bus_sw_2d
 add wave -noupdate -expand -group bus/bus_switch.sv /test_fuse/dut/bus_sw_mask543_en
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nM1
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nMREQ
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nIORQ
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nRD
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nWR
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nRFSH
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nHALT
-add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nBUSACK
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/nmi
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/busrq
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/clk
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/intr
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/mwait
 add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/reset_in
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_M1
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_MREQ
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_IORQ
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_RD
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_WR
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_RFSH
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_HALT
+add wave -noupdate -expand -group bus/control_pins_n.v /test_fuse/dut/pin_BUSACK
 TreeUpdate [SetDefaultTree]
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1

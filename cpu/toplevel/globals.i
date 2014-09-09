@@ -259,7 +259,7 @@ wire address_is_1;
 wire [15:0] address;
 
 // Module: bus/address_pins.v
-wire [15:0] A;
+wire [15:0] abus;
 
 // Module: bus/bus_control.v
 wire bus_db_oe;

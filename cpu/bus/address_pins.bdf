@@ -71,7 +71,7 @@ applicable agreement for further details.
 	(output)
 	(rect 504 112 680 128)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "A[15..0]" (rect 90 0 128 12)(font "Arial" ))
+	(text "abus[15..0]" (rect 90 0 145 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -176,10 +176,10 @@ applicable agreement for further details.
 (text "Repeated 16 times, once for each address pin." (rect 416 152 682 166)(font "Arial" (font_size 8)))
 (title_block
 	(rect 40 200 361 261)
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sat Jul 26 17:38:51 2014" (rect 56 3 225 19)(font "Arial" (font_size 10)))(date)(border))
-	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / address_pins" (rect 56 2 233 20)(font "Arial" (font_size 12)))(border))
+	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Sep 09 17:42:26 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
 )

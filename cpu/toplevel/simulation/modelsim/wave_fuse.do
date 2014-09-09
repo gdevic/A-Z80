@@ -111,13 +111,13 @@ add wave -noupdate -group {pin control
 add wave -noupdate -group {pin control
 } /test_fuse/dut/pin_control_/wait_latch
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nINT
+} /test_fuse/dut/control_pins_/pin_INT
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nNMI
+} /test_fuse/dut/control_pins_/pin_NMI
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nRESET
+} /test_fuse/dut/control_pins_/pin_RESET
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nBUSRQ
+} /test_fuse/dut/control_pins_/pin_BUSRQ
 add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/m1
 add wave -noupdate -group {control pins
@@ -137,25 +137,25 @@ add wave -noupdate -group {control pins
 add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/pin_control_oe
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nWAIT
+} /test_fuse/dut/control_pins_/pin_WAIT
 add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/in_halt
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nM1
+} /test_fuse/dut/control_pins_/pin_M1
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nMREQ
+} /test_fuse/dut/control_pins_/pin_MREQ
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nIORQ
+} /test_fuse/dut/control_pins_/pin_IORQ
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nRD
+} /test_fuse/dut/control_pins_/pin_RD
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nWR
+} /test_fuse/dut/control_pins_/pin_WR
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nRFSH
+} /test_fuse/dut/control_pins_/pin_RFSH
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nHALT
+} /test_fuse/dut/control_pins_/pin_HALT
 add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nBUSACK
+} /test_fuse/dut/control_pins_/pin_BUSACK
 add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/nmi
 add wave -noupdate -group {control pins

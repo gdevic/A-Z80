@@ -62,7 +62,7 @@ reg_control reg_control_( .* );
 // Address latch (with the incrementer) and address pins
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 address_latch address_latch_( .*, .abus({db_hi_as[7:0], db_lo_as[7:0]}) );
-address_pins  address_pins_( .*, .A(z80.A[15:0]) );
+address_pins  address_pins_( .*, .abus(z80.A[15:0]) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins

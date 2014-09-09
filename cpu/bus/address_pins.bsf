@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 208 112)
+	(rect 16 16 224 112)
 	(text "address_pins" (rect 5 0 82 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
@@ -45,13 +45,13 @@ applicable agreement for further details.
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
-		(pt 192 32)
+		(pt 208 32)
 		(output)
-		(text "A[15..0]" (rect 0 0 44 14)(font "Arial" (font_size 8)))
-		(text "A[15..0]" (rect 127 27 171 41)(font "Arial" (font_size 8)))
-		(line (pt 192 32)(pt 176 32)(line_width 3))
+		(text "abus[15..0]" (rect 0 0 63 14)(font "Arial" (font_size 8)))
+		(text "abus[15..0]" (rect 124 27 187 41)(font "Arial" (font_size 8)))
+		(line (pt 208 32)(pt 192 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 176 80))
+		(rectangle (rect 16 16 192 80))
 	)
 )
