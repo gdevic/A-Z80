@@ -14,9 +14,9 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Aug 17 13:54:07 2014"
+// CREATED		"Tue Sep 09 08:54:45 2014"
 
-module reset(
+module resets(
 	reset_in,
 	clk,
 	M1,

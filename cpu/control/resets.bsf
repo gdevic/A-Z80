@@ -21,7 +21,7 @@ applicable agreement for further details.
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 16 16 168 144)
-	(text "reset" (rect 5 0 34 14)(font "Arial" (font_size 8)))
+	(text "resets" (rect 5 0 41 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
 		(pt 0 32)

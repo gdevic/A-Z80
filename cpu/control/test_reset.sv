@@ -45,7 +45,7 @@ always_latch
 // Instantiate DUT
 //--------------------------------------------------------------
 
-reset reset_block ( .* );
+resets reset_block ( .* );
 
 endmodule
 

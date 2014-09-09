@@ -3,16 +3,16 @@ It is read by various Python scripts for the top level integration and
 synthesis. Every line that does not refer to a valid file is ignored.
 
 ------ Control block -------
-control/ir.v
-control/pla_decode.sv
-control/reset.v
-control/sequencer.v
-control/execute.sv
-control/exec_module.i
-control/interrupts.v
-control/decode_state.v
 control/clk_delay.v
+control/decode_state.v
+control/exec_module.i
+control/execute.sv
+control/interrupts.v
+control/ir.v
 control/pin_control.sv
+control/pla_decode.sv
+control/resets.v
+control/sequencer.v
 
 ---------- ALU -------------
 alu/alu_control.v
