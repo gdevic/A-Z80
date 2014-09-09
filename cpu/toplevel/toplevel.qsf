@@ -94,7 +94,6 @@ set_global_assignment -name VERILOG_FILE ../alu/alu_flags.v
 set_global_assignment -name VERILOG_FILE ../alu/alu.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_slice.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_shifter_core.v
-set_global_assignment -name VERILOG_FILE ../alu/alu_prep_flags.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_prep_daa.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_8.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_4.v

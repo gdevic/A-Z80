@@ -107,11 +107,9 @@ assign op1 = pla[100];
 assign op0 = pla[99];
 
 wire [1:0] op54;
-wire [1:0] op43;
 wire [1:0] op21;
 
 assign op54 = { pla[104], pla[103] };
-assign op43 = { pla[103], pla[102] };
 assign op21 = { pla[101], pla[100] };
 
 //-----------------------------------------------------------
