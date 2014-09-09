@@ -271,7 +271,7 @@ wire bus_sw_2u;
 wire bus_sw_2d;
 wire bus_sw_mask543_en;
 
-// Module: bus/control_pins_p.v
+// Module: bus/control_pins_n.v
 wire nM1;
 wire nMREQ;
 wire nIORQ;

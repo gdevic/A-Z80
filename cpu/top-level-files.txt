@@ -34,4 +34,4 @@ bus/bus_switch.sv
 
 ------ I/O pin control -----
 bus/data_pins.v
-bus/control_pins_p.v
+bus/control_pins_n.v
