@@ -1,9 +1,27 @@
 //============================================================================
-// Z80 Top level with an interface declaration
+// Z80 Top level with direct wire declaration
 //============================================================================
-`include "z80.svh"
 
-module z80_top (z80_if.dut z80);
+module z80_top_direct(nM1, nMREQ, nIORQ, nRD, nWR, nRFSH, nHALT, nBUSACK, nWAIT, nINT, nNMI, nRESET, nBUSRQ, CLK, A, D);
+
+output wire nM1;
+output wire nMREQ;
+output wire nIORQ;
+output wire nRD;
+output wire nWR;
+output wire nRFSH;
+output wire nHALT;
+output wire nBUSACK;
+
+input wire nWAIT;
+input wire nINT;
+input wire nNMI;
+input wire nRESET;
+input wire nBUSRQ;
+
+input wire CLK;
+output wire [15:0] A;
+inout wire [7:0] D;
 
 //----------------------------------------------------------------------------
 // Include a list of top-level signal wires
@@ -62,7 +80,7 @@ reg_control reg_control_( .* );
 // Address latch (with the incrementer) and address pins
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 address_latch address_latch_( .*, .abus({db_hi_as[7:0], db_lo_as[7:0]}) );
-address_pins  address_pins_( .*, .abus(z80.A[15:0]) );
+address_pins  address_pins_( .*, .abus(A[15:0]) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins
@@ -76,24 +94,24 @@ bus_control bus_control_( .*, .db(db0[7:0]) );
 data_switch_mask sw1_( .sw_mask543_en(bus_sw_mask543_en), .sw_up_en(bus_sw_1u), .sw_down_en(bus_sw_1d), .db_up(db0[7:0]), .db_down(db1[7:0]) );
 
 // External data pins connecting to the interface pins
-data_pins   data_pins_( .*, .db(db0[7:0]), .D(z80.D[7:0]) );
+data_pins   data_pins_( .*, .db(db0[7:0]), .D(D[7:0]) );
 
 // External control pins connecting to the interface pins
 control_pins_n control_pins_( .*,
-    .pin_M1     (z80.nM1),
-    .pin_MREQ   (z80.nMREQ),
-    .pin_IORQ   (z80.nIORQ),
-    .pin_RD     (z80.nRD),
-    .pin_WR     (z80.nWR),
-    .pin_RFSH   (z80.nRFSH),
-    .pin_HALT   (z80.nHALT),
-    .pin_WAIT   (z80.nWAIT),
-    .pin_BUSACK (z80.nBUSACK),
-    .pin_INT    (z80.nINT),
-    .pin_NMI    (z80.nNMI),
-    .pin_RESET  (z80.nRESET),
-    .pin_BUSRQ  (z80.nBUSRQ),
-    .CPUCLK     (z80.CLK)
+    .pin_M1      (nM1),
+    .pin_MREQ    (nMREQ),
+    .pin_IORQ    (nIORQ),
+    .pin_RD      (nRD),
+    .pin_WR      (nWR),
+    .pin_RFSH    (nRFSH),
+    .pin_HALT    (nHALT),
+    .pin_WAIT    (nWAIT),
+    .pin_BUSACK  (nBUSACK),
+    .pin_INT     (nINT),
+    .pin_NMI     (nNMI),
+    .pin_RESET   (nRESET),
+    .pin_BUSRQ   (nBUSRQ),
+    .CPUCLK  (CLK)
  );
 
 endmodule
