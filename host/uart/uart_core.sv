@@ -62,7 +62,7 @@ begin
 end
 
 // Next state logic
-always @(posedge clk or posedge state)
+always @(posedge clk)
 begin
    next_state <= IDLE;
    case (state)
@@ -80,12 +80,11 @@ begin
       D7    :   next_state <= STOP;
       STOP  :   next_state <= IDLE;
    endcase
-   busy_tx = next_state==IDLE ? 0 : 1;
+   busy_tx <= next_state==IDLE ? 1'h0 : 1'h1;
 end
 
 always_comb
 begin
-   uart_tx   = 'b1;                  // By default keep data line high
    case (state)
       START :   uart_tx = 'b0;       // Start bit is low (start detect is neg edge)
       D0    :   uart_tx = data[0];   // Followed by 8 data bits
@@ -97,6 +96,7 @@ begin
       D6    :   uart_tx = data[6];
       D7    :   uart_tx = data[7];
       STOP  :   uart_tx = 'b1;       // Stop bit is high
+      default : uart_tx = 'b1;       // By default keep data line high
    endcase
 end
 
