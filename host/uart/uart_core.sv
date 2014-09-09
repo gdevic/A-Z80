@@ -7,7 +7,7 @@
 //============================================================================
 
 // Optionally define parameters alongside module
-module uart #(parameter BAUD = 115200)
+module uart_core #(parameter BAUD = 115200)
 (
     //----------------------------------------------------------
     // Outputs from the module
@@ -62,23 +62,23 @@ begin
 end
 
 // Next state logic
-always_comb
+always @(posedge clk or posedge state)
 begin
-   next_state = IDLE;
+   next_state <= IDLE;
    case (state)
       IDLE  :   if (data_in_wr) begin
-                    next_state = START;
+                    next_state <= START;
                 end
-      START :   next_state = D0;
-      D0    :   next_state = D1;
-      D1    :   next_state = D2;
-      D2    :   next_state = D3;
-      D3    :   next_state = D4;
-      D4    :   next_state = D5;
-      D5    :   next_state = D6;
-      D6    :   next_state = D7;
-      D7    :   next_state = STOP;
-      STOP  :   next_state = IDLE;
+      START :   next_state <= D0;
+      D0    :   next_state <= D1;
+      D1    :   next_state <= D2;
+      D2    :   next_state <= D3;
+      D3    :   next_state <= D4;
+      D4    :   next_state <= D5;
+      D5    :   next_state <= D6;
+      D6    :   next_state <= D7;
+      D7    :   next_state <= STOP;
+      STOP  :   next_state <= IDLE;
    endcase
    busy_tx = next_state==IDLE ? 0 : 1;
 end

@@ -9,15 +9,15 @@
 //   Address 10 - Get UART busy status in bit 0
 //============================================================================
 
-module uart_io (reset, clk, Address, Data, IORQ, RD, WR, UART_TX);
+module uart_io (reset, clk, Address, Data, IORQ, RD, WR, uart_tx);
 
 input reset, clk;
 input [7:0] Address;
 inout [7:0] Data;
 input IORQ, RD, WR;
-output UART_TX;
+output uart_tx;
 
-extern module uart
+extern module uart_core
 (
     output uart_tx,                // UART transmit wire
     output busy_tx,                // Signal that we are busy transmitting
@@ -43,6 +43,6 @@ end
 
 assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==0 && RD==0 && WR==1) ? {{7{1'h0}},busy_tx}  : 8'hz;
 
-uart i_uart ( .*, .data_in(Data) );
+uart_core uart_core_( .*, .data_in(Data) );
 
 endmodule

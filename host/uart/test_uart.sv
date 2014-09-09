@@ -5,6 +5,7 @@
 
 module test_uart;
 
+logic uart_tx;
 bit clk;
 logic reset = 1;
 logic [7:0] Address = 0;
@@ -55,7 +56,7 @@ initial forever #1 clk = ~clk;
 assign Data_rd = Data_wr;
 
 // Instantiate UART module
-defparam uart_io.i_uart.BAUD = 50000000/2;
-uart_io uart_io ( .*, .Data(Data_rd) );
+defparam uart_io.uart_core_.BAUD = 50000000/2;
+uart_io uart_io( .*, .Data(Data_rd) );
 
 endmodule

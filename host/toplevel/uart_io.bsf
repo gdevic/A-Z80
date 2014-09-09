@@ -68,8 +68,8 @@ applicable agreement for further details.
 	(port
 		(pt 216 48)
 		(output)
-		(text "UART_TX" (rect 0 0 49 12)(font "Arial" ))
-		(text "UART_TX" (rect 146 43 195 55)(font "Arial" ))
+		(text "uart_tx" (rect 0 0 49 12)(font "Arial" ))
+		(text "uart_tx" (rect 146 43 195 55)(font "Arial" ))
 		(line (pt 216 48)(pt 200 48)(line_width 1))
 	)
 	(port
