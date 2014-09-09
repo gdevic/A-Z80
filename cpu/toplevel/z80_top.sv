@@ -63,7 +63,7 @@ reg_control reg_control_( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 address_latch address_latch_( .*, .abus({db_hi_as[7:0], db_lo_as[7:0]}) );
 address_pins  address_pins_( .*, .A(z80.A[15:0]) );
- 
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -80,20 +80,20 @@ data_pins   data_pins_( .*, .db(db0[7:0]), .D(z80.D[7:0]) );
 
 // External control pins connecting to the interface pins
 control_pins_n control_pins_( .*,
-    .nM1     (z80.nM1),
-    .nMREQ   (z80.nMREQ),
-    .nIORQ   (z80.nIORQ),
-    .nRD     (z80.nRD),
-    .nWR     (z80.nWR),
-    .nRFSH   (z80.nRFSH),
-    .nHALT   (z80.nHALT),
-    .nWAIT   (z80.nWAIT),
-    .nBUSACK (z80.nBUSACK),
-    .nINT    (z80.nINT),
-    .nNMI    (z80.nNMI),
-    .nRESET  (z80.nRESET),
-    .nBUSRQ  (z80.nBUSRQ),
-    .CPUCLK  (z80.CLK)
+    .pin_M1     (z80.nM1),
+    .pin_MREQ   (z80.nMREQ),
+    .pin_IORQ   (z80.nIORQ),
+    .pin_RD     (z80.nRD),
+    .pin_WR     (z80.nWR),
+    .pin_RFSH   (z80.nRFSH),
+    .pin_HALT   (z80.nHALT),
+    .pin_WAIT   (z80.nWAIT),
+    .pin_BUSACK (z80.nBUSACK),
+    .pin_INT    (z80.nINT),
+    .pin_NMI    (z80.nNMI),
+    .pin_RESET  (z80.nRESET),
+    .pin_BUSRQ  (z80.nBUSRQ),
+    .CPUCLK     (z80.CLK)
  );
 
 endmodule

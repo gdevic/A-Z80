@@ -272,17 +272,17 @@ wire bus_sw_2d;
 wire bus_sw_mask543_en;
 
 // Module: bus/control_pins_n.v
-wire nM1;
-wire nMREQ;
-wire nIORQ;
-wire nRD;
-wire nWR;
-wire nRFSH;
-wire nHALT;
-wire nBUSACK;
 wire nmi;
 wire busrq;
 wire clk;
 wire intr;
 wire mwait;
 wire reset_in;
+wire pin_M1;
+wire pin_MREQ;
+wire pin_IORQ;
+wire pin_RD;
+wire pin_WR;
+wire pin_RFSH;
+wire pin_HALT;
+wire pin_BUSACK;
