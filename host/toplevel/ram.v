@@ -89,7 +89,7 @@ module ram (
 `ifdef NO_PLI
 		altsyncram_component.init_file = "../../tools/zmac/zout/fpga.rif"
 `else
-		altsyncram_component.init_file = "../../tools/zmac/zout/fpga.hex"
+		altsyncram_component.init_file = "P:/A-Z80/tools/zmac/zout/fpga.hex"
 `endif
 ,
 		altsyncram_component.intended_device_family = "Cyclone II",

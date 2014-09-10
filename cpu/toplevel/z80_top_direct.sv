@@ -1,6 +1,9 @@
 //============================================================================
 // Z80 Top level using direct wire declaration (not the interface)
 //============================================================================
+// 5 MHz for a functional simulation (no delay timings)
+`timescale 100 ns/ 100 ns
+
 module z80_top_direct(
     output wire nM1,
     output wire nMREQ,
