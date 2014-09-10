@@ -32,7 +32,7 @@ integer baud_count = `COUNT;            // Counter for clock divide down to meet
 
 reg [7:0] data;                         // Stores a byte to transmit
 
-typedef enum logic[3:0] { IDLE, START, D0, D1, D2, D3, D4, D5, D6, D7, STOP } TState;
+typedef enum logic[3:0] { IDLE, START, D0, D1, D2, D3, D4, D5, D6, D7, STOP, BRK1 } TState;
 TState state = IDLE, next_state = IDLE;
 
 //============================================================================
@@ -78,9 +78,11 @@ begin
       D5    :   next_state <= D6;
       D6    :   next_state <= D7;
       D7    :   next_state <= STOP;
-      STOP  :   next_state <= IDLE;
+      STOP  :   next_state <= BRK1; // BRK bit is providing necessary space between characters
+      BRK1  :   next_state <= IDLE;
    endcase
-   busy_tx <= next_state==IDLE ? 1'h0 : 1'h1;
+   // Make it 'busy' if we are not idling or if the new data is being written
+   busy_tx <= (next_state==IDLE) ? 1'h0 | data_in_wr : 1'h1;
 end
 
 always_comb
@@ -95,7 +97,7 @@ begin
       D5    :   uart_tx = data[5];
       D6    :   uart_tx = data[6];
       D7    :   uart_tx = data[7];
-      STOP  :   uart_tx = 'b1;       // Stop bit is high
+      STOP, BRK1 : uart_tx = 'b1;    // Stop and break bits are high
       default : uart_tx = 'b1;       // By default keep data line high
    endcase
 end

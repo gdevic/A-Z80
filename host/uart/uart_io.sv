@@ -7,6 +7,8 @@
 // 8 bits of IO addresses map to:
 //   Address 8  - Write a byte to UART
 //   Address 10 - Get UART busy status in bit 0
+//
+// The signalling uses *positive* logic.
 //============================================================================
 
 module uart_io (reset, clk, Address, Data, IORQ, RD, WR, uart_tx);
@@ -34,14 +36,14 @@ logic data_in_wr;               // Write a new byte to transmit
 
 always @(posedge clk)
 begin
-    if (Address[7:0]==8'd8 && IORQ==0 && RD==1 && WR==0 && !busy_tx) begin
+    if (Address[7:0]==8'd8 && IORQ==1 && RD==0 && WR==1 && !busy_tx) begin
         data_in_wr <= 1;
     end else begin
         data_in_wr <= 0;
     end
 end
 
-assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==0 && RD==0 && WR==1) ? {{7{1'h0}},busy_tx}  : 8'hz;
+assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==1 && RD==1 && WR==0) ? {{7{1'b0}},busy_tx}  : 8'bz;
 
 uart_core uart_core_( .*, .data_in(Data) );
 

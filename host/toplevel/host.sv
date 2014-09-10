@@ -16,11 +16,11 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-wire nWAIT;
-wire nINT;
-wire nNMI;
-wire nRESET;
-wire nBUSRQ;
+wire nWAIT = 0;
+wire nINT = 0;
+wire nNMI = 0;
+wire nBUSRQ = 0;
+wire nRESET = !reset;
 
 wire [15:0] A;
 wire [7:0] D;
@@ -36,7 +36,7 @@ uart_io uart_io_( .*, .Address(A[15:8]), .Data(D[7:0]), .IORQ(nIORQ), .RD(nRD), 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire CPUCLK;
 
-z80_top_direct z80_( .*, .CLK(CPUCLK), .nRESET(reset) );
+z80_top_direct z80_( .*, .CLK(CPUCLK) );
 
 pll pll_( .inclk0(clk), .c0(CPUCLK) );
 
@@ -46,8 +46,8 @@ pll pll_( .inclk0(clk), .c0(CPUCLK) );
 wire [7:0] RamData;
 wire we;
 
-assign D[7:0] = (A[15:8]=='0 && nMREQ==1 && nWR==1) ? RamData  : 8'hz;
-assign we = A[15:8]=='0 && nMREQ==1 && nRD==1;
+assign D[7:0] = (A[15:8]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : 8'bz;
+assign we = A[15:8]=='0 && nMREQ==1 && nRD==0 && nWR==1;
 
 ram ram_(
     .address (A[9:0]),

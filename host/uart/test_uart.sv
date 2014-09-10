@@ -11,7 +11,7 @@ logic reset = 1;
 logic [7:0] Address = 0;
 reg [7:0] Data_wr;
 wire [7:0] Data_rd;
-logic IORQ = 1, RD = 1, WR = 1;
+logic IORQ = 0, RD = 0, WR = 0;
 
 initial begin
     repeat (2) @(posedge clk);
@@ -20,34 +20,34 @@ initial begin
     // Write a byte
     Address <= 8'd8;
     Data_wr[7:0] <= 8'h34;
-    IORQ <= 0;
-    WR <= 0;
-    repeat (2) @(posedge clk);
-    Data_wr[7:0] <= 8'hz;
     IORQ <= 1;
     WR <= 1;
+    repeat (2) @(posedge clk);
+    Data_wr[7:0] <= 8'hz;
+    IORQ <= 0;
+    WR <= 0;
 
     repeat (6) @(posedge clk);
 
     // Check for busy
     Address <= 8'd10;
-    IORQ <= 0;
-    RD <= 0;
-    repeat (2) @(posedge clk);
-    $display("%s", Data_rd[7:0]);
     IORQ <= 1;
     RD <= 1;
+    repeat (2) @(posedge clk);
+    $display("%s", Data_rd[7:0]);
+    IORQ <= 0;
+    RD <= 0;
 
     repeat (30) @(posedge clk);
 
     // Check for busy (now that it's not)
     Address <= 8'd10;
-    IORQ <= 0;
-    RD <= 0;
-    repeat (2) @(posedge clk);
-    $display("%s", Data_rd[7:0]);
     IORQ <= 1;
     RD <= 1;
+    repeat (2) @(posedge clk);
+    $display("%s", Data_rd[7:0]);
+    IORQ <= 0;
+    RD <= 0;
 
 end
 
