@@ -87,7 +87,7 @@ always @ (negedge clk) Tw1h = Tw1;
 // For the reference, commented out is the code that does not try to prevent
 // glitches but uses clocks directly to format various timings.
 
-assign m1     = (fFetch   &~in_intr & (T1 | T2 | T4h)) |
+assign m1     = (fFetch   &~in_intr & (T1 | T2)) |
                 (fFetch   & in_intr & (T1 | T2 | Tw1 | Tw2)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
