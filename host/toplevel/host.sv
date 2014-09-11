@@ -20,25 +20,26 @@ wire nWAIT = 0;
 wire nINT = 0;
 wire nNMI = 0;
 wire nBUSRQ = 0;
-wire nRESET = !reset;
 
 wire [15:0] A;
 wire [7:0] D;
 
+wire CPUCLK;                // 10MHz from PLL to CPU
+wire locked;                // PLL has locked the output frequency
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate A-Z80 CPU module
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+z80_top_direct z80_( .*, .nRESET(!reset | !locked), .CLK(CPUCLK) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate PLL providing 10MHz to the CPU
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pll pll_( .*, .areset(!reset), .inclk0(clk), .c0(CPUCLK) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .Address(A[15:8]), .Data(D[7:0]), .IORQ(nIORQ), .RD(nRD), .WR(nWR) );
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate A-Z80 CPU module
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wire CPUCLK;
-
-z80_top_direct z80_( .*, .CLK(CPUCLK) );
-
-pll pll_( .inclk0(clk), .c0(CPUCLK) );
+uart_io uart_io_( .*, .reset(!reset), .Address(A[15:8]), .Data(D[7:0]), .IORQ(nIORQ), .RD(nRD), .WR(nWR) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 1Kb of RAM memory with memory select and 3-state data bus
@@ -46,14 +47,9 @@ pll pll_( .inclk0(clk), .c0(CPUCLK) );
 wire [7:0] RamData;
 wire we;
 
-assign D[7:0] = (A[15:8]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : 8'bz;
+assign D[7:0] = (A[15:8]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : {8{1'bz}};
 assign we = A[15:8]=='0 && nMREQ==1 && nRD==0 && nWR==1;
 
-ram ram_(
-    .address (A[9:0]),
-    .clock (clk),
-    .data (D[7:0]),
-    .wren (we),
-    .q (RamData[7:0]) );
-    
+ram ram_( .address (A[9:0]), .clock (clk), .data (D[7:0]), .wren (we), .q (RamData[7:0]) );
+
 endmodule

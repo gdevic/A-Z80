@@ -43,7 +43,7 @@ begin
     end
 end
 
-assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==1 && RD==1 && WR==0) ? {{7{1'b0}},busy_tx}  : 8'bz;
+assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==1 && RD==1 && WR==0) ? {{7{1'b0}},busy_tx}  : {8{1'bz}} ;
 
 uart_core uart_core_( .*, .data_in(Data) );
 

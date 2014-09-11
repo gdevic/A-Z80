@@ -119,7 +119,7 @@ set_global_assignment -name VERILOG_FILE ../alu/alu_mux_2.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_4.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_8.v
 set_global_assignment -name VERILOG_FILE ../control/mem_cell.v
-set_global_assignment -name VERILOG_FILE ../bus/control_pins_n.v
+set_global_assignment -name VERILOG_FILE ../bus/control_pins_p.v
 set_global_assignment -name VERILOG_FILE ../bus/data_pins.v
 set_global_assignment -name VERILOG_FILE ../bus/bus_control.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../bus/bus_switch.sv

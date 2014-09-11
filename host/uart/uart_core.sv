@@ -64,7 +64,6 @@ end
 // Next state logic
 always @(posedge clk)
 begin
-   next_state <= IDLE;
    case (state)
       IDLE  :   if (data_in_wr) begin
                     next_state <= START;
