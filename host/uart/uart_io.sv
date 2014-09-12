@@ -38,6 +38,7 @@ always @(posedge clk)
 begin
     if (Address[7:0]==8'd8 && IORQ==1 && RD==0 && WR==1 && !busy_tx) begin
         data_in_wr <= 1;
+        $strobe("[UART] %c", Data);
     end else begin
         data_in_wr <= 0;
     end

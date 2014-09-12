@@ -86,12 +86,7 @@ module ram (
 	defparam
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
-`ifdef NO_PLI
-		altsyncram_component.init_file = "../../tools/zmac/zout/fpga.rif"
-`else
-		altsyncram_component.init_file = "P:/A-Z80/tools/zmac/zout/fpga.hex"
-`endif
-,
+		altsyncram_component.init_file = "P:/A-Z80/tools/zmac/fpga.hex",
 		altsyncram_component.intended_device_family = "Cyclone II",
 		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=NO",
 		altsyncram_component.lpm_type = "altsyncram",
