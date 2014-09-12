@@ -3,13 +3,17 @@
 ;
     org 0
 start:
+    ld  bc, 2222
+    ld  a,42h
+    out (c),a
+    halt
     jmp boot
 
     ; BDOS entry point for various functions
     ; We implement subfunctions:
     ;  C=2  Print a character given in E
     ;  C=9  Print a string pointed to by DE; string ends with '$'
-    org 5
+;    org 5
     ld  a,c
     cp  a,2
     jz  bdos_ascii

@@ -44,7 +44,7 @@ set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
@@ -67,6 +67,17 @@ set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WE
 set_location_assignment PIN_15 -to uart_tx
 set_location_assignment PIN_23 -to clk
 set_location_assignment PIN_27 -to reset
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (SystemVerilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_NETLIST_WRITER_OUTPUT_DIR simulation/structural -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH test_host_gate_level -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME test_host_gate_level -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME host -section_id test_host_gate_level
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1000 ns" -section_id test_host_gate_level
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME test_bench_host -section_id test_host_gate_level
+set_global_assignment -name SYSTEMVERILOG_FILE test_host.sv
 set_global_assignment -name SYSTEMVERILOG_FILE host.sv
 set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name CDF_FILE jtag.cdf
@@ -112,4 +123,33 @@ set_global_assignment -name VERILOG_FILE ../../cpu/control/resets.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/pla_decode.sv
 set_global_assignment -name VERILOG_FILE ../../cpu/control/ir.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct.sv
+set_global_assignment -name EDA_TEST_BENCH_FILE test_host.sv -section_id test_host_gate_level -hdl_version SystemVerilog_2005
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_location_assignment PIN_77 -to tp_reset
+set_location_assignment PIN_81 -to tp_slow_clk
+set_location_assignment PIN_164 -to tp_nM1
+set_location_assignment PIN_82 -to tp_nMREQ
+set_location_assignment PIN_84 -to tp_nRFSH
+set_location_assignment PIN_86 -to tp_nRD
+set_location_assignment PIN_87 -to tp_nWR
+set_location_assignment PIN_88 -to tp_nIORQ
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_A0 -section_id ABUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_A1 -section_id ABUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_A2 -section_id ABUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_A3 -section_id ABUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D0 -section_id DBUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D1 -section_id DBUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D2 -section_id DBUS
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D3 -section_id DBUS
+set_location_assignment PIN_89 -to tp_A0
+set_location_assignment PIN_90 -to tp_A1
+set_location_assignment PIN_92 -to tp_A2
+set_location_assignment PIN_152 -to tp_A3
+set_location_assignment PIN_160 -to tp_D0
+set_location_assignment PIN_161 -to tp_D1
+set_location_assignment PIN_162 -to tp_D2
+set_location_assignment PIN_163 -to tp_D3
+set_global_assignment -name FIT_ONLY_ONE_ATTEMPT ON
+set_global_assignment -name USE_SIGNALTAP_FILE logic_analyzer.stp
+set_global_assignment -name SIGNALTAP_FILE logic_analyzer.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
