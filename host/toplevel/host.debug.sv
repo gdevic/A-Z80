@@ -107,9 +107,11 @@ uart_io uart_io_( .*, .reset(reset_stable), .Address(A[15:8]), .Data(D[7:0]), .I
 wire [7:0] RamData;
 wire we;
 
-assign D[7:0] = (A[15:8]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : {8{1'bz}};
-assign we = A[15:8]=='0 && nMREQ==1 && nRD==0 && nWR==1;
+// 1K is addressable with bits [9:0]
+// 1K *blocks* are selectable with bits [15:10]
+assign D[7:0] = (A[15:10]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : {8{1'bz}};
+assign we = A[15:10]=='0 && nMREQ==1 && nRD==0 && nWR==1;
 
-ram ram_( .address (A[9:0]), .clock (clk), .data (D[7:0]), .wren (we), .q (RamData[7:0]) );
+ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 
 endmodule

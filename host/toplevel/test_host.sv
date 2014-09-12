@@ -19,6 +19,8 @@ end : init
 reg clk = 1;
 initial forever #1 clk = ~clk;
 
+// Make the wait for UART a little bit less painful on ModelSim...
+defparam host_.uart_io_.uart_core_.BAUD = 500000;
 host host_( .clk(clk), .reset(reset), .uart_tx(uart_tx) );
 
 endmodule
