@@ -30,6 +30,7 @@ module execute
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
+    input wire fpga_reset,              // Internal fpga test mode
     input wire reset,                   // Internal reset signal
     input wire clk,                     // Internal clock signal
     input wire in_intr,                 // Servicing maskable interrupt
@@ -141,7 +142,9 @@ begin
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0
     //----------------------------------------------------------
-    if (reset) begin
+    // Don't clear them while fpga_reset is active to help fuse tests
+    // set those registers manually according to each test
+    if (reset && !fpga_reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
         ctl_reg_sel_pc = clk;           // Write to the PC on clock up
