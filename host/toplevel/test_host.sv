@@ -6,8 +6,8 @@
 
 module test_bench_host();
 
-logic reset;
-logic uart_tx;
+reg reset;
+wire uart_tx;
 
 // Toggle reset; the reset on the board is a push-button
 // with negative polarity
@@ -16,9 +16,9 @@ initial begin : init
     #10 reset = 1;
 end : init
 
-bit clk = 1;
+reg clk = 1;
 initial forever #1 clk = ~clk;
 
-host host_( .* );
+host host_( .clk(clk), .reset(reset), .uart_tx(uart_tx) );
 
 endmodule

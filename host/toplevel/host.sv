@@ -34,7 +34,7 @@ z80_top_direct z80_( .*, .nRESET(!reset | !locked), .CLK(CPUCLK) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL providing 10MHz to the CPU
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-pll pll_( .*, .areset(!reset), .inclk0(clk), .c0(CPUCLK) );
+pll pll_( .inclk0(clk), .c0(CPUCLK), .locked(locked) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module

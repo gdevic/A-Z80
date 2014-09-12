@@ -30,7 +30,6 @@ module execute
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
-    input wire fpga_reset,              // Used only in simulation
     input wire reset,                   // Internal reset signal
     input wire clk,                     // Internal clock signal
     input wire in_intr,                 // Servicing maskable interrupt
@@ -142,7 +141,7 @@ begin
     //----------------------------------------------------------
     // Reset control: Set PC and IR to 0
     //----------------------------------------------------------
-    if (reset && !fpga_reset) begin
+    if (reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
         ctl_reg_sel_pc = clk;           // Write to the PC on clock up
