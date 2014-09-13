@@ -7,6 +7,7 @@
 db/
 incremental_db/
 out/
+greybox_tmp/
 
 # Quartus workspace file: stores window position, dock state etc.
 *.qws
