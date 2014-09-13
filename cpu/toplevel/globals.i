@@ -154,6 +154,7 @@ wire [104:0] pla;
 wire clrpc;
 wire reset;
 wire nreset;
+wire resetff;
 
 // Module: control/sequencer.v
 wire M1;

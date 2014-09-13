@@ -101,7 +101,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 760 144 936 160)
+	(rect 776 144 952 160)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "clrpc" (rect 90 0 113 12)(font "Arial" ))
 	(pt 0 8)
@@ -117,7 +117,7 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 768 328 944 344)
+	(rect 776 328 952 344)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "reset" (rect 90 0 114 12)(font "Arial" ))
 	(pt 0 8)
@@ -133,9 +133,25 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 760 216 936 232)
+	(rect 776 216 952 232)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "nreset" (rect 90 0 120 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 776 400 952 416)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "resetff" (rect 90 0 124 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -220,7 +236,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 680 56 712 72)
+	(rect 696 56 728 72)
 	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
 	(text "inst6" (rect 3 5 26 17)(font "Arial" )(invisible))
 	(port
@@ -324,7 +340,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 664 128 728 208)
+	(rect 680 128 744 208)
 	(text "SRFF" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "sr" (rect 3 68 12 80)(font "Arial" ))
 	(port
@@ -539,7 +555,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 680 360 712 376)
+	(rect 672 448 704 464)
 	(text "VCC" (rect 7 0 27 10)(font "Arial" (font_size 6)))
 	(text "inst13" (rect 3 5 32 17)(font "Arial" )(invisible))
 	(port
@@ -554,7 +570,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 680 248 712 296)
+	(rect 696 248 728 296)
 	(text "NOT" (rect 0 27 10 47)(font "Arial" (font_size 6))(vertical))
 	(text "inst2" (rect 21 22 33 45)(font "Arial" )(vertical))
 	(port
@@ -578,6 +594,56 @@ applicable agreement for further details.
 		(circle (rect 12 9 20 17))
 	)
 	(rotate90)
+)
+(symbol
+	(rect 488 384 552 464)
+	(text "TFF" (rect 1 0 18 10)(font "Arial" (font_size 6)))
+	(text "instff" (rect 3 68 30 80)(font "Arial" ))
+	(port
+		(pt 32 0)
+		(input)
+		(text "PRN" (rect 24 13 41 25)(font "Courier New" (bold)))
+		(text "PRN" (rect 24 11 41 23)(font "Courier New" (bold)))
+		(line (pt 32 4)(pt 32 0))
+	)
+	(port
+		(pt 32 80)
+		(input)
+		(text "CLRN" (rect 21 59 44 71)(font "Courier New" (bold)))
+		(text "CLRN" (rect 21 58 44 70)(font "Courier New" (bold)))
+		(line (pt 32 80)(pt 32 76))
+	)
+	(port
+		(pt 0 24)
+		(input)
+		(text "T" (rect 16 20 21 32)(font "Courier New" (bold)))
+		(text "T" (rect 16 20 21 32)(font "Courier New" (bold)))
+		(line (pt 0 24)(pt 12 24))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "CLK" (rect 2 28 19 40)(font "Courier New" (bold))(invisible))
+		(text "CLK" (rect 2 28 19 40)(font "Courier New" (bold))(invisible))
+		(line (pt 0 40)(pt 12 40))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
+		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
+		(line (pt 52 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 12 12)(pt 52 12))
+		(line (pt 12 68)(pt 52 68))
+		(line (pt 12 68)(pt 12 12))
+		(line (pt 52 68)(pt 52 12))
+		(line (pt 12 34)(pt 19 41))
+		(line (pt 18 41)(pt 12 47))
+		(circle (rect 28 4 36 12))
+		(circle (rect 28 68 36 76))
+	)
 )
 (connector
 	(pt 232 144)
@@ -632,10 +698,6 @@ applicable agreement for further details.
 	(pt 464 256)
 )
 (connector
-	(pt 696 72)
-	(pt 696 128)
-)
-(connector
 	(text "x1" (rect 427 128 438 140)(font "Arial" ))
 	(pt 400 144)
 	(pt 464 144)
@@ -657,26 +719,6 @@ applicable agreement for further details.
 	(pt 488 272)
 )
 (connector
-	(pt 440 184)
-	(pt 664 184)
-)
-(connector
-	(pt 696 208)
-	(pt 696 224)
-)
-(connector
-	(pt 696 224)
-	(pt 696 248)
-)
-(connector
-	(pt 728 152)
-	(pt 760 152)
-)
-(connector
-	(pt 696 224)
-	(pt 760 224)
-)
-(connector
 	(pt 336 272)
 	(pt 336 240)
 )
@@ -693,14 +735,6 @@ applicable agreement for further details.
 	(pt 352 272)
 )
 (connector
-	(pt 440 160)
-	(pt 440 184)
-)
-(connector
-	(pt 440 184)
-	(pt 440 240)
-)
-(connector
 	(pt 336 160)
 	(pt 320 160)
 )
@@ -710,20 +744,12 @@ applicable agreement for further details.
 	(pt 592 264)
 )
 (connector
-	(pt 664 168)
-	(pt 576 168)
-)
-(connector
 	(pt 232 320)
 	(pt 248 320)
 )
 (connector
 	(pt 320 160)
 	(pt 320 320)
-)
-(connector
-	(pt 576 168)
-	(pt 576 320)
 )
 (connector
 	(pt 296 320)
@@ -755,62 +781,159 @@ applicable agreement for further details.
 	(pt 368 96)
 )
 (connector
+	(pt 640 392)
+	(pt 640 480)
+)
+(connector
+	(pt 688 480)
+	(pt 688 464)
+)
+(connector
+	(pt 712 72)
+	(pt 712 128)
+)
+(connector
+	(pt 576 320)
+	(pt 576 168)
+)
+(connector
+	(pt 712 296)
+	(pt 712 336)
+)
+(connector
+	(text "x2" (rect 530 136 541 148)(font "Arial" ))
+	(pt 552 152)
+	(pt 680 152)
+)
+(connector
+	(pt 440 184)
+	(pt 680 184)
+)
+(connector
+	(pt 576 168)
+	(pt 680 168)
+)
+(connector
+	(pt 712 224)
+	(pt 776 224)
+)
+(connector
+	(pt 440 160)
+	(pt 440 184)
+)
+(connector
+	(pt 440 184)
+	(pt 440 240)
+)
+(connector
+	(pt 712 208)
+	(pt 712 224)
+)
+(connector
+	(pt 712 224)
+	(pt 712 248)
+)
+(connector
+	(pt 672 336)
+	(pt 712 336)
+)
+(connector
+	(pt 712 336)
+	(pt 776 336)
+)
+(connector
+	(pt 744 152)
+	(pt 776 152)
+)
+(connector
 	(pt 368 96)
 	(pt 640 96)
 )
 (connector
-	(pt 232 352)
-	(pt 608 352)
+	(pt 520 480)
+	(pt 520 464)
+)
+(connector
+	(pt 640 296)
+	(pt 520 296)
+)
+(connector
+	(pt 520 480)
+	(pt 640 480)
+)
+(connector
+	(pt 640 480)
+	(pt 688 480)
 )
 (connector
 	(pt 640 96)
+	(pt 640 296)
+)
+(connector
+	(pt 640 296)
 	(pt 640 312)
 )
 (connector
-	(pt 696 376)
-	(pt 696 408)
+	(pt 488 408)
+	(pt 464 408)
 )
 (connector
-	(pt 696 408)
-	(pt 640 408)
+	(pt 440 352)
+	(pt 440 424)
 )
 (connector
-	(pt 640 392)
-	(pt 640 408)
+	(pt 488 424)
+	(pt 440 424)
 )
 (connector
-	(pt 696 296)
-	(pt 696 336)
+	(pt 232 352)
+	(pt 440 352)
 )
 (connector
-	(pt 672 336)
-	(pt 696 336)
+	(pt 440 352)
+	(pt 608 352)
 )
 (connector
-	(pt 696 336)
-	(pt 768 336)
+	(pt 552 408)
+	(pt 776 408)
 )
 (connector
-	(text "x2" (rect 562 136 573 148)(font "Arial" ))
-	(pt 552 152)
-	(pt 664 152)
+	(pt 464 408)
+	(pt 464 368)
+)
+(connector
+	(pt 464 368)
+	(pt 520 368)
+)
+(connector
+	(pt 520 296)
+	(pt 520 368)
+)
+(connector
+	(pt 520 368)
+	(pt 520 384)
 )
 (junction (pt 232 144))
 (junction (pt 368 96))
 (junction (pt 336 272))
 (junction (pt 464 144))
 (junction (pt 440 184))
-(junction (pt 696 224))
 (junction (pt 320 320))
 (junction (pt 232 352))
-(junction (pt 696 336))
+(junction (pt 640 480))
+(junction (pt 712 224))
+(junction (pt 712 336))
+(junction (pt 640 296))
+(junction (pt 440 352))
+(junction (pt 520 368))
 (text "Special reset, USPTO 4,486,827 by Shima et al." (rect 40 24 371 40)(font "Arial" (font_size 10)))
 (text "Needed only for FPGAs" (rect 40 72 174 86)(font "Arial" (font_size 8)))
+(text "Provides a 2-phase reset" (rect 776 384 919 398)(font "Arial" (font_size 8)))
 (title_block
-	(rect 32 392 353 453)
+	(rect 32 440 353 501)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reset" (rect 56 2 162 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Sun Aug 17 13:53:56 2014" (rect 56 3 237 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Fri Sep 12 19:18:19 2014" (rect 56 3 228 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

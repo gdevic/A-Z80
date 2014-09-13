@@ -136,6 +136,7 @@ add wave -noupdate -expand -group control/pla_decode.sv -radix hexadecimal /test
 add wave -noupdate -expand -group control/resets.v /test_fuse/dut/clrpc
 add wave -noupdate -expand -group control/resets.v /test_fuse/dut/reset
 add wave -noupdate -expand -group control/resets.v /test_fuse/dut/nreset
+add wave -noupdate -expand -group control/resets.v /test_fuse/dut/resetff
 add wave -noupdate -expand -group control/sequencer.v /test_fuse/dut/M1
 add wave -noupdate -expand -group control/sequencer.v /test_fuse/dut/M2
 add wave -noupdate -expand -group control/sequencer.v /test_fuse/dut/M3
