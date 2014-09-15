@@ -40,29 +40,9 @@ add wave -noupdate -expand -group {host
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/D
 add wave -noupdate -expand -group {host
-} -color Thistle -itemcolor Green /test_bench_host/host_/CPUCLK
-add wave -noupdate -expand -group {host
 } /test_bench_host/host_/RamData
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/we
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/inclk0
-add wave -noupdate -expand -group {PLL
-} -color Magenta /test_bench_host/host_/pll_/c0
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/locked
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire0
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire1
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire5
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire2
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire3
-add wave -noupdate -expand -group {PLL
-} /test_bench_host/host_/pll_/sub_wire4
 add wave -noupdate -group {RAM
 } /test_bench_host/host_/ram_/address
 add wave -noupdate -group {RAM
@@ -116,7 +96,7 @@ add wave -noupdate -group {UART core
 add wave -noupdate -group {UART core
 } /test_bench_host/host_/uart_io_/uart_core_/next_state
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {337121 ps} 0} {{Cursor 2} {727941 ps} 0}
+WaveRestoreCursors {{Cursor 1} {344787 ps} 0} {{Cursor 2} {727941 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 184
 configure wave -valuecolwidth 60

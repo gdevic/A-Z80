@@ -2,6 +2,8 @@
 // Z80 Top level using direct wire declaration (not the interface)
 // Pin signalling is positive (using control_pins_p module).
 //============================================================================
+// 5 MHz for simulation
+`timescale 1us/ 100 ns
 
 module z80_top_direct_p(
     output wire nM1,
