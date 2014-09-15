@@ -34,7 +34,7 @@ bit clk = 1;
 initial repeat (`TOTAL_CLKS) #1 clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
-z80_top dut(z80);           // Create an instance of our Z80 design
+z80_top_ifc_n dut(z80);     // Create an instance of our Z80 design
 test_bench_fuse tb(z80);    // Create an instance of the test bench
 
 ram ram( .Address(z80.A), .Data(z80.D), .CS(z80.nMREQ), .WE(z80.nWR), .OE(z80.nRD) );

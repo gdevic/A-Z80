@@ -1,8 +1,8 @@
 onerror {resume}
 quietly virtual function -install /test_fuse/dut/alu_ -env /test_fuse { &{/test_fuse/dut/alu_/op1_high, /test_fuse/dut/alu_/op1_low }} OP1
 quietly virtual function -install /test_fuse/dut/alu_ -env /test_fuse { &{/test_fuse/dut/alu_/op2_high, /test_fuse/dut/alu_/op2_low }} OP2
-quietly virtual function -install /test_fuse/dut/reg_file_ -env /test_fuse/dut/reg_file_/b2v_latch_af_lo { &{/test_fuse/dut/reg_file_/b2v_latch_af_hi/SYNTHESIZED_WIRE_0, /test_fuse/dut/reg_file_/b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} AF
-quietly virtual function -install /test_fuse/dut/reg_file_ -env /test_fuse/dut/reg_file_/b2v_latch_af_lo { &{/test_fuse/dut/reg_file_/b2v_latch_af_hi/SYNTHESIZED_WIRE_0, /test_fuse/dut/reg_file_/b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} af
+quietly virtual signal -install /test_fuse/dut/reg_file_ { (context /test_fuse/dut/reg_file_ )&{b2v_latch_af_hi/SYNTHESIZED_WIRE_0 ,b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} AF
+quietly virtual signal -install /test_fuse/dut/reg_file_ { (context /test_fuse/dut/reg_file_ )&{b2v_latch_af_hi/SYNTHESIZED_WIRE_0 ,b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} af
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group {pads
 } /test_fuse/z80/CLK
@@ -270,33 +270,59 @@ add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db0
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db1
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db2
 add wave -noupdate -radix hexadecimal /test_fuse/dut/alu_/test_db_high
-add wave -noupdate -radix hexadecimal -childformat {{{/test_fuse/dut/alu_/test_db_low[3]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[2]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[1]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[0]} -radix hexadecimal}} -subitemconfig {{/test_fuse/dut/alu_/test_db_low[3]} {-radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[2]} {-radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[1]} {-radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[0]} {-radix hexadecimal}} /test_fuse/dut/alu_/test_db_low
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_shift_db0
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_shift_db7
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/ctl_shift_en
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/flags_hf
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/ctl_alu_op_low
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_parity_out
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/flags_zf
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/flags_pf
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/flags_sf
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/ctl_cond_short
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_vf_out
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/iff2
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/ctl_pf_sel
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/op543
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_shift_in
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_shift_right
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_shift_left
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/shift_cf_out
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_parity_in
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/flags_cond_true
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/pf_sel
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_op_low
-add wave -noupdate -group {alu control} /test_fuse/dut/alu_control_/alu_core_cf_in
-add wave -noupdate -group {alu control} -radix hexadecimal /test_fuse/dut/alu_control_/db
-add wave -noupdate -group {alu control} -radix hexadecimal /test_fuse/dut/alu_control_/out
-add wave -noupdate -group {alu control} -radix hexadecimal /test_fuse/dut/alu_control_/sel
+add wave -noupdate -radix hexadecimal -childformat {{{/test_fuse/dut/alu_/test_db_low[3]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[2]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[1]} -radix hexadecimal} {{/test_fuse/dut/alu_/test_db_low[0]} -radix hexadecimal}} -subitemconfig {{/test_fuse/dut/alu_/test_db_low[3]} {-height 15 -radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[2]} {-height 15 -radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[1]} {-height 15 -radix hexadecimal} {/test_fuse/dut/alu_/test_db_low[0]} {-height 15 -radix hexadecimal}} /test_fuse/dut/alu_/test_db_low
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_shift_db0
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_shift_db7
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/ctl_shift_en
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/flags_hf
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/ctl_alu_op_low
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_parity_out
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/flags_zf
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/flags_pf
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/flags_sf
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/ctl_cond_short
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_vf_out
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/iff2
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/ctl_pf_sel
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/op543
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_shift_in
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_shift_right
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_shift_left
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/shift_cf_out
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_parity_in
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/flags_cond_true
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/pf_sel
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_op_low
+add wave -noupdate -group {alu
+ control} /test_fuse/dut/alu_control_/alu_core_cf_in
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_fuse/dut/alu_control_/db
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_fuse/dut/alu_control_/out
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_fuse/dut/alu_control_/sel
 add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags_/ctl_flags_oe
 add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags_/ctl_flags_bus
 add wave -noupdate -group {alu flags} /test_fuse/dut/alu_flags_/ctl_flags_alu
@@ -358,57 +384,108 @@ add wave -noupdate -group {alu select} /test_fuse/dut/alu_select_/alu_sel_op2_hi
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select_/alu_core_R
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select_/alu_core_V
 add wave -noupdate -group {alu select} /test_fuse/dut/alu_select_/alu_core_S
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_bs_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_parity_in
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op2_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op1_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_res_oe
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op1_sel_low
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op1_sel_zero
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op1_sel_bus
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op2_sel_zero
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op2_sel_bus
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op2_sel_lq
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_op_low
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_in
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_sel_op2_neg
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_sel_op2_high
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_left
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_right
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/bsel
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_zero
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_parity_out
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_high_eq_9
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_high_gt_9
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_low_gt_9
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_db0
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_shift_db7
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_sf_out
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_yf_out
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_xf_out
-add wave -noupdate -group {alu} /test_fuse/dut/alu_/alu_vf_out
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/db
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/test_db_high
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/test_db_low
-add wave -noupdate -group {alu} -color Magenta /test_fuse/dut/alu_/alu_core_R
-add wave -noupdate -group {alu} -color Magenta /test_fuse/dut/alu_/alu_core_V
-add wave -noupdate -group {alu} -color Magenta /test_fuse/dut/alu_/alu_core_S
-add wave -noupdate -group {alu} -color Magenta /test_fuse/dut/alu_/alu_core_cf_in
-add wave -noupdate -group {alu} -color Magenta -radix hexadecimal /test_fuse/dut/alu_/alu_op1
-add wave -noupdate -group {alu} -color Magenta -radix hexadecimal /test_fuse/dut/alu_/alu_op2
-add wave -noupdate -group {alu} -color Red /test_fuse/dut/alu_/alu_core_cf_out
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/result_hi
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/result_lo
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/db_high
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/db_low
-add wave -noupdate -group {alu} -color Green -radix hexadecimal /test_fuse/dut/alu_/OP1
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/op1_high
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/op1_low
-add wave -noupdate -group {alu} -color Green -radix hexadecimal /test_fuse/dut/alu_/OP2
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/op2_high
-add wave -noupdate -group {alu} -radix hexadecimal /test_fuse/dut/alu_/op2_low
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_bs_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_parity_in
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op2_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op1_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_res_oe
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op1_sel_low
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op1_sel_zero
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op1_sel_bus
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op2_sel_zero
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op2_sel_bus
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op2_sel_lq
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_op_low
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_in
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_sel_op2_neg
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_sel_op2_high
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_left
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_right
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/bsel
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_zero
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_parity_out
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_high_eq_9
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_high_gt_9
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_low_gt_9
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_db0
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_shift_db7
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_sf_out
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_yf_out
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_xf_out
+add wave -noupdate -group {alu
+} /test_fuse/dut/alu_/alu_vf_out
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/db
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/test_db_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/test_db_low
+add wave -noupdate -group {alu
+} -color Magenta /test_fuse/dut/alu_/alu_core_R
+add wave -noupdate -group {alu
+} -color Magenta /test_fuse/dut/alu_/alu_core_V
+add wave -noupdate -group {alu
+} -color Magenta /test_fuse/dut/alu_/alu_core_S
+add wave -noupdate -group {alu
+} -color Magenta /test_fuse/dut/alu_/alu_core_cf_in
+add wave -noupdate -group {alu
+} -color Magenta -radix hexadecimal /test_fuse/dut/alu_/alu_op1
+add wave -noupdate -group {alu
+} -color Magenta -radix hexadecimal /test_fuse/dut/alu_/alu_op2
+add wave -noupdate -group {alu
+} -color Red /test_fuse/dut/alu_/alu_core_cf_out
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/result_hi
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/result_lo
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/db_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/db_low
+add wave -noupdate -group {alu
+} -color Green -radix hexadecimal /test_fuse/dut/alu_/OP1
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/op1_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/op1_low
+add wave -noupdate -group {alu
+} -color Green -radix hexadecimal /test_fuse/dut/alu_/OP2
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/op2_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_fuse/dut/alu_/op2_low
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_cy
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_dec
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_zero
@@ -419,7 +496,6 @@ add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_bus_
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/address_is_1
 add wave -noupdate -group {address latch} -radix hexadecimal /test_fuse/dut/address_latch_/abus
 add wave -noupdate -group {address latch} -radix hexadecimal /test_fuse/dut/address_latch_/address
-add wave -noupdate -group {address latch} -radix hexadecimal /test_fuse/dut/address_latch_/q
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_iy_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_ixiy_clr
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_ixiy_we

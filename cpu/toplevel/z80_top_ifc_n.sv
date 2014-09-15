@@ -1,9 +1,10 @@
 //============================================================================
-// Z80 Top level using the interface declaration
+// Z80 Top level using the interface declaration.
+// Pin signalling is negative (using control_pins_n module).
 //============================================================================
 `include "z80.svh"
 
-module z80_top (z80_if.dut z80);
+module z80_top_ifc_n (z80_if.dut z80);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Include core A-Z80 level connecting all internal modules

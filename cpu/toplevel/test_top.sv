@@ -13,9 +13,9 @@ initial begin : init
     z.nINT <= `CLR;
     z.nNMI <= `CLR;
     z.nBUSRQ <= `CLR;
-    force dut.z80_top.fpga_reset=1;
+    force dut.z80_top_ifc_n.fpga_reset=1;
     z.nRESET <= `SET;
-#2  force dut.z80_top.fpga_reset=0;
+#2  force dut.z80_top_ifc_n.fpga_reset=0;
     repeat (3) @(posedge clk);
     z.nRESET <= `CLR;
 end : init
@@ -58,8 +58,8 @@ bit clk = 1;
 initial forever #1 clk = ~clk;
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
-z80_top dut(z80);           // Create an instance of our Z80 design
-test_bench_top tb(z80);         // Create an instance of the test bench
+z80_top_ifc_n dut(z80);     // Create an instance of our Z80 design
+test_bench_top tb(z80);     // Create an instance of the test bench
 
 ram  ram( .Address(z80.A), .Data(z80.D), .CS(z80.nMREQ), .WE(z80.nWR), .OE(z80.nRD) );
 io   io( .Address(z80.A), .Data(z80.D), .CS(z80.nIORQ), .WE(z80.nWR), .OE(z80.nRD) );

@@ -1,10 +1,9 @@
 //============================================================================
 // Z80 Top level using direct wire declaration (not the interface)
+// Pin signalling is positive (using control_pins_p module).
 //============================================================================
-// 5 MHz for a functional simulation (no delay timings)
-`timescale 100 ns/ 100 ns
 
-module z80_top_direct(
+module z80_top_direct_p(
     output wire nM1,
     output wire nMREQ,
     output wire nIORQ,
