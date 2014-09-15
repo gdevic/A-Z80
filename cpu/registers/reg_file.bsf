@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 240 496)
+	(rect 16 16 240 528)
 	(text "reg_file" (rect 5 0 47 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 464 25 476)(font "Arial" ))
+	(text "inst" (rect 8 496 25 508)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -194,23 +194,30 @@ applicable agreement for further details.
 	(port
 		(pt 0 416)
 		(input)
-		(text "reg_sys_we_hi" (rect 0 0 89 14)(font "Arial" (font_size 8)))
-		(text "reg_sys_we_hi" (rect 21 411 110 425)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 21 411 43 425)(font "Arial" (font_size 8)))
 		(line (pt 0 416)(pt 16 416))
 	)
 	(port
 		(pt 0 432)
 		(input)
-		(text "reg_sel_sys_hi" (rect 0 0 87 14)(font "Arial" (font_size 8)))
-		(text "reg_sel_sys_hi" (rect 21 427 108 441)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_hi" (rect 0 0 89 14)(font "Arial" (font_size 8)))
+		(text "reg_sys_we_hi" (rect 21 427 110 441)(font "Arial" (font_size 8)))
 		(line (pt 0 432)(pt 16 432))
 	)
 	(port
 		(pt 0 448)
 		(input)
-		(text "reg_sel_gp_hi" (rect 0 0 80 14)(font "Arial" (font_size 8)))
-		(text "reg_sel_gp_hi" (rect 21 443 101 457)(font "Arial" (font_size 8)))
+		(text "reg_sel_sys_hi" (rect 0 0 87 14)(font "Arial" (font_size 8)))
+		(text "reg_sel_sys_hi" (rect 21 443 108 457)(font "Arial" (font_size 8)))
 		(line (pt 0 448)(pt 16 448))
+	)
+	(port
+		(pt 0 464)
+		(input)
+		(text "reg_sel_gp_hi" (rect 0 0 80 14)(font "Arial" (font_size 8)))
+		(text "reg_sel_gp_hi" (rect 21 459 101 473)(font "Arial" (font_size 8)))
+		(line (pt 0 464)(pt 16 464))
 	)
 	(port
 		(pt 224 32)
@@ -241,6 +248,6 @@ applicable agreement for further details.
 		(line (pt 224 80)(pt 208 80)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 208 464))
+		(rectangle (rect 16 16 208 496))
 	)
 )
