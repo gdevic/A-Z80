@@ -1,9 +1,19 @@
 // Test address and data pins blocks
 
-// 5 MHz for a functional simulation (no delay timings)
-`timescale 100 ns/ 100 ns
+// 5 MHz for simulation
+`timescale 1us/ 100 ns
 
 module test_pins;
+
+// ----------------- CLOCKS AND RESET -----------------
+// Define one full T-clock cycle delay
+`define T #2
+
+bit clk = 1;
+//initial repeat (30) `T clk = ~clk;
+initial forever `T clk = ~clk;
+logic nclk;
+assign nclk = ~clk;
 
 // ------------------------ ADDRESS PINS ---------------------
 logic [15:0] ab;            // Internal address bus
@@ -53,35 +63,35 @@ initial begin
     //------------------------------------------------------------
     // Test the address pin logic
 
-    #1  ab = 16'hAA55;      // Latch a value and output it
+    `T  ab = 16'hAA55;      // Latch a value and output it
         ctl_ab_we = 1;
         ctl_ab_pin_oe = 1;
-    #1  ctl_ab_we = 0;
-    #1  ctl_ab_pin_oe = 0;
+    `T  ctl_ab_we = 0;
+    `T  ctl_ab_pin_oe = 0;
         ab = 16'h1234;      // Should not affect
-    #1  ctl_ab_pin_oe = 1;  // Toggle output on and off
-    #1  ctl_ab_pin_oe = 0;
+    `T  ctl_ab_pin_oe = 1;  // Toggle output on and off
+    `T  ctl_ab_pin_oe = 0;
 
     //------------------------------------------------------------
     // Test the data pin logic
 
-    #1  dpin_w = 8'hAA;     // Load and latch a value
+    `T  dpin_w = 8'hAA;     // Load and latch a value
         ctl_db_pin_re = 1;  // Read into the latch
         
-    #1  dpin_w = 'z;
+    `T  dpin_w = 'z;
         db_w = 8'h55;
         ctl_db_pin_re = 0;
         ctl_db_we = 1;
-    #1  db_w = 'z;
+    `T  db_w = 'z;
 
-    #1 $display("End of test");
+    `T $display("End of test");
 end
 
 //--------------------------------------------------------------
 // Instantiate bus block and assign identical nets and variables
 //--------------------------------------------------------------
 
-address_pins address_pins_inst( .*, .bus_ab_pin_oe(ctl_ab_pin_oe), .bus_ab_pin_we(ctl_ab_we), .address(ab[15:0]), .A(apin[15:0]) );
+address_pins address_pins_inst( .*, .bus_ab_pin_oe(ctl_ab_pin_oe), .bus_ab_pin_we(ctl_ab_we), .address(ab[15:0]), .abus(apin[15:0]) );
 
 data_pins data_pins_inst( .*, .bus_db_oe(ctl_db_pin_oe), .ctl_bus_db_we(ctl_db_we), .bus_db_pin_oe(ctl_db_pin_oe), .bus_db_pin_re(ctl_db_pin_re), .D(dpin[7:0]) );
 

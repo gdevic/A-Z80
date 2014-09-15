@@ -72,4 +72,7 @@ set_global_assignment -name BDF_FILE data_switch_mask.bdf
 set_global_assignment -name BDF_FILE control_pins_n.bdf
 set_global_assignment -name BDF_FILE control_pins_p.bdf
 set_global_assignment -name BDF_FILE bus_control.bdf
+set_global_assignment -name BDF_FILE clatch16.bdf
+set_global_assignment -name BDF_FILE clatch8.bdf
+set_global_assignment -name BDF_FILE clatch1.bdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

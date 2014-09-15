@@ -1,23 +1,28 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -radix hexadecimal /test_bus/db
-add wave -noupdate -radix hexadecimal /test_bus/db_sig
-add wave -noupdate -color Gold -itemcolor Gold -radix hexadecimal /test_bus/address_sig
-add wave -noupdate /test_bus/ctl_ab_mux_inc_sig
-add wave -noupdate /test_bus/ctl_al_we_sig
-add wave -noupdate /test_bus/ctl_bus_inc_oe_sig
-add wave -noupdate /test_bus/ctl_inc_dec_sig
-add wave -noupdate /test_bus/ctl_inc_limit6_sig
-add wave -noupdate /test_bus/ctl_inc_cy_sig
-add wave -noupdate /test_bus/ctl_inc_zero_sig
-add wave -noupdate /test_bus/address_is_1_sig
+add wave -noupdate /test_bus/clk
+add wave -noupdate /test_bus/nclk
+add wave -noupdate /test_bus/abusw
+add wave -noupdate /test_bus/abus
+add wave -noupdate -color Gold /test_bus/address
+add wave -noupdate /test_bus/ctl_ab_mux_inc
+add wave -noupdate /test_bus/ctl_al_we
+add wave -noupdate /test_bus/ctl_bus_inc_oe
+add wave -noupdate /test_bus/ctl_inc_dec
+add wave -noupdate /test_bus/ctl_inc_limit6
+add wave -noupdate /test_bus/ctl_inc_cy
+add wave -noupdate /test_bus/ctl_inc_zero
+add wave -noupdate /test_bus/address_is_1
+add wave -noupdate -divider alatch
+add wave -noupdate /test_bus/address_latch_/b2v_address_latch/clk
+add wave -noupdate /test_bus/address_latch_/b2v_address_latch/Q
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {400 ps} 0}
+WaveRestoreCursors {{Cursor 1} {5500 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 189
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 141
+configure wave -valuecolwidth 62
 configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -28,4 +33,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {900 ps}
+WaveRestoreZoom {0 ns} {39500 ns}

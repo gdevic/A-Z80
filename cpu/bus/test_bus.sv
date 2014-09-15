@@ -1,94 +1,97 @@
 // Test address latch and increment block
 
-// 5 MHz for a functional simulation (no delay timings)
-`timescale 100 ns/ 100 ns
+// 5 MHz for simulation
+`timescale 1us/ 100 ns
 
 module test_bus;
 
-// Bi-directional bus that can also be tri-stated
-reg  [15:0] db;             // Drive it using this bus
-wire [15:0] db_sig;         // Read it using this bus
+// ----------------- CLOCKS AND RESET -----------------
+// Define one full T-clock cycle delay
+`define T #2
 
-wire [15:0] address_sig;    // Final address ouput
+bit clk = 1;
+//initial repeat (30) #1 clk = ~clk;
+initial forever #1 clk = ~clk;
+logic nclk;
+assign nclk = ~clk;
+
+// ----------------------------------------------------
+
+// Bi-directional bus that can also be tri-stated
+reg  [15:0] abusw;          // Drive it using this bus
+wire [15:0] abus;           // Read it using this bus
+
+wire [15:0] address;        // Final address ouput
 
 // ----------------- INPUT CONTROL -----------------
-reg ctl_ab_mux_inc_sig;     // Mux for the final address output
-reg ctl_al_we_sig;          // Write enable to address latch
-reg ctl_bus_inc_oe_sig;     // Write incrementer onto the internal data bus
+reg ctl_ab_mux_inc;         // Mux for the final address output
+reg ctl_al_we;              // Write enable to address latch
+reg ctl_bus_inc_oe;         // Write incrementer onto the internal data bus
 
 // ----------------- INC/DEC -----------------
-reg ctl_inc_dec_sig;        // Perform decrement (1) or increment (0)
-reg ctl_inc_limit6_sig;     // Limit increment to 6 bits (for incrementing IR)
-reg ctl_inc_cy_sig;         // Address increment, carry in value (+/-1 or 0)
-reg ctl_inc_zero_sig;       // Output zero from the incrementer
+reg ctl_inc_dec;            // Perform decrement (1) or increment (0)
+reg ctl_inc_limit6;         // Limit increment to 6 bits (for incrementing IR)
+reg ctl_inc_cy;             // Address increment, carry in value (+/-1 or 0)
+reg ctl_inc_zero;           // Output zero from the incrementer
 
 // ----------------- OUTPUT/STATUS -----------------
-wire address_is_1_sig;      // Signals when the final address is 1
+wire address_is_1;          // Signals when the final address is 1
 
 initial begin
-    db = 'z;
-    ctl_ab_mux_inc_sig = 0;
-    ctl_al_we_sig = 0;
-    ctl_bus_inc_oe_sig = 0;
-    ctl_inc_dec_sig = 0;
-    ctl_inc_limit6_sig = 0;
-    ctl_inc_cy_sig = 0;
-    ctl_inc_zero_sig = 0;
+    abusw = 'z;
+    ctl_ab_mux_inc = 0;
+    ctl_al_we = 0;
+    ctl_bus_inc_oe = 0;
+    ctl_inc_dec = 0;
+    ctl_inc_limit6 = 0;
+    ctl_inc_cy = 0;
+    ctl_inc_zero = 0;
 
     //------------------------------------------------------------
     // Perform a simple increment and decrement
-    #1  db = 16'h0;
-        ctl_ab_mux_inc_sig = 1;     // Output incrementer to the address bus
-        ctl_inc_cy_sig = 1;         // +1  show "1"
-    #1  ctl_inc_dec_sig = 1;        // -1  show "FFFF"
+    `T  abusw = 16'h1234;
+        ctl_al_we = 1;          // Write value to the latch
+        ctl_ab_mux_inc = 1;     // Output incrementer to the address bus
+        ctl_inc_cy = 1;         // +1  show "1235"
+    `T  ctl_inc_dec = 1;        // -1  show "1233"
     // ...through overflow
-    #1  db = 16'hffff;
-        ctl_inc_dec_sig = 0;
-        ctl_inc_cy_sig = 1;         // +1  show "0"
-    #1  ctl_inc_dec_sig = 1;        // -1  show "FFFE"
-    // test pass-through
-    #1  ctl_inc_cy_sig = 0;         // show "FFFF"
-    #1  ctl_inc_dec_sig = 0;
+    `T  abusw = 16'hffff;
+        ctl_inc_dec = 0;
+        ctl_inc_cy = 1;         // +1  show "0"
+    `T  ctl_inc_dec = 1;        // -1  show "FFFE"
+    `T  abusw = 16'h0;
+        ctl_inc_dec = 0;
+        ctl_inc_cy = 1;         // +1  show "1"
+    `T  ctl_inc_dec = 1;        // -1  show "FFFF"
+    `T  ctl_inc_cy = 0;         // show "0000"
+    `T  ctl_inc_dec = 0;        // show "0000"
 
     //------------------------------------------------------------
     // Test the address latch and the mux
-    #1  db = 16'hAA55;
-        ctl_al_we_sig = 1;          // Write AA55 to the latch
-        ctl_inc_cy_sig = 0;
-    #1  db = 16'hCAFE;              // Output CAFE through the incrementer
-        ctl_al_we_sig = 0;          // show "CAFE"
-    #1  ctl_ab_mux_inc_sig = 0;     // show "AA55"
+    `T  abusw = 16'hAA50;
+        ctl_al_we = 1;          // Write AA55 to the latch
+        ctl_inc_cy = 1;
+    `T  ctl_al_we = 0;          // show "AA51"
+    `T  ctl_ab_mux_inc = 0;     // show "AA50"
 
     //------------------------------------------------------------
     // Test the tri-state db
-    #1  db = 'z;
-        ctl_bus_inc_oe_sig = 1;     // Output latched value (AA55)
-    #1  ctl_bus_inc_oe_sig = 0;     // Disable it for a cycle
+    `T  abusw = 'z;
+        ctl_bus_inc_oe = 1;     // Output latched value (AA55)
+    `T  ctl_bus_inc_oe = 0;     // Disable it for a cycle
         
     //------------------------------------------------------------
     // Test the force-to-zero
-    #1  ctl_inc_zero_sig = 1;
-        ctl_bus_inc_oe_sig = 1;     // Output zero
+    `T  ctl_inc_zero = 1;
+        ctl_bus_inc_oe = 1;     // Output zero
 
-    #1 $display("End of test");
+    `T $display("End of test");
 end
 
 // Drive 3-state bidirectional bus with these statements
-assign db_sig = db;
+assign abus = abusw;
 
 // Instantiate address latch block
-address_latch address_latch_inst
-(
-	.ctl_bus_inc_oe(ctl_bus_inc_oe_sig) ,	// input  ctl_bus_inc_oe_sig
-	.ctl_inc_limit6(ctl_inc_limit6_sig) ,	// input  ctl_inc_limit6_sig
-	.ctl_inc_cy(ctl_inc_cy_sig) ,	// input  ctl_inc_cy_sig
-	.ctl_inc_dec(ctl_inc_dec_sig) ,	// input  ctl_inc_dec_sig
-	.ctl_inc_zero(ctl_inc_zero_sig) ,	// input  ctl_inc_zero_sig
-	.ctl_al_we(ctl_al_we_sig) ,	// input  ctl_al_we_sig
-	.ctl_ab_mux_inc(ctl_ab_mux_inc_sig) ,	// input  ctl_ab_mux_inc_sig
-	.address(address_sig[15:0]) ,	// output [15:0] address_sig
-	.address_is_1(address_is_1_sig) ,	// output  address_is_1_sig
-	.abus(db_sig[15:0]) 	// inout [15:0] db_sig
-);
+address_latch address_latch_( .* );
 
 endmodule

@@ -37,7 +37,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 168 200 184)
+	(rect 24 184 200 200)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "bus_db_pin_re" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
@@ -53,7 +53,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 184 200 200)
+	(rect 24 200 200 216)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "ctl_bus_db_we" (rect 9 0 80 12)(font "Arial" ))
 	(pt 176 8)
@@ -69,7 +69,7 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 24 208 200 224)
+	(rect 24 256 200 272)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
 	(text "bus_db_oe" (rect 9 0 62 12)(font "Arial" ))
 	(pt 176 8)
@@ -84,8 +84,24 @@ applicable agreement for further details.
 	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
 )
 (pin
+	(input)
+	(rect 24 160 200 176)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "nclk" (rect 9 0 29 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
 	(bidir)
-	(rect 720 168 896 184)
+	(rect 776 160 952 176)
 	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "D[7..0]" (rect 90 0 124 12)(font "Arial" ))
 	(pt 0 8)
@@ -102,7 +118,7 @@ applicable agreement for further details.
 )
 (pin
 	(bidir)
-	(rect 24 264 200 280)
+	(rect 24 288 200 304)
 	(text "BIDIR" (rect 151 6 175 16)(font "Arial" (font_size 6)))
 	(text "db[7..0]" (rect 49 4 86 16)(font "Arial" ))
 	(pt 176 8)
@@ -117,38 +133,6 @@ applicable agreement for further details.
 	)
 	(rotate180)
 	(text "VCC" (rect 152 -1 172 9)(font "Arial" (font_size 6)))
-)
-(symbol
-	(rect 512 144 576 224)
-	(text "LATCH" (rect 1 0 31 10)(font "Arial" (font_size 6)))
-	(text "reg_latch0" (rect 3 68 53 80)(font "Arial" ))
-	(port
-		(pt 0 24)
-		(input)
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(text "D" (rect 14 20 19 32)(font "Courier New" (bold)))
-		(line (pt 0 24)(pt 12 24))
-	)
-	(port
-		(pt 0 40)
-		(input)
-		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
-		(text "ENA" (rect 14 36 31 48)(font "Courier New" (bold)))
-		(line (pt 0 40)(pt 12 40))
-	)
-	(port
-		(pt 64 32)
-		(output)
-		(text "Q" (rect 45 28 50 40)(font "Courier New" (bold)))
-		(text "Q" (rect 45 28 50 40)(font "Courier New" (bold)))
-		(line (pt 53 32)(pt 64 32))
-	)
-	(drawing
-		(line (pt 12 12)(pt 52 12))
-		(line (pt 12 68)(pt 52 68))
-		(line (pt 12 68)(pt 12 12))
-		(line (pt 52 68)(pt 52 12))
-	)
 )
 (symbol
 	(rect 320 56 384 104)
@@ -248,7 +232,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 416 160 480 208)
+	(rect 320 176 384 224)
 	(text "OR2" (rect 1 0 19 10)(font "Arial" (font_size 6)))
 	(text "inst3" (rect 3 37 26 49)(font "Arial" ))
 	(port
@@ -281,7 +265,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 248 256 296 288)
+	(rect 248 280 296 312)
 	(text "TRI" (rect 32 0 47 10)(font "Arial" (font_size 6)))
 	(text "inst_buf0" (rect -1 21 45 33)(font "Arial" ))
 	(port
@@ -313,7 +297,7 @@ applicable agreement for further details.
 	(flipy)
 )
 (symbol
-	(rect 632 160 680 192)
+	(rect 688 152 736 184)
 	(text "TRI" (rect 1 0 16 10)(font "Arial" (font_size 6)))
 	(text "inst_buf1" (rect 3 21 49 33)(font "Arial" ))
 	(port
@@ -343,9 +327,41 @@ applicable agreement for further details.
 		(line (pt 14 7)(pt 32 16))
 	)
 )
-(connector
-	(pt 272 216)
-	(pt 272 256)
+(symbol
+	(rect 512 136 640 232)
+	(text "clatch8" (rect 5 0 46 14)(font "Arial" (font_size 8)))
+	(text "dlatch" (rect 8 80 37 92)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "D[7..0]" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "D[7..0]" (rect 21 27 57 41)(font "Arial" (font_size 8)))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 43 36 57)(font "Arial" (font_size 8)))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "ena" (rect 0 0 21 14)(font "Arial" (font_size 8)))
+		(text "ena" (rect 21 59 42 73)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 128 32)
+		(output)
+		(text "Q[7..0]" (rect 0 0 37 14)(font "Arial" (font_size 8)))
+		(text "Q[7..0]" (rect 70 27 107 41)(font "Arial" (font_size 8)))
+		(line (pt 128 32)(pt 112 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 112 80))
+	)
 )
 (connector
 	(pt 400 96)
@@ -368,29 +384,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 704 232)
-	(pt 304 232)
-	(bus)
-)
-(connector
-	(pt 704 232)
-	(pt 704 176)
-	(bus)
-)
-(connector
-	(pt 656 40)
-	(pt 656 160)
-)
-(connector
-	(pt 288 176)
-	(pt 288 120)
-)
-(connector
-	(pt 304 232)
-	(pt 304 136)
-	(bus)
-)
-(connector
 	(pt 400 112)
 	(pt 400 128)
 	(bus)
@@ -400,87 +393,13 @@ applicable agreement for further details.
 	(pt 320 120)
 )
 (connector
-	(pt 304 136)
-	(pt 320 136)
-	(bus)
-)
-(connector
 	(pt 400 96)
 	(pt 400 80)
 	(bus)
 )
 (connector
-	(pt 200 40)
-	(pt 656 40)
-)
-(connector
-	(pt 608 176)
-	(pt 608 272)
-	(bus)
-)
-(connector
-	(pt 296 272)
-	(pt 608 272)
-	(bus)
-)
-(connector
-	(pt 224 88)
-	(pt 320 88)
-	(bus)
-)
-(connector
-	(pt 224 272)
-	(pt 224 88)
-	(bus)
-)
-(connector
-	(pt 272 192)
-	(pt 272 72)
-)
-(connector
 	(pt 272 72)
 	(pt 320 72)
-)
-(connector
-	(pt 200 272)
-	(pt 224 272)
-	(bus)
-)
-(connector
-	(pt 224 272)
-	(pt 248 272)
-	(bus)
-)
-(connector
-	(pt 200 176)
-	(pt 288 176)
-)
-(connector
-	(pt 288 176)
-	(pt 416 176)
-)
-(connector
-	(pt 200 192)
-	(pt 272 192)
-)
-(connector
-	(pt 272 192)
-	(pt 416 192)
-)
-(connector
-	(pt 608 176)
-	(pt 632 176)
-	(bus)
-)
-(connector
-	(pt 704 176)
-	(pt 720 176)
-	(bus)
-)
-(connector
-	(pt 576 176)
-	(pt 608 176)
-	(bus)
 )
 (connector
 	(pt 384 80)
@@ -498,29 +417,142 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 480 184)
-	(pt 512 184)
+	(pt 272 72)
+	(pt 272 208)
 )
 (connector
-	(pt 680 176)
-	(pt 704 176)
+	(pt 288 120)
+	(pt 288 192)
+)
+(connector
+	(pt 200 192)
+	(pt 288 192)
+)
+(connector
+	(pt 288 192)
+	(pt 320 192)
+)
+(connector
+	(pt 200 208)
+	(pt 272 208)
+)
+(connector
+	(pt 272 208)
+	(pt 320 208)
+)
+(connector
+	(pt 384 200)
+	(pt 512 200)
+)
+(connector
+	(pt 320 136)
+	(pt 304 136)
 	(bus)
 )
 (connector
-	(pt 200 216)
-	(pt 272 216)
+	(pt 320 88)
+	(pt 224 88)
+	(bus)
 )
-(junction (pt 224 272))
-(junction (pt 272 192))
-(junction (pt 288 176))
-(junction (pt 608 176))
-(junction (pt 704 176))
-(text "Repeated 8 times, once for each data pin." (rect 640 256 877 270)(font "Arial" (font_size 8)))
+(connector
+	(pt 224 88)
+	(pt 224 296)
+	(bus)
+)
+(connector
+	(pt 272 264)
+	(pt 200 264)
+)
+(connector
+	(pt 200 296)
+	(pt 224 296)
+	(bus)
+)
+(connector
+	(pt 224 296)
+	(pt 248 296)
+	(bus)
+)
+(connector
+	(pt 272 264)
+	(pt 272 280)
+)
+(connector
+	(pt 400 168)
+	(pt 400 184)
+)
+(connector
+	(pt 512 184)
+	(pt 400 184)
+)
+(connector
+	(pt 200 168)
+	(pt 400 168)
+)
+(connector
+	(pt 712 40)
+	(pt 712 152)
+)
+(connector
+	(pt 200 40)
+	(pt 712 40)
+)
+(connector
+	(pt 304 256)
+	(pt 760 256)
+	(bus)
+)
+(connector
+	(pt 304 136)
+	(pt 304 256)
+	(bus)
+)
+(connector
+	(pt 760 168)
+	(pt 760 256)
+	(bus)
+)
+(connector
+	(pt 296 296)
+	(pt 664 296)
+	(bus)
+)
+(connector
+	(pt 664 168)
+	(pt 664 296)
+	(bus)
+)
+(connector
+	(pt 640 168)
+	(pt 664 168)
+	(bus)
+)
+(connector
+	(pt 664 168)
+	(pt 688 168)
+	(bus)
+)
+(connector
+	(pt 760 168)
+	(pt 776 168)
+	(bus)
+)
+(connector
+	(pt 736 168)
+	(pt 760 168)
+	(bus)
+)
+(junction (pt 272 208))
+(junction (pt 288 192))
+(junction (pt 224 296))
+(junction (pt 664 168))
+(junction (pt 760 168))
+(text "Repeated 8 times, once for each data pin." (rect 680 280 917 294)(font "Arial" (font_size 8)))
 (title_block
-	(rect 24 312 345 373)
+	(rect 24 336 345 397)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / data_pins" (rect 56 2 202 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Aug 18 07:02:24 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Sep 15 09:55:04 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

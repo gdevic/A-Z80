@@ -14,11 +14,12 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Tue Sep 09 17:42:35 2014"
+// CREATED		"Mon Sep 15 10:00:55 2014"
 
 module address_pins(
 	bus_ab_pin_oe,
 	bus_ab_pin_we,
+	nclk,
 	address,
 	abus
 );
@@ -26,13 +27,21 @@ module address_pins(
 
 input wire	bus_ab_pin_oe;
 input wire	bus_ab_pin_we;
+input wire	nclk;
 input wire	[15:0] address;
 output wire	[15:0] abus;
 
-reg	[15:0] SYNTHESIZED_WIRE_0;
+wire	[15:0] SYNTHESIZED_WIRE_0;
 
 
 
+
+
+clatch16	b2v_alatch16(
+	.clk(nclk),
+	.ena(bus_ab_pin_we),
+	.D(address),
+	.Q(SYNTHESIZED_WIRE_0));
 
 assign	abus[15] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[15] : 1'bz;
 assign	abus[14] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[14] : 1'bz;
@@ -50,13 +59,6 @@ assign	abus[3] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[3] : 1'bz;
 assign	abus[2] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[2] : 1'bz;
 assign	abus[1] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[1] : 1'bz;
 assign	abus[0] = bus_ab_pin_oe ? SYNTHESIZED_WIRE_0[0] : 1'bz;
-
-
-always@(bus_ab_pin_we or address)
-begin
-if (bus_ab_pin_we)
-	SYNTHESIZED_WIRE_0 <= address;
-end
 
 
 endmodule
