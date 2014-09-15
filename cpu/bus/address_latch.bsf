@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 240 176)
+	(rect 16 16 240 208)
 	(text "address_latch" (rect 5 0 86 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 144 25 156)(font "Arial" ))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -68,9 +68,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 128)
 		(input)
-		(text "ctl_al_we" (rect 0 0 55 14)(font "Arial" (font_size 8)))
-		(text "ctl_al_we" (rect 21 123 76 137)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 21 123 43 137)(font "Arial" (font_size 8)))
 		(line (pt 0 128)(pt 16 128))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "ctl_al_we" (rect 0 0 55 14)(font "Arial" (font_size 8)))
+		(text "ctl_al_we" (rect 21 139 76 153)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 16 144))
 	)
 	(port
 		(pt 224 48)
@@ -94,6 +101,6 @@ applicable agreement for further details.
 		(line (pt 224 32)(pt 208 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 208 144))
+		(rectangle (rect 16 16 208 176))
 	)
 )
