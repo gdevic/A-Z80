@@ -23,6 +23,9 @@ wire nBUSRQ = 0;
 
 wire [15:0] A;
 wire [7:0] D;
+// RamData is a data writer from the RAM module
+wire [7:0] RamData;
+wire we;
 
 wire CPUCLK;                // 10MHz from PLL to CPU
 wire locked;                // PLL has locked the output frequency
@@ -44,9 +47,6 @@ uart_io uart_io_( .*, .reset(!reset), .Address(A[15:8]), .Data(D[7:0]), .IORQ(nI
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 1Kb of RAM memory with memory select and 3-state data bus
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wire [7:0] RamData;
-wire we;
-
 // 1K is addressable with bits [9:0]
 // 1K *blocks* are selectable with bits [15:10]
 assign D[7:0] = (A[15:10]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : {8{1'bz}};

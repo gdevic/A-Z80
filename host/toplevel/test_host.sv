@@ -12,8 +12,10 @@ wire uart_tx;
 // Toggle reset; the reset on the board is a push-button
 // with negative polarity
 initial begin : init
+    force host_.z80_.fpga_reset=1;
+#2  force host_.z80_.fpga_reset=0;
     reset = 0;
-    #10 reset = 1;
+#10 reset = 1;
 end : init
 
 reg clk = 1;
