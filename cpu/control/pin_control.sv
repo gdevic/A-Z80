@@ -211,11 +211,11 @@ assign bus_ab_pin_oe = ~(reset | busack);
 assign pin_control_oe = ~(reset | busack);
 
 // Write 16-bit address value from the internal address bus into the address pad latch
-assign bus_ab_pin_we = (fFetch   & ((T1 & clk) | (T3 & clk))) |
-                       (fMRead   & (T1 & clk)) |
-                       (fMWrite  & (T1 & clk)) |
-                       (fIORead  & (T1 & clk)) |
-                       (fIOWrite & (T1 & clk));
+assign bus_ab_pin_we = (fFetch   & (T1 | T3)) |
+                       (fMRead   & (T1)) |
+                       (fMWrite  & (T1)) |
+                       (fIORead  & (T1)) |
+                       (fIOWrite & (T1));
 
 // Output data pad latch value onto the external data pin
 assign bus_db_pin_oe = (fFetch   & 1'h0) |
@@ -231,11 +231,11 @@ assign bus_db_pin_oe = (fFetch   & 1'h0) |
 //                       (fIOWrite & (T1 & ~clk | T2 | T3 | T4));
 
 // Read data from the external data pin into the data pad latch
-assign bus_db_pin_re = (fFetch   &~in_intr & (T2)) |
-                       (fFetch   & in_intr & (Tw2)) |
-                       (fMRead   & (T3 & ~T3h)) |
+assign bus_db_pin_re = (fFetch   &~in_intr & (T2 & rd)) |
+                       (fFetch   & in_intr & (Tw2 & rd)) |
+                       (fMRead   & (T3 & rd)) |
                        (fMWrite  & 1'h0) |
-                       (fIORead  & (T4 & ~T4h)) |
+                       (fIORead  & (T4 & rd)) |
                        (fIOWrite & 1'h0);
 
 //assign bus_db_pin_re = (fFetch   &~in_intr & (T2  & ~clk)) |
