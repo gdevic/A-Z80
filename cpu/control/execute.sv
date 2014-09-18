@@ -63,11 +63,8 @@ module execute
     input wire T6                       // T-cycle #6
 );
 
-// If set by the execution matrix, prevents looping back to the next instruction
-// Instructions that are longer than 4T set this at M1/T4
-logic contM1;                           // Continue M1 cycle
-// Instructions that use M2 immediately after M1/T4 set this at M1/T4
-logic contM2;                           // Continue with the next M cycle
+// Detects unknown instructions by signalling the known ones
+logic validPLA;                         // Valid PLA asserts this wire
 // Activates a state machine to compute WZ=IX+d; takes 5T cycles
 logic ixy_d;                            // Compute WX=IX+d
 // Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
@@ -122,20 +119,19 @@ assign rsel0 = op0 ^ (op1 & op2);
 
 always_comb
 begin
-    //----------------------------------------------------------
-    // Default assignment of all control outputs to 0 to prevent the
-    // generation of latches
-    //----------------------------------------------------------
+    //------------------------------------------------------------------------
+    // Default assignment of all control outputs to 0 to prevent generating
+    // latches.
+    //------------------------------------------------------------------------
     `include "exec_zero.i"
 
     // Reset internal control wires
-    contM1 = 0;
-    contM2 = 0;
-    nextM  = 0;
-    setM1  = 0;
+    validPLA = 0;                       // Every valid PLA entry will set it
+    nextM  = 0;                         // Set to advance to the next M cycle
+    setM1  = 0;                         // Set on a last M/T cycle of an instruction
 
     // Reset global machine cycle functions
-    fFetch = M1;                // Fetch is simply always M1
+    fFetch = M1;                        // Fetch is simply always M1
     fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d  = 0;
     setIXIY = 0;
@@ -143,9 +139,9 @@ begin
     nonRep = 0;
     pc_inc = 1;
 
-    //----------------------------------------------------------
+    //------------------------------------------------------------------------
     // Reset control: Set PC and IR to 0 in two clocks (phases)
-    //----------------------------------------------------------
+    //------------------------------------------------------------------------
     // Don't clear them while fpga_reset is active to help fuse tests
     // set those registers manually according to each test
     if (reset && !fpga_reset) begin
@@ -158,17 +154,17 @@ begin
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
     end
 
-    //----------------------------------------------------------
+    //------------------------------------------------------------------------
     // State-based signal assignment
-    //----------------------------------------------------------
+    //------------------------------------------------------------------------
     `include "exec_matrix.i"
 
-    //========================================================================
-    // Default M1 fetch state control
-    //========================================================================
-    if (M1 && T4) begin
-        nextM = !contM1;                // Complete the default M1 cycle
-        setM1 = !contM1 & !contM2;      // Set next M1 cycle
+    //------------------------------------------------------------------------
+    // At M1/T4 advance the instruction if it did not trigger any PLA entry
+    //------------------------------------------------------------------------
+    if (M1 && T4 && !validPLA) begin
+        nextM = 1;                      // Complete the default M1 cycle
+        setM1 = 1;                      // Set next M1 cycle
     end
 end
 
