@@ -281,6 +281,18 @@ if (pla[83]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1; end
     if (M1 && T5) begin  nextM=1; setM1=1;
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4u=1; /* Read either I or R based on op3 (0 or 1) */
@@ -298,6 +310,18 @@ if (pla[83]) begin
 end
 
 if (pla[57]) begin
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1; end
     if (M1 && T5) begin  nextM=1; setM1=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4d=1; ctl_reg_in=2'b11; /* Write either I or R based on op3 (0 or 1) */
@@ -719,6 +743,18 @@ if (pla[12]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -815,6 +851,18 @@ if (pla[11]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -900,6 +948,18 @@ if (pla[65] && !pla[52]) begin
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -930,6 +990,18 @@ if (pla[64]) begin
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -964,6 +1036,18 @@ if (pla[64]) begin
 end
 
 if (use_ixiy && pla[52]) begin
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -997,6 +1081,18 @@ if (!use_ixiy && pla[52]) begin
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */
                     ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -1064,6 +1160,19 @@ if (pla[66] && !pla[53]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
     if (op4 & op5 & !op3) ctl_bus_zero_oe=1;                /* Trying to read flags? Put 0 on the bus instead. */
     else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={!rsel3,rsel3}; end /* Read 8-bit GP register */
@@ -1105,6 +1214,18 @@ if ((M2 || M4) && pla[75]) begin
 end
 
 if (use_ixiy && pla[53]) begin
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -1126,6 +1247,18 @@ if (!use_ixiy && pla[53]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -1222,6 +1355,18 @@ if (pla[69]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
@@ -1306,6 +1451,18 @@ if (op3 && pla[68]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
@@ -1394,6 +1551,18 @@ if (!op3 && pla[68]) begin
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1;
                     ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
@@ -1518,7 +1687,17 @@ if (pla[77]) begin
                     ctl_flags_use_cf2=1;
                     ctl_flags_hf_cpl=flags_nf; end
     if (M1 && T3) begin 
-                    ctl_flags_hf2_we=1; /* Write HF2 flag (DAA only) */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf2_we=1; /* Write HF2 flag (DAA only) */
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_sw_2d=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -1554,6 +1733,18 @@ if (pla[81]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_op1_sel_zero=1; /* Zero */
@@ -1588,6 +1779,18 @@ if (pla[82]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=flags_nf; ctl_flags_cf_cpl=flags_nf; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_op1_sel_zero=1; /* Zero */
@@ -1620,6 +1823,18 @@ if (pla[89]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_hf_cpl=!flags_cf; /* Used for CCF */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
@@ -1642,6 +1857,18 @@ if (pla[92]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_cf_set=1; /* Set CF going into the ALU core */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
@@ -1687,6 +1914,18 @@ if (pla[25]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_use_cf2=1; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin 
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -1721,6 +1960,18 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_use_cf2=1; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  nextM=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -1779,6 +2030,18 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
                     ctl_flags_use_cf2=1; end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -1872,6 +2135,18 @@ if (pla[15] && op3) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -1931,6 +2206,18 @@ if (pla[15] && !op3) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2002,7 +2289,17 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  nextM=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -2048,7 +2345,17 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2096,7 +2403,17 @@ if (~use_ixiy && pla[74] && !pla[55]) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; end
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  nextM=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -2131,7 +2448,17 @@ end
 
 if (~use_ixiy && pla[74] && pla[55]) begin
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2190,7 +2517,17 @@ if (~use_ixiy && pla[73] && !pla[55]) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_alu_sel_op2_neg=1; end
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  nextM=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={!rsel0,rsel0};/* Read 8-bit GP register selected by op[2:0] */
                     ctl_sw_2d=1;
@@ -2225,7 +2562,17 @@ end
 
 if (~use_ixiy && pla[73] && pla[55]) begin
     if (M1 && T3) begin 
-                    ctl_alu_bs_oe=1; /* Bit-selector unit */ end
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_bs_oe=1; /* Bit-selector unit */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2320,6 +2667,18 @@ if (pla[27] && !pla[34]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_sw_2u=1;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fIORead=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
@@ -2392,6 +2751,18 @@ if (pla[91] && pla[21]) begin
     if (M1 && T2) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1; end
     if (M1 && T5) begin  nextM=1; end
     if (M2 && T1) begin  fIORead=1;
@@ -2481,6 +2852,18 @@ if (pla[91] && pla[20]) begin
     if (M1 && T2) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -2620,6 +3003,18 @@ if (pla[43]) begin
     if (flags_cond_true) begin      /* If cc is true, use WZ instead of PC (for jumps) */
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -2650,6 +3045,18 @@ end
 if (pla[47]) begin
     if (M1 && T1) begin 
                     ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Use WZ instead of PC (for jumps) */ end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -2733,6 +3140,17 @@ if (pla[48]) begin
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end end
     if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1;
                     ctl_cond_short=1; /* M1/T3 only: force a short flags condition (SS) */ end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
@@ -2821,6 +3239,18 @@ if (pla[26]) begin
     if (!flags_zf) begin             /* If ZF is not set, use WZ instead of PC (for DJNZ) */
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
                     ctl_sw_2d=1;
@@ -2994,6 +3424,18 @@ if (pla[42]) begin
     if (flags_cond_true) begin      /* If cc is true, use WZ instead of PC (for jumps) */
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -3085,6 +3527,18 @@ if (pla[45]) begin
     if (flags_cond_true) begin      /* If cc is true, use WZ instead of PC (for jumps) */
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end end
+    if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1; end
     if (M1 && T4) begin  contM1=1; end
     if (M1 && T5) begin  nextM=1; setM1=!flags_cond_true; end
     if (M2 && T1) begin  fMRead=1;
@@ -3230,6 +3684,17 @@ end
 // CB-Table opcodes
 if (pla[49]) begin
     if (M1 && T3) begin 
+                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
+                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op2_sel_bus=1; /* Internal bus */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */
+                    ctl_flags_sz_we=1;
+                    ctl_flags_xy_we=1;
+                    ctl_flags_hf_we=1;
+                    ctl_flags_pf_we=1;
+                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
+                    ctl_flags_cf_we=1;
                     ctl_state_tbl_cb_set=1; setCBED=1; /* CB-table prefix */ end
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
@@ -3479,18 +3944,7 @@ if (M1) begin
     if (M1 && T3) begin 
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit IR */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_flags_bus=1; /* Load FLAGT from the data bus */
-                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op2_sel_bus=1; /* Internal bus */
-                    ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_flags_sz_we=1;
-                    ctl_flags_xy_we=1;
-                    ctl_flags_hf_we=1;
-                    ctl_flags_pf_we=1;
-                    ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
-                    ctl_flags_cf_we=1;
                     ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin 
