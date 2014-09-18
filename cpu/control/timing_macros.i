@@ -89,21 +89,18 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_
 >       ctl_sw_4u=1;
 
 //-----------------------------------------------------------------------------------------
-// Controls the address latch incrementer
+// Controls the address latch incrementer and the address latch
 //-----------------------------------------------------------------------------------------
 :inc/dec
-W       ctl_al_we=1;                                        // Write a value from the abus to the address latch
-W+      ctl_al_we=1; ctl_inc_cy=pc_inc;                     // Write latch and start incrementing
-W-      ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1;      // Write latch and start decrementing
-W?      ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3;    // Used for repeat instructions: decrement if op3 is set
-
-R       ctl_bus_inc_oe=1;                                   // Output enable incrementer to the abus
-R+      ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc;                // Output enable while holding to increment
-R-      ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; // Output enable while holding to decrement
-R?      ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3;  // Used for repeat instructions: decrement if op3 is set
-+/-     ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3;  // Used for INC/DEC: decrement if op3 is set
++       ctl_inc_cy=pc_inc;                                  // Increment
+-       ctl_inc_cy=pc_inc; ctl_inc_dec=1;                   // Decrement
+op3     ctl_inc_cy=pc_inc; ctl_inc_dec=op3;                 // Decrement if op3 is set; increment otherwise
 
 <-      ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; // MUX output to apads while holding to decrement (for push)
+
+:A:latch
+W       ctl_al_we=1;                                        // Write a value from the register bus to the address latch
+R       ctl_bus_inc_oe=1;                                   // Output enable incrementer to the register bus
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint

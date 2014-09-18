@@ -9,10 +9,11 @@ if (pla[17] && !pla[50]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
@@ -38,10 +39,11 @@ if (use_ixiy && pla[58]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -71,10 +73,11 @@ if (use_ixiy && pla[59]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -107,17 +110,19 @@ if (pla[40]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ ixy_d=1; /* Compute WZ=IX+d */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ ixy_d=1; /* Compute WZ=IX+d */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T5) begin  nextM=1; ixy_d=1; /* Compute WZ=IX+d */ end
@@ -127,10 +132,11 @@ if (pla[50] && !pla[40]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -150,10 +156,11 @@ if (pla[8] && pla[13]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -166,10 +173,11 @@ if (pla[8] && !pla[13]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit general purpose register, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
@@ -177,10 +185,11 @@ if (pla[38] && pla[13]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -188,13 +197,14 @@ if (pla[38] && pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -206,7 +216,8 @@ if (pla[38] && pla[13]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -219,10 +230,11 @@ if (pla[38] && !pla[13]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -230,10 +242,11 @@ if (pla[38] && !pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -241,10 +254,11 @@ if (pla[38] && !pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
@@ -303,14 +317,15 @@ if (pla[7]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11; /* Write 8-bit GP register low byte */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -318,7 +333,8 @@ if (pla[7]) begin
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1; end
 end
 
@@ -326,10 +342,11 @@ if (pla[30] && pla[13]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -337,13 +354,14 @@ if (pla[30] && pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -355,10 +373,11 @@ if (pla[30] && pla[13]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
                     ctl_sw_2u=1;
@@ -366,7 +385,8 @@ if (pla[30] && pla[13]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -374,10 +394,11 @@ if (pla[30] && !pla[13]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -385,10 +406,11 @@ if (pla[30] && !pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -396,10 +418,11 @@ if (pla[30] && !pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11; /* Write 8-bit GP register low byte */
                     ctl_sw_2d=1;
@@ -407,10 +430,11 @@ if (pla[30] && !pla[13]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M5 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11; /* Write 8-bit GP register high byte */
                     ctl_sw_2d=1;
@@ -422,10 +446,11 @@ if (pla[31] && pla[33]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -433,13 +458,14 @@ if (pla[31] && pla[33]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -452,10 +478,11 @@ if (pla[31] && pla[33]) begin
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
                     ctl_sw_2u=1;
@@ -464,7 +491,8 @@ if (pla[31] && pla[33]) begin
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M5 && T2) begin  fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -472,10 +500,11 @@ if (pla[31] && !pla[33]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -483,10 +512,11 @@ if (pla[31] && !pla[33]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -494,10 +524,11 @@ if (pla[31] && !pla[33]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11; /* Write 8-bit GP register low byte */
                     ctl_sw_2d=1;
@@ -506,10 +537,11 @@ if (pla[31] && !pla[33]) begin
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M5 && T1) begin  fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11; /* Write 8-bit GP register high byte */
                     ctl_sw_2d=1;
@@ -532,7 +564,8 @@ if (pla[23] && pla[16]) begin
     if (M1 && T4) begin  contM1=1; end
     if (M1 && T5) begin  nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
@@ -541,10 +574,12 @@ if (pla[23] && pla[16]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Read 8-bit GP register low byte */
@@ -553,7 +588,8 @@ if (pla[23] && pla[16]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M3 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -561,10 +597,11 @@ if (pla[23] && !pla[16]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11; /* Write 8-bit GP register low byte */
                     ctl_sw_2d=1;
@@ -572,10 +609,11 @@ if (pla[23] && !pla[16]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; ctl_reg_in=2'b11; /* Write 8-bit GP register high byte */
                     ctl_sw_2d=1;
@@ -603,10 +641,11 @@ if (pla[10]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -614,10 +653,11 @@ if (pla[10]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -625,7 +665,8 @@ if (pla[10]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10; /* Read 8-bit GP register high byte */
@@ -634,10 +675,12 @@ if (pla[10]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; /* Read 8-bit GP register low byte */
@@ -646,7 +689,8 @@ if (pla[10]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMWrite=1; end
     if (M5 && T4) begin 
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
@@ -678,10 +722,11 @@ if (pla[12]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -701,7 +746,7 @@ if (pla[12]) begin
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit DE, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_res_oe=1; /* Result latch */
@@ -716,27 +761,34 @@ if (pla[12]) begin
                     ctl_flags_use_cf2=1; end
     if (M3 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMWrite=1; end
     if (M3 && T4) begin 
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
     if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
 
@@ -766,10 +818,11 @@ if (pla[11]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -803,23 +856,29 @@ if (pla[11]) begin
                     ctl_flags_use_cf2=1; end
     if (M3 && T4) begin 
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
     if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en | flags_zf;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
 
@@ -884,11 +943,12 @@ if (pla[64]) begin
                     ctl_flags_hf_we=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_state_alu=1; /* Assert the ALU PLA modifier to determine operation */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -907,10 +967,11 @@ if (use_ixiy && pla[52]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -939,10 +1000,11 @@ if (!use_ixiy && pla[52]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -1046,10 +1108,11 @@ if (use_ixiy && pla[53]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  ixy_d=1; /* Compute WZ=IX+d */ end
@@ -1426,7 +1489,8 @@ if (pla[9]) begin
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
     if (M1 && T6) begin  nextM=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit general purpose register, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for INC/DEC: decrement if op3 is set */
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */
                     ctl_reg_use_sp=1; /* For 16-bit loads: use SP instead of AF */ end
 end
 
@@ -1811,10 +1875,11 @@ if (pla[15] && op3) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin 
                     ctl_sw_2d=1;
@@ -1869,10 +1934,11 @@ if (pla[15] && !op3) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit WZ, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin 
                     ctl_sw_2d=1;
@@ -2219,10 +2285,11 @@ if (pla[37] && !pla[28]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fIORead=1;
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_sw_4d=1; /* Read 8-bit general purpose A register, enable SW4 downstream */
@@ -2279,10 +2346,11 @@ if (pla[37] && pla[28]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_sw_4d=1; /* Read 8-bit general purpose A register, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the abus to the address latch */
@@ -2373,10 +2441,11 @@ if (pla[91] && pla[21]) begin
                     ctl_alu_sel_op2_neg=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=nonRep | !repeat_en | flags_zf;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
@@ -2384,16 +2453,20 @@ if (pla[91] && pla[21]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
 
@@ -2444,10 +2517,11 @@ if (pla[91] && pla[20]) begin
                     ctl_alu_sel_op2_neg=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Used for repeat instructions: decrement if op3 is set */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
                     ctl_sw_2d=1;
@@ -2493,16 +2567,20 @@ if (pla[91] && pla[20]) begin
                     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T5) begin  nextM=1; setM1=1; end
 end
 
@@ -2513,10 +2591,11 @@ if (pla[29]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -2524,10 +2603,11 @@ if (pla[29]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -2543,10 +2623,11 @@ if (pla[43]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -2554,10 +2635,11 @@ if (pla[43]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -2571,10 +2653,11 @@ if (pla[47]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin 
                     ctl_sw_2d=1;
@@ -2654,10 +2737,11 @@ if (pla[48]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=!flags_cond_true; end
     if (M3 && T1) begin 
                     ctl_sw_2d=1;
@@ -2771,10 +2855,11 @@ if (pla[26]) begin
                     ctl_alu_sel_op2_neg=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; setM1=flags_zf; /* Used in DJNZ */ end
     if (M3 && T1) begin 
                     ctl_sw_2d=1;
@@ -2851,10 +2936,11 @@ if (pla[24]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -2862,10 +2948,11 @@ if (pla[24]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -2873,7 +2960,8 @@ if (pla[24]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -2882,10 +2970,12 @@ if (pla[24]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
@@ -2894,7 +2984,8 @@ if (pla[24]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -2906,10 +2997,11 @@ if (pla[42]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -2917,10 +3009,11 @@ if (pla[42]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=!flags_cond_true; setM1=!flags_cond_true;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -2928,7 +3021,8 @@ if (pla[42]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T4) begin  nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M4 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -2937,10 +3031,12 @@ if (pla[42]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M4 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M4 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M5 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
@@ -2949,7 +3045,8 @@ if (pla[42]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M5 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1; end
 end
 
@@ -2959,10 +3056,11 @@ if (pla[35]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -2970,10 +3068,11 @@ if (pla[35]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -2990,10 +3089,11 @@ if (pla[45]) begin
     if (M1 && T5) begin  nextM=1; setM1=!flags_cond_true; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -3001,10 +3101,11 @@ if (pla[45]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -3019,10 +3120,11 @@ if (pla[46]) begin
                     ctl_iff1_iff2=1; /* RETN copies IFF2 into IFF1 (restores it) */ end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; ctl_reg_in=2'b01; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -3030,10 +3132,11 @@ if (pla[46]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -3055,7 +3158,8 @@ if (pla[56]) begin
                     ctl_bus_ff_oe=in_intr & im1; end
     if (M1 && T5) begin  nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -3064,10 +3168,12 @@ if (pla[56]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M2 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMWrite=1; nextM=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Write latch and start decrementing */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* MUX output to apads while holding to decrement (for push) */
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
@@ -3076,7 +3182,8 @@ if (pla[56]) begin
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
     if (M3 && T2) begin  fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Output enable while holding to decrement */ end
+                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=!(in_intr & im2); /* RST interrupt extension */
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; /* Selecting strictly Z */
                     ctl_sw_2d=1;
@@ -3085,14 +3192,15 @@ if (pla[56]) begin
 // INTR IM2 continues here...
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1; /* Select 8-bit I register */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_in=2'b01; /* Pass only low 8-bit value into the register file */
                     ctl_sw_2u=1;
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_op1_oe=1; /* OP1 latch */ end
     if (M4 && T2) begin  fMRead=1;
                     ctl_sw_4u=1;
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */
                     ctl_reg_out_lo=1; /* Pass only low 8-bit value out of the register file */
                     ctl_sw_2d=1;
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
@@ -3104,13 +3212,14 @@ if (pla[56]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */ end
     if (M5 && T1) begin  fMRead=1;
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1; /* Select 8-bit I register */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_in=2'b01; /* Pass only low 8-bit value into the register file */
                     ctl_sw_2u=1;
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */
                     ctl_alu_op1_oe=1; /* OP1 latch */ end
     if (M5 && T2) begin  fMRead=1;
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M5 && T3) begin  fMRead=1; nextM=1; setM1=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; ctl_reg_in=2'b10; /* Selecting strictly W */
                     ctl_sw_2d=1;
@@ -3125,17 +3234,19 @@ if (pla[49]) begin
     if (M1 && T4) begin  contM2=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M2 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ end
     if (M2 && T3) begin  fMRead=1; nextM=1; end
     if (M3 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ ixy_d=1; /* Compute WZ=IX+d */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T2) begin  fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */ ixy_d=1; /* Compute WZ=IX+d */ end
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */ ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T3) begin  fMRead=1; ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T4) begin  ixy_d=1; /* Compute WZ=IX+d */ end
     if (M3 && T5) begin  nextM=1; ixy_d=1; /* Compute WZ=IX+d */ end
@@ -3358,15 +3469,16 @@ end
 if (M1) begin
     if (M1 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */ end
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */ end
     if (M1 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=!setIXIY; /* Clear IX/IY flag */
                     ctl_state_tbl_clr=!setCBED; /* Clear CB/ED prefix */ end
     if (M1 && T3) begin 
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit IR */
-                    ctl_al_we=1; ctl_inc_cy=pc_inc; /* Write latch and start incrementing */
+                    ctl_al_we=1; /* Write a value from the abus to the address latch */
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_flags_bus=1; /* Load FLAGT from the data bus */
@@ -3383,7 +3495,8 @@ if (M1) begin
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Write 16-bit IR */
-                    ctl_bus_inc_oe=1; ctl_inc_cy=pc_inc; /* Output enable while holding to increment */
+                    ctl_inc_cy=pc_inc; /* Increment */
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the abus */
                     ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end
 end
 
