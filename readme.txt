@@ -13,7 +13,6 @@ A-Z80 "cpu" consists of several functional blocks and a top-level module:
 alu         contains ALU block, ALU control and flags logic
 bus         contains data bus switches, pin logic, address latch and incrementer
 register    contains CPU register file and register control logic
-fpga        contains FPGA-specific gates
 control     contains PLA, sequencer and other control blocks
 toplevel    integrates all sub-modules into a top-level design
 

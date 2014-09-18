@@ -14,8 +14,6 @@ add wave -noupdate /test_bus/ctl_inc_cy
 add wave -noupdate /test_bus/ctl_inc_zero
 add wave -noupdate /test_bus/address_is_1
 add wave -noupdate -divider alatch
-add wave -noupdate /test_bus/address_latch_/b2v_address_latch/clk
-add wave -noupdate /test_bus/address_latch_/b2v_address_latch/Q
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {5500 ns} 0}
 quietly wave cursor active 1

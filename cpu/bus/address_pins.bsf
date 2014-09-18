@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 224 144)
+	(rect 16 16 224 112)
 	(text "address_pins" (rect 5 0 82 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 112 25 124)(font "Arial" ))
+	(text "inst" (rect 8 80 25 92)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -40,16 +40,9 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "nclk" (rect 21 59 43 73)(font "Arial" (font_size 8)))
-		(line (pt 0 64)(pt 16 64))
-	)
-	(port
-		(pt 0 80)
-		(input)
 		(text "bus_ab_pin_we" (rect 0 0 92 14)(font "Arial" (font_size 8)))
-		(text "bus_ab_pin_we" (rect 21 75 113 89)(font "Arial" (font_size 8)))
-		(line (pt 0 80)(pt 16 80))
+		(text "bus_ab_pin_we" (rect 21 59 113 73)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
 	)
 	(port
 		(pt 208 32)
@@ -59,6 +52,6 @@ applicable agreement for further details.
 		(line (pt 208 32)(pt 192 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 192 112))
+		(rectangle (rect 16 16 192 80))
 	)
 )

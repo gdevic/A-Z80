@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Sep 15 09:47:51 2014"
+// CREATED		"Thu Sep 18 14:05:44 2014"
 
 module address_latch(
 	ctl_inc_cy,
@@ -43,7 +43,7 @@ output wire	address_is_1;
 inout wire	[15:0] abus;
 output wire	[15:0] address;
 
-wire	[15:0] Q;
+reg	[15:0] Q;
 wire	[15:0] SYNTHESIZED_WIRE_10;
 wire	SYNTHESIZED_WIRE_1;
 wire	[15:0] SYNTHESIZED_WIRE_2;
@@ -58,11 +58,13 @@ wire	SYNTHESIZED_WIRE_9;
 
 
 
-clatch16	b2v_address_latch(
-	.clk(nclk),
-	.ena(ctl_al_we),
-	.D(abus),
-	.Q(Q));
+always@(posedge nclk)
+begin
+if (ctl_al_we)
+	begin
+	Q[15:0] <= abus[15:0];
+	end
+end
 
 assign	SYNTHESIZED_WIRE_3 = {ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc,ctl_ab_mux_inc} & SYNTHESIZED_WIRE_10;
 
