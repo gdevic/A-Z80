@@ -142,8 +142,7 @@ begin
     //------------------------------------------------------------------------
     // Reset control: Set PC and IR to 0 in two clocks (phases)
     //------------------------------------------------------------------------
-    // Don't clear them while fpga_reset is active to help fuse tests
-    // set those registers manually according to each test
+    // Suppress clear in test mode; helps fuse tests to set registers
     if (reset && !fpga_reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
@@ -165,6 +164,15 @@ begin
     if (M1 && T4 && !validPLA) begin
         nextM = 1;                      // Complete the default M1 cycle
         setM1 = 1;                      // Set next M1 cycle
+    end
+
+    //------------------------------------------------------------------------
+    // The last cycle of an instruction is also the first cycle of the next
+    // instruction because of the PC => Address Latch overlap
+    //------------------------------------------------------------------------
+    if (setM1) begin
+        ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;   // Select 16-bit PC
+        ctl_al_we=1;                    // Write the PC into the address latch
     end
 end
 
