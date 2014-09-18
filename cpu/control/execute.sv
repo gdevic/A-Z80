@@ -32,7 +32,6 @@ module execute
     //----------------------------------------------------------
     input wire fpga_reset,              // Internal fpga test mode
     input wire reset,                   // Internal reset signal
-    input wire resetff,                 // Internal reset phase
     input wire clk,                     // Internal clock signal
     input wire in_intr,                 // Servicing maskable interrupt
     input wire in_nmi,                  // Servicing non-maskable interrupt
@@ -130,13 +129,17 @@ begin
     `include "exec_zero.i"
 
     // Reset internal control wires
-    contM1 = 0; contM2 = 0;
-    nextM = 0;  setM1 = 0;
+    contM1 = 0;
+    contM2 = 0;
+    nextM  = 0;
+    setM1  = 0;
+
     // Reset global machine cycle functions
-    fFetch = M1;    // Fetch is simply always M1
+    fFetch = M1;                // Fetch is simply always M1
     fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
-    ixy_d = 0;
-    setIXIY = 0; setCBED = 0;
+    ixy_d  = 0;
+    setIXIY = 0;
+    setCBED = 0;
     nonRep = 0;
     pc_inc = 1;
 
@@ -148,8 +151,9 @@ begin
     if (reset && !fpga_reset) begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
-        ctl_reg_sel_pc = resetff;       // Write to the PC on one reset phase
-        ctl_reg_sel_ir = !resetff;      // Write to the IR on alternate reset phase
+        ctl_al_we = 1;                  // Write 0 to the address latch
+        ctl_reg_sel_pc = 1;             // Write to the PC
+        ctl_reg_sel_ir = 1;             // Write to the IR
         ctl_reg_sys_we = 1;             // Perform write
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
     end

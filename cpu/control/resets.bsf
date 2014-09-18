@@ -79,13 +79,6 @@ applicable agreement for further details.
 		(text "reset" (rect 102 59 131 73)(font "Arial" (font_size 8)))
 		(line (pt 152 64)(pt 136 64))
 	)
-	(port
-		(pt 152 80)
-		(output)
-		(text "resetff" (rect 0 0 38 14)(font "Arial" (font_size 8)))
-		(text "resetff" (rect 93 75 131 89)(font "Arial" (font_size 8)))
-		(line (pt 152 80)(pt 136 80))
-	)
 	(drawing
 		(rectangle (rect 16 16 136 112))
 	)
