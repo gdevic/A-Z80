@@ -24,7 +24,7 @@ extern module uart_core
     output uart_tx,                // UART transmit wire
     output busy_tx,                // Signal that we are busy transmitting
     input clk,                     // Input clock that drives the execution
-    input reset,                   // Async negative edge reset
+    input reset,                   // Async positive edge reset
     input [7:0] data_in,           // Byte to transmit
     input data_in_wr               // Signal to accept a byte to transmit
 );

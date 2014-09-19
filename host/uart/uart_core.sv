@@ -19,7 +19,7 @@ module uart_core #(parameter BAUD = 115200)
     // Inputs to the module
     //----------------------------------------------------------
     input wire clk,                     // Input clock that drives the execution
-    input wire reset,                   // Async negative edge reset
+    input wire reset,                   // Async positive edge reset
     input wire [7:0] data_in,           // Byte to transmit
     input wire data_in_wr               // Signal to accept a byte to transmit
 );
