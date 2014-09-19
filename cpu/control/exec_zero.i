@@ -99,7 +99,6 @@ ctl_inc_cy = 0;
 ctl_inc_dec = 0;
 ctl_inc_zero = 0;
 ctl_al_we = 0;
-ctl_ab_mux_inc = 0;
 ctl_inc_limit6 = 0;
 ctl_bus_inc_oe = 0;
 

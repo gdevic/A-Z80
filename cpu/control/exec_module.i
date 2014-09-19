@@ -99,7 +99,6 @@ output logic ctl_inc_cy,
 output logic ctl_inc_dec,
 output logic ctl_inc_zero,
 output logic ctl_al_we,
-output logic ctl_ab_mux_inc,
 output logic ctl_inc_limit6,
 output logic ctl_bus_inc_oe,
 
