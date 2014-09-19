@@ -27,8 +27,8 @@ module host(
 
 // ----------------- CLOCKS AND RESET -----------------
 // Feed the CPU a slower clock from a counter
-//`define CBITS 8                 // 50 MHz divided by 2^8 / 2 gives about 100 KHz
-`define CBITS 2                 // 50 MHz divided by 2^2 / 2 gives about 6.25 MHz
+`define CBITS 8                 // 50 MHz divided by 2^8 / 2 gives about 100 KHz
+//`define CBITS 2                 // 50 MHz divided by 2^2 / 2 gives about 6.25 MHz
 reg [`CBITS-1:0] cnt = 0;       // counter
 reg slow = 0;                   // slow pulses
 reg slow_clk = 0;               // slow clock
@@ -43,7 +43,7 @@ end
 
 reg reset_stable = 0;
 always @ (posedge slow_clk) begin
-    reset_stable <= ~reset;
+    reset_stable <= reset;
 end
 
 // ----------------- CPU PINS -----------------
@@ -56,10 +56,10 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-wire nWAIT = 0;
-wire nINT = 0;
-wire nNMI = 0;
-wire nBUSRQ = 0;
+wire nWAIT = 1;
+wire nINT = 1;
+wire nNMI = 1;
+wire nBUSRQ = 1;
 
 wire [15:0] A;
 wire [7:0] D;
@@ -90,20 +90,21 @@ wire we;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_p z80_( .*, .nRESET(reset_stable), .CLK(slow_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(slow_clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
+// UART uses negative signalling logic, so invert control inputs
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .reset(reset_stable), .Address(A[15:8]), .Data(D[7:0]), .IORQ(nIORQ), .RD(nRD), .WR(nWR) );
+uart_io uart_io_( .*, .reset(!reset_stable), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 1Kb of RAM memory with memory select and 3-state data bus
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 1K is addressable with bits [9:0]
 // 1K *blocks* are selectable with bits [15:10]
-assign D[7:0] = (A[15:10]=='0 && nMREQ==1 && nRD==1 && nWR==0) ? RamData  : {8{1'bz}};
-assign we = A[15:10]=='0 && nMREQ==1 && nRD==0 && nWR==1;
+assign D[7:0] = (A[15:10]=='0 && nMREQ==0 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
+assign we = A[15:10]=='0 && nMREQ==0 && nRD==1 && nWR==0;
 
 ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 

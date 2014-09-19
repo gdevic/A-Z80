@@ -112,7 +112,7 @@ set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_core.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_io.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct_p.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct_n.sv
 set_global_assignment -name MIF_FILE ../../tools/zmac/zout/fpga.mif
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/inc_dec_2bit.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/inc_dec.v
@@ -130,7 +130,7 @@ set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_mux_2.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_mux_4.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_mux_8.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/mem_cell.v
-set_global_assignment -name VERILOG_FILE ../../cpu/bus/control_pins_p.v
+set_global_assignment -name VERILOG_FILE ../../cpu/bus/control_pins_n.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/data_pins.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/bus_control.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/bus/bus_switch.sv
