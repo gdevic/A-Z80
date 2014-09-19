@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon Sep 15 12:48:51 2014"
+// CREATED		"Thu Sep 18 21:13:57 2014"
 
 module reg_latch(
 	we,
@@ -29,26 +29,28 @@ input wire	oe;
 input wire	nclk;
 inout wire	[7:0] db;
 
-wire	[7:0] SYNTHESIZED_WIRE_0;
+reg	[7:0] DFFE_reg;
 
 
 
 
-assign	db[7] = oe ? SYNTHESIZED_WIRE_0[7] : 1'bz;
-assign	db[6] = oe ? SYNTHESIZED_WIRE_0[6] : 1'bz;
-assign	db[5] = oe ? SYNTHESIZED_WIRE_0[5] : 1'bz;
-assign	db[4] = oe ? SYNTHESIZED_WIRE_0[4] : 1'bz;
-assign	db[3] = oe ? SYNTHESIZED_WIRE_0[3] : 1'bz;
-assign	db[2] = oe ? SYNTHESIZED_WIRE_0[2] : 1'bz;
-assign	db[1] = oe ? SYNTHESIZED_WIRE_0[1] : 1'bz;
-assign	db[0] = oe ? SYNTHESIZED_WIRE_0[0] : 1'bz;
+assign	db[7] = oe ? DFFE_reg[7] : 1'bz;
+assign	db[6] = oe ? DFFE_reg[6] : 1'bz;
+assign	db[5] = oe ? DFFE_reg[5] : 1'bz;
+assign	db[4] = oe ? DFFE_reg[4] : 1'bz;
+assign	db[3] = oe ? DFFE_reg[3] : 1'bz;
+assign	db[2] = oe ? DFFE_reg[2] : 1'bz;
+assign	db[1] = oe ? DFFE_reg[1] : 1'bz;
+assign	db[0] = oe ? DFFE_reg[0] : 1'bz;
 
 
-clatch8	b2v_reg_latch(
-	.clk(nclk),
-	.ena(we),
-	.D(db),
-	.Q(SYNTHESIZED_WIRE_0));
+always@(posedge nclk)
+begin
+if (we)
+	begin
+	DFFE_reg[7:0] <= db[7:0];
+	end
+end
 
 
 endmodule

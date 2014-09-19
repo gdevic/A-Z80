@@ -6995,22 +6995,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 2568 208)
-	(pt 2568 216)
-)
-(connector
-	(pt 2568 216)
-	(pt 2568 320)
-)
-(connector
-	(pt 2584 208)
-	(pt 2584 216)
-)
-(connector
-	(pt 2584 216)
-	(pt 2584 304)
-)
-(connector
 	(pt 2392 520)
 	(pt 2392 536)
 )
@@ -7177,6 +7161,22 @@ applicable agreement for further details.
 (connector
 	(pt 352 536)
 	(pt 352 560)
+)
+(connector
+	(pt 2568 208)
+	(pt 2568 216)
+)
+(connector
+	(pt 2568 216)
+	(pt 2568 320)
+)
+(connector
+	(pt 2584 208)
+	(pt 2584 216)
+)
+(connector
+	(pt 2584 216)
+	(pt 2584 304)
 )
 (junction (pt 216 232))
 (junction (pt 216 840))
@@ -7373,7 +7373,7 @@ applicable agreement for further details.
 	(rect 32 888 353 949)
 	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_file" (rect 56 2 182 20)(font "Arial" (font_size 12)))(border))
 	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Mon Sep 15 12:58:35 2014" (rect 56 3 240 19)(font "Arial" (font_size 10)))(date)(border))
+	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Thu Sep 18 21:15:19 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
 	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)

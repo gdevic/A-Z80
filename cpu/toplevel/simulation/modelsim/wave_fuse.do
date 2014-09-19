@@ -1,8 +1,6 @@
 onerror {resume}
 quietly virtual function -install /test_fuse/dut/alu_ -env /test_fuse { &{/test_fuse/dut/alu_/op1_high, /test_fuse/dut/alu_/op1_low }} OP1
 quietly virtual function -install /test_fuse/dut/alu_ -env /test_fuse { &{/test_fuse/dut/alu_/op2_high, /test_fuse/dut/alu_/op2_low }} OP2
-quietly virtual signal -install /test_fuse/dut/reg_file_ { (context /test_fuse/dut/reg_file_ )&{b2v_latch_af_hi/SYNTHESIZED_WIRE_0 ,b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} AF
-quietly virtual signal -install /test_fuse/dut/reg_file_ { (context /test_fuse/dut/reg_file_ )&{b2v_latch_af_hi/SYNTHESIZED_WIRE_0 ,b2v_latch_af_lo/SYNTHESIZED_WIRE_0 }} af
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group {pads
 } /test_fuse/z80/CLK
@@ -168,8 +166,6 @@ add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/mwait
 add wave -noupdate -group {control pins
 } /test_fuse/dut/control_pins_/reset_in
-add wave -noupdate -group {regfile
-} -radix hexadecimal /test_fuse/dut/reg_file_/AF
 add wave -noupdate -group {regfile
 } -radix hexadecimal /test_fuse/dut/reg_file_/db_hi_ds
 add wave -noupdate -group {regfile
@@ -490,7 +486,6 @@ add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_dec
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_zero
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_al_we
-add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_ab_mux_inc
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_inc_limit6
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_bus_inc_oe
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/address_is_1

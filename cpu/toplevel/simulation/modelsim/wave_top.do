@@ -1,10 +1,4 @@
 onerror {resume}
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_hl2_lo { &{/test_top/dut/reg_file_/b2v_latch_hl2_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_hl2_lo/SYNTHESIZED_WIRE_0 }} HL2
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_de2_lo { &{/test_top/dut/reg_file_/b2v_latch_de2_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_de2_lo/SYNTHESIZED_WIRE_0 }} DE2
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_sp_lo { &{/test_top/dut/reg_file_/b2v_latch_sp_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_sp_lo/SYNTHESIZED_WIRE_0 }} SP
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_pc_lo { &{/test_top/dut/reg_file_/b2v_latch_pc_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_pc_lo/SYNTHESIZED_WIRE_0 }} PC
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_wz_lo { &{/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0 }} WZ
-quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_ir_lo { &{/test_top/dut/reg_file_/b2v_latch_ir_hi/SYNTHESIZED_WIRE_0, /test_top/dut/reg_file_/b2v_latch_ir_lo/SYNTHESIZED_WIRE_0 }} IR
 quietly virtual function -install /test_top/dut/interrupts_ -env /test_top { &{/test_top/dut/interrupts_/im2, /test_top/dut/interrupts_/im1 }} IM
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group Pins /test_top/z80/CLK
@@ -68,8 +62,6 @@ add wave -noupdate -expand -group al -expand -group al -group {ctl
 add wave -noupdate -expand -group al -expand -group al -group {ctl
 } /test_top/dut/address_latch_/ctl_al_we
 add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_ab_mux_inc
-add wave -noupdate -expand -group al -expand -group al -group {ctl
 } /test_top/dut/address_latch_/ctl_inc_limit6
 add wave -noupdate -expand -group al -expand -group al -group {ctl
 } /test_top/dut/address_latch_/address_is_1
@@ -98,12 +90,6 @@ add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/b
 add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_1d
 add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_2u
 add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_2d
-add wave -noupdate -radix hexadecimal /test_top/dut/reg_file_/HL2
-add wave -noupdate -radix hexadecimal /test_top/dut/reg_file_/DE2
-add wave -noupdate -radix hexadecimal /test_top/dut/reg_file_/SP
-add wave -noupdate -radix hexadecimal /test_top/dut/reg_file_/PC
-add wave -noupdate -radix hexadecimal -childformat {{{/test_top/dut/reg_file_/WZ[15]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[14]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[13]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[12]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[11]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[10]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[9]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[8]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[7]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[6]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[5]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[4]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[3]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[2]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[1]} -radix hexadecimal} {{/test_top/dut/reg_file_/WZ[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[7]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[6]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[5]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[4]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[3]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[2]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[1]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_hi/SYNTHESIZED_WIRE_0[0]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[7]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[6]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[5]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[4]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[3]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[2]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[1]} {-radix hexadecimal} {/test_top/dut/reg_file_/b2v_latch_wz_lo/SYNTHESIZED_WIRE_0[0]} {-radix hexadecimal}} /test_top/dut/reg_file_/WZ
-add wave -noupdate /test_top/dut/reg_file_/IR
 add wave -noupdate -group {interrupt
 } /test_top/dut/interrupts_/IM
 add wave -noupdate -group {interrupt
@@ -137,4 +123,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits us
 update
-WaveRestoreZoom {104 us} {117600 ns}
+WaveRestoreZoom {1956900 ns} {1970500 ns}
