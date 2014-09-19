@@ -1,7 +1,10 @@
 //============================================================================
 // Host design containing A-Z80 and a few peripherials
 //============================================================================
-module host(
+// Default CPU slowdown for the FPGA synthesis is
+// 50 MHz divided by 2^8 / 2 gives about 100 KHz
+module host #(parameter CPU_SLOWDOWN = 8)
+(
     input wire clk,
     input wire reset,
     output wire uart_tx,
@@ -27,12 +30,10 @@ module host(
 
 // ----------------- CLOCKS AND RESET -----------------
 // Feed the CPU a slower clock from a counter
-`define CBITS 8                 // 50 MHz divided by 2^8 / 2 gives about 100 KHz
-//`define CBITS 2                 // 50 MHz divided by 2^2 / 2 gives about 6.25 MHz
-reg [`CBITS-1:0] cnt = 0;       // counter
-reg slow = 0;                   // slow pulses
-reg slow_clk = 0;               // slow clock
-  
+reg [CPU_SLOWDOWN-1:0] cnt = 0;     // slowdown counter
+reg slow = 0;                       // slow pulses
+reg slow_clk = 0;                   // slow clock
+
 always @ (posedge clk) begin
     cnt <= cnt + 1;
     slow <= (cnt == 0);             // one pulse per cnt cycle
