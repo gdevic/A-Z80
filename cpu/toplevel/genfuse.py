@@ -157,14 +157,16 @@ while True:
             check_io.append("   if (io.IO[" + str(address) + "]!==8'h" + m[3] + ") $fdisplay(f,\"* IO[" + hex(address)[2:] + "]=%h !=" + m[3] + "\",io.IO[" + str(address) + "]);\n")
 
     # Prepare instruction to be run. By releasing the fpga_reset, internal CPU reset will be active
-    # for 1T and the engine will try to clear PC and IR registers. We need to prevent that by forcing
-    # reg_sys_we to 0 during that time.
+    # for 1T and the engine will try to clear PC and IR registers and also load address latch with that 0.
+    # We need to prevent that by forcing our PC value on the abus during that time.
     # Due to the instruction execution overlap, first 2T of an instruction may be writing
     # value back to a general purpose register (like AF). We need to prevent that as well.
     # Similarly, we let the execution continues 2T into the next instruction but we prevent
     # it from writing to system registers so it cannot update PC and IR (again)
     ftest.write("#1 force dut.z80_top_ifc_n.fpga_reset=0;\n")
+    ftest.write("   force dut.address_latch_.abus=16'h" + r[11] +";")
     ftest.write("#3 release dut.reg_control_.ctl_reg_sys_we;\n") # Hold for 3T to have an overlap (avoids a glich)
+    ftest.write("   release dut.address_latch_.abus;")
     ftest.write("#4 release dut.reg_file_.reg_gp_we;\n")
     ftest.write("#1\n")
     total_clks = total_clks + 9

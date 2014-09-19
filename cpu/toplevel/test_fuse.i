@@ -117,8 +117,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    release dut.reg_file_.b2v_latch_ir_hi.db;
 #1    ram.Mem[0] = 8'h00;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -314,8 +314,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h67;
    ram.Mem[47582] = 8'h93;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #30 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -512,8 +512,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h6f;
    ram.Mem[16444] = 8'hc4;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #30 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -709,8 +709,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h81;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -906,8 +906,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h41;
    ram.Mem[31721] = 8'hf7;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -1103,8 +1103,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h93;
    ram.Mem[8756] = 8'ha0;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -1300,8 +1300,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'he5;
    ram.Mem[46223] = 8'hcf;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -1496,8 +1496,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h8c;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -1692,8 +1692,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h92;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -1888,8 +1888,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h9d;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -2084,8 +2084,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'ha3;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -2280,8 +2280,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'hae;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #8 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -2476,8 +2476,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'hb4;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -2672,8 +2672,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'hbf;
    ram.Mem[56486] = 8'h49;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -2868,8 +2868,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h43;
    ram.Mem[41321] = 8'h50;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -3064,8 +3064,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
 #1    ram.Mem[0] = 8'h6e;
    ram.Mem[41321] = 8'h50;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #8 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -3261,8 +3261,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[883] = 8'h8e;
    ram.Mem[884] = 8'he1;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #32 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -3458,8 +3458,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    release dut.reg_file_.b2v_latch_ir_hi.db;
 #1    ram.Mem[0] = 8'h03;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -3653,8 +3653,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    release dut.reg_file_.b2v_latch_ir_hi.db;
 #1    ram.Mem[0] = 8'h3b;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -3848,8 +3848,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    release dut.reg_file_.b2v_latch_ir_hi.db;
 #1    ram.Mem[0] = 8'h07;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -4043,8 +4043,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    release dut.reg_file_.b2v_latch_ir_hi.db;
 #1    ram.Mem[0] = 8'h1f;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #2 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -4240,8 +4240,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h09;
    ram.Mem[22982] = 8'h9e;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -4437,8 +4437,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h11;
    ram.Mem[60738] = 8'hb7;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -4634,8 +4634,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h36;
    ram.Mem[27960] = 8'hf1;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #24 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -4832,8 +4832,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h52;
    ram.Mem[44100] = 8'h00;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -5029,8 +5029,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h93;
    ram.Mem[8756] = 8'ha0;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -5226,8 +5226,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'hc4;
    ram.Mem[22646] = 8'h9d;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -5423,8 +5423,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[1] = 8'h75;
    ram.Mem[2] = 8'h30;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #32 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
@@ -5622,8 +5622,8 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    ram.Mem[2] = 8'h2e;
    ram.Mem[55673] = 8'h76;
 #1 force dut.z80_top_ifc_n.fpga_reset=0;
-#3 release dut.reg_control_.ctl_reg_sys_we;
-#4 release dut.reg_file_.reg_gp_we;
+   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
+   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
 #1
 #32 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;

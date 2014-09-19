@@ -793,19 +793,17 @@ if (pla[12]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
-    if (M3 && T3) begin  fMWrite=1; end
-    if (M3 && T4) begin 
+    if (M3 && T3) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
-    if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en;
+    if (M3 && T4) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
+    if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -813,7 +811,6 @@ if (pla[12]) begin
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -896,18 +893,17 @@ if (pla[11]) begin
     end
                     ctl_flags_sz_we=1;
                     ctl_flags_use_cf2=1; end
-    if (M3 && T4) begin 
+    if (M3 && T3) begin 
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
-    if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en | flags_zf;
+    if (M3 && T4) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
+    if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en | flags_zf; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -915,7 +911,6 @@ if (pla[11]) begin
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -2992,7 +2987,7 @@ if (pla[29]) begin
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[43]) begin
@@ -3127,7 +3122,7 @@ if (pla[47]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_alu_sel_op2_neg=flags_sf;
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[48]) begin
@@ -3219,14 +3214,14 @@ if (pla[48]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_alu_sel_op2_neg=flags_sf;
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[6]) begin
     if (M1 && T4) begin  validPLA=1; nextM=1; setM1=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[26]) begin
@@ -3348,7 +3343,7 @@ if (pla[26]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_alu_sel_op2_neg=flags_sf;
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 // Call and Return Group
@@ -3405,7 +3400,7 @@ if (pla[24]) begin
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[42]) begin
@@ -3475,7 +3470,7 @@ if (pla[42]) begin
     if (M5 && T3) begin  fMWrite=1; nextM=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[35]) begin
@@ -3506,7 +3501,7 @@ if (pla[35]) begin
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[45]) begin
@@ -3550,7 +3545,7 @@ if (pla[45]) begin
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[46]) begin
@@ -3582,7 +3577,7 @@ if (pla[46]) begin
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 if (pla[56]) begin
@@ -3619,14 +3614,15 @@ if (pla[56]) begin
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
-    if (M3 && T2) begin  fMWrite=1; end
-    if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=!(in_intr & im2); /* RST interrupt extension */
-    if (!setM1) begin
-        ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; /* Selecting strictly Z only if setM1 is not asserted */
-    end
+    if (M3 && T2) begin  fMWrite=1;
+                    ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; /* Selecting strictly Z */
                     ctl_sw_2d=1;
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */ end
+    if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=!(in_intr & im2); /* RST interrupt extension */
+                    ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
+                    ctl_al_we=1; /* Write a value from the register bus to the address latch */
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 // INTR IM2 continues here...
     if (M4 && T1) begin  fMRead=1;
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1; /* Select 8-bit I register */
@@ -3665,7 +3661,7 @@ if (pla[56]) begin
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_reg_not_pc=1; end
+                    ctl_reg_not_pc=1; /* For M1/T1 load from a register other than PC */ end
 end
 
 // CB-Table opcodes

@@ -57,20 +57,11 @@ IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16
 I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;      // Select 8-bit I register
 PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
 
-//WZ!     ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; // Use WZ instead of PC (for jumps)
 // Conditional assertions of WZ, HL instead of PC
 WZ? \
     if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
         ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
     end
-
-// Conditional assertion to use WZ if the Z flag is not set (used in DJNZ)
-//NZ?WZ \
-//    if (!flags_zf) begin             // If ZF is not set, use WZ instead of PC (for DJNZ)
-//        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
-//    end
-
-//HL!     ctl_reg_not_pc=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; // Use HL, enable SW4 downstream (for jumps)
 
 :A:reg wr
 // General purpose registers
@@ -93,8 +84,6 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_
 +       ctl_inc_cy=pc_inc;                                  // Increment
 -       ctl_inc_cy=pc_inc; ctl_inc_dec=1;                   // Decrement
 op3     ctl_inc_cy=pc_inc; ctl_inc_dec=op3;                 // Decrement if op3 is set; increment otherwise
-
-//<-      ctl_ab_mux_inc=1; ctl_inc_cy=pc_inc; ctl_inc_dec=1; // MUX output to apads while holding to decrement (for push)
 
 :A:latch
 W       ctl_al_we=1;                                        // Write a value from the register bus to the address latch
@@ -119,11 +108,6 @@ rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP reg
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 // System registers
 Z       ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; // Selecting strictly Z
-Z*? \
-    if (!setM1) begin
-        ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; // Selecting strictly Z only if setM1 is not asserted
-    end
-
 I/R     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={!op3,op3}; ctl_sw_4u=1; // Read either I or R based on op3 (0 or 1)
 PCh     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
 PCl     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
@@ -362,6 +346,4 @@ Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
 DAA             ctl_daa_oe=1;           // Write DAA correction factor to the bus
 NonRep          nonRep=1;               // Non-repeating block instruction
 WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
-
-NOT_PC!         ctl_reg_not_pc=1;
-
+NOT_PC!         ctl_reg_not_pc=1;       // For M1/T1 load from a register other than PC
