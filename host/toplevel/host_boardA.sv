@@ -1,5 +1,9 @@
 //============================================================================
 // Host design containing A-Z80 and a few peripherials
+//
+// This module is designed to run on "Board B", which is a FPGA board
+// with EP2C8Q208C8N. It's also called "Red Core". Got from eBay/China.
+//
 //============================================================================
 // Default CPU slowdown for the FPGA synthesis is
 // 50 MHz divided by 2^8 / 2 gives about 100 KHz
@@ -42,6 +46,7 @@ always @ (posedge clk) begin
     end
 end
 
+// Debounce the reset push-button
 reg reset_stable = 0;
 always @ (posedge slow_clk) begin
     reset_stable <= reset;
