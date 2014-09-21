@@ -113,7 +113,10 @@ z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(slow_clk) );
 //assign we = A[15:10]=='0 && nMREQ==0 && nRD==1 && nWR==0;
 
 assign D[7:0] = (A[15:10]=='0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
-assign we = A[15:10]=='0 && nIORQ==1 && nRD==1 && nWR==0;
+
+// Make the Z80 code memory read-only so the test code would not modify it
+//assign we = A[15:10]=='0 && nIORQ==1 && nRD==1 && nWR==0;
+assign we = 1'b0;
 
 ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 
