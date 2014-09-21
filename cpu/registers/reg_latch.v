@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Sep 18 21:13:57 2014"
+// CREATED		"Sat Sep 20 19:47:08 2014"
 
 module reg_latch(
 	we,
@@ -29,26 +29,26 @@ input wire	oe;
 input wire	nclk;
 inout wire	[7:0] db;
 
-reg	[7:0] DFFE_reg;
+reg	[7:0] latch;
 
 
 
 
-assign	db[7] = oe ? DFFE_reg[7] : 1'bz;
-assign	db[6] = oe ? DFFE_reg[6] : 1'bz;
-assign	db[5] = oe ? DFFE_reg[5] : 1'bz;
-assign	db[4] = oe ? DFFE_reg[4] : 1'bz;
-assign	db[3] = oe ? DFFE_reg[3] : 1'bz;
-assign	db[2] = oe ? DFFE_reg[2] : 1'bz;
-assign	db[1] = oe ? DFFE_reg[1] : 1'bz;
-assign	db[0] = oe ? DFFE_reg[0] : 1'bz;
+assign	db[7] = oe ? latch[7] : 1'bz;
+assign	db[6] = oe ? latch[6] : 1'bz;
+assign	db[5] = oe ? latch[5] : 1'bz;
+assign	db[4] = oe ? latch[4] : 1'bz;
+assign	db[3] = oe ? latch[3] : 1'bz;
+assign	db[2] = oe ? latch[2] : 1'bz;
+assign	db[1] = oe ? latch[1] : 1'bz;
+assign	db[0] = oe ? latch[0] : 1'bz;
 
 
 always@(posedge nclk)
 begin
 if (we)
 	begin
-	DFFE_reg[7:0] <= db[7:0];
+	latch[7:0] <= db[7:0];
 	end
 end
 
