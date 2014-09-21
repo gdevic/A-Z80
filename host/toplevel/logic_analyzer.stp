@@ -1,0 +1,1221 @@
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP2C5 (0x020B10DD)" sof_file="out/host_boardB.sof">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="st0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="st0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <signal_set is_expanded="true" name="Top-level tracing">
+      <clock name="slow_clk" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire alias="reset" name="reset_stable" tap_mode="classic" type="register"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="D[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="tp_nIORQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nMREQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRD" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRFSH" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nWR" tap_mode="classic" type="output pin"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fFetch" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIORead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIOWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMRead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M6" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T6" tap_mode="classic" type="combinatorial"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="D[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[7]" tap_mode="classic" type="combinatorial"/>
+          <wire alias="reset" name="reset_stable" tap_mode="classic" type="register"/>
+          <wire name="tp_nIORQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nMREQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRD" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRFSH" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nWR" tap_mode="classic" type="output pin"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fFetch" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIORead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIOWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMRead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M6" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T6" tap_mode="classic" type="combinatorial"/>
+        </storage_qualifier_input_vec>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus alias="DB" is_signal_inverted="no" link="all" name="D" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="D[7]"/>
+            <net is_signal_inverted="no" name="D[6]"/>
+            <net is_signal_inverted="no" name="D[5]"/>
+            <net is_signal_inverted="no" name="D[4]"/>
+            <net is_signal_inverted="no" name="D[3]"/>
+            <net is_signal_inverted="no" name="D[2]"/>
+            <net is_signal_inverted="no" name="D[1]"/>
+            <net is_signal_inverted="no" name="D[0]"/>
+          </bus>
+          <bus alias="ABUS" is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|A" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="tp_nMREQ"/>
+          <net is_signal_inverted="no" name="tp_nRFSH"/>
+          <net is_signal_inverted="no" name="tp_nRD"/>
+          <net is_signal_inverted="no" name="tp_nWR"/>
+          <net is_signal_inverted="no" name="tp_nIORQ"/>
+          <bus alias="opcode" is_signal_inverted="no" link="all" name="OPCODE REGISTER" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we"/>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_pins:address_pins_|address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe"/>
+          <bus is_signal_inverted="no" link="all" name="M" order="lsb_to_msb" radix="bin" state="expand" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M6"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="T" order="lsb_to_msb" radix="bin" state="expand" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T6"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fFetch"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMRead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMWrite"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIORead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIOWrite"/>
+          <bus is_signal_inverted="no" link="all" name="AF [A]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="AF [F]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [H]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [L]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]"/>
+          </bus>
+        </data_view>
+        <setup_view>
+          <net is_signal_inverted="no" name="reset_stable"/>
+          <bus alias="DB" is_signal_inverted="no" link="all" name="D" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="D[7]"/>
+            <net is_signal_inverted="no" name="D[6]"/>
+            <net is_signal_inverted="no" name="D[5]"/>
+            <net is_signal_inverted="no" name="D[4]"/>
+            <net is_signal_inverted="no" name="D[3]"/>
+            <net is_signal_inverted="no" name="D[2]"/>
+            <net is_signal_inverted="no" name="D[1]"/>
+            <net is_signal_inverted="no" name="D[0]"/>
+          </bus>
+          <bus alias="ABUS" is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|A" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="tp_nMREQ"/>
+          <net is_signal_inverted="no" name="tp_nRFSH"/>
+          <net is_signal_inverted="no" name="tp_nRD"/>
+          <net is_signal_inverted="no" name="tp_nWR"/>
+          <net is_signal_inverted="no" name="tp_nIORQ"/>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_pins:address_pins_|address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe"/>
+          <bus alias="opcode" is_signal_inverted="no" link="all" name="OPCODE REGISTER" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="M" order="lsb_to_msb" radix="bin" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M6"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="T" order="lsb_to_msb" radix="bin" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T6"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fFetch"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMRead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMWrite"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIORead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIOWrite"/>
+          <bus is_signal_inverted="no" link="all" name="AF [A]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="AF [F]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [H]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [L]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]"/>
+          </bus>
+        </setup_view>
+      </presentation>
+      <trigger CRC="D7839F93" attribute_mem_mode="false" gap_record="true" is_expanded="true" name="Trigger on reset_stable" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="64" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="dont_care" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="dont_care" trigger_out="active high"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="basic">'reset' == rising edge
+            <power_up enabled="yes">
+            </power_up><op_node>
+              <op_node left="663" top="240" type="Advanced Trigger Level Result"/>
+            </op_node>
+          </level>
+        </events>
+        <storage_qualifier_events>
+          <transitional>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111000000000000000000
+            <pwr_up_transitional>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111000000000000000000</pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier_events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+      <single attribute="data hierarchy address_latch:address_latch_" value="3"/>
+      <single attribute="data hierarchy address_pins:address_pins_" value="3"/>
+      <single attribute="data hierarchy execute:execute_" value="3"/>
+      <single attribute="data hierarchy host" value="1"/>
+      <single attribute="data hierarchy ir:instruction_reg_" value="3"/>
+      <single attribute="data hierarchy reg_file:reg_file_" value="3"/>
+      <single attribute="data hierarchy reg_latch:b2v_latch_af_hi" value="3"/>
+      <single attribute="data hierarchy reg_latch:b2v_latch_af_lo" value="3"/>
+      <single attribute="data hierarchy reg_latch:b2v_latch_hl_hi" value="3"/>
+      <single attribute="data hierarchy reg_latch:b2v_latch_hl_lo" value="3"/>
+      <single attribute="data hierarchy sequencer:sequencer_" value="3"/>
+      <single attribute="data hierarchy z80_top_direct_n:z80_" value="1"/>
+      <single attribute="data horizontal scroll position" value="62"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="0"/>
+      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom level numerator" value="4"/>
+      <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="32736"/>
+      <multi attribute="timebars" size="5" value="64,194,81,70,152"/>
+    </position_info>
+    <signal_set global_temp="1" name="Top-level tracing">
+      <clock name="slow_clk" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire alias="reset" name="reset_stable" tap_mode="classic" type="register"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="D[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="tp_nIORQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nMREQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRD" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRFSH" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nWR" tap_mode="classic" type="output pin"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fFetch" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIORead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIOWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMRead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M6" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T6" tap_mode="classic" type="combinatorial"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="D[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="D[7]" tap_mode="classic" type="combinatorial"/>
+          <wire alias="reset" name="reset_stable" tap_mode="classic" type="register"/>
+          <wire name="tp_nIORQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nMREQ" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRD" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nRFSH" tap_mode="classic" type="output pin"/>
+          <wire name="tp_nWR" tap_mode="classic" type="output pin"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fFetch" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIORead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fIOWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMRead" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|execute:execute_|fMWrite" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" tap_mode="classic" type="register"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|M6" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T1" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T2" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T3" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T4" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T5" tap_mode="classic" type="combinatorial"/>
+          <wire name="z80_top_direct_n:z80_|sequencer:sequencer_|T6" tap_mode="classic" type="combinatorial"/>
+        </storage_qualifier_input_vec>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus alias="DB" is_signal_inverted="no" link="all" name="D" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="D[7]"/>
+            <net is_signal_inverted="no" name="D[6]"/>
+            <net is_signal_inverted="no" name="D[5]"/>
+            <net is_signal_inverted="no" name="D[4]"/>
+            <net is_signal_inverted="no" name="D[3]"/>
+            <net is_signal_inverted="no" name="D[2]"/>
+            <net is_signal_inverted="no" name="D[1]"/>
+            <net is_signal_inverted="no" name="D[0]"/>
+          </bus>
+          <bus alias="ABUS" is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|A" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="tp_nMREQ"/>
+          <net is_signal_inverted="no" name="tp_nRFSH"/>
+          <net is_signal_inverted="no" name="tp_nRD"/>
+          <net is_signal_inverted="no" name="tp_nWR"/>
+          <net is_signal_inverted="no" name="tp_nIORQ"/>
+          <bus alias="opcode" is_signal_inverted="no" link="all" name="OPCODE REGISTER" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we"/>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_pins:address_pins_|address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe"/>
+          <bus is_signal_inverted="no" link="all" name="M" order="lsb_to_msb" radix="bin" state="expand" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M6"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="T" order="lsb_to_msb" radix="bin" state="expand" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T6"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fFetch"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMRead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMWrite"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIORead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIOWrite"/>
+          <bus is_signal_inverted="no" link="all" name="AF [A]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="AF [F]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [H]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [L]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]"/>
+          </bus>
+        </data_view>
+        <setup_view>
+          <net is_signal_inverted="no" name="reset_stable"/>
+          <bus alias="DB" is_signal_inverted="no" link="all" name="D" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="D[7]"/>
+            <net is_signal_inverted="no" name="D[6]"/>
+            <net is_signal_inverted="no" name="D[5]"/>
+            <net is_signal_inverted="no" name="D[4]"/>
+            <net is_signal_inverted="no" name="D[3]"/>
+            <net is_signal_inverted="no" name="D[2]"/>
+            <net is_signal_inverted="no" name="D[1]"/>
+            <net is_signal_inverted="no" name="D[0]"/>
+          </bus>
+          <bus alias="ABUS" is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|A" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|A[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="tp_nMREQ"/>
+          <net is_signal_inverted="no" name="tp_nRFSH"/>
+          <net is_signal_inverted="no" name="tp_nRD"/>
+          <net is_signal_inverted="no" name="tp_nWR"/>
+          <net is_signal_inverted="no" name="tp_nIORQ"/>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_pins:address_pins_|address" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|address[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[15]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[14]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[13]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[12]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[11]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[10]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[9]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[8]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|abus[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_pins:address_pins_|bus_ab_pin_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_al_we"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_inc_zero"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|address_latch:address_latch_|ctl_bus_inc_oe"/>
+          <bus alias="opcode" is_signal_inverted="no" link="all" name="OPCODE REGISTER" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="M" order="lsb_to_msb" radix="bin" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|M6"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="T" order="lsb_to_msb" radix="bin" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T1"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T2"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T3"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T4"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T5"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|sequencer:sequencer_|T6"/>
+          </bus>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fFetch"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMRead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fMWrite"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIORead"/>
+          <net is_signal_inverted="no" name="z80_top_direct_n:z80_|execute:execute_|fIOWrite"/>
+          <bus is_signal_inverted="no" link="all" name="AF [A]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="AF [F]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [H]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="HL [L]" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]"/>
+            <net is_signal_inverted="no" name="z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]"/>
+          </bus>
+        </setup_view>
+      </presentation>
+      <trigger attribute_mem_mode="false" gap_record="true" global_temp="1" name="Trigger on reset_stable" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="64" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="dont_care" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="dont_care" trigger_out="active high"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="basic">'reset' == rising edge
+            <power_up enabled="yes">
+            </power_up>
+            <op_node>
+              <op_node left="663" top="240" type="Advanced Trigger Level Result"/>
+            </op_node>
+          </level>
+        </events>
+        <storage_qualifier>
+          <transitional>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+            <pwr_up_transitional>111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier>
+      </trigger>
+    </signal_set>
+  </instance>
+  <mnemonics/>
+  <static_plugin_mnemonics/>
+  <embedded_sof_files>
+  </embedded_sof_files>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <single attribute="config widget visible" value="1"/>
+    <single attribute="data log widget visible" value="1"/>
+    <single attribute="hierarchy widget height" value="190"/>
+    <single attribute="hierarchy widget visible" value="0"/>
+    <single attribute="hierarchy widget width" value="333"/>
+    <single attribute="instance widget visible" value="1"/>
+    <single attribute="jtag widget visible" value="1"/>
+    <single attribute="sof manager visible" value="0"/>
+    <multi attribute="column width" size="23" value="34,34,364,74,68,70,88,88,98,98,88,88,110,101,101,101,101,101,101,101,101,135,78"/>
+    <multi attribute="frame size" size="2" value="1680,988"/>
+    <multi attribute="jtag widget size" size="2" value="334,120"/>
+  </global_info>
+</session>
