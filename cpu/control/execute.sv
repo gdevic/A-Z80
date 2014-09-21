@@ -140,10 +140,17 @@ begin
     pc_inc = 1;
 
     //------------------------------------------------------------------------
+    // State-based signal assignment
+    //------------------------------------------------------------------------
+    `include "exec_matrix.i"
+
+    // List more specific combinational signal assignments after the include
+    //------------------------------------------------------------------------
     // Reset control: Set PC and IR to 0 in two clocks (phases)
     //------------------------------------------------------------------------
-    // Suppress clear in test mode; helps fuse tests to set registers
+    // Suppress clear in test mode: helps fuse tests to set registers
     if (reset && !fpga_reset) begin
+        // Clear the address latch, PC and IR registers
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_bus_inc_oe = 1;             // Incrementer to the abus
         ctl_al_we = 1;                  // Write 0 to the address latch
@@ -151,12 +158,11 @@ begin
         ctl_reg_sel_ir = 1;             // Write to the IR
         ctl_reg_sys_we = 1;             // Perform write
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
+        
+        // Clear instruction opcode register
+        ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
+        ctl_ir_we = 1;                  // And write it into the instruction register
     end
-
-    //------------------------------------------------------------------------
-    // State-based signal assignment
-    //------------------------------------------------------------------------
-    `include "exec_matrix.i"
 
     //------------------------------------------------------------------------
     // At M1/T4 advance the instruction if it did not trigger any PLA entry
