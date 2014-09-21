@@ -158,14 +158,14 @@ begin
         ctl_reg_sel_ir = 1;             // Write to the IR
         ctl_reg_sys_we = 1;             // Perform write
         ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
-        
+
         // Clear instruction opcode register
         ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
-        ctl_ir_we = 1;                  // And write it into the instruction register
+        ctl_ir_we = ~clk;               // And write it into the instruction register
     end
 
     //------------------------------------------------------------------------
-    // At M1/T4 advance the instruction if it did not trigger any PLA entry
+    // At M1/T4 advance an instruction if it did not trigger any PLA entry
     //------------------------------------------------------------------------
     if (M1 && T4 && !validPLA) begin
         nextM = 1;                      // Complete the default M1 cycle
