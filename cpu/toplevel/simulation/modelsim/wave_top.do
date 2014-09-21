@@ -50,7 +50,6 @@ add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/se
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_oe
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_re
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_oe
-add wave -noupdate -group {data pins} -label {DB Latch} -radix hexadecimal /test_top/dut/data_pins_/SYNTHESIZED_WIRE_6
 add wave -noupdate -expand -group al -expand -group al -group {ctl
 } /test_top/dut/address_latch_/ctl_bus_inc_oe
 add wave -noupdate -expand -group al -expand -group al -group {ctl
