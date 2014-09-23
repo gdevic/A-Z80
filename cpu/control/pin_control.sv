@@ -32,18 +32,21 @@ module pin_control
     //----------------------------------------------------------
     // Inputs from the sequencer and control units
     //----------------------------------------------------------
+    input wire nextM,                   // Last M cycle of any instruction
+    input wire setM1,                   // Last T clock of any instruction
+    input wire fFetch,                  // Function: opcode fetch cycle ("M1")
+    input wire fMRead,                  // Function: memory read cycle
+    input wire fMWrite,                 // Function: memory write cycle
+    input wire fIORead,                 // Function: IO Read cycle
+    input wire fIOWrite,                // Function: IO Write cycle
+
     input wire T1,                      // T-cycle #1
     input wire T2,                      // T-cycle #2
     input wire Tw1,                     // Auto-extended T2 cycle when in_intr (1)
     input wire Tw2,                     // Auto-extended T2 cycle when in_intr (2)
     input wire T3,                      // T-cycle #3
     input wire T4,                      // T-cycle #4
-    input wire fFetch,                  // Function: opcode fetch cycle ("M1")
-    input wire fMRead,                  // Function: memory read cycle
-    input wire fMWrite,                 // Function: memory write cycle
-    input wire fIORead,                 // Function: IO Read cycle
-    input wire fIOWrite,                // Function: IO Write cycle
-    input wire setM1,                   // Last T clock of any instruction
+
     input wire in_intr,                 // Servicing the interrupt
 
     //----------------------------------------------------------
@@ -54,18 +57,22 @@ module pin_control
     output wire bus_ab_pin_oe,          // Address bus pads: output enable to address pins
     output wire bus_ab_pin_we,          // Address bus pads: write the output pin address latch
     output wire bus_db_pin_oe,          // Data bus pads: output enable
-    output wire bus_db_pin_re           // Data bus pads: read from the output pin into the latch
+    output wire bus_db_pin_re,          // Data bus pads: read from the output pin into the latch
+    output wire T1up,                   // T1 clock up phase
+    output wire T3up                    // T3 clock up phase
 );
 
 //============================================================================
-// Glitch prevention
+// Glitch prevention and clock-up signal generation
 //============================================================================
 // Due to the timing differences between internal T-states (from the sequencer)
-// and the actual clock tree, with this particular implementation, there was
+// and the actual clock tree in this particular implementation, there was a
 // considerable glitching on the output signals.
-// This set of flops helps convert timings from the internal T-states into
-// external clk-based timings by bridging the desired active periods across
+//
+// To prevent this, a set of flops convert timings from the internal T-states into
+// the external clk-based timings by bridging the desired active periods across
 // clk pulses.
+
 reg T1h = 0;
 always @ (negedge clk) T1h = T1;
 
@@ -73,20 +80,23 @@ reg T2h = 0;
 always @ (negedge clk) T2h = T2;
 
 reg T3h = 0;
-always @ (negedge clk) T3h = T3;
-
-reg T4h = 0;
-always @ (negedge clk) T4h = T4;
+always @ (negedge clk) if (fFetch | fIORead | fIOWrite) T3h = T3;
 
 reg Tw1h = 0;
 always @ (negedge clk) Tw1h = Tw1;
 
+// Some of A-Z80 registers are implemented as transparent latches which need to
+// latch on the rising edge of a clock in order to propagate a value
+
+reg nextMh = 0;
+always @ (negedge clk) nextMh = nextM;
+
+assign T1up = nextMh & ~clk;
+assign T3up = T2h & clk;
+
 //============================================================================
 // Static equations to control external CPU pins
 //============================================================================
-// For the reference, commented out is the code that does not try to prevent
-// glitches but uses clocks directly to format various timings.
-
 assign m1     = (fFetch   &~in_intr & (T1 | T2)) |
                 (fFetch   & in_intr & (T1 | T2 | Tw1 | Tw2)) |
                 (fMRead   & 1'h0) |
@@ -94,67 +104,34 @@ assign m1     = (fFetch   &~in_intr & (T1 | T2)) |
                 (fIORead  & 1'h0) |
                 (fIOWrite & 1'h0);
 
-//assign m1     = (fFetch   &~in_intr & (T1 | T2)) |
-//                (fFetch   & in_intr & (T1 | T2 | Tw1 | Tw2)) |
-//                (fMRead   & 1'h0) |
-//                (fMWrite  & 1'h0) |
-//                (fIORead  & 1'h0) |
-//                (fIOWrite & 1'h0);
-
-assign mreq   = (fFetch   &~in_intr & (((T1h | T2) | (T3h | T4 & ~T4h)))) |
-                (fFetch   & in_intr & (T3h | T4 & ~T4h)) |
-                (fMRead   & (T1h | T2 | T3 & ~T3h)) |
-                (fMWrite  & (T1h | T2 | T3 & ~T3h)) |
+assign mreq   = (fFetch   &~in_intr & (T1h | T2 | T3h)) |
+                (fFetch   & in_intr & (T3h | T4)) |
+                (fMRead   & (T1h | T2 | T2h)) |
+                (fMWrite  & (T1h | T2 | T2h)) |
                 (fIORead  & 1'h0) |
                 (fIOWrite & 1'h0);
-
-//assign mreq   = (fFetch   &~in_intr & (((T1 & ~clk | T2) | (T3 & ~clk | T4 & clk)))) |
-//                (fFetch   & in_intr & (Tw1 & ~clk | Tw2 & clk)) |  <<- was a bug?
-//                (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
-//                (fMWrite  & (T1 & ~clk | T2 | T3 & clk)) |
-//                (fIORead  & 1'h0) |
-//                (fIOWrite & 1'h0);
 
 assign iorq   = (fFetch   &~in_intr & 1'h0) |
                 (fFetch   & in_intr & (Tw1h | Tw2)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
-                (fIORead  & (T2 | T3 | T4 & ~T4h)) |
-                (fIOWrite & (T2 | T3 | T4 & ~T4h));
+                (fIORead  & (T2 | T3 | T3h)) |
+                (fIOWrite & (T2 | T3 | T3h));
 
-//assign iorq   = (fFetch   &~in_intr & 1'h0) |
-//                (fFetch   & in_intr & (Tw1 & ~clk | Tw2)) |
-//                (fMRead   & 1'h0) |
-//                (fMWrite  & 1'h0) |
-//                (fIORead  & (T2 | T3 | T4 & clk)) |
-//                (fIOWrite & (T2 | T3 | T4 & clk));
-
-assign rd     = (fFetch   & (T1h | T2)) |
-                (fMRead   & (T1h | T2 | T3 & ~T3h)) |
+assign rd     = (fFetch   &~in_intr & (T1h | T2)) |
+                (fFetch   & in_intr & 1'h0) |
+                (fMRead   & (T1h | T2 | T2h)) |
                 (fMWrite  & 1'h0) |
-                (fIORead  & (T2 | T3 | T4 & ~T4h)) |
+                (fIORead  & (T2 | T3 | T3h)) |
                 (fIOWrite & 1'h0);
-
-//assign rd     = (fFetch   & (T1 & ~clk | T2)) |
-//                (fMRead   & (T1 & ~clk | T2 | T3 & clk)) |
-//                (fMWrite  & 1'h0) |
-//                (fIORead  & (T2 | T3 | T4 & clk)) |
-//                (fIOWrite & 1'h0);
 
 assign wr     = (fFetch   & 1'h0) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & (T2h)) |
                 (fIORead  & 1'h0) |
-                (fIOWrite & (T2 | T3 | T4 & ~T4h));
+                (fIOWrite & (T2 | T3 | T3h));
 
-//assign wr     = (fFetch   & 1'h0) |
-//                (fMRead   & 1'h0) |
-//                (fMWrite  & (T2 & ~clk | T3 & clk)) |
-//                (fIORead  & 1'h0) |
-//                (fIOWrite & (T2 | T3 | T4 & clk));
-
-assign rfsh   = (fFetch   &~in_intr & (T3 | T4)) |
-                (fFetch   & in_intr & (Tw1 | Tw2)) |
+assign rfsh   = (fFetch   & (T3 | T4)) |
                 (fMRead   & 1'h0) |
                 (fMWrite  & 1'h0) |
                 (fIORead  & 1'h0) |
@@ -210,7 +187,7 @@ assign bus_ab_pin_oe = ~(reset | busack);
 // The same is with the control pins
 assign pin_control_oe = ~(reset | busack);
 
-// Write 16-bit address value from the internal address bus into the address pad latch
+// Write 16-bit address value from the internal address bus into the address latch
 assign bus_ab_pin_we = (fFetch   & (T1 | T3)) |
                        (fMRead   & (T1)) |
                        (fMWrite  & (T1)) |
@@ -224,25 +201,12 @@ assign bus_db_pin_oe = (fFetch   & 1'h0) |
                        (fIORead  & 1'h0) |
                        (fIOWrite & (T1h | T2 | T3 | T4));
 
-//assign bus_db_pin_oe = (fFetch   & 1'h0) |
-//                       (fMRead   & 1'h0) |
-//                       (fMWrite  & (T1 & ~clk | T2 | T3)) |
-//                       (fIORead  & 1'h0) |
-//                       (fIOWrite & (T1 & ~clk | T2 | T3 | T4));
-
 // Read data from the external data pin into the data pad latch
-assign bus_db_pin_re = (fFetch   &~in_intr & (T2 & rd)) |
-                       (fFetch   & in_intr & (Tw2 & rd)) |
-                       (fMRead   & (T3 & rd)) |
+assign bus_db_pin_re = (fFetch   &~in_intr & (T2)) |
+                       (fFetch   & in_intr & (Tw2)) |
+                       (fMRead   & (T2)) |
                        (fMWrite  & 1'h0) |
-                       (fIORead  & (T4 & rd)) |
+                       (fIORead  & (T3)) |
                        (fIOWrite & 1'h0);
-
-//assign bus_db_pin_re = (fFetch   &~in_intr & (T2  & ~clk)) |
-//                       (fFetch   & in_intr & (Tw2 & ~clk)) |
-//                       (fMRead   & (T3 & clk)) |
-//                       (fMWrite  & 1'h0) |
-//                       (fIORead  & (T4 & clk)) |
-//                       (fIOWrite & 1'h0);
 
 endmodule
