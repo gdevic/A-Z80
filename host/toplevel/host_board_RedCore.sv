@@ -1,8 +1,7 @@
 //============================================================================
 // Host design containing A-Z80 and a few peripherials
 //
-// This module is designed to run on "Board B", which is a minimal FPGA board
-// with EP2C5T144C8
+// This module is designed to run on a FPGA board with EP2C8Q208C8N.
 //
 //============================================================================
 // Default CPU slowdown for the FPGA synthesis is
@@ -46,24 +45,10 @@ always @ (posedge clk) begin
     end
 end
 
-// Test: double the clock so the logic analyzer can store each phase
-// (SignalTap only triggers on a rising clock edge)
-reg true_clk = 0;
+// Debounce the reset push-button
+reg reset_stable = 0;
 always @ (posedge slow_clk) begin
-    true_clk <= ~true_clk;
-end
-
-// Debounce the reset push-button using a shift-register
-reg reset_stable;
-reg [20:0] r;
-always @ (posedge slow_clk) begin
-    r[20:0] <= {r[19:0], reset};
-    if (r[20:0]=={20{1'b0}})
-        reset_stable <= 1'b0;
-    else if (r[20:0]=={20{1'b1}})
-        reset_stable <= 1'b1;
-    else
-        reset_stable <= reset_stable;
+    reset_stable <= reset;
 end
 
 // ----------------- CPU PINS -----------------
@@ -110,24 +95,22 @@ wire we;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(true_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(slow_clk) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate UART module
+// UART uses negative signalling logic, so invert control inputs
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uart_io uart_io_( .*, .reset(!reset_stable), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 1Kb of RAM memory with memory select and 3-state data bus
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 1K is addressable with bits [9:0]
 // 1K *blocks* are selectable with bits [15:10]
-//assign D[7:0] = (A[15:10]=='0 && nMREQ==0 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
-//assign we = A[15:10]=='0 && nMREQ==0 && nRD==1 && nWR==0;
+assign D[7:0] = (A[15:10]=='0 && nMREQ==0 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
+assign we = A[15:10]=='0 && nMREQ==0 && nRD==1 && nWR==0;
 
-assign D[7:0] = (A[15:10]=='0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
-
-// Make the Z80 code memory read-only so the test code would not modify it
-//assign we = A[15:10]=='0 && nIORQ==1 && nRD==1 && nWR==0;
-assign we = 1'b0;
-
-// Data pin latch
-ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
-//ram ram_( .address(A[9:0]), .clock(slow_clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
+ram ram_( .address(A[9:0]), .clock(slow_clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 
 endmodule

@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------- #
 #
 # Copyright (C) 1991-2011 Altera Corporation
-# Your use of Altera Corporation's design tools, logic functions 
-# and other software and tools, and its AMPP partner logic 
-# functions, and any output files from any of the foregoing 
-# (including device programming or simulation files), and any 
-# associated documentation or information are expressly subject 
-# to the terms and conditions of the Altera Program License 
-# Subscription Agreement, Altera MegaCore Function License 
-# Agreement, or other applicable license agreement, including, 
-# without limitation, that your use is for the sole purpose of 
-# programming logic devices manufactured by Altera and sold by 
-# Altera or its authorized distributors.  Please refer to the 
+# Your use of Altera Corporation's design tools, logic functions
+# and other software and tools, and its AMPP partner logic
+# functions, and any output files from any of the foregoing
+# (including device programming or simulation files), and any
+# associated documentation or information are expressly subject
+# to the terms and conditions of the Altera Program License
+# Subscription Agreement, Altera MegaCore Function License
+# Agreement, or other applicable license agreement, including,
+# without limitation, that your use is for the sole purpose of
+# programming logic devices manufactured by Altera and sold by
+# Altera or its authorized distributors.  Please refer to the
 # applicable agreement for further details.
 #
 # -------------------------------------------------------------------------- #
@@ -39,7 +39,7 @@ set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C8Q208C8
 set_global_assignment -name TOP_LEVEL_ENTITY host
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:03:56  SEPTEMBER 08, 2014"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:50:28  SEPTEMBER 23, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -64,10 +64,7 @@ set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WE
 set_location_assignment PIN_15 -to uart_tx
 set_location_assignment PIN_23 -to clk
 set_location_assignment PIN_27 -to reset
-set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS NOT_USED -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH test_host_gate_level -section_id eda_simulation
 set_global_assignment -name ENABLE_SIGNALTAP OFF
 set_location_assignment PIN_77 -to tp_reset
@@ -100,7 +97,7 @@ set_global_assignment -name SEARCH_PATH ..\\..\\cpu\\fpga
 set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name SYSTEMVERILOG_FILE host_boardA.sv
+set_global_assignment -name SYSTEMVERILOG_FILE host_board_RedCore.sv
 set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_core.sv

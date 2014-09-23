@@ -1,17 +1,17 @@
 # -------------------------------------------------------------------------- #
 #
 # Copyright (C) 1991-2011 Altera Corporation
-# Your use of Altera Corporation's design tools, logic functions 
-# and other software and tools, and its AMPP partner logic 
-# functions, and any output files from any of the foregoing 
-# (including device programming or simulation files), and any 
-# associated documentation or information are expressly subject 
-# to the terms and conditions of the Altera Program License 
-# Subscription Agreement, Altera MegaCore Function License 
-# Agreement, or other applicable license agreement, including, 
-# without limitation, that your use is for the sole purpose of 
-# programming logic devices manufactured by Altera and sold by 
-# Altera or its authorized distributors.  Please refer to the 
+# Your use of Altera Corporation's design tools, logic functions
+# and other software and tools, and its AMPP partner logic
+# functions, and any output files from any of the foregoing
+# (including device programming or simulation files), and any
+# associated documentation or information are expressly subject
+# to the terms and conditions of the Altera Program License
+# Subscription Agreement, Altera MegaCore Function License
+# Agreement, or other applicable license agreement, including,
+# without limitation, that your use is for the sole purpose of
+# programming logic devices manufactured by Altera and sold by
+# Altera or its authorized distributors.  Please refer to the
 # applicable agreement for further details.
 #
 # -------------------------------------------------------------------------- #
@@ -39,7 +39,7 @@ set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C5T144C8
 set_global_assignment -name TOP_LEVEL_ENTITY host
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:03:56  SEPTEMBER 08, 2014"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:42:00  SEPTEMBER 23, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -64,10 +64,7 @@ set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WE
 set_location_assignment PIN_73 -to uart_tx
 set_location_assignment PIN_17 -to clk
 set_location_assignment PIN_144 -to reset
-set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS NOT_USED -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH test_host_gate_level -section_id eda_simulation
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_location_assignment PIN_40 -to tp_reset
@@ -99,10 +96,9 @@ set_global_assignment -name USE_SIGNALTAP_FILE logic_analyzer.stp
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name READ_OR_WRITE_IN_BYTE_ADDRESS "USE GLOBAL SETTINGS"
 set_global_assignment -name AUTO_EXPORT_INCREMENTAL_COMPILATION ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT FAST
-set_global_assignment -name SYSTEMVERILOG_FILE host_boardB.sv
+set_global_assignment -name SYSTEMVERILOG_FILE host_board_RioRand.sv
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_core.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_io.sv
@@ -235,87 +231,81 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLE
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id st0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id st0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "z80_top_direct_n:z80_|data_pins:data_pins_|bus_db_oe" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "z80_top_direct_n:z80_|data_pins:data_pins_|bus_db_pin_re" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "z80_top_direct_n:z80_|data_pins:data_pins_|ctl_bus_db_we" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "z80_top_direct_n:z80_|execute:execute_|ctl_ir_we" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "z80_top_direct_n:z80_|execute:execute_|fFetch" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "z80_top_direct_n:z80_|execute:execute_|fIORead" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "z80_top_direct_n:z80_|execute:execute_|fIOWrite" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "z80_top_direct_n:z80_|execute:execute_|fMRead" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "z80_top_direct_n:z80_|execute:execute_|fMWrite" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "z80_top_direct_n:z80_|interrupts:interrupts_|in_intr" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "z80_top_direct_n:z80_|interrupts:interrupts_|in_nmi" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "z80_top_direct_n:z80_|ir:instruction_reg_|Tup" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[105] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[106] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[107] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[108] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[109] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[110] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[111] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[112] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[113] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[114] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[115] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[116] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[117] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[118] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[119] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[120] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[121] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[122] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[123] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[124] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[125] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[126] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[127] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[128] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[129] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[130] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[131] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[132] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[133] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M1" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[134] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M2" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[135] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M3" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[136] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M4" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[137] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M5" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[138] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M6" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[139] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T1" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[140] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T2" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[141] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T3" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[142] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T4" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[143] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T5" -section_id st0
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[144] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T6" -section_id st0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=145" -section_id st0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=40362" -section_id st0
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=53894" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "z80_top_direct_n:z80_|data_pins:data_pins_|db[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "z80_top_direct_n:z80_|data_pins:data_pins_|dout[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "z80_top_direct_n:z80_|execute:execute_|ctl_ir_we" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "z80_top_direct_n:z80_|execute:execute_|fFetch" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "z80_top_direct_n:z80_|execute:execute_|fIORead" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "z80_top_direct_n:z80_|execute:execute_|fIOWrite" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "z80_top_direct_n:z80_|execute:execute_|fMRead" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "z80_top_direct_n:z80_|execute:execute_|fMWrite" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "z80_top_direct_n:z80_|ir:instruction_reg_|opcode[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_hi|latch[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[105] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[106] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[107] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[108] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[109] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[110] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_af_lo|latch[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[111] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[112] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[113] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[114] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[115] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[116] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[117] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[118] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_hi|latch[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[119] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[0]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[120] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[1]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[121] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[2]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[122] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[3]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[123] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[4]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[124] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[5]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[125] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[6]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[126] -to "z80_top_direct_n:z80_|reg_file:reg_file_|reg_latch:b2v_latch_hl_lo|latch[7]" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[127] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M1" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[128] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M2" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[129] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M3" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[130] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M4" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[131] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M5" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[132] -to "z80_top_direct_n:z80_|sequencer:sequencer_|M6" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[133] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T1" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[134] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T2" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[135] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T3" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[136] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T4" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[137] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T5" -section_id st0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[138] -to "z80_top_direct_n:z80_|sequencer:sequencer_|T6" -section_id st0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=139" -section_id st0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=12759" -section_id st0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=56525" -section_id st0
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
