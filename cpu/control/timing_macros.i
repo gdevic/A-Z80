@@ -9,7 +9,10 @@
 // * A macro may span multiple lines, in which case use the '\' character after the name to
 //   continue on the next line.
 // * Multiline macros end when a line does not _start_ with a space character.
-// Also, //-style comments are wrapped into /* ... */ if they don't start a line.
+// * Within each macro, two special tokens are recognized and substituted to:
+//   {M?}  - replaced with the current M cycle number
+//   {T?}  - replaced with the current T clock number
+// In addition, //-style comments are wrapped within /* ... */ if they don't start a line.
 //=========================================================================================
 
 //-----------------------------------------------------------------------------------------
@@ -324,7 +327,7 @@ NEG_OP2         ctl_alu_sel_op2_neg=1;
 // 1. We are in HALT mode: push NOP (0x00) on the bus instead
 // 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) on the bus instead
 // 3. We are in NMI mode: push RST38 (0xFF) on the bus instead
-OpcodeIR        ctl_ir_we=1; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
+OpcodeIR        ctl_ir_we=T{T?}up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
 
 // RST instruction uses opcode[5:3] to specify a vector and this control passes those 3 bits through
 MASK_543        ctl_sw_mask543_en=!((in_intr & im2) | in_nmi);

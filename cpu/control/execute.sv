@@ -13,14 +13,13 @@ module execute
     //----------------------------------------------------------
     `include "exec_module.i"
 
-    output logic nextM,
-    output logic setM1,
-
-    output logic fFetch,
-    output logic fMRead,
-    output logic fMWrite,
-    output logic fIORead,
-    output logic fIOWrite,
+    output logic nextM,                 // Last M cycle of any instruction
+    output logic setM1,                 // Last T clock of any instruction
+    output logic fFetch,                // Function: opcode fetch cycle ("M1")
+    output logic fMRead,                // Function: memory read cycle
+    output logic fMWrite,               // Function: memory write cycle
+    output logic fIORead,               // Function: IO Read cycle
+    output logic fIOWrite,              // Function: IO Write cycle
 
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
@@ -60,7 +59,9 @@ module execute
     input wire T3,                      // T-cycle #3
     input wire T4,                      // T-cycle #4
     input wire T5,                      // T-cycle #5
-    input wire T6                       // T-cycle #6
+    input wire T6,                      // T-cycle #6
+    input wire T1up,                    // T1 clock up phase
+    input wire T3up                     // T3 clock up phase
 );
 
 // Detects unknown instructions by signalling the known ones
