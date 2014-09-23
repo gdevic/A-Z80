@@ -87,9 +87,9 @@ module ram (
 		altsyncram_component.clock_enable_input_a = "BYPASS",
 		altsyncram_component.clock_enable_output_a = "BYPASS",
 `ifdef NO_PLI
-		altsyncram_component.init_file = "../../tools/zmac/fpga.rif"
+		altsyncram_component.init_file = "/A-Z80/tools/zmac/fpga.rif"
 `else
-		altsyncram_component.init_file = "../../tools/zmac/fpga.hex"
+		altsyncram_component.init_file = "/A-Z80/tools/zmac/fpga.hex"
 `endif
 ,
 		altsyncram_component.intended_device_family = "Cyclone II",

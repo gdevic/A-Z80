@@ -46,7 +46,15 @@ always @ (posedge clk) begin
     end
 end
 
+// Test: double the clock so the logic analyzer can store each phase
+// (SignalTap only triggers on a rising clock edge)
+reg true_clk = 0;
+always @ (posedge slow_clk) begin
+    true_clk <= ~true_clk;
+end
+
 // Debounce the reset push-button using a shift-register
+reg reset_stable;
 reg [20:0] r;
 always @ (posedge slow_clk) begin
     r[20:0] <= {r[19:0], reset};
@@ -102,7 +110,7 @@ wire we;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(slow_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(true_clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 1Kb of RAM memory with memory select and 3-state data bus
@@ -118,6 +126,8 @@ assign D[7:0] = (A[15:10]=='0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData  : {8{1
 //assign we = A[15:10]=='0 && nIORQ==1 && nRD==1 && nWR==0;
 assign we = 1'b0;
 
+// Data pin latch
 ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
+//ram ram_( .address(A[9:0]), .clock(slow_clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 
 endmodule
