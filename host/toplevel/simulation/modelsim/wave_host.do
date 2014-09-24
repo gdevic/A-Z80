@@ -40,6 +40,8 @@ add wave -noupdate -expand -group {host
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/D
 add wave -noupdate -expand -group {host
+} /test_bench_host/host_/RomData
+add wave -noupdate -expand -group {host
 } /test_bench_host/host_/RamData
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/we
@@ -112,4 +114,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {4227674 ps}
+WaveRestoreZoom {0 ps} {2113838 ps}

@@ -1,11 +1,9 @@
 Quartus host project
 ====================
-There are 2 different physical "host" revisions targeted to two Altera FPGA boards (which I just happen to have):
+There are 2 different physical "host" revisions targeted to two Altera FPGA boards (those I just happen to have):
 
 1.  "EP2C8Q208 RedCore"
-    Got this board on eBay; based on EP2C8Q208C8N
-
-    eBay:
+    eBay, based on EP2C8Q208C8N
     http://www.ebay.com/itm/EP2C8Q208C8N-Development-Board-kit-FPGA-CPLD-Altera-Cyclone-NIOS-II-with-2-4-LCD-/300954778152?ssPageName=ADME:X:AAQ:US:1123
 
 2.  "EP2C5T144 RioRand"

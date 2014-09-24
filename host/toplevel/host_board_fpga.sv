@@ -1,7 +1,7 @@
 //============================================================================
 // Host design containing A-Z80 and a few peripherials
 //
-// This module is designed to run on a minimal FPGA board with EP2C5T144C8.
+// This module defines a host board to be run on an FPGA.
 //
 //============================================================================
 // Default CPU slowdown for the FPGA synthesis is
@@ -102,9 +102,19 @@ assign tp_D2 = D[2];
 assign tp_D3 = D[3];
 
 // ----------------- INTERNAL WIRES -----------------
-// RamData is a data writer from the RAM module
-wire [7:0] RamData;
+wire [7:0] RomData;                     // RomData is a data writer from the ROM module
+wire [7:0] RamData;                     // RamData is a data writer from the RAM module
 wire we;
+assign we = A[15:9]=='h1 && nIORQ==1 && nRD==1 && nWR==0;
+
+// 512b is addressable with bits [8:0]
+// 512b *blocks* are selectable with bits [15:9]
+// Memory map:
+//   0000 - 01FF  ROM
+//   0200 - 03FF  RAM
+assign D[7:0] = (A[15:9]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RomData :
+                (A[15:9]=='h1 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
+                {8{1'bz}};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
@@ -112,21 +122,22 @@ wire we;
 z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(true_clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 1Kb of RAM memory with memory select and 3-state data bus
+// Instantiate 512b of ROM memory that is preloaded with our Z80 boot code
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// 1K is addressable with bits [9:0]
-// 1K *blocks* are selectable with bits [15:10]
-//assign D[7:0] = (A[15:10]=='0 && nMREQ==0 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
-//assign we = A[15:10]=='0 && nMREQ==0 && nRD==1 && nWR==0;
+rom rom_( .address(A[8:0]), .clock(clk), .q(RomData[7:0]) );
 
-assign D[7:0] = (A[15:10]=='0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData  : {8{1'bz}};
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate 512b of RAM memory
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ram ram_( .address(A[8:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
 
-// Make the Z80 code memory read-only so the test code would not modify it
-//assign we = A[15:10]=='0 && nIORQ==1 && nRD==1 && nWR==0;
-assign we = 1'b0;
-
-// Data pin latch
-ram ram_( .address(A[9:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
-//ram ram_( .address(A[9:0]), .clock(slow_clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate UART module
+// UART uses negative signalling logic, so invert control inputs
+// IO Map:
+//   0000 - 00FF  Write a byte to UART
+//   0200 - 02FF  Get UART busy status in bit 0
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+uart_io uart_io_( .*, .reset(!reset_stable), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 endmodule
