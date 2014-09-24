@@ -11,10 +11,10 @@ import os
 def setup():
     # Create mgc_location_map with relative path mapping
     # Assumes this directory hierarchy:
-    # $ROOT/<module>/simulation/modelsim/work/<this script>.py
+    # $ROOT/<block>/<module>/simulation/modelsim/work/<this script>.py
     with open("mgc_location_map", "w") as f:
         f.write("$ROOT\n")
-        path = os.path.abspath("../../.")
+        path = os.path.abspath("../../../.")
         f.write(os.path.dirname(path))
 
 # Return to our current directory after each module has been visited
@@ -22,22 +22,30 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 
 # Visit each ModelSim project directory...
-os.chdir("alu/simulation/modelsim")
+os.chdir("cpu/alu/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("bus/simulation/modelsim")
+os.chdir("cpu/bus/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("control/simulation/modelsim")
+os.chdir("cpu/control/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("registers/simulation/modelsim")
+os.chdir("cpu/registers/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("toplevel/simulation/modelsim")
+os.chdir("cpu/toplevel/simulation/modelsim")
+setup()
+os.chdir(dname)
+
+os.chdir("host/toplevel/simulation/modelsim")
+setup()
+os.chdir(dname)
+
+os.chdir("host/uart/simulation/modelsim")
 setup()
 os.chdir(dname)
