@@ -2,6 +2,23 @@
 #
 # This script generates a test include file from a set of "Fuse" test vectors.
 #
+# Three common testing configurations are:
+#
+# 1. You want to test a specific instruction only, say 02 LD (BC),A (see Fuse tests.in)
+#    start_test = "02"
+#    run_tests = 1
+#    regress = 0
+#
+# 2. You want to run a smaller subset of 'regression' tests:
+#    start_test = "00"
+#    run_tests = 1
+#    regress = 1
+#
+# 3. You want to run a full Fuse test suite (all instructions!):
+#    start_test = "00"
+#    run_tests = -1
+#    regress = 0
+#
 import os
 
 # Start with this test name (this is a string; see tests files)
