@@ -187,9 +187,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 400)
 		(input)
+		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 21 395 43 409)(font "Arial" (font_size 8)))
+		(line (pt 0 400)(pt 16 400))
+	)
+	(port
+		(pt 0 416)
+		(input)
 		(text "bsel[2..0]" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "bsel[2..0]" (rect 21 395 72 409)(font "Arial" (font_size 8)))
-		(line (pt 0 400)(pt 16 400)(line_width 3))
+		(text "bsel[2..0]" (rect 21 411 72 425)(font "Arial" (font_size 8)))
+		(line (pt 0 416)(pt 16 416)(line_width 3))
 	)
 	(port
 		(pt 256 32)

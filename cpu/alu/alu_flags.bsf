@@ -206,6 +206,13 @@ applicable agreement for further details.
 		(line (pt 0 432)(pt 16 432))
 	)
 	(port
+		(pt 0 448)
+		(input)
+		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 21 443 43 457)(font "Arial" (font_size 8)))
+		(line (pt 0 448)(pt 16 448))
+	)
+	(port
 		(pt 264 48)
 		(output)
 		(text "flags_sf" (rect 0 0 47 14)(font "Arial" (font_size 8)))

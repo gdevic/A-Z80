@@ -14,41 +14,34 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Wed Sep 24 00:22:55 2014"
+// CREATED		"Tue Sep 23 23:34:14 2014"
 
-module alu_mux_2z(
-	sel_a,
-	sel_zero,
-	nclk,
-	a,
-	ena_out,
+module alu_latch(
+	D,
+	ENA,
+	NCLK,
 	Q
 );
 
 
-input wire	sel_a;
-input wire	sel_zero;
-input wire	nclk;
-input wire	[3:0] a;
-output wire	ena_out;
-output wire	[3:0] Q;
+input wire	D;
+input wire	ENA;
+input wire	NCLK;
+output reg	Q;
 
-wire	[3:0] SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_0;
 
 
 
 
-assign	SYNTHESIZED_WIRE_0 = a & {sel_a,sel_a,sel_a,sel_a};
 
-assign	SYNTHESIZED_WIRE_2 = sel_zero | sel_a;
+always@(SYNTHESIZED_WIRE_0 or D)
+begin
+if (SYNTHESIZED_WIRE_0)
+	Q <= D;
+end
 
-assign	Q = SYNTHESIZED_WIRE_0 & {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1};
-
-assign	SYNTHESIZED_WIRE_1 =  ~sel_zero;
-
-assign	ena_out = SYNTHESIZED_WIRE_2 & nclk;
+assign	SYNTHESIZED_WIRE_0 = ENA & NCLK;
 
 
 endmodule

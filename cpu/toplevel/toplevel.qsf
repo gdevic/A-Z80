@@ -133,6 +133,7 @@ set_global_assignment -name VERILOG_FILE ../bus/address_latch.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_control.v
 set_global_assignment -name VERILOG_FILE ../registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../alu/alu.v
+set_global_assignment -name VERILOG_FILE ../alu/alu_latch.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_flags.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_select.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_control.v

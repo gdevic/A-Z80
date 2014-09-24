@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 168 144)
+	(rect 16 16 168 176)
 	(text "alu_mux_3z" (rect 5 0 73 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 112 25 124)(font "Arial" ))
+	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -59,6 +59,13 @@ applicable agreement for further details.
 		(line (pt 0 96)(pt 16 96))
 	)
 	(port
+		(pt 0 112)
+		(input)
+		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
+		(text "nclk" (rect 21 107 43 121)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 16 112))
+	)
+	(port
 		(pt 152 32)
 		(output)
 		(text "Q[3..0]" (rect 0 0 37 14)(font "Arial" (font_size 8)))
@@ -73,6 +80,6 @@ applicable agreement for further details.
 		(line (pt 152 48)(pt 136 48))
 	)
 	(drawing
-		(rectangle (rect 16 16 136 112))
+		(rectangle (rect 16 16 136 144))
 	)
 )

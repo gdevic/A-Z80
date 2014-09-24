@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Thu Sep 04 22:53:03 2014"
+// CREATED		"Wed Sep 24 09:21:22 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -40,6 +40,7 @@ module alu_control(
 	flags_hf2,
 	flags_hf,
 	ctl_66_oe,
+	nclk,
 	ctl_pf_sel,
 	op543,
 	alu_shift_in,
@@ -79,6 +80,7 @@ input wire	flags_cf_latch;
 input wire	flags_hf2;
 input wire	flags_hf;
 input wire	ctl_66_oe;
+input wire	nclk;
 input wire	[1:0] ctl_pf_sel;
 input wire	[2:0] op543;
 output wire	alu_shift_in;
@@ -97,7 +99,7 @@ wire	condition;
 wire	[7:0] out;
 wire	[2:0] sel;
 wire	SYNTHESIZED_WIRE_0;
-reg	SYNTHESIZED_WIRE_1;
+wire	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
 wire	SYNTHESIZED_WIRE_23;
 wire	SYNTHESIZED_WIRE_24;
@@ -228,11 +230,11 @@ alu_mux_8	b2v_inst_shift_mux(
 	.out(alu_shift_in));
 
 
-always@(ctl_alu_op_low or alu_parity_out)
-begin
-if (ctl_alu_op_low)
-	SYNTHESIZED_WIRE_1 <= alu_parity_out;
-end
+alu_latch	b2v_latch_pf_tmp(
+	.D(alu_parity_out),
+	.ENA(ctl_alu_op_low),
+	.NCLK(nclk),
+	.Q(SYNTHESIZED_WIRE_1));
 
 assign	SYNTHESIZED_WIRE_7 =  ~op543[0];
 

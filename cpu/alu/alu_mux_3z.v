@@ -14,12 +14,13 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Mon May 19 08:20:33 2014"
+// CREATED		"Wed Sep 24 00:22:17 2014"
 
 module alu_mux_3z(
 	sel_zero,
 	sel_a,
 	sel_b,
+	nclk,
 	a,
 	b,
 	ena_out,
@@ -30,6 +31,7 @@ module alu_mux_3z(
 input wire	sel_zero;
 input wire	sel_a;
 input wire	sel_b;
+input wire	nclk;
 input wire	[3:0] a;
 input wire	[3:0] b;
 output wire	ena_out;
@@ -39,6 +41,7 @@ wire	[3:0] SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
 wire	[3:0] SYNTHESIZED_WIRE_2;
 wire	[3:0] SYNTHESIZED_WIRE_3;
+wire	SYNTHESIZED_WIRE_4;
 
 
 
@@ -51,9 +54,11 @@ assign	SYNTHESIZED_WIRE_1 =  ~sel_zero;
 
 assign	SYNTHESIZED_WIRE_0 = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_3;
 
+assign	ena_out = SYNTHESIZED_WIRE_4 & nclk;
+
 assign	SYNTHESIZED_WIRE_2 = b & {sel_b,sel_b,sel_b,sel_b};
 
-assign	ena_out = sel_b | sel_zero | sel_a;
+assign	SYNTHESIZED_WIRE_4 = sel_b | sel_zero | sel_a;
 
 
 endmodule
