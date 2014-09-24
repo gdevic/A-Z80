@@ -1,10 +1,8 @@
 @echo off
 Rem
-Rem     This batch file creates a hex file suitable to run in FPGA
-Rem     and to load in Modelsim. The hex file is first being created
-Rem     in the "zout" folder (by the assember) and then a converted
-Rem     version is being written to this folder so it can be
-Rem     loaded by the RAM module.
+Rem     Creates an Intel HEX file format from an FPGA boot source ("fpga.asm")
+Rem     This hex file is loaded into the ROM module for both the ModelSim
+Rem     and to be included into the target FPGA data file.
 Rem
 zmac.exe --zmac fpga.asm
 if errorlevel 1 goto error
