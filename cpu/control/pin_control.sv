@@ -91,7 +91,7 @@ always @ (negedge clk) Tw1h = Tw1;
 reg nextMh = 0;
 always @ (negedge clk) nextMh = nextM;
 
-assign T1up = nextMh & ~clk;
+assign T1up = nextMh & clk;
 assign T3up = T2h & clk;
 
 //============================================================================
