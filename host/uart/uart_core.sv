@@ -1,12 +1,8 @@
 //============================================================================
 // Module uart
 //
-// Copyright 2014 Goran Devic
-//
 // This module implements RS232 (UART) transmitter block
 //============================================================================
-
-// Optionally define parameters alongside module
 module uart_core #(parameter BAUD = 115200)
 (
     //----------------------------------------------------------

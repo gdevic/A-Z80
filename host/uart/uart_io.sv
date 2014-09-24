@@ -1,8 +1,6 @@
 //============================================================================
 // Module uart IO interface
 //
-// Copyright 2014 Goran Devic
-//
 // This module implements RS232 (UART) transmitter block and its IO interface:
 // 8 bits of IO addresses map to:
 //   Address 8  - Write a byte to UART
@@ -10,7 +8,6 @@
 //
 // The signalling uses *positive* logic.
 //============================================================================
-
 module uart_io (reset, clk, Address, Data, IORQ, RD, WR, uart_tx);
 
 input reset, clk;
