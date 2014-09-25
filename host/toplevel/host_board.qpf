@@ -18,14 +18,14 @@
 #
 # Quartus II 64-Bit
 # Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version
-# Date created = 09:17:42  September 23, 2014
+# Date created = 20:40:26  September 24, 2014
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "11.0"
-DATE = "09:17:42  September 23, 2014"
+DATE = "20:40:26  September 24, 2014"
 
 # Revisions
 
-PROJECT_REVISION = "rev_EP2C5T144_RioRand"
 PROJECT_REVISION = "rev_EP2C8Q208_RedCore"
+PROJECT_REVISION = "rev_EP2C5T144_RioRand"

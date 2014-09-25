@@ -212,7 +212,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=88" -se
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=18133" -section_id st0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=13300" -section_id st0
 set_global_assignment -name SYSTEMVERILOG_FILE host_board_fpga.sv
-set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_core.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_io.sv
