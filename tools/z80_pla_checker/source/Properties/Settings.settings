@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="plaFileName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">../../resources/z80-pla.txt</Value>
     </Setting>
     <Setting Name="opcodeDir" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">../../resources</Value>
     </Setting>
   </Settings>
 </SettingsFile>

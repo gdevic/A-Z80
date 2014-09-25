@@ -25,7 +25,7 @@ namespace z80_pla_checker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../resources/z80-pla.txt")]
         public string plaFileName {
             get {
                 return ((string)(this["plaFileName"]));
@@ -37,7 +37,7 @@ namespace z80_pla_checker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../resources")]
         public string opcodeDir {
             get {
                 return ((string)(this["opcodeDir"]));

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("z80_pla_checker")]
 [assembly: AssemblyDescription("Experiment with and generate A-Z80 PLA table")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Baltazar Studios, LLC")]
 [assembly: AssemblyProduct("z80_pla_checker")]
 [assembly: AssemblyCopyright("Copyright © Goran Devic, 2014, released under GPL")]
 [assembly: AssemblyTrademark("")]

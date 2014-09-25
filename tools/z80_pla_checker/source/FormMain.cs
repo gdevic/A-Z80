@@ -50,6 +50,7 @@ namespace z80_pla_checker
             if (!pla.Load(plaFile))
             {
                 ClassLog.Log("*** Error loading the master input PLA source table ***");
+                ClassLog.Log("Click on File -> Load PLA table... and select a resource file z80-pla.txt");
                 return;
             }
 
