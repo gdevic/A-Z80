@@ -90,7 +90,7 @@ set_location_assignment PIN_152 -to tp_A3
 set_location_assignment PIN_169 -to tp_D0
 set_location_assignment PIN_168 -to tp_D1
 set_location_assignment PIN_165 -to tp_D2
-set_location_assignment PIN_170 -to tp_D3
+set_location_assignment PIN_187 -to tp_D3
 set_global_assignment -name FIT_ONLY_ONE_ATTEMPT ON
 set_global_assignment -name USE_SIGNALTAP_FILE sigtap_RedCore.stp
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
