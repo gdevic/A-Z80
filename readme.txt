@@ -7,7 +7,6 @@ This project is described on my blog at http://www.devic.us/hacks
 Prerequisites:
 * Altera Quartus and Modelsim (free web editions)
 * Python 2.7
-* MS Visual Studio (2010 SP1 recomended)
 
 A-Z80 "cpu" consists of several functional blocks and a top-level module:
 alu         contains ALU block, ALU control and flags logic
@@ -19,18 +18,21 @@ toplevel    integrates all sub-modules into a top-level design
 "host" contains a simplified board containing A-Z80 CPU, memory and UART modules
 which, when run, print "Hello, World!" through the UART.
 
-"tools" contains various tools related to the project; read the readme there.
+"tools" contains various tools related to the project.
+
+Many folders contain readme.txt files that provide additional description, so
+one should not be easily lost in the folder structure.
 
 Logic Design
 ============
-Each functional block also contains a Quartus project file:
+Each functional block contains a Quartus project file:
 ./<block>/test_<block>.qpf
 
 Quartus projects are only used as containers for files within individual
-modules; the top-level design is in the "toplevel" folder.
+modules; the top-level designs are in the "toplevel" and "host" folders.
 
 Majority of sub-modules are designed in the Quartus schematic editor and then
-exported to Verilog for simulation and top-level integration.
+exported to Verilog for simulation and the top-level integration.
 
 Simulation
 ==========
