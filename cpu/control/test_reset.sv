@@ -29,8 +29,9 @@ initial begin
     #2               M1=1; T2=0;
     #8               M1=1; T2=1;
     #2               M1=1; T2=0;
-    
+
     #1 $display("End of test");
+    #1 $stop();
 end
 
 bit clk = 1;

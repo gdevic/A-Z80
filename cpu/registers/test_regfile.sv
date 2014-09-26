@@ -106,9 +106,8 @@ initial begin
         reg_gp_oe_sig = 1;
     #1
 
-
     #1 $display("END");
-
+    #1 $stop();
 end
 
 // Drive 3-state bidirectional buses with these statements

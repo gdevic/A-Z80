@@ -79,13 +79,14 @@ initial begin
     `T  abusw = 'z;
         ctl_bus_inc_oe = 1;     // Output latched value (AA55)
     `T  ctl_bus_inc_oe = 0;     // Disable it for a cycle
-        
+
     //------------------------------------------------------------
     // Test the force-to-zero
     `T  ctl_inc_zero = 1;
         ctl_bus_inc_oe = 1;     // Output zero
 
     `T $display("End of test");
+    `T $stop();
 end
 
 // Drive 3-state bidirectional bus with these statements

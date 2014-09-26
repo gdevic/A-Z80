@@ -106,8 +106,8 @@ add wave -noupdate -group {interrupt
 add wave -noupdate -group {interrupt
 } /test_top/dut/interrupts_/iff2
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {105900 ns} 0} {{Cursor 2} {3765900 ns} 0}
-quietly wave cursor active 1
+WaveRestoreCursors {{Cursor 1} {700 ns} 0} {{Cursor 2} {110500 ns} 0}
+quietly wave cursor active 2
 configure wave -namecolwidth 203
 configure wave -valuecolwidth 49
 configure wave -justifyvalue right
@@ -122,4 +122,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits us
 update
-WaveRestoreZoom {1956900 ns} {1970500 ns}
+WaveRestoreZoom {106100 ns} {119700 ns}

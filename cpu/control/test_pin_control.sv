@@ -73,7 +73,7 @@ logic setM1;
 
 initial begin
     @(negedge reset);
-    
+
     fIntr = 1;      // Optionally test the 2-cycle delay for interrupt function
     fFetch = 1;
     next_M();
@@ -97,6 +97,7 @@ initial begin
     fIOWrite = 0;
 
     #1 $display("End of test");
+    #1 $stop();
 end
 
 initial repeat (60) #1 clk = ~clk;
@@ -112,14 +113,14 @@ task run_function();
     repeat (5) @(posedge clk); reset <= 0;
     setM1 <= 1; nextM <= 1;
     @(posedge clk);
-    setM1 <= 0; nextM <= 0;    
+    setM1 <= 0; nextM <= 0;
 endtask
 
 task next_M();
     @(posedge T6);
     setM1 <= 1; nextM <= 1;
     @(posedge clk);
-    setM1 <= 0; nextM <= 0;    
+    setM1 <= 0; nextM <= 0;
 endtask
 
 //--------------------------------------------------------------

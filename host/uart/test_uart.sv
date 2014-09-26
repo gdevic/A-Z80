@@ -49,6 +49,9 @@ initial begin
     IORQ <= 0;
     RD <= 0;
 
+    repeat (10) @(posedge clk);
+    #1 $display("End of test");
+    #1 $stop();
 end
 
 initial forever #1 clk = ~clk;

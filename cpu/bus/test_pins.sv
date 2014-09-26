@@ -85,6 +85,7 @@ initial begin
     `T  db_w = 'z;
 
     `T $display("End of test");
+    `T $stop();
 end
 
 //--------------------------------------------------------------

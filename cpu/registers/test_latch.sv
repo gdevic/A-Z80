@@ -32,7 +32,7 @@ initial begin
     #1 oe_sig = 0;
 
     #1 $display("END");
-
+    #1 $stop();
 end
 
 // Drive a 3-state bidirectional bus with this statement

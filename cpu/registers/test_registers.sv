@@ -130,7 +130,7 @@ initial begin
         ctl_sw_4d_sig = 0;
         ctl_reg_sel_sys_hi_sig = 0;
         ctl_reg_sel_sys_lo_sig = 0;
-    
+
     //------------------------------------------------------------
     // Identify each 16-bit register and check access to it
     #1  ctl_reg_sel_gp_sig = 1;     // select a GP register
@@ -157,7 +157,7 @@ initial begin
     #1  reg_sel_sig = 3'b110;       // AF
     #1  ctl_reg_gp_oe_sig = 0;      // End the test
         ctl_reg_sel_gp_16_sig = 0;
-    
+
     //------------------------------------------------------------
     // Identify each 8-bit register and check access to it
     #1  ctl_reg_sel_gp_sig = 1;     // select a GP register
@@ -199,8 +199,8 @@ initial begin
     #1  reg_sel_sig = 3'b111;       // low byte -> F
     #1  ctl_reg_gp_oe_sig = 0;      // End the test
 
-
-    
+    #1 $display("END");
+    #1 $stop();
 end
 
 // Drive 3-state bidirectional buses with these statements

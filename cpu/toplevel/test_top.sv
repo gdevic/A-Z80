@@ -52,10 +52,14 @@ endmodule
 
 module test_top();
 
+// Although the clock is going forever, we will stop simulation at some point
 bit clk = 1;
-// Comment out a version that is needed (time-limited or unlimited)
-//initial repeat (10000) `TD clk = ~clk;
 initial forever #1 clk = ~clk;
+
+// Stop after printing "Hello, World!"
+initial begin : stopme
+    #5000 $stop();
+end : stopme
 
 z80_if z80(clk);            // Instantiate the Z80 bus interface
 z80_top_ifc_n dut(z80);     // Create an instance of our Z80 design
