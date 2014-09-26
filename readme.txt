@@ -36,6 +36,7 @@ exported to Verilog for simulation and the top-level integration.
 
 Simulation
 ==========
+*** IMPORTANT ***
 Before you can load and simulate any module through Modelsim, you need to set up
 the environment by running a Python script 'modelsim_setup.py'. It creates
 relative file path mapping to source files in all module project folders.
@@ -44,11 +45,16 @@ Each functional block, including the top level, contains a Modelsim simulation
 profile: ./<block>/simulation/modelsim/test_<block>.mpf
 
 *** IMPORTANT ***
-The first time you open a ModelSim session by opening a *.mpf file, you need to
+The first time you open any ModelSim session by opening a *.mpf file, you need to
 create a library:
 ModelSim> vlib work
-Only then you can compile all module/project sources (Compile->Compile All) and
+Only then you can compile all modules/project sources (Compile->Compile All) and
 run a simulation.
+
+If you get a message "Unable to compile", you forgot to run 'modelsim_setup.py'.
+Exit ModelSim; git revert its changes to ".mpf" file (since it has already rewritten
+it using absolute paths); delete "work" folder, run 'modelsim_setup.py' and restart.
+You will have to recreate library ('vlib work') and recompile.
 
 Each project also contains a set of predefined waveform scripts which you can
 load before running a simulation of a particular module or a test:
