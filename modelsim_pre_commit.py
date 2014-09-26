@@ -9,10 +9,12 @@
 # in a version system (git, in this case) to always report mpf files as changed
 # and needed to be committed even if there has been no _effective_ change to it.
 #
-# This script simply sorts the list of project files in a consistent way so
-# no change will result in files looking the same way.
+# This script sorts the list of project files in a consistent way so no change
+# will result in files looking the same way. In addition, the same is done with
+# (key value) pairs within each file's proprty line.
 #
-# Run this script before committing changes to git.
+# Run this script before committing changes to git and bogus modifications will
+# dissapear!
 #
 import os
 import glob
@@ -27,7 +29,30 @@ def fixup():
         with open(file, "r") as f, open(file+".new", "w") as g:
             for line in f:
                 if "Project_File_P_" in line:
-                    pf[current_name] = line.partition(" = ")[2]
+                    # In addition, sort the "key value" pairs in the property line
+                    # since ModelSim randomly shuffles them as well
+                    pp = {}
+                    prop = line.partition(" = ")[2].split(" ")
+                    i = 0
+                    while(i<len(prop)):
+                        key = prop[i]
+                        value = prop[i+1]
+                        # A property value that has a space is enclosed in { .. }
+                        if "{}" not in value and "{" in value:
+                            i = i + 1
+                            value = value + " " + prop[i+1]
+                        # Another hack: ignore property "last_compile" since it always changes
+                        if "last_compile" in key:
+                            value = "1"
+                        # Another hack: ignore property "ood"
+                        if "ood" in key:
+                            value = "0"
+                        pp[key] = value.strip()
+                        i = i + 2
+                    sorted_prop = ""
+                    for k,v in sorted(pp.items()):
+                        sorted_prop = sorted_prop + " {0} {1}".format(k,v)
+                    pf[current_name] = sorted_prop.lstrip() + "\n"
                     in_file_section = 1
                     continue
                 if "Project_File_" in line:
