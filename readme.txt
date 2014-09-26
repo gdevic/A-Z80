@@ -2,7 +2,7 @@
          A conceptual implementation of the Z80 CPU
          ------------------------------------------
 
-This project is described on my blog at http://www.devic.us/hacks
+This project is described in more details here: http://www.devic.us/hacks
 
 Prerequisites:
 * Altera Quartus and Modelsim (free web editions)
@@ -20,8 +20,7 @@ which, when run, print "Hello, World!" through the UART.
 
 "tools" contains various tools related to the project.
 
-Many folders contain readme.txt files that provide additional description, so
-one should not be easily lost in the folder structure.
+Read the 'readme.txt' files in each folder for additional information.
 
 Logic Design
 ============
@@ -29,7 +28,8 @@ Each functional block contains a Quartus project file:
 ./<block>/test_<block>.qpf
 
 Quartus projects are only used as containers for files within individual
-modules; the top-level designs are in the "toplevel" and "host" folders.
+modules; the top-level designs are in the "toplevel" and "host" folders. In fact,
+you can just look into 'host' for the final FPGA build and ModelSim project.
 
 Majority of sub-modules are designed in the Quartus schematic editor and then
 exported to Verilog for simulation and the top-level integration.
