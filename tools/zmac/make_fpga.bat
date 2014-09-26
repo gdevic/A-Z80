@@ -8,6 +8,11 @@ zmac.exe --zmac fpga.asm
 if errorlevel 1 goto error
 bin2hex.exe zout\fpga.cim fpga.hex
 if errorlevel 1 goto error
+
+Rem     Copy hex files to their target Quartus/ModelSim host directories
+cp -u fpga.hex ../../host/toplevel
+cp -u fpga.hex ../../host/toplevel/simulation/modelsim
+
 goto end
 
 :error
