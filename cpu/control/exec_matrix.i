@@ -2823,6 +2823,7 @@ if (pla[91] && pla[21]) begin
     end
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
+                    ctl_flags_cf_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M2 && T4) begin  fIORead=1; nextM=1;
                     ctl_sw_2d=1;

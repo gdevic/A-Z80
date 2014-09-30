@@ -271,7 +271,6 @@ V       ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
 iff2    ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_IFF2;
 REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 ?
--
 :NF
 *       ctl_flags_nf_we=1;                      // Previous NF, to be used when loading FLAGT
 0       ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
