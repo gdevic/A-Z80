@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-// CREATED		"Fri Sep 19 08:48:03 2014"
+// CREATED		"Tue Sep 30 09:37:57 2014"
 
 module mem_cell(
 	we,
@@ -31,43 +31,41 @@ input wire	D;
 input wire	reset;
 output reg	Q;
 
+wire	SYNTHESIZED_WIRE_5;
+reg	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_3;
-reg	DFFE_hold;
-wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_4;
 
 
 
 
 
-always@(posedge clk or negedge SYNTHESIZED_WIRE_3)
+always@(posedge clk or negedge SYNTHESIZED_WIRE_5)
 begin
-if (!SYNTHESIZED_WIRE_3)
+if (!SYNTHESIZED_WIRE_5)
 	begin
 	Q <= 0;
 	end
 else
 	begin
-	Q <= DFFE_hold;
+	Q <= SYNTHESIZED_WIRE_1;
 	end
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_2 or negedge SYNTHESIZED_WIRE_3)
+always@(SYNTHESIZED_WIRE_5 or SYNTHESIZED_WIRE_3 or D)
 begin
-if (!SYNTHESIZED_WIRE_3)
-	begin
-	DFFE_hold <= 0;
-	end
-else
-if (we)
-	begin
-	DFFE_hold <= D;
-	end
+if (~SYNTHESIZED_WIRE_5)
+		SYNTHESIZED_WIRE_1 <= 1'b0;
+else if (SYNTHESIZED_WIRE_3)
+	SYNTHESIZED_WIRE_1 <= D;
 end
 
-assign	SYNTHESIZED_WIRE_3 =  ~reset;
+assign	SYNTHESIZED_WIRE_3 = we & SYNTHESIZED_WIRE_4;
 
-assign	SYNTHESIZED_WIRE_2 =  ~clk;
+assign	SYNTHESIZED_WIRE_5 =  ~reset;
+
+assign	SYNTHESIZED_WIRE_4 =  ~clk;
 
 
 endmodule
