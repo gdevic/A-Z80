@@ -77,7 +77,7 @@ begin
       BRK1  :   next_state <= IDLE;
    endcase
    // Make it 'busy' if we are not idling or if the new data is being written
-   busy_tx <= (next_state==IDLE) ? 1'h0 | data_in_wr : 1'h1;
+   busy_tx <= (state==IDLE && next_state==IDLE) ? 1'h0 | data_in_wr : 1'h1;
 end
 
 always_comb
@@ -92,8 +92,8 @@ begin
       D5    :   uart_tx = data[5];
       D6    :   uart_tx = data[6];
       D7    :   uart_tx = data[7];
-      STOP, BRK1 : uart_tx = 'b1;    // Stop and break bits are high
-      default : uart_tx = 'b1;       // By default keep data line high
+      STOP, BRK1 : uart_tx = 'b1;    // "Stop" and "break" bits are high
+      default : uart_tx = 'b1;       // By default, keep the data line high
    endcase
 end
 
