@@ -25,7 +25,7 @@
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		host_assignment_defaults.qdf
+#		rev_EP2C8Q208_RedCore_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -56,18 +56,19 @@ set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
-set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS OFF
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL OFF
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "FAST FIT"
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED WITH WEAK PULL-UP"
 set_location_assignment PIN_15 -to uart_tx
 set_location_assignment PIN_23 -to clk
 set_location_assignment PIN_27 -to reset
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH test_host_gate_level -section_id eda_simulation
-set_global_assignment -name ENABLE_SIGNALTAP ON
-set_location_assignment PIN_77 -to tp_reset
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_location_assignment PIN_187 -to tp_reset
 set_location_assignment PIN_81 -to tp_slow_clk
 set_location_assignment PIN_164 -to tp_nM1
 set_location_assignment PIN_82 -to tp_nMREQ
@@ -83,19 +84,27 @@ set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D0 -section_id DBUS
 set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D1 -section_id DBUS
 set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D2 -section_id DBUS
 set_global_assignment -name ASSIGNMENT_GROUP_MEMBER tp_D3 -section_id DBUS
-set_location_assignment PIN_89 -to tp_A0
-set_location_assignment PIN_90 -to tp_A1
-set_location_assignment PIN_92 -to tp_A2
-set_location_assignment PIN_152 -to tp_A3
-set_location_assignment PIN_169 -to tp_D0
-set_location_assignment PIN_168 -to tp_D1
+set_location_assignment PIN_70 -to tp_A0
+set_location_assignment PIN_72 -to tp_A1
+set_location_assignment PIN_69 -to tp_A2
+set_location_assignment PIN_68 -to tp_A3
+set_location_assignment PIN_67 -to tp_D0
+set_location_assignment PIN_64 -to tp_D1
 set_location_assignment PIN_165 -to tp_D2
-set_location_assignment PIN_187 -to tp_D3
-set_global_assignment -name FIT_ONLY_ONE_ATTEMPT ON
+set_location_assignment PIN_188 -to tp_D3
+set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF
+set_global_assignment -name OPTIMIZE_POWER_DURING_SYNTHESIS "EXTRA EFFORT"
+set_global_assignment -name FIT_ONLY_ONE_ATTEMPT OFF
 set_global_assignment -name USE_SIGNALTAP_FILE sigtap_RedCore.stp
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING OFF
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name FITTER_EARLY_TIMING_ESTIMATE_MODE OPTIMISTIC
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
 set_global_assignment -name SYSTEMVERILOG_FILE host_board_fpga.sv
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name SYSTEMVERILOG_FILE ../uart/uart_core.sv
@@ -144,53 +153,5 @@ set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name HEX_FILE ../../tools/zmac/fpga.hex
 set_global_assignment -name QIP_FILE rom.qip
 set_global_assignment -name SIGNALTAP_FILE sigtap_RedCore.stp
-set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id sigtap_RedCore
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to slow_clk -section_id sigtap_RedCore
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to reset_stable -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to D[0] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to D[1] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to D[2] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to D[3] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to D[4] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to D[5] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to D[6] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to D[7] -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "z80_top_direct_n:z80_|A[0]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "z80_top_direct_n:z80_|A[10]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "z80_top_direct_n:z80_|A[11]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "z80_top_direct_n:z80_|A[12]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "z80_top_direct_n:z80_|A[13]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "z80_top_direct_n:z80_|A[14]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "z80_top_direct_n:z80_|A[15]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "z80_top_direct_n:z80_|A[1]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "z80_top_direct_n:z80_|A[2]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "z80_top_direct_n:z80_|A[3]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "z80_top_direct_n:z80_|A[4]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "z80_top_direct_n:z80_|A[5]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "z80_top_direct_n:z80_|A[6]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "z80_top_direct_n:z80_|A[7]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "z80_top_direct_n:z80_|A[8]" -section_id sigtap_RedCore
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "z80_top_direct_n:z80_|A[9]" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=24" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=1" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=26" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=512" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=41278" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=21519" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=512" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id sigtap_RedCore
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id sigtap_RedCore
+set_global_assignment -name QIP_FILE pll.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

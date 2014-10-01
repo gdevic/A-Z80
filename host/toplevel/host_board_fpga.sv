@@ -4,9 +4,11 @@
 // This module defines a host board to be run on an FPGA.
 //
 //============================================================================
-// Default CPU slowdown for the FPGA synthesis is
+// Optional CPU slowdown for the FPGA synthesis
 // 50 MHz divided by 2^8 / 2 gives about 100 KHz
-module host #(parameter CPU_SLOWDOWN = 8)
+// 50 MHz divided by 2^2 / 2 gives about 6 MHz
+// 50 MHz divided by 2^1 / 2 gives about 12 MHz
+module host #(parameter CPU_SLOWDOWN = 1)
 (
     input wire clk,
     input wire reset,
@@ -101,35 +103,30 @@ assign tp_D1 = D[1];
 assign tp_D2 = D[2];
 assign tp_D3 = D[3];
 
-// ----------------- INTERNAL WIRES -----------------
-wire [7:0] RomData;                     // RomData is a data writer from the ROM module
-wire [7:0] RamData;                     // RamData is a data writer from the RAM module
-wire we;
-assign we = A[15:9]=='h1 && nIORQ==1 && nRD==1 && nWR==0;
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate PLL
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pll pll_( .inclk0(clk), .c0(pll_clk) );
 
-// 512b is addressable with bits [8:0]
-// 512b *blocks* are selectable with bits [15:9]
+// ----------------- INTERNAL WIRES -----------------
+wire [7:0] RamData;                     // RamData is a data writer from the RAM module
+wire RamWE;
+assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
+
 // Memory map:
-//   0000 - 01FF  ROM
-//   0200 - 03FF  RAM
-assign D[7:0] = (A[15:9]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RomData :
-                (A[15:9]=='h1 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
+//   0000 - 3FFF  16K RAM
+assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
                 {8{1'bz}};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(true_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(pll_clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512b of ROM memory that is preloaded with our Z80 boot code
+// Instantiate 16Kb of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-rom rom_( .address(A[8:0]), .clock(clk), .q(RomData[7:0]) );
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512b of RAM memory
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram ram_( .address(A[8:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
+ram ram_( .address(A[13:0]), .clock(pll_clk), .data(D[7:0]), .wren(RamWE), .q(RamData[7:0]) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module

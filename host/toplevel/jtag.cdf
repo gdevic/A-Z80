@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C8Q208) Path("P:/A-Z80/host/toplevel/out/") File("host.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C8Q208) Path("P:/Z80/host/toplevel/out/") File("rev_EP2C8Q208_RedCore.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
