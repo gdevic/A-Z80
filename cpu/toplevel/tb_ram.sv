@@ -15,10 +15,8 @@ assign Data = (!CS && !OE) ? (Mem[Address]===8'hxx) ? 8'h76 : Mem[Address] : {8{
 
 // Read the initial content of the RAM memory from a file
 initial begin : init
-    // Read the "boot" code (address 0), it has to be present
+    // Read the CPU code (address 0) to simulate
     $readmemh("ram.hexdump", Mem, 0);
-    // Read an "executable" (in BDOS terms) starting at the address of 100h
-    $readmemh("ram100.hexdump", Mem, 256);
 end : init
 
 always @(!CS && !OE) begin
