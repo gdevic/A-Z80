@@ -1,11 +1,7 @@
-mkdir out
+Rem Fuse tests are read from the fuse directory and modified versions
+Rem are stored in the same folder, but with the .out extension
 
-connotate-fuse.py regress.in
-connotate-fuse.py regress.expected
-connotate-fuse.py tests.in
-connotate-fuse.py tests.expected
-
-cp regress.in.out out/regress.in
-cp regress.expected.out out/regress.expected
-cp tests.in.out out/tests.in
-cp tests.expected.out out/tests.expected
+connotate-fuse.py ..\cpu\toplevel\fuse\regress.in
+connotate-fuse.py ..\cpu\toplevel\fuse\regress.expected
+connotate-fuse.py ..\cpu\toplevel\fuse\tests.in
+connotate-fuse.py ..\cpu\toplevel\fuse\tests.expected
