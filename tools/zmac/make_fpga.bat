@@ -1,8 +1,8 @@
 @echo off
 Rem
-Rem     Creates an Intel HEX file format from an FPGA boot source file.
+Rem     Creates an Intel HEX file format from a Z80 source file.
 Rem     This hex file is loaded into the ROM module for both the ModelSim
-Rem     and to be included into the target FPGA data file.
+Rem     and to be included into the target FPGA data file at the "host" level.
 Rem
 Rem     Give it an argument of the ASM file you want to use, or you can simply drag
 Rem     and drop an asm file into it. If you drop an ASM file and there were errors,
