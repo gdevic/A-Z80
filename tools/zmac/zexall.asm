@@ -1,6 +1,6 @@
 	title	'Z80 instruction set exerciser'
 
-; zexdoc.src - Z80 documented instruction set exerciser
+; zexall.src - Z80 instruction set exerciser
 ; Original Copyright (C) 1994  Frank D. Cringle
 ; Changes at 03-Nov-2002 Copyright (C) 2002 J.G.Harston
 ; + Source syntax tweeked to assemble with ZMAC Z80 Macro Assembler
@@ -213,7 +213,7 @@ tests:
 	dw	add16x
 	dw	add16y
 	dw	alu8i
-;	dw	alu8r   ; takes _very_long_ time, but it passes!
+	dw	alu8r
 	dw	alu8rx
 	dw	alu8x
 	dw	bitx
@@ -306,127 +306,127 @@ tmsg	macro	msg,?lab
 ; jgh: each tmsg has full string, as ZMAC/MAXAM don't have ds n,c pseudo-op
 
 ; <adc,sbc> hl,<bc,de,hl,sp> (38,912 cycles)
-adc16:	db	0c7h		; flag mask
+adc16:	db	0ffh		; flag mask
 	tstr	0edh,042h,0,0,0832ch,04f88h,0f22bh,0b339h,07e1fh,01563h,0d3h,089h,0465eh
 	tstr	0,038h,0,0,0,0,0,0f821h,0,0,0,0,0	; (1024 cycles)
 	tstr	0,0,0,0,0,0,0,-1,-1,-1,0d7h,0,-1	; (38 cycles)
-	db	0f8h,0b4h,0eah,0a9h			; expected crc
+	db	0d4h,08ah,0d5h,019h			; expected crc
 	tmsg	'<adc,sbc> hl,<bc,de,hl,sp>....'
 
 ; add hl,<bc,de,hl,sp> (19,456 cycles)
-add16:	db	0c7h		; flag mask
+add16:	db	0ffh		; flag mask
 	tstr	9,0,0,0,0c4a5h,0c4c7h,0d226h,0a050h,058eah,08566h,0c6h,0deh,09bc9h
 	tstr	030h,0,0,0,0,0,0,0f821h,0,0,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,0,0,-1,-1,-1,0d7h,0,-1	; (38 cycles)
-	db	089h,0fdh,0b6h,035h			; expected crc
+	db	0d9h,0a4h,0cah,005h			; expected crc
 	tmsg	'add hl,<bc,de,hl,sp>..........'
 
 ; add ix,<bc,de,ix,sp> (19,456 cycles)
-add16x:	db	0c7h		; flag mask
+add16x:	db	0ffh		; flag mask
 	tstr	0ddh,9,0,0,0ddach,0c294h,0635bh,033d3h,06a76h,0fa20h,094h,068h,036f5h
 	tstr	0,030h,0,0,0,0,0f821h,0,0,0,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,0,-1,0,-1,-1,0d7h,0,-1	; (38 cycles)
-	db	0c1h,033h,079h,00bh			; expected crc
+	db	0b1h,0dfh,08eh,0c0h			; expected crc
 	tmsg	'add ix,<bc,de,ix,sp>..........'
 
 ; add iy,<bc,de,iy,sp> (19,456 cycles)
-add16y:	db	0c7h		; flag mask
+add16y:	db	0ffh		; flag mask
 	tstr	0fdh,9,0,0,0c7c2h,0f407h,051c1h,03e96h,00bf4h,0510fh,092h,01eh,071eah
 	tstr	0,030h,0,0,0,0f821h,0,0,0,0,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,-1,0,0,-1,-1,0d7h,0,-1		; (38 cycles)
-	db	0e8h,081h,07bh,09eh			; expected crc
+	db	039h,0c8h,058h,09bh			; expected crc
 	tmsg	'add iy,<bc,de,iy,sp>..........'
 
 ; aluop a,nn (28,672 cycles)
-alu8i:	db	0d7h		; flag mask
+alu8i:	db	0ffh		; flag mask
 	tstr	0c6h,0,0,0,009140h,07e3ch,07a67h,0df6dh,05b61h,00b29h,010h,066h,085b2h
 	tstr	038h,0,0,0,0,0,0,0,0,0,0,-1,0		; (2048 cycles)
 	tstr	0,-1,0,0,0,0,0,0,0,0,0d7h,0,0		; (14 cycles)
-	db	048h,079h,093h,060h			; expected crc
+	db	051h,0c1h,09ch,02eh			; expected crc
 	tmsg	'aluop a,nn....................'
 
 ; aluop a,<b,c,d,e,h,l,(hl),a> (753,664 cycles)
-alu8r:	db	0d7h		; flag mask
+alu8r:	db	0ffh		; flag mask
 	tstr	080h,0,0,0,0c53eh,0573ah,04c4dh,msbt,0e309h,0a666h,0d0h,03bh,0adbbh
 	tstr	03fh,0,0,0,0,0,0,0,0,0,0,-1,0		; (16,384 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0d7h,0,0	; (46 cycles)
-	db	0feh,043h,0b0h,016h			; expected crc
+	db	006h,0c7h,0aah,08eh			; expected crc
 	tmsg	'aluop a,<b,c,d,e,h,l,(hl),a>..'
 
 ; aluop a,<ixh,ixl,iyh,iyl> (376,832 cycles)
-alu8rx:	db	0d7h		; flag mask
+alu8rx:	db	0ffh		; flag mask
 	tstr	0ddh,084h,0,0,0d6f7h,0c76eh,0accfh,02847h,022ddh,0c035h,0c5h,038h,0234bh
 	tstr	020h,039h,0,0,0,0,0,0,0,0,0,-1,0	; (8,192 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0d7h,0,0	; (46 cycles)
-	db	0a4h,002h,06dh,05ah			; expected crc
+	db	0a8h,086h,0cch,044h			; expected crc
 	tmsg	'aluop a,<ixh,ixl,iyh,iyl>.....'
 
 ; aluop a,(<ix,iy>+1) (229,376 cycles)
-alu8x:	db	0d7h		; flag mask
+alu8x:	db	0ffh		; flag mask
 	tstr	0ddh,086h,1,0,090b7h,msbt-1,msbt-1,032fdh,0406eh,0c1dch,045h,06eh,0e5fah
 	tstr	020h,038h,0,0,0,1,1,0,0,0,0,-1,0	; (16,384 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,0d7h,0,0		; (14 cycles)
-	db	0e8h,049h,067h,06eh			; expected crc
+	db	0d3h,0f2h,0d7h,04ah			; expected crc
 	tmsg	'aluop a,(<ix,iy>+1)...........'
 
 ; bit n,(<ix,iy>+1) (2048 cycles)
-bitx:	db	053h		; flag mask
+bitx:	db	0ffh		; flag mask
 	tstr	0ddh,0cbh,1,046h,02075h,msbt-1,msbt-1,03cfch,0a79ah,03d74h,051h,027h,0ca14h
 	tstr	020h,0,0,038h,0,0,0,0,0,0,053h,0,0	; (256 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,0,0,0		; (8 cycles)
-	db	0a8h,0eeh,008h,067h			; expected crc
+	db	083h,053h,04eh,0e1h			; expected crc
 	tmsg	'bit n,(<ix,iy>+1).............'
 
 ; bit n,<b,c,d,e,h,l,(hl),a> (49,152 cycles)
-bitz80:	db	053h		; flag mask
+bitz80:	db	0ffh		; flag mask
 	tstr	0cbh,040h,0,0,03ef1h,09dfch,07acch,msbt,0be61h,07a86h,050h,024h,01998h
 	tstr	0,03fh,0,0,0,0,0,0,0,0,053h,0,0		; (1024 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0,-1,0		; (48 cycles)
-	db	07bh,055h,0e6h,0c8h			; expected crc
+	db	05eh,002h,00eh,098h			; expected crc
 	tmsg	'bit n,<b,c,d,e,h,l,(hl),a>....'
 
 ; cpd<r> (1) (6144 cycles)
-cpd1:	db	0d7h		; flag mask
+cpd1:	db	0ffh		; flag mask
 	tstr	0edh,0a9h,0,0,0c7b6h,072b4h,018f6h,msbt+17,08dbdh,1,0c0h,030h,094a3h
 	tstr	0,010h,0,0,0,0,0,0,0,010,0,-1,0		; (1024 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0a8h,07eh,06ch,0fah			; expected crc
+	db	013h,04bh,062h,02dh			; expected crc
 	tmsg	'cpd<r>........................'
 
 ; cpi<r> (1) (6144 cycles)
-cpi1:	db	0d7h		; flag mask
+cpi1:	db	0ffh		; flag mask
 	tstr	0edh,0a1h,0,0,04d48h,0af4ah,0906bh,msbt,04e71h,1,093h,06ah,0907ch
 	tstr	0,010h,0,0,0,0,0,0,0,010,0,-1,0		; (1024 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	006h,0deh,0b3h,056h			; expected crc
+	db	02dh,0a4h,02dh,019h			; expected crc
 	tmsg	'cpi<r>........................'
 
 ; <daa,cpl,scf,ccf>
-daaop:	db	0d7h		; flag mask
+daaop:	db	0ffh		; flag mask
 	tstr	027h,0,0,0,02141h,009fah,01d60h,0a559h,08d5bh,09079h,004h,08eh,0299dh
 	tstr	018h,0,0,0,0,0,0,0,0,0,0d7h,-1,0	; (65,536 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycle)
-	db	09bh,04bh,0a6h,075h			; expected crc
+	db	06dh,02dh,0d2h,013h			; expected crc
 	tmsg	'<daa,cpl,scf,ccf>.............'
 
 ; <inc,dec> a (3072 cycles)
-inca:	db	0d7h		; flag mask
+inca:	db	0ffh		; flag mask
 	tstr	03ch,0,0,0,04adfh,0d5d8h,0e598h,08a2bh,0a7b0h,0431bh,044h,05ah,0d030h
 	tstr	001h,0,0,0,0,0,0,0,0,0,0,-1,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0d1h,088h,015h,0a4h			; expected crc
+	db	081h,0fah,081h,000h			; expected crc
 	tmsg	'<inc,dec> a...................'
 
 ; <inc,dec> b (3072 cycles)
-incb:	db	0d7h		; flag mask
+incb:	db	0ffh		; flag mask
 	tstr	004h,0,0,0,0d623h,0432dh,07a61h,08180h,05a86h,01e85h,086h,058h,09bbbh
 	tstr	001h,0,0,0,0,0,0,0,0,0ff00h,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	05fh,068h,022h,064h			; expected crc
+	db	077h,0f3h,05ah,073h			; expected crc
 	tmsg	'<inc,dec> b...................'
 
 ; <inc,dec> bc (1536 cycles)
-incbc:	db	0d7h		; flag mask
+incbc:	db	0ffh		; flag mask
 	tstr	003h,0,0,0,0cd97h,044abh,08dc9h,0e3e3h,011cch,0e8a4h,002h,049h,02a4dh
 	tstr	008h,0,0,0,0,0,0,0,0,0f821h,0,0,0	; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -434,23 +434,23 @@ incbc:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> bc..................'
 
 ; <inc,dec> c (3072 cycles)
-incc:	db	0d7h		; flag mask
+incc:	db	0ffh		; flag mask
 	tstr	00ch,0,0,0,0d789h,00935h,0055bh,09f85h,08b27h,0d208h,095h,005h,00660h
 	tstr	001h,0,0,0,0,0,0,0,0,0ffh,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0c2h,084h,055h,04ch			; expected crc
+	db	01ah,0f6h,012h,0a7h			; expected crc
 	tmsg	'<inc,dec> c...................'
 
 ; <inc,dec> d (3072 cycles)
-incd:	db	0d7h		; flag mask
+incd:	db	0ffh		; flag mask
 	tstr	014h,0,0,0,0a0eah,05fbah,065fbh,0981ch,038cch,0debch,043h,05ch,003bdh
 	tstr	001h,0,0,0,0,0,0,0,0ff00h,0,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	045h,023h,0deh,010h			; expected crc
+	db	0d1h,046h,0bfh,051h			; expected crc
 	tmsg	'<inc,dec> d...................'
 
 ; <inc,dec> de (1536 cycles)
-incde:	db	0d7h		; flag mask
+incde:	db	0ffh		; flag mask
 	tstr	013h,0,0,0,0342eh,0131dh,028c9h,00acah,09967h,03a2eh,092h,0f6h,09d54h
 	tstr	008h,0,0,0,0,0,0,0,0f821h,0,0,0,0	; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -458,23 +458,23 @@ incde:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> de..................'
 
 ; <inc,dec> e (3072 cycles)
-ince:	db	0d7h		; flag mask
+ince:	db	0ffh		; flag mask
 	tstr	01ch,0,0,0,0602fh,04c0dh,02402h,0e2f5h,0a0f4h,0a10ah,013h,032h,05925h
 	tstr	001h,0,0,0,0,0,0,0,0ffh,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0e1h,075h,0afh,0cch			; expected crc
+	db	0cah,08ch,06ah,0c2h			; expected crc
 	tmsg	'<inc,dec> e...................'
 
 ; <inc,dec> h (3072 cycles)
-inch:	db	0d7h		; flag mask
+inch:	db	0ffh		; flag mask
 	tstr	024h,0,0,0,01506h,0f2ebh,0e8ddh,0262bh,011a6h,0bc1ah,017h,006h,02818h
 	tstr	001h,0,0,0,0,0,0,0ff00h,0,0,0,0,0	; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	01ch,0edh,084h,07dh			; expected crc
+	db	056h,00fh,095h,05eh			; expected crc
 	tmsg	'<inc,dec> h...................'
 
 ; <inc,dec> hl (1536 cycles)
-inchl:	db	0d7h		; flag mask
+inchl:	db	0ffh		; flag mask
 	tstr	023h,0,0,0,0c3f4h,007a5h,01b6dh,04f04h,0e2c2h,0822ah,057h,0e0h,0c3e1h
 	tstr	008h,0,0,0,0,0,0,0f821h,0,0,0,0,0	; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -482,7 +482,7 @@ inchl:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> hl..................'
 
 ; <inc,dec> ix (1536 cycles)
-incix:	db	0d7h		; flag mask
+incix:	db	0ffh		; flag mask
 	tstr	0ddh,023h,0,0,0bc3ch,00d9bh,0e081h,0adfdh,09a7fh,096e5h,013h,085h,00be2h
 	tstr	0,8,0,0,0,0,0f821h,0,0,0,0,0,0		; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -490,7 +490,7 @@ incix:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> ix..................'
 
 ; <inc,dec> iy (1536 cycles)
-inciy:	db	0d7h		; flag mask
+inciy:	db	0ffh		; flag mask
 	tstr	0fdh,023h,0,0,09402h,0637ah,03182h,0c65ah,0b2e9h,0abb4h,016h,0f2h,06d05h
 	tstr	0,8,0,0,0,0f821h,0,0,0,0,0,0,0		; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -498,23 +498,23 @@ inciy:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> iy..................'
 
 ; <inc,dec> l (3072 cycles)
-incl:	db	0d7h		; flag mask
+incl:	db	0ffh		; flag mask
 	tstr	02ch,0,0,0,08031h,0a520h,04356h,0b409h,0f4c1h,0dfa2h,0d1h,03ch,03ea2h
 	tstr	001h,0,0,0,0,0,0,0ffh,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	056h,0cdh,006h,0f3h			; expected crc
+	db	0a0h,0a1h,0b4h,09fh			; expected crc
 	tmsg	'<inc,dec> l...................'
 
 ; <inc,dec> (hl) (3072 cycles)
-incm:	db	0d7h		; flag mask
+incm:	db	0ffh		; flag mask
 	tstr	034h,0,0,0,0b856h,00c7ch,0e53eh,msbt,0877eh,0da58h,015h,05ch,01f37h
 	tstr	001h,0,0,0,0ffh,0,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0b8h,03ah,0dch,0efh			; expected crc
+	db	028h,029h,05eh,0ceh			; expected crc
 	tmsg	'<inc,dec> (hl)................'
 
 ; <inc,dec> sp (1536 cycles)
-incsp:	db	0d7h		; flag mask
+incsp:	db	0ffh		; flag mask
 	tstr	033h,0,0,0,0346fh,0d482h,0d169h,0deb6h,0a494h,0f476h,053h,002h,0855bh
 	tstr	008h,0,0,0,0,0,0,0,0,0,0,0,0f821h	; (256 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -522,15 +522,15 @@ incsp:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> sp..................'
 
 ; <inc,dec> (<ix,iy>+1) (6144 cycles)
-incx:	db	0d7h		; flag mask
+incx:	db	0ffh		; flag mask
 	tstr	0ddh,034h,1,0,0fa6eh,msbt-1,msbt-1,02c28h,08894h,05057h,016h,033h,0286fh
 	tstr	020h,1,0,0,0ffh,0,0,0,0,0,0,0,0		; (1024 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	020h,058h,014h,070h			; expected crc
+	db	00bh,095h,0a8h,0eah			; expected crc
 	tmsg	'<inc,dec> (<ix,iy>+1).........'
 
 ; <inc,dec> ixh (3072 cycles)
-incxh:	db	0d7h		; flag mask
+incxh:	db	0ffh		; flag mask
 	tstr	0ddh,024h,0,0,0b838h,0316ch,0c6d4h,03e01h,08358h,015b4h,081h,0deh,04259h
 	tstr	0,1,0,0,0,0ff00h,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -538,7 +538,7 @@ incxh:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> ixh.................'
 
 ; <inc,dec> ixl (3072 cycles)
-incxl:	db	0d7h		; flag mask
+incxl:	db	0ffh		; flag mask
 	tstr	0ddh,02ch,0,0,04d14h,07460h,076d4h,006e7h,032a2h,0213ch,0d6h,0d7h,099a5h
 	tstr	0,1,0,0,0,0ffh,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -546,7 +546,7 @@ incxl:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> ixl.................'
 
 ; <inc,dec> iyh (3072 cycles)
-incyh:	db	0d7h		; flag mask
+incyh:	db	0ffh		; flag mask
 	tstr	0ddh,024h,0,0,02836h,09f6fh,09116h,061b9h,082cbh,0e219h,092h,073h,0a98ch
 	tstr	0,1,0,0,0ff00h,0,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
@@ -554,15 +554,15 @@ incyh:	db	0d7h		; flag mask
 	tmsg	'<inc,dec> iyh.................'
 
 ; <inc,dec> iyl (3072 cycles)
-incyl:	db	0d7h		; flag mask
+incyl:	db	0ffh		; flag mask
 	tstr	0ddh,02ch,0,0,0d7c6h,062d5h,0a09eh,07039h,03e7eh,09f12h,090h,0d9h,0220fh
 	tstr	0,1,0,0,0ffh,0,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	0fbh,0cbh,0bah,095h			; expected crc
+	db	036h,0c1h,01eh,075h			; expected crc
 	tmsg	'<inc,dec> iyl.................'
 
 ; ld <bc,de>,(nnnn) (32 cycles)
-ld161:	db	0d7h		; flag mask
+ld161:	db	0ffh		; flag mask
 	tstr	0edh,04bh,msbtlo,msbthi,0f9a8h,0f559h,093a4h,0f5edh,06f96h,0d968h,086h,0e6h,04bd8h
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -570,7 +570,7 @@ ld161:	db	0d7h		; flag mask
 	tmsg	'ld <bc,de>,(nnnn).............'
 
 ; ld hl,(nnnn) (16 cycles)
-ld162:	db	0d7h		; flag mask
+ld162:	db	0ffh		; flag mask
 	tstr	02ah,msbtlo,msbthi,0,09863h,07830h,02077h,0b1feh,0b9fah,0abb8h,004h,006h,06015h
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycle)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -578,7 +578,7 @@ ld162:	db	0d7h		; flag mask
 	tmsg	'ld hl,(nnnn)..................'
 	
 ; ld sp,(nnnn) (16 cycles)
-ld163:	db	0d7h		; flag mask
+ld163:	db	0ffh		; flag mask
 	tstr	0edh,07bh,msbtlo,msbthi,08dfch,057d7h,02161h,0ca18h,0c185h,027dah,083h,01eh,0f460h
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -586,7 +586,7 @@ ld163:	db	0d7h		; flag mask
 	tmsg	'ld sp,(nnnn)..................'
 
 ; ld <ix,iy>,(nnnn) (32 cycles)
-ld164:	db	0d7h		; flag mask
+ld164:	db	0ffh		; flag mask
 	tstr	0ddh,02ah,msbtlo,msbthi,0ded7h,0a6fah,0f780h,0244ch,087deh,0bcc2h,016h,063h,04c96h
 	tstr	020h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -594,7 +594,7 @@ ld164:	db	0d7h		; flag mask
 	tmsg	'ld <ix,iy>,(nnnn).............'
 	
 ; ld (nnnn),<bc,de> (64 cycles)
-ld165:	db	0d7h		; flag mask
+ld165:	db	0ffh		; flag mask
 	tstr	0edh,043h,msbtlo,msbthi,01f98h,0844dh,0e8ach,0c9edh,0c95dh,08f61h,080h,03fh,0c7bfh
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,0,0,0,0,-1,-1,0,0,0		; (32 cycles)
@@ -602,7 +602,7 @@ ld165:	db	0d7h		; flag mask
 	tmsg	'ld (nnnn),<bc,de>.............'
 
 ; ld (nnnn),hl (16 cycles)
-ld166:	db	0d7h		; flag mask
+ld166:	db	0ffh		; flag mask
 	tstr	022h,msbtlo,msbthi,0,0d003h,07772h,07f53h,03f72h,064eah,0e180h,010h,02dh,035e9h
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycle)
 	tstr	0,0,0,0,0,0,0,-1,0,0,0,0,0		; (16 cycles)
@@ -610,7 +610,7 @@ ld166:	db	0d7h		; flag mask
 	tmsg	'ld (nnnn),hl..................'
 
 ; ld (nnnn),sp (16 cycles)
-ld167:	db	0d7h		; flag mask
+ld167:	db	0ffh		; flag mask
 	tstr	0edh,073h,msbtlo,msbthi,0c0dch,0d1d6h,0ed5ah,0f356h,0afdah,06ca7h,044h,09fh,03f0ah
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycle)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,-1		; (16 cycles)
@@ -618,7 +618,7 @@ ld167:	db	0d7h		; flag mask
 	tmsg	'ld (nnnn),sp..................'
 
 ; ld (nnnn),<ix,iy> (64 cycles)
-ld168:	db	0d7h		; flag mask
+ld168:	db	0ffh		; flag mask
 	tstr	0ddh,022h,msbtlo,msbthi,06cc3h,00d91h,06900h,08ef8h,0e3d6h,0c3f7h,0c6h,0d9h,0c2dfh
 	tstr	020h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,0,-1,-1,0,0,0,0,0,0		; (32 cycles)
@@ -626,7 +626,7 @@ ld168:	db	0d7h		; flag mask
 	tmsg	'ld (nnnn),<ix,iy>.............'
 
 ; ld <bc,de,hl,sp>,nnnn (64 cycles)
-ld16im:	db	0d7h		; flag mask
+ld16im:	db	0ffh		; flag mask
 	tstr	1,0,0,0,05c1ch,02d46h,08eb9h,06078h,074b1h,0b30eh,046h,0d1h,030cch
 	tstr	030h,0,0,0,0,0,0,0,0,0,0,0,0		; (4 cycles)
 	tstr	0,0ffh,0ffh,0,0,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -634,7 +634,7 @@ ld16im:	db	0d7h		; flag mask
 	tmsg	'ld <bc,de,hl,sp>,nnnn.........'
 
 ; ld <ix,iy>,nnnn (32 cycles)
-ld16ix:	db	0d7h		; flag mask
+ld16ix:	db	0ffh		; flag mask
 	tstr	0ddh,021h,0,0,087e8h,02006h,0bd12h,0b69bh,07253h,0a1e5h,051h,013h,0f1bdh
 	tstr	020h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0ffh,0ffh,0,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -642,7 +642,7 @@ ld16ix:	db	0d7h		; flag mask
 	tmsg	'ld <ix,iy>,nnnn...............'
 
 ; ld a,<(bc),(de)> (44 cycles)
-ld8bd:	db	0d7h		; flag mask
+ld8bd:	db	0ffh		; flag mask
 	tstr	00ah,0,0,0,0b3a8h,01d2ah,07f8eh,042ach,msbt,msbt,0c6h,0b1h,0ef8eh
 	tstr	010h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,0d7h,-1,0	; (22 cycles)
@@ -650,7 +650,7 @@ ld8bd:	db	0d7h		; flag mask
 	tmsg	'ld a,<(bc),(de)>..............'
 
 ; ld <b,c,d,e,h,l,(hl),a>,nn (64 cycles)
-ld8im:	db	0d7h		; flag mask
+ld8im:	db	0ffh		; flag mask
 	tstr	6,0,0,0,0c407h,0f49dh,0d13dh,00339h,0de89h,07455h,053h,0c0h,05509h
 	tstr	038h,0,0,0,0,0,0,0,0,0,0,0,0		; (8 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,-1,0		; (8 cycles)
@@ -658,7 +658,7 @@ ld8im:	db	0d7h		; flag mask
 	tmsg	'ld <b,c,d,e,h,l,(hl),a>,nn....'
 
 ; ld (<ix,iy>+1),nn (32 cycles)
-ld8imx:	db	0d7h		; flag mask
+ld8imx:	db	0ffh		; flag mask
 	tstr	0ddh,036h,1,0,01b45h,msbt-1,msbt-1,0d5c1h,061c7h,0bdc4h,0c0h,085h,0cd16h
 	tstr	020h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,-1,0,0,0,0,0,0,0,-1,0		; (16 cycles)
@@ -666,7 +666,7 @@ ld8imx:	db	0d7h		; flag mask
 	tmsg	'ld (<ix,iy>+1),nn.............'
 
 ; ld <b,c,d,e>,(<ix,iy>+1) (512 cycles)
-ld8ix1:	db	0d7h		; flag mask
+ld8ix1:	db	0ffh		; flag mask
 	tstr	0ddh,046h,1,0,0d016h,msbt-1,msbt-1,04260h,07f39h,00404h,097h,04ah,0d085h
 	tstr	020h,018h,0,0,0,1,1,0,0,0,0,0,0		; (32 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -674,7 +674,7 @@ ld8ix1:	db	0d7h		; flag mask
 	tmsg	'ld <b,c,d,e>,(<ix,iy>+1)......'
 
 ; ld <h,l>,(<ix,iy>+1) (256 cycles)
-ld8ix2:	db	0d7h		; flag mask
+ld8ix2:	db	0ffh		; flag mask
 	tstr	0ddh,066h,1,0,084e0h,msbt-1,msbt-1,09c52h,0a799h,049b6h,093h,000h,0eeadh
 	tstr	020h,008h,0,0,0,1,1,0,0,0,0,0,0		; (16 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -682,7 +682,7 @@ ld8ix2:	db	0d7h		; flag mask
 	tmsg	'ld <h,l>,(<ix,iy>+1)..........'
 
 ; ld a,(<ix,iy>+1) (128 cycles)
-ld8ix3:	db	0d7h		; flag mask
+ld8ix3:	db	0ffh		; flag mask
 	tstr	0ddh,07eh,1,0,0d8b6h,msbt-1,msbt-1,0c612h,0df07h,09cd0h,043h,0a6h,0a0e5h
 	tstr	020h,0,0,0,0,1,1,0,0,0,0,0,0		; (8 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,0,0		; (16 cycles)
@@ -690,7 +690,7 @@ ld8ix3:	db	0d7h		; flag mask
 	tmsg	'ld a,(<ix,iy>+1)..............'
 
 ; ld <ixh,ixl,iyh,iyl>,nn (32 cycles)
-ld8ixy:	db	0d7h		; flag mask
+ld8ixy:	db	0ffh		; flag mask
 	tstr	0ddh,026h,0,0,03c53h,04640h,0e179h,07711h,0c107h,01afah,081h,0adh,05d9bh
 	tstr	020h,8,0,0,0,0,0,0,0,0,0,0,0		; (4 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,-1,0		; (8 cycles)
@@ -698,7 +698,7 @@ ld8ixy:	db	0d7h		; flag mask
 	tmsg	'ld <ixh,ixl,iyh,iyl>,nn.......'
 
 ; ld <b,c,d,e,h,l,a>,<b,c,d,e,h,l,a> (3456 cycles)
-ld8rr:	db	0d7h		; flag mask
+ld8rr:	db	0ffh		; flag mask
 	tstr	040h,0,0,0,072a4h,0a024h,061ach,msbt,082c7h,0718fh,097h,08fh,0ef8eh
 	tstr	03fh,0,0,0,0,0,0,0,0,0,0,0,0		; (64 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0d7h,-1,0	; (54 cycles)
@@ -706,7 +706,7 @@ ld8rr:	db	0d7h		; flag mask
 	tmsg	'ld <bcdehla>,<bcdehla>........'
 
 ; ld <b,c,d,e,ixy,a>,<b,c,d,e,ixy,a> (6912 cycles)
-ld8rrx:	db	0d7h		; flag mask
+ld8rrx:	db	0ffh		; flag mask
 	tstr	0ddh,040h,0,0,0bcc5h,msbt,msbt,msbt,02fc2h,098c0h,083h,01fh,03bcdh
 	tstr	020h,03fh,0,0,0,0,0,0,0,0,0,0,0		; (128 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0d7h,-1,0	; (54 cycles)
@@ -714,7 +714,7 @@ ld8rrx:	db	0d7h		; flag mask
 	tmsg	'ld <bcdexya>,<bcdexya>........'
 
 ; ld a,(nnnn) / ld (nnnn),a (44 cycles)
-lda:	db	0d7h		; flag mask
+lda:	db	0ffh		; flag mask
 	tstr	032h,msbtlo,msbthi,0,0fd68h,0f4ech,044a0h,0b543h,00653h,0cdbah,0d2h,04fh,01fd8h
 	tstr	008h,0,0,0,0,0,0,0,0,0,0,0,0		; (2 cycle)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,0d7h,-1,0	; (22 cycles)
@@ -722,7 +722,7 @@ lda:	db	0d7h		; flag mask
 	tmsg	'ld a,(nnnn) / ld (nnnn),a.....'
 
 ; ldd<r> (1) (44 cycles)
-ldd1:	db	0d7h		; flag mask
+ldd1:	db	0ffh		; flag mask
 	tstr	0edh,0a8h,0,0,09852h,068fah,066a1h,msbt+3,msbt+1,1,0c1h,068h,020b7h
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0d7h,0,0		; (22 cycles)
@@ -730,71 +730,71 @@ ldd1:	db	0d7h		; flag mask
 	tmsg	'ldd<r> (1)....................'
 
 ; ldd<r> (2) (44 cycles)
-ldd2:	db	0d7h		; flag mask
+ldd2:	db	0ffh		; flag mask
 	tstr	0edh,0a8h,0,0,0f12eh,0eb2ah,0d5bah,msbt+3,msbt+1,2,047h,0ffh,0fbe4h
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0d7h,0,0		; (22 cycles)
-	db	05ah,090h,07eh,0d4h			; expected crc
+	db	039h,0ddh,03dh,0e1h			; expected crc
 	tmsg	'ldd<r> (2)....................'
 
 ; ldi<r> (1) (44 cycles)
-ldi1:	db	0d7h		; flag mask
+ldi1:	db	0ffh		; flag mask
 	tstr	0edh,0a0h,0,0,0fe30h,003cdh,06058h,msbt+2,msbt,1,004h,060h,02688h
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0d7h,0,0		; (22 cycles)
-	db	09ah,0bdh,0f6h,0b5h			; expected crc
+	db	0f7h,082h,0b0h,0d1h			; expected crc
 	tmsg	'ldi<r> (1)....................'
 
 ; ldi<r> (2) (44 cycles)
-ldi2:	db	0d7h		; flag mask
+ldi2:	db	0ffh		; flag mask
 	tstr	0edh,0a0h,0,0,04aceh,0c26eh,0b188h,msbt+2,msbt,2,014h,02dh,0a39fh
 	tstr	0,010h,0,0,0,0,0,0,0,0,0,0,0		; (2 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0d7h,0,0		; (22 cycles)
-	db	0ebh,059h,089h,01bh			; expected crc
+	db	0e9h,0eah,0d0h,0aeh			; expected crc
 	tmsg	'ldi<r> (2)....................'
 
 ; neg (16,384 cycles)
-negop:	db	0d7h		; flag mask
+negop:	db	0ffh		; flag mask
 	tstr	0edh,044h,0,0,038a2h,05f6bh,0d934h,057e4h,0d2d6h,04642h,043h,05ah,009cch
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,-1,0		; (16,384 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,0,0		; (1 cycle)
-	db	06ah,03ch,03bh,0bdh			; expected crc
+	db	0d6h,038h,0ddh,06ah			; expected crc
 	tmsg	'neg...........................'
 
 ; <rld,rrd> (7168 cycles)
-rldop:	db	0d7h		; flag mask
+rldop:	db	0ffh		; flag mask
 	tstr	0edh,067h,0,0,091cbh,0c48bh,0fa62h,msbt,0e720h,0b479h,040h,006h,08ae2h
 	tstr	0,8,0,0,0ffh,0,0,0,0,0,0,0,0		; (512 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,-1,0		; (14 cycles)
-	db	095h,05bh,0a3h,026h			; expected crc
+	db	0ffh,082h,03eh,077h			; expected crc
 	tmsg	'<rrd,rld>.....................'
 
 ; <rlca,rrca,rla,rra> (6144 cycles)
-rot8080: db	0d7h		; flag mask
+rot8080: db	0ffh		; flag mask
 	tstr	7,0,0,0,0cb92h,06d43h,00a90h,0c284h,00c53h,0f50eh,091h,0ebh,040fch
 	tstr	018h,0,0,0,0,0,0,0,0,0,0,-1,0		; (1024 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0d7h,0,0		; (6 cycles)
-	db	025h,013h,030h,0aeh			; expected crc
+	db	09bh,0a3h,080h,07ch			; expected crc
 	tmsg	'<rlca,rrca,rla,rra>...........'
 
 ; shift/rotate (<ix,iy>+1) (416 cycles)
-rotxy:	db	0d7h		; flag mask
+rotxy:	db	0ffh		; flag mask
 	tstr	0ddh,0cbh,1,6,0ddafh,msbt-1,msbt-1,0ff3ch,0dbf6h,094f4h,082h,080h,061d9h
 	tstr	020h,0,0,038h,0,0,0,0,0,0,080h,0,0	; (32 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,057h,0,0		; (13 cycles)
-	db	071h,03ah,0cdh,081h			; expected crc
+	db	071h,000h,034h,0cbh			; expected crc
 	tmsg	'shf/rot (<ix,iy>+1)...........'
 
 ; shift/rotate <b,c,d,e,h,l,(hl),a> (6784 cycles)
-rotz80:	db	0d7h		; flag mask
+rotz80:	db	0ffh		; flag mask
 	tstr	0cbh,0,0,0,0ccebh,05d4ah,0e007h,msbt,01395h,030eeh,043h,078h,03dadh
 	tstr	0,03fh,0,0,0,0,0,0,0,0,080h,0,0		; (128 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,057h,-1,0	; (53 cycles)
-	db	0ebh,060h,04dh,058h			; expected crc
+	db	0a4h,025h,058h,033h			; expected crc
 	tmsg	'shf/rot <b,c,d,e,h,l,(hl),a>..'
 
 ; <set,res> n,<b,c,d,e,h,l,(hl),a> (7936 cycles)
-srz80:	db	0d7h		; flag mask
+srz80:	db	0ffh		; flag mask
 	tstr	0cbh,080h,0,0,02cd5h,097abh,039ffh,msbt,0d14bh,06ab2h,053h,027h,0b538h
 	tstr	0,07fh,0,0,0,0,0,0,0,0,0,0,0		; (128 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,-1,-1,0d7h,-1,0	; (62 cycles)
@@ -802,7 +802,7 @@ srz80:	db	0d7h		; flag mask
 	tmsg	'<set,res> n,<bcdehl(hl)a>.....'
 
 ; <set,res> n,(<ix,iy>+1) (1792 cycles)
-srzx:	db	0d7h		; flag mask
+srzx:	db	0ffh		; flag mask
 	tstr	0ddh,0cbh,1,086h,0fb44h,msbt-1,msbt-1,0ba09h,068beh,032d8h,010h,05eh,0a867h
 	tstr	020h,0,0,078h,0,0,0,0,0,0,0,0,0	; (128 cycles)
 	tstr	0,0,0,0,0ffh,0,0,0,0,0,0d7h,0,0		;(14 cycles)
@@ -810,7 +810,7 @@ srzx:	db	0d7h		; flag mask
 	tmsg	'<set,res> n,(<ix,iy>+1).......'
 
 ; ld (<ix,iy>+1),<b,c,d,e> (1024 cycles)
-st8ix1:	db	0d7h		; flag mask
+st8ix1:	db	0ffh		; flag mask
 	tstr	0ddh,070h,1,0,0270dh,msbt-1,msbt-1,0b73ah,0887bh,099eeh,086h,070h,0ca07h
 	tstr	020h,003h,0,0,0,1,1,0,0,0,0,0,0		; (32 cycles)
 	tstr	0,0,0,0,0,0,0,0,-1,-1,0,0,0		; (32 cycles)
@@ -818,7 +818,7 @@ st8ix1:	db	0d7h		; flag mask
 	tmsg	'ld (<ix,iy>+1),<b,c,d,e>......'
 
 ; ld (<ix,iy>+1),<h,l> (256 cycles)
-st8ix2:	db	0d7h		; flag mask
+st8ix2:	db	0ffh		; flag mask
 	tstr	0ddh,074h,1,0,0b664h,msbt-1,msbt-1,0e8ach,0b5f5h,0aafeh,012h,010h,09566h
 	tstr	020h,001h,0,0,0,1,1,0,0,0,0,0,0		; (16 cycles)
 	tstr	0,0,0,0,0,0,0,-1,0,0,0,0,0		; (32 cycles)
@@ -826,7 +826,7 @@ st8ix2:	db	0d7h		; flag mask
 	tmsg	'ld (<ix,iy>+1),<h,l>..........'
 
 ; ld (<ix,iy>+1),a (64 cycles)
-st8ix3:	db	0d7h		; flag mask
+st8ix3:	db	0ffh		; flag mask
 	tstr	0ddh,077h,1,0,067afh,msbt-1,msbt-1,04f13h,00644h,0bcd7h,050h,0ach,05fafh
 	tstr	020h,0,0,0,0,1,1,0,0,0,0,0,0		; (8 cycles)
 	tstr	0,0,0,0,0,0,0,0,0,0,0,-1,0		; (8 cycles)
@@ -834,7 +834,7 @@ st8ix3:	db	0d7h		; flag mask
 	tmsg	'ld (<ix,iy>+1),a..............'
 
 ; ld (<bc,de>),a (96 cycles)
-stabd:	db	0d7h		; flag mask
+stabd:	db	0ffh		; flag mask
 	tstr	2,0,0,0,00c3bh,0b592h,06cffh,0959eh,msbt,msbt+1,0c1h,021h,0bde7h
 	tstr	018h,0,0,0,0,0,0,0,0,0,0,0,0		; (4 cycles)
 	tstr	0,0,0,0,-1,0,0,0,0,0,0,-1,0		; (24 cycles)
@@ -1317,7 +1317,7 @@ bdos	push	af
 	pop	af
 	ret
 
-msg1:	db	'Z80doc instruction exerciser',10,13,'$'
+msg1:	db	'Z80all instruction exerciser',10,13,'$'
 msg2:	db	'Tests complete$'
 okmsg:	db	'  OK',10,13,'$'
 ermsg1:	db	'  ERROR **** crc expected:$'
