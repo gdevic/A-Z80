@@ -275,7 +275,7 @@ REP     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
 *       ctl_flags_nf_we=1;                      // Previous NF, to be used when loading FLAGT
 0       ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
 1       ctl_flags_nf_we=1; ctl_flags_nf_set=1;
-S       ctl_flags_nf_we=1;                      // Sign bit, to be used with FLAGT source set to "bus"
+S       ctl_flags_nf_we=1;                      // Sign bit, to be used with FLAGT source set to "alu"
 ?
 :CF
 *       ctl_flags_cf_we=1;
