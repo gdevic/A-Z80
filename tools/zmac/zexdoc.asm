@@ -1317,7 +1317,7 @@ bdos	push	af
 	pop	af
 	ret
 
-msg1:	db	'Z80doc instruction exerciser',10,13,'$'
+msg1:	db	10,13,10,13,'Z80doc instruction exerciser',10,13,'$'
 msg2:	db	'Tests complete$'
 okmsg:	db	'  OK',10,13,'$'
 ermsg1:	db	'  ERROR **** crc expected:$'
