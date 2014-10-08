@@ -1803,11 +1803,11 @@ if (pla[89]) begin
                     ctl_alu_sel_op2_high=1; /* Activate ALU operation on high nibble */
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_xy_we=1;
-                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf_we=1; ctl_flags_cf_cpl=1; /* CCF */ end
+                    ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 && T2) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b01; ctl_reg_in=2'b11;
                     ctl_flags_oe=1; /* Enable FLAGT onto the data bus */
+                    ctl_flags_cf_we=1; ctl_flags_cf_cpl=1; /* CCF */
                     ctl_flags_hf_cpl=!flags_cf; /* Used for CCF */ end
     if (M1 && T3) begin 
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
@@ -2831,7 +2831,7 @@ if (pla[91] && pla[21]) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "bus" */
+                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "alu" */
                     ctl_alu_sel_op2_neg=1; end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit HL, enable SW4 downstream */
@@ -2952,7 +2952,7 @@ if (pla[91] && pla[20]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_hf_we=1;
-                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "bus" */ end
+                    ctl_flags_nf_we=1; /* Sign bit, to be used with FLAGT source set to "alu" */ end
     if (M3 && T3) begin  fIOWrite=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
                     ctl_alu_oe=1; /* Enable ALU onto the data bus */

@@ -571,8 +571,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #end																																	
 																																	
 #if pla[89] : ccf			4																														
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch													alu	<	res			H	OR			*			0	^				
-#002H T2  AB:000 DB:3F  M1      MREQ RD	1	2	fMFetch									F				<																?~CF_HF	
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch													alu	<	res			H	OR			*			0					
+#002H T2  AB:000 DB:3F  M1      MREQ RD	1	2	fMFetch									F				<													^			?~CF_HF	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF					>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1										alu					L	OR			*	*		0					
 #end																																	
