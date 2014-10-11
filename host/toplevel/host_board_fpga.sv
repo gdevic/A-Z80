@@ -4,11 +4,7 @@
 // This module defines a host board to be run on an FPGA.
 //
 //============================================================================
-// Optional CPU slowdown for the FPGA synthesis
-// 50 MHz divided by 2^8 / 2 gives about 100 KHz
-// 50 MHz divided by 2^2 / 2 gives about 6 MHz
-// 50 MHz divided by 2^1 / 2 gives about 12 MHz
-module host #(parameter CPU_SLOWDOWN = 1)
+module host
 (
     input wire clk,
     input wire reset,
@@ -33,27 +29,6 @@ module host #(parameter CPU_SLOWDOWN = 1)
     output wire tp_D3
 );
 
-// ----------------- CLOCKS AND RESET -----------------
-// Feed the CPU a slower clock from a counter
-reg [CPU_SLOWDOWN-1:0] cnt = 0;     // slowdown counter
-reg slow = 0;                       // slow pulses
-reg slow_clk = 0;                   // slow clock
-
-always @ (posedge clk) begin
-    cnt <= cnt + 1;
-    slow <= (cnt == 0);             // one pulse per cnt cycle
-    if (slow) begin
-        slow_clk <= ~slow_clk;      // toggle the output slow clock
-    end
-end
-
-// Test: double the clock so the logic analyzer can store each phase
-// (SignalTap only triggers on a rising clock edge)
-reg true_clk = 0;
-always @ (posedge slow_clk) begin
-    true_clk <= ~true_clk;
-end
-
 // ----------------- CPU PINS -----------------
 wire nM1;
 wire nMREQ;
@@ -74,7 +49,7 @@ wire [7:0] D;
 
 // ----------------- TEST PINS -----------------
 assign tp_reset = reset;
-assign tp_slow_clk = slow_clk;
+assign tp_slow_clk = clk;
 assign tp_nM1 = nM1;
 assign tp_nMREQ = nMREQ;
 assign tp_nRFSH = nRFSH;
