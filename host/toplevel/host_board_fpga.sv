@@ -54,19 +54,6 @@ always @ (posedge slow_clk) begin
     true_clk <= ~true_clk;
 end
 
-// Debounce the reset push-button using a shift-register
-reg reset_stable;
-reg [20:0] r;
-always @ (posedge slow_clk) begin
-    r[20:0] <= {r[19:0], reset};
-    if (r[20:0]=={20{1'b0}})
-        reset_stable <= 1'b0;
-    else if (r[20:0]=={20{1'b1}})
-        reset_stable <= 1'b1;
-    else
-        reset_stable <= reset_stable;
-end
-
 // ----------------- CPU PINS -----------------
 wire nM1;
 wire nMREQ;
@@ -86,7 +73,7 @@ wire [15:0] A;
 wire [7:0] D;
 
 // ----------------- TEST PINS -----------------
-assign tp_reset = reset_stable;
+assign tp_reset = reset;
 assign tp_slow_clk = slow_clk;
 assign tp_nM1 = nM1;
 assign tp_nMREQ = nMREQ;
@@ -106,6 +93,7 @@ assign tp_D3 = D[3];
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wire pll_clk;
 pll pll_( .inclk0(clk), .c0(pll_clk) );
 
 // ----------------- INTERNAL WIRES -----------------
