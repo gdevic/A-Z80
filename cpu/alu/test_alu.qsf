@@ -49,7 +49,6 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name BSF_FILE alu_latch.bsf
 set_global_assignment -name BDF_FILE alu_slice.bdf
 set_global_assignment -name BDF_FILE alu_shifter_core.bdf
@@ -66,3 +65,4 @@ set_global_assignment -name BDF_FILE alu_core.bdf
 set_global_assignment -name BDF_FILE alu_control.bdf
 set_global_assignment -name BDF_FILE alu_bit_select.bdf
 set_global_assignment -name BDF_FILE alu.bdf
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -4,7 +4,7 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2011 Altera Corporation
+Copyright (C) 1991-2013 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -7361,10 +7361,12 @@ applicable agreement for further details.
 (rectangle (rect 2512 296 2656 776)(fill (color 255 170 255)))
 (title_block
 	(rect 32 888 353 949)
-	(section (rect 1 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "Tue Sep 30 06:15:00 2014" (rect 56 3 235 19)(font "Arial" (font_size 10)))(date)(border))
-	(section (rect 1 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
-	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "2" (rect 43 1 51 17)(font "Arial" (font_size 10)))(border))
-	(section (rect 1 1 320 20)(text "TITLE" (rect 2 0 30 12)(font "Arial" ))(text "A-Z80 / reg_file" (rect 56 2 182 20)(font "Arial" (font_size 12)))(border))
+	(name "title-custom-medium")
+	(section (rect 0 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "May 17, 2014" (rect 56 3 149 19)(font "Arial" (font_size 10)))(border))
+	(section (rect 0 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
+	(section (rect 130 0 320 20)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "reg_file" (rect 43 2 109 21)(font "Arial" (font_size 12)(bold)))(border))
+	(section (rect 0 0 320 20)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 106 21)(font "Arial" (font_size 12)(bold)))(border))
+	(section (rect 241 41 320 60)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.3" (rect 43 3 64 19)(font "Arial" (font_size 10)))(border))
 	(drawing
 	)
 )
