@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------- #
 #
-# Copyright (C) 1991-2011 Altera Corporation
+# Copyright (C) 1991-2013 Altera Corporation
 # Your use of Altera Corporation's design tools, logic functions 
 # and other software and tools, and its AMPP partner logic 
 # functions, and any output files from any of the foregoing 
@@ -17,8 +17,8 @@
 # -------------------------------------------------------------------------- #
 #
 # Quartus II 64-Bit
-# Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version
-# Date created = 09:06:27  May 16, 2014
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 09:15:26  October 13, 2014
 #
 # -------------------------------------------------------------------------- #
 #
@@ -37,40 +37,27 @@
 
 
 set_global_assignment -name FAMILY "Cyclone II"
-set_global_assignment -name DEVICE EP2C8Q208C8
-set_global_assignment -name TOP_LEVEL_ENTITY control_pins_p
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "11.0 SP1"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:06:27  MAY 16, 2014"
-set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP1"
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
-set_global_assignment -name SMART_RECOMPILE ON
-set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY out
-set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
-set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
-set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"
-set_global_assignment -name FITTER_EFFORT "FAST FIT"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name DEVICE EP2C20F484C7
+set_global_assignment -name TOP_LEVEL_ENTITY control_pins_n
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:15:26  OCTOBER 13, 2014"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name BSF_FILE inc_dec_2bit.bsf
 set_global_assignment -name BDF_FILE inc_dec_2bit.bdf
 set_global_assignment -name BDF_FILE inc_dec.bdf
-set_global_assignment -name BDF_FILE address_latch.bdf
-set_global_assignment -name BDF_FILE address_pins.bdf
-set_global_assignment -name BDF_FILE data_pins.bdf
-set_global_assignment -name BDF_FILE data_switch.bdf
 set_global_assignment -name BDF_FILE data_switch_mask.bdf
-set_global_assignment -name BDF_FILE control_pins_n.bdf
+set_global_assignment -name BDF_FILE data_switch.bdf
+set_global_assignment -name BDF_FILE data_pins.bdf
 set_global_assignment -name BDF_FILE control_pins_p.bdf
+set_global_assignment -name BDF_FILE control_pins_n.bdf
 set_global_assignment -name BDF_FILE bus_control.bdf
-set_global_assignment -name SEARCH_PATH "..\\fpga"
+set_global_assignment -name BDF_FILE address_pins.bdf
+set_global_assignment -name BDF_FILE address_latch.bdf
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
