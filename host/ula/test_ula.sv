@@ -11,7 +11,7 @@ module test_ula
     output reg VGA_HS,
     output reg VGA_VS,
 
-    output wire [1:0] GPIO_0,
+    output wire [5:0] GPIO_0,       // Scope test points
     input wire SW0,
     input wire SW1,
     input wire SW2
@@ -23,6 +23,14 @@ module test_ula
 wire clk_pix;                   // VGA pixel clock (25.175 MHz)
 wire clk_ula;                   // ULA master clock (14 MHz)
 pll pll_( .inclk0(CLOCK_27), .c0(clk_pix), .c1(clk_ula) );
+
+// Various scope test points
+assign GPIO_0[0] = CLOCK_27;
+assign GPIO_0[1] = clk_pix;
+assign GPIO_0[2] = clk_ula;
+assign GPIO_0[3] = VGA_VS;
+assign GPIO_0[4] = VGA_HS;
+assign GPIO_0[5] = VGA_B[0];
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate RAM that contains a sample screen image
