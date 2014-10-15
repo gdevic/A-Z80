@@ -32,7 +32,7 @@ reg [4:0] frame;                // Frame counter, used for the flash attribute
 
 always @(posedge clk_pix)
 begin
-    vga_hc <= vga_hc + 1;       // With each pixel clock, advance the horizontal counter
+    vga_hc <= vga_hc + 10'b1;   // With each pixel clock, advance the horizontal counter
     //---------------------------------------------------------------
     // Horizontal sync and line end timings
     //---------------------------------------------------------------
@@ -41,7 +41,7 @@ begin
         800: begin
                 VGA_HS <= 0;
                 vga_hc <= 0;
-                vga_vc <= vga_vc + 1;
+                vga_vc <= vga_vc + 10'b1;
              end
     endcase
     //---------------------------------------------------------------
@@ -52,7 +52,7 @@ begin
         525: begin
                 VGA_VS <= 0;
                 vga_vc <= 0;
-                frame  <= frame + 1;
+                frame  <= frame + 5'b1;
              end
     endcase
 end
