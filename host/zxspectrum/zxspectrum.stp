@@ -1,0 +1,234 @@
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP2C(15|20) (0x020B30DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <global_info>
+    <multi attribute="column width" size="23" value="34,34,187,74,68,70,88,88,98,98,88,88,110,101,101,101,101,101,101,101,101,107,78"/>
+    <single attribute="active instance" value="0"/>
+    <multi attribute="frame size" size="2" value="1680,988"/>
+    <single attribute="jtag widget visible" value="1"/>
+    <multi attribute="jtag widget size" size="2" value="334,120"/>
+    <single attribute="instance widget visible" value="1"/>
+    <single attribute="config widget visible" value="1"/>
+    <single attribute="hierarchy widget visible" value="1"/>
+    <single attribute="data log widget visible" value="1"/>
+  </global_info>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <position_info>
+      <single attribute="active tab" value="1"/>
+    </position_info>
+    <signal_set global_temp="1" name="signal_set: 2014/10/15 10:27:46  #0">
+      <clock name="z80_top_direct_n:z80_|CLK" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="512" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire name="z80_top_direct_n:z80_|nRESET" tap_mode="classic"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="clocks:clocks_|clk_cpu" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[0]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[1]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[2]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[3]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[4]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[5]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[6]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[7]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nRD" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nRESET" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nWR" tap_mode="classic"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="clocks:clocks_|clk_cpu" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[0]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[10]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[11]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[12]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[13]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[14]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[15]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[1]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[2]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[3]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[4]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[5]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[6]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[7]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[8]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|A[9]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[0]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[1]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[2]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[3]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[4]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[5]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[6]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|D[7]" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nRD" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nRESET" tap_mode="classic"/>
+          <wire name="z80_top_direct_n:z80_|nWR" tap_mode="classic"/>
+        </storage_qualifier_input_vec>
+      </signal_vec>
+      <presentation>
+        <unified_setup_data_view>
+          <node data_index="0" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="clocks:clocks_|clk_cpu" storage_index="0" tap_mode="classic" type="combinatorial"/>
+          <node name="z80_top_direct_n:z80_|A" order="msb_to_lsb" type="combinatorial">
+            <node data_index="7" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[15]" storage_index="7" tap_mode="classic" type="combinatorial"/>
+            <node data_index="6" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[14]" storage_index="6" tap_mode="classic" type="combinatorial"/>
+            <node data_index="5" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[13]" storage_index="5" tap_mode="classic" type="combinatorial"/>
+            <node data_index="4" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[12]" storage_index="4" tap_mode="classic" type="combinatorial"/>
+            <node data_index="3" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[11]" storage_index="3" tap_mode="classic" type="combinatorial"/>
+            <node data_index="2" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[10]" storage_index="2" tap_mode="classic" type="combinatorial"/>
+            <node data_index="16" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[9]" storage_index="16" tap_mode="classic" type="combinatorial"/>
+            <node data_index="15" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[8]" storage_index="15" tap_mode="classic" type="combinatorial"/>
+            <node data_index="14" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[7]" storage_index="14" tap_mode="classic" type="combinatorial"/>
+            <node data_index="13" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[6]" storage_index="13" tap_mode="classic" type="combinatorial"/>
+            <node data_index="12" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[5]" storage_index="12" tap_mode="classic" type="combinatorial"/>
+            <node data_index="11" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[4]" storage_index="11" tap_mode="classic" type="combinatorial"/>
+            <node data_index="10" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[3]" storage_index="10" tap_mode="classic" type="combinatorial"/>
+            <node data_index="9" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[2]" storage_index="9" tap_mode="classic" type="combinatorial"/>
+            <node data_index="8" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[1]" storage_index="8" tap_mode="classic" type="combinatorial"/>
+            <node data_index="1" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[0]" storage_index="1" tap_mode="classic" type="combinatorial"/>
+          </node>
+          <node name="z80_top_direct_n:z80_|D" order="msb_to_lsb" type="combinatorial">
+            <node data_index="24" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[7]" storage_index="24" tap_mode="classic" type="combinatorial"/>
+            <node data_index="23" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[6]" storage_index="23" tap_mode="classic" type="combinatorial"/>
+            <node data_index="22" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[5]" storage_index="22" tap_mode="classic" type="combinatorial"/>
+            <node data_index="21" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[4]" storage_index="21" tap_mode="classic" type="combinatorial"/>
+            <node data_index="20" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[3]" storage_index="20" tap_mode="classic" type="combinatorial"/>
+            <node data_index="19" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[2]" storage_index="19" tap_mode="classic" type="combinatorial"/>
+            <node data_index="18" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[1]" storage_index="18" tap_mode="classic" type="combinatorial"/>
+            <node data_index="17" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[0]" storage_index="17" tap_mode="classic" type="combinatorial"/>
+          </node>
+          <node data_index="25" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nRD" storage_index="25" tap_mode="classic" type="combinatorial"/>
+          <node data_index="27" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nWR" storage_index="27" tap_mode="classic" type="combinatorial"/>
+          <node data_index="26" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="z80_top_direct_n:z80_|nRESET" storage_index="26" tap_mode="classic" trigger_index="0" type="combinatorial"/>
+        </unified_setup_data_view>
+        <data_view>
+          <net data_index="0" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="clocks:clocks_|clk_cpu" storage_index="0" tap_mode="classic" type="combinatorial"/>
+          <bus name="z80_top_direct_n:z80_|A" order="msb_to_lsb" type="combinatorial">
+            <net data_index="7" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[15]" storage_index="7" tap_mode="classic" type="combinatorial"/>
+            <net data_index="6" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[14]" storage_index="6" tap_mode="classic" type="combinatorial"/>
+            <net data_index="5" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[13]" storage_index="5" tap_mode="classic" type="combinatorial"/>
+            <net data_index="4" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[12]" storage_index="4" tap_mode="classic" type="combinatorial"/>
+            <net data_index="3" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[11]" storage_index="3" tap_mode="classic" type="combinatorial"/>
+            <net data_index="2" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[10]" storage_index="2" tap_mode="classic" type="combinatorial"/>
+            <net data_index="16" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[9]" storage_index="16" tap_mode="classic" type="combinatorial"/>
+            <net data_index="15" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[8]" storage_index="15" tap_mode="classic" type="combinatorial"/>
+            <net data_index="14" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[7]" storage_index="14" tap_mode="classic" type="combinatorial"/>
+            <net data_index="13" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[6]" storage_index="13" tap_mode="classic" type="combinatorial"/>
+            <net data_index="12" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[5]" storage_index="12" tap_mode="classic" type="combinatorial"/>
+            <net data_index="11" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[4]" storage_index="11" tap_mode="classic" type="combinatorial"/>
+            <net data_index="10" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[3]" storage_index="10" tap_mode="classic" type="combinatorial"/>
+            <net data_index="9" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[2]" storage_index="9" tap_mode="classic" type="combinatorial"/>
+            <net data_index="8" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[1]" storage_index="8" tap_mode="classic" type="combinatorial"/>
+            <net data_index="1" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[0]" storage_index="1" tap_mode="classic" type="combinatorial"/>
+          </bus>
+          <bus name="z80_top_direct_n:z80_|D" order="msb_to_lsb" type="combinatorial">
+            <net data_index="24" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[7]" storage_index="24" tap_mode="classic" type="combinatorial"/>
+            <net data_index="23" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[6]" storage_index="23" tap_mode="classic" type="combinatorial"/>
+            <net data_index="22" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[5]" storage_index="22" tap_mode="classic" type="combinatorial"/>
+            <net data_index="21" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[4]" storage_index="21" tap_mode="classic" type="combinatorial"/>
+            <net data_index="20" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[3]" storage_index="20" tap_mode="classic" type="combinatorial"/>
+            <net data_index="19" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[2]" storage_index="19" tap_mode="classic" type="combinatorial"/>
+            <net data_index="18" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[1]" storage_index="18" tap_mode="classic" type="combinatorial"/>
+            <net data_index="17" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[0]" storage_index="17" tap_mode="classic" type="combinatorial"/>
+          </bus>
+          <net data_index="25" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nRD" storage_index="25" tap_mode="classic" type="combinatorial"/>
+          <net data_index="27" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nWR" storage_index="27" tap_mode="classic" type="combinatorial"/>
+          <net data_index="26" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="z80_top_direct_n:z80_|nRESET" storage_index="26" tap_mode="classic" trigger_index="0" type="combinatorial"/>
+        </data_view>
+        <setup_view>
+          <net data_index="0" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="clocks:clocks_|clk_cpu" storage_index="0" tap_mode="classic" type="combinatorial"/>
+          <bus name="z80_top_direct_n:z80_|A" order="msb_to_lsb" type="combinatorial">
+            <net data_index="7" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[15]" storage_index="7" tap_mode="classic" type="combinatorial"/>
+            <net data_index="6" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[14]" storage_index="6" tap_mode="classic" type="combinatorial"/>
+            <net data_index="5" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[13]" storage_index="5" tap_mode="classic" type="combinatorial"/>
+            <net data_index="4" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[12]" storage_index="4" tap_mode="classic" type="combinatorial"/>
+            <net data_index="3" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[11]" storage_index="3" tap_mode="classic" type="combinatorial"/>
+            <net data_index="2" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[10]" storage_index="2" tap_mode="classic" type="combinatorial"/>
+            <net data_index="16" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[9]" storage_index="16" tap_mode="classic" type="combinatorial"/>
+            <net data_index="15" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[8]" storage_index="15" tap_mode="classic" type="combinatorial"/>
+            <net data_index="14" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[7]" storage_index="14" tap_mode="classic" type="combinatorial"/>
+            <net data_index="13" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[6]" storage_index="13" tap_mode="classic" type="combinatorial"/>
+            <net data_index="12" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[5]" storage_index="12" tap_mode="classic" type="combinatorial"/>
+            <net data_index="11" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[4]" storage_index="11" tap_mode="classic" type="combinatorial"/>
+            <net data_index="10" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[3]" storage_index="10" tap_mode="classic" type="combinatorial"/>
+            <net data_index="9" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[2]" storage_index="9" tap_mode="classic" type="combinatorial"/>
+            <net data_index="8" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[1]" storage_index="8" tap_mode="classic" type="combinatorial"/>
+            <net data_index="1" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|A[0]" storage_index="1" tap_mode="classic" type="combinatorial"/>
+          </bus>
+          <bus name="z80_top_direct_n:z80_|D" order="msb_to_lsb" type="combinatorial">
+            <net data_index="24" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[7]" storage_index="24" tap_mode="classic" type="combinatorial"/>
+            <net data_index="23" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[6]" storage_index="23" tap_mode="classic" type="combinatorial"/>
+            <net data_index="22" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[5]" storage_index="22" tap_mode="classic" type="combinatorial"/>
+            <net data_index="21" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[4]" storage_index="21" tap_mode="classic" type="combinatorial"/>
+            <net data_index="20" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[3]" storage_index="20" tap_mode="classic" type="combinatorial"/>
+            <net data_index="19" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[2]" storage_index="19" tap_mode="classic" type="combinatorial"/>
+            <net data_index="18" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[1]" storage_index="18" tap_mode="classic" type="combinatorial"/>
+            <net data_index="17" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|D[0]" storage_index="17" tap_mode="classic" type="combinatorial"/>
+          </bus>
+          <net data_index="25" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nRD" storage_index="25" tap_mode="classic" type="combinatorial"/>
+          <net data_index="27" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="false" name="z80_top_direct_n:z80_|nWR" storage_index="27" tap_mode="classic" type="combinatorial"/>
+          <net data_index="26" is_data_input="true" is_node_valid="true" is_storage_input="true" is_trigger_input="true" level-0="rising edge" name="z80_top_direct_n:z80_|nRESET" storage_index="26" tap_mode="classic" trigger_index="0" type="combinatorial"/>
+        </setup_view>
+        <trigger_in_editor/>
+        <trigger_out_editor/>
+      </presentation>
+      <trigger CRC="7979E7F7" attribute_mem_mode="false" gap_record="true" global_temp="1" name="trigger: 2014/10/15 10:27:46  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="512" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="basic">'z80_top_direct_n:z80_|nRESET' == rising edge
+            <power_up enabled="yes">
+            </power_up>
+            <op_node/>
+          </level>
+        </events>
+        <storage_qualifier_events>
+          <transitional>0000000000000000000000000010
+            <pwr_up_transitional>0000000000000000000000000010</pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier_events>
+        <log>
+          <data global_temp="1" name="log: 2014/10/15 10:32:21  #0"/>
+          <extradata/>
+        </log>
+      </trigger>
+    </signal_set>
+  </instance>
+  <mnemonics/>
+  <static_plugin_mnemonics/>
+</session>
