@@ -20,12 +20,8 @@ module video
     output wire [12:0] vram_address,// Address request to the video RAM
     input wire [7:0] vram_data, // Data read from the video RAM
 
-    input wire [2:0] border,    // Border color index value
-    output wire [1:0] GPIO_0    // For testing
+    input wire [2:0] border     // Border color index value
 );
-
-assign GPIO_0[0] = VGA_HS;
-assign GPIO_0[1] = VGA_VS;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // VGA 640x480 Sync pulses generator
@@ -65,14 +61,14 @@ end
 // VGA active display area 640x480
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire disp_enable;
-assign disp_enable = vga_hc>=160 && vga_hc<800 && vga_vc>=12 && vga_vc<=515;
+assign disp_enable = vga_hc>=144 && vga_hc<784 && vga_vc>=35 && vga_vc<=515;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Fetch screen data from RAM based on the current video counters
 // Spectrum resolution of 256x192 is line-doubled to 512x384 sub-frame
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire screen_en;
-assign screen_en = vga_hc>=(160+64) && vga_hc<(800-64) && vga_vc>=(12+48) && vga_vc<=(515-48);
+assign screen_en = vga_hc>=208 && vga_hc<720 && vga_vc>=83 && vga_vc<=467;
 
 reg [7:0] bits_prefetch;        // Line bitmap data prefetch register
 reg [7:0] attr_prefetch;        // Attribute data prefetch register
@@ -83,8 +79,9 @@ reg [7:0] attr;                 // Current attribute data register
 
 wire [4:0] pix_x;               // Column 0-31
 wire [7:0] pix_y;               // Active display pixel Y coordinate
-assign pix_x = (vga_hc-160-64+8)>>4;    // 16 clocks for 1 byte
-assign pix_y = (vga_vc-12-48)>>1;       // Lines are doubled vertically
+// div 16 because we use 16 clocks for 1 byte of display; also prefetch 1 byte (+16)
+assign pix_x = (vga_hc-208+16)>>4;
+assign pix_y = (vga_vc-83)>>1;  // Lines are (also) doubled vertically
 
 always @(posedge clk_pix)
 begin
