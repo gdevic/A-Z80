@@ -19,11 +19,11 @@ module test_ula
     output wire FL_OE_N,
     output wire FL_RST_N,
     output wire FL_WE_N,
-    
+
     input wire PS2_CLK,
     input wire PS2_DAT,
     output wire UART_TXD,
-    
+
     output wire [6:0] GPIO_0,   // Scope test points
     input wire SW0,
     input wire SW1,
@@ -91,7 +91,12 @@ assign FL_ADDR[21:13] = 'b10;
 wire [7:0] scan_code;
 wire scan_code_ready;
 wire scan_code_error;
+
 ps2_keyboard ps2_keyboard_( .*, .clk(CLOCK_50), .reset(KEY0) );
+
+reg [15:0] A = 16'hFEFE;
+wire [4:0] key_row;
+zx_keyboard zx_keyboard_( .*, .clk(CLOCK_50), .reset(KEY0)  );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Add UART so we can echo keyboard through the serial port out
