@@ -85,6 +85,9 @@ always @ (negedge clk) if (fFetch | fIORead | fIOWrite) T3h = T3;
 reg Tw1h = 0;
 always @ (negedge clk) Tw1h = Tw1;
 
+reg Tw2h = 0;
+always @ (negedge clk) Tw2h = Tw2;
+
 // Some of A-Z80 registers are implemented as transparent latches which need to
 // latch on the rising edge of a clock in order to propagate a value
 
@@ -92,7 +95,7 @@ reg nextMh = 0;
 always @ (negedge clk) nextMh = nextM;
 
 assign T1up = nextMh & clk;
-assign T3up = T2h & clk;
+assign T3up = (T2h | Tw2h) & clk;
 
 //============================================================================
 // Static equations to control external CPU pins
