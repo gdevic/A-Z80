@@ -3,8 +3,9 @@
 //
 // This module contains the clocks section.
 //
-// TODO: Video RAM contention would cause a clock gating implemented in this
-//       module.
+// TODO: Video RAM contention would cause a clock gating which would be
+// implemented in this module. RAM contention is not implemented since we are
+// using a dual-port RAM.
 //============================================================================
 module clocks
 (
