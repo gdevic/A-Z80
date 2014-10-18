@@ -3,9 +3,15 @@
 //============================================================================
 module zxspectrum_board
 (
+    input wire CLOCK_50,            // Input clock 50 MHz
     input wire CLOCK_27,            // Input clock 27 MHz
     input wire KEY0,                // RESET button
+    input wire KEY1,                // RESET button
 
+    //-------- PS/2 Keyboard --------------------
+    input wire PS2_CLK,
+    input wire PS2_DAT,
+    
     //-------- VGA connector --------------------
     output wire [3:0] VGA_R,
     output wire [3:0] VGA_G,
@@ -28,11 +34,28 @@ module zxspectrum_board
     output wire SRAM_OE_N,
     output wire SRAM_WE_N,
     output wire SRAM_UB_N,
-    output wire SRAM_LB_N
+    output wire SRAM_LB_N,
+    
+    output wire [6:0] GPIO_0   // Scope test points    
 );
+`default_nettype none
 
 wire reset;                         // Reset signal is assigned to
 assign reset = KEY0;                // pushbutton 0
+
+// Various scope test points
+//assign GPIO_0[0] = CLOCK_27;
+//assign GPIO_0[1] = clk_pix;
+//assign GPIO_0[2] = clk_ula;
+//assign GPIO_0[3] = clk_cpu;
+
+assign GPIO_0[0] = PS2_CLK;
+assign GPIO_0[1] = PS2_DAT;
+assign GPIO_0[2] = clk_cpu;
+assign GPIO_0[3] = vs_nintr;
+assign GPIO_0[4] = VGA_VS;
+assign GPIO_0[5] = VGA_HS;
+assign GPIO_0[6] = VGA_B[0];
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
@@ -50,10 +73,23 @@ reg [2:0] border = 4;
 wire [12:0] vram_address;       // ULA video block requests RAM address
 wire [7:0] vram_data;           // ULA video block reads RAM data
 
+wire vs_nintr;                  // Vertical retrace interrupt
 video video_( .* );
 
 wire clk_cpu;                   // Clocks generates CPU clocks of 3.5 MHz
 clocks clocks_( .* );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate keyboard support
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wire [7:0] scan_code;
+wire scan_code_ready;
+wire scan_code_error;
+
+ps2_keyboard ps2_keyboard_( .*, .clk(CLOCK_50), .reset(KEY0) );
+
+wire [4:0] key_row;
+zx_keyboard zx_keyboard_( .*, .clk(CLOCK_50), .reset(KEY0)  );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Internal buses and address map selection logic
@@ -135,7 +171,7 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = 1;
+wire nINT = vs_nintr;
 wire nNMI = 1;
 wire nBUSRQ = 1;
 
