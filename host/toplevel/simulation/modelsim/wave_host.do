@@ -40,11 +40,7 @@ add wave -noupdate -expand -group {host
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/D
 add wave -noupdate -expand -group {host
-} /test_bench_host/host_/RomData
-add wave -noupdate -expand -group {host
 } /test_bench_host/host_/RamData
-add wave -noupdate -expand -group {host
-} /test_bench_host/host_/we
 add wave -noupdate -group {RAM
 } /test_bench_host/host_/ram_/address
 add wave -noupdate -group {RAM

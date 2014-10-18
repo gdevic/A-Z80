@@ -30,38 +30,25 @@ wire nBUSRQ = 1;
 wire [15:0] A;
 wire [7:0] D;
 
-assign reset_stable = reset;
-assign true_clk = clk;
-
 // ----------------- INTERNAL WIRES -----------------
-wire [7:0] RomData;                     // RomData is a data writer from the ROM module
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
-wire we;
-assign we = A[15:9]=='h1 && nIORQ==1 && nRD==1 && nWR==0;
+wire RamWE;
+assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
-// 512b is addressable with bits [8:0]
-// 512b *blocks* are selectable with bits [15:9]
 // Memory map:
-//   0000 - 01FF  ROM
-//   0200 - 03FF  RAM
-assign D[7:0] = (A[15:9]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RomData :
-                (A[15:9]=='h1 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
+//   0000 - 3FFF  16K RAM
+assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
                 {8{1'bz}};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .nRESET(reset_stable), .CLK(true_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512b of ROM memory that is preloaded with our Z80 boot code
+// Instantiate 16Kb of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-rom rom_( .address(A[8:0]), .clock(clk), .q(RomData[7:0]) );
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512b of RAM memory
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram ram_( .address(A[8:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:0]) );
+ram ram_( .address(A[13:0]), .clock(clk), .data(D[7:0]), .wren(RamWE), .q(RamData[7:0]) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
@@ -70,6 +57,6 @@ ram ram_( .address(A[8:0]), .clock(clk), .data(D[7:0]), .wren(we), .q(RamData[7:
 //   0000 - 00FF  Write a byte to UART
 //   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .reset(!reset_stable), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
+uart_io uart_io_( .*, .reset(!reset), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 endmodule
