@@ -53,7 +53,7 @@ assign GPIO_0[6] = VGA_B[0];
 assign GPIO_0[0] = PS2_CLK;
 assign GPIO_0[1] = PS2_DAT;
 assign GPIO_0[2] = UART_TXD;
-assign GPIO_0[3] = scan_code_ready;
+assign GPIO_0[3] = vs_nintr;
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,6 +75,8 @@ assign border = { SW2, SW1, SW0 };
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate ULA's video subsystem
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wire vs_nintr;                  // Vertical retrace interrupt
+
 video video_( .*, .vram_address(vram_address), .vram_data(vram_data) );
 
 // Use flash interface instead of the internal RAM

@@ -16,11 +16,12 @@ module video
     output wire [3:0] VGA_B,    // Output VGA B component
     output reg VGA_HS,          // Output VGA horizontal sync
     output reg VGA_VS,          // Output VGA vertical sync
+    output wire vs_nintr,       // Vertical retrace interrupt
 
     output wire [12:0] vram_address,// Address request to the video RAM
     input wire [7:0] vram_data, // Data read from the video RAM
 
-    input wire [2:0] border     // Border color index value
+    input wire [2:0] border     // Border color index value    
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,18 +58,21 @@ begin
     endcase
 end
 
+// Generate interrupt at around the time of vertical retrace start
+assign vs_nintr = (vga_vc==35 && (vga_hc<144))? 0 : 1;
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // VGA active display area 640x480
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire disp_enable;
-assign disp_enable = vga_hc>=144 && vga_hc<784 && vga_vc>=35 && vga_vc<=515;
+assign disp_enable = vga_hc>=144 && vga_hc<784 && vga_vc>=35 && vga_vc<515;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Fetch screen data from RAM based on the current video counters
 // Spectrum resolution of 256x192 is line-doubled to 512x384 sub-frame
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire screen_en;
-assign screen_en = vga_hc>=208 && vga_hc<720 && vga_vc>=83 && vga_vc<=467;
+assign screen_en = vga_hc>=208 && vga_hc<720 && vga_vc>=83 && vga_vc<467;
 
 reg [7:0] bits_prefetch;        // Line bitmap data prefetch register
 reg [7:0] attr_prefetch;        // Attribute data prefetch register
