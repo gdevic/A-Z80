@@ -7,7 +7,9 @@
 module host
 (
     input wire clk,
-    input wire reset,
+    input wire reset,           // KEY0 is reset
+    input wire nINT,            // KEY1 generates a maskable interrupt (INT)
+    input wire nNMI,            // KEY2 generates a non-maskable interrupt (NMI)
     output wire uart_tx,
 
     // Expose various test points
@@ -40,8 +42,6 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = 1;
-wire nNMI = 1;
 wire nBUSRQ = 1;
 
 wire [15:0] A;

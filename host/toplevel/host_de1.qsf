@@ -35,7 +35,6 @@
 #
 # -------------------------------------------------------------------------- #
 
-
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C20F484C7
 set_global_assignment -name TOP_LEVEL_ENTITY host
@@ -54,6 +53,8 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_location_assignment PIN_L1 -to clk
 set_location_assignment PIN_R22 -to reset
+set_location_assignment PIN_R21 -to nINT
+set_location_assignment PIN_T22 -to nNMI
 set_location_assignment PIN_A13 -to tp_A0
 set_location_assignment PIN_B13 -to tp_A1
 set_location_assignment PIN_A14 -to tp_A2
