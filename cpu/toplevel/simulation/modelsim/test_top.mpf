@@ -127,7 +127,6 @@ cycloneive_ver = $MODEL_TECH/../altera/verilog/cycloneive
 hardcopyiv_hssi_ver = $MODEL_TECH/../altera/verilog/hardcopyiv_hssi
 hardcopyiv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/hardcopyiv_pcie_hip
 
-work = work
 [vcom]
 ; VHDL93 variable selects language version as the default. 
 ; Default is VHDL-2002.
