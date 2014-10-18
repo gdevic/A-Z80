@@ -92,6 +92,9 @@ int_im2_msg:
 boot:
     ; Set the stack pointer
     ld  sp, 16384    ; 16 Kb of RAM
+    ; Set up for interrupt testing: see Z80\cpu\toplevel\test_top.sv
+    im 1
+    ei
     ; Jump into the executable at 100h
     jmp 100h
 
@@ -105,7 +108,10 @@ exec:
     ld  de,hello
     ld  c,9
     call 5
+; Two versions of the code: either keep printing the text indefinitely (which
+; can be used for interrupt testing), or print it only once and die
 die:
+;    jr exec
     jr die
 
 hello:
