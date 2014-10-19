@@ -84,7 +84,8 @@ begin
                 casez (A[15:14])
                     2'b00:  D[7:0] = FL_DQ;
                     2'b01:  D[7:0] = ram_data;
-                    2'b1?:  D[7:0] = SRAM_DQ[7:0];
+                    // TODO: Adding 32K SRAM seems to make it more unstable: debug.
+                    //2'b1?:  D[7:0] = SRAM_DQ[7:0];
                 endcase
                 end
         // IO read, data supplied by the ULA
