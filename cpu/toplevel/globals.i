@@ -145,6 +145,8 @@ wire bus_ab_pin_oe;
 wire bus_ab_pin_we;
 wire bus_db_pin_oe;
 wire bus_db_pin_re;
+wire T1up;
+wire T3up;
 
 // Module: control/pla_decode.sv
 wire [104:0] pla;

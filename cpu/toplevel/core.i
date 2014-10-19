@@ -21,10 +21,6 @@ end
 wire nclk;
 assign nclk = ~clk;
 
-// Define positive clock phase signals used by some latches
-wire T1up;              // T1 clock up phase
-wire T3up;              // T3 clock up phase
-
 // Define internal data bus partitions separated by data bus switches
 wire [7:0] db0;         // Segment connecting data pins and IR
 wire [7:0] db1;         // Segment with ALU
