@@ -104,16 +104,63 @@ boot:
 ;
 ;==============================================================================
     org 100h
+    ld  hl,0
+    ld  (counter),hl
 exec:
     ld  de,hello
     ld  c,9
     call 5
+
+    ld  hl, (counter)
+    inc hl
+    ld  (counter),hl
+
+    ld  hl, text
+    ld  a,(counter+1)
+    call tohex
+    ld  hl, text+2
+    ld  a,(counter)
+    call tohex
+
 ; Two versions of the code: either keep printing the text indefinitely (which
 ; can be used for interrupt testing), or print it only once and die
 die:
-;    jr exec
-    jr die
+    jr exec
+;    jr die
+
+tohex:
+    ; HL = Address to store a hex value
+    ; A  = Hex value 00-FF
+    push af
+    and  a,0fh
+    cmp  a,10
+    jc   skip1
+    add  a, 'A'-'9'-1
+skip1:
+    add  a, '0'
+    inc  hl
+    ld   (hl),a
+    dec  hl
+    pop  af
+    rra
+    rra
+    rra
+    rra
+    and  a,0fh
+    cmp  a,10
+    jc   skip2
+    add  a, 'A'-'9'-1
+skip2:
+    add  a, '0'
+    ld   (hl),a
+    ret
+
+; Print a counter before Hello, World so we can see if the
+; processor rebooted during one of the interrupts
+counter: dw 0
 
 hello:
-    db  13,10,'Hello, World!',13,10,'$'
+    db  13,10
+text:
+    db '0000 Hello, World!',13,10,'$'
 end
