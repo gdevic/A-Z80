@@ -519,7 +519,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #010H T6  AB:001 DB:--	2	2										Z	u			alu	<	res			H	ADC		*	*				*				
 #011H T7  AB:001 DB:--	2	3									H		d				>s0			bus													
 #012H T8  AB:001 DB:--	2	4			1						rh		d			alu	>s0		bus		L	ADC		*	*	*						USE_SP	
-#013H T9  AB:001 DB:--	3	1					WZ			W		W	u			alu	<	res			H	ADC		*	*		V		*				
+#013H T9  AB:001 DB:--	3	1					WZ			W		W	u			alu	<	res			H	ADC		*	*		V		*			ZERO_16BIT	
 #014H T10 AB:001 DB:--	3	2						HL		R																							
 #015H T11 AB:001 DB:--	3	3			1	1																											
 #end																																	
@@ -533,7 +533,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #010H T6  AB:001 DB:--	2	2										Z	u			alu	<	res			H	SBC		*	*				*				
 #011H T7  AB:001 DB:--	2	3									H		d				>s0			bus													
 #012H T8  AB:001 DB:--	2	4			1						rh		d			alu	>s0		bus		L	SBCh		*	*	*						USE_SP	
-#013H T9  AB:001 DB:--	3	1					WZ			W		W	u			alu	<	res			H	SBC		*	*		V		*				
+#013H T9  AB:001 DB:--	3	1					WZ			W		W	u			alu	<	res			H	SBC		*	*		V		*			ZERO_16BIT	
 #014H T10 AB:001 DB:--	3	2						HL		R																							
 #015H T11 AB:001 DB:--	3	3			1	1																											
 #end																																	

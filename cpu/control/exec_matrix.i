@@ -1524,7 +1524,8 @@ if (op3 && pla[68]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
-                    ctl_flags_cf_we=1; end
+                    ctl_flags_cf_we=1;
+                    ctl_alu_zero_16bit=1; /* 16-bit arithmetic operation uses ZF calculated over 2 bytes */ end
     if (M3 && T2) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
@@ -1629,7 +1630,8 @@ if (!op3 && pla[68]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
-                    ctl_flags_cf_we=1; end
+                    ctl_flags_cf_we=1;
+                    ctl_alu_zero_16bit=1; /* 16-bit arithmetic operation uses ZF calculated over 2 bytes */ end
     if (M3 && T2) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end

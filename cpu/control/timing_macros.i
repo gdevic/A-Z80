@@ -345,6 +345,7 @@ EvalCond        ctl_eval_cond=1;        // Evaluate flags condition based on the
 CondShort       ctl_cond_short=1;       // M1/T3 only: force a short flags condition (SS)
 Limit6          ctl_inc_limit6=1;       // Limit the incrementer to 6 bits
 DAA             ctl_daa_oe=1;           // Write DAA correction factor to the bus
+ZERO_16BIT      ctl_alu_zero_16bit=1;   // 16-bit arithmetic operation uses ZF calculated over 2 bytes
 NonRep          nonRep=1;               // Non-repeating block instruction
 WriteBC=1       ctl_repeat_we=1;        // Update repeating flag latch with BC=1 status
 NOT_PC!         ctl_reg_not_pc=1;       // For M1/T1 load from a register other than PC
