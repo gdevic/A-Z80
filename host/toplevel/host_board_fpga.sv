@@ -6,30 +6,30 @@
 //============================================================================
 module host
 (
-    input wire clk,
-    input wire reset,           // KEY0 is reset
-    input wire nINT,            // KEY1 generates a maskable interrupt (INT)
-    input wire nNMI,            // KEY2 generates a non-maskable interrupt (NMI)
-    output wire uart_tx,
-
-    // Expose various test points
-    output wire tp_reset,
-    output wire tp_slow_clk,
-    output wire tp_nM1,
-    output wire tp_nMREQ,
-    output wire tp_nRFSH,
-    output wire tp_nRD,
-    output wire tp_nWR,
-    output wire tp_nIORQ,
-    output wire tp_A0,
-    output wire tp_A1,
-    output wire tp_A2,
-    output wire tp_A3,
-    output wire tp_D0,
-    output wire tp_D1,
-    output wire tp_D2,
-    output wire tp_D3
+    input wire CLOCK_50,
+    input wire KEY0,            // KEY0 is reset
+    input wire KEY1,            // KEY1 generates a maskable interrupt (INT)
+    input wire KEY2,            // KEY2 generates a non-maskable interrupt (NMI)
+    output wire UART_TXD,
+    
+    output wire [5:0] GPIO_0    // Test
 );
+`default_nettype none
+
+wire reset;
+assign reset = locked & KEY0;
+
+wire uart_tx;
+assign UART_TXD = uart_tx;
+
+wire locked;
+
+assign GPIO_0[0] = reset;
+assign GPIO_0[1] = pll_clk;
+assign GPIO_0[2] = locked;
+assign GPIO_0[3] = nM1;
+assign GPIO_0[4] = nRD;
+assign GPIO_0[5] = nRFSH;
 
 // ----------------- CPU PINS -----------------
 wire nM1;
@@ -43,33 +43,17 @@ wire nBUSACK;
 
 wire nWAIT = 1;
 wire nBUSRQ = 1;
+wire nINT = KEY1;
+wire nNMI = KEY2;
 
 wire [15:0] A;
 wire [7:0] D;
-
-// ----------------- TEST PINS -----------------
-assign tp_reset = reset;
-assign tp_slow_clk = clk;
-assign tp_nM1 = nM1;
-assign tp_nMREQ = nMREQ;
-assign tp_nRFSH = nRFSH;
-assign tp_nRD = nRD;
-assign tp_nWR = nWR;
-assign tp_nIORQ = nIORQ;
-assign tp_A0 = A[0];
-assign tp_A1 = A[1];
-assign tp_A2 = A[2];
-assign tp_A3 = A[3];
-assign tp_D0 = D[0];
-assign tp_D1 = D[1];
-assign tp_D2 = D[2];
-assign tp_D3 = D[3];
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire pll_clk;
-pll pll_( .inclk0(clk), .c0(pll_clk) );
+pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
@@ -98,6 +82,6 @@ ram ram_( .address(A[13:0]), .clock(pll_clk), .data(D[7:0]), .wren(RamWE), .q(Ra
 //   0000 - 00FF  Write a byte to UART
 //   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .reset(!reset), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
+uart_io uart_io_( .*, .reset(!reset), .clk(CLOCK_50), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 endmodule
