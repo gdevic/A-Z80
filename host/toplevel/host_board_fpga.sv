@@ -55,6 +55,24 @@ wire [7:0] D;
 wire pll_clk;
 pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reg div2;                       // Divide input clock by 2
+reg clk_cpu;                    // Final CPU clock
+
+// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+always @(posedge pll_clk)
+begin
+    div2 <= !div2;
+end
+
+always @(posedge div2)
+begin
+    clk_cpu = !clk_cpu;         // Divide /2 clock by 2
+end
+
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
 wire RamWE;
@@ -68,7 +86,7 @@ assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(pll_clk) );
+z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 16Kb of RAM memory
