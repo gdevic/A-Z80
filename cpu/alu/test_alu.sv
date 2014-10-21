@@ -8,6 +8,7 @@ module test_alu;
 // ------------------------ BUS LOGIC ------------------------
 // Bus control
 logic alu_oe;               // ALU unit output enable to the outside bus
+logic nclk;
 
 // Write to the ALU internal data buses
 logic alu_op1_oe;           // Enable writing by the OP1 latch

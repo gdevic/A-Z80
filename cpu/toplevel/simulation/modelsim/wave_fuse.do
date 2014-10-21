@@ -171,14 +171,6 @@ add wave -noupdate -group {regfile
 add wave -noupdate -group {regfile
 } -radix hexadecimal /test_fuse/dut/reg_file_/db_lo_ds
 add wave -noupdate -group {regfile
-} /test_fuse/dut/ctl_reg_in
-add wave -noupdate -group {regfile
-} -group {x
-} /test_fuse/dut/reg_control_/reg_in_hi
-add wave -noupdate -group {regfile
-} -group {x
-} /test_fuse/dut/reg_control_/reg_in_lo
-add wave -noupdate -group {regfile
 } -group {x
 } -color Thistle /test_fuse/dut/reg_file_/reg_gp_we
 add wave -noupdate -group {regfile
