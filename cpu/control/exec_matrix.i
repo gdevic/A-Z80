@@ -1966,7 +1966,7 @@ if (~use_ixiy && pla[70] && !pla[55]) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -2056,7 +2056,7 @@ if (~use_ixiy && pla[70] && pla[55]) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -2288,7 +2288,7 @@ if (~use_ixiy && pla[72] && !pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; end
     if (M4 && T4) begin  nextM=1; setM1=1;
@@ -2358,7 +2358,7 @@ if (~use_ixiy && pla[72] && pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; end
     if (M4 && T4) begin  nextM=1; setM1=1;
@@ -2409,7 +2409,7 @@ if (~use_ixiy && pla[74] && !pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -2476,7 +2476,7 @@ if (~use_ixiy && pla[74] && pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -2533,7 +2533,7 @@ if (~use_ixiy && pla[73] && !pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -2600,7 +2600,7 @@ if (~use_ixiy && pla[73] && pla[55]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
     if (M4 && T2) begin  fMRead=1; end
     if (M4 && T3) begin  fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -3710,7 +3710,7 @@ if (pla[49]) begin
                     ctl_alu_bs_oe=1; /* Bit-selector unit */
                     ctl_alu_op2_sel_bus=1; /* Internal bus */
                     ctl_alu_op1_sel_bus=1; /* Internal bus */
-                    ctl_ir_we=T1up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
+                    ctl_ir_we=T1up; end
 // Loading a new instruction immediately changes PLA wires and continues into the new effective instructions' M4/T1 cycle
 end
 
@@ -3934,7 +3934,8 @@ if (M1) begin
                     ctl_inc_cy=pc_inc; /* Increment */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_ir_we=T3up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
+                    ctl_ir_we=T3up;
+                    ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
     if (M1 && T4) begin 
                     ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end

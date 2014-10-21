@@ -321,11 +321,13 @@ NEG_OP2         ctl_alu_sel_op2_neg=1;
 ?NF_SUB         ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=!flags_nf;
 
 // M1 opcode read cycle and the refresh register increment cycle
-// Write the opcode into the instruction register unless:
-// 1. We are in HALT mode: push NOP (0x00) on the bus instead
-// 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) on the bus instead
-// 3. We are in NMI mode: push RST38 (0xFF) on the bus instead
-OpcodeIR        ctl_ir_we=T{T?}up; ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
+// Write opcode into the instruction register through internal db0 bus:
+OpcodeToIR      ctl_ir_we=T{T?}up;
+// At the common instruction load M1/T3, override opcode byte when servicing interrupts:
+// 1. We are in HALT mode: push NOP (0x00) instead
+// 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) instead
+// 3. We are in NMI mode: push RST38 (0xFF) instead
+OverrideIR      ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
 
 // RST instruction uses opcode[5:3] to specify a vector and this control passes those 3 bits through
 MASK_543        ctl_sw_mask543_en=!((in_intr & im2) | in_nmi);
