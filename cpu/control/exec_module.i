@@ -75,6 +75,10 @@ output logic [1:0] ctl_flags_cf2_sel,
 // Module: registers/reg_file.v
 output logic ctl_sw_4d,
 output logic ctl_sw_4u,
+output logic ctl_reg_in_hi,
+output logic ctl_reg_in_lo,
+output logic ctl_reg_out_lo,
+output logic ctl_reg_out_hi,
 
 // Module: registers/reg_control.v
 output logic ctl_reg_exx,
@@ -89,10 +93,8 @@ output logic ctl_reg_not_pc,
 output logic ctl_reg_sys_we_lo,
 output logic ctl_reg_sys_we_hi,
 output logic ctl_reg_sys_we,
-output logic ctl_reg_out_lo,
 output logic [1:0] ctl_reg_gp_hilo,
 output logic [1:0] ctl_reg_gp_sel,
-output logic [1:0] ctl_reg_in,
 output logic [1:0] ctl_reg_sys_hilo,
 
 // Module: bus/address_latch.v

@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 280 464)
+	(rect 16 16 280 400)
 	(text "reg_control" (rect 5 0 69 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 432 25 444)(font "Arial" ))
+	(text "inst" (rect 8 368 25 380)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -148,20 +148,6 @@ applicable agreement for further details.
 		(text "ctl_reg_sel_wz" (rect 0 0 88 14)(font "Arial" (font_size 8)))
 		(text "ctl_reg_sel_wz" (rect 21 299 109 313)(font "Arial" (font_size 8)))
 		(line (pt 0 304)(pt 16 304))
-	)
-	(port
-		(pt 0 320)
-		(input)
-		(text "ctl_reg_in[1..0]" (rect 0 0 83 14)(font "Arial" (font_size 8)))
-		(text "ctl_reg_in[1..0]" (rect 21 315 104 329)(font "Arial" (font_size 8)))
-		(line (pt 0 320)(pt 16 320)(line_width 3))
-	)
-	(port
-		(pt 0 336)
-		(input)
-		(text "ctl_reg_out_lo" (rect 0 0 80 14)(font "Arial" (font_size 8)))
-		(text "ctl_reg_out_lo" (rect 21 331 101 345)(font "Arial" (font_size 8)))
-		(line (pt 0 336)(pt 16 336))
 	)
 	(port
 		(pt 264 32)
@@ -310,35 +296,7 @@ applicable agreement for further details.
 		(text "reg_sel_wz" (rect 175 347 243 361)(font "Arial" (font_size 8)))
 		(line (pt 264 352)(pt 248 352))
 	)
-	(port
-		(pt 264 368)
-		(output)
-		(text "reg_in_hi" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "reg_in_hi" (rect 192 363 243 377)(font "Arial" (font_size 8)))
-		(line (pt 264 368)(pt 248 368))
-	)
-	(port
-		(pt 264 384)
-		(output)
-		(text "reg_in_lo" (rect 0 0 51 14)(font "Arial" (font_size 8)))
-		(text "reg_in_lo" (rect 192 379 243 393)(font "Arial" (font_size 8)))
-		(line (pt 264 384)(pt 248 384))
-	)
-	(port
-		(pt 264 400)
-		(output)
-		(text "reg_out_hi" (rect 0 0 60 14)(font "Arial" (font_size 8)))
-		(text "reg_out_hi" (rect 183 395 243 409)(font "Arial" (font_size 8)))
-		(line (pt 264 400)(pt 248 400))
-	)
-	(port
-		(pt 264 416)
-		(output)
-		(text "reg_out_lo" (rect 0 0 60 14)(font "Arial" (font_size 8)))
-		(text "reg_out_lo" (rect 183 411 243 425)(font "Arial" (font_size 8)))
-		(line (pt 264 416)(pt 248 416))
-	)
 	(drawing
-		(rectangle (rect 16 16 248 432))
+		(rectangle (rect 16 16 248 368))
 	)
 )

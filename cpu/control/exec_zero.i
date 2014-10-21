@@ -75,6 +75,10 @@ ctl_flags_cf2_sel = 0;
 // Module: registers/reg_file.v
 ctl_sw_4d = 0;
 ctl_sw_4u = 0;
+ctl_reg_in_hi = 0;
+ctl_reg_in_lo = 0;
+ctl_reg_out_lo = 0;
+ctl_reg_out_hi = 0;
 
 // Module: registers/reg_control.v
 ctl_reg_exx = 0;
@@ -89,10 +93,8 @@ ctl_reg_not_pc = 0;
 ctl_reg_sys_we_lo = 0;
 ctl_reg_sys_we_hi = 0;
 ctl_reg_sys_we = 0;
-ctl_reg_out_lo = 0;
 ctl_reg_gp_hilo = 0;
 ctl_reg_gp_sel = 0;
-ctl_reg_in = 0;
 ctl_reg_sys_hilo = 0;
 
 // Module: bus/address_latch.v
