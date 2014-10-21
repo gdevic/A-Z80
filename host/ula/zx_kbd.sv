@@ -122,6 +122,10 @@ begin
                 8'h31:  keys[7][3] <= released;     // N
                 8'h32:  keys[7][4] <= released;     // B
 
+                8'h66:  begin                       // BACKSPACE
+                        keys[0][0] <= released;
+                        keys[4][0] <= released;
+                        end
             endcase
         end
     end
