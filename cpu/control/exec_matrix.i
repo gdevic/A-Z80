@@ -3793,10 +3793,15 @@ if (pla[56]) begin
     if (M1 && T5) begin  nextM=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1; /* Write 16-bit SP, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
-                    ctl_bus_inc_oe=1; ctl_al_we=1; /* Loop back the incrementer into the latch (flop) */ end
+                    ctl_bus_inc_oe=1; ctl_al_we=1; /* Loop back the incrementer into the latch (flop) */
+                    ctl_sw_2d=1;
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
+                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
+                    ctl_alu_op1_sel_bus=1; /* Internal bus */ end
     if (M2 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
+                    ctl_reg_out_hi=1; /* From the register file into the ALU high byte only */
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
@@ -3809,16 +3814,11 @@ if (pla[56]) begin
                     ctl_bus_inc_oe=1; ctl_al_we=1; /* Loop back the incrementer into the latch (flop) */ end
     if (M3 && T1) begin  fMWrite=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
+                    ctl_reg_out_lo=1; /* From the register file into the ALU low byte only */
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; /* Write DB pads with internal data bus value */ end
-    if (M3 && T2) begin  fMWrite=1;
-                    ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1; /* Selecting strictly Z */
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
-                    ctl_sw_2d=1;
-                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op1_sel_bus=1; /* Internal bus */ end
+    if (M3 && T2) begin  fMWrite=1; end
     if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=!(in_intr & im2); /* RST interrupt extension */
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1; /* Select 16-bit WZ */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
@@ -4143,8 +4143,7 @@ if (M1) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_ir_we=T3up;
                     ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
+                    ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
-    if (M1 && T4) begin 
-                    ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end
 end
 

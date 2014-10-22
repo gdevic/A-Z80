@@ -93,7 +93,11 @@ boot:
     ; Set the stack pointer
     ld  sp, 16384    ; 16 Kb of RAM
     ; Set up for interrupt testing: see Z80\cpu\toplevel\test_top.sv
-    im 1
+    ; IMPORTANT: To test IM0, Verilog test code needs to put 0xFF on the bus
+    ;            To test IM2, the test code needs to put a vector of 0x80 !!
+    im  2
+    ld  a,0
+    ld  i,a
     ei
     ; Jump into the executable at 100h
     jmp 100h
@@ -111,6 +115,7 @@ exec:
     ld  c,9
     call 5
 
+    ; Print the counter and the stack pointer to make sure it does not change
     ld  hl, (counter)
     inc hl
     ld  (counter),hl
@@ -120,6 +125,15 @@ exec:
     call tohex
     ld  hl, text+2
     ld  a,(counter)
+    call tohex
+
+    ld  (stack),sp
+    
+    ld  hl, text+5
+    ld  a,(stack+1)
+    call tohex
+    ld  hl, text+7
+    ld  a,(stack)
     call tohex
 
 ; Two versions of the code: either keep printing the text indefinitely (which
@@ -156,11 +170,13 @@ skip2:
     ret
 
 ; Print a counter before Hello, World so we can see if the
-; processor rebooted during one of the interrupts
+; processor rebooted during one of the interrupts. Also, print the content
+; of the SP register which should stay fixed and "uninterrupted"
 counter: dw 0
+stack: dw 0
 
 hello:
     db  13,10
 text:
-    db '0000 Hello, World!',13,10,'$'
+    db '0000 0000 Hello, World!',13,10,'$'
 end

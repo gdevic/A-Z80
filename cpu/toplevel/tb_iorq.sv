@@ -9,9 +9,12 @@ inout [7:0] Data;
 input M1, IORQ;
 
 // Define the opcode to be sent through IORQ (FF=RST38, C7=RST0,...)
+
+// To test interrupts in mode 0, uncommend one of these lines (pushed opcode):
 //`define OPCODE  8'hFF
 //`define OPCODE  8'hC7
-// Test IM2 by pushing 0x80 which is a vector in this mode
+
+// To test interrupts in mode 2, uncommend this line (this is a vector):
 `define OPCODE  8'h80
 
 // Return data on an IORQ condition

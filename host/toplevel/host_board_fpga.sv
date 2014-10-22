@@ -83,6 +83,27 @@ assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
                 {8{1'bz}};
 
+// Memory map:
+//   0000 - 3FFF  16K RAM
+always_comb
+begin
+    D[7:0] = {8{1'bz}};
+    case ({nIORQ,nRD,nWR})
+        3'b101: begin   // Memory read
+                casez (A[15:14])
+                    2'b00:  D[7:0] = RamData;
+                endcase
+                end
+        // IO read *** Interrupts test ***
+        // This value will be pushed on the data bus on an IORQ access which
+        // means that:
+        // In IM0: this is the opcode of an instruction to execute, set it to 0xFF
+        // In IM2: this is a vector, set it to 0x80 (to correspond to a test program Hello World)
+        3'b011: D[7:0] = 8'h80;
+    endcase
+end
+
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

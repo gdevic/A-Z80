@@ -44,13 +44,14 @@ end : nmi_rep
 initial begin : int_once
     repeat (1000) @(posedge clk);
 //    z.nINT <= `SET;
-    repeat (30) @(posedge clk);
+    repeat (3000) @(posedge clk);
     z.nINT <= `CLR;
 end : int_once
 
 // Test sending a *periodic* INT
 always begin : int_rep
 //    #10000 z.nINT <= `SET;
+    repeat (3000) @(posedge clk);
     #30   z.nINT <= `CLR;
 end : int_rep
 
