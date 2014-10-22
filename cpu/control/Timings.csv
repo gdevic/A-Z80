@@ -363,8 +363,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead		1									d	<	R	alu	>s0		bus		L	ADD				*				W			
 #042H T8  AB:000 DB:--	3	1	fMWrite				DE			W							alu	<	res			H	ADD								R			
 #043H T9  AB:000 DB:21          MREQ	3	2	fMWrite					DE	op3	R																								
-#044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite				BC			W																							WriteBC=1	Update repeat flag latch
-#045H T11 AB:000 DB:21	3	4						BC	-	R																								
+#044H T10 AB:000 DB:21          MREQ    WR	3	3	fMWrite				BC			W																								
+#045H T11 AB:000 DB:21	3	4						BC	-	R																							WriteBC=1	Update repeat flag latch
 #046H T12 AB:000 DB:21	3	5			1	BR																												
 #047H T13 AB:000 DB:--	4	1					PC			W																								
 #048H T14 AB:000 DB:--	4	2						PC	-	R																								
@@ -383,8 +383,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #041H T7  AB:000 DB:21          MREQ RD	2	3	fMRead		1									d	<	R	alu	>s0		bus		L	SUB				*				W			
 #042H T8  AB:000 DB:--	3	1															alu	<	res			H	SUB		*						R			
 #043H T9  AB:000 DB:--	3	2																																
-#044H T10 AB:000 DB:--	3	3					BC			W																							WriteBC=1	Update repeat flag latch
-#045H T11 AB:000 DB:--	3	4						BC	-	R																								
+#044H T10 AB:000 DB:--	3	3					BC			W																								
+#045H T11 AB:000 DB:--	3	4						BC	-	R																							WriteBC=1	Update repeat flag latch
 #046H T12 AB:000 DB:--	3	5			1	BRZ																												
 #047H T13 AB:000 DB:--	4	1					PC			W																								
 #048H T14 AB:000 DB:--	4	2						PC	-	R																								

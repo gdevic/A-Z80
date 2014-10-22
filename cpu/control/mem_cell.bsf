@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 112 144)
+	(rect 64 64 160 192)
 	(text "mem_cell" (rect 5 0 56 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
@@ -61,4 +61,5 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 80 112))
 	)
+	(fill (color 170 255 127))
 )

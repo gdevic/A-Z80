@@ -470,6 +470,7 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 80 112))
 	)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 424 80 520 208)
@@ -514,6 +515,7 @@ applicable agreement for further details.
 		(rectangle (rect 16 16 80 112))
 	)
 	(flipx)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 424 224 520 352)
@@ -557,6 +559,7 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 80 112))
 	)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 264 456 328 504)
@@ -667,6 +670,7 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 80 112))
 	)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 424 632 520 760)
@@ -711,6 +715,7 @@ applicable agreement for further details.
 		(rectangle (rect 16 16 80 112))
 	)
 	(flipx)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 328 152 392 200)
@@ -788,6 +793,7 @@ applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 80 112))
 	)
+	(fill (color 170 255 127))
 )
 (symbol
 	(rect 560 992 608 1024)

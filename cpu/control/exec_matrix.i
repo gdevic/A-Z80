@@ -844,12 +844,12 @@ if (pla[12]) begin
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
     if (M3 && T3) begin  fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
+                    ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M3 && T4) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
-                    ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */
+                    ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
     if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -946,12 +946,12 @@ if (pla[11]) begin
                     ctl_flags_use_cf2=1; end
     if (M3 && T3) begin 
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1; /* Read 16-bit BC, enable SW4 downstream */
-                    ctl_al_we=1; /* Write a value from the register bus to the address latch */
-                    ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
+                    ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M3 && T4) begin 
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit BC, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
-                    ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
+                    ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */
+                    ctl_repeat_we=1; /* Update repeating flag latch with BC=1 status */ end
     if (M3 && T5) begin  nextM=1; setM1=nonRep | !repeat_en | flags_zf; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
