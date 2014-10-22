@@ -21,7 +21,6 @@ wire ctl_state_iy_set;
 wire ctl_state_ixiy_clr;
 wire ctl_state_ixiy_we;
 wire ctl_state_halt_set;
-wire ctl_state_halt_clr;
 wire ctl_state_tbl_clr;
 wire ctl_state_tbl_ed_set;
 wire ctl_state_tbl_cb_set;

@@ -14,14 +14,13 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:50:37 2014"
+// CREATED		"Wed Oct 22 05:11:43 2014"
 
 module decode_state(
 	ctl_state_iy_set,
 	ctl_state_ixiy_clr,
 	ctl_state_ixiy_we,
 	ctl_state_halt_set,
-	ctl_state_halt_clr,
 	ctl_state_tbl_clr,
 	ctl_state_tbl_ed_set,
 	ctl_state_tbl_cb_set,
@@ -30,6 +29,8 @@ module decode_state(
 	reset,
 	address_is_1,
 	ctl_repeat_we,
+	in_intr,
+	in_nmi,
 	in_halt,
 	table_cb,
 	table_ed,
@@ -45,7 +46,6 @@ input wire	ctl_state_iy_set;
 input wire	ctl_state_ixiy_clr;
 input wire	ctl_state_ixiy_we;
 input wire	ctl_state_halt_set;
-input wire	ctl_state_halt_clr;
 input wire	ctl_state_tbl_clr;
 input wire	ctl_state_tbl_ed_set;
 input wire	ctl_state_tbl_cb_set;
@@ -54,7 +54,9 @@ input wire	clk;
 input wire	reset;
 input wire	address_is_1;
 input wire	ctl_repeat_we;
-output wire	in_halt;
+input wire	in_intr;
+input wire	in_nmi;
+output reg	in_halt;
 output wire	table_cb;
 output wire	table_ed;
 output wire	table_xx;
@@ -63,6 +65,7 @@ output wire	use_ixiy;
 output wire	in_alu;
 output wire	repeat_en;
 
+wire	nreset;
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
@@ -83,13 +86,15 @@ assign	repeat_en =  ~SYNTHESIZED_WIRE_0;
 
 assign	SYNTHESIZED_WIRE_9 = ctl_state_tbl_clr | ctl_state_tbl_ed_set | ctl_state_tbl_cb_set;
 
-assign	SYNTHESIZED_WIRE_7 = ctl_state_halt_clr | ctl_state_halt_set;
-
 assign	use_ixiy = SYNTHESIZED_WIRE_1 | SYNTHESIZED_WIRE_2;
 
 assign	table_xx = ~(SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4);
 
+assign	nreset =  ~reset;
+
 assign	SYNTHESIZED_WIRE_8 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
+
+assign	SYNTHESIZED_WIRE_7 = in_nmi | in_intr;
 
 
 mem_cell	b2v_instCB(
@@ -108,12 +113,17 @@ mem_cell	b2v_instED(
 	.Q(SYNTHESIZED_WIRE_3));
 
 
-mem_cell	b2v_instHALT(
-	.D(ctl_state_halt_set),
-	.we(SYNTHESIZED_WIRE_7),
-	.clk(clk),
-	.reset(reset),
-	.Q(in_halt));
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	in_halt <= 0;
+	end
+else
+	begin
+	in_halt <= ~in_halt & ctl_state_halt_set | in_halt & ~SYNTHESIZED_WIRE_7;
+	end
+end
 
 
 mem_cell	b2v_instIX1(

@@ -5,7 +5,6 @@ ctl_state_iy_set = 0;
 ctl_state_ixiy_clr = 0;
 ctl_state_ixiy_we = 0;
 ctl_state_halt_set = 0;
-ctl_state_halt_clr = 0;
 ctl_state_tbl_clr = 0;
 ctl_state_tbl_ed_set = 0;
 ctl_state_tbl_cb_set = 0;
