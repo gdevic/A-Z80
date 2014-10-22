@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:19:44 2014"
+// CREATED		"Tue Oct 21 20:41:52 2014"
 
 module alu_control(
 	alu_shift_db0,
@@ -88,7 +88,7 @@ output wire	alu_shift_right;
 output wire	alu_shift_left;
 output wire	shift_cf_out;
 output wire	alu_parity_in;
-output reg	flags_cond_true;
+output wire	flags_cond_true;
 output wire	daa_cf_out;
 output wire	pf_sel;
 output wire	alu_op_low;
@@ -187,11 +187,11 @@ assign	alu_core_cf_in = SYNTHESIZED_WIRE_16 | SYNTHESIZED_WIRE_17;
 assign	SYNTHESIZED_WIRE_15 =  ~ctl_alu_core_hf;
 
 
-always@(ctl_eval_cond or condition)
-begin
-if (ctl_eval_cond)
-	flags_cond_true <= condition;
-end
+alu_latch	b2v_inst_cond(
+	.D(condition),
+	.ENA(ctl_eval_cond),
+	.NCLK(nclk),
+	.Q(flags_cond_true));
 
 
 alu_mux_4	b2v_inst_cond_mux(
