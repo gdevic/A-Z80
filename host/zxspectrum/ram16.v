@@ -240,6 +240,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL ram16.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ram16.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ram16.bsf FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ram16_inst.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ram16_inst.v FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL ram16_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf
