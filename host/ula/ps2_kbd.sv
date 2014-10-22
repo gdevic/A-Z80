@@ -32,7 +32,7 @@ assign parity = ^shiftreg[8:0];
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Filter the PS/2 clock signal since it might have a noise (false '1')
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-always @(negedge clk or negedge reset)
+always @(posedge clk or negedge reset)
 begin
     if (!reset) begin
         ps2_clk_in <= 1;
@@ -58,7 +58,7 @@ end
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // State machine to process bits of PS/2 data
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-always @(negedge clk or negedge reset)
+always @(posedge clk or negedge reset)
 begin
     if (!reset) begin
         bit_count <= '0;
