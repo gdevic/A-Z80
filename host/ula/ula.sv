@@ -4,10 +4,10 @@
 module ula
 (
     //-------- Clocks and reset -----------------
-    input wire CLOCK_50,            // Input clock 50 MHz
     input wire CLOCK_27,            // Input clock 27 MHz
     output wire clk_vram,
     input wire reset,               // KEY0 is reset
+    output wire locked,             // PLL is locked signal
     
     //-------- CPU control ----------------------
     output wire clk_cpu,            // Generates CPU clock of 3.5 MHz
@@ -41,14 +41,14 @@ module ula
 wire clk_pix;                   // VGA pixel clock (25.175 MHz)
 wire clk_ula;                   // ULA master clock (14 MHz)
 assign clk_vram = clk_pix;
-pll pll_( .inclk0(CLOCK_27), .c0(clk_pix), .c1(clk_ula) );
+pll pll_( .locked(locked), .inclk0(CLOCK_27), .c0(clk_pix), .c1(clk_ula) );
 
 clocks clocks_( .* );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // The border color index
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg [2:0] border;              // Border color index value
+reg [2:0] border;               // Border color index value
 
 always @(negedge clk_cpu)
 begin
@@ -69,10 +69,10 @@ wire [7:0] scan_code;
 wire scan_code_ready;
 wire scan_code_error;
 
-ps2_keyboard ps2_keyboard_( .*, .clk(CLOCK_50) );
+ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 
 wire [4:0] key_row;
-zx_keyboard zx_keyboard_( .*, .clk(CLOCK_50) );
+zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
 assign ula_data = (A[0]==0)? { 3'b0, key_row[4:0] } : 8'hFF;
 

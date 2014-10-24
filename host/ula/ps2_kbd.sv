@@ -4,7 +4,7 @@
 //============================================================================
 module ps2_keyboard
 (
-    input wire clk,             // 50 MHz clock
+    input wire clk,
     input wire reset,           // Reset (negative logic)
     input wire PS2_CLK,         // PS/2 keyboard clock line
     input wire PS2_DAT,         // PS/2 keyboard data line

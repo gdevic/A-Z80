@@ -7,7 +7,7 @@
 //============================================================================
 module zx_keyboard
 (
-    input wire clk,             // 50 MHz clock
+    input wire clk,
     input wire reset,           // Reset (negative logic)
 
     // Output ZX-specific keyboard codes when requested by the ULA access
@@ -44,9 +44,9 @@ begin
     endcase
 end
 
-always @(posedge clk or negedge reset)
+always @(posedge clk or negedge reset or posedge scan_code_error)
 begin
-    if (!reset) begin
+    if (!reset || scan_code_error) begin
         released <= 0;
         extended <= 0;
 

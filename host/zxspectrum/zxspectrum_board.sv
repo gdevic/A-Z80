@@ -4,7 +4,6 @@
 module zxspectrum_board
 (
     //-------- Clocks and reset -----------------
-    input wire CLOCK_50,            // Input clock 50 MHz
     input wire CLOCK_27,            // Input clock 27 MHz
     input wire KEY0,                // RESET button
 
@@ -37,13 +36,13 @@ module zxspectrum_board
     output wire SRAM_LB_N,
     
     //-------- Misc and debug -------------------
-    input wire KEY1,                //
-    output wire [6:0] GPIO_0   // Scope test points    
+    output wire [6:0] GPIO_0        // Scope test points
 );
 `default_nettype none
 
-wire reset;                         // Reset signal is assigned to
-assign reset = KEY0;                // pushbutton 0
+wire reset;
+wire locked;
+assign reset = locked & KEY0;
 
 // Various scope test points
 assign GPIO_0[0] = PS2_CLK;
