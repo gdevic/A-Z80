@@ -1,11 +1,11 @@
 Two things are happening here:
 
-1. Generation of the Z80 test code for ModelSim and FPGA at the "host" level:
+1. Generation of Z80 test code for ModelSim and FPGA at the "host/basic" level:
 
   Run the batch file "make_fpga.bat" generate "fpga.hex" from a test source file.
-  This file is included by the host/toplevel/ram.v module into the FPGA image.
+  This file is included by the host/basic/ram.v module into the FPGA image.
 
-2. Generation of the Z80 test code for toplevel ModelSim at the
+2. Generation of Z80 test code for the toplevel A-Z80 CPU ModelSim at the
    "cpu/toplevel/simulation/modelsim" level:
 
   Run the batch file "make_modelsim.bat" to generate this test file.
@@ -14,10 +14,10 @@ Two things are happening here:
   There is no "host board" at that level but ModelSim's UART device will capture
   and print any output.
 
-  "ram.hexdump" contains test code that provides UART print functions as well as
-  INT/NMI handlers used to test interrupts.
+  "ram.hexdump" contains the test code that provides UART print functions as well
+  as INT/NMI handlers used to test interrupts.
 
-Currently tested sources which should work for both of those use cases:
+Currently tested sources which should work in both of those use cases:
 
      "hello_world.asm" - simply test UART print out functions
 

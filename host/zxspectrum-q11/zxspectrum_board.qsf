@@ -581,14 +581,6 @@ set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING OFF
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
-set_global_assignment -name SDC_FILE zxspectrum_board_custom.sdc
-set_global_assignment -name SDC_FILE zxspectrum_board.sdc
-set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/zxspectrum_board.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/zx_kbd.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/video.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/ula.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/ps2_kbd.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/clocks.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct_n.sv
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
@@ -628,7 +620,17 @@ set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_core.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_control.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_bit_select.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/ula/zx_kbd.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/ula/video.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/ula/ula.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/ula/ps2_kbd.sv
+set_global_assignment -name VHDL_FILE ../zxspectrum/ula/i2s_intf.vhd
+set_global_assignment -name VHDL_FILE ../zxspectrum/ula/i2c_loader.vhd
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/ula/clocks.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../zxspectrum/zxspectrum_board.sv
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE ram16.qip
 set_global_assignment -name SIGNALTAP_FILE zxspectrum.stp
+set_global_assignment -name SDC_FILE zxspectrum_board_custom.sdc
+set_global_assignment -name SDC_FILE zxspectrum_board.sdc
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

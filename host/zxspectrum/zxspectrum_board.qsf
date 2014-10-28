@@ -580,15 +580,6 @@ set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name USE_SIGNALTAP_FILE zxspectrum.stp
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 
-set_global_assignment -name SDC_FILE zxspectrum_board.out.sdc
-set_global_assignment -name SYSTEMVERILOG_FILE zxspectrum_board.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/ula.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/zx_kbd.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/ps2_kbd.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/video.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../ula/clocks.sv
-set_global_assignment -name VHDL_FILE ../ula/i2s_intf.vhd
-set_global_assignment -name VHDL_FILE ../ula/i2c_loader.vhd
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_control.v
@@ -628,9 +619,17 @@ set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_control.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_bit_select.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct_n.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ula/zx_kbd.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ula/video.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ula/ula.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ula/ps2_kbd.sv
+set_global_assignment -name VHDL_FILE ula/i2s_intf.vhd
+set_global_assignment -name VHDL_FILE ula/i2c_loader.vhd
+set_global_assignment -name SYSTEMVERILOG_FILE ula/clocks.sv
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE ram16.qip
 set_global_assignment -name CDF_FILE zxspectrum.cdf
 set_global_assignment -name SIGNALTAP_FILE zxspectrum.stp
-set_global_assignment -name SLD_FILE "P:/Z80/host/zxspectrum/zxspectrum_auto_stripped.stp"
+set_global_assignment -name SDC_FILE zxspectrum_board.out.sdc
+set_global_assignment -name SYSTEMVERILOG_FILE zxspectrum_board.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
