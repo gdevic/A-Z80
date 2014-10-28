@@ -42,10 +42,10 @@ os.chdir("cpu/toplevel/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("host/toplevel/simulation/modelsim")
+os.chdir("host/basic/simulation/modelsim")
 setup()
 os.chdir(dname)
 
-os.chdir("host/uart/simulation/modelsim")
+os.chdir("host/basic/uart/modelsim")
 setup()
 os.chdir(dname)
