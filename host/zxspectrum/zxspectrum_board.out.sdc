@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
 
-## DATE    "Fri Oct 24 08:34:42 2014"
+## DATE    "Mon Oct 27 00:11:52 2014"
 
 ##
 ## DEVICE  "EP2C20F484C7"
@@ -38,7 +38,6 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
-create_clock -name {altera_reserved_tck} -period 100.000 -waveform { 0.000 50.000 } [get_ports {altera_reserved_tck}]
 create_clock -name {CLOCK_27} -period 37.037 -waveform { 0.000 18.518 } [get_ports {CLOCK_27}]
 
 
@@ -46,8 +45,8 @@ create_clock -name {CLOCK_27} -period 37.037 -waveform { 0.000 18.518 } [get_por
 # Create Generated Clock
 #**************************************************************
 
-create_generated_clock -name {ula:ula_|pll:pll_|altpll:altpll_component|_clk0} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 15 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[0]}] 
-create_generated_clock -name {ula:ula_|pll:pll_|altpll:altpll_component|_clk1} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 27 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[1]}] 
+create_generated_clock -name {ula_|pll_|altpll_component|pll|clk[0]} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 15 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[0]}] 
+create_generated_clock -name {ula_|pll_|altpll_component|pll|clk[1]} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 27 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[1]}] 
 
 
 #**************************************************************
@@ -78,8 +77,6 @@ create_generated_clock -name {ula:ula_|pll:pll_|altpll:altpll_component|_clk1} -
 # Set Clock Groups
 #**************************************************************
 
-set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
-set_clock_groups -asynchronous -group [get_clocks {altera_reserved_tck}] 
 
 
 #**************************************************************

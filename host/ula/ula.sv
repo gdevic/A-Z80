@@ -5,6 +5,7 @@ module ula
 (
     //-------- Clocks and reset -----------------
     input wire CLOCK_27,            // Input clock 27 MHz
+    input wire CLOCK_24,            // Input clock 24 MHz
     output wire clk_vram,
     input wire reset,               // KEY0 is reset
     output wire locked,             // PLL is locked signal
@@ -26,6 +27,16 @@ module ula
     input wire PS2_CLK,
     input wire PS2_DAT,
 
+    //-------- Audio (Tape player) --------------
+    inout wire I2C_SCLK,
+    inout wire I2C_SDAT,    
+    output wire AUD_XCK,
+    output wire AUD_ADCLRCK,
+    output wire AUD_DACLRCK,
+    output wire AUD_BCLK,
+    output wire AUD_DACDAT,
+    input wire AUD_ADCDAT,
+    
     //-------- VGA connector --------------------
     output wire [3:0] VGA_R,
     output wire [3:0] VGA_G,
@@ -58,6 +69,24 @@ begin
 end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate audio interface
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wire audio_done;
+wire audio_error;
+
+i2c_loader i2c_loader_( .CLK(CLOCK_24), .nRESET(reset), .I2C_SCL(I2C_SCLK), .I2C_SDA(I2C_SDAT), .IS_DONE(audio_done), .IS_ERROR(audio_error) );
+
+assign AUD_DACLRCK = AUD_ADCLRCK;
+wire [15:0] pcm_inl;
+wire [15:0] pcm_inr;
+wire [15:0] pcm_outl;
+wire [15:0] pcm_outr;
+    
+i2s_intf i2s_intf_( .CLK(CLOCK_24), .nRESET(reset),
+    .PCM_INL(pcm_inl[15:0]), .PCM_INR(pcm_inr[15:0]), .PCM_OUTL(pcm_outl[15:0]), .PCM_OUTR(pcm_outr[15:0]), 
+    .I2S_MCLK(AUD_XCK), .I2S_LRCLK(AUD_ADCLRCK), .I2S_BCLK(AUD_BCLK), .I2S_DOUT(AUD_DACDAT), .I2S_DIN(AUD_ADCDAT) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate ULA's video subsystem
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 video video_( .* );
@@ -74,6 +103,6 @@ ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 wire [4:0] key_row;
 zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
-assign ula_data = (A[0]==0)? { 3'b0, key_row[4:0] } : 8'hFF;
+assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[15], pcm_inl[15], key_row[4:0] } : 8'hFF;
 
 endmodule

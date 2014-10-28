@@ -5,12 +5,23 @@ module zxspectrum_board
 (
     //-------- Clocks and reset -----------------
     input wire CLOCK_27,            // Input clock 27 MHz
+    input wire CLOCK_24,            // Input clock 24 MHz
     input wire KEY0,                // RESET button
 
     //-------- PS/2 Keyboard --------------------
     input wire PS2_CLK,
     input wire PS2_DAT,
     
+    //-------- Audio (Tape player) --------------
+    inout wire I2C_SCLK,
+    inout wire I2C_SDAT,    
+    output wire AUD_XCK,
+    output wire AUD_ADCLRCK,
+    output wire AUD_DACLRCK,
+    output wire AUD_BCLK,
+    output wire AUD_DACDAT,
+    input wire AUD_ADCDAT,
+
     //-------- VGA connector --------------------
     output wire [3:0] VGA_R,
     output wire [3:0] VGA_G,
@@ -84,7 +95,7 @@ begin
                     2'b00:  D[7:0] = FL_DQ;
                     2'b01:  D[7:0] = ram_data;
                     // TODO: Adding 32K SRAM seems to make it more unstable: debug.
-                    //2'b1?:  D[7:0] = SRAM_DQ[7:0];
+                    2'b1?:  D[7:0] = SRAM_DQ[7:0];
                 endcase
                 end
         // IO read, data supplied by the ULA
