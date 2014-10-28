@@ -58,7 +58,8 @@ pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg div2;                       // Divide input clock by 2
+reg div2;                       // PLL clock divided by 2
+reg div4;                       // PLL clock divided by 4
 reg clk_cpu;                    // Final CPU clock
 
 // Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
@@ -70,8 +71,11 @@ end
 
 always @(posedge div2)
 begin
-    clk_cpu = !clk_cpu;         // Divide /2 clock by 2
+    div4 = !div4;
 end
+
+// Supply the CPU clock using a global clock driver to minimize skew
+clkctrl clkctrl_( .inclk(div4), .outclk(clk_cpu) );
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
