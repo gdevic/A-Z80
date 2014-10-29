@@ -61,10 +61,11 @@ clocks clocks_( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 reg [2:0] border;               // Border color index value
 
-always @(negedge clk_cpu)
+always @(posedge clk_cpu)
 begin
     if (A[0]==0 && io_we==1) begin
         border <= D[2:0];
+        pcm_outl[15] <= D[4];
     end
 end
 
@@ -103,6 +104,6 @@ ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 wire [4:0] key_row;
 zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
-assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[15], pcm_inl[15], key_row[4:0] } : 8'hFF;
+assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[15], 1'b0, key_row[4:0] } : 8'hFF;
 
 endmodule
