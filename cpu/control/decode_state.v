@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Oct 22 05:11:43 2014"
+// CREATED		"Wed Oct 29 06:12:25 2014"
 
 module decode_state(
 	ctl_state_iy_set,
@@ -26,11 +26,11 @@ module decode_state(
 	ctl_state_tbl_cb_set,
 	ctl_state_alu,
 	clk,
-	reset,
 	address_is_1,
 	ctl_repeat_we,
 	in_intr,
 	in_nmi,
+	nreset,
 	in_halt,
 	table_cb,
 	table_ed,
@@ -51,11 +51,11 @@ input wire	ctl_state_tbl_ed_set;
 input wire	ctl_state_tbl_cb_set;
 input wire	ctl_state_alu;
 input wire	clk;
-input wire	reset;
 input wire	address_is_1;
 input wire	ctl_repeat_we;
 input wire	in_intr;
 input wire	in_nmi;
+input wire	nreset;
 output reg	in_halt;
 output wire	table_cb;
 output wire	table_ed;
@@ -65,7 +65,6 @@ output wire	use_ixiy;
 output wire	in_alu;
 output wire	repeat_en;
 
-wire	nreset;
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
 wire	SYNTHESIZED_WIRE_2;
@@ -90,8 +89,6 @@ assign	use_ixiy = SYNTHESIZED_WIRE_1 | SYNTHESIZED_WIRE_2;
 
 assign	table_xx = ~(SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4);
 
-assign	nreset =  ~reset;
-
 assign	SYNTHESIZED_WIRE_8 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
 
 assign	SYNTHESIZED_WIRE_7 = in_nmi | in_intr;
@@ -101,7 +98,7 @@ mem_cell	b2v_instCB(
 	.D(ctl_state_tbl_cb_set),
 	.we(SYNTHESIZED_WIRE_9),
 	.clk(clk),
-	.reset(reset),
+	.nreset(nreset),
 	.Q(SYNTHESIZED_WIRE_4));
 
 
@@ -109,7 +106,7 @@ mem_cell	b2v_instED(
 	.D(ctl_state_tbl_ed_set),
 	.we(SYNTHESIZED_WIRE_9),
 	.clk(clk),
-	.reset(reset),
+	.nreset(nreset),
 	.Q(SYNTHESIZED_WIRE_3));
 
 
@@ -130,7 +127,7 @@ mem_cell	b2v_instIX1(
 	.D(SYNTHESIZED_WIRE_8),
 	.we(ctl_state_ixiy_we),
 	.clk(clk),
-	.reset(reset),
+	.nreset(nreset),
 	.Q(SYNTHESIZED_WIRE_2));
 
 
@@ -138,7 +135,7 @@ mem_cell	b2v_instIY1(
 	.D(ctl_state_iy_set),
 	.we(ctl_state_ixiy_we),
 	.clk(clk),
-	.reset(reset),
+	.nreset(nreset),
 	.Q(SYNTHESIZED_WIRE_1));
 
 
@@ -146,7 +143,7 @@ mem_cell	b2v_instNonRep(
 	.D(address_is_1),
 	.we(ctl_repeat_we),
 	.clk(clk),
-	.reset(reset),
+	.nreset(nreset),
 	.Q(SYNTHESIZED_WIRE_0));
 
 

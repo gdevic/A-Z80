@@ -14,13 +14,13 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Tue Oct 21 20:58:29 2014"
+// CREATED		"Wed Oct 29 05:42:00 2014"
 
 module mem_cell(
 	we,
 	clk,
 	D,
-	reset,
+	nreset,
 	Q
 );
 
@@ -28,20 +28,19 @@ module mem_cell(
 input wire	we;
 input wire	clk;
 input wire	D;
-input wire	reset;
+input wire	nreset;
 output reg	Q;
 
-wire	SYNTHESIZED_WIRE_3;
 reg	DFFE_hold;
-wire	SYNTHESIZED_WIRE_2;
+wire	SYNTHESIZED_WIRE_0;
 
 
 
 
 
-always@(posedge clk or negedge SYNTHESIZED_WIRE_3)
+always@(posedge clk or negedge nreset)
 begin
-if (!SYNTHESIZED_WIRE_3)
+if (!nreset)
 	begin
 	Q <= 0;
 	end
@@ -52,9 +51,9 @@ else
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_2 or negedge SYNTHESIZED_WIRE_3)
+always@(posedge SYNTHESIZED_WIRE_0 or negedge nreset)
 begin
-if (!SYNTHESIZED_WIRE_3)
+if (!nreset)
 	begin
 	DFFE_hold <= 0;
 	end
@@ -65,9 +64,7 @@ if (we)
 	end
 end
 
-assign	SYNTHESIZED_WIRE_3 =  ~reset;
-
-assign	SYNTHESIZED_WIRE_2 =  ~clk;
+assign	SYNTHESIZED_WIRE_0 =  ~clk;
 
 
 endmodule

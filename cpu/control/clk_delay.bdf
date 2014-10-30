@@ -69,9 +69,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 328 216 344)
+	(rect 40 160 216 176)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "reset" (rect 9 0 33 12)(font "Arial" ))
+	(text "in_intr" (rect 9 0 38 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -85,9 +85,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 160 216 176)
+	(rect 40 328 216 344)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "in_intr" (rect 9 0 38 12)(font "Arial" ))
+	(text "nreset" (rect 9 0 39 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -199,7 +199,7 @@ applicable agreement for further details.
 		(pt 64 24)
 		(output)
 		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
-		(text "Q" (rect 43 20 48 32)(font "Courier New" (bold)))
+		(text "Q" (rect 43 20 47 32)(font "Courier New" (bold)))
 		(line (pt 52 24)(pt 64 24))
 	)
 	(drawing
@@ -249,7 +249,7 @@ applicable agreement for further details.
 		(pt 64 24)
 		(output)
 		(text "Q" (rect 45 20 50 32)(font "Courier New" (bold)))
-		(text "Q" (rect 43 20 48 32)(font "Courier New" (bold)))
+		(text "Q" (rect 43 20 47 32)(font "Courier New" (bold)))
 		(line (pt 52 24)(pt 64 24))
 	)
 	(drawing
@@ -292,7 +292,7 @@ applicable agreement for further details.
 		(pt 64 24)
 		(output)
 		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 62 27)(font "Courier New" (bold))(invisible))
 		(line (pt 43 24)(pt 64 24))
 	)
 	(drawing
@@ -324,7 +324,7 @@ applicable agreement for further details.
 		(pt 64 24)
 		(output)
 		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 62 27)(font "Courier New" (bold))(invisible))
 		(line (pt 48 24)(pt 64 24))
 	)
 	(drawing
@@ -372,7 +372,7 @@ applicable agreement for further details.
 		(pt 64 24)
 		(output)
 		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 62 27)(font "Courier New" (bold))(invisible))
 		(line (pt 54 24)(pt 64 24))
 	)
 	(drawing
@@ -406,7 +406,7 @@ applicable agreement for further details.
 		(pt 24 0)
 		(output)
 		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 15 2 27 19)(font "Courier New" (bold))(vertical)(invisible))
+		(text "OUT" (rect 15 2 27 16)(font "Courier New" (bold))(vertical)(invisible))
 		(line (pt 24 10)(pt 24 0))
 	)
 	(drawing
@@ -420,30 +420,29 @@ applicable agreement for further details.
 	(rotate90)
 )
 (symbol
-	(rect 320 264 352 312)
-	(text "NOT" (rect 0 27 10 47)(font "Arial" (font_size 6))(vertical))
-	(text "inst2" (rect 21 22 33 45)(font "Arial" )(vertical))
+	(rect 312 320 360 352)
+	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
+	(text "inst2" (rect 3 21 26 33)(font "Arial" ))
 	(port
-		(pt 16 48)
+		(pt 0 16)
 		(input)
 		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 7 35 19 46)(font "Courier New" (bold))(vertical)(invisible))
-		(line (pt 16 48)(pt 16 35))
+		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 13 16))
 	)
 	(port
-		(pt 16 0)
+		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 7 2 19 19)(font "Courier New" (bold))(vertical)(invisible))
-		(line (pt 16 9)(pt 16 0))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
+		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
-		(line (pt 25 35)(pt 7 35))
-		(line (pt 7 35)(pt 16 17))
-		(line (pt 25 35)(pt 16 17))
-		(circle (rect 12 9 20 17))
+		(line (pt 13 25)(pt 13 7))
+		(line (pt 13 7)(pt 31 16))
+		(line (pt 13 25)(pt 31 16))
+		(circle (rect 31 12 39 20))
 	)
-	(rotate90)
 )
 (connector
 	(pt 248 144)
@@ -586,10 +585,6 @@ applicable agreement for further details.
 	(pt 400 336)
 )
 (connector
-	(pt 384 320)
-	(pt 384 336)
-)
-(connector
 	(pt 400 320)
 	(pt 400 336)
 )
@@ -610,28 +605,32 @@ applicable agreement for further details.
 	(pt 552 336)
 )
 (connector
-	(pt 504 240)
-	(pt 336 240)
+	(pt 216 168)
+	(pt 232 168)
 )
 (connector
-	(pt 336 240)
-	(pt 336 264)
-)
-(connector
-	(pt 216 336)
-	(pt 336 336)
-)
-(connector
-	(pt 336 336)
+	(pt 384 320)
 	(pt 384 336)
 )
 (connector
-	(pt 336 312)
-	(pt 336 336)
+	(pt 384 336)
+	(pt 360 336)
 )
 (connector
-	(pt 216 168)
-	(pt 232 168)
+	(pt 272 240)
+	(pt 504 240)
+)
+(connector
+	(pt 272 240)
+	(pt 272 336)
+)
+(connector
+	(pt 272 336)
+	(pt 312 336)
+)
+(connector
+	(pt 216 336)
+	(pt 272 336)
 )
 (junction (pt 392 104))
 (junction (pt 336 152))
@@ -641,16 +640,16 @@ applicable agreement for further details.
 (junction (pt 568 72))
 (junction (pt 568 112))
 (junction (pt 336 224))
-(junction (pt 336 336))
+(junction (pt 272 336))
 (text "Adds a 2-cycle delay for Interrupt response" (rect 40 64 290 78)(font "Arial" (font_size 8)))
 (title_block
-	(rect 40 392 297 444)
+	(rect 40 384 297 436)
 	(name "title-custom-small")
-	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 27, 2014" (rect 56 3 131 17)(font "Arial" (font_size 8)))(border))
-	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
-	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "clk_delay" (rect 43 2 106 17)(font "Arial" (font_size 9)(bold)))(border))
 	(section (rect 0 0 256 17)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 94 17)(font "Arial" (font_size 9)(bold)))(border))
-	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.0" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "clk_delay" (rect 43 2 106 17)(font "Arial" (font_size 9)(bold)))(border))
+	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
+	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 27, 2014" (rect 56 3 131 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.1" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
 	(drawing
 	)
 )

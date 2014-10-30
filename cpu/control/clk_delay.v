@@ -14,14 +14,14 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:51:51 2014"
+// CREATED		"Wed Oct 29 06:05:52 2014"
 
 module clk_delay(
 	M1,
 	T2,
 	clk,
-	reset,
 	in_intr,
+	nreset,
 	Tw1,
 	Tw2,
 	hold_clk_delay,
@@ -32,8 +32,8 @@ module clk_delay(
 input wire	M1;
 input wire	T2;
 input wire	clk;
-input wire	reset;
 input wire	in_intr;
+input wire	nreset;
 output wire	Tw1;
 output wire	Tw2;
 output wire	hold_clk_delay;
@@ -42,9 +42,9 @@ output wire	T2_en;
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_6;
 wire	SYNTHESIZED_WIRE_7;
-wire	SYNTHESIZED_WIRE_3;
 reg	SYNTHESIZED_WIRE_8;
 reg	SYNTHESIZED_WIRE_9;
+wire	SYNTHESIZED_WIRE_4;
 
 assign	Tw1 = SYNTHESIZED_WIRE_8;
 assign	Tw2 = SYNTHESIZED_WIRE_9;
@@ -71,9 +71,9 @@ else
 end
 
 
-always@(posedge clk or negedge SYNTHESIZED_WIRE_3 or negedge SYNTHESIZED_WIRE_7)
+always@(posedge clk or negedge nreset or negedge SYNTHESIZED_WIRE_7)
 begin
-if (!SYNTHESIZED_WIRE_3)
+if (!nreset)
 	begin
 	SYNTHESIZED_WIRE_9 <= 0;
 	end
@@ -88,11 +88,11 @@ else
 	end
 end
 
-assign	SYNTHESIZED_WIRE_3 =  ~reset;
+assign	SYNTHESIZED_WIRE_4 =  ~nreset;
 
 assign	SYNTHESIZED_WIRE_6 = M1 & T2 & in_intr;
 
-assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_9 | reset);
+assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_4);
 
 assign	hold_clk_delay = SYNTHESIZED_WIRE_8 | SYNTHESIZED_WIRE_6;
 
