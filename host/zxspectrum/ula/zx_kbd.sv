@@ -31,7 +31,6 @@ reg extended;
 // Output requested row of keys continously
 always_comb
 begin
-    key_row = 5'b1;
     case (A[15:8])
         8'b11111110: key_row = keys[0];
         8'b11111101: key_row = keys[1];
@@ -41,12 +40,14 @@ begin
         8'b11011111: key_row = keys[5];
         8'b10111111: key_row = keys[6];
         8'b01111111: key_row = keys[7];
+    default:
+        key_row = 5'b1;    
     endcase
 end
 
-always @(posedge clk or negedge reset or posedge scan_code_error)
+always @(posedge clk or negedge reset)
 begin
-    if (!reset || scan_code_error) begin
+    if (!reset) begin
         released <= 0;
         extended <= 0;
 

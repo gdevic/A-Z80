@@ -45,9 +45,9 @@ module zxspectrum_board
     output wire SRAM_WE_N,
     output wire SRAM_UB_N,
     output wire SRAM_LB_N,
-    
+
     //-------- Misc and debug -------------------
-    output wire [6:0] GPIO_0        // Scope test points
+    inout wire [31:0] GPIO_1
 );
 `default_nettype none
 
@@ -55,14 +55,10 @@ wire reset;
 wire locked;
 assign reset = locked & KEY0;
 
-// Various scope test points
-assign GPIO_0[0] = PS2_CLK;
-assign GPIO_0[1] = PS2_DAT;
-assign GPIO_0[2] = clk_cpu;
-assign GPIO_0[3] = vs_nintr;
-assign GPIO_0[4] = VGA_VS;
-assign GPIO_0[5] = VGA_HS;
-assign GPIO_0[6] = VGA_B[0];
+assign GPIO_1[15:0] = A[15:0];
+assign GPIO_1[23:16] = D[7:0];
+assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};
+//assign GPIO_1[] = {nWAIT,nINT,nNMI,nRESET,nBUSRQ,CLK};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Internal buses and address map selection logic
@@ -88,7 +84,6 @@ assign io_we = nIORQ==0 && nRD==1 && nWR==0;
 //   8000 - FFFF  32K RAM (mapped to the external SRAM memory)
 always_comb
 begin
-    D[7:0] = {8{1'bz}};
     case ({nIORQ,nRD,nWR})
         3'b101: begin   // Memory read
                 casez (A[15:14])
@@ -100,13 +95,16 @@ begin
                 end
         // IO read, data supplied by the ULA
         3'b001: D[7:0] = ula_data;
+    default:
+        D[7:0] = {8{1'bz}};
     endcase
 end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 16K of ZX Spectrum ROM is in the flash at the address 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assign FL_ADDR[21:0] = {{8{1'b0}}, A[13:0]};
+assign FL_ADDR[13:0] = A[13:0];
+assign FL_ADDR[21:14] = '0;
 assign FL_RST_N = KEY0;
 assign FL_CE_N = 0;
 assign FL_OE_N = 0;
@@ -133,7 +131,8 @@ ram16 ram16_(
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 32K of ZX Spectrum extended RAM is using the external SRAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assign SRAM_ADDR[17:0] = {{3{1'b0}}, A[14:0]};
+assign SRAM_ADDR[14:0] = A[14:0];
+assign SRAM_ADDR[17:15] = '0;
 assign SRAM_CE_N = 0;
 assign SRAM_OE_N = 0;
 assign SRAM_WE_N = !ExtRamWE;

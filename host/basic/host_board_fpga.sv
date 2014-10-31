@@ -71,7 +71,7 @@ end
 
 always @(posedge div2)
 begin
-    div4 = !div4;
+    div4 <= !div4;
 end
 
 // Supply the CPU clock using a global clock driver to minimize skew

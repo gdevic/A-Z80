@@ -10,6 +10,9 @@ create_clock -name "CLOCK_50" -period 50MHz [get_ports {CLOCK_50}]
 #create_clock -name "CLOCK_27" -period 27MHz [get_ports {CLOCK_27}]
 #create_clock -name "CLOCK_24" -period 24MHz [get_ports {CLOCK_24}]
 
+set_input_delay -add_delay -max -clock [get_clocks {CLOCK_50}]  20.000 [get_ports {CLOCK_50}]
+set_input_delay -add_delay -min -clock [get_clocks {CLOCK_50}]  1.000 [get_ports {CLOCK_50}]
+
 # Set independent clock groups that don't interfere with each other:
 set_clock_groups -asynchronous \
  -group [get_clocks {CLOCK_50}] \
