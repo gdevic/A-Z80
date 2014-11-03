@@ -1,6 +1,5 @@
 //============================================================================
 // Z80 Top level using direct wire declaration (not the interface)
-// Pin signalling is negative (using control_pins_n module).
 //============================================================================
 // 5 MHz for simulation
 `timescale 1us/ 100 ns

@@ -1,6 +1,5 @@
 //============================================================================
 // Z80 Top level using the interface declaration.
-// Pin signalling is negative (using control_pins_n module).
 //============================================================================
 `include "z80.svh"
 
