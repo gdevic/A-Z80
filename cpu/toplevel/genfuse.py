@@ -75,14 +75,8 @@ def RegWrite(reg, hex):
 
 def RegRead(reg, hex):
     global total_clks
-    ftest.write("force dut.reg_file_.b2v_latch_" + reg + "_lo.oe=1;\n")
-    ftest.write("   force dut.reg_file_.b2v_latch_" + reg + "_hi.oe=1;\n")
-    ftest.write("#1 if (dut.reg_file_.b2v_latch_" + reg + "_lo.db!==8'h" + hex[2:] +  ") $fdisplay(f,\"* Reg " + reg + " " + reg[1] + "=%h !=" + hex[2:] +  "\",dut.reg_file_.b2v_latch_" + reg + "_lo.db);\n")
-    ftest.write("   if (dut.reg_file_.b2v_latch_" + reg + "_hi.db!==8'h" + hex[0:2] + ") $fdisplay(f,\"* Reg " + reg + " " + reg[0] + "=%h !=" + hex[0:2] + "\",dut.reg_file_.b2v_latch_" + reg + "_hi.db);\n")
-    ftest.write("   release dut.reg_file_.b2v_latch_" + reg + "_lo.oe;\n")
-    ftest.write("   release dut.reg_file_.b2v_latch_" + reg + "_hi.oe;\n")
-    ftest.write("#1 ")
-    total_clks = total_clks + 2
+    ftest.write("   if (dut.reg_file_.b2v_latch_" + reg + "_lo.latch!==8'h" + hex[2:] +  ") $fdisplay(f,\"* Reg " + reg + " " + reg[1] + "=%h !=" + hex[2:] +  "\",dut.reg_file_.b2v_latch_" + reg + "_lo.latch);\n")
+    ftest.write("   if (dut.reg_file_.b2v_latch_" + reg + "_hi.latch!==8'h" + hex[0:2] + ") $fdisplay(f,\"* Reg " + reg + " " + reg[0] + "=%h !=" + hex[0:2] + "\",dut.reg_file_.b2v_latch_" + reg + "_hi.latch);\n")
 
 #---------------------------- START -----------------------------------
 # Create a file that should be included in the test_fuse source

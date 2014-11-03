@@ -33,22 +33,22 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
-		(text "clk" (rect 21 43 36 57)(font "Arial" (font_size 8)))
+		(text "T2_en" (rect 0 0 35 14)(font "Arial" (font_size 8)))
+		(text "T2_en" (rect 21 43 56 57)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port
 		(pt 0 64)
 		(input)
-		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
-		(text "nreset" (rect 21 59 57 73)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 59 36 73)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "T2_en" (rect 0 0 35 14)(font "Arial" (font_size 8)))
-		(text "T2_en" (rect 21 75 56 89)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 21 75 57 89)(font "Arial" (font_size 8)))
 		(line (pt 0 80)(pt 16 80))
 	)
 	(port
