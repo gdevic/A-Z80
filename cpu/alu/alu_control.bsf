@@ -152,15 +152,15 @@ applicable agreement for further details.
 	(port
 		(pt 0 320)
 		(input)
-		(text "ctl_alu_op_low" (rect 0 0 86 14)(font "Arial" (font_size 8)))
-		(text "ctl_alu_op_low" (rect 21 315 107 329)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 315 36 329)(font "Arial" (font_size 8)))
 		(line (pt 0 320)(pt 16 320))
 	)
 	(port
 		(pt 0 336)
 		(input)
-		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "nclk" (rect 21 331 43 345)(font "Arial" (font_size 8)))
+		(text "ctl_alu_op_low" (rect 0 0 86 14)(font "Arial" (font_size 8)))
+		(text "ctl_alu_op_low" (rect 21 331 107 345)(font "Arial" (font_size 8)))
 		(line (pt 0 336)(pt 16 336))
 	)
 	(port
