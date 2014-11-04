@@ -4,6 +4,7 @@
 *.rpt
 *.smsg
 *.summary
+*.ddb
 db/
 incremental_db/
 out/
