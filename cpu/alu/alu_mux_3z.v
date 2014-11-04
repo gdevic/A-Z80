@@ -14,16 +14,15 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:07:19 2014"
+// CREATED		"Fri Oct 31 21:08:42 2014"
 
 module alu_mux_3z(
 	sel_zero,
 	sel_a,
 	sel_b,
-	nclk,
 	a,
 	b,
-	ena_out,
+	ena,
 	Q
 );
 
@@ -31,37 +30,30 @@ module alu_mux_3z(
 input wire	sel_zero;
 input wire	sel_a;
 input wire	sel_b;
-input wire	nclk;
 input wire	[3:0] a;
 input wire	[3:0] b;
-output wire	ena_out;
+output wire	ena;
 output wire	[3:0] Q;
 
-wire	SYNTHESIZED_WIRE_0;
-wire	[3:0] SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
+wire	[3:0] SYNTHESIZED_WIRE_0;
+wire	SYNTHESIZED_WIRE_1;
+wire	[3:0] SYNTHESIZED_WIRE_2;
 wire	[3:0] SYNTHESIZED_WIRE_3;
-wire	[3:0] SYNTHESIZED_WIRE_4;
-wire	SYNTHESIZED_WIRE_5;
 
 
 
 
-assign	SYNTHESIZED_WIRE_4 = a & {sel_a,sel_a,sel_a,sel_a};
+assign	SYNTHESIZED_WIRE_3 = a & {sel_a,sel_a,sel_a,sel_a};
 
-assign	ena_out = SYNTHESIZED_WIRE_0 | sel_zero;
+assign	Q = SYNTHESIZED_WIRE_0 & {SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1,SYNTHESIZED_WIRE_1};
 
-assign	Q = SYNTHESIZED_WIRE_1 & {SYNTHESIZED_WIRE_2,SYNTHESIZED_WIRE_2,SYNTHESIZED_WIRE_2,SYNTHESIZED_WIRE_2};
+assign	SYNTHESIZED_WIRE_1 =  ~sel_zero;
 
-assign	SYNTHESIZED_WIRE_2 =  ~sel_zero;
+assign	SYNTHESIZED_WIRE_0 = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_3;
 
-assign	SYNTHESIZED_WIRE_1 = SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4;
+assign	ena = sel_a | sel_b | sel_zero;
 
-assign	SYNTHESIZED_WIRE_0 = SYNTHESIZED_WIRE_5 & nclk;
-
-assign	SYNTHESIZED_WIRE_5 = sel_b | sel_a;
-
-assign	SYNTHESIZED_WIRE_3 = b & {sel_b,sel_b,sel_b,sel_b};
+assign	SYNTHESIZED_WIRE_2 = b & {sel_b,sel_b,sel_b,sel_b};
 
 
 endmodule

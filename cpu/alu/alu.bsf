@@ -187,8 +187,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 400)
 		(input)
-		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "nclk" (rect 21 395 43 409)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 395 36 409)(font "Arial" (font_size 8)))
 		(line (pt 0 400)(pt 16 400))
 	)
 	(port

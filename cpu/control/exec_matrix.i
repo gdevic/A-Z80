@@ -3307,9 +3307,9 @@ if (pla[48]) begin
                     ctl_flags_hf_we=1;
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
-                    ctl_flags_cf_we=1;
+                    ctl_flags_cf_we=1; end
+    if (M1 && T4) begin  validPLA=1; nextM=1;
                     ctl_cond_short=1; /* M1/T3 only: force a short flags condition (SS) */ end
-    if (M1 && T4) begin  validPLA=1; nextM=1; end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
@@ -4144,7 +4144,8 @@ if (M1) begin
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_ir_we=T3up;
                     ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
-                    ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */
+                    ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end
+    if (M1 && T4) begin 
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
 end
 

@@ -75,7 +75,6 @@ set_global_assignment -name VERILOG_FILE ../alu/alu_mux_4.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_3z.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_2z.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_mux_2.v
-set_global_assignment -name VERILOG_FILE ../alu/alu_latch.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_flags.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_core.v
 set_global_assignment -name VERILOG_FILE ../alu/alu_control.v
