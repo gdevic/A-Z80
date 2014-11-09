@@ -43,7 +43,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:003 DB:03          MREQ RD	2	2	fMRead																															
 #007H T7  AB:003 DB:03          MREQ RD	2	3	fMRead		1	1																												
 																																		
-#017H T13 AB:001 DB:--	4	1	fMRead																															...continues here
+#017H T13 AB:001 DB:--	4	1	fMRead							R																								...continues here
 #018H T14 AB:001 DB:4E          MREQ RD	4	2	fMRead																															
 #019H T15 AB:001 DB:4E          MREQ RD	4	3	fMRead		1	1																												
 #end																																		
@@ -72,7 +72,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:001 DB:01          MREQ	2	2	fMWrite																															
 #007H T7  AB:001 DB:01          MREQ    WR	2	3	fMWrite		1	1																												
 																																		
-#017H T13 AB:000 DB:--	4	1	fMWrite								r8'		>	u	>	W																		...continues here
+#017H T13 AB:000 DB:--	4	1	fMWrite							R	r8'		>	u	>	W																		...continues here
 #018H T14 AB:000 DB:46          MREQ	4	2	fMWrite																															
 #019H T15 AB:000 DB:46          MREQ    WR	4	3	fMWrite		1	1																												
 #end																																		
@@ -104,7 +104,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #009H T9  AB:001 DB:01          MREQ	3	2	fMWrite																															
 #010H T10 AB:001 DB:01          MREQ    WR	3	3	fMWrite		1	1																												
 																																		
-#017H T13 AB:002 DB:--	4	1	fMWrite																															...continues here
+#017H T13 AB:002 DB:--	4	1	fMWrite							R																								...continues here
 #018H T14 AB:002 DB:02          MREQ	4	2	fMWrite																															
 #019H T15 AB:002 DB:02          MREQ    WR	4	3	fMWrite		1	1																												
 #end																																		
@@ -140,7 +140,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		1		WZ			W		W	<h	d	<	R																		
-#011H T11 AB:001 DB:--	4	1	fMWrite								A		>	u	>	W																		
+#011H T11 AB:001 DB:--	4	1	fMWrite							R	A		>	u	>	W																		
 #012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite					WZ	+	R																								
 #013H T13 AB:001 DB:FE          MREQ    WR	4	3	fMWrite		1	1																												
 #end																																		
@@ -162,8 +162,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #end																																		
 																																		
 "#if pla[83] : ld a,i/a,r"			5																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<	u	<		alu	<	res			H	OR		*	*	*	iff2	0					
-#006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<				alu	<	res			H	OR		*	*	*	iff2	0					
+#006H T2  AB:001 DB:57  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1							I/R		>	d			alu	>s0		bus	bus	L	OR		*	*	*		0					
 #009H T5  AB:001 DB:--	1	5			1	1																												
@@ -203,10 +203,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		1		WZ			W		W	<h	d	<	R																		
-#011H T11 AB:001 DB:--	4	1	fMWrite								rl		>	u	>	W																		
+#011H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>	u	>	W																		
 #012H T12 AB:001 DB:01          MREQ	4	2	fMWrite					WZ	+	R																								
 #013H T13 AB:001 DB:01          MREQ    WR	4	3	fMWrite		1		WZ			W																								
-#014H T14 AB:002 DB:--	5	1	fMWrite								rh		>	u	>	W																		
+#014H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>	u	>	W																		
 #015H T15 AB:002 DB:02          MREQ	5	2	fMWrite					WZ	+	R																								
 #016H T16 AB:002 DB:02          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -241,10 +241,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #012H T8  AB:003 DB:--	3	1	fMRead				PC			W																								
 #013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead		1		WZ			W		W	<h	d	<	R																		
-#015H T11 AB:001 DB:--	4	1	fMWrite								rl		>	u	>	W																	USE_SP	
+#015H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>	u	>	W																	USE_SP	
 #016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite					WZ	+	R																								
 #017H T13 AB:001 DB:FF          MREQ    WR	4	3	fMWrite		1		WZ			W																								
-#018H T14 AB:002 DB:--	5	1	fMWrite								rh		>	u	>	W																	USE_SP	
+#018H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>	u	>	W																	USE_SP	
 #019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite					WZ	+	R																								
 #020H T16 AB:002 DB:C3          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -281,13 +281,13 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:C5  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1			SP			W																								
-#005H T5  AB:000 DB:--	1	5			1			SP	-	R																								
-#006H T6  AB:002 DB:--	2	1	fMWrite						-	L	rh		>	u	>	W																		
-#007H T7  AB:002 DB:02          MREQ	2	2	fMWrite				SP			W																								
-#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite		1			SP	-	R																								
-#009H T9  AB:001 DB:--	3	1	fMWrite						-	L	rl		>	u	>	W																		
-#010H T10 AB:001 DB:01          MREQ	3	2	fMWrite																															
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																														
+#005H T5  AB:000 DB:--	1	5			1		SP		-	W																								
+#006H T6  AB:002 DB:--	2	1	fMWrite						-	P	rh		>	u	>	W																		
+#007H T7  AB:002 DB:02          MREQ	2	2	fMWrite					SP	-	R																								
+#008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite		1		SP		-	W																								
+#009H T9  AB:001 DB:--	3	1	fMWrite						-	P	rl		>	u	>	W																		
+#010H T10 AB:001 DB:01          MREQ	3	2	fMWrite					SP	-	R																								
 #011H T11 AB:001 DB:01          MREQ    WR	3	3	fMWrite		1	1																												
 #end																																		
 																																		
@@ -338,12 +338,12 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #008H T8  AB:0FE DB:--	3	1	fMRead				SP			W																								
 #009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead					SP	+	R																								
 #010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead									W	<h	d	<	R																		
-#011H T11 AB:0FE DB:-- 	3	4			1																													
-#012H T12 AB:0FE DB:--	4	1	fMWrite								rh		>	u	>	W																		
+#011H T11 AB:0FE DB:-- 	3	4			1		SP		-	W																								
+#012H T12 AB:0FE DB:--	4	1	fMWrite						-	P	rh		>	u	>	W																		
 #013H T13 AB:0FE DB:00          MREQ	4	2	fMWrite					SP	-	R																								
-#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite		1		SP			W																								
-#015H T15 AB:0FD DB:--	5	1	fMWrite								rl		>	u	>	W																		
-#016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite																															
+#014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite		1		SP		-	W																								
+#015H T15 AB:0FD DB:--	5	1	fMWrite						-	P	rl		>	u	>	W																		
+#016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FD DB:01          MREQ    WR 	5	3	fMWrite				WZ			W																								
 #018H T18 AB:0FD DB:01	5	4						HL		R																								
 #019H T19 AB:0FD DB:01	5	5			1	1																												
@@ -355,7 +355,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 #if pla[12] : ldi/ldir/ldd/lddr			"4,3,5,(5)"																															
 #035H T1  AB:00A DB:--  M1	1	1	fMFetch														alu		res			H	OR			*	*	REP	0		R			
-#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#036H T2  AB:00A DB:B0  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #037H T3  AB:004 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #039H T5  AB:000 DB:--	2	1	fMRead				HL			W																								
@@ -375,7 +375,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 #if pla[11] : cpi/cpir/cpd/cpdr			"4,3,5,(5)"																															
 #035H T1  AB:00A DB:--  M1	1	1	fMFetch														alu	<	res		0	H	SUB			*		REP	1		R			
-#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch									F	<	u			<																?NF_HF	
+#036H T2  AB:00A DB:B1  M1      MREQ RD	1	2	fMFetch									F	<				<																?NF_HF	
 #037H T3  AB:004 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #038H T4  AB:004 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #039H T5  AB:000 DB:--	2	1	fMRead				HL			W																								
@@ -397,14 +397,14 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if pla[65] && !pla[52] : add/sub/and/or/xor/cmp a,r"			4																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									?	<	u			alu	<	res			H	PLA		*	?		?	?	*				A is stored in each ALU PLA below
-#002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch									F	<	u			<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
+#002H T2  AB:000 DB:80  M1      MREQ RD	1	2	fMFetch									F	<				<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8'		>	d			alu	>s0		bus		L	PLA		*	*	*		?					
 #end																																		
 																																		
 "#if pla[64] : add/sub/and/or/xor/cmp a,n"			"4,3"																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									?	<	u			alu	<	res			H	PLA		*	?		?	?	*				A is stored in each ALU PLA below
-#002H T2  AB:000 DB:C6  M1      MREQ RD	1	2	fMFetch									F	<	u			<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
+#002H T2  AB:000 DB:C6  M1      MREQ RD	1	2	fMFetch									F	<				<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1						r8'		>	d			alu	>s0		bus		L	PLA		*	*	*		?					
 #005H T5  AB:001 DB:--	2	1	fMRead				PC			W													PLA											
@@ -429,14 +429,14 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 #if !use_ixiy && pla[52] : add/sub/and/or/xor/cp (hl)			"4,3"																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									?	<	u			alu	<	res			H	PLA		*	?		?	?	*				A is stored in each ALU PLA below
-#002H T2  AB:000 DB:86  M1      MREQ RD	1	2	fMFetch									F	<	u			<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
+#002H T2  AB:000 DB:86  M1      MREQ RD	1	2	fMFetch									F	<				<						PLA										?NF_HF_CF	"If (NF), complement HF, CF"
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #005H T5  AB:001 DB:--	2	1	fMRead				HL			W																								
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					WZ	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		1	1								d	<	R	alu	>s0		bus		L	PLA		*	*	*		?					
 																																		
-#017H T13 AB:000 DB:--	4	1	fMRead																															...continues here
+#017H T13 AB:000 DB:--	4	1	fMRead							R																								...continues here
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead								AF		>				>	>s0		bus	bus				*	*	*		*	*				Reloads AF since (IX+d) used ALU core
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1	1								d	<	R	alu	>s0		bus		L	PLA		*	*	*		?					
 #end																																		
@@ -444,7 +444,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #if pla[66] && !pla[53] : inc/dec r			4																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch									r8	<	u			alu	<	res			H	ADC		*	*		V			R			
 #002H T2  AB:000 DB:05  M1      MREQ RD	1	2	fMFetch									F	<				<																?NF_HF	"If (NF), complement HF"
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>s0		bus	bus				*	*	*	*	*	*				
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8		>	d			alu	>s0		0	bus	L	ADC		*	*	*		0	1	W			
 #end																																		
 																																		
@@ -481,15 +481,15 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead																															
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead											d	<	R	alu	>s0		0	bus	L	ADC				*		0	1	W			
 #008H T8  AB:001 DB:--	2	4			1									u	>	W	alu	<	res			H	ADC		*	*		V			R			
-#009H T9  AB:001 DB:--	3	1	fMWrite																															
+#009H T9  AB:001 DB:--	3	1	fMWrite							R																								
 #010H T10 AB:001 DB:02          MREQ	3	2	fMWrite																															
 #011H T11 AB:001 DB:02          MREQ    WR	3	3	fMWrite		1	1																												
 																																		
-#017H T13 AB:002 DB:--	4	1	fMRead																															...continues here
+#017H T13 AB:002 DB:--	4	1	fMRead							R																								...continues here
 #018H T14 AB:002 DB:01          MREQ RD	4	2	fMRead																															
 #019H T15 AB:002 DB:01          MREQ RD	4	3	fMRead											d	<	R	alu	>s0		0	bus	L	ADC				*		0	1	W			
 #020H T16 AB:002 DB:--	4	4			1									u	>	W	alu	<	res			H	ADC		*	*		V			R			
-#021H T17 AB:002 DB:--	5	1	fMWrite																															
+#021H T17 AB:002 DB:--	5	1	fMWrite							R																								
 #022H T18 AB:002 DB:02          MREQ	5	2	fMWrite																															
 #023H T19 AB:002 DB:02          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -498,7 +498,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if pla[69] : add hl,ss"			"4,4,3"																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
-#002H T2  AB:000 DB:09  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#002H T2  AB:000 DB:09  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	0	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1						L		>	d				>s0			bus													
 #005H T5  AB:000 DB:--	2	1									rl		>	d			alu	>s0		bus		L	ADD				*						USE_SP	
@@ -512,7 +512,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if op3 && pla[68] : adc hl,ss"			"4,4,3"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
-#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	0	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1						L		>	d				>s0			bus													
 #009H T5  AB:001 DB:--	2	1									rl		>	d			alu	>s0		bus		L	ADC				*						USE_SP	
@@ -526,7 +526,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if !op3 && pla[68] : sbc hl,ss"			"4,4,3"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
-#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<	u			<																?NF_HF_CF	
+#006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<				<																?NF_HF_CF	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	1	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1						L		>	d				>s0			bus													
 #009H T5  AB:001 DB:--	2	1									rl		>	d			alu	>s0		bus		L	SBC				*						USE_SP	
@@ -608,50 +608,50 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 // Rotate and Shift Group																																		
 																																		
 #if pla[25] : rlca/rla/rrca/rra			4																															
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<	u			alu	<	res			H	OR			*	*		0	*				
-#002H T2  AB:000 DB:07  M1      MREQ RD	1	2	fMFetch									F	<	u			<														R			
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch									A	<				alu	<	res			H	OR			*	*		0	*				
+#002H T2  AB:000 DB:07  M1      MREQ RD	1	2	fMFetch									F	<				<														R			
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					A		>				alu	>s1		bus	bus	L	OR			*	*		0		W.sh			
 #end																																		
 																																		
 #if ~use_ixiy && pla[70] && !pla[55] : rlc r			4																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	<	u			alu	<	res			H	OR		*	*	*	P	0	*				
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	<	u			<														R			
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	<				<														R			
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8'		>	d			alu	>s1		bus	bus	L	OR		*	*	*		0		W.sh			
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R																	OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s1		bus	bus	L	OR						0		W.sh			
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
 																																		
 #if ~use_ixiy && pla[70] && pla[55] : rlc (hl)			"4,4,3"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
-#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	<	u			<														R			
+#006H T2  AB:001 DB:00  M1      MREQ RD	1	2	fMFetch									F	<				<														R			
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:006 DB:--	2	1	fMRead				HL			W																								
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																															
 #011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead																															
 #012H T8  AB:006 DB:--	2	4			1									d	<	R	alu	>s1		bus	bus	L	OR						0		W.sh			
-#013H T9  AB:006 DB:--	3	1	fMWrite											u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
+#013H T9  AB:006 DB:--	3	1	fMWrite							R				u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
 #014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																															
 #015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite		1	1																												
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R																	OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s1		bus	bus	L	OR						0		W.sh			
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W	alu	<	res			H	OR		*	*	*	P	0	*				
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
 																																		
 #if pla[15] && op3 : rld			"4,3,4,3"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<	u			alu	<	res			H	OR		*	*		P	0					
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<				alu	<	res			H	OR		*	*		P	0					
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:000 DB:--	2	1	fMRead				HL			W																								
@@ -661,14 +661,14 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #013H T9  AB:000 DB:--	3	2																																
 #014H T10 AB:000 DB:--	3	3																																
 #015H T11 AB:000 DB:--	3	4			1									d	<	R		>s0			low	H												
-#016H T12 AB:000 DB:--	4	1	fMWrite											u	>	W		<	op2															
+#016H T12 AB:000 DB:--	4	1	fMWrite							R				u	>	W		<	op2															
 #017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																op1	bus														
 #018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite		1	1											alu					L	OR		*	*	*		0					
 #end																																		
 																																		
 #if pla[15] && !op3 : rrd			"4,3,4,3"																															
-#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<	u			alu	<	res			H	OR		*	*		P	0					
-#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#005H T1  AB:001 DB:--  M1	1	1	fMFetch									A	<				alu	<	res			H	OR		*	*		P	0					
+#006H T2  AB:001 DB:67  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:000 DB:--	2	1	fMRead				HL			W																								
@@ -678,7 +678,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #013H T9  AB:000 DB:--	3	2												u	>	W		<	op2															
 #014H T10 AB:000 DB:--	3	3									A		>					>s0		lq		L												
 #015H T11 AB:000 DB:--	3	4			1									d	<	R		>s0			low	H												
-#016H T12 AB:000 DB:--	4	1	fMWrite											u	>	W		<	op2															
+#016H T12 AB:000 DB:--	4	1	fMWrite							R				u	>	W		<	op2															
 #017H T13 AB:000 DB:EE          MREQ	4	2	fMWrite																op1	bus														
 #018H T14 AB:000 DB:EE          MREQ    WR	4	3	fMWrite		1	1											alu					L	OR		*	*	*		0					
 #end																																		
@@ -687,11 +687,11 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if ~use_ixiy && pla[72] && !pla[55] : bit b,r"			4																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch														alu	<	res			H	AND		*		*	P	0					
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	<				<																	
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8'		>	d			alu	>s0			bus	L	AND		*	*	*		0					
 																																		
-#017H T13 AB:000 DB:--	4	1	fMRead													R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
+#017H T13 AB:000 DB:--	4	1	fMRead							R						R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead																															
 #020H T16 AB:000 DB:--	4	4			1	1								d	<	R	alu	>s0			bus	L	AND		*		*		0					
@@ -699,8 +699,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if ~use_ixiy && pla[72] && pla[55] : bit b,(hl)"			"4,4"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch														alu	<	res			H	AND		*		*	P	0					
-#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch									F	<				<																	
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:006 DB:--	2	1	fMRead				HL			W																								
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																															
@@ -716,13 +716,13 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 "#if ~use_ixiy && pla[74] && !pla[55] : set b,r"			4																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	<	u				<	res			H	OR											
 #006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																															
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8'		>	d				>s0			bus	L	OR											
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s0			bus	L	OR											
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W		<	res			H	OR											
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W		<	res			H	OR											
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -730,20 +730,20 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 "#if ~use_ixiy && pla[74] && pla[55] : set b,(hl)"			"4,4,3"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																															
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:006 DB:--	2	1	fMRead				HL			W																								
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																															
 #011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead											d	<	R		>s0			bus	L	OR											
 #012H T8  AB:006 DB:--	2	4			1									u	>	W		<	res			H	OR											
-#013H T9  AB:006 DB:--	3	1	fMWrite																															
+#013H T9  AB:006 DB:--	3	1	fMWrite							R																								
 #014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																															
 #015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite		1	1																												
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s0			bus	L	OR											
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W		<	res			H	OR											
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W		<	res			H	OR											
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -751,13 +751,13 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 "#if ~use_ixiy && pla[73] && !pla[55] : res b,r"			4																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8'	<	u				<	res			H	NAND											
 #006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch																															
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1					r8'		>	d				>s0			bus	L	NAND											
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s0			bus	L	NAND											
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W		<	res			H	NAND											
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W		<	res			H	NAND											
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -765,20 +765,20 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 "#if ~use_ixiy && pla[73] && pla[55] : res b,(hl)"			"4,4,3"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:06  M1      MREQ RD	1	2	fMFetch																															
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>			R	>	>bs		bus	bus				*	*	*	*	*	*				Override M1/T3 load with a bit select
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:006 DB:--	2	1	fMRead				HL			W																								
 #010H T6  AB:006 DB:05          MREQ RD	2	2	fMRead																															
 #011H T7  AB:006 DB:05          MREQ RD	2	3	fMRead											d	<	R		>s0			bus	L	NAND											
 #012H T8  AB:006 DB:--	2	4			1									u	>	W		<	res			H	NAND											
-#013H T9  AB:006 DB:--	3	1	fMWrite																															
+#013H T9  AB:006 DB:--	3	1	fMWrite							R																								
 #014H T10 AB:006 DB:0A          MREQ	3	2	fMWrite																															
 #015H T11 AB:006 DB:0A          MREQ    WR	3	3	fMWrite		1	1																												
 																																		
 #017H T13 AB:000 DB:--	4	1	fMRead				WZ			W						R		>bs		bus	bus												OpcodeToIR	...continues here from the (ix+d) addressing mode
 #018H T14 AB:000 DB:DD          MREQ RD	4	2	fMRead																															
 #019H T15 AB:000 DB:DD          MREQ RD	4	3	fMRead		1									d	<	R	alu	>s0			bus	L	NAND											
-#029H T17 AB:002 DB:--	5	1	fMWrite											u	>	W		<	res			H	NAND											
+#029H T17 AB:002 DB:--	5	1	fMWrite							R				u	>	W		<	res			H	NAND											
 #030H T18 AB:002 DB:BB          MREQ	5	2	fMWrite																															
 #031H T19 AB:002 DB:BB          MREQ    WR	5	3	fMWrite		1	1																												
 #end																																		
@@ -801,7 +801,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 "#if pla[27] && !pla[34] : in r,(c)"			"4,4"																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch									r8	<	d	<	R	alu		res			H	OR		*	*		P	0					
-#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	<	u			<																	
+#006H T2  AB:001 DB:40  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
 #009H T5  AB:0FF DB:--	2	1	fIORead				BC			W																								
@@ -818,7 +818,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #005H T5  AB:001 DB:--	2	1	fMRead				PC			W																								
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		1		A			W			<l		<	R																		
-#008H T8  AB:001 DB:--	3	1	fIOWrite								A		>	u	>	W																		
+#008H T8  AB:001 DB:--	3	1	fIOWrite							R	A		>	u	>	W																		
 #009H T9  AB:001 DB:03                  WR IORQ	3	2	fIOWrite																															
 #010H T10 AB:001 DB:03                  WR IORQ	3	3	fIOWrite																															
 #011H T11 AB:001 DB:03                  WR IORQ	3	4	fIOWrite		1	1																												
@@ -962,19 +962,19 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:CD  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1		PC			W																								
-#005H T5  AB:001 DB:--	2	1	fMRead					PC	+	R																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead				PC			W																								
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
+#005H T5  AB:001 DB:--	2	1	fMRead				PC			W																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		1							Z	<l	d	<	R																		
-#008H T8  AB:002 DB:--	3	1	fMRead					PC	+	R																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead				SP			W																								
+#008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	<h	d	<	R																		
-#011H T11 AB:002 DB:--	3	4			1			SP	-	L																								
-#012H T12 AB:000 DB:--	4	1	fMWrite								PCh		>	u	>	W																		
-#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite				SP			W																								
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		1			SP	-	L																								
-#015H T15 AB:0FF DB:--	5	1	fMWrite								PCl		>	u	>	W																		
-#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite																															
+#011H T11 AB:002 DB:--	3	4			1		SP		-	W																								
+#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>	u	>	W																		
+#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite					SP	-	R																								
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		1		SP		-	W																								
+#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>	u	>	W																		
+#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite		1	1	WZ			W																							NOT_PC!	
 #end																																		
 																																		
@@ -982,19 +982,19 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:C4  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1		PC			W																								
-#005H T5  AB:001 DB:--	2	1	fMRead					PC	+	R																								
-#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead				PC			W																								
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1																													
+#005H T5  AB:001 DB:--	2	1	fMRead				PC			W																								
+#006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		1							Z	<l	d	<	R																		
-#008H T8  AB:002 DB:--	3	1	fMRead					PC	+	R																								
-#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead				SP		-	W																								
+#008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
+#009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		CC	CC						W?	<h	d	<	R																		Load W only if condition is true
-#011H T11 AB:002 DB:--	3	4			1			SP	-	L																								
-#012H T12 AB:000 DB:--	4	1	fMWrite								PCh		>	u	>	W																		
-#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite				SP		-	W																								
-#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		1			SP	-	L																								
-#015H T15 AB:0FF DB:--	5	1	fMWrite								PCl		>	u	>	W																		
-#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite																															
+#011H T11 AB:002 DB:--	3	4			1		SP		-	W																								
+#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>	u	>	W																		
+#013H T13 AB:000 DB:00          MREQ	4	2	fMWrite					SP	-	R																								
+#014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		1		SP		-	W																								
+#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>	u	>	W																		
+#016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite		1	1	WZ			W																							NOT_PC!	
 #end																																		
 																																		
@@ -1042,13 +1042,13 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:C7  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch									WZ	<			R		<	op1		0												"MASK_543, RST_NMI, RST_INT"	RST instruction also executes on NMI and INT
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1			SP			W																								
-#005H T5  AB:000 DB:--	1	5			1			SP	-	L				d	<	R		>s0			bus													Store im2 vector into the ALU op1
-#006H T6  AB:000 DB:--	2	1	fMWrite								PCh		>h	u	>	W																		
-#007H T7  AB:000 DB:00          MREQ	2	2	fMWrite				SP			W																								
-#008H T8  AB:000 DB:00          MREQ    WR	2	3	fMWrite		1			SP	-	L																								
-#009H T9  AB:0FF DB:--	3	1	fMWrite								PCl		>l	u	>	W																		
-#010H T10 AB:0FF DB:01          MREQ	3	2	fMWrite																															
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1																														
+#005H T5  AB:000 DB:--	1	5			1		SP		-	W				d	<	R		>s0			bus													Store im2 vector into the ALU op1
+#006H T6  AB:000 DB:--	2	1	fMWrite						-	P	PCh		>h	u	>	W																		
+#007H T7  AB:000 DB:00          MREQ	2	2	fMWrite					SP	-	R																								
+#008H T8  AB:000 DB:00          MREQ    WR	2	3	fMWrite		1		SP		-	W																								
+#009H T9  AB:0FF DB:--	3	1	fMWrite						-	P	PCl		>l	u	>	W																		
+#010H T10 AB:0FF DB:01          MREQ	3	2	fMWrite					SP	-	R																								
 #011H T11 AB:0FF DB:01          MREQ    WR	3	3	fMWrite		1	INT	WZ			W																							NOT_PC!	Value on the bus into ALU OP
 // INTR IM2 continues here...																																		Extension for IM2 interrupt mode
 #012H T12 AB:001 DB:--	4	1	fMRead				I*			W			<l	u				<	op1															
@@ -1155,8 +1155,8 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 // Default instruction fetch (M1) state machine																																		
 #if M1 :																																		
-#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC	+	R																								
-#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch				IR			W																							"CLR_IX_IY, CLR_CB_ED"	Prepares for the next execution cycle
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR	+	R						R																	"OpcodeToIR, OverrideIR, Limit6"	"Fetch opcode, increment refresh"
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																														EvalCond	Evaluate flags
+#001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC	+	RL																								
+#002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch				IR			W						R																	"CLR_IX_IY, CLR_CB_ED, OpcodeToIR, OverrideIR"	Prepares for the next execution cycle
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR	+	RL																							Limit6	"Fetch opcode, evaluate flags"
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																														EvalCond	
 #end																																		

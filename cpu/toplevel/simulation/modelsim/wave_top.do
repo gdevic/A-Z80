@@ -1,117 +1,558 @@
 onerror {resume}
-quietly virtual function -install /test_top/dut/interrupts_ -env /test_top { &{/test_top/dut/interrupts_/im2, /test_top/dut/interrupts_/im1 }} IM
+quietly virtual function -install /test_top/dut/alu_ -env /test_top { &{/test_top/dut/alu_/op1_high, /test_top/dut/alu_/op1_low }} OP1
+quietly virtual function -install /test_top/dut/alu_ -env /test_top { &{/test_top/dut/alu_/op2_high, /test_top/dut/alu_/op2_low }} OP2
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_af_hi { &{/test_top/dut/reg_file_/b2v_latch_af_lo/latch, /test_top/dut/reg_file_/b2v_latch_af_hi/latch }} AF
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_bc_hi { &{/test_top/dut/reg_file_/b2v_latch_bc_lo/latch, /test_top/dut/reg_file_/b2v_latch_bc_hi/latch }} BC
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_de_hi { &{/test_top/dut/reg_file_/b2v_latch_de_lo/latch, /test_top/dut/reg_file_/b2v_latch_de_hi/latch }} DE
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_hl_hi { &{/test_top/dut/reg_file_/b2v_latch_hl_lo/latch, /test_top/dut/reg_file_/b2v_latch_hl_hi/latch }} HL
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_pc_hi { &{/test_top/dut/reg_file_/b2v_latch_pc_lo/latch, /test_top/dut/reg_file_/b2v_latch_pc_hi/latch }} PC
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_ir_hi { &{/test_top/dut/reg_file_/b2v_latch_ir_lo/latch, /test_top/dut/reg_file_/b2v_latch_ir_hi/latch }} IR
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_sp_hi { &{/test_top/dut/reg_file_/b2v_latch_sp_lo/latch, /test_top/dut/reg_file_/b2v_latch_sp_hi/latch }} SP
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_wz_lo { &{/test_top/dut/reg_file_/b2v_latch_wz_hi/latch, /test_top/dut/reg_file_/b2v_latch_wz_lo/latch }} WZ
+quietly virtual function -install /test_top/dut/alu_ -env /test_top { &{/test_top/dut/alu_/result_hi, /test_top/dut/alu_/result_lo }} RESULT
+quietly virtual function -install /test_top/dut/alu_flags_ -env /test_top/dut/alu_flags_ { &{/test_top/dut/alu_flags_/flags_sf, /test_top/dut/alu_flags_/flags_zf, /test_top/dut/alu_flags_/flags_yf, /test_top/dut/alu_flags_/flags_hf, /test_top/dut/alu_flags_/flags_xf, /test_top/dut/alu_flags_/flags_pf, /test_top/dut/alu_flags_/flags_nf, /test_top/dut/alu_flags_/flags_cf }} FLAGS
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -expand -group Pins /test_top/z80/CLK
-add wave -noupdate -expand -group Pins /test_top/z80/nM1
-add wave -noupdate -expand -group Pins /test_top/z80/nMREQ
-add wave -noupdate -expand -group Pins -color Pink /test_top/z80/nIORQ
-add wave -noupdate -expand -group Pins /test_top/z80/nRD
-add wave -noupdate -expand -group Pins /test_top/z80/nWR
-add wave -noupdate -expand -group Pins /test_top/z80/nRFSH
-add wave -noupdate -expand -group Pins /test_top/z80/nHALT
-add wave -noupdate -expand -group Pins /test_top/z80/nBUSACK
-add wave -noupdate -expand -group Pins /test_top/z80/nWAIT
-add wave -noupdate -expand -group Pins -color Gold /test_top/z80/nINT
-add wave -noupdate -expand -group Pins /test_top/dut/interrupts_/int_armed
-add wave -noupdate -expand -group Pins -color Gold /test_top/dut/interrupts_/in_intr
-add wave -noupdate -expand -group Pins -color Magenta /test_top/z80/nNMI
-add wave -noupdate -expand -group Pins /test_top/dut/interrupts_/nmi_armed
-add wave -noupdate -expand -group Pins /test_top/dut/interrupts_/test1
-add wave -noupdate -expand -group Pins -color Pink /test_top/dut/interrupts_/in_nmi
-add wave -noupdate -expand -group Pins /test_top/dut/interrupts_/ctl_no_ints
-add wave -noupdate -expand -group Pins /test_top/z80/nRESET
-add wave -noupdate -expand -group Pins /test_top/z80/nBUSRQ
-add wave -noupdate -group reset /test_top/dut/reset_block_/clk
-add wave -noupdate -group reset /test_top/dut/reset_block_/reset_in
-add wave -noupdate -group reset /test_top/dut/reset_block_/fpga_reset
-add wave -noupdate -group reset /test_top/dut/reset_block_/x1
-add wave -noupdate -group reset /test_top/dut/reset_block_/x2
-add wave -noupdate -group reset /test_top/dut/reset_block_/x3
-add wave -noupdate -group reset /test_top/dut/reset_block_/M1
-add wave -noupdate -group reset /test_top/dut/reset_block_/T2
-add wave -noupdate -group reset /test_top/dut/reset_block_/clrpc
-add wave -noupdate -group reset /test_top/dut/reset_block_/reset
-add wave -noupdate -group reset /test_top/dut/reset_block_/nreset
-add wave -noupdate -radix hexadecimal -childformat {{{/test_top/z80/A[15]} -radix hexadecimal} {{/test_top/z80/A[14]} -radix hexadecimal} {{/test_top/z80/A[13]} -radix hexadecimal} {{/test_top/z80/A[12]} -radix hexadecimal} {{/test_top/z80/A[11]} -radix hexadecimal} {{/test_top/z80/A[10]} -radix hexadecimal} {{/test_top/z80/A[9]} -radix hexadecimal} {{/test_top/z80/A[8]} -radix hexadecimal} {{/test_top/z80/A[7]} -radix hexadecimal} {{/test_top/z80/A[6]} -radix hexadecimal} {{/test_top/z80/A[5]} -radix hexadecimal} {{/test_top/z80/A[4]} -radix hexadecimal} {{/test_top/z80/A[3]} -radix hexadecimal} {{/test_top/z80/A[2]} -radix hexadecimal} {{/test_top/z80/A[1]} -radix hexadecimal} {{/test_top/z80/A[0]} -radix hexadecimal}} -subitemconfig {{/test_top/z80/A[15]} {-height 15 -radix hexadecimal} {/test_top/z80/A[14]} {-height 15 -radix hexadecimal} {/test_top/z80/A[13]} {-height 15 -radix hexadecimal} {/test_top/z80/A[12]} {-height 15 -radix hexadecimal} {/test_top/z80/A[11]} {-height 15 -radix hexadecimal} {/test_top/z80/A[10]} {-height 15 -radix hexadecimal} {/test_top/z80/A[9]} {-height 15 -radix hexadecimal} {/test_top/z80/A[8]} {-height 15 -radix hexadecimal} {/test_top/z80/A[7]} {-height 15 -radix hexadecimal} {/test_top/z80/A[6]} {-height 15 -radix hexadecimal} {/test_top/z80/A[5]} {-height 15 -radix hexadecimal} {/test_top/z80/A[4]} {-height 15 -radix hexadecimal} {/test_top/z80/A[3]} {-height 15 -radix hexadecimal} {/test_top/z80/A[2]} {-height 15 -radix hexadecimal} {/test_top/z80/A[1]} {-height 15 -radix hexadecimal} {/test_top/z80/A[0]} {-height 15 -radix hexadecimal}} /test_top/z80/A
-add wave -noupdate -radix hexadecimal -childformat {{{/test_top/z80/D[7]} -radix hexadecimal} {{/test_top/z80/D[6]} -radix hexadecimal} {{/test_top/z80/D[5]} -radix hexadecimal} {{/test_top/z80/D[4]} -radix hexadecimal} {{/test_top/z80/D[3]} -radix hexadecimal} {{/test_top/z80/D[2]} -radix hexadecimal} {{/test_top/z80/D[1]} -radix hexadecimal} {{/test_top/z80/D[0]} -radix hexadecimal}} -subitemconfig {{/test_top/z80/D[7]} {-height 15 -radix hexadecimal} {/test_top/z80/D[6]} {-height 15 -radix hexadecimal} {/test_top/z80/D[5]} {-height 15 -radix hexadecimal} {/test_top/z80/D[4]} {-height 15 -radix hexadecimal} {/test_top/z80/D[3]} {-height 15 -radix hexadecimal} {/test_top/z80/D[2]} {-height 15 -radix hexadecimal} {/test_top/z80/D[1]} {-height 15 -radix hexadecimal} {/test_top/z80/D[0]} {-height 15 -radix hexadecimal}} /test_top/z80/D
-add wave -noupdate -expand -group sequencer /test_top/dut/setM1
-add wave -noupdate -expand -group sequencer /test_top/dut/sequencer_/M1
-add wave -noupdate -expand -group sequencer /test_top/dut/sequencer_/M2
-add wave -noupdate -expand -group sequencer /test_top/dut/sequencer_/M3
-add wave -noupdate -expand -group sequencer /test_top/dut/sequencer_/M4
-add wave -noupdate -expand -group sequencer /test_top/dut/sequencer_/M5
-add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/sequencer_/T1
-add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/sequencer_/T2
-add wave -noupdate -expand -group sequencer /test_top/dut/pin_control_/Tw1
-add wave -noupdate -expand -group sequencer /test_top/dut/pin_control_/Tw2
-add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/sequencer_/T3
-add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/sequencer_/T4
-add wave -noupdate -expand -group sequencer -color {Lime Green} /test_top/dut/sequencer_/T5
+add wave -noupdate -expand -group {pads
+} /test_top/z80/CLK
+add wave -noupdate -expand -group {pads
+} /test_top/z80/nM1
+add wave -noupdate -expand -group {pads
+} -color Gray90 /test_top/z80/nMREQ
+add wave -noupdate -expand -group {pads
+} /test_top/z80/nIORQ
+add wave -noupdate -expand -group {pads
+} /test_top/z80/nRD
+add wave -noupdate -expand -group {pads
+} /test_top/z80/nWR
+add wave -noupdate -expand -group {pads
+} /test_top/z80/nRFSH
+add wave -noupdate -expand -group {pads
+} -radix hexadecimal /test_top/z80/A
+add wave -noupdate -expand -group {pads
+} -radix hexadecimal -childformat {{{/test_top/z80/D[7]} -radix hexadecimal} {{/test_top/z80/D[6]} -radix hexadecimal} {{/test_top/z80/D[5]} -radix hexadecimal} {{/test_top/z80/D[4]} -radix hexadecimal} {{/test_top/z80/D[3]} -radix hexadecimal} {{/test_top/z80/D[2]} -radix hexadecimal} {{/test_top/z80/D[1]} -radix hexadecimal} {{/test_top/z80/D[0]} -radix hexadecimal}} -subitemconfig {{/test_top/z80/D[7]} {-height 15 -radix hexadecimal} {/test_top/z80/D[6]} {-height 15 -radix hexadecimal} {/test_top/z80/D[5]} {-height 15 -radix hexadecimal} {/test_top/z80/D[4]} {-height 15 -radix hexadecimal} {/test_top/z80/D[3]} {-height 15 -radix hexadecimal} {/test_top/z80/D[2]} {-height 15 -radix hexadecimal} {/test_top/z80/D[1]} {-height 15 -radix hexadecimal} {/test_top/z80/D[0]} {-height 15 -radix hexadecimal}} /test_top/z80/D
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/nextM
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/setM1
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/M1
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/M2
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/M3
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/M4
+add wave -noupdate -expand -group {clk
+} /test_top/dut/sequencer_/M5
+add wave -noupdate -expand -group {clk
+} -expand -group T /test_top/dut/sequencer_/T1
+add wave -noupdate -expand -group {clk
+} -expand -group T /test_top/dut/sequencer_/T2
+add wave -noupdate -expand -group {clk
+} -expand -group T /test_top/dut/sequencer_/T3
+add wave -noupdate -expand -group {clk
+} -expand -group T /test_top/dut/sequencer_/T4
+add wave -noupdate -expand -group {clk
+} -expand -group T /test_top/dut/sequencer_/T5
+add wave -noupdate -group opcode /test_top/dut/instruction_reg_/ctl_ir_we
+add wave -noupdate -group opcode /test_top/dut/instruction_reg_/opcode
+add wave -noupdate -group db -radix hexadecimal /test_top/dut/db0
+add wave -noupdate -group db -radix hexadecimal /test_top/dut/db1
+add wave -noupdate -group db -radix hexadecimal /test_top/dut/db2
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/clk
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/mwait
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/busrq
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/reset
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/m1
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/mreq
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/iorq
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/rd
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/wr
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/rfsh
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/busack
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/T1
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/T2
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/Tw1
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/Tw2
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/T3
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/T4
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/fFetch
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/fMRead
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/fMWrite
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/fIORead
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/fIOWrite
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/setM1
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/in_intr
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/hold_clk_timing
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/pin_control_oe
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/bus_ab_pin_oe
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/bus_ab_pin_we
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/bus_db_pin_oe
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/bus_db_pin_re
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/busrq_latch
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/busack_latch
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/testW
+add wave -noupdate -group {pin control
+} /test_top/dut/pin_control_/wait_latch
+add wave -noupdate -group {control pins
+} /test_top/dut/fpga_reset
+add wave -noupdate -group {control pins
+} /test_top/dut/nreset
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_INT
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_NMI
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_RESET
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_BUSRQ
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/m1
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/mreq
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/iorq
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/rd
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/wr
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/rfsh
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/busack
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/CPUCLK
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_control_oe
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_WAIT
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/in_halt
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_M1
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_MREQ
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_IORQ
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_RD
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_WR
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_RFSH
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_HALT
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/pin_BUSACK
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/nmi
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/busrq
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/clk
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/intr
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/mwait
+add wave -noupdate -group {control pins
+} /test_top/dut/control_pins_/reset_in
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_exx
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_ex_af
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_ex_de_hl
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_use_sp
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/nreset
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sel_pc
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sel_ir
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sel_wz
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_gp_we
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_not_pc
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/use_ixiy
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/use_ix
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sys_we_lo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sys_we_hi
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sys_we
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/clk
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_gp_hilo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_gp_sel
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/ctl_reg_sys_hilo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_bc
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_bc2
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_ix
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_iy
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_de
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_hl
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_de2
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_hl2
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_af
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_af2
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_wz
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_pc
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_ir
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_sp
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_gp_hi
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_gp_lo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_sys_lo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sel_sys_hi
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_gp_we
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sys_we_lo
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/reg_sys_we_hi
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/bank_af
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/bank_exx
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/bank_hl_de1
+add wave -noupdate -group {reg control} /test_top/dut/reg_control_/bank_hl_de2
+add wave -noupdate -group {regfile
+} -label AF /test_top/dut/reg_file_/AF
+add wave -noupdate -group {regfile
+} -label BC /test_top/dut/reg_file_/BC
+add wave -noupdate -group {regfile
+} -label DE /test_top/dut/reg_file_/DE
+add wave -noupdate -group {regfile
+} -label HL /test_top/dut/reg_file_/HL
+add wave -noupdate -group {regfile
+} -color Gold -label PC /test_top/dut/reg_file_/PC
+add wave -noupdate -group {regfile
+} -label IR /test_top/dut/reg_file_/IR
+add wave -noupdate -group {regfile
+} -label SP /test_top/dut/reg_file_/SP
+add wave -noupdate -group {regfile
+} -label WZ /test_top/dut/reg_file_/WZ
+add wave -noupdate -group {regfile
+} -radix hexadecimal /test_top/dut/reg_file_/db_hi_ds
+add wave -noupdate -group {regfile
+} -radix hexadecimal /test_top/dut/reg_file_/db_lo_ds
+add wave -noupdate -group {regfile
+} -group selects -color Thistle /test_top/dut/reg_file_/reg_gp_we
+add wave -noupdate -group {regfile
+} -group selects -color Gold /test_top/dut/reg_file_/reg_sel_gp_lo
+add wave -noupdate -group {regfile
+} -group selects -color Gold /test_top/dut/reg_file_/reg_sel_gp_hi
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_sp
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_iy
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_ix
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_hl2
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_hl
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_de2
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_de
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_bc2
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_bc
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_af2
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_af
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sys_we_lo
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sys_we_hi
+add wave -noupdate -group {regfile
+} -group selects -color Gold /test_top/dut/reg_file_/reg_sel_sys_lo
+add wave -noupdate -group {regfile
+} -group selects -color Gold /test_top/dut/reg_file_/reg_sel_sys_hi
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_wz
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_ir
+add wave -noupdate -group {regfile
+} -group selects /test_top/dut/reg_file_/reg_sel_pc
+add wave -noupdate -group {regfile
+} -radix hexadecimal /test_top/dut/reg_file_/db_hi_as
+add wave -noupdate -group {regfile
+} -radix hexadecimal -childformat {{{/test_top/dut/reg_file_/db_lo_as[7]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[6]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[5]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[4]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[3]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[2]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[1]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/reg_file_/db_lo_as[7]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[6]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[5]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[4]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[3]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[2]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[1]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[0]} {-height 15 -radix hexadecimal}} /test_top/dut/reg_file_/db_lo_as
+add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_mask543_en
+add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_1u
+add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_1d
+add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_2u
+add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_2d
+add wave -noupdate -group switch -color Aquamarine /test_top/dut/reg_file_/ctl_sw_4d
+add wave -noupdate -group switch -color Aquamarine /test_top/dut/reg_file_/ctl_sw_4u
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_oe
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_re
+add wave -noupdate -group {data pins} /test_top/dut/data_pins_/ctl_bus_db_we
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_oe
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_bus_inc_oe
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_inc_cy
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_inc_dec
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_inc_zero
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_al_we
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/ctl_inc_limit6
-add wave -noupdate -expand -group al -expand -group al -group {ctl
-} /test_top/dut/address_latch_/address_is_1
-add wave -noupdate -expand -group al -radix hexadecimal /test_top/dut/address_latch_/abus
-add wave -noupdate -expand -group al -radix hexadecimal -childformat {{{/test_top/dut/address_latch_/address[15]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[14]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[13]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[12]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[11]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[10]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[9]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[8]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[7]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[6]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[5]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[4]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[3]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[2]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[1]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/address_latch_/address[15]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[14]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[13]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[12]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[11]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[10]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[9]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[8]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[7]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[6]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[5]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[4]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[3]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[2]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[1]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[0]} {-height 15 -radix hexadecimal}} /test_top/dut/address_latch_/address
-add wave -noupdate -group IR /test_top/dut/instruction_reg_/ctl_ir_we
-add wave -noupdate -group IR -radix hexadecimal /test_top/dut/instruction_reg_/db
-add wave -noupdate -group IR -radix hexadecimal -childformat {{{/test_top/dut/instruction_reg_/opcode[7]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[6]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[5]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[4]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[3]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[2]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[1]} -radix hexadecimal} {{/test_top/dut/instruction_reg_/opcode[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/instruction_reg_/opcode[7]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[6]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[5]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[4]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[3]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[2]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[1]} {-height 15 -radix hexadecimal} {/test_top/dut/instruction_reg_/opcode[0]} {-height 15 -radix hexadecimal}} /test_top/dut/instruction_reg_/opcode
-add wave -noupdate -group IR -expand -group PLA /test_top/dut/pla_decode_/prefix
-add wave -noupdate -group IR -expand -group PLA -radix hexadecimal /test_top/dut/pla_decode_/opcode
-add wave -noupdate -group IR -expand -group PLA /test_top/dut/pla_decode_/pla
-add wave -noupdate -group IR -expand -group function /test_top/dut/pin_control_/fFetch
-add wave -noupdate -group IR -expand -group function /test_top/dut/pin_control_/fMRead
-add wave -noupdate -group IR -expand -group function /test_top/dut/pin_control_/fMWrite
-add wave -noupdate -group IR -expand -group function /test_top/dut/pin_control_/fIORead
-add wave -noupdate -group IR -expand -group function /test_top/dut/pin_control_/fIOWrite
-add wave -noupdate -expand -group busses /test_top/dut/bus_control_/ctl_bus_ff_oe
-add wave -noupdate -expand -group busses /test_top/dut/bus_control_/ctl_bus_zero_oe
-add wave -noupdate -expand -group busses /test_top/dut/bus_control_/ctl_bus_db_oe
-add wave -noupdate -expand -group busses -radix hexadecimal /test_top/dut/db0
-add wave -noupdate -expand -group busses -radix hexadecimal /test_top/dut/db1
-add wave -noupdate -expand -group busses -radix hexadecimal /test_top/dut/db2
-add wave -noupdate -expand -group busses -radix hexadecimal /test_top/dut/db_hi_as
-add wave -noupdate -expand -group busses -radix hexadecimal /test_top/dut/db_lo_as
-add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_1u
-add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_1d
-add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_2u
-add wave -noupdate -expand -group busses -expand -group switches /test_top/dut/bus_switch_/ctl_sw_2d
-add wave -noupdate -group {interrupt
-} /test_top/dut/interrupts_/IM
-add wave -noupdate -group {interrupt
-} /test_top/dut/ctl_iff1_iff2
-add wave -noupdate -group {interrupt
-} /test_top/dut/ctl_iffx_we
-add wave -noupdate -group {interrupt
-} /test_top/dut/ctl_iffx_bit
-add wave -noupdate -group {interrupt
-} /test_top/dut/ctl_im_we
-add wave -noupdate -group {interrupt
-} /test_top/dut/ctl_no_ints
-add wave -noupdate -group {interrupt
-} /test_top/dut/interrupts_/iff1
-add wave -noupdate -group {interrupt
-} /test_top/dut/interrupts_/iff2
+add wave -noupdate -group {data pins} -radix hexadecimal /test_top/dut/data_pins_/D
+add wave -noupdate -group {data pins} -radix hexadecimal /test_top/dut/data_pins_/db
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_shift_db0
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_shift_db7
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/ctl_shift_en
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/flags_hf
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/ctl_alu_op_low
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_parity_out
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/flags_zf
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/flags_pf
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/flags_sf
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/ctl_cond_short
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_vf_out
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/iff2
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/ctl_pf_sel
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/op543
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_shift_in
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_shift_right
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_shift_left
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/shift_cf_out
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_parity_in
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/flags_cond_true
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/pf_sel
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_op_low
+add wave -noupdate -group {alu
+ control} /test_top/dut/alu_control_/alu_core_cf_in
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_top/dut/alu_control_/db
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_top/dut/alu_control_/out
+add wave -noupdate -group {alu
+ control} -radix hexadecimal /test_top/dut/alu_control_/sel
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/FLAGS
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_oe
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_bus
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_alu
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/alu_sf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/alu_yf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/alu_xf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_nf_set
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/alu_zero
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/shift_cf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/alu_core_cf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/daa_cf_out
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_cf_set
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_cf_cpl
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_hf_cpl
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/pf_sel
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_cf_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_sz_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_xy_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_hf_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_pf_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/ctl_flags_nf_we
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/flags_sf
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/flags_zf
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/flags_pf
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/flags_cf
+add wave -noupdate -group {alu flags} /test_top/dut/alu_flags_/flags_nf
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_shift_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op2_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_res_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op1_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_bs_oe
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op1_sel_bus
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op1_sel_low
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op1_sel_zero
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op2_sel_zero
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op2_sel_bus
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_op2_sel_lq
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_sel_op2_neg
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_sel_op2_high
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_core_R
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_core_V
+add wave -noupdate -group {alu select} /test_top/dut/alu_select_/ctl_alu_core_S
+add wave -noupdate -group {alu
+} -color Green -radix hexadecimal /test_top/dut/alu_/OP1
+add wave -noupdate -group {alu
+} -color Green -radix hexadecimal /test_top/dut/alu_/OP2
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/RESULT
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_bs_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_parity_in
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op2_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op1_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_res_oe
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op1_sel_low
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op1_sel_zero
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op1_sel_bus
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op2_sel_zero
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op2_sel_bus
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op2_sel_lq
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_op_low
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_in
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_sel_op2_neg
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_sel_op2_high
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_left
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_right
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/bsel
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_zero
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_parity_out
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_high_eq_9
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_high_gt_9
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_low_gt_9
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_db0
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_shift_db7
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_sf_out
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_yf_out
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_xf_out
+add wave -noupdate -group {alu
+} /test_top/dut/alu_/alu_vf_out
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/db
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/test_db_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/test_db_low
+add wave -noupdate -group {alu
+} -color Magenta /test_top/dut/alu_/alu_core_R
+add wave -noupdate -group {alu
+} -color Magenta /test_top/dut/alu_/alu_core_V
+add wave -noupdate -group {alu
+} -color Magenta /test_top/dut/alu_/alu_core_S
+add wave -noupdate -group {alu
+} -color Magenta /test_top/dut/alu_/alu_core_cf_in
+add wave -noupdate -group {alu
+} -color Magenta -radix hexadecimal /test_top/dut/alu_/alu_op1
+add wave -noupdate -group {alu
+} -color Magenta -radix hexadecimal /test_top/dut/alu_/alu_op2
+add wave -noupdate -group {alu
+} -color Red /test_top/dut/alu_/alu_core_cf_out
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/result_hi
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/result_lo
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/db_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/db_low
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/op1_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/op1_low
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/op2_high
+add wave -noupdate -group {alu
+} -radix hexadecimal /test_top/dut/alu_/op2_low
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_cy
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_dec
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_zero
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_al_we
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_limit6
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_bus_inc_oe
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/address_is_1
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_apin_mux
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_apin_mux2
+add wave -noupdate -group {address latch} -radix hexadecimal /test_top/dut/address_latch_/abus
+add wave -noupdate -group {address latch} -radix hexadecimal -childformat {{{/test_top/dut/address_latch_/address[15]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[14]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[13]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[12]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[11]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[10]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[9]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[8]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[7]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[6]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[5]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[4]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[3]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[2]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[1]} -radix hexadecimal} {{/test_top/dut/address_latch_/address[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/address_latch_/address[15]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[14]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[13]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[12]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[11]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[10]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[9]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[8]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[7]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[6]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[5]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[4]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[3]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[2]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[1]} {-height 15 -radix hexadecimal} {/test_top/dut/address_latch_/address[0]} {-height 15 -radix hexadecimal}} /test_top/dut/address_latch_/address
+add wave -noupdate -group {address pins} /test_top/dut/address_pins_/bus_ab_pin_oe
+add wave -noupdate -group {address pins} /test_top/dut/address_pins_/bus_ab_pin_we
+add wave -noupdate -group {address pins} -label apin_latch /test_top/dut/address_pins_/DFFE_apin_latch
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_iy_set
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_ixiy_clr
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_ixiy_we
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_halt_set
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_tbl_clr
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_tbl_ed_set
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_tbl_cb_set
+add wave -noupdate -group state /test_top/dut/execute_/setCBED
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_state_alu
+add wave -noupdate -group state /test_top/dut/decode_state_/clk
+add wave -noupdate -group state /test_top/dut/decode_state_/address_is_1
+add wave -noupdate -group state /test_top/dut/decode_state_/ctl_repeat_we
+add wave -noupdate -group state /test_top/dut/decode_state_/in_halt
+add wave -noupdate -group state /test_top/dut/decode_state_/table_cb
+add wave -noupdate -group state /test_top/dut/decode_state_/table_ed
+add wave -noupdate -group state /test_top/dut/decode_state_/table_xx
+add wave -noupdate -group state /test_top/dut/decode_state_/use_ix
+add wave -noupdate -group state /test_top/dut/decode_state_/use_ixiy
+add wave -noupdate -group state /test_top/dut/decode_state_/in_alu
+add wave -noupdate -group state /test_top/dut/decode_state_/repeat_en
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {700 ns} 0} {{Cursor 2} {110500 ns} 0}
-quietly wave cursor active 2
-configure wave -namecolwidth 203
-configure wave -valuecolwidth 49
-configure wave -justifyvalue right
-configure wave -signalnamewidth 2
+WaveRestoreCursors {{Cursor 1} {4000 ns} 0} {{Cursor 2} {4600 ns} 0} {{Cursor 3} {5400 ns} 0}
+quietly wave cursor active 3
+configure wave -namecolwidth 163
+configure wave -valuecolwidth 53
+configure wave -justifyvalue left
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -122,4 +563,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits us
 update
-WaveRestoreZoom {106100 ns} {119700 ns}
+WaveRestoreZoom {200 ns} {8 us}

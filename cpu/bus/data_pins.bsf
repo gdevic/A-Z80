@@ -33,8 +33,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "nclk" (rect 21 43 43 57)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 43 36 57)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port

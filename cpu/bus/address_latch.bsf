@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 240 176)
+	(rect 16 16 240 208)
 	(text "address_latch" (rect 5 0 86 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 144 25 156)(font "Arial" ))
+	(text "inst" (rect 8 176 25 188)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -61,8 +61,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "nclk" (rect 0 0 22 14)(font "Arial" (font_size 8)))
-		(text "nclk" (rect 21 107 43 121)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 107 36 121)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 16 112))
 	)
 	(port
@@ -73,18 +73,32 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128))
 	)
 	(port
+		(pt 0 144)
+		(input)
+		(text "ctl_apin_mux2" (rect 0 0 81 14)(font "Arial" (font_size 8)))
+		(text "ctl_apin_mux2" (rect 21 139 102 153)(font "Arial" (font_size 8)))
+		(line (pt 0 144)(pt 16 144))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "ctl_apin_mux" (rect 0 0 74 14)(font "Arial" (font_size 8)))
+		(text "ctl_apin_mux" (rect 21 155 95 169)(font "Arial" (font_size 8)))
+		(line (pt 0 160)(pt 16 160))
+	)
+	(port
 		(pt 224 48)
 		(output)
-		(text "address[15..0]" (rect 0 0 82 14)(font "Arial" (font_size 8)))
-		(text "address[15..0]" (rect 121 43 203 57)(font "Arial" (font_size 8)))
-		(line (pt 224 48)(pt 208 48)(line_width 3))
+		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
+		(text "address_is_1" (rect 126 43 203 57)(font "Arial" (font_size 8)))
+		(line (pt 224 48)(pt 208 48))
 	)
 	(port
 		(pt 224 64)
 		(output)
-		(text "address_is_1" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "address_is_1" (rect 126 59 203 73)(font "Arial" (font_size 8)))
-		(line (pt 224 64)(pt 208 64))
+		(text "address[15..0]" (rect 0 0 82 14)(font "Arial" (font_size 8)))
+		(text "address[15..0]" (rect 121 59 203 73)(font "Arial" (font_size 8)))
+		(line (pt 224 64)(pt 208 64)(line_width 3))
 	)
 	(port
 		(pt 224 32)
@@ -94,6 +108,6 @@ applicable agreement for further details.
 		(line (pt 224 32)(pt 208 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 208 144))
+		(rectangle (rect 16 16 208 176))
 	)
 )

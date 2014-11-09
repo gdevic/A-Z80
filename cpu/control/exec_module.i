@@ -103,6 +103,8 @@ output logic ctl_inc_zero,
 output logic ctl_al_we,
 output logic ctl_inc_limit6,
 output logic ctl_bus_inc_oe,
+output logic ctl_apin_mux,
+output logic ctl_apin_mux2,
 
 // Module: bus/bus_control.v
 output logic ctl_bus_ff_oe,

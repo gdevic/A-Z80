@@ -49,13 +49,11 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name BSF_FILE mem_cell.bsf
 set_global_assignment -name SYSTEMVERILOG_FILE pla_decode.sv
 set_global_assignment -name SYSTEMVERILOG_FILE pin_control.sv
 set_global_assignment -name SYSTEMVERILOG_FILE execute.sv
 set_global_assignment -name BDF_FILE sequencer.bdf
 set_global_assignment -name BDF_FILE resets.bdf
-set_global_assignment -name BDF_FILE mem_cell.bdf
 set_global_assignment -name BDF_FILE ir.bdf
 set_global_assignment -name BDF_FILE interrupts.bdf
 set_global_assignment -name BDF_FILE decode_state.bdf

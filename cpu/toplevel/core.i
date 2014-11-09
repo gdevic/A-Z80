@@ -17,10 +17,6 @@ initial begin
     #1 fpga_reset = 0;
 end
 
-// Define and drive the nclk signal used by some latches
-wire nclk;
-assign nclk = ~clk;
-
 // Define internal data bus partitions separated by data bus switches
 wire [7:0] db0;         // Segment connecting data pins and IR
 wire [7:0] db1;         // Segment with ALU

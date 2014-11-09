@@ -14,19 +14,19 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:53:30 2014"
+// CREATED		"Fri Nov 07 10:28:37 2014"
 
 module reg_latch(
 	we,
 	oe,
-	nclk,
+	clk,
 	db
 );
 
 
 input wire	we;
 input wire	oe;
-input wire	nclk;
+input wire	clk;
 inout wire	[7:0] db;
 
 reg	[7:0] latch;
@@ -44,7 +44,7 @@ assign	db[1] = oe ? latch[1] : 1'bz;
 assign	db[0] = oe ? latch[0] : 1'bz;
 
 
-always@(posedge nclk)
+always@(posedge clk)
 begin
 if (we)
 	begin

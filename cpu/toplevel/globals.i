@@ -103,6 +103,8 @@ wire ctl_inc_zero;
 wire ctl_al_we;
 wire ctl_inc_limit6;
 wire ctl_bus_inc_oe;
+wire ctl_apin_mux;
+wire ctl_apin_mux2;
 wire ctl_bus_ff_oe;
 wire ctl_bus_zero_oe;
 wire ctl_bus_db_oe;

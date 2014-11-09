@@ -16,8 +16,7 @@ initial begin : init
     z.nINT <= `CLR;
     z.nNMI <= `CLR;
     z.nBUSRQ <= `CLR;
-    z.nRESET <= `SET;
-#1  z.nRESET <= `CLR;
+    z.nRESET <= `CLR;
 
     // Run all the tests and write the result to a file
     f = $fopen("fuse.result.txt");

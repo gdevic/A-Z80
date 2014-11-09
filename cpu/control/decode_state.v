@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Oct 29 06:12:25 2014"
+// CREATED		"Fri Oct 31 20:27:41 2014"
 
 module decode_state(
 	ctl_state_iy_set,
@@ -65,49 +65,75 @@ output wire	use_ixiy;
 output wire	in_alu;
 output wire	repeat_en;
 
+reg	DFFE_instNonRep;
+reg	DFFE_instIY1;
+reg	DFFE_inst4;
+reg	DFFE_instED;
+reg	DFFE_instCB;
 wire	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
-wire	SYNTHESIZED_WIRE_3;
 wire	SYNTHESIZED_WIRE_4;
-wire	SYNTHESIZED_WIRE_9;
-wire	SYNTHESIZED_WIRE_7;
-wire	SYNTHESIZED_WIRE_8;
+wire	SYNTHESIZED_WIRE_3;
 
 assign	in_alu = ctl_state_alu;
-assign	table_cb = SYNTHESIZED_WIRE_4;
-assign	table_ed = SYNTHESIZED_WIRE_3;
-assign	use_ix = SYNTHESIZED_WIRE_2;
+assign	table_cb = DFFE_instCB;
+assign	table_ed = DFFE_instED;
+assign	use_ix = DFFE_inst4;
 
 
 
-assign	repeat_en =  ~SYNTHESIZED_WIRE_0;
+assign	repeat_en =  ~DFFE_instNonRep;
 
-assign	SYNTHESIZED_WIRE_9 = ctl_state_tbl_clr | ctl_state_tbl_ed_set | ctl_state_tbl_cb_set;
+assign	SYNTHESIZED_WIRE_4 = ctl_state_tbl_clr | ctl_state_tbl_ed_set | ctl_state_tbl_cb_set;
 
-assign	use_ixiy = SYNTHESIZED_WIRE_1 | SYNTHESIZED_WIRE_2;
+assign	use_ixiy = DFFE_instIY1 | DFFE_inst4;
 
-assign	table_xx = ~(SYNTHESIZED_WIRE_3 | SYNTHESIZED_WIRE_4);
-
-assign	SYNTHESIZED_WIRE_8 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
-
-assign	SYNTHESIZED_WIRE_7 = in_nmi | in_intr;
+assign	table_xx = ~(DFFE_instED | DFFE_instCB);
 
 
-mem_cell	b2v_instCB(
-	.D(ctl_state_tbl_cb_set),
-	.we(SYNTHESIZED_WIRE_9),
-	.clk(clk),
-	.nreset(nreset),
-	.Q(SYNTHESIZED_WIRE_4));
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFFE_inst4 <= 0;
+	end
+else
+if (ctl_state_ixiy_we)
+	begin
+	DFFE_inst4 <= SYNTHESIZED_WIRE_0;
+	end
+end
+
+assign	SYNTHESIZED_WIRE_0 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
+
+assign	SYNTHESIZED_WIRE_3 = in_nmi | in_intr;
 
 
-mem_cell	b2v_instED(
-	.D(ctl_state_tbl_ed_set),
-	.we(SYNTHESIZED_WIRE_9),
-	.clk(clk),
-	.nreset(nreset),
-	.Q(SYNTHESIZED_WIRE_3));
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFFE_instCB <= 0;
+	end
+else
+if (SYNTHESIZED_WIRE_4)
+	begin
+	DFFE_instCB <= ctl_state_tbl_cb_set;
+	end
+end
+
+
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFFE_instED <= 0;
+	end
+else
+if (SYNTHESIZED_WIRE_4)
+	begin
+	DFFE_instED <= ctl_state_tbl_ed_set;
+	end
+end
 
 
 always@(posedge clk or negedge nreset)
@@ -118,33 +144,37 @@ if (!nreset)
 	end
 else
 	begin
-	in_halt <= ~in_halt & ctl_state_halt_set | in_halt & ~SYNTHESIZED_WIRE_7;
+	in_halt <= ~in_halt & ctl_state_halt_set | in_halt & ~SYNTHESIZED_WIRE_3;
 	end
 end
 
 
-mem_cell	b2v_instIX1(
-	.D(SYNTHESIZED_WIRE_8),
-	.we(ctl_state_ixiy_we),
-	.clk(clk),
-	.nreset(nreset),
-	.Q(SYNTHESIZED_WIRE_2));
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFFE_instIY1 <= 0;
+	end
+else
+if (ctl_state_ixiy_we)
+	begin
+	DFFE_instIY1 <= ctl_state_iy_set;
+	end
+end
 
 
-mem_cell	b2v_instIY1(
-	.D(ctl_state_iy_set),
-	.we(ctl_state_ixiy_we),
-	.clk(clk),
-	.nreset(nreset),
-	.Q(SYNTHESIZED_WIRE_1));
-
-
-mem_cell	b2v_instNonRep(
-	.D(address_is_1),
-	.we(ctl_repeat_we),
-	.clk(clk),
-	.nreset(nreset),
-	.Q(SYNTHESIZED_WIRE_0));
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFFE_instNonRep <= 0;
+	end
+else
+if (ctl_repeat_we)
+	begin
+	DFFE_instNonRep <= address_is_1;
+	end
+end
 
 
 endmodule

@@ -81,7 +81,7 @@ PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_
 >       ctl_sw_4u=1;
 
 //-----------------------------------------------------------------------------------------
-// Controls the address latch incrementer and the address latch
+// Controls the address latch incrementer, the address latch and the address pin mux
 //-----------------------------------------------------------------------------------------
 :inc/dec
 +       ctl_inc_cy=pc_inc;                      // Increment
@@ -91,7 +91,8 @@ op3     ctl_inc_cy=pc_inc; ctl_inc_dec=op3;     // Decrement if op3 is set; incr
 :A:latch
 W       ctl_al_we=1;                            // Write a value from the register bus to the address latch
 R       ctl_bus_inc_oe=1;                       // Output enable incrementer to the register bus
-L       ctl_bus_inc_oe=1; ctl_al_we=1;          // Loop back the incrementer into the latch (flop)
+P       ctl_apin_mux=1;                         // Apin sourced from incrementer
+RL      ctl_bus_inc_oe=1; ctl_apin_mux2=1;      // Apin sourced from AL
 
 //-----------------------------------------------------------------------------------------
 // Register file, data (upstream) endpoint
@@ -330,7 +331,7 @@ NEG_OP2         ctl_alu_sel_op2_neg=1;
 
 // M1 opcode read cycle and the refresh register increment cycle
 // Write opcode into the instruction register through internal db0 bus:
-OpcodeToIR      ctl_ir_we=T{T?}up;
+OpcodeToIR      ctl_ir_we=1;
 // At the common instruction load M1/T3, override opcode byte when servicing interrupts:
 // 1. We are in HALT mode: push NOP (0x00) instead
 // 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) instead

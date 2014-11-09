@@ -5,125 +5,142 @@ force dut.reg_control_.ctl_reg_sys_we=0;
 force dut.z80_top_ifc_n.fpga_reset=1;
 #2
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 00      NOP");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 00      NOP");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h00;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   // Preset memory
+   ram.Mem[0] = 8'h00;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h00) $fdisplay(f,"* Reg af a=%h !=00",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -147,132 +164,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode ed67    RRD");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode ed67    RRD");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h24;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h36;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h6a;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'hb1;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hdb;
    force dut.reg_file_.b2v_latch_de_hi.db=8'ha4;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'hde;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hb9;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hed;
+   // Preset memory
+   ram.Mem[0] = 8'hed;
    ram.Mem[1] = 8'h67;
+   // Preset memory
    ram.Mem[47582] = 8'h93;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#30 // Execute
+#34 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h24) $fdisplay(f,"* Reg af f=%h !=24",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h33) $fdisplay(f,"* Reg af a=%h !=33",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -296,133 +330,150 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[47582]!==8'h69) $fdisplay(f,"* Mem[b9de]=%h !=69",ram.Mem[47582]);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode ed6f    RLD");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode ed6f    RLD");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h8b;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h65;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h7a;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h7a;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hf0;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hec;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h3c;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h40;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hed;
+   // Preset memory
+   ram.Mem[0] = 8'hed;
    ram.Mem[1] = 8'h6f;
+   // Preset memory
    ram.Mem[16444] = 8'hc4;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#30 // Execute
+#34 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h2d) $fdisplay(f,"* Reg af f=%h !=2d",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h6c) $fdisplay(f,"* Reg af a=%h !=6c",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -446,132 +497,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[16444]!==8'h45) $fdisplay(f,"* Mem[403c]=%h !=45",ram.Mem[16444]);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 81      ADD A,C");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 81      ADD A,C");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h81;
+   // Preset memory
+   ram.Mem[0] = 8'h81;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h31) $fdisplay(f,"* Reg af f=%h !=31",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h30) $fdisplay(f,"* Reg af a=%h !=30",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -595,132 +663,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb41    BIT 0,C");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb41    BIT 0,C");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h9e;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h43;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h1b;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h4e;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h95;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'he9;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h7b;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h41;
+   // Preset memory
    ram.Mem[31721] = 8'hf7;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h10) $fdisplay(f,"* Reg af f=%h !=10",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h9e) $fdisplay(f,"* Reg af a=%h !=9e",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -744,132 +829,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb93    RES 2,E");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb93    RES 2,E");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hc2;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h05;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h4e;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hf8;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hb3;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h34;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h22;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h93;
+   // Preset memory
    ram.Mem[8756] = 8'ha0;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hc2) $fdisplay(f,"* Reg af a=%h !=c2",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -893,132 +995,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cbe5    SET 4,L");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cbe5    SET 4,L");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hca;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'hdf;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h88;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hd5;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h8f;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hb4;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'he5;
+   // Preset memory
    ram.Mem[46223] = 8'hcf;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hca) $fdisplay(f,"* Reg af a=%h !=ca",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1042,131 +1161,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 8c      ADC A,H");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 8c      ADC A,H");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h8c;
+   // Preset memory
+   ram.Mem[0] = 8'h8c;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h91) $fdisplay(f,"* Reg af f=%h !=91",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hd1) $fdisplay(f,"* Reg af a=%h !=d1",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1190,131 +1326,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 92      SUB D");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 92      SUB D");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h92;
+   // Preset memory
+   ram.Mem[0] = 8'h92;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h82) $fdisplay(f,"* Reg af f=%h !=82",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hd5) $fdisplay(f,"* Reg af a=%h !=d5",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1338,131 +1491,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 9d      SBC A,L");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 9d      SBC A,L");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h9d;
+   // Preset memory
+   ram.Mem[0] = 8'h9d;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h1a) $fdisplay(f,"* Reg af f=%h !=1a",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h4f) $fdisplay(f,"* Reg af a=%h !=4f",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1486,131 +1656,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode a3      AND E");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode a3      AND E");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'ha3;
+   // Preset memory
+   ram.Mem[0] = 8'ha3;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h14) $fdisplay(f,"* Reg af f=%h !=14",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h05) $fdisplay(f,"* Reg af a=%h !=05",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1634,131 +1821,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode ae      XOR (HL)");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode ae      XOR (HL)");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hae;
+   // Preset memory
+   ram.Mem[0] = 8'hae;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#8 // Execute
+#12 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'ha8) $fdisplay(f,"* Reg af f=%h !=a8",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hbc) $fdisplay(f,"* Reg af a=%h !=bc",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1782,131 +1986,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode b4      OR H");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode b4      OR H");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hb4;
+   // Preset memory
+   ram.Mem[0] = 8'hb4;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'ha8) $fdisplay(f,"* Reg af f=%h !=a8",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hfd) $fdisplay(f,"* Reg af a=%h !=fd",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -1930,131 +2151,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode bf      CP A");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode bf      CP A");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hf5;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h3b;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h0f;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h0d;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h20;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'ha6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hdc;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hbf;
+   // Preset memory
+   ram.Mem[0] = 8'hbf;
+   // Preset memory
    ram.Mem[56486] = 8'h49;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h62) $fdisplay(f,"* Reg af f=%h !=62",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hf5) $fdisplay(f,"* Reg af a=%h !=f5",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2078,131 +2316,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 43      LD B,E");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 43      LD B,E");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h02;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h98;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'hcf;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hd8;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h90;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h69;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'ha1;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h43;
+   // Preset memory
+   ram.Mem[0] = 8'h43;
+   // Preset memory
    ram.Mem[41321] = 8'h50;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h02) $fdisplay(f,"* Reg af a=%h !=02",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2226,131 +2481,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 6e      LD L,(HL)");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 6e      LD L,(HL)");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h02;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h98;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'hcf;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hd8;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h90;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h69;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'ha1;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h6e;
+   // Preset memory
+   ram.Mem[0] = 8'h6e;
+   // Preset memory
    ram.Mem[41321] = 8'h50;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#8 // Execute
+#12 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h02) $fdisplay(f,"* Reg af a=%h !=02",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2374,132 +2646,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode e3      EX (SP),HL");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode e3      EX (SP),HL");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h22;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h4d;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h73;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h03;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'he3;
+   // Preset memory
+   ram.Mem[0] = 8'he3;
+   // Preset memory
    ram.Mem[883] = 8'h8e;
    ram.Mem[884] = 8'he1;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#32 // Execute
+#36 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h00) $fdisplay(f,"* Reg af a=%h !=00",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2523,132 +2812,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h73) $fdisplay(f,"* Reg sp p=%h !=73",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h03) $fdisplay(f,"* Reg sp s=%h !=03",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[883]!==8'h22) $fdisplay(f,"* Mem[373]=%h !=22",ram.Mem[883]);
    if (ram.Mem[884]!==8'h4d) $fdisplay(f,"* Mem[374]=%h !=4d",ram.Mem[884]);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 03      INC BC");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 03      INC BC");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h9a;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h78;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h03;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   // Preset memory
+   ram.Mem[0] = 8'h03;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#6 // Execute
+#10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h00) $fdisplay(f,"* Reg af a=%h !=00",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2672,130 +2977,146 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 3b      DEC SP");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 3b      DEC SP");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h36;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h9d;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h3b;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   // Preset memory
+   ram.Mem[0] = 8'h3b;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#6 // Execute
+#10 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h00) $fdisplay(f,"* Reg af a=%h !=00",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2819,130 +3140,146 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h35) $fdisplay(f,"* Reg sp p=%h !=35",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h9d) $fdisplay(f,"* Reg sp s=%h !=9d",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 07      RLCA");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 07      RLCA");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h88;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h07;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   // Preset memory
+   ram.Mem[0] = 8'h07;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h01) $fdisplay(f,"* Reg af f=%h !=01",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h11) $fdisplay(f,"* Reg af a=%h !=11",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -2966,130 +3303,146 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode 1f      RRA");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode 1f      RRA");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'hc4;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h01;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'h1f;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   // Preset memory
+   ram.Mem[0] = 8'h1f;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#2 // Execute
+#6 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'hc5) $fdisplay(f,"* Reg af f=%h !=c5",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h00) $fdisplay(f,"* Reg af a=%h !=00",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3113,132 +3466,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
+   if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb09    RRC C");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb09    RRC C");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h18;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h5c;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h12;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h97;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hdd;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'hc6;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h59;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h09;
+   // Preset memory
    ram.Mem[22982] = 8'h9e;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h2c) $fdisplay(f,"* Reg af f=%h !=2c",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h18) $fdisplay(f,"* Reg af a=%h !=18",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3262,132 +3632,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb11    RL C");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb11    RL C");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h65;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h5c;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'he2;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h8a;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h4b;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h42;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hed;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h11;
+   // Preset memory
    ram.Mem[60738] = 8'hb7;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'hac) $fdisplay(f,"* Reg af f=%h !=ac",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h65) $fdisplay(f,"* Reg af a=%h !=65",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3411,132 +3798,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb36    SLL (HL)*");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb36    SLL (HL)*");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h8a;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h85;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h11;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hde;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h1d;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h38;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h6d;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h36;
+   // Preset memory
    ram.Mem[27960] = 8'hf1;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#24 // Execute
+#28 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'ha1) $fdisplay(f,"* Reg af f=%h !=a1",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h8a) $fdisplay(f,"* Reg af a=%h !=8a",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3560,133 +3964,150 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[27960]!==8'he3) $fdisplay(f,"* Mem[6d38]=%h !=e3",ram.Mem[27960]);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb52    BIT 2,D");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb52    BIT 2,D");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h8b;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h7a;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'hff;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hff;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hb0;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h44;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hac;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h52;
+   // Preset memory
    ram.Mem[44100] = 8'h00;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h74) $fdisplay(f,"* Reg af f=%h !=74",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h8b) $fdisplay(f,"* Reg af a=%h !=8b",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3710,132 +4131,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cb93    RES 2,E");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cb93    RES 2,E");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'hc2;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h05;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h4e;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hf8;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hb3;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h34;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h22;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'h93;
+   // Preset memory
    ram.Mem[8756] = 8'ha0;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'hc2) $fdisplay(f,"* Reg af a=%h !=c2",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -3859,132 +4297,149 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode cbc4    SET 0,H");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode cbc4    SET 0,H");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h7e;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h5a;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h54;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'hcf;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h6e;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h76;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h58;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hcb;
+   // Preset memory
+   ram.Mem[0] = 8'hcb;
    ram.Mem[1] = 8'hc4;
+   // Preset memory
    ram.Mem[22646] = 8'h9d;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#10 // Execute
+#14 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h00) $fdisplay(f,"* Reg af f=%h !=00",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h7e) $fdisplay(f,"* Reg af a=%h !=7e",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -4008,132 +4463,148 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h00) $fdisplay(f,"* Reg iy i=%h !=00",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
+   if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'h72;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h57;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h33;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'he8;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h3e;
    force dut.reg_file_.b2v_latch_de_hi.db=8'hb6;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'h4f;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'h73;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h4c;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'hae;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'hc2;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'he8;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hdd;
+   // Preset memory
+   ram.Mem[0] = 8'hdd;
    ram.Mem[1] = 8'h75;
    ram.Mem[2] = 8'h30;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#32 // Execute
+#36 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'h72) $fdisplay(f,"* Reg af f=%h !=72",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h57) $fdisplay(f,"* Reg af a=%h !=57",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -4157,134 +4628,151 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'he8) $fdisplay(f,"* Reg iy i=%h !=e8",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
+   if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[44668]!==8'h4f) $fdisplay(f,"* Mem[ae7c]=%h !=4f",ram.Mem[44668]);
-#1
 //--------------------------------------------------------------------------------
-force dut.instruction_reg_.ctl_ir_we=1;
+   force dut.instruction_reg_.ctl_ir_we=1;
    force dut.instruction_reg_.db=0;
-#1 release dut.instruction_reg_.ctl_ir_we;
+#2 release dut.instruction_reg_.ctl_ir_we;
    release dut.instruction_reg_.db;
-#1 $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
-
-force dut.reg_file_.b2v_latch_af_lo.we=1;
+$fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
+   // Preset af
+   force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
    force dut.reg_file_.b2v_latch_af_lo.db=8'hf7;
    force dut.reg_file_.b2v_latch_af_hi.db=8'h7b;
-#1 release dut.reg_file_.b2v_latch_af_lo.we;
+#2 release dut.reg_file_.b2v_latch_af_lo.we;
    release dut.reg_file_.b2v_latch_af_hi.we;
    release dut.reg_file_.b2v_latch_af_lo.db;
    release dut.reg_file_.b2v_latch_af_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc_lo.we=1;
+   // Preset bc
+   force dut.reg_file_.b2v_latch_bc_lo.we=1;
    force dut.reg_file_.b2v_latch_bc_hi.we=1;
    force dut.reg_file_.b2v_latch_bc_lo.db=8'h05;
    force dut.reg_file_.b2v_latch_bc_hi.db=8'h66;
-#1 release dut.reg_file_.b2v_latch_bc_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc_lo.we;
    release dut.reg_file_.b2v_latch_bc_hi.we;
    release dut.reg_file_.b2v_latch_bc_lo.db;
    release dut.reg_file_.b2v_latch_bc_hi.db;
-#1 force dut.reg_file_.b2v_latch_de_lo.we=1;
+   // Preset de
+   force dut.reg_file_.b2v_latch_de_lo.we=1;
    force dut.reg_file_.b2v_latch_de_hi.we=1;
    force dut.reg_file_.b2v_latch_de_lo.db=8'h55;
    force dut.reg_file_.b2v_latch_de_hi.db=8'h8d;
-#1 release dut.reg_file_.b2v_latch_de_lo.we;
+#2 release dut.reg_file_.b2v_latch_de_lo.we;
    release dut.reg_file_.b2v_latch_de_hi.we;
    release dut.reg_file_.b2v_latch_de_lo.db;
    release dut.reg_file_.b2v_latch_de_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl_lo.we=1;
+   // Preset hl
+   force dut.reg_file_.b2v_latch_hl_lo.we=1;
    force dut.reg_file_.b2v_latch_hl_hi.we=1;
    force dut.reg_file_.b2v_latch_hl_lo.db=8'hf2;
    force dut.reg_file_.b2v_latch_hl_hi.db=8'hde;
-#1 release dut.reg_file_.b2v_latch_hl_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl_lo.we;
    release dut.reg_file_.b2v_latch_hl_hi.we;
    release dut.reg_file_.b2v_latch_hl_lo.db;
    release dut.reg_file_.b2v_latch_hl_hi.db;
-#1 force dut.reg_file_.b2v_latch_af2_lo.we=1;
+   // Preset af2
+   force dut.reg_file_.b2v_latch_af2_lo.we=1;
    force dut.reg_file_.b2v_latch_af2_hi.we=1;
    force dut.reg_file_.b2v_latch_af2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_af2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_af2_lo.we;
+#2 release dut.reg_file_.b2v_latch_af2_lo.we;
    release dut.reg_file_.b2v_latch_af2_hi.we;
    release dut.reg_file_.b2v_latch_af2_lo.db;
    release dut.reg_file_.b2v_latch_af2_hi.db;
-#1 force dut.reg_file_.b2v_latch_bc2_lo.we=1;
+   // Preset bc2
+   force dut.reg_file_.b2v_latch_bc2_lo.we=1;
    force dut.reg_file_.b2v_latch_bc2_hi.we=1;
    force dut.reg_file_.b2v_latch_bc2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_bc2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_bc2_lo.we;
+#2 release dut.reg_file_.b2v_latch_bc2_lo.we;
    release dut.reg_file_.b2v_latch_bc2_hi.we;
    release dut.reg_file_.b2v_latch_bc2_lo.db;
    release dut.reg_file_.b2v_latch_bc2_hi.db;
-#1 force dut.reg_file_.b2v_latch_de2_lo.we=1;
+   // Preset de2
+   force dut.reg_file_.b2v_latch_de2_lo.we=1;
    force dut.reg_file_.b2v_latch_de2_hi.we=1;
    force dut.reg_file_.b2v_latch_de2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_de2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_de2_lo.we;
+#2 release dut.reg_file_.b2v_latch_de2_lo.we;
    release dut.reg_file_.b2v_latch_de2_hi.we;
    release dut.reg_file_.b2v_latch_de2_lo.db;
    release dut.reg_file_.b2v_latch_de2_hi.db;
-#1 force dut.reg_file_.b2v_latch_hl2_lo.we=1;
+   // Preset hl2
+   force dut.reg_file_.b2v_latch_hl2_lo.we=1;
    force dut.reg_file_.b2v_latch_hl2_hi.we=1;
    force dut.reg_file_.b2v_latch_hl2_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_hl2_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_hl2_lo.we;
+#2 release dut.reg_file_.b2v_latch_hl2_lo.we;
    release dut.reg_file_.b2v_latch_hl2_hi.we;
    release dut.reg_file_.b2v_latch_hl2_lo.db;
    release dut.reg_file_.b2v_latch_hl2_hi.db;
-#1 force dut.reg_file_.b2v_latch_ix_lo.we=1;
+   // Preset ix
+   force dut.reg_file_.b2v_latch_ix_lo.we=1;
    force dut.reg_file_.b2v_latch_ix_hi.we=1;
    force dut.reg_file_.b2v_latch_ix_lo.db=8'h4b;
    force dut.reg_file_.b2v_latch_ix_hi.db=8'hd9;
-#1 release dut.reg_file_.b2v_latch_ix_lo.we;
+#2 release dut.reg_file_.b2v_latch_ix_lo.we;
    release dut.reg_file_.b2v_latch_ix_hi.we;
    release dut.reg_file_.b2v_latch_ix_lo.db;
    release dut.reg_file_.b2v_latch_ix_hi.db;
-#1 force dut.reg_file_.b2v_latch_iy_lo.we=1;
+   // Preset iy
+   force dut.reg_file_.b2v_latch_iy_lo.we=1;
    force dut.reg_file_.b2v_latch_iy_hi.we=1;
    force dut.reg_file_.b2v_latch_iy_lo.db=8'hfb;
    force dut.reg_file_.b2v_latch_iy_hi.db=8'h17;
-#1 release dut.reg_file_.b2v_latch_iy_lo.we;
+#2 release dut.reg_file_.b2v_latch_iy_lo.we;
    release dut.reg_file_.b2v_latch_iy_hi.we;
    release dut.reg_file_.b2v_latch_iy_lo.db;
    release dut.reg_file_.b2v_latch_iy_hi.db;
-#1 force dut.reg_file_.b2v_latch_sp_lo.we=1;
+   // Preset sp
+   force dut.reg_file_.b2v_latch_sp_lo.we=1;
    force dut.reg_file_.b2v_latch_sp_hi.we=1;
    force dut.reg_file_.b2v_latch_sp_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_sp_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_sp_lo.we;
+#2 release dut.reg_file_.b2v_latch_sp_lo.we;
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
-#1 force dut.reg_file_.b2v_latch_pc_lo.we=1;
+   // Preset pc
+   force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
    force dut.reg_file_.b2v_latch_pc_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_pc_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_pc_lo.we;
+#2 release dut.reg_file_.b2v_latch_pc_lo.we;
    release dut.reg_file_.b2v_latch_pc_hi.we;
    release dut.reg_file_.b2v_latch_pc_lo.db;
    release dut.reg_file_.b2v_latch_pc_hi.db;
-#1 force dut.reg_file_.b2v_latch_ir_lo.we=1;
+   // Preset ir
+   force dut.reg_file_.b2v_latch_ir_lo.we=1;
    force dut.reg_file_.b2v_latch_ir_hi.we=1;
    force dut.reg_file_.b2v_latch_ir_lo.db=8'h00;
    force dut.reg_file_.b2v_latch_ir_hi.db=8'h00;
-#1 release dut.reg_file_.b2v_latch_ir_lo.we;
+#2 release dut.reg_file_.b2v_latch_ir_lo.we;
    release dut.reg_file_.b2v_latch_ir_hi.we;
    release dut.reg_file_.b2v_latch_ir_lo.db;
    release dut.reg_file_.b2v_latch_ir_hi.db;
-#1    ram.Mem[0] = 8'hdd;
+   // Preset memory
+   ram.Mem[0] = 8'hdd;
    ram.Mem[1] = 8'h4e;
    ram.Mem[2] = 8'h2e;
+   // Preset memory
    ram.Mem[55673] = 8'h76;
-#1 force dut.z80_top_ifc_n.fpga_reset=0;
-   force dut.address_latch_.abus=16'h0000;#3 release dut.reg_control_.ctl_reg_sys_we;
-   release dut.address_latch_.abus;#4 release dut.reg_file_.reg_gp_we;
+   force dut.z80_top_ifc_n.fpga_reset=0;
+   force dut.address_latch_.abus=16'h0000;
+   release dut.reg_control_.ctl_reg_sys_we;
+   release dut.reg_file_.reg_gp_we;
+#3
+   release dut.address_latch_.abus;
 #1
-#32 // Execute
+#36 // Execute
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
-#2 force dut.reg_file_.reg_gp_we=0;
+#2
+#1 force dut.reg_file_.reg_gp_we=0;
    force dut.z80_top_ifc_n.fpga_reset=1;
    if (dut.reg_file_.b2v_latch_af_lo.latch!==8'hf7) $fdisplay(f,"* Reg af f=%h !=f7",dut.reg_file_.b2v_latch_af_lo.latch);
    if (dut.reg_file_.b2v_latch_af_hi.latch!==8'h7b) $fdisplay(f,"* Reg af a=%h !=7b",dut.reg_file_.b2v_latch_af_hi.latch);
@@ -4308,10 +4796,9 @@ force dut.reg_file_.b2v_latch_af_lo.we=1;
    if (dut.reg_file_.b2v_latch_iy_hi.latch!==8'h17) $fdisplay(f,"* Reg iy i=%h !=17",dut.reg_file_.b2v_latch_iy_hi.latch);
    if (dut.reg_file_.b2v_latch_sp_lo.latch!==8'h00) $fdisplay(f,"* Reg sp p=%h !=00",dut.reg_file_.b2v_latch_sp_lo.latch);
    if (dut.reg_file_.b2v_latch_sp_hi.latch!==8'h00) $fdisplay(f,"* Reg sp s=%h !=00",dut.reg_file_.b2v_latch_sp_hi.latch);
-#2 if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
+   if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-#1
 //--------------------------------------------------------------------------------
-`define TOTAL_CLKS 1589
+`define TOTAL_CLKS 1501
 $fdisplay(f,"=== Tests completed ===");

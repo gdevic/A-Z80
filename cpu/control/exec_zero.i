@@ -103,6 +103,8 @@ ctl_inc_zero = 0;
 ctl_al_we = 0;
 ctl_inc_limit6 = 0;
 ctl_bus_inc_oe = 0;
+ctl_apin_mux = 0;
+ctl_apin_mux2 = 0;
 
 // Module: bus/bus_control.v
 ctl_bus_ff_oe = 0;

@@ -89,22 +89,22 @@ applicable agreement for further details.
 	(port
 		(pt 0 176)
 		(input)
-		(text "ctl_im_we" (rect 0 0 57 14)(font "Arial" (font_size 8)))
-		(text "ctl_im_we" (rect 21 171 78 185)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 171 36 185)(font "Arial" (font_size 8)))
 		(line (pt 0 176)(pt 16 176))
 	)
 	(port
 		(pt 0 192)
 		(input)
-		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
-		(text "nreset" (rect 21 187 57 201)(font "Arial" (font_size 8)))
+		(text "ctl_im_we" (rect 0 0 57 14)(font "Arial" (font_size 8)))
+		(text "ctl_im_we" (rect 21 187 78 201)(font "Arial" (font_size 8)))
 		(line (pt 0 192)(pt 16 192))
 	)
 	(port
 		(pt 0 208)
 		(input)
-		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
-		(text "clk" (rect 21 203 36 217)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 21 203 57 217)(font "Arial" (font_size 8)))
 		(line (pt 0 208)(pt 16 208))
 	)
 	(port

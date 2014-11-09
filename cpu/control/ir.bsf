@@ -33,9 +33,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "ctl_ir_we" (rect 0 0 53 14)(font "Arial" (font_size 8)))
-		(text "ctl_ir_we" (rect 21 43 74 57)(font "Arial" (font_size 8)))
+		(text "clk" (rect 0 0 15 14)(font "Arial" (font_size 8)))
+		(text "clk" (rect 21 43 36 57)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "ctl_ir_we" (rect 0 0 53 14)(font "Arial" (font_size 8)))
+		(text "ctl_ir_we" (rect 21 59 74 73)(font "Arial" (font_size 8)))
+		(line (pt 0 64)(pt 16 64))
 	)
 	(port
 		(pt 176 32)

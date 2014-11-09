@@ -1,10 +1,10 @@
-//============================================================================
+//=============================================================================
 // Module execute in control/decode Z80 CPU
 //
 // Copyright 2014 Goran Devic
 //
 // This module implements the instruction execute state logic.
-//============================================================================
+//=============================================================================
 
 module execute
 (
@@ -30,7 +30,7 @@ module execute
     // Inputs from various blocks
     //----------------------------------------------------------
     input wire fpga_reset,              // Internal fpga test mode
-    input wire reset,                   // Internal reset signal
+    input wire nreset,                  // Internal reset signal
     input wire clk,                     // Internal clock signal
     input wire in_intr,                 // Servicing maskable interrupt
     input wire in_nmi,                  // Servicing non-maskable interrupt
@@ -120,10 +120,10 @@ assign rsel0 = op0 ^ (op1 & op2);
 
 always_comb
 begin
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent generating
     // latches.
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     `include "exec_zero.i"
 
     // Reset internal control wires
@@ -140,43 +140,37 @@ begin
     nonRep = 0;
     pc_inc = 1;
 
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // State-based signal assignment
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     `include "exec_matrix.i"
 
     // List more specific combinational signal assignments after the include
-    //------------------------------------------------------------------------
-    // Reset control: Set PC and IR to 0 in two clocks (phases)
-    //------------------------------------------------------------------------
-    // Suppress clear in test mode: helps fuse tests to set registers
-    if (reset && !fpga_reset) begin
+    //-------------------------------------------------------------------------
+    // Reset control
+    //-------------------------------------------------------------------------
+    if (!nreset) begin
         // Clear the address latch, PC and IR registers
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
-        ctl_bus_inc_oe = 1;             // Incrementer to the abus
+        ctl_inc_cy = 0;                 // Don't increment, pass-through
         ctl_al_we = 1;                  // Write 0 to the address latch
-        ctl_reg_sel_pc = 1;             // Write to the PC
-        ctl_reg_sel_ir = 1;             // Write to the IR
-        ctl_reg_sys_we = 1;             // Perform write
-        ctl_reg_sys_hilo = 2'b11;       // 16-bit width & write
 
         // Clear instruction opcode register
         ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
-        ctl_ir_we = ~clk;               // And write it into the instruction register
+        ctl_ir_we = 1;                  // And write it into the instruction register
     end
 
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     // At M1/T4 advance an instruction if it did not trigger any PLA entry
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     if (M1 && T4 && !validPLA) begin
         nextM = 1;                      // Complete the default M1 cycle
         setM1 = 1;                      // Set next M1 cycle
     end
 
-    //------------------------------------------------------------------------
-    // The last cycle of an instruction is also the first cycle of the next
-    // instruction because of the PC => Address Latch overlap
-    //------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    // The last cycle of an instruction is also the first cycle of the next one
+    //-------------------------------------------------------------------------
     if (setM1) begin
         ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;   // Select 16-bit PC
         ctl_al_we=1;                    // Write the PC into the address latch
