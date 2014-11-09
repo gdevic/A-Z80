@@ -349,7 +349,7 @@ RST_NMI         ctl_sw_1d=!in_nmi; ctl_66_oe=in_nmi;
 // 1. IM1 mode, force 0xFF on the db0 bus
 // 2. Clear IFF1 and IFF2 (done by the intr logic on posedge of in_intr)
 RST_INT         ctl_bus_ff_oe=in_intr & im1;
-RETN            ctl_iff1_iff2=1;                // RETN copies IFF2 into IFF1 (restores it)
+RETN            ctl_iff1_iff2=1;                // RETN copies IFF2 into IFF1
 NO_INTS         ctl_no_ints=1;                  // Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD)
 
 EvalCond        ctl_eval_cond=1;                // Evaluate flags condition based on the opcode[5:3]

@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:45:04 2014"
+// CREATED		"Sun Nov 09 09:13:38 2014"
 
 module resets(
 	reset_in,
@@ -23,7 +23,6 @@ module resets(
 	T2,
 	fpga_reset,
 	clrpc,
-	reset,
 	nreset
 );
 
@@ -34,7 +33,6 @@ input wire	M1;
 input wire	T2;
 input wire	fpga_reset;
 output reg	clrpc;
-output wire	reset;
 output wire	nreset;
 
 wire	nclk;
@@ -48,7 +46,6 @@ wire	SYNTHESIZED_WIRE_3;
 reg	DFF_res;
 wire	SYNTHESIZED_WIRE_6;
 
-assign	reset = DFF_res;
 assign	nreset = SYNTHESIZED_WIRE_6;
 
 

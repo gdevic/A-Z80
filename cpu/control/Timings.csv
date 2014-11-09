@@ -593,15 +593,15 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 																																		
 #if pla[97] : di/ei			4																															
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
-#002H T2  AB:000 DB:F3  M1      MREQ RD	1	2	fMFetch																														DI_EI	
-#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
+#002H T2  AB:000 DB:F3  M1      MREQ RD	1	2	fMFetch																															
+#003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																														DI_EI	
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1																											NO_INTS	"At last M/T, inhibit interrupts"
 #end																																		
 																																		
 #if pla[96] : im n			4																															
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:46  M1      MREQ RD	1	2	fMFetch																															
-#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																														IM	M1/T3 reads in mode # from opcode[4:3]
+#007H T3  AB:001 DB:--     RFSH	1	3	fMFetch												<	R																	IM	M1/T3 reads in mode # from opcode[4:3]
 #008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	1	1	1																												
 #end																																		
 																																		

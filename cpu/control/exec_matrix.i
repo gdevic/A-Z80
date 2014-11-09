@@ -1977,7 +1977,7 @@ if (pla[95]) begin
 end
 
 if (pla[97]) begin
-    if (M1 && T2) begin 
+    if (M1 && T3) begin 
                     ctl_iffx_bit=op3; ctl_iffx_we=1; /* DI/EI */ end
     if (M1 && T4) begin  validPLA=1; nextM=1; setM1=1;
                     ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
@@ -1985,6 +1985,8 @@ end
 
 if (pla[96]) begin
     if (M1 && T3) begin 
+                    ctl_sw_1d=1;
+                    ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_im_we=1; /* IM n ('n' is read by opcode[4:3]) */ end
     if (M1 && T4) begin  validPLA=1; nextM=1; setM1=1; end
 end
@@ -3776,7 +3778,7 @@ end
 
 if (pla[46]) begin
     if (M1 && T4) begin  validPLA=1; nextM=1;
-                    ctl_iff1_iff2=1; /* RETN copies IFF2 into IFF1 (restores it) */ end
+                    ctl_iff1_iff2=1; /* RETN copies IFF2 into IFF1 */ end
     if (M2 && T1) begin  fMRead=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;/* Read 16-bit SP, enable SW4 downstream */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end

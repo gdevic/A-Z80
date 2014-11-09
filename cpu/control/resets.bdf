@@ -117,22 +117,6 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 776 328 952 344)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "reset" (rect 90 0 114 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-)
-(pin
-	(output)
 	(rect 776 216 952 232)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "nreset" (rect 90 0 120 12)(font "Arial" ))
@@ -703,10 +687,6 @@ applicable agreement for further details.
 	(pt 712 336)
 )
 (connector
-	(pt 712 336)
-	(pt 776 336)
-)
-(connector
 	(pt 744 152)
 	(pt 776 152)
 )
@@ -730,7 +710,6 @@ applicable agreement for further details.
 (junction (pt 320 320))
 (junction (pt 232 352))
 (junction (pt 712 224))
-(junction (pt 712 336))
 (text "Special reset, USPTO 4,486,827 by Shima et al." (rect 40 24 371 40)(font "Arial" (font_size 10)))
 (text "Needed only for FPGAs" (rect 40 72 174 86)(font "Arial" (font_size 8)))
 (title_block

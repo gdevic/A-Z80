@@ -72,13 +72,6 @@ applicable agreement for further details.
 		(text "nreset" (rect 95 43 131 57)(font "Arial" (font_size 8)))
 		(line (pt 152 48)(pt 136 48))
 	)
-	(port
-		(pt 152 64)
-		(output)
-		(text "reset" (rect 0 0 29 14)(font "Arial" (font_size 8)))
-		(text "reset" (rect 102 59 131 73)(font "Arial" (font_size 8)))
-		(line (pt 152 64)(pt 136 64))
-	)
 	(drawing
 		(rectangle (rect 16 16 136 112))
 	)

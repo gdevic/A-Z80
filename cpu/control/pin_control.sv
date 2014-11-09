@@ -16,7 +16,7 @@ module pin_control
     input wire clk,                     // Input clock
     input wire mwait,                   // WAIT   - External device is not ready
     input wire busrq,                   // BUSRQ  - External device requests access to the bus
-    input wire reset,                   // RESET  - Input reset pin
+    input wire nreset,                  // RESET  - Input reset pin
 
     //----------------------------------------------------------
     // Outputs to the chip's control pin pads
@@ -61,6 +61,9 @@ module pin_control
     output wire T1up,                   // T1 clock up phase
     output wire T3up                    // T3 clock up phase
 );
+
+logic reset;
+assign reset = !nreset;
 
 //============================================================================
 // Glitch prevention and clock-up signal generation

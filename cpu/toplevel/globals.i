@@ -157,7 +157,6 @@ wire [104:0] pla;
 
 // Module: control/resets.v
 wire clrpc;
-wire reset;
 wire nreset;
 
 // Module: control/sequencer.v
