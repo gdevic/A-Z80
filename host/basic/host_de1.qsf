@@ -590,7 +590,6 @@ set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_control.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/sequencer.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/resets.v
-set_global_assignment -name VERILOG_FILE ../../cpu/control/mem_cell.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/ir.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/interrupts.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/decode_state.v
@@ -608,6 +607,7 @@ set_global_assignment -name VERILOG_FILE ../../cpu/bus/control_pins_n.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/bus_control.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/address_pins.v
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/address_latch.v
+set_global_assignment -name VERILOG_FILE ../../cpu/bus/address_mux.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_slice.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_shifter_core.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_select.v

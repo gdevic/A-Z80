@@ -58,9 +58,8 @@ begin
     endcase
 end
 
-// Generate interrupt at around the time of vertical retrace start
-// TODO: Play with the vga_hc compare value (nINT duration), as for now it affects the stability
-assign vs_nintr = (vga_vc==35 && (vga_hc<100))? 0 : 1;
+// Generate interrupt at around the time of the vertical retrace start
+assign vs_nintr = (vga_vc==0 && (vga_hc<120))? 0 : 1;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // VGA active display area 640x480
