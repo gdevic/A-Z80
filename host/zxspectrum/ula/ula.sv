@@ -49,8 +49,8 @@ module ula
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL and clocks block
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wire clk_pix;                   // VGA pixel clock (25.175 MHz)
-wire clk_ula;                   // ULA master clock (14 MHz)
+wire clk_pix;                       // VGA pixel clock (25.175 MHz)
+wire clk_ula;                       // ULA master clock (14 MHz)
 assign clk_vram = clk_pix;
 pll pll_( .locked(locked), .inclk0(CLOCK_27), .c0(clk_pix), .c1(clk_ula) );
 
@@ -59,13 +59,15 @@ clocks clocks_( .* );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // The border color index
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg [2:0] border;               // Border color index value
+reg [2:0] border;                   // Border color index value
 
 always @(posedge clk_cpu)
 begin
     if (A[0]==0 && io_we==1) begin
         border <= D[2:0];
-        pcm_outl[15] <= D[4];
+        pcm_outl[15] <= D[4];       // EAR output (produces a louder sound)
+        pcm_outl[14] <= D[3];       // MIC (echoes the input)
+        pcm_outl[13] <= pcm_inl[15];// Let us hear the loading!
     end
 end
 
