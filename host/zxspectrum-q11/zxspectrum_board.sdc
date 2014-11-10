@@ -1,110 +1,39 @@
-## Generated SDC file "zxspectrum_board.sdc"
-
-## Copyright (C) 1991-2011 Altera Corporation
-## Your use of Altera Corporation's design tools, logic functions 
-## and other software and tools, and its AMPP partner logic 
-## functions, and any output files from any of the foregoing 
-## (including device programming or simulation files), and any 
-## associated documentation or information are expressly subject 
-## to the terms and conditions of the Altera Program License 
-## Subscription Agreement, Altera MegaCore Function License 
-## Agreement, or other applicable license agreement, including, 
-## without limitation, that your use is for the sole purpose of 
-## programming logic devices manufactured by Altera and sold by 
-## Altera or its authorized distributors.  Please refer to the 
-## applicable agreement for further details.
-
-
-## VENDOR  "Altera"
-## PROGRAM "Quartus II"
-## VERSION "Version 11.0 Build 208 07/03/2011 Service Pack 1 SJ Full Version"
-
-## DATE    "Sun Oct 26 08:07:36 2014"
-
-##
-## DEVICE  "EP2C20F484C7"
-##
-
-
 #**************************************************************
-# Time Information
+# Custom timing constrains
 #**************************************************************
-
 set_time_format -unit ns -decimal_places 3
 
+# Create base input clocks into the design and tie them to the input ports (chip pins) into the FPGA
+create_clock -name "CLOCK_27" -period 27MHz [get_ports {CLOCK_27}]
+create_clock -name "CLOCK_24" -period 24MHz [get_ports {CLOCK_24}]
 
+# Cast a generic min/max input delay
+set_input_delay -clock CLOCK_27 -max 5 [all_inputs]
+set_input_delay -clock CLOCK_27 -min 1 [all_inputs]
 
-#**************************************************************
-# Create Clock
-#**************************************************************
+set_input_delay -add_delay -max -clock [get_clocks {CLOCK_24}]  20.000 [get_ports {CLOCK_24}]
+set_input_delay -add_delay -min -clock [get_clocks {CLOCK_24}]  1.000 [get_ports {CLOCK_24}]
 
-create_clock -name {CLOCK_27} -period 37.037 -waveform { 0.000 18.518 } [get_ports {CLOCK_27}]
-create_clock -name {ula:ula_|clocks:clocks_|clk_cpu} -period 1.000 -waveform { 0.000 0.500 } [get_registers {ula:ula_|clocks:clocks_|clk_cpu}]
-create_clock -name {ula:ula_|clocks:clocks_|div2} -period 1.000 -waveform { 0.000 0.500 } [get_registers {ula:ula_|clocks:clocks_|div2}]
-create_clock -name {z80_top_direct_n:z80_|clk_delay:clk_delay_|SYNTHESIZED_WIRE_8} -period 1.000 -waveform { 0.000 0.500 } [get_registers {z80_top_direct_n:z80_|clk_delay:clk_delay_|SYNTHESIZED_WIRE_8}]
+set_input_delay -add_delay -max -clock [get_clocks {CLOCK_27}]  20.000 [get_ports {CLOCK_27}]
+set_input_delay -add_delay -min -clock [get_clocks {CLOCK_27}]  1.000 [get_ports {CLOCK_27}]
 
+# Automatically constrain PLL and other generated clocks and
+# create the associated input clock based on the PLL settings
+derive_pll_clocks -create_base_clocks
+# The line above basically creates these clocks:
+#create_generated_clock -name {ula_|pll_|altpll_component|pll|clk[0]} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 15 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[0]}] 
+#create_generated_clock -name {ula_|pll_|altpll_component|pll|clk[1]} -source [get_pins {ula_|pll_|altpll_component|pll|inclk[0]}] -duty_cycle 50.000 -multiply_by 14 -divide_by 27 -master_clock {CLOCK_27} [get_pins {ula_|pll_|altpll_component|pll|clk[1]}] 
 
-#**************************************************************
-# Create Generated Clock
-#**************************************************************
+# Define clock divider by 4:
+create_generated_clock -name clk_cpu -source [get_pins {ula_|clocks_|clk_cpu|clk}] -divide_by 4 [get_pins {ula_|clocks_|clk_cpu|regout}]
 
-derive_pll_clocks
+# Set independent clock groups that don't interfere with each other:
+set_clock_groups -asynchronous \
+ -group [get_clocks {CLOCK_24}] \
+ -group [get_clocks {CLOCK_27}] \
+ -group [get_clocks {clk_cpu}] \
+ -group ula_|pll_|altpll_component|pll|clk[0] \
+ -group ula_|pll_|altpll_component|pll|clk[1]
 
-#**************************************************************
-# Set Clock Latency
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Clock Uncertainty
-#**************************************************************
-
-derive_clock_uncertainty
-
-#**************************************************************
-# Set Input Delay
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Output Delay
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Clock Groups
-#**************************************************************
-
-
-
-#**************************************************************
-# Set False Path
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Multicycle Path
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Maximum Delay
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Minimum Delay
-#**************************************************************
-
-
-
-#**************************************************************
-# Set Input Transition
-#**************************************************************
-
+# Constrain the output I/O paths
+set_output_delay -clock CLOCK_24 2 [all_outputs]

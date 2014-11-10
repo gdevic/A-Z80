@@ -59,7 +59,7 @@ begin
 end
 
 // Generate interrupt at around the time of the vertical retrace start
-assign vs_nintr = (vga_vc==0 && (vga_hc<120))? 0 : 1;
+assign vs_nintr = (vga_vc=='0 && (vga_hc<10'd120))? '0 : '1;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // VGA active display area 640x480
@@ -83,9 +83,11 @@ reg [7:0] attr;                 // Current attribute data register
 
 wire [4:0] pix_x;               // Column 0-31
 wire [7:0] pix_y;               // Active display pixel Y coordinate
-// div 16 because we use 16 clocks for 1 byte of display; also prefetch 1 byte (+16)
-assign pix_x = (vga_hc-208+16)>>4;
-assign pix_y = (vga_vc-83)>>1;  // Lines are (also) doubled vertically
+// We use 16 clocks for 1 byte of display; also prefetch 1 byte (+16)
+wire [9:0] xd = vga_hc-10'd192; // =vga_hc-208+16
+assign pix_x = xd[8:4];         // Effectively divide by 16
+wire [9:0] yd = vga_vc-10'd83;  // Lines are (also) doubled vertically
+assign pix_y = yd[8:1];         // Effectively divide by 2
 
 always @(posedge clk_pix)
 begin

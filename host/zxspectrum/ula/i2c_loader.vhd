@@ -128,7 +128,7 @@ begin
     end process;
 
     -- The I2C loader process
-    process(nRESET,CLK)
+    process(nRESET,CLK,clken)
     begin
         if nRESET = '0' then
             scl_out <= '1';
