@@ -58,24 +58,24 @@ pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg div2;                       // PLL clock divided by 2
-reg div4;                       // PLL clock divided by 4
 reg clk_cpu;                    // Final CPU clock
+
+// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reg [0:0] counter;
 
 // Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
 // and then this divider-by-4 brings the effective clock down to 3.5 MHz
 always @(posedge pll_clk)
 begin
-    div2 <= !div2;
+    if (counter=='0)
+        clk_cpu <= ~clk_cpu;
+    counter <= counter - 1'b1;
 end
-
-always @(posedge div2)
-begin
-    div4 <= !div4;
-end
-
-// Supply the CPU clock using a global clock driver to minimize skew
-clkctrl clkctrl_( .inclk(div4), .outclk(clk_cpu) );
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
@@ -96,6 +96,8 @@ begin
         3'b101: begin   // Memory read
                 casez (A[15:14])
                     2'b00:  D[7:0] = RamData;
+                default:
+                    D[7:0] = 8'h76; // HALT
                 endcase
                 end
         // IO read *** Interrupts test ***
@@ -104,6 +106,8 @@ begin
         // In IM0: this is the opcode of an instruction to execute, set it to 0xFF
         // In IM2: this is a vector, set it to 0x80 (to correspond to a test program Hello World)
         3'b011: D[7:0] = 8'h80;
+    default:
+        D[7:0] = {8{1'bz}};
     endcase
 end
 
