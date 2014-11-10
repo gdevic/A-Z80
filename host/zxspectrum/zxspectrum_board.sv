@@ -47,6 +47,8 @@ module zxspectrum_board
     output wire SRAM_LB_N,
 
     //-------- Misc and debug -------------------
+    input wire SW0,                 // Enable/disable interrupts
+    output wire [0:0] LEDR,         // Glow red when interrupts are *disabled*
     inout wire [31:0] GPIO_1
 );
 `default_nettype none
@@ -162,7 +164,8 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = vs_nintr;
+wire nINT = (SW0==0)? vs_nintr : '1;// SW0 disables interrupts and, hence, keyboard
+assign LEDR[0] = SW0;               // Glow red when keyboard is *disabled*
 wire nNMI = 1;
 wire nBUSRQ = 1;
 
