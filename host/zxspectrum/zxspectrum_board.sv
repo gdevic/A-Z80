@@ -7,6 +7,7 @@ module zxspectrum_board
     input wire CLOCK_27,            // Input clock 27 MHz
     input wire CLOCK_24,            // Input clock 24 MHz
     input wire KEY0,                // RESET button
+    input wire KEY1,                // NMI button
 
     //-------- PS/2 Keyboard --------------------
     input wire PS2_CLK,
@@ -166,7 +167,7 @@ wire nBUSACK;
 wire nWAIT = 1;
 wire nINT = (SW0==0)? vs_nintr : '1;// SW0 disables interrupts and, hence, keyboard
 assign LEDR[0] = SW0;               // Glow red when keyboard is *disabled*
-wire nNMI = 1;
+wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
 
 z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
