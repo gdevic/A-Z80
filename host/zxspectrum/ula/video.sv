@@ -59,7 +59,7 @@ begin
 end
 
 // Generate interrupt at around the time of the vertical retrace start
-assign vs_nintr = (vga_vc=='0 && (vga_hc<10'd120))? '0 : '1;
+assign vs_nintr = (vga_vc=='0 && vga_hc[9:7]=='0)? '0 : '1;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // VGA active display area 640x480
