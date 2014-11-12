@@ -3,7 +3,21 @@
 // This module takes scan-codes from the PS/2 keyboard input and sets
 // corresponding ZX key bitfields which are read by IN (FE) instructions.
 //
-// This code was mostly ported from Mike Stirling's emulator code in VHDL
+// PS/2      |  ZX Spectrum
+// ----------+-----------------
+// CTRL      |  CAPS SHIFT
+// ALT       |  SYMBOL SHIFT 
+//
+// In addition to regular alpha-numeric keys, this code simulates many standard
+// symbols on the PS/2 keyboard for convenience.
+//
+// PS/2      |  ZX Spectrum
+// ----------+-----------------
+// BACKSPACE |  DELETE
+// Arrows Left, Right, Up, Down
+// ESC       |  BREAK (CAPS+SPACE)
+// SHIFT => PS/2 shift for these separate additional keys: -_ += ;: "' <, >. ?/
+//
 //============================================================================
 module zx_keyboard
 (
@@ -23,10 +37,11 @@ module zx_keyboard
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg [4:0] keys [0:7];     // 8 rows of 5 bits each
+reg [4:0] keys [0:7];       // 8 rows of 5 bits each
 
-reg released;
-reg extended;
+reg released;               // Tracks "released" scan code (F0)
+reg extended;               // Tracks "extended" scan code (E0)
+reg shifted;                // Tracks local "shifted" state
 
 // Output requested row of keys continously
 always_comb
@@ -41,7 +56,7 @@ begin
         8'b10111111: key_row = keys[6];
         8'b01111111: key_row = keys[7];
     default:
-        key_row = 5'b1;    
+        key_row = 5'b11111;    
     endcase
 end
 
@@ -50,6 +65,7 @@ begin
     if (!reset) begin
         released <= 0;
         extended <= 0;
+        shifted  <= 0;
 
         keys[0] <= '1;
         keys[1] <= '1;
@@ -70,13 +86,36 @@ begin
             extended <= 0;
             released <= 0;            
 
-            if (!extended) begin
+            if (extended) begin
+                // Extended keys
+                case (scan_code)
+                    8'h6B:  begin                       // LEFT
+                            keys[0][0] <= released;     // CAPS SHIFT
+                            keys[3][4] <= released;     // 5
+                            end
+                    8'h72:  begin                       // DOWN
+                            keys[0][0] <= released;     // CAPS SHIFT
+                            keys[4][4] <= released;     // 6
+                            end
+                    8'h75:  begin                       // UP
+                            keys[0][0] <= released;     // CAPS SHIFT
+                            keys[4][3] <= released;     // 7
+                            end
+                    8'h74:  begin                       // RIGHT
+                            keys[0][0] <= released;     // CAPS SHIFT
+                            keys[4][2] <= released;     // 8
+                            end
+                endcase
+            end
+            else begin
                 // For each PS/2 scan-code, set the ZX keyboard matrix state
                 // 'released' contains 0 when a key is pressed; 1 otherwise
                 case (scan_code)
+                    8'h12:  shifted <= !released;       // Local SHIFT key (left)
+                    8'h59:  shifted <= !released;       // Local SHIFT key (right)
+
                     8'h14:  keys[0][0] <= released;     // CAPS SHIFT = Left or right Ctrl
-                    8'h12:  keys[0][0] <= released;     // CAPS SHIFT = Left Shift
-                    8'h59:  keys[0][0] <= released;     // CAPS SHIFT = Right Shift
+
                     8'h1A:  keys[0][1] <= released;     // Z
                     8'h22:  keys[0][2] <= released;     // X
                     8'h21:  keys[0][3] <= released;     // C
@@ -127,6 +166,80 @@ begin
                     8'h66:  begin                       // BACKSPACE
                             keys[0][0] <= released;
                             keys[4][0] <= released;
+                            end
+                    8'h76:  begin                       // ESC -> BREAK
+                            keys[0][0] <= released;     // CAPS SHIFT
+                            keys[7][0] <= released;     // SPACE
+                            end
+                    8'h4E:  begin                       // - or (shifted) _
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[6][3] <= released;     // J
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[4][0] <= released;     // 0
+                            end
+                            end
+                    8'h55:  begin                       // = or (shifted) +
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[6][1] <= released;     // L
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[6][2] <= released;     // K
+                            end
+                            end
+                    8'h52:  begin                       // ' or (shifted) "
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[4][3] <= released;     // 7
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[5][0] <= released;     // P
+                            end
+                            end
+                    8'h4C:  begin                       // ; or (shifted) :
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[5][1] <= released;     // O
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[0][1] <= released;     // Z
+                            end
+                            end
+                    8'h41:  begin                       // , or (shifted) <
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[7][3] <= released;     // N
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[2][3] <= released;     // R
+                            end
+                            end
+                    8'h49:  begin                       // . or (shifted) >
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[7][2] <= released;     // M
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[2][4] <= released;     // T
+                            end
+                            end
+                    8'h4A:  begin                       // / or (shifted) ?
+                            if (!shifted) begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[0][4] <= released;     // V
+                            end
+                            else begin
+                                keys[7][1] <= released;     // SYMBOL SHIFT (Red)
+                                keys[0][3] <= released;     // C
+                            end
                             end
                 endcase
             end

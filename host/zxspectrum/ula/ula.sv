@@ -65,9 +65,15 @@ always @(posedge clk_cpu)
 begin
     if (A[0]==0 && io_we==1) begin
         border <= D[2:0];
-        pcm_outl[15] <= D[4];       // EAR output (produces a louder sound)
-        pcm_outl[14] <= D[3];       // MIC (echoes the input)
-        pcm_outl[13] <= pcm_inl[15];// Let us hear the loading!
+        // EAR output (produces a louder sound)
+        pcm_outl[14] <= D[4];       // Why [14] and not [15]? Less loud.
+        pcm_outr[14] <= D[4];
+        // MIC (echoes the input)
+        pcm_outl[13] <= D[3];
+        pcm_outr[13] <= D[3];
+        // Let us hear the tape loading!
+        pcm_outl[12] <= pcm_inl[14] | pcm_inr[14];
+        pcm_outr[12] <= pcm_inl[14] | pcm_inr[14];
     end
 end
 
@@ -82,8 +88,8 @@ i2c_loader i2c_loader_( .CLK(CLOCK_24), .nRESET(reset), .I2C_SCL(I2C_SCLK), .I2C
 assign AUD_DACLRCK = AUD_ADCLRCK;
 wire [15:0] pcm_inl;
 wire [15:0] pcm_inr;
-wire [15:0] pcm_outl;
-wire [15:0] pcm_outr;
+reg  [15:0] pcm_outl;
+reg  [15:0] pcm_outr;
     
 i2s_intf i2s_intf_( .CLK(CLOCK_24), .nRESET(reset),
     .PCM_INL(pcm_inl[15:0]), .PCM_INR(pcm_inr[15:0]), .PCM_OUTL(pcm_outl[15:0]), .PCM_OUTR(pcm_outr[15:0]), 
@@ -106,6 +112,6 @@ ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 wire [4:0] key_row;
 zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
-assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[15], 1'b0, key_row[4:0] } : 8'hFF;
+assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[14] | pcm_inr[14], 1'b0, key_row[4:0] } : 8'hFF;
 
 endmodule
