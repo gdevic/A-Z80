@@ -3957,7 +3957,8 @@ end
 if (pla[3]) begin
     if (M1 && T2) begin 
                     ctl_state_ixiy_we=1; ctl_state_iy_set=op5; setIXIY=1; /* IX/IY prefix */ end
-    if (M1 && T4) begin  validPLA=1; nextM=1; setM1=1; end
+    if (M1 && T4) begin  validPLA=1; nextM=1; setM1=1;
+                    ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
 
 if (pla[44]) begin
