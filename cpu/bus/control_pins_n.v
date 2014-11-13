@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Oct 13 12:37:15 2014"
+// CREATED		"Thu Nov 13 23:03:02 2014"
 
 module control_pins_n(
 	m1,
@@ -27,25 +27,25 @@ module control_pins_n(
 	CPUCLK,
 	pin_control_oe,
 	in_halt,
-	pin_RESET,
-	pin_WAIT,
-	pin_BUSRQ,
-	pin_INT,
-	pin_NMI,
+	pin_nWAIT,
+	pin_nBUSRQ,
+	pin_nINT,
+	pin_nNMI,
+	pin_nRESET,
 	nmi,
 	busrq,
 	clk,
 	intr,
 	mwait,
 	reset_in,
-	pin_M1,
-	pin_MREQ,
-	pin_IORQ,
-	pin_RD,
-	pin_WR,
-	pin_RFSH,
-	pin_HALT,
-	pin_BUSACK
+	pin_nM1,
+	pin_nMREQ,
+	pin_nIORQ,
+	pin_nRD,
+	pin_nWR,
+	pin_nRFSH,
+	pin_nHALT,
+	pin_nBUSACK
 );
 
 
@@ -59,25 +59,25 @@ input wire	busack;
 input wire	CPUCLK;
 input wire	pin_control_oe;
 input wire	in_halt;
-input wire	pin_RESET;
-input wire	pin_WAIT;
-input wire	pin_BUSRQ;
-input wire	pin_INT;
-input wire	pin_NMI;
+input wire	pin_nWAIT;
+input wire	pin_nBUSRQ;
+input wire	pin_nINT;
+input wire	pin_nNMI;
+input wire	pin_nRESET;
 output wire	nmi;
 output wire	busrq;
 output wire	clk;
 output wire	intr;
 output wire	mwait;
 output wire	reset_in;
-output wire	pin_M1;
-output wire	pin_MREQ;
-output wire	pin_IORQ;
-output wire	pin_RD;
-output wire	pin_WR;
-output wire	pin_RFSH;
-output wire	pin_HALT;
-output wire	pin_BUSACK;
+output wire	pin_nM1;
+output wire	pin_nMREQ;
+output wire	pin_nIORQ;
+output wire	pin_nRD;
+output wire	pin_nWR;
+output wire	pin_nRFSH;
+output wire	pin_nHALT;
+output wire	pin_nBUSACK;
 
 wire	SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_1;
@@ -89,33 +89,33 @@ assign	clk = CPUCLK;
 
 
 
-assign	pin_M1 =  ~m1;
+assign	pin_nM1 =  ~m1;
 
-assign	pin_MREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
+assign	pin_nMREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
 
-assign	pin_IORQ = pin_control_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
+assign	pin_nIORQ = pin_control_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
 
-assign	pin_RD = pin_control_oe ? SYNTHESIZED_WIRE_2 : 1'bz;
+assign	pin_nRD = pin_control_oe ? SYNTHESIZED_WIRE_2 : 1'bz;
 
-assign	pin_WR = pin_control_oe ? SYNTHESIZED_WIRE_3 : 1'bz;
+assign	pin_nWR = pin_control_oe ? SYNTHESIZED_WIRE_3 : 1'bz;
 
-assign	pin_RFSH = pin_control_oe ? SYNTHESIZED_WIRE_4 : 1'bz;
+assign	pin_nRFSH = pin_control_oe ? SYNTHESIZED_WIRE_4 : 1'bz;
 
 assign	SYNTHESIZED_WIRE_4 =  ~rfsh;
 
-assign	busrq =  ~pin_BUSRQ;
+assign	busrq =  ~pin_nBUSRQ;
 
-assign	pin_HALT =  ~in_halt;
+assign	pin_nHALT =  ~in_halt;
 
-assign	mwait =  ~pin_WAIT;
+assign	mwait =  ~pin_nWAIT;
 
-assign	pin_BUSACK =  ~busack;
+assign	pin_nBUSACK =  ~busack;
 
-assign	intr =  ~pin_INT;
+assign	intr =  ~pin_nINT;
 
-assign	nmi =  ~pin_NMI;
+assign	nmi =  ~pin_nNMI;
 
-assign	reset_in =  ~pin_RESET;
+assign	reset_in =  ~pin_nRESET;
 
 assign	SYNTHESIZED_WIRE_3 =  ~wr;
 

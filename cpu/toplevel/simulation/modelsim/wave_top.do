@@ -131,13 +131,13 @@ add wave -noupdate -group {control pins
 add wave -noupdate -group {control pins
 } /test_top/dut/nreset
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_INT
+} /test_top/dut/control_pins_/pin_nINT
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_NMI
+} /test_top/dut/control_pins_/pin_nNMI
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_RESET
+} /test_top/dut/control_pins_/pin_nRESET
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_BUSRQ
+} /test_top/dut/control_pins_/pin_nBUSRQ
 add wave -noupdate -group {control pins
 } /test_top/dut/control_pins_/m1
 add wave -noupdate -group {control pins
@@ -157,25 +157,25 @@ add wave -noupdate -group {control pins
 add wave -noupdate -group {control pins
 } /test_top/dut/control_pins_/pin_control_oe
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_WAIT
+} /test_top/dut/control_pins_/pin_nWAIT
 add wave -noupdate -group {control pins
 } /test_top/dut/control_pins_/in_halt
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_M1
+} /test_top/dut/control_pins_/pin_nM1
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_MREQ
+} /test_top/dut/control_pins_/pin_nMREQ
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_IORQ
+} /test_top/dut/control_pins_/pin_nIORQ
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_RD
+} /test_top/dut/control_pins_/pin_nRD
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_WR
+} /test_top/dut/control_pins_/pin_nWR
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_RFSH
+} /test_top/dut/control_pins_/pin_nRFSH
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_HALT
+} /test_top/dut/control_pins_/pin_nHALT
 add wave -noupdate -group {control pins
-} /test_top/dut/control_pins_/pin_BUSACK
+} /test_top/dut/control_pins_/pin_nBUSACK
 add wave -noupdate -group {control pins
 } /test_top/dut/control_pins_/nmi
 add wave -noupdate -group {control pins

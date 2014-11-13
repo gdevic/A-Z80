@@ -182,26 +182,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 448 624 624 640)
-	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
-	(text "pin_RESET" (rect 112 0 167 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 84 12)(pt 59 12))
-		(line (pt 84 4)(pt 59 4))
-		(line (pt 55 8)(pt 0 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 59 4)(pt 55 8))
-		(line (pt 59 12)(pt 55 8))
-	)
-	(flipy)
-	(text "VCC" (rect 20 7 40 17)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
 	(rect 448 392 624 408)
 	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
-	(text "pin_WAIT" (rect 120 0 167 12)(font "Arial" ))
+	(text "pin_nWAIT" (rect 114 0 167 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 84 12)(pt 59 12))
@@ -218,7 +201,7 @@ applicable agreement for further details.
 	(input)
 	(rect 448 432 624 448)
 	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
-	(text "pin_BUSRQ" (rect 108 0 167 12)(font "Arial" ))
+	(text "pin_nBUSRQ" (rect 103 0 167 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 84 12)(pt 59 12))
@@ -235,7 +218,7 @@ applicable agreement for further details.
 	(input)
 	(rect 448 552 624 568)
 	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
-	(text "pin_INT" (rect 130 0 167 12)(font "Arial" ))
+	(text "pin_nINT" (rect 124 0 167 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 84 12)(pt 59 12))
@@ -252,7 +235,24 @@ applicable agreement for further details.
 	(input)
 	(rect 448 584 624 600)
 	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
-	(text "pin_NMI" (rect 127 0 167 12)(font "Arial" ))
+	(text "pin_nNMI" (rect 121 0 167 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 84 12)(pt 59 12))
+		(line (pt 84 4)(pt 59 4))
+		(line (pt 55 8)(pt 0 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 59 4)(pt 55 8))
+		(line (pt 59 12)(pt 55 8))
+	)
+	(flipy)
+	(text "VCC" (rect 20 7 40 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 448 624 624 640)
+	(text "INPUT" (rect 15 0 43 10)(font "Arial" (font_size 6)))
+	(text "pin_nRESET" (rect 106 0 167 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 84 12)(pt 59 12))
@@ -371,7 +371,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 40 632 56)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_M1" (rect 90 0 124 12)(font "Arial" ))
+	(text "pin_nM1" (rect 90 0 130 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -387,7 +387,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 112 632 128)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_MREQ" (rect 90 0 141 12)(font "Arial" ))
+	(text "pin_nMREQ" (rect 90 0 147 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -403,7 +403,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 160 632 176)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_IORQ" (rect 90 0 138 12)(font "Arial" ))
+	(text "pin_nIORQ" (rect 90 0 144 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -419,7 +419,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 208 632 224)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_RD" (rect 90 0 126 12)(font "Arial" ))
+	(text "pin_nRD" (rect 90 0 132 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -435,7 +435,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 256 632 272)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_WR" (rect 90 0 128 12)(font "Arial" ))
+	(text "pin_nWR" (rect 90 0 134 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -451,7 +451,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 304 632 320)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_RFSH" (rect 90 0 140 12)(font "Arial" ))
+	(text "pin_nRFSH" (rect 90 0 146 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -467,7 +467,7 @@ applicable agreement for further details.
 	(output)
 	(rect 456 344 632 360)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_HALT" (rect 90 0 137 12)(font "Arial" ))
+	(text "pin_nHALT" (rect 90 0 143 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -483,7 +483,7 @@ applicable agreement for further details.
 	(output)
 	(rect 448 472 624 488)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "pin_BUSACK" (rect 90 0 154 12)(font "Arial" ))
+	(text "pin_nBUSACK" (rect 90 0 160 12)(font "Arial" ))
 	(pt 0 8)
 	(drawing
 		(line (pt 0 8)(pt 52 8))
@@ -517,7 +517,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 32 16)(pt 48 16))
 	)
 	(drawing
@@ -548,7 +548,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 32 16)(pt 48 16))
 	)
 	(drawing
@@ -579,7 +579,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 32 16)(pt 48 16))
 	)
 	(drawing
@@ -610,7 +610,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 32 16)(pt 48 16))
 	)
 	(drawing
@@ -641,7 +641,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 32 16)(pt 48 16))
 	)
 	(drawing
@@ -665,7 +665,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -690,7 +690,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -715,7 +715,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -740,7 +740,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -765,7 +765,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -790,7 +790,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -815,7 +815,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -840,7 +840,7 @@ applicable agreement for further details.
 		(pt 48 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
 		(line (pt 39 16)(pt 48 16))
 	)
 	(drawing
@@ -865,7 +865,7 @@ applicable agreement for further details.
 		(pt 0 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 2 7 16 19)(font "Courier New" (bold))(invisible))
 		(line (pt 9 16)(pt 0 16))
 	)
 	(drawing
@@ -891,7 +891,7 @@ applicable agreement for further details.
 		(pt 0 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 2 7 16 19)(font "Courier New" (bold))(invisible))
 		(line (pt 9 16)(pt 0 16))
 	)
 	(drawing
@@ -917,7 +917,7 @@ applicable agreement for further details.
 		(pt 0 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 2 7 16 19)(font "Courier New" (bold))(invisible))
 		(line (pt 9 16)(pt 0 16))
 	)
 	(drawing
@@ -943,7 +943,7 @@ applicable agreement for further details.
 		(pt 0 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 2 7 16 19)(font "Courier New" (bold))(invisible))
 		(line (pt 9 16)(pt 0 16))
 	)
 	(drawing
@@ -969,7 +969,7 @@ applicable agreement for further details.
 		(pt 0 16)
 		(output)
 		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 2 7 16 19)(font "Courier New" (bold))(invisible))
 		(line (pt 9 16)(pt 0 16))
 	)
 	(drawing
@@ -1175,11 +1175,11 @@ applicable agreement for further details.
 (title_block
 	(rect 32 688 289 740)
 	(name "title-custom-small")
-	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 6, 2014" (rect 56 3 124 17)(font "Arial" (font_size 8)))(border))
-	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
-	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "control_pins_n" (rect 43 2 143 17)(font "Arial" (font_size 9)(bold)))(border))
 	(section (rect 0 0 256 17)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 94 17)(font "Arial" (font_size 9)(bold)))(border))
-	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.0" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "control_pins_n" (rect 43 2 143 17)(font "Arial" (font_size 9)(bold)))(border))
+	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
+	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 6, 2014" (rect 56 3 124 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.1" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
 	(drawing
 	)
 )

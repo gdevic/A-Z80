@@ -36,20 +36,20 @@ module z80_top_direct_n(
 address_pins   address_pins_( .*, .abus(A[15:0]) );
 data_pins      data_pins_   ( .*, .db(db0[7:0]), .D(D[7:0]) );
 control_pins_n control_pins_( .*,
-    .pin_M1      (nM1),
-    .pin_MREQ    (nMREQ),
-    .pin_IORQ    (nIORQ),
-    .pin_RD      (nRD),
-    .pin_WR      (nWR),
-    .pin_RFSH    (nRFSH),
-    .pin_HALT    (nHALT),
-    .pin_WAIT    (nWAIT),
-    .pin_BUSACK  (nBUSACK),
-    .pin_INT     (nINT),
-    .pin_NMI     (nNMI),
-    .pin_RESET   (nRESET),
-    .pin_BUSRQ   (nBUSRQ),
-    .CPUCLK  (CLK)
+    .pin_nM1      (nM1),
+    .pin_nMREQ    (nMREQ),
+    .pin_nIORQ    (nIORQ),
+    .pin_nRD      (nRD),
+    .pin_nWR      (nWR),
+    .pin_nRFSH    (nRFSH),
+    .pin_nHALT    (nHALT),
+    .pin_nWAIT    (nWAIT),
+    .pin_nBUSACK  (nBUSACK),
+    .pin_nINT     (nINT),
+    .pin_nNMI     (nNMI),
+    .pin_nRESET   (nRESET),
+    .pin_nBUSRQ   (nBUSRQ),
+    .CPUCLK       (CLK)
  );
 
 endmodule
