@@ -8,6 +8,7 @@
 //
 // The signalling uses *positive* logic.
 //============================================================================
+// altera message_off 10175
 module uart_io (reset, clk, Address, Data, IORQ, RD, WR, uart_tx);
 
 input reset, clk;
