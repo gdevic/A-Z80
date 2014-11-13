@@ -48,8 +48,9 @@ module zxspectrum_board
     output wire SRAM_LB_N,
 
     //-------- Misc and debug -------------------
-    input wire SW0,                 // Enable/disable interrupts
-    output wire [0:0] LEDR,         // Glow red when interrupts are *disabled*
+    input wire SW0,                 // ROM selection
+    input wire SW1,                 // Enable/disable interrupts
+    output wire [1:0] LEDR,         // Shows the switch selection
     inout wire [31:0] GPIO_1
 );
 `default_nettype none
@@ -104,10 +105,15 @@ begin
 end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// 16K of ZX Spectrum ROM is in the flash at the address 0
+// 16K of the original ZX Spectrum ROM is in the flash at the address 0
+// 16K of The GOSH WONDERFUL ZX Spectrum ROM is in the flash following it
+//    http://www.wearmouth.demon.co.uk/gw03/gw03info.htm
+// SW0 selectes which ROM is going to be used by feeding the address bit 14
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 assign FL_ADDR[13:0] = A[13:0];
-assign FL_ADDR[21:14] = '0;
+assign FL_ADDR[14] = SW0;
+assign LEDR[0] = SW0;           // Glow red when using alternate ROM
+assign FL_ADDR[21:15] = '0;
 assign FL_RST_N = KEY0;
 assign FL_CE_N = 0;
 assign FL_OE_N = 0;
@@ -165,8 +171,8 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = (SW0==0)? vs_nintr : '1;// SW0 disables interrupts and, hence, keyboard
-assign LEDR[0] = SW0;               // Glow red when keyboard is *disabled*
+wire nINT = (SW1==0)? vs_nintr : '1;// SW1 disables interrupts and, hence, keyboard
+assign LEDR[1] = SW1;               // Glow red when keyboard is *disabled*
 wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
 
