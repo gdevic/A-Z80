@@ -125,6 +125,7 @@ while True:
     RegWrite("ix", r[8])
     RegWrite("iy", r[9])
     RegWrite("sp", r[10])
+    RegWrite("wz", "0000")       # Initialize WZ with 0
     RegWrite("pc", r[11])
 
     s = t1.pop(0).split(' ')

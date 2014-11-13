@@ -109,6 +109,15 @@ $fdisplay(f,"Testing opcode 00      NOP");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -272,6 +281,15 @@ $fdisplay(f,"Testing opcode ed67    RRD");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -439,6 +457,15 @@ $fdisplay(f,"Testing opcode ed6f    RLD");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -606,6 +633,15 @@ $fdisplay(f,"Testing opcode 81      ADD A,C");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -771,6 +807,15 @@ $fdisplay(f,"Testing opcode cb41    BIT 0,C");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -937,6 +982,15 @@ $fdisplay(f,"Testing opcode cb93    RES 2,E");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1103,6 +1157,15 @@ $fdisplay(f,"Testing opcode cbe5    SET 4,L");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1269,6 +1332,15 @@ $fdisplay(f,"Testing opcode 8c      ADC A,H");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1434,6 +1506,15 @@ $fdisplay(f,"Testing opcode 92      SUB D");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1599,6 +1680,15 @@ $fdisplay(f,"Testing opcode 9d      SBC A,L");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1764,6 +1854,15 @@ $fdisplay(f,"Testing opcode a3      AND E");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -1929,6 +2028,15 @@ $fdisplay(f,"Testing opcode ae      XOR (HL)");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2094,6 +2202,15 @@ $fdisplay(f,"Testing opcode b4      OR H");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2259,6 +2376,15 @@ $fdisplay(f,"Testing opcode bf      CP A");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2424,6 +2550,15 @@ $fdisplay(f,"Testing opcode 43      LD B,E");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2589,6 +2724,15 @@ $fdisplay(f,"Testing opcode 6e      LD L,(HL)");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2754,6 +2898,15 @@ $fdisplay(f,"Testing opcode e3      EX (SP),HL");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -2922,6 +3075,15 @@ $fdisplay(f,"Testing opcode 03      INC BC");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3085,6 +3247,15 @@ $fdisplay(f,"Testing opcode 3b      DEC SP");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3248,6 +3419,15 @@ $fdisplay(f,"Testing opcode 07      RLCA");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3411,6 +3591,15 @@ $fdisplay(f,"Testing opcode 1f      RRA");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3574,6 +3763,15 @@ $fdisplay(f,"Testing opcode cb09    RRC C");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3740,6 +3938,15 @@ $fdisplay(f,"Testing opcode cb11    RL C");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -3906,6 +4113,15 @@ $fdisplay(f,"Testing opcode cb36    SLL (HL)*");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4073,6 +4289,15 @@ $fdisplay(f,"Testing opcode cb52    BIT 2,D");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4239,6 +4464,15 @@ $fdisplay(f,"Testing opcode cb93    RES 2,E");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4405,6 +4639,15 @@ $fdisplay(f,"Testing opcode cbc4    SET 0,H");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4571,6 +4814,15 @@ $fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4737,6 +4989,15 @@ $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
    release dut.reg_file_.b2v_latch_sp_hi.we;
    release dut.reg_file_.b2v_latch_sp_lo.db;
    release dut.reg_file_.b2v_latch_sp_hi.db;
+   // Preset wz
+   force dut.reg_file_.b2v_latch_wz_lo.we=1;
+   force dut.reg_file_.b2v_latch_wz_hi.we=1;
+   force dut.reg_file_.b2v_latch_wz_lo.db=8'h00;
+   force dut.reg_file_.b2v_latch_wz_hi.db=8'h00;
+#2 release dut.reg_file_.b2v_latch_wz_lo.we;
+   release dut.reg_file_.b2v_latch_wz_hi.we;
+   release dut.reg_file_.b2v_latch_wz_lo.db;
+   release dut.reg_file_.b2v_latch_wz_hi.db;
    // Preset pc
    force dut.reg_file_.b2v_latch_pc_lo.we=1;
    force dut.reg_file_.b2v_latch_pc_hi.we=1;
@@ -4800,5 +5061,5 @@ $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
 //--------------------------------------------------------------------------------
-`define TOTAL_CLKS 1501
+`define TOTAL_CLKS 1559
 $fdisplay(f,"=== Tests completed ===");

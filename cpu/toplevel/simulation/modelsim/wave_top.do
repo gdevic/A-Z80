@@ -9,6 +9,7 @@ quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg
 quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_de_lo { &{/test_top/dut/reg_file_/b2v_latch_de_hi/latch, /test_top/dut/reg_file_/b2v_latch_de_lo/latch }} DE
 quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_hl_lo { &{/test_top/dut/reg_file_/b2v_latch_hl_hi/latch, /test_top/dut/reg_file_/b2v_latch_hl_lo/latch }} HL
 quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_sp_lo { &{/test_top/dut/reg_file_/b2v_latch_sp_hi/latch, /test_top/dut/reg_file_/b2v_latch_sp_lo/latch }} SP
+quietly virtual function -install /test_top/dut/reg_file_ -env /test_top/dut/reg_file_/b2v_latch_wz_lo { &{/test_top/dut/reg_file_/b2v_latch_wz_hi/latch, /test_top/dut/reg_file_/b2v_latch_wz_lo/latch }} WZ
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group {pads
 } /test_top/z80/CLK
@@ -236,6 +237,7 @@ add wave -noupdate -group regfile /test_top/dut/reg_file_/BC
 add wave -noupdate -group regfile /test_top/dut/reg_file_/DE
 add wave -noupdate -group regfile /test_top/dut/reg_file_/HL
 add wave -noupdate -group regfile /test_top/dut/reg_file_/SP
+add wave -noupdate -group regfile /test_top/dut/reg_file_/WZ
 add wave -noupdate -group regfile /test_top/dut/reg_file_/PC
 add wave -noupdate -group regfile /test_top/dut/reg_file_/IR
 add wave -noupdate -group regfile -radix hexadecimal /test_top/dut/reg_file_/db_hi_ds
