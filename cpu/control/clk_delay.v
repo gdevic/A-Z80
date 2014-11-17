@@ -14,90 +14,142 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Oct 29 06:05:52 2014"
+// CREATED		"Sun Nov 16 23:41:11 2014"
 
 module clk_delay(
-	M1,
-	T2,
 	clk,
 	in_intr,
 	nreset,
-	Tw1,
-	Tw2,
-	hold_clk_delay,
-	T2_en
+	T1,
+	latch_wait,
+	mwait,
+	M1,
+	busrq,
+	setM1,
+	hold_clk_iorq,
+	hold_clk_wait,
+	iorq_Tw,
+	busack,
+	pin_control_oe,
+	hold_clk_busrq
 );
 
 
-input wire	M1;
-input wire	T2;
 input wire	clk;
 input wire	in_intr;
 input wire	nreset;
-output wire	Tw1;
-output wire	Tw2;
-output wire	hold_clk_delay;
-output wire	T2_en;
+input wire	T1;
+input wire	latch_wait;
+input wire	mwait;
+input wire	M1;
+input wire	busrq;
+input wire	setM1;
+output wire	hold_clk_iorq;
+output wire	hold_clk_wait;
+output wire	iorq_Tw;
+output wire	busack;
+output wire	pin_control_oe;
+output wire	hold_clk_busrq;
 
-wire	SYNTHESIZED_WIRE_0;
+reg	hold_clk_busrq_ALTERA_SYNTHESIZED;
 wire	SYNTHESIZED_WIRE_6;
-wire	SYNTHESIZED_WIRE_7;
+wire	SYNTHESIZED_WIRE_1;
+reg	DFF_inst5;
+reg	SYNTHESIZED_WIRE_7;
 reg	SYNTHESIZED_WIRE_8;
-reg	SYNTHESIZED_WIRE_9;
+wire	SYNTHESIZED_WIRE_3;
 wire	SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_5;
+reg	DFFE_inst;
 
-assign	Tw1 = SYNTHESIZED_WIRE_8;
-assign	Tw2 = SYNTHESIZED_WIRE_9;
-assign	SYNTHESIZED_WIRE_7 = 1;
+assign	hold_clk_wait = DFFE_inst;
+assign	iorq_Tw = DFF_inst5;
 
 
 
 
-always@(posedge clk or negedge SYNTHESIZED_WIRE_0 or negedge SYNTHESIZED_WIRE_7)
+always@(posedge SYNTHESIZED_WIRE_6 or negedge nreset)
 begin
-if (!SYNTHESIZED_WIRE_0)
+if (!nreset)
+	begin
+	DFFE_inst <= 0;
+	end
+else
+if (SYNTHESIZED_WIRE_1)
+	begin
+	DFFE_inst <= mwait;
+	end
+end
+
+
+always@(posedge SYNTHESIZED_WIRE_6 or negedge nreset)
+begin
+if (!nreset)
 	begin
 	SYNTHESIZED_WIRE_8 <= 0;
 	end
 else
-if (!SYNTHESIZED_WIRE_7)
 	begin
-	SYNTHESIZED_WIRE_8 <= 1;
-	end
-else
-	begin
-	SYNTHESIZED_WIRE_8 <= SYNTHESIZED_WIRE_6;
+	SYNTHESIZED_WIRE_8 <= busrq;
 	end
 end
 
+assign	hold_clk_iorq = DFF_inst5 | SYNTHESIZED_WIRE_7;
 
-always@(posedge clk or negedge nreset or negedge SYNTHESIZED_WIRE_7)
+assign	busack = SYNTHESIZED_WIRE_8 & hold_clk_busrq_ALTERA_SYNTHESIZED;
+
+assign	pin_control_oe = SYNTHESIZED_WIRE_3 & nreset;
+
+assign	SYNTHESIZED_WIRE_5 = hold_clk_busrq_ALTERA_SYNTHESIZED | setM1;
+
+assign	SYNTHESIZED_WIRE_3 =  ~hold_clk_busrq_ALTERA_SYNTHESIZED;
+
+
+always@(posedge clk or negedge nreset)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_9 <= 0;
-	end
-else
-if (!SYNTHESIZED_WIRE_7)
-	begin
-	SYNTHESIZED_WIRE_9 <= 1;
+	SYNTHESIZED_WIRE_7 <= 0;
 	end
 else
 	begin
-	SYNTHESIZED_WIRE_9 <= SYNTHESIZED_WIRE_8;
+	SYNTHESIZED_WIRE_7 <= SYNTHESIZED_WIRE_4;
 	end
 end
 
-assign	SYNTHESIZED_WIRE_4 =  ~nreset;
 
-assign	SYNTHESIZED_WIRE_6 = M1 & T2 & in_intr;
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	hold_clk_busrq_ALTERA_SYNTHESIZED <= 0;
+	end
+else
+if (SYNTHESIZED_WIRE_5)
+	begin
+	hold_clk_busrq_ALTERA_SYNTHESIZED <= SYNTHESIZED_WIRE_8;
+	end
+end
 
-assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_4);
 
-assign	hold_clk_delay = SYNTHESIZED_WIRE_8 | SYNTHESIZED_WIRE_6;
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	DFF_inst5 <= 0;
+	end
+else
+	begin
+	DFF_inst5 <= SYNTHESIZED_WIRE_7;
+	end
+end
 
+assign	SYNTHESIZED_WIRE_4 = in_intr & M1 & T1;
 
-assign	T2_en = ~(SYNTHESIZED_WIRE_9 | SYNTHESIZED_WIRE_8);
+assign	SYNTHESIZED_WIRE_1 = latch_wait | DFFE_inst;
 
+assign	SYNTHESIZED_WIRE_6 =  ~clk;
+
+assign	hold_clk_busrq = hold_clk_busrq_ALTERA_SYNTHESIZED;
 
 endmodule

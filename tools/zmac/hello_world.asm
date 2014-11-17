@@ -95,10 +95,12 @@ boot:
     ; Set up for interrupt testing: see Z80\cpu\toplevel\test_top.sv
     ; IMPORTANT: To test IM0, Verilog test code needs to put 0xFF on the bus
     ;            To test IM2, the test code needs to put a vector of 0x80 !!
+    ;            This is done in tb_iorq.sv
     im  2
     ld  a,0
     ld  i,a
     ei
+    ;halt
     ; Jump into the executable at 100h
     jmp 100h
 

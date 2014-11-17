@@ -36,24 +36,51 @@ end : nmi_once
 
 // Test sending a *periodic* NMI
 always begin : nmi_rep
-//    #5000 z.nNMI <= `SET;
-    #2    z.nNMI <= `CLR;
+    repeat (3000) @(posedge clk);
+//    z.nNMI <= `SET;
+    repeat (1) @(posedge clk);
+    z.nNMI <= `CLR;
 end : nmi_rep
 
 // Infuse an INT at a certain clock
 initial begin : int_once
     repeat (1000) @(posedge clk);
 //    z.nINT <= `SET;
-    repeat (3000) @(posedge clk);
+    repeat (300) @(posedge clk);
     z.nINT <= `CLR;
 end : int_once
 
 // Test sending a *periodic* INT
 always begin : int_rep
-//    #10000 z.nINT <= `SET;
-    repeat (3000) @(posedge clk);
-    #30   z.nINT <= `CLR;
+    repeat (5000) @(posedge clk);
+//    z.nINT <= `SET;
+    repeat (300) @(posedge clk);
+    z.nINT <= `CLR;
 end : int_rep
+
+// Test WAIT.. inject at will
+initial begin : wait_once
+    repeat (1008) @(posedge clk);
+//    z.nWAIT <= `SET;
+    repeat (2) @(posedge clk);
+    z.nWAIT <= `CLR;
+end : wait_once
+
+// Test BUSRQ / BUSACK
+initial begin : busrq_once
+    repeat (10) @(posedge clk);
+//    z.nBUSRQ <= `SET;
+    repeat (10) @(posedge clk);
+    z.nBUSRQ <= `CLR;
+end : busrq_once
+
+// Test special RESET
+initial begin : spc_reset
+    repeat (40) @(posedge clk);
+//    z.nRESET <= `SET;
+    repeat (1) @(posedge clk);
+    z.nRESET <= `CLR;
+end : spc_reset
 
 endmodule
 

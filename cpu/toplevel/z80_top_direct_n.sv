@@ -1,5 +1,5 @@
 //============================================================================
-// Z80 Top level using direct wire declaration (not the interface)
+// Z80 Top level using the direct wire declaration
 //============================================================================
 // 5 MHz for simulation
 `timescale 1us/ 100 ns

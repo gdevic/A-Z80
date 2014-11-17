@@ -1,8 +1,8 @@
 //============================================================================
 // A-Z80 core, instantiates and connects all internal blocks.
 //
-// This file is included by z80_top and z80_top_direct (providing both types
-// of bindings: with or without using an interface.
+// This file is included by the "z80_top_ifc_n" and "z80_top_direct" providing
+// interface binding and direct (no interface) binding.
 //============================================================================
 
 // Include a list of top-level signal wires
@@ -32,7 +32,7 @@ assign prefix = { ~use_ixiy, use_ixiy, ~in_halt, in_alu, table_xx, table_cb, tab
 ir          instruction_reg_( .*, .db(db0[7:0]) );
 pla_decode  pla_decode_( .* );
 resets      reset_block_( .* );
-sequencer   sequencer_( .*, .hold_clk1(hold_clk_delay), .hold_clk2(hold_clk_timing) );
+sequencer   sequencer_( .* );
 execute     execute_( .* );
 interrupts  interrupts_( .*, .db(db0[4:3]) );
 decode_state decode_state_( .* );
@@ -60,6 +60,13 @@ reg_control reg_control_( .* );
 // Address latch (with the incrementer)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 address_latch address_latch_( .*, .abus({db_hi_as[7:0], db_lo_as[7:0]}) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Timing control of the external pins
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wire nM1_int;
+assign nM1_int = !((setM1 & nextM) | (fFetch & T1));
+memory_ifc memory_ifc_( .* );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Data path within the CPU in various forms, ending with data pins

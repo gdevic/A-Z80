@@ -14,16 +14,16 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Sat Nov 08 19:12:00 2014"
+// CREATED		"Sun Nov 16 23:11:10 2014"
 
 module sequencer(
 	clk,
 	nextM,
 	setM1,
-	T2_en,
-	hold_clk1,
-	hold_clk2,
 	nreset,
+	hold_clk_iorq,
+	hold_clk_wait,
+	hold_clk_busrq,
 	M1,
 	M2,
 	M3,
@@ -35,17 +35,18 @@ module sequencer(
 	T3,
 	T4,
 	T5,
-	T6
+	T6,
+	timings_en
 );
 
 
 input wire	clk;
 input wire	nextM;
 input wire	setM1;
-input wire	T2_en;
-input wire	hold_clk1;
-input wire	hold_clk2;
 input wire	nreset;
+input wire	hold_clk_iorq;
+input wire	hold_clk_wait;
+input wire	hold_clk_busrq;
 output wire	M1;
 output wire	M2;
 output wire	M3;
@@ -58,15 +59,16 @@ output wire	T3;
 output wire	T4;
 output wire	T5;
 output reg	T6;
+output wire	timings_en;
 
 wire	ena_M;
 wire	ena_T;
-reg	SYNTHESIZED_WIRE_20;
 reg	DFFE_M4_ff;
-wire	SYNTHESIZED_WIRE_21;
+wire	SYNTHESIZED_WIRE_20;
 reg	DFFE_M5_ff;
 reg	DFFE_T1_ff;
-wire	SYNTHESIZED_WIRE_22;
+wire	SYNTHESIZED_WIRE_21;
+reg	DFFE_T2_ff;
 reg	DFFE_T3_ff;
 reg	DFFE_T4_ff;
 reg	DFFE_T5_ff;
@@ -90,35 +92,34 @@ assign	M3 = DFFE_M3_ff;
 assign	M4 = DFFE_M4_ff;
 assign	M5 = DFFE_M5_ff;
 assign	T1 = DFFE_T1_ff;
+assign	T2 = DFFE_T2_ff;
 assign	T3 = DFFE_T3_ff;
 assign	T4 = DFFE_T4_ff;
 assign	T5 = DFFE_T5_ff;
 
 
 
-assign	T2 = T2_en & SYNTHESIZED_WIRE_20;
+assign	SYNTHESIZED_WIRE_13 = DFFE_M4_ff & SYNTHESIZED_WIRE_20;
 
-assign	SYNTHESIZED_WIRE_13 = DFFE_M4_ff & SYNTHESIZED_WIRE_21;
+assign	SYNTHESIZED_WIRE_14 = DFFE_M5_ff & SYNTHESIZED_WIRE_20;
 
-assign	SYNTHESIZED_WIRE_14 = DFFE_M5_ff & SYNTHESIZED_WIRE_21;
+assign	SYNTHESIZED_WIRE_15 = DFFE_T1_ff & SYNTHESIZED_WIRE_21;
 
-assign	SYNTHESIZED_WIRE_15 = DFFE_T1_ff & SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_16 = DFFE_T2_ff & SYNTHESIZED_WIRE_21;
 
-assign	SYNTHESIZED_WIRE_16 = SYNTHESIZED_WIRE_20 & SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_17 = DFFE_T3_ff & SYNTHESIZED_WIRE_21;
 
-assign	SYNTHESIZED_WIRE_17 = DFFE_T3_ff & SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_18 = DFFE_T4_ff & SYNTHESIZED_WIRE_21;
 
-assign	SYNTHESIZED_WIRE_18 = DFFE_T4_ff & SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_19 = DFFE_T5_ff & SYNTHESIZED_WIRE_21;
 
-assign	SYNTHESIZED_WIRE_19 = DFFE_T5_ff & SYNTHESIZED_WIRE_22;
+assign	SYNTHESIZED_WIRE_10 = DFFE_M1_ff & SYNTHESIZED_WIRE_20;
 
-assign	SYNTHESIZED_WIRE_10 = DFFE_M1_ff & SYNTHESIZED_WIRE_21;
+assign	SYNTHESIZED_WIRE_11 = DFFE_M2_ff & SYNTHESIZED_WIRE_20;
 
-assign	SYNTHESIZED_WIRE_11 = DFFE_M2_ff & SYNTHESIZED_WIRE_21;
+assign	SYNTHESIZED_WIRE_12 = DFFE_M3_ff & SYNTHESIZED_WIRE_20;
 
-assign	SYNTHESIZED_WIRE_12 = DFFE_M3_ff & SYNTHESIZED_WIRE_21;
-
-assign	ena_T = ~(hold_clk2 | hold_clk1);
+assign	ena_T = ~(hold_clk_iorq | hold_clk_wait | hold_clk_busrq);
 
 
 always@(posedge clk or negedge nreset)
@@ -204,9 +205,9 @@ if (ena_M)
 	end
 end
 
-assign	SYNTHESIZED_WIRE_22 =  ~ena_M;
+assign	SYNTHESIZED_WIRE_21 =  ~ena_M;
 
-assign	SYNTHESIZED_WIRE_21 =  ~setM1;
+assign	SYNTHESIZED_WIRE_20 =  ~setM1;
 
 
 always@(posedge clk or negedge nreset)
@@ -227,12 +228,12 @@ always@(posedge clk or negedge nreset)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_20 <= 0;
+	DFFE_T2_ff <= 0;
 	end
 else
 if (ena_T)
 	begin
-	SYNTHESIZED_WIRE_20 <= SYNTHESIZED_WIRE_15;
+	DFFE_T2_ff <= SYNTHESIZED_WIRE_15;
 	end
 end
 
@@ -293,5 +294,6 @@ if (ena_T)
 end
 
 assign	ena_M = nextM;
+assign	timings_en = ena_T;
 
 endmodule

@@ -21,6 +21,11 @@ ctl_no_ints = 0;
 // Module: control/ir.v
 ctl_ir_we = 0;
 
+// Module: control/memory_ifc.v
+ctl_mRead = 0;
+ctl_mWrite = 0;
+ctl_iorw = 0;
+
 // Module: alu/alu_control.v
 ctl_shift_en = 0;
 ctl_daa_oe = 0;

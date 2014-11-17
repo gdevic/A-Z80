@@ -1,8 +1,4 @@
 //=============================================================================
-// Module execute in control/decode Z80 CPU
-//
-// Copyright 2014 Goran Devic
-//
 // This module implements the instruction execute state logic.
 //=============================================================================
 
@@ -59,9 +55,7 @@ module execute
     input wire T3,                      // T-cycle #3
     input wire T4,                      // T-cycle #4
     input wire T5,                      // T-cycle #5
-    input wire T6,                      // T-cycle #6
-    input wire T1up,                    // T1 clock up phase
-    input wire T3up                     // T3 clock up phase
+    input wire T6                       // T-cycle #6
 );
 
 // Detects unknown instructions by signalling the known ones
@@ -88,6 +82,7 @@ logic pc_inc;                           // Normally defaults to 1
 `define PFSEL_V         2'h1
 `define PFSEL_IFF2      2'h2
 `define PFSEL_REP       2'h3
+
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------
@@ -154,6 +149,8 @@ begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_inc_cy = 0;                 // Don't increment, pass-through
         ctl_al_we = 1;                  // Write 0 to the address latch
+        setM1 = 1;                      // Arm to start executing at M1/T1
+        nextM = 1;                      // Arm to start executing at M1/T1
 
         // Clear instruction opcode register
         ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0

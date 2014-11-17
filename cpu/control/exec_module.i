@@ -21,6 +21,11 @@ output logic ctl_no_ints,
 // Module: control/ir.v
 output logic ctl_ir_we,
 
+// Module: control/memory_ifc.v
+output logic ctl_mRead,
+output logic ctl_mWrite,
+output logic ctl_iorw,
+
 // Module: alu/alu_control.v
 output logic ctl_shift_en,
 output logic ctl_daa_oe,

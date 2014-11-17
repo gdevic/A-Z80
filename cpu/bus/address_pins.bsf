@@ -26,8 +26,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "bus_ab_pin_oe" (rect 0 0 87 14)(font "Arial" (font_size 8)))
-		(text "bus_ab_pin_oe" (rect 21 27 108 41)(font "Arial" (font_size 8)))
+		(text "pin_control_oe" (rect 0 0 83 14)(font "Arial" (font_size 8)))
+		(text "pin_control_oe" (rect 21 27 104 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port

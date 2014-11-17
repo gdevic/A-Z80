@@ -9,9 +9,10 @@ control/exec_module.i
 control/execute.sv
 control/interrupts.v
 control/ir.v
-control/pin_control.sv
+control/pin_control.v
 control/pla_decode.sv
 control/resets.v
+control/memory_ifc.v
 control/sequencer.v
 
 ---------- ALU -------------

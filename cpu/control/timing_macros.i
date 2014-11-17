@@ -9,10 +9,7 @@
 // * A macro may span multiple lines, in which case use the '\' character after the name to
 //   continue on the next line.
 // * Multiline macros end when a line does not _start_ with a space character.
-// * Within each macro, two special tokens are recognized and substituted to:
-//   {M?}  - replaced with the current M cycle number
-//   {T?}  - replaced with the current T clock number
-// In addition, //-style comments are wrapped within /* ... */ if they don't start a line.
+// //-style comments are wrapped within /* ... */ if they don't start a line.
 //=========================================================================================
 
 //-----------------------------------------------------------------------------------------
@@ -32,7 +29,12 @@ fIOWrite        fIOWrite=1;
 1               validPLA=1;
 :nextM
 1               nextM=1;
+mr              nextM=1; ctl_mRead=1;
+mw              nextM=1; ctl_mWrite=1;
+ior             nextM=1; ctl_iorw=1;
+iow             nextM=1; ctl_iorw=1;
 CC              nextM=!flags_cond_true;
+INT             nextM=1; ctl_mRead=in_intr & im2;   // RST38 interrupt extension
 :setM1
 1               setM1=1;
 SS              setM1=!flags_cond_true;
@@ -40,7 +42,7 @@ CC              setM1=!flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
 BR              setM1=nonRep | !repeat_en;
 BRZ             setM1=nonRep | !repeat_en | flags_zf;
-INT             setM1=!(in_intr & im2); // RST interrupt extension
+INT             setM1=!(in_intr & im2);             // RST38 interrupt extension
 
 //-----------------------------------------------------------------------------------------
 // Register file, address (downstream) endpoint

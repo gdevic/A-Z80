@@ -26,168 +26,59 @@ add wave -noupdate -expand -group {pads
 add wave -noupdate -expand -group {pads
 } /test_fuse/z80/nRFSH
 add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nBUSRQ
+add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nBUSACK
+add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nHALT
+add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nWAIT
+add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nINT
+add wave -noupdate -expand -group {pads
+} /test_fuse/z80/nNMI
+add wave -noupdate -expand -group {pads
 } -radix hexadecimal /test_fuse/z80/A
 add wave -noupdate -expand -group {pads
 } -radix hexadecimal -childformat {{{/test_fuse/z80/D[7]} -radix hexadecimal} {{/test_fuse/z80/D[6]} -radix hexadecimal} {{/test_fuse/z80/D[5]} -radix hexadecimal} {{/test_fuse/z80/D[4]} -radix hexadecimal} {{/test_fuse/z80/D[3]} -radix hexadecimal} {{/test_fuse/z80/D[2]} -radix hexadecimal} {{/test_fuse/z80/D[1]} -radix hexadecimal} {{/test_fuse/z80/D[0]} -radix hexadecimal}} -subitemconfig {{/test_fuse/z80/D[7]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[6]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[5]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[4]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[3]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[2]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[1]} {-height 15 -radix hexadecimal} {/test_fuse/z80/D[0]} {-height 15 -radix hexadecimal}} /test_fuse/z80/D
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/nextM
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/setM1
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/M1
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/M2
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/M3
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/M4
-add wave -noupdate -expand -group {clk
-} /test_fuse/dut/sequencer_/M5
-add wave -noupdate -expand -group {clk
-} -expand -group T /test_fuse/dut/sequencer_/T1
-add wave -noupdate -expand -group {clk
-} -expand -group T /test_fuse/dut/sequencer_/T2
-add wave -noupdate -expand -group {clk
-} -expand -group T /test_fuse/dut/sequencer_/T3
-add wave -noupdate -expand -group {clk
-} -expand -group T /test_fuse/dut/sequencer_/T4
-add wave -noupdate -expand -group {clk
-} -expand -group T /test_fuse/dut/sequencer_/T5
+add wave -noupdate -group sequencer /test_fuse/dut/sequencer_/nextM
+add wave -noupdate -group sequencer /test_fuse/dut/sequencer_/setM1
+add wave -noupdate -group sequencer -group internal /test_fuse/dut/sequencer_/hold_clk_iorq
+add wave -noupdate -group sequencer -group internal /test_fuse/dut/sequencer_/hold_clk_wait
+add wave -noupdate -group sequencer -group internal /test_fuse/dut/sequencer_/hold_clk_busrq
+add wave -noupdate -group sequencer -group internal /test_fuse/dut/sequencer_/ena_M
+add wave -noupdate -group sequencer -group internal /test_fuse/dut/sequencer_/ena_T
+add wave -noupdate -group sequencer -expand -group function /test_fuse/dut/pin_control_/fFetch
+add wave -noupdate -group sequencer -expand -group function /test_fuse/dut/pin_control_/fMRead
+add wave -noupdate -group sequencer -expand -group function /test_fuse/dut/pin_control_/fMWrite
+add wave -noupdate -group sequencer -expand -group function /test_fuse/dut/pin_control_/fIORead
+add wave -noupdate -group sequencer -expand -group function /test_fuse/dut/pin_control_/fIOWrite
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M1
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M2
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M3
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M4
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M5
+add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M6
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T1
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T2
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T3
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T4
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T5
+add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T6
 add wave -noupdate -group opcode /test_fuse/dut/instruction_reg_/ctl_ir_we
 add wave -noupdate -group opcode /test_fuse/dut/instruction_reg_/opcode
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db0
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db1
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db2
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/clk
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/mwait
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/busrq
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/reset
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/m1
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/mreq
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/iorq
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/rd
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/wr
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/rfsh
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/busack
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/T1
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/T2
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/Tw1
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/Tw2
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/T3
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/T4
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/fFetch
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/fMRead
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/fMWrite
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/fIORead
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/fIOWrite
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/setM1
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/in_intr
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/hold_clk_timing
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/pin_control_oe
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/bus_ab_pin_oe
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/bus_ab_pin_we
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/bus_db_pin_oe
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/bus_db_pin_re
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/busrq_latch
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/busack_latch
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/testW
-add wave -noupdate -group {pin control
-} /test_fuse/dut/pin_control_/wait_latch
-add wave -noupdate -group {control pins
-} /test_fuse/dut/fpga_reset
-add wave -noupdate -group {control pins
-} /test_fuse/dut/nreset
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nINT
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nNMI
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nRESET
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nBUSRQ
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/m1
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/mreq
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/iorq
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/rd
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/wr
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/rfsh
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/busack
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/CPUCLK
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_control_oe
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nWAIT
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/in_halt
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nM1
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nMREQ
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nIORQ
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nRD
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nWR
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nRFSH
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nHALT
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/pin_nBUSACK
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/nmi
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/busrq
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/clk
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/intr
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/mwait
-add wave -noupdate -group {control pins
-} /test_fuse/dut/control_pins_/reset_in
+add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_ff_oe
+add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_zero_oe
+add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_db_oe
+add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_ab_pin_we
+add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_db_pin_oe
+add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_db_pin_re
+add wave -noupdate -group {bus control} /test_fuse/dut/fpga_reset
+add wave -noupdate -group {bus control} /test_fuse/dut/nreset
+add wave -noupdate -group {bus control} /test_fuse/dut/control_pins_/in_halt
 add wave -noupdate -group {reg control} /test_fuse/dut/reg_control_/ctl_reg_exx
 add wave -noupdate -group {reg control} /test_fuse/dut/reg_control_/ctl_reg_ex_af
 add wave -noupdate -group {reg control} /test_fuse/dut/reg_control_/ctl_reg_ex_de_hl
@@ -488,8 +379,8 @@ add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_apin
 add wave -noupdate -group {address latch} /test_fuse/dut/address_latch_/ctl_apin_mux2
 add wave -noupdate -group {address latch} -radix hexadecimal /test_fuse/dut/address_latch_/abus
 add wave -noupdate -group {address latch} -radix hexadecimal -childformat {{{/test_fuse/dut/address_latch_/address[15]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[14]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[13]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[12]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[11]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[10]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[9]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[8]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[7]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[6]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[5]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[4]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[3]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[2]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[1]} -radix hexadecimal} {{/test_fuse/dut/address_latch_/address[0]} -radix hexadecimal}} -subitemconfig {{/test_fuse/dut/address_latch_/address[15]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[14]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[13]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[12]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[11]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[10]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[9]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[8]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[7]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[6]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[5]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[4]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[3]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[2]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[1]} {-height 15 -radix hexadecimal} {/test_fuse/dut/address_latch_/address[0]} {-height 15 -radix hexadecimal}} /test_fuse/dut/address_latch_/address
-add wave -noupdate -group {address pins} /test_fuse/dut/address_pins_/bus_ab_pin_oe
 add wave -noupdate -group {address pins} /test_fuse/dut/address_pins_/bus_ab_pin_we
+add wave -noupdate -group {address pins} /test_fuse/dut/address_pins_/pin_control_oe
 add wave -noupdate -group {address pins} -label apin_latch /test_fuse/dut/address_pins_/DFFE_apin_latch
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_iy_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_ixiy_clr
@@ -498,11 +389,12 @@ add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_halt_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_clr
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_ed_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_cb_set
-add wave -noupdate -group state /test_fuse/dut/execute_/setCBED
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_alu
-add wave -noupdate -group state /test_fuse/dut/decode_state_/clk
 add wave -noupdate -group state /test_fuse/dut/decode_state_/address_is_1
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_repeat_we
+add wave -noupdate -group state /test_fuse/dut/decode_state_/in_intr
+add wave -noupdate -group state /test_fuse/dut/decode_state_/in_nmi
+add wave -noupdate -group state /test_fuse/dut/decode_state_/nreset
 add wave -noupdate -group state /test_fuse/dut/decode_state_/in_halt
 add wave -noupdate -group state /test_fuse/dut/decode_state_/table_cb
 add wave -noupdate -group state /test_fuse/dut/decode_state_/table_ed
@@ -511,9 +403,24 @@ add wave -noupdate -group state /test_fuse/dut/decode_state_/use_ix
 add wave -noupdate -group state /test_fuse/dut/decode_state_/use_ixiy
 add wave -noupdate -group state /test_fuse/dut/decode_state_/in_alu
 add wave -noupdate -group state /test_fuse/dut/decode_state_/repeat_en
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/intr
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/iff1
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/iff2
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/im1
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/im2
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/nmi
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/ctl_iff1_iff2
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/ctl_iffx_we
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/ctl_iffx_bit
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/ctl_im_we
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/ctl_no_ints
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/in_nmi
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/in_intr
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/int_armed
+add wave -noupdate -group interrupts /test_fuse/dut/interrupts_/nmi_armed
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {4000 ns} 0} {{Cursor 2} {4600 ns} 0} {{Cursor 3} {5400 ns} 0}
-quietly wave cursor active 3
+WaveRestoreCursors {Cursor {3900 ns} 0}
+quietly wave cursor active 1
 configure wave -namecolwidth 163
 configure wave -valuecolwidth 53
 configure wave -justifyvalue left
@@ -528,4 +435,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits us
 update
-WaveRestoreZoom {200 ns} {8 us}
+WaveRestoreZoom {0 ns} {7800 ns}

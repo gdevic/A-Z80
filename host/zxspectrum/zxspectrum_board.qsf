@@ -585,6 +585,15 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE SPEED
 set_global_assignment -name ALLOW_POWER_UP_DONT_CARE OFF
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name FITTER_EARLY_TIMING_ESTIMATE_MODE OPTIMISTIC
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_MAP_LOGIC_TO_MEMORY_FOR_AREA ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT EXTRA
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_control.v
@@ -594,8 +603,9 @@ set_global_assignment -name VERILOG_FILE ../../cpu/control/ir.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/interrupts.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/decode_state.v
 set_global_assignment -name VERILOG_FILE ../../cpu/control/clk_delay.v
+set_global_assignment -name VERILOG_FILE ../../cpu/control/pin_control.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/pla_decode.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/pin_control.sv
+set_global_assignment -name VERILOG_FILE ../../cpu/control/memory_ifc.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/execute.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/bus/bus_switch.sv
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/inc_dec_2bit.v
@@ -634,13 +644,4 @@ set_global_assignment -name SYSTEMVERILOG_FILE zxspectrum_board.sv
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE ram16.qip
 set_global_assignment -name SDC_FILE zxspectrum_board.sdc
-set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name FITTER_EARLY_TIMING_ESTIMATE_MODE OPTIMISTIC
-set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_ASYNCHRONOUS_SIGNAL_PIPELINING ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_MAP_LOGIC_TO_MEMORY_FOR_AREA ON
-set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT EXTRA
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

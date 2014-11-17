@@ -14,15 +14,9 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Thu Nov 13 23:03:02 2014"
+// CREATED		"Sun Nov 16 23:06:14 2014"
 
 module control_pins_n(
-	m1,
-	mreq,
-	iorq,
-	rd,
-	wr,
-	rfsh,
 	busack,
 	CPUCLK,
 	pin_control_oe,
@@ -32,6 +26,12 @@ module control_pins_n(
 	pin_nINT,
 	pin_nNMI,
 	pin_nRESET,
+	nM1_out,
+	nRFSH_out,
+	nRD_out,
+	nWR_out,
+	nIORQ_out,
+	nMREQ_out,
 	nmi,
 	busrq,
 	clk,
@@ -49,12 +49,6 @@ module control_pins_n(
 );
 
 
-input wire	m1;
-input wire	mreq;
-input wire	iorq;
-input wire	rd;
-input wire	wr;
-input wire	rfsh;
 input wire	busack;
 input wire	CPUCLK;
 input wire	pin_control_oe;
@@ -64,6 +58,12 @@ input wire	pin_nBUSRQ;
 input wire	pin_nINT;
 input wire	pin_nNMI;
 input wire	pin_nRESET;
+input wire	nM1_out;
+input wire	nRFSH_out;
+input wire	nRD_out;
+input wire	nWR_out;
+input wire	nIORQ_out;
+input wire	nMREQ_out;
 output wire	nmi;
 output wire	busrq;
 output wire	clk;
@@ -79,29 +79,20 @@ output wire	pin_nRFSH;
 output wire	pin_nHALT;
 output wire	pin_nBUSACK;
 
-wire	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_2;
-wire	SYNTHESIZED_WIRE_3;
-wire	SYNTHESIZED_WIRE_4;
 
 assign	clk = CPUCLK;
+assign	pin_nM1 = nM1_out;
+assign	pin_nRFSH = nRFSH_out;
 
 
 
-assign	pin_nM1 =  ~m1;
+assign	pin_nMREQ = pin_control_oe ? nMREQ_out : 1'bz;
 
-assign	pin_nMREQ = pin_control_oe ? SYNTHESIZED_WIRE_0 : 1'bz;
+assign	pin_nIORQ = pin_control_oe ? nIORQ_out : 1'bz;
 
-assign	pin_nIORQ = pin_control_oe ? SYNTHESIZED_WIRE_1 : 1'bz;
+assign	pin_nRD = pin_control_oe ? nRD_out : 1'bz;
 
-assign	pin_nRD = pin_control_oe ? SYNTHESIZED_WIRE_2 : 1'bz;
-
-assign	pin_nWR = pin_control_oe ? SYNTHESIZED_WIRE_3 : 1'bz;
-
-assign	pin_nRFSH = pin_control_oe ? SYNTHESIZED_WIRE_4 : 1'bz;
-
-assign	SYNTHESIZED_WIRE_4 =  ~rfsh;
+assign	pin_nWR = pin_control_oe ? nWR_out : 1'bz;
 
 assign	busrq =  ~pin_nBUSRQ;
 
@@ -116,14 +107,6 @@ assign	intr =  ~pin_nINT;
 assign	nmi =  ~pin_nNMI;
 
 assign	reset_in =  ~pin_nRESET;
-
-assign	SYNTHESIZED_WIRE_3 =  ~wr;
-
-assign	SYNTHESIZED_WIRE_2 =  ~rd;
-
-assign	SYNTHESIZED_WIRE_0 =  ~mreq;
-
-assign	SYNTHESIZED_WIRE_1 =  ~iorq;
 
 
 endmodule
