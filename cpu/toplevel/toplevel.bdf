@@ -1,0 +1,62 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(bidir)
+	(rect 840 192 1016 208)
+	(text "BIDIR" (rect 1 0 25 10)(font "Arial" (color 0 0 0)(font_size 6)))
+	(text "D[7..0]" (rect 90 0 124 12)(font "Arial" (color 0 0 0)))
+	(pt 0 8)
+	(drawing
+		(line (pt 56 4)(pt 78 4))
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 56 12)(pt 78 12))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 78 12)(pt 82 8))
+		(line (pt 56 4)(pt 52 8))
+		(line (pt 52 8)(pt 56 12))
+	)
+	(text "VCC" (rect 4 7 24 17)(font "Arial" (color 0 0 0)(font_size 6)))
+	(annotation_block (location)(rect 1016 208 1072 336))
+)
+(block
+	(rect 600 128 776 288)
+	(text "data_pins" (rect 5 5 52 17)(font "Arial" ))	(text "data_pins_" (rect 5 158 58 170)(font "Arial" ))	(block_io "bus_db_pin_oe" (input))
+	(block_io "clk" (input))
+	(block_io "bus_db_pin_re" (input))
+	(block_io "ctl_bus_db_we" (input))
+	(block_io "bus_db_oe" (input))
+	(block_io "D[7..0]" (bidir))
+	(block_io "db[7..0]" (bidir))
+	(mapper
+		(pt 176 72)
+		(bidir)
+		(mapping "D[7..0]" "D[7..0]" )
+		(annotation_block (mapping)(rect 792 216 888 248))
+	)
+)
+(connector
+	(text "D[7..0]" (rect 1034 192 1088 210)(font "Arial" (font_size 12)))
+	(pt 840 200)
+	(pt 776 200)
+	(bus)
+	(color 0 0 0)
+)
