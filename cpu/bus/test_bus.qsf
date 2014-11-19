@@ -69,6 +69,7 @@ set_global_assignment -name BDF_FILE data_switch_mask.bdf
 set_global_assignment -name BDF_FILE data_switch.bdf
 set_global_assignment -name BDF_FILE data_pins.bdf
 set_global_assignment -name BDF_FILE control_pins_n.bdf
+set_global_assignment -name SYSTEMVERILOG_FILE bus_switch.sv
 set_global_assignment -name BDF_FILE bus_control.bdf
 set_global_assignment -name BDF_FILE address_pins.bdf
 set_global_assignment -name BDF_FILE address_latch.bdf
