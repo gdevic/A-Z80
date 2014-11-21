@@ -112,6 +112,13 @@ ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 wire [4:0] key_row;
 zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
-assign ula_data = (A[0]==0)? { 1'b0, pcm_inl[14] | pcm_inr[14], 1'b0, key_row[4:0] } : 8'hFF;
+always_comb
+begin
+    ula_data = 8'hFF;
+    // Regular IO at every odd address: line-in and keyboard
+    if (A[0]==0) begin
+        ula_data = { 1'b0, pcm_inl[14] | pcm_inr[14], 1'b0, key_row[4:0] };
+    end
+end
 
 endmodule

@@ -47,6 +47,10 @@ module zxspectrum_board
     output wire SRAM_UB_N,
     output wire SRAM_LB_N,
 
+    //-------- My little imitation of a Kempston joystick -----------
+    input wire [5:0] kempston,
+    output wire [4:0] LEDG,         // Show the joystick state
+    
     //-------- Misc and debug -------------------
     input wire SW0,                 // ROM selection
     input wire SW1,                 // Enable/disable interrupts
@@ -89,16 +93,26 @@ assign io_we = nIORQ==0 && nRD==1 && nWR==0;
 always_comb
 begin
     case ({nIORQ,nRD,nWR})
-        3'b101: begin   // Memory read
+        // -------------------------------- Memory read --------------------------------
+        3'b101: begin
                 casez (A[15:14])
                     2'b00:  D[7:0] = FL_DQ;
                     2'b01:  D[7:0] = ram_data;
-                    // TODO: Adding 32K SRAM seems to make it more unstable: debug.
                     2'b1?:  D[7:0] = SRAM_DQ[7:0];
                 endcase
+            end
+        // ---------------------------------- IO read ----------------------------------
+        3'b001: begin
+                // Normally data supplied by the ULA
+                D[7:0] = ula_data;
+
+                // Kempston joystick at the IO address of 0x1F: active bits are high: 000FUDLR
+                // The bits are scrambled since I just happen to solder them that way on a game
+                // pad I've got (see my blog); you can remap it if you have another kind of joystick
+                if (A[7:0]==8'h1F) begin
+                    D[7:0] = { 3'b0, !kempston[3],!kempston[5],!kempston[4],!kempston[0],!kempston[2] };
                 end
-        // IO read, data supplied by the ULA
-        3'b001: D[7:0] = ula_data;
+            end
     default:
         D[7:0] = {8{1'bz}};
     endcase
@@ -177,5 +191,14 @@ wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
 
 z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Lit green LEDs to show activity on a Kempston compatible joystick
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+assign LEDG[0] = !kempston[5];  // UP
+assign LEDG[1] = !kempston[4];  // DOWN
+assign LEDG[2] = !kempston[0];  // LEFT
+assign LEDG[3] = !kempston[2];  // RIGHT
+assign LEDG[4] = !kempston[3];  // BUTTON
 
 endmodule

@@ -419,16 +419,12 @@ set_location_assignment PIN_F21 -to GPIO_0[22]
 set_location_assignment PIN_F22 -to GPIO_0[23]
 set_location_assignment PIN_G21 -to GPIO_0[24]
 set_location_assignment PIN_G22 -to GPIO_0[25]
-set_location_assignment PIN_J21 -to GPIO_0[26]
-set_location_assignment PIN_J22 -to GPIO_0[27]
-set_location_assignment PIN_K21 -to GPIO_0[28]
-set_location_assignment PIN_K22 -to GPIO_0[29]
-set_location_assignment PIN_J19 -to GPIO_0[30]
-set_location_assignment PIN_J20 -to GPIO_0[31]
-set_location_assignment PIN_J18 -to GPIO_0[32]
-set_location_assignment PIN_K20 -to GPIO_0[33]
-set_location_assignment PIN_L19 -to GPIO_0[34]
-set_location_assignment PIN_L18 -to GPIO_0[35]
+set_location_assignment PIN_J21 -to kempston[0] # GPIO_0[26]
+set_location_assignment PIN_J22 -to kempston[1] # GPIO_0[27]
+set_location_assignment PIN_K21 -to kempston[2] # GPIO_0[28]
+set_location_assignment PIN_K22 -to kempston[3] # GPIO_0[29]
+set_location_assignment PIN_J19 -to kempston[4] # GPIO_0[30]
+set_location_assignment PIN_J20 -to kempston[5] # GPIO_0[31]
 set_instance_assignment -name IO_STANDARD LVTTL -to GPIO_0[0]
 set_instance_assignment -name IO_STANDARD LVTTL -to GPIO_0[1]
 set_instance_assignment -name IO_STANDARD LVTTL -to GPIO_0[2]
@@ -576,7 +572,7 @@ set_global_assignment -name TOP_LEVEL_ENTITY zxspectrum_board
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:30:28  OCTOBER 14, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
-set_global_assignment -name FITTER_EFFORT "FAST FIT"
+set_global_assignment -name FITTER_EFFORT "AUTO FIT"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"
