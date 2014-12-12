@@ -21,6 +21,8 @@ A-Z80 "cpu" consists of several functional blocks and a top-level module:
           and UART modules that can run small Z80 programs
   "zxspectrum" contains an implementation of the Sinclair ZX Spectrum
 
+  You probably want to start by loading one of those two designs in Quartus.
+  
 "tools" contains various tools related to the project.
 
 Read the 'readme.txt' files in each of the folders for additional information.
@@ -34,7 +36,9 @@ Quartus projects are only used as containers for files within individual
 modules; complete top-level solutions that use A-Z80 are in the "host" folder.
 
 Majority of sub-modules are designed in the Quartus schematic editor and then
-exported to Verilog for simulation and the top-level integration.
+exported to Verilog for simulation and the top-level integration. If you decide
+to create a design using the A-Z80, you can use schematic files as sources (for
+Altera Quartus), or compiled Verilog code (for Xilinx, for example).
 
 Simulation
 ==========
@@ -62,7 +66,25 @@ Each project also contains a set of predefined waveform scripts that you can
 load before running a simulation of a particular module or a test:
 ./<block>/simulation/modelsim/wave_<test>.do
 
-----------------------------------------------------------------------------------
 Email me if you have any questions,
 Goran Devic
 gdevic@yahoo.com
+
+----------------------------------------------------------------------------------
+This complete project and each file therein is covered under the GNU GPL2.0 license.
+It basically states that anyone is free to use it and distribute it, but the full
+source needs to be available under the same terms:
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the Free
+    Software Foundation; either version 2 of the License, or (at your option)
+    any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+    more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
