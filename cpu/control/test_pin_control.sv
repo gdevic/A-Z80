@@ -127,9 +127,7 @@ endtask
 // Instantiate DUT
 //--------------------------------------------------------------
 
-pin_control pin_control ( .* );
-
-clk_delay clk_delay ( .* );
+memory_ifc memory_ifc ( .* );
 
 sequencer sequencer ( .* );
 

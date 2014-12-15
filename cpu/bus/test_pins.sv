@@ -12,8 +12,6 @@ module test_pins;
 bit clk = 1;
 //initial repeat (30) `T clk = ~clk;
 initial forever `T clk = ~clk;
-logic nclk;
-assign nclk = ~clk;
 
 // ------------------------ ADDRESS PINS ---------------------
 logic [15:0] ab;            // Internal address bus
@@ -27,6 +25,9 @@ logic ctl_db_we;            // Write enable to data pin output latch
 logic ctl_db_oe;            // Output enable to internal data bus
 logic ctl_db_pin_re;        // Read from the data pin into the latch
 logic ctl_db_pin_oe;        // Output enable to data pins; otherwise tri-stated
+
+reg ctl_pin_oe;
+reg pin_control_oe;
 
 // Bidirectional internal data bus
 logic  [7:0] db_w;          // Drive it using this bus
@@ -92,7 +93,7 @@ end
 // Instantiate bus block and assign identical nets and variables
 //--------------------------------------------------------------
 
-address_pins address_pins_inst( .*, .bus_ab_pin_oe(ctl_ab_pin_oe), .bus_ab_pin_we(ctl_ab_we), .address(ab[15:0]), .abus(apin[15:0]) );
+address_pins address_pins_inst( .*, .bus_ab_pin_we(ctl_ab_we), .address(ab[15:0]), .abus(apin[15:0]) );
 
 data_pins data_pins_inst( .*, .bus_db_oe(ctl_db_pin_oe), .ctl_bus_db_we(ctl_db_we), .bus_db_pin_oe(ctl_db_pin_oe), .bus_db_pin_re(ctl_db_pin_re), .D(dpin[7:0]) );
 

@@ -12,6 +12,10 @@ wire [7:0] db_sig;          // Read it using these wires
 reg oe_sig;
 reg we_sig;
 
+bit clk = 1;
+//initial repeat (30) #1 clk = ~clk;
+initial forever #1 clk = ~clk;
+
 initial begin
     oe_sig = 0;
     we_sig = 0;
@@ -40,6 +44,7 @@ assign db_sig = db;
 
 reg_latch reg_latch_inst
 (
+	.clk(clk),
 	.oe(oe_sig) ,	// input  oe_sig
 	.we(we_sig) ,	// input  we_sig
 	.db(db_sig[7:0]) 	// inout [7:0] db_sig

@@ -26,10 +26,10 @@ logic ctl_im_set = 0;
 logic im1;
 logic im2;
 
-logic reset = 0;
+logic nreset = 1;
 
 initial begin
-    @(negedge reset);
+    @(posedge reset);
 
     // Test the IFF1/IFF2 control
     #1 ctl_iffx_set = 1;        // Set both IFF flags
@@ -57,8 +57,8 @@ initial begin
 end
 
 initial begin : assert_reset
-    reset = 1;
-    #1 reset = 0;
+    nreset = 0;
+    #1 nreset = 1;
 end : assert_reset
 
 //--------------------------------------------------------------

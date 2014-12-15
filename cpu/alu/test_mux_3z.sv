@@ -57,7 +57,7 @@ alu_mux_3z alu_mux_3z_inst
 	.sel_b(sel_b_sig) ,	// input  sel_b_sig
 	.a(a_sig) ,	// input [3:0] a_sig
 	.Q(Q_sig) ,	// output [3:0] Q_sig
-	.ena_out(ena_out_sig) 	// output  ena_out_sig
+	.ena(ena_out_sig) 	// output  ena_out_sig
 );
 
 endmodule

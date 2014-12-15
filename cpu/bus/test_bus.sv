@@ -12,8 +12,6 @@ module test_bus;
 bit clk = 1;
 //initial repeat (30) #1 clk = ~clk;
 initial forever #1 clk = ~clk;
-logic nclk;
-assign nclk = ~clk;
 
 // ----------------------------------------------------
 
@@ -27,6 +25,8 @@ wire [15:0] address;        // Final address ouput
 reg ctl_ab_mux_inc;         // Mux for the final address output
 reg ctl_al_we;              // Write enable to address latch
 reg ctl_bus_inc_oe;         // Write incrementer onto the internal data bus
+reg ctl_apin_mux;           // Selects mux1
+reg ctl_apin_mux2;          // Selects mux2
 
 // ----------------- INC/DEC -----------------
 reg ctl_inc_dec;            // Perform decrement (1) or increment (0)

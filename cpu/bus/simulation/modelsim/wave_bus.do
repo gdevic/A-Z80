@@ -1,7 +1,6 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /test_bus/clk
-add wave -noupdate /test_bus/nclk
 add wave -noupdate /test_bus/abusw
 add wave -noupdate /test_bus/abus
 add wave -noupdate -color Gold /test_bus/address
