@@ -3,7 +3,7 @@
 # memory access log data. This data is used to feed the simulation
 # script and verify its algorithm correctness.
 # It needs:
-#   1. Arduino Z80 dongle: http://www.devic.us/hacks/arduino-zilog-z80
+#   1. Arduino Z80 dongle: http://www.baltazarstudios.com
 # Needs pyserial from https://pypi.python.org/pypi/pyserial
 
 import serial

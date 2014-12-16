@@ -2,7 +2,7 @@
 # This script is used to dump Z80 instruction timing data by running the
 # instructions through the Arduino Z80 dongle and parsing the dump output.
 # It needs:
-#   1. Arduino Z80 dongle: http://www.devic.us/hacks/arduino-zilog-z80
+#   1. Arduino Z80 dongle: http://www.baltazarstudios.com
 #   2. Instructions data file: '../../resources/opcodes-??.txt'
 # Needs pyserial from https://pypi.python.org/pypi/pyserial
 
