@@ -4,7 +4,6 @@ add wave -noupdate /test_bus/clk
 add wave -noupdate /test_bus/abusw
 add wave -noupdate /test_bus/abus
 add wave -noupdate -color Gold /test_bus/address
-add wave -noupdate /test_bus/ctl_ab_mux_inc
 add wave -noupdate /test_bus/ctl_al_we
 add wave -noupdate /test_bus/ctl_bus_inc_oe
 add wave -noupdate /test_bus/ctl_inc_dec
@@ -12,7 +11,8 @@ add wave -noupdate /test_bus/ctl_inc_limit6
 add wave -noupdate /test_bus/ctl_inc_cy
 add wave -noupdate /test_bus/ctl_inc_zero
 add wave -noupdate /test_bus/address_is_1
-add wave -noupdate -divider alatch
+add wave -noupdate /test_bus/address_latch_/ctl_apin_mux
+add wave -noupdate /test_bus/address_latch_/ctl_apin_mux2
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {5500 ns} 0}
 quietly wave cursor active 1

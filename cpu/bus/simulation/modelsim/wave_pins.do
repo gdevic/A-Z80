@@ -5,7 +5,6 @@ add wave -noupdate -divider apins
 add wave -noupdate -color Gold -radix hexadecimal /test_pins/apin
 add wave -noupdate -radix hexadecimal /test_pins/ab
 add wave -noupdate /test_pins/ctl_ab_we
-add wave -noupdate /test_pins/ctl_ab_pin_oe
 add wave -noupdate -divider dpins
 add wave -noupdate -radix hexadecimal /test_pins/dpin
 add wave -noupdate -color Gold -radix hexadecimal /test_pins/db
