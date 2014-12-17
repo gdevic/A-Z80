@@ -1,135 +1,99 @@
+//==============================================================
 // Test pin control unit
-
-// 5 MHz for a functional simulation (no delay timings)
+//==============================================================
 `timescale 100 ns/ 100 ns
 
 module test_pin_control;
 
-//----------------------------------------------------------
-// Interface from the chip control pin pads - input to the DUT
-//----------------------------------------------------------
-bit   clk = 1'h0;                   // Input clock
-logic mwait = 1'h0;                 // WAIT   - External device is not ready
-logic busrq = 1'h0;                 // BUSRQ  - External device requests access to the bus
-logic intr = 1'h0;                  // INTR   - External interrupt request
-logic nmi = 1'h0;                   // NMI    - External non-maskable interrupt request
-logic reset = 1'h0;                 // RESET  - Input reset pin
+// ----------------- CONTROL ----------------
+logic fFetch_sig=0;
+logic fMRead_sig=0;
+logic fMWrite_sig=0;
+logic fIORead_sig=0;
+logic fIOWrite_sig=0;
+logic T1_sig=0;
+logic T2_sig=0;
+logic T3_sig=0;
+logic T4_sig=0;
 
-//----------------------------------------------------------
-// Outputs to the chip control pin pads
-//----------------------------------------------------------
-logic m1;                           // M1     - Opcode fetch phase
-logic mreq;                         // MREQ   - Memory request
-logic iorq;                         // IORQ   - I/O command in progress
-logic rd;                           // RD     - Memory read request
-logic wr;                           // WR     - Memory write request
-logic rfsh;                         // RFSH   - Memory refresh phase
-logic busack;                       // BUSACK - Response to the BUSRQ
+// ----------------- STATES ----------------
+wire bus_ab_pin_we_sig;
+wire bus_db_pin_oe_sig;
+wire bus_db_pin_re_sig;
 
-//----------------------------------------------------------
-// Inputs from internal blocks - input to the DUT
-//----------------------------------------------------------
-logic T1;                           // T-cycle #1
-logic T2;                           // T-cycle #2
-logic Tw1;
-logic Tw2;
-logic T3;                           // T-cycle #3
-logic T4;                           // T-cycle #4
-logic T5;                           // T-cycle #5
-logic T6;                           // T-cycle #6
-logic fFetch = 1'h0;                // Function: opcode fetch cycle ("M1")
-logic fMRead = 1'h0;                // Function: memory read cycle
-logic fMWrite = 1'h0;               // Function: memory write cycle
-logic fIORead = 1'h0;               // Function: IO Read cycle
-logic fIOWrite = 1'h0;              // Function: IO Write cycle
-logic fIntr = 1'h0;                 // Function: Interrupt response cycle
-
-//----------------------------------------------------------
-// Outputs to internal blocks
-//----------------------------------------------------------
-logic hold_clk_timing;              // Signal to the sequencer to hold the clock
-logic hold_clk_delay;
-logic hold_clk;
-assign hold_clk = hold_clk_delay | hold_clk_timing;
-logic T2_en;
-
-logic ctl_bus_pin_oe;               // Output enable (vs. Tri-state) of MREQ,IORQ,RD,WR and RFSH
-logic ctl_ab_pin_oe;                // Address bus pads: output enable to address pins
-logic ctl_ab_we;                    // Address bus pads: write the output pin address latch
-logic ctl_db_pin_oe;                // Data bus pads: output enable
-logic ctl_db_pin_re;                // Data bus pads: read from the output pin into the latch
-logic ctl_db_we;                    // Data bus pads: write from internal DB to its latch
-logic ctl_db_oe;                    // Data bus pads: read from its latch into internal DB
-
-logic M1;
-logic M2;
-logic M3;
-logic M4;
-logic M5;
-logic M6;
-
-logic nextM = 0;
-logic setM1;
-
+// ----------------- TEST -------------------
 initial begin
-    @(negedge reset);
+    // Initial condition
+    #1  assert(bus_ab_pin_we_sig==0 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
 
-    fIntr = 1;      // Optionally test the 2-cycle delay for interrupt function
-    fFetch = 1;
-    next_M();
-    fFetch = 0;
-    fIntr = 0;
+        // Activate formula for each signal
+        fFetch_sig = 1;
+        T1_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        T1_sig = 0;
+        T3_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        fFetch_sig = 0;
+        T1_sig = 0;
+        T3_sig = 0;
+    #1  assert(bus_ab_pin_we_sig==0 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        // Read phase
+        fMRead_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==0 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        T1_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        // Write phase
+        fMRead_sig = 0;
+        fMWrite_sig = 1;
+        fIORead_sig = 0;
+        fIOWrite_sig = 0;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        // IO Read phase
+        fMRead_sig = 0;
+        fMWrite_sig = 0;
+        fIORead_sig = 1;
+        fIOWrite_sig = 0;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        // IO Write phase
+        fMRead_sig = 0;
+        fMWrite_sig = 0;
+        fIORead_sig = 0;
+        fIOWrite_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        fIOWrite_sig = 0;
+    #1  assert(bus_ab_pin_we_sig==0 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
 
-    fMRead = 1;
-    run_function();
-    fMRead = 0;
+        // Test bus pin control
+        T2_sig = 1;
+        fMWrite_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==1 && bus_db_pin_re_sig==0);
+        fMWrite_sig = 0;
+        fIORead_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==0);
+        T3_sig = 1;
+    #1  assert(bus_ab_pin_we_sig==1 && bus_db_pin_oe_sig==0 && bus_db_pin_re_sig==1);
 
-    fMWrite = 1;
-    run_function();
-    fMWrite = 0;
-
-    fIORead = 1;
-    run_function();
-    fIORead = 0;
-
-    fIOWrite = 1;
-    run_function();
-    fIOWrite = 0;
-
-    #1 $display("End of test");
-    #1 $stop();
+    #1  $display("End of test");
 end
 
-initial repeat (60) #1 clk = ~clk;
-
-initial begin : assert_reset
-    reset = 1;
-    setM1 = 1; nextM = 1;
-    #1 reset = 0;
-    setM1 = 0; nextM = 0;
-end : assert_reset
-
-task run_function();
-    repeat (5) @(posedge clk); reset <= 0;
-    setM1 <= 1; nextM <= 1;
-    @(posedge clk);
-    setM1 <= 0; nextM <= 0;
-endtask
-
-task next_M();
-    @(posedge T6);
-    setM1 <= 1; nextM <= 1;
-    @(posedge clk);
-    setM1 <= 0; nextM <= 0;
-endtask
-
 //--------------------------------------------------------------
-// Instantiate DUT
+// Instantiate pin control
 //--------------------------------------------------------------
 
-memory_ifc memory_ifc ( .* );
-
-sequencer sequencer ( .* );
+pin_control pin_control_inst
+(
+    .fFetch(fFetch_sig) ,               // input  fFetch_sig
+    .fMRead(fMRead_sig) ,               // input  fMRead_sig
+    .fMWrite(fMWrite_sig) ,             // input  fMWrite_sig
+    .fIORead(fIORead_sig) ,             // input  fIORead_sig
+    .fIOWrite(fIOWrite_sig) ,           // input  fIOWrite_sig
+    .T1(T1_sig) ,                       // input  T1_sig
+    .T2(T2_sig) ,                       // input  T2_sig
+    .T3(T3_sig) ,                       // input  T3_sig
+    .T4(T4_sig) ,                       // input  T4_sig
+    .bus_ab_pin_we(bus_ab_pin_we_sig) , // output  bus_ab_pin_we_sig
+    .bus_db_pin_oe(bus_db_pin_oe_sig) , // output  bus_db_pin_oe_sig
+    .bus_db_pin_re(bus_db_pin_re_sig)   // output  bus_db_pin_re_sig
+);
 
 endmodule
-
