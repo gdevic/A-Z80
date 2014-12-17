@@ -31,6 +31,8 @@ initial begin
     `T  nreset = 1;
     repeat (100) @(posedge clk); nreset <= 1;
 
+    // This test does not use assert() -- we just check visually
+
     `T  $display("End of test");
 end
 

@@ -1,20 +1,26 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -color Gold -itemcolor Gold /test_interrupts/iff1
-add wave -noupdate -color Gold -itemcolor Gold /test_interrupts/iff2
-add wave -noupdate /test_interrupts/ctl_iffx_set
-add wave -noupdate /test_interrupts/ctl_iffx_clr
-add wave -noupdate /test_interrupts/ctl_iff1_iff2
-add wave -noupdate /test_interrupts/ctl_iff1_clr
-add wave -noupdate -color Gold -itemcolor Gold /test_interrupts/im1
-add wave -noupdate -color Gold -itemcolor Gold /test_interrupts/im2
-add wave -noupdate /test_interrupts/ctl_im_sel3
-add wave -noupdate /test_interrupts/ctl_im_sel4
-add wave -noupdate /test_interrupts/ctl_im_set
-add wave -noupdate /test_interrupts/reset
+add wave -noupdate /test_interrupts/clk
+add wave -noupdate /test_interrupts/nreset
+add wave -noupdate /test_interrupts/ctl_iff1_iff2_sig
+add wave -noupdate /test_interrupts/nmi_sig
+add wave -noupdate /test_interrupts/setM1_sig
+add wave -noupdate /test_interrupts/intr_sig
+add wave -noupdate /test_interrupts/ctl_iffx_we_sig
+add wave -noupdate /test_interrupts/ctl_iffx_bit_sig
+add wave -noupdate /test_interrupts/ctl_im_we_sig
+add wave -noupdate /test_interrupts/db_sig
+add wave -noupdate /test_interrupts/ctl_no_ints_sig
+add wave -noupdate -divider STATE
+add wave -noupdate -color Aquamarine /test_interrupts/iff1_sig
+add wave -noupdate -color Aquamarine /test_interrupts/iff2_sig
+add wave -noupdate -color Pink /test_interrupts/im1_sig
+add wave -noupdate -color Pink /test_interrupts/im2_sig
+add wave -noupdate /test_interrupts/in_nmi_sig
+add wave -noupdate /test_interrupts/in_intr_sig
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
-quietly wave cursor active 0
+WaveRestoreCursors {{Cursor 1} {1800 ns} 0}
+quietly wave cursor active 1
 configure wave -namecolwidth 202
 configure wave -valuecolwidth 66
 configure wave -justifyvalue left
@@ -29,4 +35,4 @@ configure wave -griddelta 40
 configure wave -timeline 1
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {2800 ps}
+WaveRestoreZoom {0 ns} {25800 ns}
