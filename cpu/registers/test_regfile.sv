@@ -9,7 +9,7 @@ module test_regfile;
 // Define one full T-clock cycle delay
 `define T #2
 bit clk = 1;
-initial repeat (30) `T clk = ~clk;
+initial repeat (10) #1 clk = ~clk;
 
 // ----------------- BUSES -----------------
 // We have 4 Bi-directional buses that can also be 3-stated:
@@ -117,7 +117,7 @@ initial begin
         reg_gp_oe_sig = 1;
     `T
 
-    `T $display("END");
+    `T  $display("End of test");
 end
 
 // Drive 3-state bidirectional buses with these statements

@@ -44,7 +44,7 @@ initial begin
     `T `CHECK(8'h55);
     `T  oe_sig = 0;
 
-    `T  $display("END");
+    `T  $display("End of test");
 end
 
 // Drive a 3-state bidirectional bus with this statement
