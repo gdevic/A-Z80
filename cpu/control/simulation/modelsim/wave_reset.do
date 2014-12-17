@@ -1,18 +1,17 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate /test_reset/clk
 add wave -noupdate /test_reset/reset_in
 add wave -noupdate /test_reset/fpga_reset
 add wave -noupdate /test_reset/M1
 add wave -noupdate /test_reset/T2
 add wave -noupdate -color Gold /test_reset/clrpc
-add wave -noupdate -color Red /test_reset/reset
 add wave -noupdate /test_reset/nreset
-add wave -noupdate /test_reset/clk
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x1
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x2
 add wave -noupdate -color {Cadet Blue} /test_reset/reset_block/x3
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3000 ns} 0}
+WaveRestoreCursors {{Cursor 1} {2800 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 112
 configure wave -valuecolwidth 73
