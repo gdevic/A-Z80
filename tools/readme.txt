@@ -1,15 +1,15 @@
-This directory contains tools related to various aspects of the A-Z80 project.
+This directory contains various tools:
 
 Arduino
 =======
-Contains the Arduino Mega firmware to be run with a dongle described at:
+The Arduino Mega firmware to be run with a dongle described at:
 http://www.baltazarstudios.com
 
 
 dongle
 ======
-This folder contains a number of scripts and files that run Z80 instructions
-through the Arduino dongle and collect timing and functional data.
+Several scripts and files that run Z80 instructions through the Arduino
+dongle to collect timing and functional data.
 
 Some instructions (daa, neg, sbc) have separate simulation scripts
 that contain functional implementation which is then compared to

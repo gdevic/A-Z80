@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+#
 # This script simulates 'sbc' calculation and generates values for selected numbers.
 # These can be compared with a real Z80 run values.
-
+#
 import sys
 
 def printFlags(f):
@@ -66,7 +67,7 @@ def sbc(inA, op2, CYin):
     cf ^= 1                         # Complement CY since we used cpl(A) and not A
     if double_cpl:
         cf ^= 1
-    
+
     nf = 1                          # 1 for SUB operation
 
     finalA = finalA & 0xFF          # Clamp final value to 8 bits

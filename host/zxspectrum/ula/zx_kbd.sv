@@ -6,7 +6,7 @@
 // PS/2      |  ZX Spectrum
 // ----------+-----------------
 // CTRL      |  CAPS SHIFT
-// ALT       |  SYMBOL SHIFT 
+// ALT       |  SYMBOL SHIFT
 //
 // In addition to regular alpha-numeric keys, this code simulates many standard
 // symbols on the PS/2 keyboard for convenience.
@@ -71,7 +71,7 @@ begin
         8'b10111111: key_row = keys[6];
         8'b01111111: key_row = keys[7];
     default:
-        key_row = 5'b11111;    
+        key_row = 5'b11111;
     endcase
 end
 
@@ -99,7 +99,7 @@ begin
         else begin
             // Cancel release/extended flags for the next clock
             extended <= 0;
-            released <= 0;            
+            released <= 0;
 
             if (extended) begin
                 // Extended keys

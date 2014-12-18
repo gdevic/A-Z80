@@ -26,7 +26,7 @@ module host
     input wire KEY1,            // KEY1 generates a maskable interrupt (INT)
     input wire KEY2,            // KEY2 generates a non-maskable interrupt (NMI)
     output wire UART_TXD,
-    
+
     output wire [5:0] GPIO_0    // Test
 );
 `default_nettype none

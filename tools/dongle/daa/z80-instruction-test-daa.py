@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+#
 # This script runs Z80 command 'daa' for all 256 values and flag combinations
 # and prints out memory access log data. This data is used to feed the simulation
 # script and verify its algorithm correctness.
 # It needs:
 #   1. Arduino Z80 dongle: http://www.baltazarstudios.com
 # Needs pyserial from https://pypi.python.org/pypi/pyserial
-
+#
 import serial
 import sys
 

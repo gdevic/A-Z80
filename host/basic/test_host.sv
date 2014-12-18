@@ -1,7 +1,6 @@
 //--------------------------------------------------------------
 // Testbench for the host board
 //--------------------------------------------------------------
-// 50 MHz for functional simulation (low precision)
 `timescale 10 ns/ 10 ns
 
 module test_bench_host();

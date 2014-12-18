@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+#
 # This script is used to dump Z80 instruction timing data by running the
 # instructions through the Arduino Z80 dongle and parsing the dump output.
 # It needs:
 #   1. Arduino Z80 dongle: http://www.baltazarstudios.com
 #   2. Instructions data file: '../../resources/opcodes-??.txt'
 # Needs pyserial from https://pypi.python.org/pypi/pyserial
-
+#
 import serial
 import sys
 

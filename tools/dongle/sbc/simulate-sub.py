@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+#
 # This script simulates 'sub' calculation and generates values for selected numbers.
 # These can be compared with a real Z80 run values.
-
+#
 import sys
 
 def printFlags(f):

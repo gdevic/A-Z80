@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+#
 # This script simulates 'neg' calculation and generates values for numbers 0-255.
 # These can be compared with a real Z80 run values.
-
+#
 import sys
 
 for inA in range(0, 256):
@@ -24,7 +25,7 @@ for inA in range(0, 256):
     finalA = mux1 + mux2 + CYin
     carry_ins = finalA ^ mux1 ^ mux2  # Bitfield of all internal carry-ins
     carry_ins ^= 0x90   # !?!?! Need to invert both H and V carry-ins?
-    
+
     # Calculate CF while we have bit [9] available
     cf = 0
     if finalA > 255 or finalA < 0:

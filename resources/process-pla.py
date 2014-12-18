@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 # This script reads the original Z80 PLA table and processes it to get the list of PLA
 # entries in the form suitable to load into the PLA checker program.
 #
@@ -17,6 +18,7 @@
 #                   if the right bit is "1", the opcode bit has to be 1
 #                   otherwise the bit is ignored
 #
+#-------------------------------------------------------------------------------
 #  Copyright (C) 2014  Goran Devic
 #
 #  This program is free software; you can redistribute it and/or modify it
@@ -28,10 +30,7 @@
 #  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 #  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 #  more details.
-#
-#  You should have received a copy of the GNU General Public License along
-#  with this program; if not, write to the Free Software Foundation, Inc.,
-#  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#-------------------------------------------------------------------------------
 import string
 import os
 

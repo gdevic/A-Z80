@@ -3,6 +3,19 @@
 # This script reads and parses selected Verilog and SystemVerilog modules
 # and generates a set of Verilog include files for the Z80 top-level block.
 #
+#-------------------------------------------------------------------------------
+#  Copyright (C) 2014  Goran Devic
+#
+#  This program is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by the Free
+#  Software Foundation; either version 2 of the License, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful, but WITHOUT
+#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+#  more details.
+#-------------------------------------------------------------------------------
 import os
 
 with open('../top-level-files.txt') as f:

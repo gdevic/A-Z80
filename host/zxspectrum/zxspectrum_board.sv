@@ -28,10 +28,10 @@ module zxspectrum_board
     //-------- PS/2 Keyboard --------------------
     input wire PS2_CLK,
     input wire PS2_DAT,
-    
+
     //-------- Audio (Tape player) --------------
     inout wire I2C_SCLK,
-    inout wire I2C_SDAT,    
+    inout wire I2C_SDAT,
     output wire AUD_XCK,
     output wire AUD_ADCLRCK,
     output wire AUD_DACLRCK,
@@ -53,7 +53,7 @@ module zxspectrum_board
     output wire FL_OE_N,
     output wire FL_WE_N,
     output wire FL_RST_N,
-    
+
     //-------- SRAM memory interface ------------
     output wire [17:0] SRAM_ADDR,
     inout reg [15:0] SRAM_DQ,
@@ -66,7 +66,7 @@ module zxspectrum_board
     //-------- My little imitation of a Kempston joystick -----------
     input wire [5:0] kempston,
     output wire [4:0] LEDG,         // Show the joystick state
-    
+
     //-------- Misc and debug -------------------
     input wire SW0,                 // ROM selection
     input wire SW1,                 // Enable/disable interrupts
@@ -79,6 +79,7 @@ wire reset;
 wire locked;
 assign reset = locked & KEY0;
 
+// Export selected pins to the extension connector
 assign GPIO_1[15:0] = A[15:0];
 assign GPIO_1[23:16] = D[7:0];
 assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+#
 # This script simulates 'daa' calculation and generates values for numbers 0-255.
 # These can be compared with a real Z80 run values.
-
+#
 import sys
 
 # Open opcode file and read opcode + mnemonics

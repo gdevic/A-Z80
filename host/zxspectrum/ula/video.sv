@@ -37,7 +37,7 @@ module video
     output wire [12:0] vram_address,// Address request to the video RAM
     input wire [7:0] vram_data, // Data read from the video RAM
 
-    input wire [2:0] border     // Border color index value    
+    input wire [2:0] border     // Border color index value
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

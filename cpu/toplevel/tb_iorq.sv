@@ -1,5 +1,7 @@
-// Interrupt test
-// The purpose of this model is to inject an interrupt opcode on the bus
+//--------------------------------------------------------------
+// Interrupt test for simulation
+// This model injects an interrupt opcode on the bus
+//--------------------------------------------------------------
 module iorq (Data, M1, IORQ);
 
 // Set to 1 if you want debug printout on each IO access

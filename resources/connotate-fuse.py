@@ -3,6 +3,7 @@
 # This script connotates fuse test files with Z80 opcode strings.
 # Run it once to convert original fuse files to a new, connotated format.
 #
+#-------------------------------------------------------------------------------
 #  Copyright (C) 2014  Goran Devic
 #
 #  This program is free software; you can redistribute it and/or modify it
@@ -14,10 +15,7 @@
 #  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 #  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 #  more details.
-#
-#  You should have received a copy of the GNU General Public License along
-#  with this program; if not, write to the Free Software Foundation, Inc.,
-#  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#-------------------------------------------------------------------------------
 import string
 import os
 import sys
@@ -47,7 +45,7 @@ if len(sys.argv)!=2:
     print "Usage: " + sys.argv[0] + " <fuse-test-file>"
     exit(0)
 file = sys.argv[1]
-    
+
 with open(file) as f, open(file+".out", "wt") as f2:
     for line in f:
         line = line.rstrip()

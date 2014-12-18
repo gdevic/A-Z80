@@ -57,7 +57,7 @@ pll pll_( .inclk0(CLOCK_27), .c0(clk_pix), .c1(clk_ula) );
 wire clk_cpu;                   // Clocks generates CPU clocks of 3.5 MHz
 clocks clocks_( .* );
 
-// Various scope test points
+// Various scope test points, connect as needed:
 //assign GPIO_0[0] = CLOCK_27;
 //assign GPIO_0[1] = clk_pix;
 //assign GPIO_0[2] = clk_ula;
@@ -70,7 +70,6 @@ assign GPIO_0[0] = PS2_CLK;
 assign GPIO_0[1] = PS2_DAT;
 assign GPIO_0[2] = UART_TXD;
 assign GPIO_0[3] = vs_nintr;
-
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate RAM that contains a sample screen image

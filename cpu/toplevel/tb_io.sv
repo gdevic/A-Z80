@@ -1,4 +1,6 @@
-// I/O Model
+//--------------------------------------------------------------
+// Implements I/O Model for simulation
+//--------------------------------------------------------------
 module io (Address, Data, CS, WE, OE);
 
 // Set to 1 to have text output to the file "iolog.txt"

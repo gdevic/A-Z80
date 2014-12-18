@@ -1,4 +1,7 @@
-// RAM Model
+//--------------------------------------------------------------
+// Implements RAM Model for simulation
+// Loads in a file "ram.hexdump" before execution.
+//--------------------------------------------------------------
 module ram (Address, Data, CS, WE, OE);
 
 // Set this to 1 if you want debug printout on each RAM access

@@ -1,6 +1,7 @@
-;
+;==============================================================================
 ; Test code for the A-Z80 CPU that prints "Hello, World!"
-;
+; Also used to test responses to interrupts.
+;==============================================================================
     org 0
 start:
     jmp boot
@@ -130,7 +131,7 @@ exec:
     call tohex
 
     ld  (stack),sp
-    
+
     ld  hl, text+5
     ld  a,(stack+1)
     call tohex

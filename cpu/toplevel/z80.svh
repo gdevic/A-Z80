@@ -1,7 +1,9 @@
+//============================================================================
+// Z80 Top level interface
+//============================================================================
 `ifndef Z80_IFC
 `define Z80_IFC
 
-// 5 MHz for a functional simulation (no delay timings)
 `timescale 100 ns/ 100 ns
 
 // Define set and clear for the negative logic pins
@@ -13,7 +15,7 @@ interface z80_if (input logic CLK);
     logic nWAIT, nINT, nNMI, nRESET, nBUSRQ;
     logic [15:0] A;
     wire  [7:0] D;
-    
+
 //=================================================
 // Modport for the CPU module (internal) interface
 // Also considered "design under test" port

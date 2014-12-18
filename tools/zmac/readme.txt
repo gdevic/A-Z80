@@ -1,4 +1,4 @@
-Two things are happening here:
+Several things are happening here:
 
 1. Generation of Z80 test code for ModelSim and FPGA at the "host/basic" level:
 

@@ -25,7 +25,7 @@ module ula
     output wire clk_vram,
     input wire reset,               // KEY0 is reset
     output wire locked,             // PLL is locked signal
-    
+
     //-------- CPU control ----------------------
     output wire clk_cpu,            // Generates CPU clock of 3.5 MHz
     output wire vs_nintr,           // Generates a vertical retrace interrupt
@@ -45,14 +45,14 @@ module ula
 
     //-------- Audio (Tape player) --------------
     inout wire I2C_SCLK,
-    inout wire I2C_SDAT,    
+    inout wire I2C_SDAT,
     output wire AUD_XCK,
     output wire AUD_ADCLRCK,
     output wire AUD_DACLRCK,
     output wire AUD_BCLK,
     output wire AUD_DACDAT,
     input wire AUD_ADCDAT,
-    
+
     //-------- VGA connector --------------------
     output wire [3:0] VGA_R,
     output wire [3:0] VGA_G,
@@ -106,9 +106,9 @@ wire [15:0] pcm_inl;
 wire [15:0] pcm_inr;
 reg  [15:0] pcm_outl;
 reg  [15:0] pcm_outr;
-    
+
 i2s_intf i2s_intf_( .CLK(CLOCK_24), .nRESET(reset),
-    .PCM_INL(pcm_inl[15:0]), .PCM_INR(pcm_inr[15:0]), .PCM_OUTL(pcm_outl[15:0]), .PCM_OUTR(pcm_outr[15:0]), 
+    .PCM_INL(pcm_inl[15:0]), .PCM_INR(pcm_inr[15:0]), .PCM_OUTL(pcm_outl[15:0]), .PCM_OUTR(pcm_outr[15:0]),
     .I2S_MCLK(AUD_XCK), .I2S_LRCLK(AUD_ADCLRCK), .I2S_BCLK(AUD_BCLK), .I2S_DOUT(AUD_DACDAT), .I2S_DIN(AUD_ADCDAT) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

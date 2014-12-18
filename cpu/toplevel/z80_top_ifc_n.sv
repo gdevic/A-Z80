@@ -1,5 +1,5 @@
 //============================================================================
-// Z80 Top level using the interface declaration.
+// Z80 Top level using the interface declaration
 //============================================================================
 `include "z80.svh"
 

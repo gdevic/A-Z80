@@ -15,17 +15,18 @@ A-Z80 "cpu" consists of several functional blocks and a top-level module:
   register    contains CPU register file and the register control logic
   control     contains PLA, the sequencer and other control blocks
   toplevel    A-Z80 top level core, interfaces and the test code
-  
+
 "host" integrates the A-Z80 into several complete top-level designs:
   "basic" contains a simplified board consisting of A-Z80 CPU, memory
           and UART modules that can run small Z80 programs
   "zxspectrum" contains an implementation of the Sinclair ZX Spectrum
 
   You probably want to start by loading one of those two designs in Quartus.
-  
+
 "tools" contains various tools related to the project.
 
 Read the 'readme.txt' files in each of the folders for additional information.
+Read 'Quick Start' and 'Users Guide' documents in the 'docs' folder.
 
 A-Z80 Logic Design
 ==================
@@ -37,8 +38,8 @@ modules; complete top-level solutions that use A-Z80 are in the "host" folder.
 
 Majority of sub-modules are designed in the Quartus schematic editor and then
 exported to Verilog for simulation and the top-level integration. If you decide
-to create a design using the A-Z80, you can use schematic files as sources (for
-Altera Quartus), or compiled Verilog code (for Xilinx, for example).
+to create a design using the A-Z80, you can either use schematic files as sources
+(in Altera Quartus) or corresponding Verilog sources.
 
 Simulation
 ==========
@@ -54,13 +55,13 @@ profile: ./<block>/simulation/modelsim/test_<block>.mpf
 The first time you open any ModelSim session by opening a *.mpf file, you need to
 create a library:
 ModelSim> vlib work
-After that you can compile all modules/project sources (Compile->Compile All) and
-run a simulation.
+After that, you can compile sources (Compile->Compile All) and run a simulation
+through one of defined configurations.
 
 If you get a message "Unable to compile", you forgot to run 'modelsim_setup.py'.
-Exit ModelSim; git revert its changes to ".mpf" file (since it has already rewritten
-it using absolute paths); delete "work" folder, run 'modelsim_setup.py' and restart.
-You will have to recreate library ('vlib work') and recompile.
+Exit ModelSim; git revert its changes to ".mpf" file (since it has been rewritten
+using absolute paths); delete "work" folder, run 'modelsim_setup.py' and restart.
+You will have to recreate the library ('vlib work') and recompile.
 
 Each project also contains a set of predefined waveform scripts that you can
 load before running a simulation of a particular module or a test:

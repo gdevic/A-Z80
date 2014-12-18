@@ -373,7 +373,7 @@ void loop()
         p("-----------------------------------------------------------+\r\n");
         goto control;
     }
-    
+
     // If the address is tri-stated, skip checking various combinations of
     // control signals since they may also be floating and we can't detect that
     if (!abTristated)
@@ -477,7 +477,7 @@ void loop()
     //--------------------------------------------------------
     // Trace/simulation control handler
     //--------------------------------------------------------
-control:    
+control:
     if (!running)
     {
         p(":Simulation stopped: %s\r\n", extraInfo);

@@ -1,7 +1,6 @@
 //============================================================================
-// Z80 Top level using the direct wire declaration
+// Z80 Top level using the direct module declaration
 //============================================================================
-// 5 MHz for simulation
 `timescale 1us/ 100 ns
 
 module z80_top_direct_n(

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 # This script reads a binary file and writes it out in the ASCII format
 # that lists each 8-bit word in a hex format without 0x.
 #
@@ -7,6 +8,7 @@
 # Usage:  python bindump.py <input-file> [<output-file>]
 #
 # If the output file is not given, "out.hex" will be created.
+#
 import sys
 
 filename = sys.argv[1]

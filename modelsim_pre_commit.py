@@ -11,11 +11,24 @@
 #
 # This script sorts the list of project files in a consistent way so no change
 # will result in files looking the same way. In addition, the same is done with
-# (key value) pairs within each file's proprty line.
+# (key value) pairs within each file's line containing properties.
 #
 # Run this script before committing changes to git and bogus modifications will
-# dissapear!
+# magically dissapear!
 #
+#-------------------------------------------------------------------------------
+#  Copyright (C) 2014  Goran Devic
+#
+#  This program is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by the Free
+#  Software Foundation; either version 2 of the License, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful, but WITHOUT
+#  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+#  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+#  more details.
+#-------------------------------------------------------------------------------
 import os
 import glob
 
