@@ -5,7 +5,7 @@
 //
 // TODO: Video RAM contention would cause a clock gating which would be
 // implemented in this module. RAM contention is not implemented since we are
-// using a dual-port RAM.
+// using FPGA RAM cells configured in dual-port mode.
 //
 //  Copyright (C) 2014  Goran Devic
 //
@@ -26,6 +26,7 @@
 module clocks
 (
     input wire clk_ula,         // Input ULA clock of 14 MHz
+    input wire turbo,           // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
     output reg clk_cpu          // Output 3.5 MHz CPU clock
 );
 
@@ -34,11 +35,13 @@ module clocks
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 reg [0:0] counter;
 
-// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// Note: In order to get to 3.5 MHz, the PLL needs to be set to generate 14 MHz
 // and then this divider-by-4 brings the effective clock down to 3.5 MHz
+// 1. always block at positive edge of clk_ula divides by 2
+// 2. counter flop further divides it by 2 unless the turbo mode is set
 always @(posedge clk_ula)
 begin
-    if (counter=='0)
+    if (counter=='0 | turbo)
         clk_cpu <= ~clk_cpu;
     counter <= counter - 1'b1;
 end

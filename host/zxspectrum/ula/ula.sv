@@ -22,6 +22,7 @@ module ula
     //-------- Clocks and reset -----------------
     input wire CLOCK_27,            // Input clock 27 MHz
     input wire CLOCK_24,            // Input clock 24 MHz
+    input wire turbo,               // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
     output wire clk_vram,
     input wire reset,               // KEY0 is reset
     output wire locked,             // PLL is locked signal

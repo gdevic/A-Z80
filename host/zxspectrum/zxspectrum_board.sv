@@ -70,7 +70,8 @@ module zxspectrum_board
     //-------- Misc and debug -------------------
     input wire SW0,                 // ROM selection
     input wire SW1,                 // Enable/disable interrupts
-    output wire [1:0] LEDR,         // Shows the switch selection
+    input wire SW2,                 // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
+    output wire [2:0] LEDR,         // Shows the switch selection
     inout wire [31:0] GPIO_1,
     output wire [2:0] LEDGTOP       // Show additional information visually
 );
@@ -189,13 +190,14 @@ assign SRAM_LB_N = 0;
 // Instantiate ULA
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire clk_cpu;                   // Global CPU clock of 3.5 MHz
+assign LEDR[2] = SW2;           // Glow red when in turbo mode (7.0 MHz)
 wire [12:0] vram_address;       // ULA video block requests a byte from the video RAM
 wire [7:0] vram_data;           // ULA video block reads a byte from the video RAM
 wire vs_nintr;                  // Generates a vertical retrace interrupt
 wire pressed;                   // Show that a key is being pressed
 wire beeper;                    // Show the beeper state
 
-ula ula_( .*, .clk_cpu(clk_cpu) );
+ula ula_( .*, .turbo(SW2), .clk_cpu(clk_cpu) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU
@@ -211,7 +213,7 @@ wire nBUSACK;
 
 wire nWAIT = 1;
 wire nINT = (SW1==0)? vs_nintr : '1;// SW1 disables interrupts and, hence, keyboard
-assign LEDR[1] = SW1;               // Glow red when keyboard is *disabled*
+assign LEDR[1] = SW1;               // Glow red when interrupts are *disabled*
 wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
 
@@ -220,10 +222,10 @@ z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Lit green LEDs to show activity on a Kempston compatible joystick
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assign LEDG[0] = !kempston[5];  // UP
-assign LEDG[1] = !kempston[4];  // DOWN
-assign LEDG[2] = !kempston[0];  // LEFT
-assign LEDG[3] = !kempston[2];  // RIGHT
-assign LEDG[4] = !kempston[3];  // BUTTON
+assign LEDG[0] = !kempston[5];                  // UP
+assign LEDG[1] = !kempston[4];                  // DOWN
+assign LEDG[2] = !kempston[0];                  // LEFT
+assign LEDG[3] = !kempston[2];                  // RIGHT
+assign LEDG[4] = !kempston[3] | !kempston[1];   // BUTTON
 
 endmodule

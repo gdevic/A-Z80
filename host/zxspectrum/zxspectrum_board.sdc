@@ -29,6 +29,7 @@ create_generated_clock -name clk_cpu -source [get_pins {ula_|clocks_|clk_cpu|clk
 
 # Create false clocks
 create_clock -name KEY1 -period 10.000 [get_ports {KEY1}]
+create_clock -name beep -period 10.000 [get_registers {ula:ula_|beep}]
 
 # Set independent clock groups that don't interfere with each other:
 set_clock_groups -asynchronous \
@@ -36,6 +37,7 @@ set_clock_groups -asynchronous \
  -group [get_clocks {CLOCK_27}] \
  -group [get_clocks {clk_cpu}] \
  -group [get_clocks {KEY1}] \
+ -group [get_clocks {beep}] \
  -group ula_|pll_|altpll_component|pll|clk[0] \
  -group ula_|pll_|altpll_component|pll|clk[1]
 

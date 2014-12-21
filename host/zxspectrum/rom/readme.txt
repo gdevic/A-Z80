@@ -9,3 +9,5 @@ http://www.wearmouth.demon.co.uk/gw03/gw03info.htm
 
 Flash the "combined.bin" into the flash of your DE1 board at the address 0.
 SW0 selects which ROM image (which 16K block) is used.
+
+See the User's Guide for more information on this design.
