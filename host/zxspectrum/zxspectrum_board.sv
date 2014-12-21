@@ -71,7 +71,8 @@ module zxspectrum_board
     input wire SW0,                 // ROM selection
     input wire SW1,                 // Enable/disable interrupts
     output wire [1:0] LEDR,         // Shows the switch selection
-    inout wire [31:0] GPIO_1
+    inout wire [31:0] GPIO_1,
+    output wire [2:0] LEDGTOP       // Show additional information visually
 );
 `default_nettype none
 
@@ -84,6 +85,11 @@ assign GPIO_1[15:0] = A[15:0];
 assign GPIO_1[23:16] = D[7:0];
 assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};
 //assign GPIO_1[] = {nWAIT,nINT,nNMI,nRESET,nBUSRQ,CLK};
+
+// Top 3 green LEDs show various states:
+assign LEDGTOP[2] = 0;              // Reserved for future use
+assign LEDGTOP[1] = beeper;         // Show the beeper state
+assign LEDGTOP[0] = pressed;        // Show when a key is being pressed
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Internal buses and address map selection logic
@@ -186,6 +192,8 @@ wire clk_cpu;                   // Global CPU clock of 3.5 MHz
 wire [12:0] vram_address;       // ULA video block requests a byte from the video RAM
 wire [7:0] vram_data;           // ULA video block reads a byte from the video RAM
 wire vs_nintr;                  // Generates a vertical retrace interrupt
+wire pressed;                   // Show that a key is being pressed
+wire beeper;                    // Show the beeper state
 
 ula ula_( .*, .clk_cpu(clk_cpu) );
 

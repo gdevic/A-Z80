@@ -46,7 +46,8 @@ module zx_keyboard
     // Input key scan codes from the PS/2 keyboard
     input wire [7:0] scan_code, // PS/2 scan-code
     input wire scan_code_ready, // Active for 1 clock: a scan code is ready
-    input wire scan_code_error  // Error receiving PS/2 keyboard data
+    input wire scan_code_error, // Error receiving PS/2 keyboard data
+    output wire pressed         // Signal that a key is pressed
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,6 +58,9 @@ reg [4:0] keys [0:7];       // 8 rows of 5 bits each
 reg released;               // Tracks "released" scan code (F0)
 reg extended;               // Tracks "extended" scan code (E0)
 reg shifted;                // Tracks local "shifted" state
+
+// Calculate a "key is pressed" signal
+assign pressed = ~(&keys[7] & &keys[6] & &keys[5] & &keys[4] & &keys[3] & &keys[2] & &keys[1] & &keys[0]);
 
 // Output requested row of keys continously
 always_comb
