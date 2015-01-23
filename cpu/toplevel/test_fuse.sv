@@ -20,7 +20,7 @@ initial begin : init
 
     // Run all the tests and write the result to a file
     f = $fopen("fuse.result.txt");
-    `include "test_fuse.i"
+    `include "test_fuse.vh"
     $fclose(f);
 
 end : init

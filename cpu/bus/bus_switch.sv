@@ -6,7 +6,7 @@
 // This module provides control data bus switch signals. The sole purpose of
 // having these wires defined in this module is to get all control signals
 // (which are processed by genglobals.py) to appear in the list of global
-// control signals ("globals.i") for consistency.
+// control signals ("globals.vh") for consistency.
 //============================================================================
 
 module bus_switch

@@ -6,7 +6,7 @@
 //============================================================================
 
 // Include a list of top-level signal wires
-`include "globals.i"
+`include "globals.vh"
 
 // Specific to Modelsim, some modules in the schematics need to be pre-initialized
 // to avoid starting simulations with unknown values in selected flip flops.

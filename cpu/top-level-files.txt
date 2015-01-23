@@ -5,7 +5,7 @@ synthesis. Every line that does not refer to a valid file is ignored.
 ------ Control block -------
 control/clk_delay.v
 control/decode_state.v
-control/exec_module.i
+control/exec_module.vh
 control/execute.sv
 control/interrupts.v
 control/ir.v

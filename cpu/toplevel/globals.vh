@@ -18,7 +18,7 @@ wire use_ixiy;
 wire in_alu;
 wire repeat_en;
 
-// Module: control/exec_module.i
+// Module: control/exec_module.vh
 wire ctl_state_iy_set;
 wire ctl_state_ixiy_clr;
 wire ctl_state_ixiy_we;

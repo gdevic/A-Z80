@@ -1,6 +1,6 @@
 //=========================================================================================
 // This file contains substitute strings for macros used in the Excel timing table and
-// is read and processed by genmatrix.py script to generate exec_matrix.i include file.
+// is read and processed by genmatrix.py script to generate exec_matrix.vh include file.
 //
 // Format of the file:
 //
