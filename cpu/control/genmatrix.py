@@ -2,8 +2,8 @@
 #
 # This script reads A-Z80 instruction timing data from a spreadsheet text file
 # and generates a Verilog include file defining the control block execution matrix.
-# Macros in the timing spreadsheet are substituted using a list of keys stored
-# in the macros file. See the macro file for the format information.
+# Token keywords in the timing spreadsheet are substituted using a list of keys
+# stored in the macros file. See the macro file for the format information.
 #
 # Input timing file is exported from the Excel file as a TAB-delimited text file.
 #
