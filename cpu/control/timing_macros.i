@@ -42,6 +42,7 @@ CC              setM1=!flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
 BR              setM1=nonRep | !repeat_en;
 BRZ             setM1=nonRep | !repeat_en | flags_zf;
+BZ              setM1=nonRep | flags_zf;
 INT             setM1=!(in_intr & im2);             // RST38 interrupt extension
 
 //-----------------------------------------------------------------------------------------

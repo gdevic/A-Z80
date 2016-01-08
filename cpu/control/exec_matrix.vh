@@ -2989,14 +2989,9 @@ if (pla[91] && pla[21]) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1; /* Write 16-bit HL, enable SW4 upstream */
                     ctl_inc_cy=pc_inc; ctl_inc_dec=op3; /* Decrement if op3 is set; increment otherwise */
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
-    if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=nonRep | !repeat_en | flags_zf;
-                    ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
-                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
-                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; end
+    if (M3 && T3) begin  fMWrite=1; nextM=1; setM1=nonRep | flags_zf; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -3004,7 +2999,6 @@ if (pla[91] && pla[21]) begin
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -3118,15 +3112,9 @@ if (pla[91] && pla[20]) begin
         ctl_alu_core_hf=1;
     end
                     ctl_flags_cf_we=1; end
-    if (M3 && T4) begin  fIOWrite=1; nextM=1; setM1=nonRep | !repeat_en | flags_zf;
-                    ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
-                    ctl_alu_shift_oe=!ctl_alu_bs_oe; /* Shifter unit without shift-enable */
-                    ctl_alu_op_low=1; /* Activate ALU operation on low nibble */
-                    ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; end
+    if (M3 && T4) begin  fIOWrite=1; nextM=1; setM1=nonRep | flags_zf; end
     if (M4 && T1) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T2) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
@@ -3134,7 +3122,6 @@ if (pla[91] && pla[20]) begin
                     ctl_bus_inc_oe=1; /* Output enable incrementer to the register bus */ end
     if (M4 && T3) begin 
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1; /* Decrement */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
     if (M4 && T4) begin 
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=!(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */

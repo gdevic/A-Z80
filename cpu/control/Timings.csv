@@ -847,10 +847,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #043H T9  AB:000 DB:--               RD    IORQ	2	4	fIORead		mw									d	<	R	alu	>s0			bus								S				NEG_OP2	
 #044H T10 AB:000 DB:--	3	1	fMWrite				HL			W																								
 #045H T11 AB:000 DB:B1          MREQ	3	2	fMWrite					HL	op3	R																								
-#046H T12 AB:000 DB:B1          MREQ    WR	3	3	fMWrite		1	BRZ					B							>s0				L	XOR											
-#047H T13 AB:000 DB:--	4	1					PC		-	W																								
+#046H T12 AB:000 DB:B1          MREQ    WR	3	3	fMWrite		1	BZ																												
+#047H T13 AB:000 DB:--	4	1					PC			W																								
 #048H T14 AB:000 DB:--	4	2						PC	-	R																								
-#049H T15 AB:000 DB:--	4	3					PC		-	W																								
+#049H T15 AB:000 DB:--	4	3					PC			W																								
 #050H T16 AB:000 DB:--	4	4						PC	-	R																								
 #051H T17 AB:000 DB:--	4	5			1	1																												
 #end																																		
@@ -867,10 +867,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #043H T9  AB:000 DB:--	3	1	fIOWrite				BC			W																								
 #044H T10 AB:000 DB:21                  WR IORQ	3	2	fIOWrite											d	<	R	alu	>s0		bus		L	ADD				*		S					
 #045H T11 AB:000 DB:21                  WR IORQ	3	3	fIOWrite														alu	<	res			H	ADD							*				
-#046H T12 AB:000 DB:21                  WR IORQ	3	4	fIOWrite		1	BRZ					B		>					>s0				L	XOR											
-#047H T13 AB:000 DB:--	4	1					PC		-	W																								
+#046H T12 AB:000 DB:21                  WR IORQ	3	4	fIOWrite		1	BZ																												
+#047H T13 AB:000 DB:--	4	1					PC			W																								
 #048H T14 AB:000 DB:--	4	2						PC	-	R																								
-#049H T15 AB:000 DB:--	4	3					PC		-	W																								
+#049H T15 AB:000 DB:--	4	3					PC			W																								
 #050H T16 AB:000 DB:--	4	4						PC	-	R																								
 #051H T17 AB:000 DB:--	4	5			1	1																												
 #end																																		
