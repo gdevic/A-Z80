@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script simulates 'sbc' calculation and generates values for selected numbers.
 # These can be compared with a real Z80 run values.
@@ -39,11 +39,11 @@ def printFlags(f):
         s += 'C'
     else:
         s += ' '
-    print 'Flags =                           %s' % s
+    print ('Flags =                           %s' % s)
 
 def sbc(inA, op2, CYin):
-    print '------------------------------------------'
-    print 'Input: %0.2X SBC %0.2X  CY = %0.2X' % ( inA, op2, CYin)
+    print ('------------------------------------------')
+    print ('Input: %0.2X SBC %0.2X  CY = %0.2X' % ( inA, op2, CYin))
 
     double_cpl = 0                  # Flag that we did a double 1's complement
     cplOp2 = op2 ^ 0xFF             # Bit-wise complement of OP2
@@ -91,37 +91,37 @@ def sbc(inA, op2, CYin):
 
     flags = (sf<<7) | (zf<<6) | (yf<<5) | (hf<<4) | (xf<<3) | (vf<<2) | (nf<<1) | (cf<<0)
 
-    print 'Out:      A -> %0.2X    Flags = %0.2X' % ( finalA, flags)
+    print ('Out:      A -> %0.2X    Flags = %0.2X' % ( finalA, flags))
     printFlags(flags)
 
 sbc(0, 0, 0)
-print 'Should be A -> 00    Flags = 42'
+print ('Should be A -> 00    Flags = 42')
 printFlags(0x42)
 sbc(0, 1, 0)
-print 'Should be A -> FF    Flags = BB'
+print ('Should be A -> FF    Flags = BB')
 printFlags(0xBB)
 
 sbc(0, 0, 1)
-print 'Should be A -> FF    Flags = BB'
+print ('Should be A -> FF    Flags = BB')
 printFlags(0xBB)
 sbc(0, 1, 1)
-print 'Should be A -> FE    Flags = BB'
+print ('Should be A -> FE    Flags = BB')
 printFlags(0xBB)
 
 sbc(0xAA, 0x55, 0)
-print 'Should be A -> 55    Flags = 06'
+print ('Should be A -> 55    Flags = 06')
 printFlags(0x06)
 sbc(0x55, 0xAA, 0)
-print 'Should be A -> AB    Flags = BF'
+print ('Should be A -> AB    Flags = BF')
 printFlags(0xBF)
 
 sbc(0xAA, 0x55, 1)
-print 'Should be A -> 54    Flags = 06'
+print ('Should be A -> 54    Flags = 06')
 printFlags(0x06)
 sbc(0x55, 0xAA, 1)
-print 'Should be A -> AA    Flags = BF'
+print ('Should be A -> AA    Flags = BF')
 printFlags(0xBF)
 
 sbc(0x0F, 0x03, 1)
-print 'Should be A -> 0B    Flags = 0A'
+print ('Should be A -> 0B    Flags = 0A')
 printFlags(0x0A)

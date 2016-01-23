@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script connotates fuse test files with Z80 opcode strings.
 # Run it once to convert original fuse files to a new, connotated format.
@@ -42,7 +42,7 @@ load("opcodes-fd-cb.txt")
 load("opcodes-fd-xx.txt")
 
 if len(sys.argv)!=2:
-    print "Usage: " + sys.argv[0] + " <fuse-test-file>"
+    print ("Usage:", sys.argv[0], "<fuse-test-file>")
     exit(0)
 file = sys.argv[1]
 
@@ -57,4 +57,4 @@ with open(file) as f, open(file+".out", "wt") as f2:
             if index in op:
                 note = " " + " "*(7-len(parts[0])) + op[index.upper()]
         f2.write(line + note + "\n")
-        print line + note
+        print (line + note)

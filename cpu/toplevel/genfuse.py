@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script generates a test include file from a set of "Fuse" test vectors.
 #
@@ -62,7 +62,7 @@ with open(tests_in) as f1:
 while t1[0].split(" ")[0]!=start_test:
     while len(t1.pop(0))>0:
         pass
-t1 = filter(None, t1)   # Filter out empty lines
+t1 = list(filter(None, t1)) # Filter out empty lines
 
 with open(tests_expected) as f2:
     t2 = f2.read().splitlines()
@@ -124,7 +124,7 @@ while True:
     ftest.write("$fdisplay(f,\"Testing opcode " + name + "\");\n")
     name = name.split(" ")[0]
     r = t1.pop(0).split(' ')
-    r = filter(None, r)
+    r = list(filter(None, r))
     # 0  1  2  3  4   5   6   7   8  9  10 11   (index)
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC
     RegWrite("af", r[0])
@@ -142,7 +142,7 @@ while True:
     RegWrite("pc", r[11])
 
     s = t1.pop(0).split(' ')
-    s = filter(None, s)
+    s = list(filter(None, s))
     # 0 1 2    3    4  5        6          (index)
     # I R IFF1 IFF2 IM <halted> <tstates?>
     RegWrite("ir", s[0]+s[1])
@@ -170,7 +170,7 @@ while True:
     t2b = list(t2)
     while True:
         m = t2b.pop(0).split(' ')
-        m = filter(None, m)
+        m = list(filter(None, m))
         if len(m)==0 or m[0]=="-1":
             break
         if len(m)==4 and m[1]=="PR":
@@ -207,10 +207,10 @@ while True:
         if l[0]!=' ':
             break
     r = l.split(' ')
-    r = filter(None, r)
+    r = list(filter(None, r))
 
     s = t2.pop(0).split(' ')
-    s = filter(None, s)
+    s = list(filter(None, s))
 
     ticks = int(s[6]) * 2 - 2       # We return 1T (#2) that we borrowed to set PC
     total_clks = total_clks + ticks
@@ -264,7 +264,7 @@ while True:
     # Read memory configuration until an empty line or -1 at the end
     while True:
         m = t2.pop(0).split(' ')
-        m = filter(None, m)
+        m = list(filter(None, m))
         if len(m)==0 or m[0]=="-1":
             break
         address = int(m.pop(0),16)

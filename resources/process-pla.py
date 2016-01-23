@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script reads the original Z80 PLA table and processes it to get the list of PLA
 # entries in the form suitable to load into the PLA checker program.

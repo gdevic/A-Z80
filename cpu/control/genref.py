@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script reads and parses selected Verilog and SystemVerilog modules
 # and generates a set of Verilog include files for the control block.
@@ -39,25 +39,25 @@ for infile in files:
             info = line.split()
             # input wire register case
             if len(info)>2 and info[0]=="input" and info[1]=="wire" and info[2].startswith("ctl_"):
-                wires.append(info[2].translate(None, ';,'))
+                wires.append(info[2].strip(';,'))
             # input wire [1:0] bus case
             if len(info)>3 and info[0]=="input" and info[1]=="wire" and info[2].startswith("[") and info[3].startswith("ctl_"):
-                wires.append(info[2] + " " + info[3].translate(None, ';,'))
+                wires.append(info[2] + " " + info[3].strip(';,'))
 
     if len(wires)>0:
         with open('exec_module.vh', 'a') as file1, open('exec_zero.vh', 'a') as file0:
-            print "MODULE: " + infile
+            print ("MODULE:", infile)
             file0.write("\n// Module: " + infile + "\n")
             file1.write("\n// Module: " + infile + "\n")
             for wire in wires:
-                print "   " + wire
+                print ("  ", wire)
                 file1.write("output logic " + wire + ",\n")
                 # To the exec include, write bus with the length field (if the wire is a bus)
                 # To the zero include, skip bus width field
                 if "[" in wire:
                     file0.write(wire.split()[1] + " = 0;\n")
                 else:
-                    file0.write(wire + " = 0;\n")                    
+                    file0.write(wire + " = 0;\n")
 
 # Touch a file that includes 'exec_module.vh' and 'exec_zero.vh' to ensure it will recompile correctly
 os.utime("execute.sv", None)

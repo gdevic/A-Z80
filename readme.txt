@@ -6,7 +6,7 @@ This project is described in more details at: www.baltazarstudios.com
 
 Prerequisites:
 * Altera Quartus and Modelsim (free web editions)
-* Python 2.7
+* Python 3.5.x
 
 A-Z80 "cpu" consists of several functional blocks and a top-level module:
   alu         contains ALU block, ALU control and flags logic

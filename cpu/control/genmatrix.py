@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script reads A-Z80 instruction timing data from a spreadsheet text file
 # and generates a Verilog include file defining the control block execution matrix.
@@ -74,7 +74,7 @@ def getSubst(key, token):
             else:
                 subst.append(l)
         lx = l.split(' ')               # Split the string and then ignore (duplicate)
-        lx = filter(None, lx)           # spaces in the list left by the split()
+        lx = list(filter(None, lx))     # spaces in the list left by the split()
         if l.startswith(":"):           # Find and recognize a matching set (key) section
             if validset:                # Error if there is a new section going from the macthing one
                 break                   # meaning we did not find our macro in there
@@ -96,7 +96,7 @@ def getSubst(key, token):
 
 # Read the content of a file and using the csv reader and remove any quotes from the input fields
 content = []                            # Content of the spreadsheet timing file
-with open(fname, 'rb') as csvFile:
+with open(fname, 'r') as csvFile:
     reader = csv.reader(csvFile, delimiter='\t', quotechar='"')
     for row in reader:
         content.append('\t'.join(row))
@@ -113,7 +113,7 @@ for col in range(len(tokens)):
 imatrix = []    # Verilog execution matrix code
 for line in content:
     col = line.split('\t')              # Split the string into a list of columns
-    col_clean = filter(None, col)       # Removed all empty fields (between the separators)
+    col_clean = list(filter(None, col)) # Removed all empty fields (between the separators)
     if len(col_clean)==0:               # Ignore completely empty lines
         continue
 
@@ -149,7 +149,7 @@ for line in content:
         for i in range(3,len(col)):
             # There may be multiple tokens separated by commas
             tokList = col[i].strip().split(',')
-            tokList =  filter(None, tokList)   # Filter out empty lines
+            tokList = list(filter(None, tokList)) # Filter out empty lines
             for token in tokList:
                 token = token.strip()
                 if i in tkeys and len(token)>0:
@@ -158,7 +158,7 @@ for line in content:
                         action += ctl_prefix
                     action += macro
                     if state.find("ERROR")>=0:
-                        print "{0} {1}".format(state, action)
+                        print ("{0} {1}".format(state, action))
                         break
 
         # Complete and write out a line
@@ -172,7 +172,7 @@ with open('exec_matrix.vh', 'w') as file:
     # If there were errors, print them first (and output to the console)
     if len(errors)>0:
         for error in errors:
-            print error
+            print (error)
             file.write(error + "\n")
         file.write("-" * 80 + "\n")
     for item in imatrix:

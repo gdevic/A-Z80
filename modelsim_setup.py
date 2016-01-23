@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script sets up the environment to run ModelSim on each module.
 #
@@ -29,6 +29,7 @@ def setup():
         f.write("$ROOT\n")
         path = os.path.abspath("../../../.")
         f.write(os.path.dirname(path))
+        print ("Setting up", os.getcwd())
 
 # Return to our current directory after each module has been visited
 abspath = os.path.abspath(__file__)

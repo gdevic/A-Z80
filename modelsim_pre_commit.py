@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script prepares ModelSim *.mpf files for committing to git
 #

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script reads and parses selected Verilog and SystemVerilog modules
 # and generates a set of Verilog include files for the Z80 top-level block.
@@ -41,9 +41,9 @@ for infile in files:
                 if (info[0]=="output") and (info[1]=="wire" or info[1]=="reg" or info[1]=="logic"):
                     # There are 2 cases: wires and buses
                     if info[2].startswith('['):
-                        wires.append(info[2] + ' ' + info[3].translate(None, ';,'))
+                        wires.append(info[2] + ' ' + info[3].strip(';,'))
                     else:
-                        wires.append(info[2].translate(None, ';,'))
+                        wires.append(info[2].strip(';,'))
 
     if len(wires)>0:
         with open('globals.vh', 'a') as file1:

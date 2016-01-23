@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script simulates 'daa' calculation and generates values for numbers 0-255.
 # These can be compared with a real Z80 run values.
@@ -15,7 +15,7 @@ for line in testVectors:
     inA = int(line[7:9], 16)
     outA = int(line[13:15], 16)
     outF = int(line[18:20], 16)
-    #print 'F:' + ("%0.2X" % inF) + ' A:' + ("%0.2X" % inA) + ' -> ' + ("%0.2X" % outA) + ' F:' + ("%0.2X" % outF)
+    #print ('F:' + ("%0.2X" % inF) + ' A:' + ("%0.2X" % inA) + ' -> ' + ("%0.2X" % outA) + ' F:' + ("%0.2X" % outF))
 
     # Get the flags that will determine daa operation
     hf = (inF>>4) & 1
@@ -59,4 +59,4 @@ for line in testVectors:
 
     flags = (sf<<7) | (zf<<6) | (yf<<5) | (hf<<4) | (xf<<3) | (pf<<2) | (nf<<1) | (cf<<0)
 
-    print 'F:' + ("%0.2X" % inF) + ' A:' + ("%0.2X" % inA) + ' -> ' + ("%0.2X" % finalA) + ' F:' + ("%0.2X" % flags)
+    print ('F:' + ("%0.2X" % inF) + ' A:' + ("%0.2X" % inA) + ' -> ' + ("%0.2X" % finalA) + ' F:' + ("%0.2X" % flags))

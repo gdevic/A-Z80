@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This script simulates 'neg' calculation and generates values for numbers 0-255.
 # These can be compared with a real Z80 run values.
@@ -55,4 +55,4 @@ for inA in range(0, 256):
 
     flags = (sf<<7) | (zf<<6) | (yf<<5) | (hf<<4) | (xf<<3) | (vf<<2) | (nf<<1) | (cf<<0)
 
-    print '%0.2X -> %0.2X  Flags = %0.2X' % ( inA, finalA, flags)
+    print ('%0.2X -> %0.2X  Flags = %0.2X' % ( inA, finalA, flags))
