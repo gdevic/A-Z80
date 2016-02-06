@@ -51,7 +51,7 @@ for infile in files:
             file1.write("\n// Module: " + infile + "\n")
             for wire in wires:
                 print ("  ", wire)
-                file1.write("output logic " + wire + ",\n")
+                file1.write("output wire " + wire + ",\n")
                 # To the exec include, write bus with the length field (if the wire is a bus)
                 # To the zero include, skip bus width field
                 if "[" in wire:

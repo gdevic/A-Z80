@@ -24,13 +24,13 @@ module execute
     //----------------------------------------------------------
     `include "exec_module.vh"
 
-    output logic nextM,                 // Last M cycle of any instruction
-    output logic setM1,                 // Last T clock of any instruction
-    output logic fFetch,                // Function: opcode fetch cycle ("M1")
-    output logic fMRead,                // Function: memory read cycle
-    output logic fMWrite,               // Function: memory write cycle
-    output logic fIORead,               // Function: IO Read cycle
-    output logic fIOWrite,              // Function: IO Write cycle
+    output wire nextM,                  // Last M cycle of any instruction
+    output wire setM1,                  // Last T clock of any instruction
+    output wire fFetch,                 // Function: opcode fetch cycle ("M1")
+    output wire fMRead,                 // Function: memory read cycle
+    output wire fMWrite,                // Function: memory write cycle
+    output wire fIORead,                // Function: IO Read cycle
+    output wire fIOWrite,               // Function: IO Write cycle
 
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
@@ -74,16 +74,16 @@ module execute
 );
 
 // Detects unknown instructions by signalling the known ones
-logic validPLA;                         // Valid PLA asserts this wire
+wire validPLA;                          // Valid PLA asserts this wire
 // Activates a state machine to compute WZ=IX+d; takes 5T cycles
-logic ixy_d;                            // Compute WX=IX+d
+wire ixy_d;                             // Compute WX=IX+d
 // Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
-logic setIXIY;                          // Set IX/IY flag at the next T cycle
-logic setCBED;                          // Set CB or ED flag at the next T cycle
+wire setIXIY;                           // Set IX/IY flag at the next T cycle
+wire setCBED;                           // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
-logic nonRep;                           // Non-repeating block instruction
+wire nonRep;                            // Non-repeating block instruction
 // Suspends incrementing PC through address latch unless in HALT or interrupt mode
-logic pc_inc;                           // Normally defaults to 1
+wire pc_inc;                            // Normally defaults to 1
 
 //----------------------------------------------------------
 // Define various shortcuts to field naming
