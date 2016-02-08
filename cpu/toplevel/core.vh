@@ -31,7 +31,15 @@ assign prefix = { ~use_ixiy, use_ixiy, ~in_halt, in_alu, table_xx, table_cb, tab
 wire nM1_int;           // External pins timing control
 assign nM1_int = !((setM1 & nextM) | (fFetch & T1));
 
+`include "coremodules.vh"
 
+// Data path within the CPU in various forms, ending with data pins
+data_switch sw2_( .sw_up_en(bus_sw_2u), .sw_down_en(bus_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]) );
+
+// Data switch SW1 with the data mask
+data_switch_mask sw1_( .sw_mask543_en(bus_sw_mask543_en), .sw_up_en(bus_sw_1u), .sw_down_en(bus_sw_1d), .db_up(db0[7:0]), .db_down(db1[7:0]) );
+
+/* This SystemVerilog-style code is kept for future reference
 // Control block
 clk_delay   clk_delay_( .* );
 decode_state decode_state_( .* );
@@ -62,9 +70,4 @@ bus_switch bus_switch_( .* );
 
 // Timing control of the external pins
 memory_ifc memory_ifc_( .* );
-
-// Data path within the CPU in various forms, ending with data pins
-data_switch sw2_( .sw_up_en(bus_sw_2u), .sw_down_en(bus_sw_2d), .db_up(db1[7:0]), .db_down(db2[7:0]) );
-
-// Data switch SW1 with the data mask
-data_switch_mask sw1_( .sw_mask543_en(bus_sw_mask543_en), .sw_up_en(bus_sw_1u), .sw_down_en(bus_sw_1d), .db_up(db0[7:0]), .db_down(db1[7:0]) );
+*/
