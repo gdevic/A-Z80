@@ -51,13 +51,6 @@ TState state = IDLE, next_state = IDLE;
 // State and cycle change logic
 //============================================================================
 
-// Store the byte to transmit when the wr signal is asserted
-always @ (posedge data_in_wr)
-begin
-    if (!busy_tx)
-        data <= data_in;
-end
-
 // Present state logic
 always_ff @ (posedge clk or posedge reset)
 begin
@@ -79,6 +72,7 @@ begin
    case (state)
       IDLE  :   if (data_in_wr) begin
                     next_state <= START;
+                    data <= data_in;
                 end
       START :   next_state <= D0;
       D0    :   next_state <= D1;
