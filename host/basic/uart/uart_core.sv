@@ -52,7 +52,7 @@ TState state = IDLE, next_state = IDLE;
 //============================================================================
 
 // Present state logic
-always_ff @ (posedge clk or posedge reset)
+always @(posedge clk or posedge reset)
 begin
    if (reset) begin
       state <= IDLE;
@@ -90,7 +90,7 @@ begin
    busy_tx <= (state==IDLE && next_state==IDLE) ? 1'h0 | data_in_wr : 1'h1;
 end
 
-always_comb
+always @(*) // always_comb
 begin
    case (state)
       START :   uart_tx = 'b0;       // Start bit is low (start detect is neg edge)

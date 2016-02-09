@@ -90,7 +90,7 @@ assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
 
 // Memory map:
 //   0000 - 3FFF  16K RAM
-always_comb
+always @(*) // always_comb
 begin
     D[7:0] = {8{1'bz}};
     case ({nIORQ,nRD,nWR})
