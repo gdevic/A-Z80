@@ -115,12 +115,37 @@ end
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_( .*, .A(A[15:0]), .nRESET(reset), .CLK(clk_cpu) );
+z80_top_direct_n z80_(
+    .nM1 (nM1),
+    .nMREQ (nMREQ),
+    .nIORQ (nIORQ),
+    .nRD (nRD),
+    .nWR (nWR),
+    .nRFSH (nRFSH),
+    .nHALT (nHALT),
+    .nBUSACK (nBUSACK),
+
+    .nWAIT (nWAIT),
+    .nINT (nINT),
+    .nNMI (nNMI),
+    .nRESET (reset),
+    .nBUSRQ (nBUSRQ),
+
+    .CLK (clk_cpu),
+    .A (A),
+    .D (D)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 16Kb of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram ram_( .address(A[13:0]), .clock(clk_cpu), .data(D[7:0]), .wren(RamWE), .q(RamData[7:0]) );
+ram ram_(
+    .address(A[13:0]),
+    .clock(clk_cpu),
+    .data(D),
+    .wren(RamWE),
+    .q(RamData)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
@@ -129,6 +154,15 @@ ram ram_( .address(A[13:0]), .clock(clk_cpu), .data(D[7:0]), .wren(RamWE), .q(Ra
 //   0000 - 00FF  Write a byte to UART
 //   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .reset(!reset), .clk(clk_pll), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
+uart_io uart_io_(
+    .reset(!reset),
+    .clk(clk_pll),
+    .Address(A[15:8]),
+    .Data(D),
+    .IORQ(!nIORQ),
+    .RD(!nRD),
+    .WR(!nWR),
+    .uart_tx(uart_tx)
+);
 
 endmodule

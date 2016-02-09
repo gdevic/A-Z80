@@ -21,19 +21,13 @@
 //============================================================================
 module uart_core #(parameter BAUD = 115200)
 (
-    //----------------------------------------------------------
-    // Outputs from the module
-    //----------------------------------------------------------
-    output reg uart_tx,                // UART transmit wire
-    output reg busy_tx,                // Signal that we are busy transmitting
+    input wire clk,                    // Input clock that drives the execution
+    input wire reset,                  // Async positive edge reset
+    input wire [7:0] data_in,          // Byte to transmit
+    input wire data_in_wr,             // Signal to accept a byte to transmit
 
-    //----------------------------------------------------------
-    // Inputs to the module
-    //----------------------------------------------------------
-    input wire clk,                     // Input clock that drives the execution
-    input wire reset,                   // Async positive edge reset
-    input wire [7:0] data_in,           // Byte to transmit
-    input wire data_in_wr               // Signal to accept a byte to transmit
+    output reg uart_tx,                // UART transmit wire
+    output reg busy_tx                 // Signal that we are busy transmitting
 );
 
 //============================================================================
@@ -44,12 +38,25 @@ integer baud_count = `COUNT;            // Counter for clock divide down to meet
 
 reg [7:0] data;                         // Stores a byte to transmit
 
-typedef enum logic[3:0] { IDLE, START, D0, D1, D2, D3, D4, D5, D6, D7, STOP, BRK1 } TState;
-TState state = IDLE, next_state = IDLE;
-
 //============================================================================
 // State and cycle change logic
 //============================================================================
+
+parameter
+    IDLE = 4'd0,
+    START = 4'd1,
+    D0 = 4'd2,
+    D1 = 4'd3,
+    D2 = 4'd4,
+    D3 = 4'd5,
+    D4 = 4'd6,
+    D5 = 4'd7,
+    D6 = 4'd8,
+    D7 = 4'd9,
+    STOP = 4'd10,
+    BRK1 = 4'd11;
+
+reg [3:0] state = IDLE, next_state = IDLE;
 
 // Present state logic
 always @(posedge clk or posedge reset)
