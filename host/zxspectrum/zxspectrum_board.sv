@@ -114,7 +114,7 @@ assign io_we = nIORQ==0 && nRD==1 && nWR==0;
 //   0000 - 3FFF  16K ROM (mapped to the external Flash memory)
 //   4000 - 7FFF  16K dual-port RAM
 //   8000 - FFFF  32K RAM (mapped to the external SRAM memory)
-always_comb
+always @(*) // always_comb
 begin
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
@@ -151,7 +151,7 @@ end
 assign FL_ADDR[13:0] = A[13:0];
 assign FL_ADDR[14] = SW0;
 assign LEDR[0] = SW0;           // Glow red when using alternate ROM
-assign FL_ADDR[21:15] = '0;
+assign FL_ADDR[21:15] = 0;
 assign FL_RST_N = KEY0;
 assign FL_CE_N = 0;
 assign FL_OE_N = 0;
@@ -179,7 +179,7 @@ ram16 ram16_(
 // 32K of ZX Spectrum extended RAM is using the external SRAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 assign SRAM_ADDR[14:0] = A[14:0];
-assign SRAM_ADDR[17:15] = '0;
+assign SRAM_ADDR[17:15] = 0;
 assign SRAM_CE_N = 0;
 assign SRAM_OE_N = 0;
 assign SRAM_WE_N = !ExtRamWE;
@@ -197,7 +197,51 @@ wire vs_nintr;                  // Generates a vertical retrace interrupt
 wire pressed;                   // Show that a key is being pressed
 wire beeper;                    // Show the beeper state
 
-ula ula_( .*, .turbo(SW2), .clk_cpu(clk_cpu) );
+ula ula_(
+    //-------- Clocks and reset -----------------
+    .CLOCK_27 (CLOCK_27),       // Input clock 27 MHz
+    .CLOCK_24 (CLOCK_24),       // Input clock 24 MHz
+    .turbo (SW2),               // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
+    .clk_vram (clk_vram),
+    .reset (reset),             // KEY0 is reset
+    .locked (locked),           // PLL is locked signal
+
+    //-------- CPU control ----------------------
+    .clk_cpu (clk_cpu),         // Generates CPU clock of 3.5 MHz
+    .vs_nintr (vs_nintr),       // Generates a vertical retrace interrupt
+
+    //-------- Address and data buses -----------
+    .A (A),                     // Input address bus
+    .D (D),                     // Input data bus
+    .ula_data (ula_data),       // Output data
+    .io_we (io_we),             // Write enable to data register through IO
+
+    .vram_address (vram_address),// ULA video block requests a byte from the video RAM
+    .vram_data (vram_data),     // ULA video block reads a byte from the video RAM
+
+    //-------- PS/2 Keyboard --------------------
+    .PS2_CLK (PS2_CLK),
+    .PS2_DAT (PS2_DAT),
+    .pressed (pressed),
+
+    //-------- Audio (Tape player) --------------
+    .I2C_SCLK (I2C_SCLK),
+    .I2C_SDAT (I2C_SDAT),
+    .AUD_XCK (AUD_XCK),
+    .AUD_ADCLRCK (AUD_ADCLRCK),
+    .AUD_DACLRCK (AUD_DACLRCK),
+    .AUD_BCLK (AUD_BCLK),
+    .AUD_DACDAT (AUD_DACDAT),
+    .AUD_ADCDAT (AUD_ADCDAT),
+    .beeper (beeper),
+
+    //-------- VGA connector --------------------
+    .VGA_R (VGA_R),
+    .VGA_G (VGA_G),
+    .VGA_B (VGA_B),
+    .VGA_HS (VGA_HS),
+    .VGA_VS (VGA_VS)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU
@@ -212,12 +256,31 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = (SW1==0)? vs_nintr : '1;// SW1 disables interrupts and, hence, keyboard
+wire nINT = (SW1==0)? vs_nintr : 1; // SW1 disables interrupts and, hence, keyboard
 assign LEDR[1] = SW1;               // Glow red when interrupts are *disabled*
 wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
 
-z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
+z80_top_direct_n z80_(
+    .nM1 (nM1),
+    .nMREQ (nMREQ),
+    .nIORQ (nIORQ),
+    .nRD (nRD),
+    .nWR (nWR),
+    .nRFSH (nRFSH),
+    .nHALT (nHALT),
+    .nBUSACK (nBUSACK),
+
+    .nWAIT (nWAIT),
+    .nINT (nINT),
+    .nNMI (nNMI),
+    .nRESET (reset),
+    .nBUSRQ (nBUSRQ),
+
+    .CLK (clk_cpu),
+    .A (A),
+    .D (D)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Lit green LEDs to show activity on a Kempston compatible joystick

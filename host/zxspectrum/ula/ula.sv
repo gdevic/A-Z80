@@ -142,7 +142,7 @@ ps2_keyboard ps2_keyboard_( .*, .clk(clk_cpu) );
 wire [4:0] key_row;
 zx_keyboard zx_keyboard_( .*, .clk(clk_cpu) );
 
-always_comb
+always @(*) // always_comb
 begin
     ula_data = 8'hFF;
     // Regular IO at every odd address: line-in and keyboard

@@ -63,7 +63,7 @@ reg shifted;                // Tracks local "shifted" state
 assign pressed = ~(&keys[7] & &keys[6] & &keys[5] & &keys[4] & &keys[3] & &keys[2] & &keys[1] & &keys[0]);
 
 // Output requested row of keys continously
-always_comb
+always @(*) // always_comb
 begin
     case (A[15:8])
         8'b11111110: key_row = keys[0];

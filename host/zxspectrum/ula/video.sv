@@ -137,7 +137,7 @@ wire inverted;                  // Are the pixel's attributes inverted?
 // Output a pixel bit based on the VGA horizontal counter. This could have been
 // a shift register but a mux works as well since we are writing out each pixel
 // twice (required by this VGA clock rate)
-always_comb
+always @(*) // always_comb
 begin
     case (vga_hc[3:1])
         0:      pixbit = bits[7];
@@ -167,7 +167,7 @@ assign cindex = screen_en? pixbit? {bright,ink} : {bright,paper} : {1'b0,border[
 wire [3:0] cindex;
 wire [11:0] pix_rgb;
 
-always_comb
+always @(*) // always_comb
 begin
     case (cindex[3:0])
         // Normal color
