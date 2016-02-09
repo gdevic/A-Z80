@@ -128,7 +128,7 @@ wire rsel0;
 assign rsel3 = op3 ^ (op4 & op5);
 assign rsel0 = op0 ^ (op1 & op2);
 
-always_comb
+always @(*) // always_comb
 begin
     //-------------------------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent generating

@@ -8,7 +8,7 @@ module pla_decode
     output reg [104:0] pla
 );
 
-always_comb
+always @(*) // always_comb
 begin
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_1010X0XX)  pla[  0]=1'b1; else pla[  0]=1'b0;   // ldx/cpx/inx/outx brk
     if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11011001)  pla[  1]=1'b1; else pla[  1]=1'b0;   // exx

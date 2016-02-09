@@ -305,7 +305,7 @@ namespace z80_pla_checker
             module += @"    output reg [" + max + ":0] pla" + Environment.NewLine;
             module += @");" + Environment.NewLine;
             module += @"" + Environment.NewLine;
-            module += @"always_comb" + Environment.NewLine;
+            module += @"always @(*) // always_comb" + Environment.NewLine;
             module += @"begin" + Environment.NewLine;
 
             foreach (var p in pla)
