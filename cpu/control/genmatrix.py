@@ -179,4 +179,4 @@ with open('exec_matrix.vh', 'w') as file:
         file.write("{}\n".format(item))
 
 # Touch a file that includes 'exec_matrix.vh' to ensure it will recompile correctly
-os.utime("execute.sv", None)
+os.utime("execute.v", None)

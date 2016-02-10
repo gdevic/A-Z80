@@ -58,4 +58,4 @@ for infile in files:
                     file0.write(wire + " = 0;\n")
 
 # Touch a file that includes 'exec_module.vh' and 'exec_zero.vh' to ensure it will recompile correctly
-os.utime("execute.sv", None)
+os.utime("execute.v", None)

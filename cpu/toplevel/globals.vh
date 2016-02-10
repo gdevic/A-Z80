@@ -120,7 +120,7 @@ wire ctl_sw_2d;
 wire ctl_sw_mask543_en;
 wire ctl_bus_db_we;
 
-// Module: control/execute.sv
+// Module: control/execute.v
 wire nextM;
 wire setM1;
 wire fFetch;
