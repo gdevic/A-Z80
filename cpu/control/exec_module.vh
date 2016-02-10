@@ -116,7 +116,7 @@ output reg ctl_bus_ff_oe,
 output reg ctl_bus_zero_oe,
 output reg ctl_bus_db_oe,
 
-// Module: bus/bus_switch.sv
+// Module: bus/bus_switch.v
 output reg ctl_sw_1u,
 output reg ctl_sw_1d,
 output reg ctl_sw_2u,

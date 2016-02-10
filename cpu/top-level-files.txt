@@ -31,7 +31,7 @@ bus/address_pins.v
 
 --------- Misc bus ---------
 bus/bus_control.v
-bus/bus_switch.sv
+bus/bus_switch.v
 
 ------ I/O pin control -----
 bus/data_pins.v

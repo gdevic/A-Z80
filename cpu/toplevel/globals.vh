@@ -267,7 +267,7 @@ wire [15:0] abus;
 // Module: bus/bus_control.v
 wire bus_db_oe;
 
-// Module: bus/bus_switch.sv
+// Module: bus/bus_switch.v
 wire bus_sw_1u;
 wire bus_sw_1d;
 wire bus_sw_2u;
