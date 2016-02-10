@@ -59,5 +59,5 @@ for infile in files:
 
 # Touch files that include 'globals.vh' to ensure it will recompile correctly
 os.utime("core.vh", None)
-os.utime("z80_top_direct_n.sv", None)
+os.utime("z80_top_direct_n.v", None)
 os.utime("z80_top_ifc_n.sv", None)
