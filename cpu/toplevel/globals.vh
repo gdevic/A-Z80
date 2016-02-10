@@ -145,7 +145,7 @@ wire bus_ab_pin_we;
 wire bus_db_pin_oe;
 wire bus_db_pin_re;
 
-// Module: control/pla_decode.sv
+// Module: control/pla_decode.v
 wire [104:0] pla;
 
 // Module: control/resets.v

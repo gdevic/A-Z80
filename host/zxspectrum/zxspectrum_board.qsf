@@ -592,7 +592,7 @@ set_global_assignment -name PHYSICAL_SYNTHESIS_MAP_LOGIC_TO_MEMORY_FOR_AREA OFF
 set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT NORMAL
 set_global_assignment -name VERILOG_FILE ../../cpu/bus/bus_switch.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/execute.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/control/pla_decode.sv
+set_global_assignment -name VERILOG_FILE ../../cpu/control/pla_decode.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../../cpu/toplevel/z80_top_direct_n.sv
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu.v
 set_global_assignment -name VERILOG_FILE ../../cpu/alu/alu_bit_select.v
