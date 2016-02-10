@@ -65,8 +65,8 @@ add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T3
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T4
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T5
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T6
-add wave -noupdate -group opcode /test_top/dut/instruction_reg_/ctl_ir_we
-add wave -noupdate -group opcode /test_top/dut/instruction_reg_/opcode
+add wave -noupdate -group opcode /test_top/dut/ir_/ctl_ir_we
+add wave -noupdate -group opcode /test_top/dut/ir_/opcode
 add wave -noupdate -group db -radix hexadecimal /test_top/dut/db0
 add wave -noupdate -group db -radix hexadecimal /test_top/dut/db1
 add wave -noupdate -group db -radix hexadecimal /test_top/dut/db2

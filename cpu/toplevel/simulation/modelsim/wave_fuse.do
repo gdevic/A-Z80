@@ -65,8 +65,8 @@ add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T4
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T5
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T6
-add wave -noupdate -group opcode /test_fuse/dut/instruction_reg_/ctl_ir_we
-add wave -noupdate -group opcode /test_fuse/dut/instruction_reg_/opcode
+add wave -noupdate -group opcode /test_fuse/dut/ir_/ctl_ir_we
+add wave -noupdate -group opcode /test_fuse/dut/ir_/opcode
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db0
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db1
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db2

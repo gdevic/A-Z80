@@ -110,10 +110,10 @@ while True:
     run_tests = run_tests-1
 
     # Clear opcode register before starting a new instruction
-    ftest.write("   force dut.instruction_reg_.ctl_ir_we=1;\n")
-    ftest.write("   force dut.instruction_reg_.db=0;\n")
-    ftest.write("#2 release dut.instruction_reg_.ctl_ir_we;\n")
-    ftest.write("   release dut.instruction_reg_.db;\n")
+    ftest.write("   force dut.ir_.ctl_ir_we=1;\n")
+    ftest.write("   force dut.ir_.db=0;\n")
+    ftest.write("#2 release dut.ir_.ctl_ir_we;\n")
+    ftest.write("   release dut.ir_.db;\n")
     total_clks = total_clks + 2
 
     # Format of the test.in file:
