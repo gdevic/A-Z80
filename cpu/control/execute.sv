@@ -24,66 +24,66 @@ module execute
     //----------------------------------------------------------
     `include "exec_module.vh"
 
-    output wire nextM,                  // Last M cycle of any instruction
-    output wire setM1,                  // Last T clock of any instruction
-    output wire fFetch,                 // Function: opcode fetch cycle ("M1")
-    output wire fMRead,                 // Function: memory read cycle
-    output wire fMWrite,                // Function: memory write cycle
-    output wire fIORead,                // Function: IO Read cycle
-    output wire fIOWrite,               // Function: IO Write cycle
+    output reg nextM,                  // Last M cycle of any instruction
+    output reg setM1,                  // Last T clock of any instruction
+    output reg fFetch,                 // Function: opcode fetch cycle ("M1")
+    output reg fMRead,                 // Function: memory read cycle
+    output reg fMWrite,                // Function: memory write cycle
+    output reg fIORead,                // Function: IO Read cycle
+    output reg fIOWrite,               // Function: IO Write cycle
 
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
     //----------------------------------------------------------
-    input wire [104:0] pla,             // Statically decoded instructions
+    input reg [104:0] pla,             // Statically decoded instructions
 
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
-    input wire fpga_reset,              // Internal fpga test mode
-    input wire nreset,                  // Internal reset signal
-    input wire clk,                     // Internal clock signal
-    input wire in_intr,                 // Servicing maskable interrupt
-    input wire in_nmi,                  // Servicing non-maskable interrupt
-    input wire in_halt,                 // Currently in HALT mode
-    input wire im1,                     // Interrupt Mode 1
-    input wire im2,                     // Interrupt Mode 2
-    input wire use_ixiy,                // Special decode signal
-    input wire flags_cond_true,         // Flags condition is true
-    input wire repeat_en,               // Enable repeat of a block instruction
-    input wire flags_zf,                // ZF to test a condition
-    input wire flags_nf,                // NF to test for subtraction
-    input wire flags_sf,                // SF to test for 8-bit sign of a value
-    input wire flags_cf,                // CF to set HF for CCF
+    input reg fpga_reset,              // Internal fpga test mode
+    input reg nreset,                  // Internal reset signal
+    input reg clk,                     // Internal clock signal
+    input reg in_intr,                 // Servicing maskable interrupt
+    input reg in_nmi,                  // Servicing non-maskable interrupt
+    input reg in_halt,                 // Currently in HALT mode
+    input reg im1,                     // Interrupt Mode 1
+    input reg im2,                     // Interrupt Mode 2
+    input reg use_ixiy,                // Special decode signal
+    input reg flags_cond_true,         // Flags condition is true
+    input reg repeat_en,               // Enable repeat of a block instruction
+    input reg flags_zf,                // ZF to test a condition
+    input reg flags_nf,                // NF to test for subtraction
+    input reg flags_sf,                // SF to test for 8-bit sign of a value
+    input reg flags_cf,                // CF to set HF for CCF
 
     //----------------------------------------------------------
     // Machine and clock cycles
     //----------------------------------------------------------
-    input wire M1,                      // Machine cycle #1
-    input wire M2,                      // Machine cycle #2
-    input wire M3,                      // Machine cycle #3
-    input wire M4,                      // Machine cycle #4
-    input wire M5,                      // Machine cycle #5
-    input wire M6,                      // Machine cycle #6
-    input wire T1,                      // T-cycle #1
-    input wire T2,                      // T-cycle #2
-    input wire T3,                      // T-cycle #3
-    input wire T4,                      // T-cycle #4
-    input wire T5,                      // T-cycle #5
-    input wire T6                       // T-cycle #6
+    input reg M1,                      // Machine cycle #1
+    input reg M2,                      // Machine cycle #2
+    input reg M3,                      // Machine cycle #3
+    input reg M4,                      // Machine cycle #4
+    input reg M5,                      // Machine cycle #5
+    input reg M6,                      // Machine cycle #6
+    input reg T1,                      // T-cycle #1
+    input reg T2,                      // T-cycle #2
+    input reg T3,                      // T-cycle #3
+    input reg T4,                      // T-cycle #4
+    input reg T5,                      // T-cycle #5
+    input reg T6                       // T-cycle #6
 );
 
 // Detects unknown instructions by signalling the known ones
-wire validPLA;                          // Valid PLA asserts this wire
+reg validPLA;                          // Valid PLA asserts this reg
 // Activates a state machine to compute WZ=IX+d; takes 5T cycles
-wire ixy_d;                             // Compute WX=IX+d
+reg ixy_d;                             // Compute WX=IX+d
 // Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
-wire setIXIY;                           // Set IX/IY flag at the next T cycle
-wire setCBED;                           // Set CB or ED flag at the next T cycle
+reg setIXIY;                           // Set IX/IY flag at the next T cycle
+reg setCBED;                           // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
-wire nonRep;                            // Non-repeating block instruction
+reg nonRep;                            // Non-repeating block instruction
 // Suspends incrementing PC through address latch unless in HALT or interrupt mode
-wire pc_inc;                            // Normally defaults to 1
+reg pc_inc;                            // Normally defaults to 1
 
 //----------------------------------------------------------
 // Define various shortcuts to field naming
@@ -101,12 +101,12 @@ wire pc_inc;                            // Normally defaults to 1
 //----------------------------------------------------------
 // Make available different sections of the opcode byte
 //----------------------------------------------------------
-wire op5;
-wire op4;
-wire op3;
-wire op2;
-wire op1;
-wire op0;
+reg op5;
+reg op4;
+reg op3;
+reg op2;
+reg op1;
+reg op0;
 assign op5 = pla[104];
 assign op4 = pla[103];
 assign op3 = pla[102];
@@ -114,8 +114,8 @@ assign op2 = pla[101];
 assign op1 = pla[100];
 assign op0 = pla[99];
 
-wire [1:0] op54;
-wire [1:0] op21;
+reg [1:0] op54;
+reg [1:0] op21;
 
 assign op54 = { pla[104], pla[103] };
 assign op21 = { pla[101], pla[100] };
@@ -123,8 +123,8 @@ assign op21 = { pla[101], pla[100] };
 //-----------------------------------------------------------
 // 8-bit register selections needs to swizzle mux for A and F
 //-----------------------------------------------------------
-wire rsel3;
-wire rsel0;
+reg rsel3;
+reg rsel0;
 assign rsel3 = op3 ^ (op4 & op5);
 assign rsel0 = op0 ^ (op1 & op2);
 
@@ -136,7 +136,7 @@ begin
     //-------------------------------------------------------------------------
     `include "exec_zero.vh"
 
-    // Reset internal control wires
+    // Reset internal control regs
     validPLA = 0;                       // Every valid PLA entry will set it
     nextM  = 0;                         // Set to advance to the next M cycle
     setM1  = 0;                         // Set on a last M/T cycle of an instruction
