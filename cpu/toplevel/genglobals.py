@@ -36,9 +36,9 @@ for infile in files:
     with open('../' + infile, "r") as f:
         for line in f:
             info = line.split()
-            if (len(info)>2):
+            if len(info)>2:
                 # There can be only one driver for each signal so we read only the outputs
-                if (info[0]=="output") and (info[1]=="wire" or info[1]=="reg" or info[1]=="logic"):
+                if info[0]=="output") and (info[1]=="wire" or info[1]=="reg" or info[1]=="logic":
                     # There are 2 cases: wires and buses
                     if info[2].startswith('['):
                         wires.append(info[2] + ' ' + info[3].strip(';,'))

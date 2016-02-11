@@ -52,7 +52,7 @@ try:
             if not indata:
                 break
             if indata[0]!=':':
-                if (("#017" in indata) or ("#020" in indata) or ("#053" in indata) or ("#056" in indata)):
+                if ("#017" in indata) or ("#020" in indata) or ("#053" in indata) or ("#056" in indata):
                     print (indata.rstrip('\r\n'))
                     sys.stderr.write (indata)
 
