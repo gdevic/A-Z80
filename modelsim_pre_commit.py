@@ -84,7 +84,7 @@ def fixup():
                         g.write("Project_File_P_{0} = {1}".format(i, v))
                         i = i + 1
                     in_file_section = 0
-                g.write(line)
+                g.write(line.strip() + "\n") # Trim whitespaces that ModelSim sometimes adds randomly
         # Lastly, replace old mpf file with the new one
         os.remove(file)
         os.rename(file+".new", file)

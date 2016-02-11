@@ -2,9 +2,9 @@
 ;
 ; All Rights Reserved.
 ;
-; THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION WHICH IS THE PROPERTY OF 
+; THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION WHICH IS THE PROPERTY OF
 ; MENTOR GRAPHICS CORPORATION OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
-;   
+;
 
 [Library]
 std = $MODEL_TECH/../std
@@ -129,7 +129,7 @@ hardcopyiv_pcie_hip_ver = $MODEL_TECH/../altera/verilog/hardcopyiv_pcie_hip
 
 work = work
 [vcom]
-; VHDL93 variable selects language version as the default. 
+; VHDL93 variable selects language version as the default.
 ; Default is VHDL-2002.
 ; Value of 0 or 1987 for VHDL-1987.
 ; Value of 1 or 1993 for VHDL-1993.
@@ -272,7 +272,7 @@ IterationLimit = 5000
 BreakOnAssertion = 3
 
 ; Assertion Message Format
-; %S - Severity Level 
+; %S - Severity Level
 ; %R - Report Message
 ; %T - Time of assertion
 ; %D - Delta
@@ -423,10 +423,10 @@ ConcurrentFileLimit = 40
 ; description of a message.
 
 ; Control transcripting of elaboration/runtime messages.
-; The default is to have messages appear in the transcript and 
+; The default is to have messages appear in the transcript and
 ; recorded in the wlf file (messages that are recorded in the
 ; wlf file can be viewed in the MsgViewer).  The other settings
-; are to send messages only to the transcript or only to the 
+; are to send messages only to the transcript or only to the
 ; wlf file.  The valid values are
 ;    both  {default}
 ;    tran  {transcript only}
@@ -498,42 +498,42 @@ Project_Opt_Count = 0
 ForceSoftPaths = 1
 ProjectStatusDelay = 5000
 VERILOG_DoubleClick = Edit
-VERILOG_CustomDoubleClick = 
+VERILOG_CustomDoubleClick =
 SYSTEMVERILOG_DoubleClick = Edit
-SYSTEMVERILOG_CustomDoubleClick = 
+SYSTEMVERILOG_CustomDoubleClick =
 VHDL_DoubleClick = Edit
-VHDL_CustomDoubleClick = 
+VHDL_CustomDoubleClick =
 PSL_DoubleClick = Edit
-PSL_CustomDoubleClick = 
+PSL_CustomDoubleClick =
 TEXT_DoubleClick = Edit
-TEXT_CustomDoubleClick = 
+TEXT_CustomDoubleClick =
 SYSTEMC_DoubleClick = Edit
-SYSTEMC_CustomDoubleClick = 
+SYSTEMC_CustomDoubleClick =
 TCL_DoubleClick = Edit
-TCL_CustomDoubleClick = 
+TCL_CustomDoubleClick =
 MACRO_DoubleClick = Edit
-MACRO_CustomDoubleClick = 
+MACRO_CustomDoubleClick =
 VCD_DoubleClick = Edit
-VCD_CustomDoubleClick = 
+VCD_CustomDoubleClick =
 SDF_DoubleClick = Edit
-SDF_CustomDoubleClick = 
+SDF_CustomDoubleClick =
 XML_DoubleClick = Edit
-XML_CustomDoubleClick = 
+XML_CustomDoubleClick =
 LOGFILE_DoubleClick = Edit
-LOGFILE_CustomDoubleClick = 
+LOGFILE_CustomDoubleClick =
 UCDB_DoubleClick = Edit
-UCDB_CustomDoubleClick = 
+UCDB_CustomDoubleClick =
 UPF_DoubleClick = Edit
-UPF_CustomDoubleClick = 
+UPF_CustomDoubleClick =
 PCF_DoubleClick = Edit
-PCF_CustomDoubleClick = 
+PCF_CustomDoubleClick =
 PROJECT_DoubleClick = Edit
-PROJECT_CustomDoubleClick = 
+PROJECT_CustomDoubleClick =
 VRM_DoubleClick = Edit
-VRM_CustomDoubleClick = 
+VRM_CustomDoubleClick =
 DEBUGDATABASE_DoubleClick = Edit
-DEBUGDATABASE_CustomDoubleClick = 
+DEBUGDATABASE_CustomDoubleClick =
 DEBUGARCHIVE_DoubleClick = Edit
-DEBUGARCHIVE_CustomDoubleClick = 
+DEBUGARCHIVE_CustomDoubleClick =
 Project_Major_Version = 10
 Project_Minor_Version = 1
