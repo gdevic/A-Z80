@@ -114,10 +114,10 @@ os.chdir("cpu/toplevel/simulation/modelsim")
 fixup()
 os.chdir(dname)
 
-os.chdir("host/basic/simulation/modelsim")
+os.chdir("host/basic_de1/simulation/modelsim")
 fixup()
 os.chdir(dname)
 
-os.chdir("host/basic/uart/modelsim")
+os.chdir("host/common/modelsim")
 fixup()
 os.chdir(dname)
