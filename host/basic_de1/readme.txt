@@ -1,5 +1,5 @@
-Quartus host project
-====================
+Target board: DE1 Altera Cyclone II EP2C20 FPGA Development Board
+
 This folder contains a simple "basic" board computer with the A-Z80,
 some RAM and UART which can run selected Z80 executable files.
 

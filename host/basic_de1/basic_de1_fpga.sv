@@ -26,15 +26,10 @@ module host
     input wire KEY1,            // KEY1 generates a maskable interrupt (INT)
     input wire KEY2,            // KEY2 generates a non-maskable interrupt (NMI)
     output wire UART_TXD,
-    inout wire [31:0] GPIO_1,
-    output wire [5:0] GPIO_0
+
+    output wire [5:0] GPIO_0    // Test
 );
 `default_nettype none
-
-// Export selected pins to the extension connector
-assign GPIO_1[15:0] = A[15:0];
-assign GPIO_1[23:16] = D[7:0];
-assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};
 
 wire reset;
 assign reset = locked & KEY0;
@@ -42,14 +37,14 @@ assign reset = locked & KEY0;
 wire uart_tx;
 assign UART_TXD = uart_tx;
 
-assign GPIO_0 = A[15:10];
+wire locked;
 
-//assign GPIO_0[0] = reset;
-//assign GPIO_0[1] = pll_clk;
-//assign GPIO_0[2] = locked;
-//assign GPIO_0[3] = nM1;
-//assign GPIO_0[4] = nRD;
-//assign GPIO_0[5] = nRFSH;
+assign GPIO_0[0] = reset;
+assign GPIO_0[1] = pll_clk;
+assign GPIO_0[2] = locked;
+assign GPIO_0[3] = nM1;
+assign GPIO_0[4] = nRD;
+assign GPIO_0[5] = nRFSH;
 
 // ----------------- CPU PINS -----------------
 wire nM1;
@@ -72,11 +67,30 @@ wire [7:0] D;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wire clk_pll; // Unmodified 50MHz clock
-wire clk_cpu; // CPU clock of 10MHz
-wire locked;
+wire pll_clk;
+pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 
-pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(clk_pll), .c1(clk_cpu) );
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reg clk_cpu;                    // Final CPU clock
+
+// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reg [0:0] counter;
+
+// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+always @(posedge pll_clk)
+begin
+    if (counter=='0)
+        clk_cpu <= ~clk_cpu;
+    counter <= counter - 1'b1;
+end
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
@@ -90,7 +104,7 @@ assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
 
 // Memory map:
 //   0000 - 3FFF  16K RAM
-always @(*) // always_comb
+always_comb
 begin
     D[7:0] = {8{1'bz}};
     case ({nIORQ,nRD,nWR})
@@ -112,40 +126,16 @@ begin
     endcase
 end
 
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-z80_top_direct_n z80_(
-    .nM1 (nM1),
-    .nMREQ (nMREQ),
-    .nIORQ (nIORQ),
-    .nRD (nRD),
-    .nWR (nWR),
-    .nRFSH (nRFSH),
-    .nHALT (nHALT),
-    .nBUSACK (nBUSACK),
-
-    .nWAIT (nWAIT),
-    .nINT (nINT),
-    .nNMI (nNMI),
-    .nRESET (reset),
-    .nBUSRQ (nBUSRQ),
-
-    .CLK (clk_cpu),
-    .A (A),
-    .D (D)
-);
+z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 16Kb of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram ram_(
-    .address(A[13:0]),
-    .clock(clk_cpu),
-    .data(D),
-    .wren(RamWE),
-    .q(RamData)
-);
+ram ram_( .address(A[13:0]), .clock(pll_clk), .data(D[7:0]), .wren(RamWE), .q(RamData[7:0]) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
@@ -154,15 +144,6 @@ ram ram_(
 //   0000 - 00FF  Write a byte to UART
 //   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_(
-    .reset(!reset),
-    .clk(clk_pll),
-    .Address(A[15:8]),
-    .Data(D),
-    .IORQ(!nIORQ),
-    .RD(!nRD),
-    .WR(!nWR),
-    .uart_tx(uart_tx)
-);
+uart_io uart_io_( .*, .reset(!reset), .clk(CLOCK_50), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
 
 endmodule

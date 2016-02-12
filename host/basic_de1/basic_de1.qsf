@@ -573,7 +573,7 @@ set_global_assignment -name FITTER_EFFORT "AUTO FIT"
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C20F484C7
-set_global_assignment -name TOP_LEVEL_ENTITY host
+set_global_assignment -name TOP_LEVEL_ENTITY basic_board
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:17:10  OCTOBER 11, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
@@ -638,7 +638,7 @@ set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../common/uart_io.v
 set_global_assignment -name VERILOG_FILE ../common/uart_core.v
-set_global_assignment -name VERILOG_FILE host_board_fpga.v
+set_global_assignment -name VERILOG_FILE basic_de1_fpga.sv
 set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name QIP_FILE pll.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -14,8 +14,8 @@ bin2hex.exe zout\%~n1.cim fpga.hex
 if errorlevel 1 goto error
 
 Rem     Copy hex files to their target Quartus/ModelSim host directories
-copy /Y fpga.hex ..\..\host\basic
-copy /Y fpga.hex ..\..\host\basic\simulation\modelsim
+copy /Y fpga.hex ..\..\host\basic_de1
+copy /Y fpga.hex ..\..\host\basic_de1\simulation\modelsim
 
 goto end
 
