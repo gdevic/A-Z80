@@ -302,31 +302,32 @@ namespace z80_pla_checker
             module += @"(" + Environment.NewLine;
             module += @"    input wire [6:0] prefix," + Environment.NewLine;
             module += @"    input wire [7:0] opcode," + Environment.NewLine;
-            module += @"    output reg [" + max + ":0] pla" + Environment.NewLine;
+            module += @"    output wire [" + max + ":0] pla" + Environment.NewLine;
             module += @");" + Environment.NewLine;
             module += @"" + Environment.NewLine;
-            module += @"always @(*) // always_comb" + Environment.NewLine;
-            module += @"begin" + Environment.NewLine;
 
             foreach (var p in pla)
             {
                 if (p.IsDuplicate())
                     continue;
+
                 String bitstream = p.GetBitstream();
-                module += string.Format(@"    if ({{prefix[6:0], opcode[7:0]}} ==? 15'b{0})  pla[{1,3}]=1'b1; else pla[{1,3}]=1'b0;   // {2}",
-                    bitstream, p.N, p.Comment) + Environment.NewLine;
+                module += string.Format(@"assign pla[{0,3}] = (({{prefix[6:0], opcode[7:0]}} & 15'b{1}) == 15'b{2}) ? 1'b1 : 1'b0;   // {3}",
+                    p.N,
+                    bitstream.Replace('0', '1').Replace('X', '0'),  // Create "AND" mask
+                    bitstream.Replace('X', '0'),                    // Create a value to compare to
+                    p.Comment) + Environment.NewLine;
             }
 
             // Dump all PLA entries that are ignored
             module += @"" + Environment.NewLine;
-            module += @"    // Duplicate or ignored entries" + Environment.NewLine;
+            module += @"// Duplicate or ignored entries" + Environment.NewLine;
             foreach (var p in pla)
             {
                 if (p.IsDuplicate())
-                    module += string.Format(@"    pla[{0,3}]=1'b0;   // {1}", p.N, p.Comment) + Environment.NewLine;
+                    module += string.Format(@"assign pla[{0,3}] = 1'b0;   // {1}", p.N, p.Comment) + Environment.NewLine;
             }
 
-            module += @"end" + Environment.NewLine;
             module += @"" + Environment.NewLine;
             module += @"endmodule" + Environment.NewLine;
 

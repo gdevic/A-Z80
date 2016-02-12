@@ -5,118 +5,115 @@ module pla_decode
 (
     input wire [6:0] prefix,
     input wire [7:0] opcode,
-    output reg [104:0] pla
+    output wire [104:0] pla
 );
 
-always @(*) // always_comb
-begin
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_1010X0XX)  pla[  0]=1'b1; else pla[  0]=1'b0;   // ldx/cpx/inx/outx brk
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11011001)  pla[  1]=1'b1; else pla[  1]=1'b0;   // exx
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11101011)  pla[  2]=1'b1; else pla[  2]=1'b0;   // ex de,hl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11X11101)  pla[  3]=1'b1; else pla[  3]=1'b0;   // IX/IY prefix
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_010XX111)  pla[  4]=1'b1; else pla[  4]=1'b0;   // ld x,a/a,x
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11111001)  pla[  5]=1'b1; else pla[  5]=1'b0;   // ld sp,hl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11101001)  pla[  6]=1'b1; else pla[  6]=1'b0;   // jp hl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XX0001)  pla[  7]=1'b1; else pla[  7]=1'b0;   // ld rr,nn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_000XX010)  pla[  8]=1'b1; else pla[  8]=1'b0;   // ld (rr),a/a,(rr)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XXX011)  pla[  9]=1'b1; else pla[  9]=1'b0;   // inc/dec rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11100011)  pla[ 10]=1'b1; else pla[ 10]=1'b0;   // ex (sp),hl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX001)  pla[ 11]=1'b1; else pla[ 11]=1'b0;   // cpi/cpir/cpd/cpdr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX000)  pla[ 12]=1'b1; else pla[ 12]=1'b0;   // ldi/ldir/ldd/lddr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XX0010)  pla[ 13]=1'b1; else pla[ 13]=1'b0;   // ld direction
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XX1011)  pla[ 14]=1'b1; else pla[ 14]=1'b0;   // dec rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_0110X111)  pla[ 15]=1'b1; else pla[ 15]=1'b0;   // rrd/rld
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XX0101)  pla[ 16]=1'b1; else pla[ 16]=1'b0;   // push rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XXX110)  pla[ 17]=1'b1; else pla[ 17]=1'b0;   // ld r,n
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX011)  pla[ 20]=1'b1; else pla[ 20]=1'b0;   // outx/otxr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX010)  pla[ 21]=1'b1; else pla[ 21]=1'b0;   // inx/inxr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'b1XXXXXX_11001011)  pla[ 22]=1'b1; else pla[ 22]=1'b0;   // CB prefix w/o IX/IY
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XX0X01)  pla[ 23]=1'b1; else pla[ 23]=1'b0;   // push/pop
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11001101)  pla[ 24]=1'b1; else pla[ 24]=1'b0;   // call nn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_000XX111)  pla[ 25]=1'b1; else pla[ 25]=1'b0;   // rlca/rla/rrca/rra
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00010000)  pla[ 26]=1'b1; else pla[ 26]=1'b0;   // djnz e
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX00X)  pla[ 27]=1'b1; else pla[ 27]=1'b0;   // in/out r,(c)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11010011)  pla[ 28]=1'b1; else pla[ 28]=1'b0;   // out (n),a
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11000011)  pla[ 29]=1'b1; else pla[ 29]=1'b0;   // jp nn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_0010X010)  pla[ 30]=1'b1; else pla[ 30]=1'b0;   // ld hl,(nn)/(nn),hl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX011)  pla[ 31]=1'b1; else pla[ 31]=1'b0;   // ld rr,(nn)/(nn),rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XX0011)  pla[ 33]=1'b1; else pla[ 33]=1'b0;   // ld direction
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX001)  pla[ 34]=1'b1; else pla[ 34]=1'b0;   // out (c),r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11001001)  pla[ 35]=1'b1; else pla[ 35]=1'b0;   // ret
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_1101X011)  pla[ 37]=1'b1; else pla[ 37]=1'b0;   // out (n),a/a,(n)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_0011X010)  pla[ 38]=1'b1; else pla[ 38]=1'b0;   // ld (nn),a/a,(nn)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00001000)  pla[ 39]=1'b1; else pla[ 39]=1'b0;   // ex af,af'
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XX1XX_00110110)  pla[ 40]=1'b1; else pla[ 40]=1'b0;   // ld (ix+d),n
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX100)  pla[ 42]=1'b1; else pla[ 42]=1'b0;   // call cc,nn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX010)  pla[ 43]=1'b1; else pla[ 43]=1'b0;   // jp cc,nn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11001011)  pla[ 44]=1'b1; else pla[ 44]=1'b0;   // CB prefix
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX000)  pla[ 45]=1'b1; else pla[ 45]=1'b0;   // ret cc
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX101)  pla[ 46]=1'b1; else pla[ 46]=1'b0;   // reti/retn
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00011000)  pla[ 47]=1'b1; else pla[ 47]=1'b0;   // jr e
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_001XX000)  pla[ 48]=1'b1; else pla[ 48]=1'b0;   // jr ss,e
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XXXXX_11001011)  pla[ 49]=1'b1; else pla[ 49]=1'b0;   // CB prefix with IX/IY
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00110110)  pla[ 50]=1'b1; else pla[ 50]=1'b0;   // ld (hl),n
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11101101)  pla[ 51]=1'b1; else pla[ 51]=1'b0;   // ED prefix
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_10XXX110)  pla[ 52]=1'b1; else pla[ 52]=1'b0;   // add/sub/and/or/xor/cp (hl)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_0011010X)  pla[ 53]=1'b1; else pla[ 53]=1'b0;   // inc/dec (hl)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bX1XXX1X_XXXXXXXX)  pla[ 54]=1'b1; else pla[ 54]=1'b0;   // Every CB with IX/IY
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_XXXXX110)  pla[ 55]=1'b1; else pla[ 55]=1'b0;   // Every CB op (hl)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX111)  pla[ 56]=1'b1; else pla[ 56]=1'b0;   // rst p
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_0100X111)  pla[ 57]=1'b1; else pla[ 57]=1'b0;   // ld i,a/r,a
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX1X1XX_01XXX110)  pla[ 58]=1'b1; else pla[ 58]=1'b0;   // ld r,(hl)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXX1X1XX_01110XXX)  pla[ 59]=1'b1; else pla[ 59]=1'b0;   // ld (hl),r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_01XXXXXX)  pla[ 61]=1'b1; else pla[ 61]=1'b0;   // ld r,r'
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_XXXXXXXX)  pla[ 62]=1'b1; else pla[ 62]=1'b0;   // For all CB opcodes
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_11XXX110)  pla[ 64]=1'b1; else pla[ 64]=1'b0;   // add/sub/and/or/xor/cmp a,imm
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_10XXXXXX)  pla[ 65]=1'b1; else pla[ 65]=1'b0;   // add/sub/and/or/xor/cmp a,r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XXX10X)  pla[ 66]=1'b1; else pla[ 66]=1'b0;   // inc/dec r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX000)  pla[ 67]=1'b1; else pla[ 67]=1'b0;   // in
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX010)  pla[ 68]=1'b1; else pla[ 68]=1'b0;   // adc/sbc hl,rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XX1001)  pla[ 69]=1'b1; else pla[ 69]=1'b0;   // add hl,rr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_00XXXXXX)  pla[ 70]=1'b1; else pla[ 70]=1'b0;   // rlc r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_01XXXXXX)  pla[ 72]=1'b1; else pla[ 72]=1'b0;   // bit b,r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_10XXXXXX)  pla[ 73]=1'b1; else pla[ 73]=1'b0;   // res b,r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXX1X_11XXXXXX)  pla[ 74]=1'b1; else pla[ 74]=1'b0;   // set b,r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00XXX101)  pla[ 75]=1'b1; else pla[ 75]=1'b0;   // dec r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX111XXX)  pla[ 76]=1'b1; else pla[ 76]=1'b0;   // 111 (CP)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00100111)  pla[ 77]=1'b1; else pla[ 77]=1'b0;   // daa
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX010XXX)  pla[ 78]=1'b1; else pla[ 78]=1'b0;   // 010 (SUB)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX011XXX)  pla[ 79]=1'b1; else pla[ 79]=1'b0;   // 011 (SBC)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX001XXX)  pla[ 80]=1'b1; else pla[ 80]=1'b0;   // 001 (ADC)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00101111)  pla[ 81]=1'b1; else pla[ 81]=1'b0;   // cpl
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX100)  pla[ 82]=1'b1; else pla[ 82]=1'b0;   // neg
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_0101X111)  pla[ 83]=1'b1; else pla[ 83]=1'b0;   // ld a,i/a,r
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX000XXX)  pla[ 84]=1'b1; else pla[ 84]=1'b0;   // 000 (ADD)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX100XXX)  pla[ 85]=1'b1; else pla[ 85]=1'b0;   // 100 (AND)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX110XXX)  pla[ 86]=1'b1; else pla[ 86]=1'b0;   // 110 (OR)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXX1XXX_XX101XXX)  pla[ 88]=1'b1; else pla[ 88]=1'b0;   // 101 (XOR)
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00111111)  pla[ 89]=1'b1; else pla[ 89]=1'b0;   // ccf
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_101XX01X)  pla[ 91]=1'b1; else pla[ 91]=1'b0;   // inx/outx/inxr/otxr
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_00110111)  pla[ 92]=1'b1; else pla[ 92]=1'b0;   // scf
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_01110110)  pla[ 95]=1'b1; else pla[ 95]=1'b0;   // halt
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXX1_01XXX110)  pla[ 96]=1'b1; else pla[ 96]=1'b0;   // im n
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXX1XX_1111X011)  pla[ 97]=1'b1; else pla[ 97]=1'b0;   // di/ei
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XXXXXXX1)  pla[ 99]=1'b1; else pla[ 99]=1'b0;   // opcode[0]
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XXXXXX1X)  pla[100]=1'b1; else pla[100]=1'b0;   // opcode[1]
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XXXXX1XX)  pla[101]=1'b1; else pla[101]=1'b0;   // opcode[2]
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XXXX1XXX)  pla[102]=1'b1; else pla[102]=1'b0;   // opcode[3]
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XXX1XXXX)  pla[103]=1'b1; else pla[103]=1'b0;   // opcode[4]
-    if ({prefix[6:0], opcode[7:0]} ==? 15'bXXXXXXX_XX1XXXXX)  pla[104]=1'b1; else pla[104]=1'b0;   // opcode[5]
+assign pla[  0] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110100) == 15'b0000001_10100000) ? 1'b1 : 1'b0;   // ldx/cpx/inx/outx brk
+assign pla[  1] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11011001) ? 1'b1 : 1'b0;   // exx
+assign pla[  2] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101011) ? 1'b1 : 1'b0;   // ex de,hl
+assign pla[  3] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11011111) == 15'b0000100_11011101) ? 1'b1 : 1'b0;   // IX/IY prefix
+assign pla[  4] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_01000111) ? 1'b1 : 1'b0;   // ld x,a/a,x
+assign pla[  5] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11111001) ? 1'b1 : 1'b0;   // ld sp,hl
+assign pla[  6] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101001) ? 1'b1 : 1'b0;   // jp hl
+assign pla[  7] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00000001) ? 1'b1 : 1'b0;   // ld rr,nn
+assign pla[  8] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11100111) == 15'b0000100_00000010) ? 1'b1 : 1'b0;   // ld (rr),a/a,(rr)
+assign pla[  9] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_00000011) ? 1'b1 : 1'b0;   // inc/dec rr
+assign pla[ 10] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11100011) ? 1'b1 : 1'b0;   // ex (sp),hl
+assign pla[ 11] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100001) ? 1'b1 : 1'b0;   // cpi/cpir/cpd/cpdr
+assign pla[ 12] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100000) ? 1'b1 : 1'b0;   // ldi/ldir/ldd/lddr
+assign pla[ 13] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00000010) ? 1'b1 : 1'b0;   // ld direction
+assign pla[ 14] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00001011) ? 1'b1 : 1'b0;   // dec rr
+assign pla[ 15] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110111) == 15'b0000001_01100111) ? 1'b1 : 1'b0;   // rrd/rld
+assign pla[ 16] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_11000101) ? 1'b1 : 1'b0;   // push rr
+assign pla[ 17] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_00000110) ? 1'b1 : 1'b0;   // ld r,n
+assign pla[ 20] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100011) ? 1'b1 : 1'b0;   // outx/otxr
+assign pla[ 21] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100010) ? 1'b1 : 1'b0;   // inx/inxr
+assign pla[ 22] = (({prefix[6:0], opcode[7:0]} & 15'b1000000_11111111) == 15'b1000000_11001011) ? 1'b1 : 1'b0;   // CB prefix w/o IX/IY
+assign pla[ 23] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001011) == 15'b0000100_11000001) ? 1'b1 : 1'b0;   // push/pop
+assign pla[ 24] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11001101) ? 1'b1 : 1'b0;   // call nn
+assign pla[ 25] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11100111) == 15'b0000100_00000111) ? 1'b1 : 1'b0;   // rlca/rla/rrca/rra
+assign pla[ 26] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00010000) ? 1'b1 : 1'b0;   // djnz e
+assign pla[ 27] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000110) == 15'b0000001_01000000) ? 1'b1 : 1'b0;   // in/out r,(c)
+assign pla[ 28] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11010011) ? 1'b1 : 1'b0;   // out (n),a
+assign pla[ 29] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11000011) ? 1'b1 : 1'b0;   // jp nn
+assign pla[ 30] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11110111) == 15'b0000100_00100010) ? 1'b1 : 1'b0;   // ld hl,(nn)/(nn),hl
+assign pla[ 31] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000011) ? 1'b1 : 1'b0;   // ld rr,(nn)/(nn),rr
+assign pla[ 33] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11001111) == 15'b0000001_01000011) ? 1'b1 : 1'b0;   // ld direction
+assign pla[ 34] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000001) ? 1'b1 : 1'b0;   // out (c),r
+assign pla[ 35] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11001001) ? 1'b1 : 1'b0;   // ret
+assign pla[ 37] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11110111) == 15'b0000100_11010011) ? 1'b1 : 1'b0;   // out (n),a/a,(n)
+assign pla[ 38] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11110111) == 15'b0000100_00110010) ? 1'b1 : 1'b0;   // ld (nn),a/a,(nn)
+assign pla[ 39] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00001000) ? 1'b1 : 1'b0;   // ex af,af'
+assign pla[ 40] = (({prefix[6:0], opcode[7:0]} & 15'b0100100_11111111) == 15'b0100100_00110110) ? 1'b1 : 1'b0;   // ld (ix+d),n
+assign pla[ 42] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000100) ? 1'b1 : 1'b0;   // call cc,nn
+assign pla[ 43] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000010) ? 1'b1 : 1'b0;   // jp cc,nn
+assign pla[ 44] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11001011) ? 1'b1 : 1'b0;   // CB prefix
+assign pla[ 45] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000000) ? 1'b1 : 1'b0;   // ret cc
+assign pla[ 46] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000101) ? 1'b1 : 1'b0;   // reti/retn
+assign pla[ 47] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00011000) ? 1'b1 : 1'b0;   // jr e
+assign pla[ 48] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11100111) == 15'b0000100_00100000) ? 1'b1 : 1'b0;   // jr ss,e
+assign pla[ 49] = (({prefix[6:0], opcode[7:0]} & 15'b0100000_11111111) == 15'b0100000_11001011) ? 1'b1 : 1'b0;   // CB prefix with IX/IY
+assign pla[ 50] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00110110) ? 1'b1 : 1'b0;   // ld (hl),n
+assign pla[ 51] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101101) ? 1'b1 : 1'b0;   // ED prefix
+assign pla[ 52] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_10000110) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cp (hl)
+assign pla[ 53] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111110) == 15'b0000100_00110100) ? 1'b1 : 1'b0;   // inc/dec (hl)
+assign pla[ 54] = (({prefix[6:0], opcode[7:0]} & 15'b0100010_00000000) == 15'b0100010_00000000) ? 1'b1 : 1'b0;   // Every CB with IX/IY
+assign pla[ 55] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_00000111) == 15'b0000010_00000110) ? 1'b1 : 1'b0;   // Every CB op (hl)
+assign pla[ 56] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000111) ? 1'b1 : 1'b0;   // rst p
+assign pla[ 57] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110111) == 15'b0000001_01000111) ? 1'b1 : 1'b0;   // ld i,a/r,a
+assign pla[ 58] = (({prefix[6:0], opcode[7:0]} & 15'b0010100_11000111) == 15'b0010100_01000110) ? 1'b1 : 1'b0;   // ld r,(hl)
+assign pla[ 59] = (({prefix[6:0], opcode[7:0]} & 15'b0010100_11111000) == 15'b0010100_01110000) ? 1'b1 : 1'b0;   // ld (hl),r
+assign pla[ 61] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000000) == 15'b0000100_01000000) ? 1'b1 : 1'b0;   // ld r,r'
+assign pla[ 62] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_00000000) == 15'b0000010_00000000) ? 1'b1 : 1'b0;   // For all CB opcodes
+assign pla[ 64] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000110) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cmp a,imm
+assign pla[ 65] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000000) == 15'b0000100_10000000) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cmp a,r
+assign pla[ 66] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000110) == 15'b0000100_00000100) ? 1'b1 : 1'b0;   // inc/dec r
+assign pla[ 67] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000000) ? 1'b1 : 1'b0;   // in
+assign pla[ 68] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000010) ? 1'b1 : 1'b0;   // adc/sbc hl,rr
+assign pla[ 69] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00001001) ? 1'b1 : 1'b0;   // add hl,rr
+assign pla[ 70] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_11000000) == 15'b0000010_00000000) ? 1'b1 : 1'b0;   // rlc r
+assign pla[ 72] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_11000000) == 15'b0000010_01000000) ? 1'b1 : 1'b0;   // bit b,r
+assign pla[ 73] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_11000000) == 15'b0000010_10000000) ? 1'b1 : 1'b0;   // res b,r
+assign pla[ 74] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_11000000) == 15'b0000010_11000000) ? 1'b1 : 1'b0;   // set b,r
+assign pla[ 75] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_00000101) ? 1'b1 : 1'b0;   // dec r
+assign pla[ 76] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00111000) ? 1'b1 : 1'b0;   // 111 (CP)
+assign pla[ 77] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00100111) ? 1'b1 : 1'b0;   // daa
+assign pla[ 78] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00010000) ? 1'b1 : 1'b0;   // 010 (SUB)
+assign pla[ 79] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00011000) ? 1'b1 : 1'b0;   // 011 (SBC)
+assign pla[ 80] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00001000) ? 1'b1 : 1'b0;   // 001 (ADC)
+assign pla[ 81] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00101111) ? 1'b1 : 1'b0;   // cpl
+assign pla[ 82] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000100) ? 1'b1 : 1'b0;   // neg
+assign pla[ 83] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110111) == 15'b0000001_01010111) ? 1'b1 : 1'b0;   // ld a,i/a,r
+assign pla[ 84] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00000000) ? 1'b1 : 1'b0;   // 000 (ADD)
+assign pla[ 85] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00100000) ? 1'b1 : 1'b0;   // 100 (AND)
+assign pla[ 86] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00110000) ? 1'b1 : 1'b0;   // 110 (OR)
+assign pla[ 88] = (({prefix[6:0], opcode[7:0]} & 15'b0001000_00111000) == 15'b0001000_00101000) ? 1'b1 : 1'b0;   // 101 (XOR)
+assign pla[ 89] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00111111) ? 1'b1 : 1'b0;   // ccf
+assign pla[ 91] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100110) == 15'b0000001_10100010) ? 1'b1 : 1'b0;   // inx/outx/inxr/otxr
+assign pla[ 92] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_00110111) ? 1'b1 : 1'b0;   // scf
+assign pla[ 95] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_01110110) ? 1'b1 : 1'b0;   // halt
+assign pla[ 96] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000110) ? 1'b1 : 1'b0;   // im n
+assign pla[ 97] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11110111) == 15'b0000100_11110011) ? 1'b1 : 1'b0;   // di/ei
+assign pla[ 99] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00000001) == 15'b0000000_00000001) ? 1'b1 : 1'b0;   // opcode[0]
+assign pla[100] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00000010) == 15'b0000000_00000010) ? 1'b1 : 1'b0;   // opcode[1]
+assign pla[101] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00000100) == 15'b0000000_00000100) ? 1'b1 : 1'b0;   // opcode[2]
+assign pla[102] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00001000) == 15'b0000000_00001000) ? 1'b1 : 1'b0;   // opcode[3]
+assign pla[103] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00010000) == 15'b0000000_00010000) ? 1'b1 : 1'b0;   // opcode[4]
+assign pla[104] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00100000) == 15'b0000000_00100000) ? 1'b1 : 1'b0;   // opcode[5]
 
-    // Duplicate or ignored entries
-    pla[ 18]=1'b0;   // ldi/ldir/ldd/lddr
-    pla[ 19]=1'b0;   // cpi/cpir/cpd/cpdr
-    pla[ 32]=1'b0;   // ld i,a/a,i/r,a/a,r
-    pla[ 36]=1'b0;   // ld(rr),a/a,(rr)
-    pla[ 41]=1'b0;   // IX/IY
-    pla[ 60]=1'b0;   // rrd/rld
-    pla[ 63]=1'b0;   // ld r,*
-    pla[ 71]=1'b0;   // rlca/rla/rrca/rra
-    pla[ 87]=1'b0;   // ld a,i / ld a,r
-    pla[ 90]=1'b0;   // djnz *
-    pla[ 93]=1'b0;   // cpi/cpir/cpd/cpdr
-    pla[ 94]=1'b0;   // ldi/ldir/ldd/lddr
-    pla[ 98]=1'b0;   // out (*),a/in a,(*)
-end
+// Duplicate or ignored entries
+assign pla[ 18] = 1'b0;   // ldi/ldir/ldd/lddr
+assign pla[ 19] = 1'b0;   // cpi/cpir/cpd/cpdr
+assign pla[ 32] = 1'b0;   // ld i,a/a,i/r,a/a,r
+assign pla[ 36] = 1'b0;   // ld(rr),a/a,(rr)
+assign pla[ 41] = 1'b0;   // IX/IY
+assign pla[ 60] = 1'b0;   // rrd/rld
+assign pla[ 63] = 1'b0;   // ld r,*
+assign pla[ 71] = 1'b0;   // rlca/rla/rrca/rra
+assign pla[ 87] = 1'b0;   // ld a,i / ld a,r
+assign pla[ 90] = 1'b0;   // djnz *
+assign pla[ 93] = 1'b0;   // cpi/cpir/cpd/cpdr
+assign pla[ 94] = 1'b0;   // ldi/ldir/ldd/lddr
+assign pla[ 98] = 1'b0;   // out (*),a/in a,(*)
 
 endmodule
