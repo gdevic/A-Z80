@@ -121,7 +121,7 @@ z80_top_direct_n z80_(
 // Instantiate 16Kb of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ram ram_(
-    .addra(A[13:0]),
+    .addra(A[9:0]),
     .clka(clk_cpu),
     .dina(D),
     .wea(RamWE),
