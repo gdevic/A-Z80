@@ -21,7 +21,7 @@
 //============================================================================
 module uart_core #(parameter BAUD = 115200)
 (
-    input wire clk,                    // Input clock that drives the execution
+    input wire clk,                    // Needs 50MHz input clock
     input wire reset,                  // Async positive edge reset
     input wire [7:0] data_in,          // Byte to transmit
     input wire data_in_wr,             // Signal to accept a byte to transmit
@@ -42,7 +42,7 @@ reg [7:0] data;                         // Stores a byte to transmit
 // State and cycle change logic
 //============================================================================
 
-parameter
+localparam
     IDLE = 4'd0,
     START = 4'd1,
     D0 = 4'd2,

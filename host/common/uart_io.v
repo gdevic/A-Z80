@@ -54,7 +54,7 @@ end
 assign Data[7:0] = (Address[7:0]==8'd10 && IORQ==1 && RD==1 && WR==0) ? {{7{1'b0}},busy_tx}  : {8{1'bz}} ;
 
 uart_core uart_core_(
-    .clk (clk),                 // Input clock that drives the execution
+    .clk (clk),                 // Needs 50MHz input clock
     .reset (reset),             // Async positive edge reset
     .data_in (Data),            // Byte to transmit
     .data_in_wr (data_in_wr),   // Signal to accept a byte to transmit
