@@ -51,6 +51,7 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /clock_tb/CLK_IN1
 add wave -noupdate /clock_tb/COUNT
+add wave -noupdate /clock_tb/LOCKED
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {3223025 ps} 0}
 configure wave -namecolwidth 238

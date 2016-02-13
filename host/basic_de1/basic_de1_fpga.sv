@@ -31,13 +31,12 @@ module host
 );
 `default_nettype none
 
-wire reset;
-assign reset = locked & KEY0;
-
 wire uart_tx;
-assign UART_TXD = uart_tx;
-
+wire reset;
 wire locked;
+
+assign reset = locked & KEY0;
+assign UART_TXD = uart_tx;
 
 assign GPIO_0[0] = reset;
 assign GPIO_0[1] = pll_clk;

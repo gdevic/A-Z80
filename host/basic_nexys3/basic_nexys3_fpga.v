@@ -37,11 +37,13 @@ module host
 assign GPIO_0[7:0] = A[7:0];
 assign GPIO_1[7:0] = A[15:8];
 assign GPIO_2[7:0] = D[7:0];
-
-wire reset;
-assign reset = KEY0;
+assign GPIO_3 = {nM1, nMREQ, nRFSH, nHALT, nBUSACK};
 
 wire uart_tx;
+wire reset;
+wire locked;
+
+assign reset = locked & KEY0;
 assign UART_TXD = uart_tx;
 
 // ----------------- CPU PINS -----------------
@@ -54,13 +56,14 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-assign GPIO_3 = {nM1, nMREQ, nRFSH, nHALT, nBUSACK};
-
-reg nWAIT = 1;
-reg nBUSRQ = 1;
+wire nWAIT;
+wire nBUSRQ;
 wire nINT;
-assign nINT = KEY1;
 wire nNMI;
+
+assign nWAIT = 1;
+assign nBUSRQ = 1;
+assign nINT = KEY1;
 assign nNMI = KEY2;
 
 wire [15:0] A;
@@ -74,8 +77,9 @@ wire clk_uart; // 50MHz clock for UART
 
 clock pll (
     .CLK_IN1(CLOCK_100),
-    .CLK_OUT1(clk_cpu), // 10 MHz
-    .CLK_OUT2(clk_uart) // 50 MHz
+    .CLK_OUT1(clk_cpu),  // 10 MHz
+    .CLK_OUT2(clk_uart), // 50 MHz
+    .LOCKED(locked)
 );
 
 // ----------------- INTERNAL regS -----------------

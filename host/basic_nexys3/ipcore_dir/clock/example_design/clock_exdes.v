@@ -66,7 +66,9 @@ module clock_exdes
   input         COUNTER_RESET,
   output [2:1]  CLK_OUT,
   // High bits of counters driven by clocks
-  output [2:1]  COUNT
+  output [2:1]  COUNT,
+  // Status and control signals
+  output        LOCKED
  );
 
   // Parameters for the counters
@@ -75,8 +77,8 @@ module clock_exdes
   localparam    C_W       = 16;
   localparam    NUM_C     = 2;
   genvar        count_gen;
-  // Create reset for the counters
-  wire          reset_int = COUNTER_RESET;
+  // When the clock goes out of lock, reset the counters
+  wire          reset_int = !LOCKED || COUNTER_RESET;
 
    reg [NUM_C:1] rst_sync;
    reg [NUM_C:1] rst_sync_int;
@@ -97,7 +99,9 @@ module clock_exdes
     .CLK_IN1            (CLK_IN1),
     // Clock out ports
     .CLK_OUT1           (clk_int[1]),
-    .CLK_OUT2           (clk_int[2]));
+    .CLK_OUT2           (clk_int[2]),
+    // Status and control signals
+    .LOCKED             (LOCKED));
 
 genvar clk_out_pins;
 

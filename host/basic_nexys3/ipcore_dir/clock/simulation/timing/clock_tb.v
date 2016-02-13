@@ -57,6 +57,7 @@
 
 `timescale 1ps/1ps
 
+`define wait_lock @(posedge LOCKED)
 
 module clock_tb ();
 
@@ -79,6 +80,8 @@ module clock_tb ();
 
   // The high bits of the sampling counters
   wire [2:1]  COUNT;
+  // Status and control signals
+  wire        LOCKED;
   reg         COUNTER_RESET = 0;
 wire [2:1] CLK_OUT;
 //Freq Check using the M & D values setting and actual Frequency generated 
@@ -100,7 +103,7 @@ wire [2:1] CLK_OUT;
     $display ("Timing checks are not valid");
     COUNTER_RESET = 0;
     test_phase = "wait lock";
-    #(PER1*50);
+    `wait_lock;
     #(PER1*6);
     COUNTER_RESET = 1;
     #(PER1*19.5)
@@ -116,6 +119,16 @@ wire [2:1] CLK_OUT;
   end
 
 
+   always@(posedge CLK_IN1) begin
+      timeout_counter <= timeout_counter + 1'b1;
+      if (timeout_counter == 14'b10000000000000) begin
+         if (LOCKED != 1'b1) begin
+            $display("ERROR : NO LOCK signal");
+            $display("SYSTEM_CLOCK_COUNTER : %0d\n",$time/PER1);
+            $finish;
+         end
+      end
+   end
 
   // Instantiation of the example design containing the clock
   //    network and sampling counters
@@ -128,7 +141,9 @@ wire [2:1] CLK_OUT;
     .COUNTER_RESET      (COUNTER_RESET),
     .CLK_OUT            (CLK_OUT),
     // High bits of the counters
-    .COUNT              (COUNT));
+    .COUNT              (COUNT),
+    // Status and control signals
+    .LOCKED             (LOCKED));
 
 
 // Freq Check 
