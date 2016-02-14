@@ -13,7 +13,6 @@ add wave -noupdate -color Aquamarine /test_sequencer/M2_sig
 add wave -noupdate -color Aquamarine /test_sequencer/M3_sig
 add wave -noupdate -color Aquamarine /test_sequencer/M4_sig
 add wave -noupdate -color Aquamarine /test_sequencer/M5_sig
-add wave -noupdate -color Aquamarine /test_sequencer/M6_sig
 add wave -noupdate -divider T-STATE
 add wave -noupdate -color Pink /test_sequencer/T1_sig
 add wave -noupdate -color Pink /test_sequencer/T2_sig

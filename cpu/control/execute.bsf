@@ -171,13 +171,6 @@ applicable agreement for further details.
 		(line (pt 0 352)(pt 16 352)(line_width 1))
 	)
 	(port
-		(pt 0 368)
-		(input)
-		(text "M6" (rect 0 0 12 12)(font "Arial" ))
-		(text "M6" (rect 21 363 33 375)(font "Arial" ))
-		(line (pt 0 368)(pt 16 368)(line_width 1))
-	)
-	(port
 		(pt 0 384)
 		(input)
 		(text "T1" (rect 0 0 9 12)(font "Arial" ))

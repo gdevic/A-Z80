@@ -21,9 +21,9 @@ logic hold_clk_wait_sig=0;
 logic hold_clk_busrq_sig=0;
 
 wire T6_sig;
-wire M6_sig;
-assign nextM_sig = T6_sig;      // Restart when reaching T6
-assign setM1_sig = M6_sig;      // Restart when reaching M6
+wire M5_sig;
+assign nextM_sig = T6_sig;              // Restart when reaching T6
+assign setM1_sig = M5_sig & T6_sig;     // Restart when reaching M5/T6
 
 // ----------------- TEST -------------------
 initial begin
@@ -54,7 +54,6 @@ sequencer sequencer_inst
     .M3(M3_sig) ,                       // output  M3_sig
     .M4(M4_sig) ,                       // output  M4_sig
     .M5(M5_sig) ,                       // output  M5_sig
-    .M6(M6_sig) ,                       // output  M6_sig
     .T1(T1_sig) ,                       // output  T1_sig
     .T2(T2_sig) ,                       // output  T2_sig
     .T3(T3_sig) ,                       // output  T3_sig

@@ -167,7 +167,6 @@ wire M2;
 wire M3;
 wire M4;
 wire M5;
-wire M6;
 wire T1;
 wire T2;
 wire T3;

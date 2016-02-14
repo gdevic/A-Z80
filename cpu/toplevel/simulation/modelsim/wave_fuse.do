@@ -58,7 +58,6 @@ add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M
 add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M3
 add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M4
 add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M5
-add wave -noupdate -group sequencer -expand -group M /test_fuse/dut/sequencer_/M6
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T1
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T2
 add wave -noupdate -group sequencer -expand -group T /test_fuse/dut/sequencer_/T3

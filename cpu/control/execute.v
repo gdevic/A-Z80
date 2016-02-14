@@ -64,7 +64,6 @@ module execute
     input wire M3,                     // Machine cycle #3
     input wire M4,                     // Machine cycle #4
     input wire M5,                     // Machine cycle #5
-    input wire M6,                     // Machine cycle #6
     input wire T1,                     // T-cycle #1
     input wire T2,                     // T-cycle #2
     input wire T3,                     // T-cycle #3

@@ -132,7 +132,6 @@ execute execute_inst
     .M3(M3_sig) ,               // input  M3_sig
     .M4(M4_sig) ,               // input  M4_sig
     .M5(M5_sig) ,               // input  M5_sig
-    .M6(M6_sig) ,               // input  M6_sig
     .T1(T1_sig) ,               // input  T1_sig
     .T2(T2_sig) ,               // input  T2_sig
     .T3(T3_sig) ,               // input  T3_sig

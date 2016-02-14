@@ -108,13 +108,6 @@ applicable agreement for further details.
 		(line (pt 200 96)(pt 184 96))
 	)
 	(port
-		(pt 200 112)
-		(output)
-		(text "M6" (rect 0 0 16 14)(font "Arial" (font_size 8)))
-		(text "M6" (rect 163 107 179 121)(font "Arial" (font_size 8)))
-		(line (pt 200 112)(pt 184 112))
-	)
-	(port
 		(pt 200 128)
 		(output)
 		(text "T1" (rect 0 0 14 14)(font "Arial" (font_size 8)))

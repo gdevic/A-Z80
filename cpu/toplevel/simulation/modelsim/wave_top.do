@@ -58,7 +58,6 @@ add wave -noupdate -group sequencer -expand -group M /test_top/dut/sequencer_/M2
 add wave -noupdate -group sequencer -expand -group M /test_top/dut/sequencer_/M3
 add wave -noupdate -group sequencer -expand -group M /test_top/dut/sequencer_/M4
 add wave -noupdate -group sequencer -expand -group M /test_top/dut/sequencer_/M5
-add wave -noupdate -group sequencer -expand -group M /test_top/dut/sequencer_/M6
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T1
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T2
 add wave -noupdate -group sequencer -expand -group T /test_top/dut/sequencer_/T3
