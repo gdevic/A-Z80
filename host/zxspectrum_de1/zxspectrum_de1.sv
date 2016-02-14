@@ -160,7 +160,7 @@ assign FL_WE_N = 1;
 // Instantiate 16K dual-port RAM
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire clk_vram;
-// "A" side is the CPU side, "B" side is the VGA image generator
+// "A" port is the CPU side, "B" port is the VGA image generator in the ULA
 ram16 ram16_(
     .clock      (clk_vram),     // RAM connects to the higher, pixel clock rate
 
@@ -169,10 +169,10 @@ ram16 ram16_(
     .q_a        (ram_data),     // Data out from the RAM into the data bus selector
     .wren_a     (RamWE),
 
-    .address_b  (vram_address),
-    .data_b     (0),
+    .address_b  ({1'b0, vram_address}),
+    .data_b     (8'b0),
     .q_b        (vram_data),
-    .wren_b     (0));
+    .wren_b     ('0));
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 32K of ZX Spectrum extended RAM is using the external SRAM memory
