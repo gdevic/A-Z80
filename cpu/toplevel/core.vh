@@ -17,6 +17,12 @@ initial begin
     fpga_reset = 1;
     #1 fpga_reset = 0;
 end
+`elsif XILINX_ISIM
+reg fpga_reset;
+initial begin
+    fpga_reset = 1;
+    #1 fpga_reset = 0;
+end
 `else
 wire fpga_reset;
 assign fpga_reset = 0;
