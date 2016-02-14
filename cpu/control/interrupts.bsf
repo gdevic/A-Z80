@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 168 240)
+	(rect 64 64 216 288)
 	(text "interrupts" (rect 5 0 59 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 208 25 220)(font "Arial" ))
 	(port
@@ -103,44 +103,37 @@ applicable agreement for further details.
 	(port
 		(pt 152 32)
 		(output)
-		(text "iff1" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "iff1" (rect 113 27 131 41)(font "Arial" (font_size 8)))
+		(text "iff2" (rect 0 0 18 14)(font "Arial" (font_size 8)))
+		(text "iff2" (rect 113 27 131 41)(font "Arial" (font_size 8)))
 		(line (pt 152 32)(pt 136 32))
 	)
 	(port
 		(pt 152 48)
 		(output)
-		(text "iff2" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "iff2" (rect 113 43 131 57)(font "Arial" (font_size 8)))
+		(text "in_nmi" (rect 0 0 35 14)(font "Arial" (font_size 8)))
+		(text "in_nmi" (rect 96 43 131 57)(font "Arial" (font_size 8)))
 		(line (pt 152 48)(pt 136 48))
 	)
 	(port
 		(pt 152 64)
 		(output)
-		(text "in_nmi" (rect 0 0 35 14)(font "Arial" (font_size 8)))
-		(text "in_nmi" (rect 96 59 131 73)(font "Arial" (font_size 8)))
+		(text "in_intr" (rect 0 0 34 14)(font "Arial" (font_size 8)))
+		(text "in_intr" (rect 97 59 131 73)(font "Arial" (font_size 8)))
 		(line (pt 152 64)(pt 136 64))
 	)
 	(port
 		(pt 152 80)
 		(output)
-		(text "in_intr" (rect 0 0 34 14)(font "Arial" (font_size 8)))
-		(text "in_intr" (rect 97 75 131 89)(font "Arial" (font_size 8)))
+		(text "im1" (rect 0 0 18 14)(font "Arial" (font_size 8)))
+		(text "im1" (rect 113 75 131 89)(font "Arial" (font_size 8)))
 		(line (pt 152 80)(pt 136 80))
 	)
 	(port
 		(pt 152 96)
 		(output)
-		(text "im1" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "im1" (rect 113 91 131 105)(font "Arial" (font_size 8)))
-		(line (pt 152 96)(pt 136 96))
-	)
-	(port
-		(pt 152 112)
-		(output)
 		(text "im2" (rect 0 0 18 14)(font "Arial" (font_size 8)))
-		(text "im2" (rect 113 107 131 121)(font "Arial" (font_size 8)))
-		(line (pt 152 112)(pt 136 112))
+		(text "im2" (rect 113 91 131 105)(font "Arial" (font_size 8)))
+		(line (pt 152 96)(pt 136 96))
 	)
 	(drawing
 		(rectangle (rect 16 16 136 208))

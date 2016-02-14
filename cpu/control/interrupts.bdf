@@ -197,22 +197,6 @@ applicable agreement for further details.
 )
 (pin
 	(output)
-	(rect 728 104 904 120)
-	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
-	(text "iff1" (rect 90 0 107 12)(font "Arial" ))
-	(pt 0 8)
-	(drawing
-		(line (pt 0 8)(pt 52 8))
-		(line (pt 52 4)(pt 78 4))
-		(line (pt 52 12)(pt 78 12))
-		(line (pt 52 12)(pt 52 4))
-		(line (pt 78 4)(pt 82 8))
-		(line (pt 82 8)(pt 78 12))
-		(line (pt 78 12)(pt 82 8))
-	)
-)
-(pin
-	(output)
 	(rect 728 232 904 248)
 	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
 	(text "iff2" (rect 90 0 107 12)(font "Arial" ))
@@ -1499,10 +1483,6 @@ applicable agreement for further details.
 	(pt 288 752)
 )
 (connector
-	(pt 688 112)
-	(pt 728 112)
-)
-(connector
 	(pt 368 240)
 	(pt 384 240)
 )
@@ -1867,6 +1847,11 @@ applicable agreement for further details.
 	(pt 520 760)
 	(pt 584 760)
 )
+(connector
+	(text "iff1" (rect 756 96 773 108)(font "Arial" ))
+	(pt 768 112)
+	(pt 688 112)
+)
 (junction (pt 240 160))
 (junction (pt 240 176))
 (junction (pt 296 128))
@@ -1890,11 +1875,11 @@ applicable agreement for further details.
 (title_block
 	(rect 24 1144 281 1196)
 	(name "title-custom-small")
-	(section (rect 0 0 256 17)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 94 17)(font "Arial" (font_size 9)(bold)))(border))
-	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "interrupts" (rect 43 2 109 17)(font "Arial" (font_size 9)(bold)))(border))
-	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
 	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 19, 2014" (rect 56 3 131 17)(font "Arial" (font_size 8)))(border))
-	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.3" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
+	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "interrupts" (rect 43 2 109 17)(font "Arial" (font_size 9)(bold)))(border))
+	(section (rect 0 0 256 17)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 94 17)(font "Arial" (font_size 9)(bold)))(border))
+	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.4" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
 	(drawing
 	)
 )

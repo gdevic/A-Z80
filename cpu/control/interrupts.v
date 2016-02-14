@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Sun Nov 09 09:11:22 2014"
+// CREATED		"Sat Feb 13 19:23:03 2016"
 
 module interrupts(
 	ctl_iff1_iff2,
@@ -28,7 +28,6 @@ module interrupts(
 	ctl_no_ints,
 	nreset,
 	db,
-	iff1,
 	iff2,
 	im1,
 	im2,
@@ -48,14 +47,13 @@ input wire	clk;
 input wire	ctl_no_ints;
 input wire	nreset;
 input wire	[1:0] db;
-output wire	iff1;
 output wire	iff2;
 output reg	im1;
 output reg	im2;
 output wire	in_nmi;
 output wire	in_intr;
 
-reg	iff_ALTERA_SYNTHESIZED1;
+reg	iff1;
 wire	in_intr_ALTERA_SYNTHESIZED;
 reg	in_nmi_ALTERA_SYNTHESIZED;
 reg	int_armed;
@@ -114,7 +112,7 @@ assign	in_intr_ALTERA_SYNTHESIZED = SYNTHESIZED_WIRE_5 & DFFE_inst44;
 
 assign	SYNTHESIZED_WIRE_15 = SYNTHESIZED_WIRE_21 & SYNTHESIZED_WIRE_7;
 
-assign	SYNTHESIZED_WIRE_13 = iff_ALTERA_SYNTHESIZED1 & intr;
+assign	SYNTHESIZED_WIRE_13 = iff1 & intr;
 
 assign	test1 = setM1 & SYNTHESIZED_WIRE_8;
 
@@ -183,12 +181,12 @@ always@(posedge clk or negedge SYNTHESIZED_WIRE_15)
 begin
 if (!SYNTHESIZED_WIRE_15)
 	begin
-	iff_ALTERA_SYNTHESIZED1 <= 0;
+	iff1 <= 0;
 	end
 else
 if (SYNTHESIZED_WIRE_17)
 	begin
-	iff_ALTERA_SYNTHESIZED1 <= SYNTHESIZED_WIRE_16;
+	iff1 <= SYNTHESIZED_WIRE_16;
 	end
 end
 
@@ -242,7 +240,6 @@ assign	SYNTHESIZED_WIRE_7 =  ~in_nmi_ALTERA_SYNTHESIZED;
 
 assign	SYNTHESIZED_WIRE_14 =  ~in_nmi_ALTERA_SYNTHESIZED;
 
-assign	iff1 = iff_ALTERA_SYNTHESIZED1;
 assign	in_nmi = in_nmi_ALTERA_SYNTHESIZED;
 assign	in_intr = in_intr_ALTERA_SYNTHESIZED;
 

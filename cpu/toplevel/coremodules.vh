@@ -192,7 +192,6 @@ interrupts interrupts_(
     .ctl_no_ints (ctl_no_ints),
     .nreset (nreset),
     .db (db0[4:3]),
-    .iff1 (iff1),
     .iff2 (iff2),
     .im1 (im1),
     .im2 (im2),

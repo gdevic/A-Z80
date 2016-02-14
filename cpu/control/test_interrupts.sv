@@ -27,6 +27,7 @@ logic ctl_no_ints_sig=0;
 
 // ----------------- STATES ----------------
 wire iff1_sig;
+assign iff1_sig = interrupts_inst.iff1;
 wire iff2_sig;
 wire im1_sig;
 wire im2_sig;
@@ -82,7 +83,6 @@ interrupts interrupts_inst
     .clk(clk) ,                         // input  clk
     .ctl_no_ints(ctl_no_ints_sig) ,     // input  ctl_no_ints_sig
     .nreset(nreset) ,                   // input  nreset
-    .iff1(iff1_sig) ,                   // output  iff1_sig
     .iff2(iff2_sig) ,                   // output  iff2_sig
     .im1(im1_sig) ,                     // output  im1_sig
     .im2(im2_sig) ,                     // output  im2_sig
