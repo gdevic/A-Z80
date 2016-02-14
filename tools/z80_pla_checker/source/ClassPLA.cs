@@ -21,6 +21,11 @@ namespace z80_pla_checker
         public List<int> IgnoredPla = new List<int>();
 
         /// <summary>
+        /// List of PLA entries not used by our Timings matrix
+        /// </summary>
+        public List<int> NotUsedPla = new List<int>();
+
+        /// <summary>
         /// Returns the total number of PLA table entries
         /// </summary>
         public int Count()
@@ -59,19 +64,19 @@ namespace z80_pla_checker
 
             ////============================================================
             //// Ignore duplicate PLA entries
+            //IgnoredPla.Add(98);     // Duplicate of 37
+            //IgnoredPla.Add(94);     // Duplicate of 12 and 18
+            //IgnoredPla.Add(93);     // Duplicate of 11 and 19
             //IgnoredPla.Add(90);     // Duplicate of 26
-            //IgnoredPla.Add(36);     // Duplicate of 8
+            //IgnoredPla.Add(87);     // Duplicate of 83
             //IgnoredPla.Add(71);     // Duplicate of 25
             //IgnoredPla.Add(63);     // Duplicate of 17
-            //IgnoredPla.Add(87);     // Duplicate of 83
             //IgnoredPla.Add(60);     // Duplicate of 15
-            //IgnoredPla.Add(94);     // Duplicate of 12 and 18
-            //IgnoredPla.Add(18);     // Duplicate of 12 and 94
-            //IgnoredPla.Add(93);     // Duplicate of 11 and 19
-            //IgnoredPla.Add(19);     // Duplicate of 11 and 93
-            //IgnoredPla.Add(98);     // Duplicate of 37
             //IgnoredPla.Add(41);     // Duplicate of 3
+            //IgnoredPla.Add(36);     // Duplicate of 8
             //IgnoredPla.Add(32);     // Duplicate of 4
+            //IgnoredPla.Add(19);     // Duplicate of 11 and 93
+            //IgnoredPla.Add(18);     // Duplicate of 12 and 94
 
             ////============================================================
             //// Special signals (not instructions)
@@ -83,15 +88,13 @@ namespace z80_pla_checker
             //IgnoredPla.Add(28);     // This signal specifies the OUT operation for PLA 37. Otherwise, it is operation.
             //IgnoredPla.Add(27);     // This signal goes along individual IN/OUT instructions in the ED table.
             //IgnoredPla.Add(16);     // This signal specifies a PUSH operation for PLA23. Otherwise, it is a POP operation.
-            //IgnoredPla.Add(14);     // This signal specifies a decrement operation for PLA 9. Otherwise, it is an increment.
             //IgnoredPla.Add(13);     // This signal specifies whether the value is being loaded or stored for PLA entries 8, 30 and 38.
-            //IgnoredPla.Add(4);      // This signal goes along instructions that access I and R register (PLA 57 and 83).
             //IgnoredPla.Add(0);      // This signal specifies *not* to repeat block instructions.
 
             ////============================================================
             //// Ignore our own reserved entries
-            //IgnoredPla.Add(106);
             //IgnoredPla.Add(107);
+            //IgnoredPla.Add(106);
 
             //============================================================
             // Remove op-bits so we the output is more readable
@@ -111,6 +114,16 @@ namespace z80_pla_checker
             IgnoredPla.Add(79);
             IgnoredPla.Add(78);
             IgnoredPla.Add(76);
+
+            //============================================================
+            // Signals not used in the Timings spreadsheet. For those, PLA table entries are not generated.
+            // This list is used only when generating the PLA table.
+            NotUsedPla.Add(67);       // This signal defines a specific in(), but we use in/out pla[27] + pla[34]
+            NotUsedPla.Add(62);       // This signal is issued for all CB opcodes
+            NotUsedPla.Add(54);       // This signal specifies every CB with IX/IY
+            NotUsedPla.Add(22);       // This signal specifies CB prefix w/o IX/IY
+            NotUsedPla.Add(14);       // This signal specifies a decrement operation for PLA 9. Otherwise, it is an increment.
+            NotUsedPla.Add(4);        // This signal goes along instructions that access I and R register (PLA 57 and 83).
 
             //============================================================
             // Mark all PLA entries we decided to ignore
@@ -308,7 +321,7 @@ namespace z80_pla_checker
 
             foreach (var p in pla)
             {
-                if (p.IsDuplicate())
+                if (p.IsDuplicate() || NotUsedPla.Contains(p.N))
                     continue;
 
                 String bitstream = p.GetBitstream();
@@ -319,9 +332,17 @@ namespace z80_pla_checker
                     p.Comment) + Environment.NewLine;
             }
 
-            // Dump all PLA entries that are ignored
+            // List all PLA entries that are not used
             module += @"" + Environment.NewLine;
-            module += @"// Duplicate or ignored entries" + Environment.NewLine;
+            module += @"// Entries not used by our timing matrix" + Environment.NewLine;
+            foreach (var n in NotUsedPla)
+            {
+                module += string.Format(@"assign pla[{0,3}] = 1'b0;   // {1}", n, pla[n].Comment) + Environment.NewLine;
+            }
+
+            // List all PLA entries that are ignored
+            module += @"" + Environment.NewLine;
+            module += @"// Duplicate entries" + Environment.NewLine;
             foreach (var p in pla)
             {
                 if (p.IsDuplicate())

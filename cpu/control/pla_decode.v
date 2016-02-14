@@ -12,7 +12,6 @@ assign pla[  0] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110100) == 15'b00
 assign pla[  1] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11011001) ? 1'b1 : 1'b0;   // exx
 assign pla[  2] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101011) ? 1'b1 : 1'b0;   // ex de,hl
 assign pla[  3] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11011111) == 15'b0000100_11011101) ? 1'b1 : 1'b0;   // IX/IY prefix
-assign pla[  4] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_01000111) ? 1'b1 : 1'b0;   // ld x,a/a,x
 assign pla[  5] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11111001) ? 1'b1 : 1'b0;   // ld sp,hl
 assign pla[  6] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101001) ? 1'b1 : 1'b0;   // jp hl
 assign pla[  7] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00000001) ? 1'b1 : 1'b0;   // ld rr,nn
@@ -22,13 +21,11 @@ assign pla[ 10] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b00
 assign pla[ 11] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100001) ? 1'b1 : 1'b0;   // cpi/cpir/cpd/cpdr
 assign pla[ 12] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100000) ? 1'b1 : 1'b0;   // ldi/ldir/ldd/lddr
 assign pla[ 13] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00000010) ? 1'b1 : 1'b0;   // ld direction
-assign pla[ 14] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00001011) ? 1'b1 : 1'b0;   // dec rr
 assign pla[ 15] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110111) == 15'b0000001_01100111) ? 1'b1 : 1'b0;   // rrd/rld
 assign pla[ 16] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_11000101) ? 1'b1 : 1'b0;   // push rr
 assign pla[ 17] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_00000110) ? 1'b1 : 1'b0;   // ld r,n
 assign pla[ 20] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100011) ? 1'b1 : 1'b0;   // outx/otxr
 assign pla[ 21] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11100111) == 15'b0000001_10100010) ? 1'b1 : 1'b0;   // inx/inxr
-assign pla[ 22] = (({prefix[6:0], opcode[7:0]} & 15'b1000000_11111111) == 15'b1000000_11001011) ? 1'b1 : 1'b0;   // CB prefix w/o IX/IY
 assign pla[ 23] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001011) == 15'b0000100_11000001) ? 1'b1 : 1'b0;   // push/pop
 assign pla[ 24] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11001101) ? 1'b1 : 1'b0;   // call nn
 assign pla[ 25] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11100111) == 15'b0000100_00000111) ? 1'b1 : 1'b0;   // rlca/rla/rrca/rra
@@ -57,18 +54,15 @@ assign pla[ 50] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b00
 assign pla[ 51] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111111) == 15'b0000100_11101101) ? 1'b1 : 1'b0;   // ED prefix
 assign pla[ 52] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_10000110) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cp (hl)
 assign pla[ 53] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11111110) == 15'b0000100_00110100) ? 1'b1 : 1'b0;   // inc/dec (hl)
-assign pla[ 54] = (({prefix[6:0], opcode[7:0]} & 15'b0100010_00000000) == 15'b0100010_00000000) ? 1'b1 : 1'b0;   // Every CB with IX/IY
 assign pla[ 55] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_00000111) == 15'b0000010_00000110) ? 1'b1 : 1'b0;   // Every CB op (hl)
 assign pla[ 56] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000111) ? 1'b1 : 1'b0;   // rst p
 assign pla[ 57] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11110111) == 15'b0000001_01000111) ? 1'b1 : 1'b0;   // ld i,a/r,a
 assign pla[ 58] = (({prefix[6:0], opcode[7:0]} & 15'b0010100_11000111) == 15'b0010100_01000110) ? 1'b1 : 1'b0;   // ld r,(hl)
 assign pla[ 59] = (({prefix[6:0], opcode[7:0]} & 15'b0010100_11111000) == 15'b0010100_01110000) ? 1'b1 : 1'b0;   // ld (hl),r
 assign pla[ 61] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000000) == 15'b0000100_01000000) ? 1'b1 : 1'b0;   // ld r,r'
-assign pla[ 62] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_00000000) == 15'b0000010_00000000) ? 1'b1 : 1'b0;   // For all CB opcodes
 assign pla[ 64] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000111) == 15'b0000100_11000110) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cmp a,imm
 assign pla[ 65] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000000) == 15'b0000100_10000000) ? 1'b1 : 1'b0;   // add/sub/and/or/xor/cmp a,r
 assign pla[ 66] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11000110) == 15'b0000100_00000100) ? 1'b1 : 1'b0;   // inc/dec r
-assign pla[ 67] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000000) ? 1'b1 : 1'b0;   // in
 assign pla[ 68] = (({prefix[6:0], opcode[7:0]} & 15'b0000001_11000111) == 15'b0000001_01000010) ? 1'b1 : 1'b0;   // adc/sbc hl,rr
 assign pla[ 69] = (({prefix[6:0], opcode[7:0]} & 15'b0000100_11001111) == 15'b0000100_00001001) ? 1'b1 : 1'b0;   // add hl,rr
 assign pla[ 70] = (({prefix[6:0], opcode[7:0]} & 15'b0000010_11000000) == 15'b0000010_00000000) ? 1'b1 : 1'b0;   // rlc r
@@ -101,7 +95,15 @@ assign pla[102] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00001000) == 15'b00
 assign pla[103] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00010000) == 15'b0000000_00010000) ? 1'b1 : 1'b0;   // opcode[4]
 assign pla[104] = (({prefix[6:0], opcode[7:0]} & 15'b0000000_00100000) == 15'b0000000_00100000) ? 1'b1 : 1'b0;   // opcode[5]
 
-// Duplicate or ignored entries
+// Entries not used by our timing matrix
+assign pla[ 67] = 1'b0;   // in
+assign pla[ 62] = 1'b0;   // For all CB opcodes
+assign pla[ 54] = 1'b0;   // Every CB with IX/IY
+assign pla[ 22] = 1'b0;   // CB prefix w/o IX/IY
+assign pla[ 14] = 1'b0;   // dec rr
+assign pla[  4] = 1'b0;   // ld x,a/a,x
+
+// Duplicate entries
 assign pla[ 18] = 1'b0;   // ldi/ldir/ldd/lddr
 assign pla[ 19] = 1'b0;   // cpi/cpir/cpd/cpdr
 assign pla[ 32] = 1'b0;   // ld i,a/a,i/r,a/a,r
