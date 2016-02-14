@@ -40,9 +40,7 @@ module execute
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
-    input wire fpga_reset,             // Internal fpga test mode
     input wire nreset,                 // Internal reset signal
-    input wire clk,                    // Internal clock signal
     input wire in_intr,                // Servicing maskable interrupt
     input wire in_nmi,                 // Servicing non-maskable interrupt
     input wire in_halt,                // Currently in HALT mode
