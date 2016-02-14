@@ -137,13 +137,13 @@ begin
 
     // Reset internal control regs
     validPLA = 0;                       // Every valid PLA entry will set it
-    nextM  = 0;                         // Set to advance to the next M cycle
-    setM1  = 0;                         // Set on a last M/T cycle of an instruction
+    nextM = 0;                          // Set to advance to the next M cycle
+    setM1 = 0;                          // Set on a last M/T cycle of an instruction
 
     // Reset global machine cycle functions
-    fFetch = M1;                        // Fetch is simply always M1
+    fFetch = M1;                        // Fetch is M1
     fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
-    ixy_d  = 0;
+    ixy_d = 0;
     setIXIY = 0;
     setCBED = 0;
     nonRep = 0;
@@ -184,7 +184,7 @@ begin
     //-------------------------------------------------------------------------
     if (setM1) begin
         ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;   // Select 16-bit PC
-        ctl_al_we=1;                    // Write the PC into the address latch
+        ctl_al_we=1;                    // Write PC value into address latch
     end
 end
 

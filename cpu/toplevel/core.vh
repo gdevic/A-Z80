@@ -8,14 +8,19 @@
 // Include a list of top-level signal wires
 `include "globals.vh"
 
+`ifdef MODEL_TECH
 // Specific to Modelsim, some modules in the schematics need to be pre-initialized
 // to avoid starting simulations with unknown values in selected flip flops.
 // When synthesized, the CPU RESET input signal will do the work.
-reg fpga_reset = 0;
+reg fpga_reset;
 initial begin
     fpga_reset = 1;
     #1 fpga_reset = 0;
 end
+`else
+wire fpga_reset;
+assign fpga_reset = 0;
+`endif
 
 // Define internal data bus partitions segmented by data bus switches
 wire [7:0] db0;         // Segment connecting data pins and IR

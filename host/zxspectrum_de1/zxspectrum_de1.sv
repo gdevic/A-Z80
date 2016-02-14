@@ -72,7 +72,7 @@ module zxspectrum_board
     input wire SW1,                 // Enable/disable interrupts
     input wire SW2,                 // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
     output wire [2:0] LEDR,         // Shows the switch selection
-    inout wire [31:0] GPIO_1,
+    output wire [31:0] GPIO_1,      // Exports CPU chip pins
     output wire [2:0] LEDGTOP       // Show additional information visually
 );
 `default_nettype none
@@ -85,7 +85,6 @@ assign reset = locked & KEY0;
 assign GPIO_1[15:0] = A[15:0];
 assign GPIO_1[23:16] = D[7:0];
 assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};
-//assign GPIO_1[] = {nWAIT,nINT,nNMI,nRESET,nBUSRQ,CLK};
 
 // Top 3 green LEDs show various states:
 assign LEDGTOP[2] = 0;              // Reserved for future use
@@ -256,7 +255,7 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = (SW1==0)? vs_nintr : 1; // SW1 disables interrupts and, hence, keyboard
+wire nINT = (SW1==0)? vs_nintr : '1;// SW1 disables interrupts and, hence, keyboard
 assign LEDR[1] = SW1;               // Glow red when interrupts are *disabled*
 wire nNMI = KEY1;                   // Pressing KEY1 issues a NMI
 wire nBUSRQ = 1;
