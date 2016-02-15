@@ -16,21 +16,22 @@ bin2hex.exe zout\%~n1.cim fpga.hex
 if errorlevel 1 goto error
 python bin2coe.py zout\%~n1.cim ram.coe
 if errorlevel 1 goto error
-python bin2mif.py zout\%~n1.cim ram.mif
+python bin2mif.py --simple zout\%~n1.cim ram.mif
 if errorlevel 1 goto error
 
 Rem     Copy hex files to their target Quartus/ModelSim host directories
 copy /Y fpga.hex ..\..\host\basic_de1
 copy /Y fpga.hex ..\..\host\basic_de1\simulation\modelsim
 
-Rem     Copy .mif and .coe files to their target Xilinx host directory
+Rem     Copy .mif and .coe files to their target Xilinx host directories
 copy /Y ram.coe ..\..\host\basic_nexys3
 copy /Y ram.mif ..\..\host\basic_nexys3
+copy /Y ram.mif ..\..\host\basic_nexys3\ipcore_dir
 goto end
 
 :error
 @echo ------------------------------------------------------
-@echo Errors assembling %1
+@echo Errors processing %1
 @echo ------------------------------------------------------
 cmd
 :end
