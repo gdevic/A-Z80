@@ -48,6 +48,9 @@ begin
 `ifdef MODEL_TECH
         $strobe("[UART] %c", Data);
 `endif
+`ifdef XILINX_ISIM
+        $strobe("[UART] %c", Data);
+`endif
     end else begin
         data_in_wr <= 0;
     end
