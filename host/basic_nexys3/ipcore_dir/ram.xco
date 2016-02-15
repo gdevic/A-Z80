@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Sun Feb 14 14:52:22 2016
+# Date: Mon Feb 15 02:30:19 2016
 #
 ##############################################################
 #
@@ -46,7 +46,7 @@ CSET axi_id_width=4
 CSET axi_slave_type=Memory_Slave
 CSET axi_type=AXI4_Full
 CSET byte_size=9
-CSET coe_file=..\fpga.coe
+CSET coe_file=..\ram.coe
 CSET collision_warnings=ALL
 CSET component_name=ram
 CSET disable_collision_warnings=false
