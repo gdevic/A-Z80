@@ -1,7 +1,7 @@
 //=============================================================================
 // This module implements the instruction execute state logic.
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free
@@ -161,8 +161,8 @@ begin
         ctl_inc_zero = 1;               // Force 0 to the output of incrementer
         ctl_inc_cy = 0;                 // Don't increment, pass-through
         ctl_al_we = 1;                  // Write 0 to the address latch
-        setM1 = 1;                      // Arm to start executing at M1/T1
-        nextM = 1;                      // Arm to start executing at M1/T1
+        nextM = 1;                      // Advance to the next M cycle
+        setM1 = 1;                      // Reset next M cycle to M1
 
         // Clear instruction opcode register
         ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
@@ -174,7 +174,7 @@ begin
     //-------------------------------------------------------------------------
     if (M1 && T4 && !validPLA) begin
         nextM = 1;                      // Complete the default M1 cycle
-        setM1 = 1;                      // Set next M1 cycle
+        setM1 = 1;                      // Reset next M cycle to M1
     end
 
     //-------------------------------------------------------------------------
