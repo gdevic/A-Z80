@@ -158,15 +158,18 @@ begin
     //-------------------------------------------------------------------------
     if (!nreset) begin
         // Clear the address latch, PC and IR registers
-        ctl_inc_zero = 1;               // Force 0 to the output of incrementer
-        ctl_inc_cy = 0;                 // Don't increment, pass-through
-        ctl_al_we = 1;                  // Write 0 to the address latch
+// This is now moved to individual blocks
+//        ctl_inc_zero = 1;               // Force 0 to the output of incrementer
+//        ctl_inc_cy = 0;                 // Don't increment, pass-through
+//        ctl_al_we = 1;                  // Write 0 to the address latch
+
         nextM = 1;                      // Advance to the next M cycle
         setM1 = 1;                      // Reset next M cycle to M1
 
         // Clear instruction opcode register
-        ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
-        ctl_ir_we = 1;                  // And write it into the instruction register
+// This is now moved to individual blocks
+//        ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
+//        ctl_ir_we = 1;                  // And write it into the instruction register
     end
 
     //-------------------------------------------------------------------------

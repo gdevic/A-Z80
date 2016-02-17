@@ -200,6 +200,7 @@ interrupts interrupts_(
 ir ir_(
     .ctl_ir_we (ctl_ir_we),
     .clk (clk),
+    .nreset (nreset),
     .db (db0[7:0]),
     .opcode (opcode)
 );
@@ -528,6 +529,7 @@ address_latch address_latch_(
     .clk (clk),
     .ctl_apin_mux (ctl_apin_mux),
     .ctl_apin_mux2 (ctl_apin_mux2),
+    .nreset (nreset),
     .address_is_1 (address_is_1),
     .abus ({db_hi_as[7:0], db_lo_as[7:0]}),
     .address (address)
@@ -537,6 +539,7 @@ bus_control bus_control_(
     .ctl_bus_ff_oe (ctl_bus_ff_oe),
     .ctl_bus_zero_oe (ctl_bus_zero_oe),
     .ctl_bus_db_oe (ctl_bus_db_oe),
+    .nreset (nreset),
     .bus_db_oe (bus_db_oe),
     .db (db0[7:0])
 );

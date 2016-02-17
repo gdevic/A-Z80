@@ -9,7 +9,8 @@ module test_bus;
 // Define one full T-clock cycle delay
 `define T #2
 bit clk = 1;
-initial repeat (24) #1 clk = ~clk;
+initial repeat (26) #1 clk = ~clk;
+reg nreset;
 
 // ----------------------------------------------------
 // Bi-directional bus that can also be tri-stated
@@ -37,6 +38,7 @@ wire address_is_1;          // Signals when the final address is 1
    assert(address==arg);
 
 initial begin
+    nreset = 0;
     abusw = 'z;
     ctl_al_we = 0;
     ctl_bus_inc_oe = 0;
@@ -46,6 +48,9 @@ initial begin
     ctl_inc_zero = 0;
     ctl_apin_mux = 0;
     ctl_apin_mux2 = 0;
+
+    //------------------------------------------------------------
+    `T  nreset = 1;
 
     //------------------------------------------------------------
     // Perform a simple increment and decrement

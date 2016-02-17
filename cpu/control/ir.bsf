@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 192 112)
+	(rect 16 16 192 144)
 	(text "ir" (rect 5 0 12 14)(font "Arial" (font_size 8)))
-	(text "inst" (rect 8 80 25 92)(font "Arial" ))
+	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -45,6 +45,13 @@ applicable agreement for further details.
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
+		(pt 0 80)
+		(input)
+		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 21 75 57 89)(font "Arial" (font_size 8)))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
 		(pt 176 32)
 		(output)
 		(text "opcode[7..0]" (rect 0 0 70 14)(font "Arial" (font_size 8)))
@@ -52,6 +59,6 @@ applicable agreement for further details.
 		(line (pt 176 32)(pt 160 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 160 80))
+		(rectangle (rect 16 16 160 112))
 	)
 )
