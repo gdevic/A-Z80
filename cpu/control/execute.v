@@ -131,7 +131,7 @@ begin
     // Default assignment of all control outputs to 0 to prevent generating
     // latches.
     //-------------------------------------------------------------------------
-    `include "exec_zero.vh"
+    `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
 
     // Reset internal control regs
     validPLA = 0;                       // Every valid PLA entry will set it
@@ -163,8 +163,7 @@ begin
 //        ctl_inc_cy = 0;                 // Don't increment, pass-through
 //        ctl_al_we = 1;                  // Write 0 to the address latch
 
-        nextM = 1;                      // Advance to the next M cycle
-        setM1 = 1;                      // Reset next M cycle to M1
+        setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
 
         // Clear instruction opcode register
 // This is now moved to individual blocks
@@ -176,8 +175,7 @@ begin
     // At M1/T4 advance an instruction if it did not trigger any PLA entry
     //-------------------------------------------------------------------------
     if (M1 && T4 && !validPLA) begin
-        nextM = 1;                      // Complete the default M1 cycle
-        setM1 = 1;                      // Reset next M cycle to M1
+        setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
     end
 
     //-------------------------------------------------------------------------

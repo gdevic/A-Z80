@@ -94,6 +94,8 @@ assign	T5 = DFFE_T5_ff;
 
 
 
+assign	ena_M = nextM | setM1;
+
 assign	SYNTHESIZED_WIRE_12 = DFFE_M4_ff & SYNTHESIZED_WIRE_18;
 
 assign	SYNTHESIZED_WIRE_13 = DFFE_T1_ff & SYNTHESIZED_WIRE_19;
@@ -272,7 +274,6 @@ if (ena_T)
 	end
 end
 
-assign	ena_M = nextM;
 assign	timings_en = ena_T;
 
 endmodule
