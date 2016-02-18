@@ -1,20 +1,21 @@
 //=========================================================================================
-// This file contains substitute strings for macros used in the Excel timing table and
-// is read and processed by genmatrix.py script to generate exec_matrix.vh include file.
+// This file contains substitute strings for macro expansions. Macros are defined in an
+// Excel timing spreadsheet 'Timings.xlsm' and exported to a .csv file which is then read
+// and processed by genmatrix.py script to generate exec_matrix.vh include file.
 //
-// Format of the file:
+// Macro format:
 //
-// * Each key is prefixed by ':' and corresponds to a spreadsheet column name.
-// * A column (key) contains a number of macros, each starting at its own line.
-// * A macro may span multiple lines, in which case use the '\' character after the name to
-//   continue on the next line.
-// * Multiline macros end when a line does not _start_ with a space character.
+// * Each key is prefixed by ':' and corresponds to a spreadsheet *column* name.
+// * A key may contain several different macros, one per line.
+// * A macro may span multiple lines; use the '\' character to continue on the next line.
+// * Multi-line macros end when a line does not start with a space character.
 // //-style comments are wrapped within /* ... */ if they don't start a line.
 //=========================================================================================
 
 //-----------------------------------------------------------------------------------------
-:Function
+// CPU machine state
 //-----------------------------------------------------------------------------------------
+:Function
 //Fetch is M1
 fMFetch
 fMRead          fMRead=1;
@@ -64,10 +65,11 @@ I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;      // Select 8-
 PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
 
 // Conditional assertions of WZ, HL instead of PC
-WZ? \
-    if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
-        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
-    end
+WZ?     ctl_reg_not_pc=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={flags_cond_true,flags_cond_true}; ctl_sw_4d=flags_cond_true;
+// Alternate format:
+//    if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
+//        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
+//    end
 
 :A:reg wr
 // General purpose registers
@@ -107,7 +109,7 @@ AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
 B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
-r8 \    // r8 addressing does not allow reading F register (A and F are also indexed as swapped) (ex. in OUT (c),r)
+r8 \    // r8 addressing does not allow reading F register (indices of A and F are also swapped) (ex. in OUT (c),r)
     if (op4 & op5 & ~op3) ctl_bus_zero_oe=1;                // Trying to read flags? Put 0 on the bus instead.
     else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end // Read 8-bit GP register
 r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
@@ -198,65 +200,62 @@ low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high 
 0       ctl_alu_op1_sel_zero=1;                 // Zero
 
 :operation
-// Sets the ALU core operation
-//--------------------------------------------------------------------------------------------------------------------------
-CP \
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
-    if (ctl_alu_op_low) begin
-                                                              ctl_flags_cf_set=1;
-    end else begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-SUB \
-
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
-    if (ctl_alu_op_low) begin
-                                                              ctl_flags_cf_set=1;
-    end else begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-SBC \
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
-    if (ctl_alu_op_low) begin
-                                                                                  ctl_flags_cf_cpl=1;
-    end else begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-SBCh \
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;                                             ctl_alu_sel_op2_neg=1;
-    if (~ctl_alu_op_low) begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-ADC \
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;
-    if (~ctl_alu_op_low) begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-ADD \
-    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=0;
-    if (ctl_alu_op_low) begin
-                                                              ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-    end else begin
-        ctl_alu_core_hf=1;
-    end
-//--------------------------------------------------------------------------------------------------------------------------
-AND     ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;
+// Defines the ALU core compute operation
+// The listing is also showing their alternate formats (using if/then)
+//-----------------------------------------------------------------------------------------
+CP      ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+//    ctl_alu_sel_op2_neg=1;
+//    if (ctl_alu_op_low) begin
+//        ctl_flags_cf_set=1;
+//    end else begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+SUB     ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+//    ctl_alu_sel_op2_neg=1;
+//    if (ctl_alu_op_low) begin
+//        ctl_flags_cf_set=1;
+//    end else begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+SBC     ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+//    ctl_alu_sel_op2_neg=1;
+//    if (ctl_alu_op_low) begin
+//        ctl_flags_cf_cpl=1;
+//    end else begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+SBCh    ctl_alu_sel_op2_neg=1; ctl_alu_core_hf=~ctl_alu_op_low;
+//    ctl_alu_sel_op2_neg=1;
+//    if (~ctl_alu_op_low) begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+ADC     ctl_alu_core_hf=~ctl_alu_op_low;
+//    if (~ctl_alu_op_low) begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+ADD     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+//    if (ctl_alu_op_low) begin
+//        ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+//    end else begin
+//        ctl_alu_core_hf=1;
+//    end
+//-----------------------------------------------------------------------------------------
+AND     ctl_alu_core_S=1; ctl_flags_cf_set=1;
 OR      ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-XOR     ctl_alu_core_R=1; ctl_alu_core_V=0; ctl_alu_core_S=0; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-
-NAND    ctl_alu_core_R=0; ctl_alu_core_V=0; ctl_alu_core_S=1; ctl_flags_cf_set=1;                     ctl_alu_sel_op2_neg=1;
+XOR     ctl_alu_core_R=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+NAND    ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_alu_sel_op2_neg=1;
 NOR     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1; ctl_alu_sel_op2_neg=1;
-//--------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 
 PLA     ctl_state_alu=1;                        // Assert the ALU PLA modifier to determine operation
 
 :nibble
-// ALU computational phase: low nibble or high nibble
+// ALU compute phase: working on low nibble or high nibble
 L       ctl_alu_op_low=1;                       // Activate ALU operation on low nibble
 H       ctl_alu_sel_op2_high=1;                 // Activate ALU operation on high nibble
 
@@ -297,14 +296,14 @@ S       ctl_flags_nf_we=1;                      // Sign bit, to be used with FLA
 ^       ctl_flags_cf_we=1;  ctl_flags_cf_cpl=1; // CCF
 :CF2
 R       ctl_flags_use_cf2=1;
-W       ctl_flags_cf2_we=1; ctl_flags_cf2_sel=0;
+W       ctl_flags_cf2_we=1;
 W.sh    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1;
 W.daa   ctl_flags_cf2_we=1; ctl_flags_cf2_sel=2;
 W.0     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=3;
 
-//-----------------------------------------------------------------------------------------
-// Special sequence macros for some instructions make it simpler for all other entries
-//-----------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+// Macros for some special cases; also simplifies control logic for a number of instructions
+//------------------------------------------------------------------------------------------
 :Special
 USE_SP          ctl_reg_use_sp=1;                           // For 16-bit loads: use SP instead of AF
 
@@ -342,14 +341,14 @@ OpcodeToIR      ctl_ir_we=1;
 // 3. We are in NMI mode: push RST38 (0xFF) instead
 OverrideIR      ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi;
 
-// RST instruction uses opcode[5:3] to specify a vector and this control passes those 3 bits through
+// RST instruction uses opcode[5:3] to specify a vector and this macro passes those 3 bits through
 MASK_543        ctl_sw_mask543_en=~((in_intr & im2) | in_nmi);
-// Based on the in_nmi state, several things are set:
+// Based on the in_nmi state:
 // 1. Disable SW1 so the opcode will not get onto db1 bus
 // 2. Generate 0x66 on the db1 bus which will be used as the target vector address
 // 3. Clear IFF1 (done by the nmi logic on posedge of in_nmi)
 RST_NMI         ctl_sw_1d=~in_nmi; ctl_66_oe=in_nmi;
-// Based on the in_intr state, several things are set:
+// Based on the in_intr state:
 // 1. IM1 mode, force 0xFF on the db0 bus
 // 2. Clear IFF1 and IFF2 (done by the intr logic on posedge of in_intr)
 RST_INT         ctl_bus_ff_oe=in_intr & im1;
