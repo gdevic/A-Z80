@@ -138,11 +138,11 @@ for line in content:
         # M and T states are hard-coded in the table at the index 1 and 2
         if col_clean[0].startswith('#0'):
             if col[1]=='?':     # M is optional, use '?' to skip it
-                state = "    if (T{0}) begin ".format(col[2])
+                state = "    if (T{0}) begin".format(col[2])
             else:
-                state = "    if (M{0} & T{1}) begin ".format(col[1], col[2])
+                state = "    if (M{0} & T{1}) begin".format(col[1], col[2])
         else:
-            state = "    begin "
+            state = "    begin"
 
         # Loop over all other columns and perform verbatim substitution
         action = ""
