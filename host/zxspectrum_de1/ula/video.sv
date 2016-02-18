@@ -7,7 +7,7 @@
 //       counters will reset themselves within one display frame as the
 //       pixel clock keeps ticking.
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free

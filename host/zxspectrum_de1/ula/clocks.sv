@@ -7,7 +7,7 @@
 // implemented in this module. RAM contention is not implemented since we are
 // using FPGA RAM cells configured in dual-port mode.
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free

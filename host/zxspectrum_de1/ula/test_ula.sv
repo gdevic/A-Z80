@@ -1,7 +1,7 @@
 //============================================================================
 // Test the implementation of the Sinclair ZX Spectrum ULA
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free

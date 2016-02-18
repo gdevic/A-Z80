@@ -18,7 +18,7 @@
 // ESC       |  BREAK (CAPS+SPACE)
 // SHIFT => PS/2 shift for these separate additional keys: -_ += ;: "' <, >. ?/
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free

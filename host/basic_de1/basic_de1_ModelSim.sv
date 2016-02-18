@@ -4,7 +4,7 @@
 // This module does not define a physical board but is only meant to be
 // compiled within the ModelSim host test.
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2014-2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free
