@@ -27,7 +27,7 @@ module host
     input wire KEY2,            // KEY2 generates a non-maskable interrupt (NMI)
     output wire UART_TXD,
 
-    output wire [5:0] GPIO_0    // Test
+    output wire [5:0] GPIO_0    // Test points
 );
 `default_nettype none
 
@@ -39,11 +39,11 @@ assign reset = locked & KEY0;
 assign UART_TXD = uart_tx;
 
 assign GPIO_0[0] = reset;
-assign GPIO_0[1] = pll_clk;
-assign GPIO_0[2] = locked;
-assign GPIO_0[3] = nM1;
+assign GPIO_0[1] = locked;
+assign GPIO_0[2] = nM1;
+assign GPIO_0[3] = nMREQ;
 assign GPIO_0[4] = nRD;
-assign GPIO_0[5] = nRFSH;
+assign GPIO_0[5] = nWR;
 
 // ----------------- CPU PINS -----------------
 wire nM1;
@@ -70,20 +70,17 @@ wire pll_clk;
 pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
+// Generate the CPU clock by dividing input clock by a factor of a power of 2
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg clk_cpu;                    // Final CPU clock
+reg clk_cpu;                            // Final CPU clock
 
 // Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
 // and then this divider-by-4 brings the effective clock down to 3.5 MHz
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Generate 3.5 MHz Z80 CPU clock by dividing input clock of 14 MHz by 4
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg [0:0] counter;
+// NOTE: See the actual PLL output c0 since I frequently change it
 
-// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
-// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+reg [0:0] counter;                      // Clock divider counter
+
 always @(posedge pll_clk)
 begin
     if (counter=='0)
