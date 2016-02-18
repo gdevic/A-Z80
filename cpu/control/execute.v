@@ -163,7 +163,7 @@ begin
 //        ctl_inc_cy = 0;                 // Don't increment, pass-through
 //        ctl_al_we = 1;                  // Write 0 to the address latch
 
-        setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
+        //setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
 
         // Clear instruction opcode register
 // This is now moved to individual blocks
