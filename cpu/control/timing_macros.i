@@ -26,9 +26,9 @@ fIOWrite        fIOWrite=1;
 // Basic timing control
 //-----------------------------------------------------------------------------------------
 :valid
-1               validPLA=1;
+Y               validPLA=1;
 :nextM
-1               nextM=1;
+Y               nextM=1;
 mr              nextM=1; ctl_mRead=1;
 mw              nextM=1; ctl_mWrite=1;
 ior             nextM=1; ctl_iorw=1;
@@ -36,7 +36,7 @@ iow             nextM=1; ctl_iorw=1;
 CC              nextM=~flags_cond_true;
 INT             nextM=1; ctl_mRead=in_intr & im2;   // RST38 interrupt extension
 :setM1
-1               setM1=1;
+Y               setM1=1;
 SS              setM1=~flags_cond_true;
 CC              setM1=~flags_cond_true;
 ZF              setM1=flags_zf; // Used in DJNZ
