@@ -3872,7 +3872,7 @@ if (ixy_d) begin
 end
 
 // Default instruction fetch (M1) state machine
-if (M1) begin
+if (1) begin
     if (M1 & T1) begin
                     ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi); /* Write 16-bit PC and control incrementer */
                     ctl_inc_cy=pc_inc; /* Increment */
@@ -3892,5 +3892,10 @@ if (M1) begin
                     ctl_inc_limit6=1; /* Limit the incrementer to 6 bits */ end
     if (M1 & T4) begin
                     ctl_eval_cond=1; /* Evaluate flags condition based on the opcode[5:3] */ end
+end
+
+// For all undecoded instructions, at M1/T4 advance a byte to the next opcode
+if (!validPLA) begin
+    if (M1 & T4) begin nextM=1; end
 end
 

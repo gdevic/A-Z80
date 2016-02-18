@@ -151,13 +151,6 @@ begin
     `include "exec_matrix.vh"
 
     //-------------------------------------------------------------------------
-    // For all undecoded instructions, at M1/T4 advance a byte to the next opcode
-    //-------------------------------------------------------------------------
-    if (M1 && T4 && !validPLA) begin
-        setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
-    end
-
-    //-------------------------------------------------------------------------
     // The last cycle of an instruction is also the first cycle of the next one
     //-------------------------------------------------------------------------
     if (setM1) begin

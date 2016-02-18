@@ -1154,9 +1154,14 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #end																																		
 																																		
 // Default instruction fetch (M1) state machine																																		
-#if M1 :																																		
+#if 1 :																																		
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch					PC	+	RL																								
 #002H T2  AB:000 DB:CB  M1      MREQ RD	1	2	fMFetch				IR			W						R																	"CLR_IX_IY, CLR_CB_ED, OpcodeToIR, OverrideIR"	Prepares for the next execution cycle
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch					IR	+	RL																							Limit6	"Fetch opcode, evaluate flags"
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch																														EvalCond	
+#end																																		
+																																		
+"// For all undecoded instructions, at M1/T4 advance a byte to the next opcode"																																		
+#if !validPLA :																																		
+#001H	1	4			Y																													
 #end																																		
