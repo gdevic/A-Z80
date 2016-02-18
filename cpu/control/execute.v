@@ -24,67 +24,67 @@ module execute
     //----------------------------------------------------------
     `include "exec_module.vh"
 
-    output reg nextM,                  // Last M cycle of any instruction
-    output reg setM1,                  // Last T clock of any instruction
-    output reg fFetch,                 // Function: opcode fetch cycle ("M1")
-    output reg fMRead,                 // Function: memory read cycle
-    output reg fMWrite,                // Function: memory write cycle
-    output reg fIORead,                // Function: IO Read cycle
-    output reg fIOWrite,               // Function: IO Write cycle
+    output reg nextM,                   // Last M cycle of any instruction
+    output reg setM1,                   // Last T clock of any instruction
+    output reg fFetch,                  // Function: opcode fetch cycle ("M1")
+    output reg fMRead,                  // Function: memory read cycle
+    output reg fMWrite,                 // Function: memory write cycle
+    output reg fIORead,                 // Function: IO Read cycle
+    output reg fIOWrite,                // Function: IO Write cycle
 
     //----------------------------------------------------------
     // Inputs from the instruction decode PLA
     //----------------------------------------------------------
-    input wire [104:0] pla,            // Statically decoded instructions
+    input wire [104:0] pla,             // Statically decoded instructions
 
     //----------------------------------------------------------
     // Inputs from various blocks
     //----------------------------------------------------------
-    input wire nreset,                 // Internal reset signal
-    input wire in_intr,                // Servicing maskable interrupt
-    input wire in_nmi,                 // Servicing non-maskable interrupt
-    input wire in_halt,                // Currently in HALT mode
-    input wire im1,                    // Interrupt Mode 1
-    input wire im2,                    // Interrupt Mode 2
-    input wire use_ixiy,               // Special decode signal
-    input wire flags_cond_true,        // Flags condition is true
-    input wire repeat_en,              // Enable repeat of a block instruction
-    input wire flags_zf,               // ZF to test a condition
-    input wire flags_nf,               // NF to test for subtraction
-    input wire flags_sf,               // SF to test for 8-bit sign of a value
-    input wire flags_cf,               // CF to set HF for CCF
+    input wire nreset,                  // Internal reset signal
+    input wire in_intr,                 // Servicing maskable interrupt
+    input wire in_nmi,                  // Servicing non-maskable interrupt
+    input wire in_halt,                 // Currently in HALT mode
+    input wire im1,                     // Interrupt Mode 1
+    input wire im2,                     // Interrupt Mode 2
+    input wire use_ixiy,                // Special decode signal
+    input wire flags_cond_true,         // Flags condition is true
+    input wire repeat_en,               // Enable repeat of a block instruction
+    input wire flags_zf,                // ZF to test a condition
+    input wire flags_nf,                // NF to test for subtraction
+    input wire flags_sf,                // SF to test for 8-bit sign of a value
+    input wire flags_cf,                // CF to set HF for CCF
 
     //----------------------------------------------------------
     // Machine and clock cycles
     //----------------------------------------------------------
-    input wire M1,                     // Machine cycle #1
-    input wire M2,                     // Machine cycle #2
-    input wire M3,                     // Machine cycle #3
-    input wire M4,                     // Machine cycle #4
-    input wire M5,                     // Machine cycle #5
-    input wire T1,                     // T-cycle #1
-    input wire T2,                     // T-cycle #2
-    input wire T3,                     // T-cycle #3
-    input wire T4,                     // T-cycle #4
-    input wire T5,                     // T-cycle #5
-    input wire T6                      // T-cycle #6
+    input wire M1,                      // Machine cycle #1
+    input wire M2,                      // Machine cycle #2
+    input wire M3,                      // Machine cycle #3
+    input wire M4,                      // Machine cycle #4
+    input wire M5,                      // Machine cycle #5
+    input wire T1,                      // T-cycle #1
+    input wire T2,                      // T-cycle #2
+    input wire T3,                      // T-cycle #3
+    input wire T4,                      // T-cycle #4
+    input wire T5,                      // T-cycle #5
+    input wire T6                       // T-cycle #6
 );
 
 // Detects unknown instructions by signalling the known ones
-reg validPLA;                          // Valid PLA asserts this reg
+reg validPLA;                           // Valid PLA asserts this reg
 // Activates a state machine to compute WZ=IX+d; takes 5T cycles
-reg ixy_d;                             // Compute WX=IX+d
+reg ixy_d;                              // Compute WX=IX+d
 // Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
-reg setIXIY;                           // Set IX/IY flag at the next T cycle
-reg setCBED;                           // Set CB or ED flag at the next T cycle
+reg setIXIY;                            // Set IX/IY flag at the next T cycle
+reg setCBED;                            // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
-reg nonRep;                            // Non-repeating block instruction
+reg nonRep;                             // Non-repeating block instruction
 // Suspends incrementing PC through address latch unless in HALT or interrupt mode
-reg pc_inc;                            // Normally defaults to 1
+reg pc_inc;                             // Normally defaults to 1
 
-//----------------------------------------------------------
+//--------------------------------------------------------------
 // Define various shortcuts to field naming
-//----------------------------------------------------------
+//--------------------------------------------------------------
 `define GP_REG_BC       2'h0
 `define GP_REG_DE       2'h1
 `define GP_REG_HL       2'h2
@@ -95,51 +95,49 @@ reg pc_inc;                            // Normally defaults to 1
 `define PFSEL_IFF2      2'h2
 `define PFSEL_REP       2'h3
 
-//----------------------------------------------------------
-// Make available different sections of the opcode byte
-//----------------------------------------------------------
-wire op5;
-wire op4;
-wire op3;
-wire op2;
-wire op1;
+//--------------------------------------------------------------
+// Make available different bits and sections of the opcode byte
+//--------------------------------------------------------------
 wire op0;
-assign op5 = pla[104];
-assign op4 = pla[103];
-assign op3 = pla[102];
-assign op2 = pla[101];
-assign op1 = pla[100];
+wire op1;
+wire op2;
+wire op3;
+wire op4;
+wire op5;
 assign op0 = pla[99];
+assign op1 = pla[100];
+assign op2 = pla[101];
+assign op3 = pla[102];
+assign op4 = pla[103];
+assign op5 = pla[104];
 
-wire [1:0] op54;
 wire [1:0] op21;
-
-assign op54 = { pla[104], pla[103] };
+wire [1:0] op54;
 assign op21 = { pla[101], pla[100] };
+assign op54 = { pla[104], pla[103] };
 
-//-----------------------------------------------------------
+//--------------------------------------------------------------
 // 8-bit register selections needs to swizzle mux for A and F
-//-----------------------------------------------------------
-wire rsel3;
+//--------------------------------------------------------------
 wire rsel0;
-assign rsel3 = op3 ^ (op4 & op5);
+wire rsel3;
 assign rsel0 = op0 ^ (op1 & op2);
+assign rsel3 = op3 ^ (op4 & op5);
 
 always @(*) // always_comb
 begin
-    //-------------------------------------------------------------------------
-    // Default assignment of all control outputs to 0 to prevent generating
-    // latches.
-    //-------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
+    // Default assignment of all control outputs to 0 to prevent generating latches
+    //-----------------------------------------------------------------------------
     `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
 
     // Reset internal control regs
-    validPLA = 0;                       // Every valid PLA entry will set it
-    nextM = 0;                          // Set to advance to the next M cycle
-    setM1 = 0;                          // Set on a last M/T cycle of an instruction
+    validPLA = 0;                       // Will be set by every *valid* PLA entry
+    nextM = 0;                          // Will be set to advance to the next M cycle
+    setM1 = 0;                          // Will be set on a last M/T cycle of an instruction
 
     // Reset global machine cycle functions
-    fFetch = M1;                        // Fetch is M1
+    fFetch = M1;                        // Fetch is aliased to M1
     fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d = 0;
     setIXIY = 0;
@@ -148,31 +146,12 @@ begin
     pc_inc = 1;
 
     //-------------------------------------------------------------------------
-    // State-based signal assignment
+    // State-based signal assignment; code generated from Timings spreadsheet
     //-------------------------------------------------------------------------
     `include "exec_matrix.vh"
 
-    // List more specific combinational signal assignments after the include
     //-------------------------------------------------------------------------
-    // Reset control
-    //-------------------------------------------------------------------------
-    if (!nreset) begin
-        // Clear the address latch, PC and IR registers
-// This is now moved to individual blocks
-//        ctl_inc_zero = 1;               // Force 0 to the output of incrementer
-//        ctl_inc_cy = 0;                 // Don't increment, pass-through
-//        ctl_al_we = 1;                  // Write 0 to the address latch
-
-        //setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
-
-        // Clear instruction opcode register
-// This is now moved to individual blocks
-//        ctl_bus_zero_oe = 1;            // Output 0 on the data bus section 0
-//        ctl_ir_we = 1;                  // And write it into the instruction register
-    end
-
-    //-------------------------------------------------------------------------
-    // At M1/T4 advance an instruction if it did not trigger any PLA entry
+    // For all undecoded instructions, at M1/T4 advance a byte to the next opcode
     //-------------------------------------------------------------------------
     if (M1 && T4 && !validPLA) begin
         setM1 = 1;                      // Reset next M cycle to M1 (implies nextM)
