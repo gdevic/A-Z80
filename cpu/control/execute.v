@@ -149,14 +149,6 @@ begin
     // State-based signal assignment; code generated from Timings spreadsheet
     //-------------------------------------------------------------------------
     `include "exec_matrix.vh"
-
-    //-------------------------------------------------------------------------
-    // The last cycle of an instruction is also the first cycle of the next one
-    //-------------------------------------------------------------------------
-    if (setM1) begin
-        ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;   // Select 16-bit PC
-        ctl_al_we=1;                    // Write PC value into address latch
-    end
 end
 
 endmodule

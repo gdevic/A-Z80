@@ -1162,6 +1162,11 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #end																																		
 																																		
 "// For all undecoded instructions, at M1/T4 advance a byte to the next opcode"																																		
-#if !validPLA :																																		
-#001H	1	4			Y																													
+#if !validPLA : A catch-all case																																		
+#001H	1	4				Y																												
+#end																																		
+																																		
+// The last cycle of an instruction is also the first cycle of the next one																																		
+#if setM1 :																																		
+#always							PC			W																								
 #end																																		

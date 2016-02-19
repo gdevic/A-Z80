@@ -3896,6 +3896,13 @@ end
 
 // For all undecoded instructions, at M1/T4 advance a byte to the next opcode
 if (!validPLA) begin
-    if (M1 & T4) begin nextM=1; end
+    if (M1 & T4) begin setM1=1; end
+end
+
+// The last cycle of an instruction is also the first cycle of the next one
+if (setM1) begin
+    begin
+                    ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
+                    ctl_al_we=1; /* Write a value from the register bus to the address latch */ end
 end
 
