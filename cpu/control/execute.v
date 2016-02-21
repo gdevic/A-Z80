@@ -129,7 +129,9 @@ begin
     //-----------------------------------------------------------------------------
     // Default assignment of all control outputs to 0 to prevent generating latches
     //-----------------------------------------------------------------------------
-    `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
+    // TODO: Comment out for Xilinx (use with "exec_matrix_compiled.vh")
+    //       Uncomment for Altera (use with "exec_matrix.vh")
+//    `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
 
     // Reset internal control regs
     validPLA = 0;                       // Will be set by every *valid* PLA entry
@@ -148,7 +150,10 @@ begin
     //-------------------------------------------------------------------------
     // State-based signal assignment; code generated from Timings spreadsheet
     //-------------------------------------------------------------------------
-    `include "exec_matrix.vh"
+    // TODO: Use on Altera
+//    `include "exec_matrix.vh"
+    // TODO: Use on Xilinx
+    `include "exec_matrix_compiled.vh"
 end
 
 endmodule
