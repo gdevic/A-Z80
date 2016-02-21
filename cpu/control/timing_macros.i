@@ -110,8 +110,8 @@ B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
 r8 \    // r8 addressing does not allow reading F register (indices of A and F are also swapped) (ex. in OUT (c),r)
-    if (op4 & op5 & ~op3) ctl_bus_zero_oe=1;                // Trying to read flags? Put 0 on the bus instead.
-    else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end // Read 8-bit GP register
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      // Trying to read flags? Put 0 on the bus instead.
+        if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end // Read 8-bit GP register
 r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte

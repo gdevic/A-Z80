@@ -1207,8 +1207,8 @@ if (pla[66] & ~pla[53]) begin
                     ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
-    if (op4 & op5 & ~op3) ctl_bus_zero_oe=1;                /* Trying to read flags? Put 0 on the bus instead. */
-    else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end /* Read 8-bit GP register */
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      /* Trying to read flags? Put 0 on the bus instead. */
+        if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end /* Read 8-bit GP register */
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
                     ctl_sw_2d=1;
                     ctl_flags_alu=1; /* Load FLAGT from the ALU */
@@ -2766,8 +2766,8 @@ end
 
 if (pla[27] & pla[34]) begin
     if (M1 & T4) begin validPLA=1; nextM=1; ctl_iorw=1;
-    if (op4 & op5 & ~op3) ctl_bus_zero_oe=1;                /* Trying to read flags? Put 0 on the bus instead. */
-    else begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end /* Read 8-bit GP register */
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      /* Trying to read flags? Put 0 on the bus instead. */
+        if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end /* Read 8-bit GP register */
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1; /* From the register file into the ALU */
                     ctl_sw_2u=1;
                     ctl_sw_1u=1;
