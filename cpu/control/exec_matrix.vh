@@ -1201,7 +1201,7 @@ if (pla[66] & ~pla[53]) begin
                     ctl_flags_nf_we=1;
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
-        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end  
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end 
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
                     ctl_sw_2d=1;
@@ -1670,7 +1670,7 @@ if (pla[77]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=2;
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_daa=1;
                     ctl_daa_oe=1;
                     ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=~flags_nf; end
 end
@@ -1897,7 +1897,7 @@ if (pla[25]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1; end
 end
 
 if (~use_ixiy & pla[70] & ~pla[55]) begin
@@ -1948,7 +1948,7 @@ if (~use_ixiy & pla[70] & ~pla[55]) begin
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1; end
     if (M4 & T1) begin fMRead=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
@@ -1966,7 +1966,7 @@ if (~use_ixiy & pla[70] & ~pla[55]) begin
                     ctl_alu_op_low=1;
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1; end
     if (M5 & T1) begin fMWrite=1;
                     ctl_bus_inc_oe=1;
                     ctl_sw_2u=1;
@@ -2023,7 +2023,7 @@ if (~use_ixiy & pla[70] & pla[55]) begin
                     ctl_alu_op_low=1;
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1; end
     if (M3 & T1) begin fMWrite=1;
                     ctl_bus_inc_oe=1;
                     ctl_sw_2u=1;
@@ -2059,7 +2059,7 @@ if (~use_ixiy & pla[70] & pla[55]) begin
                     ctl_alu_op_low=1;
                     ctl_alu_core_R=1; ctl_alu_core_V=1; ctl_alu_core_S=1; ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
-                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1; end
+                    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1; end
     if (M5 & T1) begin fMWrite=1;
                     ctl_bus_inc_oe=1;
                     ctl_sw_2u=1;
@@ -2755,7 +2755,7 @@ end
 
 if (pla[27] & pla[34]) begin
     if (M1 & T4) begin validPLA=1; nextM=1; ctl_iorw=1;
-        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end  
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end 
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
                     ctl_sw_2u=1;

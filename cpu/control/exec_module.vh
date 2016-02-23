@@ -74,7 +74,8 @@ output reg ctl_flags_use_cf2,
 output reg ctl_flags_hf2_we,
 output reg ctl_flags_nf_clr,
 output reg ctl_alu_zero_16bit,
-output reg [1:0] ctl_flags_cf2_sel,
+output reg ctl_flags_cf2_sel_shift,
+output reg ctl_flags_cf2_sel_daa,
 
 // Module: registers/reg_file.v
 output reg ctl_sw_4d,

@@ -74,7 +74,8 @@ ctl_flags_use_cf2 = 0;
 ctl_flags_hf2_we = 0;
 ctl_flags_nf_clr = 0;
 ctl_alu_zero_16bit = 0;
-ctl_flags_cf2_sel = 0;
+ctl_flags_cf2_sel_shift = 0;
+ctl_flags_cf2_sel_daa = 0;
 
 // Module: registers/reg_file.v
 ctl_sw_4d = 0;

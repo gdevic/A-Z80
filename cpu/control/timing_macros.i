@@ -297,9 +297,8 @@ S       ctl_flags_nf_we=1;                      // Sign bit, to be used with FLA
 :CF2
 R       ctl_flags_use_cf2=1;
 W       ctl_flags_cf2_we=1;
-W.sh    ctl_flags_cf2_we=1; ctl_flags_cf2_sel=1;
-W.daa   ctl_flags_cf2_we=1; ctl_flags_cf2_sel=2;
-W.0     ctl_flags_cf2_we=1; ctl_flags_cf2_sel=3;
+W.sh    ctl_flags_cf2_we=1; ctl_flags_cf2_sel_shift=1;
+W.daa   ctl_flags_cf2_we=1; ctl_flags_cf2_sel_daa=1;
 
 //------------------------------------------------------------------------------------------
 // Macros for some special cases; also simplifies control logic for a number of instructions

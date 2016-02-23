@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Sun Oct 19 14:48:51 2014"
+// CREATED		"Tue Feb 23 22:17:29 2016"
 
 module alu_flags(
 	ctl_flags_oe,
@@ -44,7 +44,8 @@ module alu_flags(
 	ctl_flags_nf_clr,
 	ctl_alu_zero_16bit,
 	clk,
-	ctl_flags_cf2_sel,
+	ctl_flags_cf2_sel_shift,
+	ctl_flags_cf2_sel_daa,
 	flags_sf,
 	flags_zf,
 	flags_hf,
@@ -84,7 +85,8 @@ input wire	ctl_flags_hf2_we;
 input wire	ctl_flags_nf_clr;
 input wire	ctl_alu_zero_16bit;
 input wire	clk;
-input wire	[1:0] ctl_flags_cf2_sel;
+input wire	ctl_flags_cf2_sel_shift;
+input wire	ctl_flags_cf2_sel_daa;
 output wire	flags_sf;
 output wire	flags_zf;
 output wire	flags_hf;
@@ -97,6 +99,7 @@ inout wire	[7:0] db;
 
 reg	flags_xf;
 reg	flags_yf;
+wire	[1:0] sel;
 wire	SYNTHESIZED_WIRE_0;
 reg	DFFE_inst_latch_hf;
 wire	SYNTHESIZED_WIRE_1;
@@ -341,8 +344,10 @@ alu_mux_4	b2v_inst_mux_cf2(
 	.in1(shift_cf_out),
 	.in2(daa_cf_out),
 	.in3(SYNTHESIZED_WIRE_37),
-	.sel(ctl_flags_cf2_sel),
+	.sel(sel),
 	.out(SYNTHESIZED_WIRE_28));
 
+assign	sel[0] = ctl_flags_cf2_sel_shift;
+assign	sel[1] = ctl_flags_cf2_sel_daa;
 
 endmodule
