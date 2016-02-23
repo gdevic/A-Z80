@@ -47,6 +47,52 @@ def get_rval(tokens, i):
     return [rval]
 
 #--------------------------------------------------------------------------------
+# Generate a sequential-or form for all control wires
+#--------------------------------------------------------------------------------
+def sequential_or(f, tokens):
+    incond = False              # Inside an "if" condition state
+    cond = []                   # Condition nested lists
+    ccond = []                  # Currently scanned condition list
+    ctls = {}                   # Dictionary of control wires and their equations
+    i = 0                       # Current index into the tokens list
+    while i < len(tokens):
+        tok = tokens[i]
+        (toknum, tokval, _, _, _) = tok
+        if incond and not (toknum==NAME and tokval=='begin'):
+            if toknum != DEDENT and toknum != INDENT:
+                ccond.append(tok)
+        if toknum==NAME:
+            if tokval=='if':
+                incond = True
+            if tokval=='begin': # Push a condition list
+                incond = False
+                cond.append(copy.deepcopy(ccond))
+                ccond.clear()
+            if tokval=='end': # Pop a condition list
+                cond.pop()
+            if is_ctl(tokval) and not incond:
+                if tokval in ctls_ignored:
+                    while (tokens[i].string!=';'):
+                        i += 1
+                    continue
+                rval = get_rval(tokens, i)
+                i += len(rval[0])
+                line = "{0} = {0} | ".format(tokval)
+                for n in range(len(cond)):
+                    for m in range(len(cond[n])):
+                        line += cond[n][m].string
+                    line += '&'
+                for n in range(len(rval[0])):
+                    line += rval[0][n].string
+
+                line = line.replace('&&', '&')
+                line = line.replace('(1)&', '')
+                line = line.replace('&(1)', '')
+
+                f.write ('{0};\n'.format(line))
+        i += 1
+
+#--------------------------------------------------------------------------------
 # Build a sum-of-products form
 #--------------------------------------------------------------------------------
 def sum_of_products(f, tokens):
@@ -122,7 +168,7 @@ def write_nested_if(f, toklines):
 
         line = tokenize.untokenize(tokline).decode('utf-8')
         #print (line, end='')
-        f.write ('{0};\n'.format(line))
+        f.write ('{0}'.format(line))
 
 #--------------------------------------------------------------------------------
 tokens = []
@@ -140,8 +186,9 @@ for line in lines:
     toklines.append(toklist)
 
 with open('exec_matrix_compiled.vh', 'w') as f:
-    #write_nested_if(f, toklines)
-    sum_of_products(f, tokens)
+    sequential_or(f, tokens)
+    write_nested_if(f, toklines)
+    #sum_of_products(f, tokens)
 
 # Touch a file that includes 'exec_matrix_compiled.vh' to ensure it will recompile correctly
 os.utime("execute.v", None)

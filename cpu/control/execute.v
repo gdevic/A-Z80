@@ -131,7 +131,7 @@ begin
     //-----------------------------------------------------------------------------
     // TODO: Comment out for Xilinx (use with "exec_matrix_compiled.vh")
     //       Uncomment for Altera (use with "exec_matrix.vh")
-//    `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
+    `include "exec_zero.vh"             // Initial assignment to all ctl wires to zero
 
     // Reset internal control regs
     validPLA = 0;                       // Will be set by every *valid* PLA entry
