@@ -110,7 +110,7 @@ B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
 r8 \    // r8 addressing does not allow reading F register (indices of A and F are also swapped) (ex. in OUT (c),r)
-        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end      // Trying to read flags? Put 0 on the bus instead.
+        if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end  // Trying to read flags? Put 0 on the bus instead.
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end // Read 8-bit GP register
 r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
@@ -135,9 +135,9 @@ rl      ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01; // Write 8-
 //----- System registers -----
 I/R     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo={~op3,op3}; ctl_sw_4d=1; // Write either I or R based on op3 (0 or 1)
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11;
-W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1; // Selecting only W
-W?      ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo[1]=1; // Conditionally selecting only W
-Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1; // Selecting only Z
+W       ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]}; // Selecting only W
+W?      ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]}; // Conditionally selecting only W
+Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1}; // Selecting only Z
 
 //-----------------------------------------------------------------------------------------
 // Controls the register file gate connecting it with the ALU and data bus

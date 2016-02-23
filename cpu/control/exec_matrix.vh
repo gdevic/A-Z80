@@ -201,7 +201,7 @@ if (pla[38] & pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -216,7 +216,7 @@ if (pla[38] & pla[13]) begin
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -251,7 +251,7 @@ if (pla[38] & ~pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -264,7 +264,7 @@ if (pla[38] & ~pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -393,7 +393,7 @@ if (pla[30] & pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -408,7 +408,7 @@ if (pla[30] & pla[13]) begin
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -451,7 +451,7 @@ if (pla[30] & ~pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -464,7 +464,7 @@ if (pla[30] & ~pla[13]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -507,7 +507,7 @@ if (pla[31] & pla[33]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -522,7 +522,7 @@ if (pla[31] & pla[33]) begin
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -567,7 +567,7 @@ if (pla[31] & ~pla[33]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -580,7 +580,7 @@ if (pla[31] & ~pla[33]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -720,7 +720,7 @@ if (pla[10]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -733,7 +733,7 @@ if (pla[10]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -1394,7 +1394,7 @@ if (pla[69]) begin
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -1424,7 +1424,7 @@ if (pla[69]) begin
     if (M3 & T1) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -1476,7 +1476,7 @@ if (op3 & pla[68]) begin
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -1507,7 +1507,7 @@ if (op3 & pla[68]) begin
     if (M3 & T1) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -1563,7 +1563,7 @@ if (~op3 & pla[68]) begin
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -1594,7 +1594,7 @@ if (~op3 & pla[68]) begin
     if (M3 & T1) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -2964,7 +2964,7 @@ if (pla[29]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -2979,7 +2979,7 @@ if (pla[29]) begin
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3010,7 +3010,7 @@ if (pla[43]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3025,7 +3025,7 @@ if (pla[43]) begin
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_not_pc=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={flags_cond_true,flags_cond_true}; ctl_sw_4d=flags_cond_true;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3074,7 +3074,7 @@ if (pla[47]) begin
                     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -3097,7 +3097,7 @@ if (pla[47]) begin
     if (M3 & T5) begin setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_flags_alu=1;
                     ctl_alu_oe=1;
@@ -3151,7 +3151,7 @@ if (pla[48]) begin
                     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -3174,7 +3174,7 @@ if (pla[48]) begin
     if (M3 & T5) begin setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_flags_alu=1;
                     ctl_alu_oe=1;
@@ -3255,7 +3255,7 @@ if (pla[26]) begin
                     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -3278,7 +3278,7 @@ if (pla[26]) begin
     if (M3 & T5) begin setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_flags_alu=1;
                     ctl_alu_oe=1;
@@ -3299,7 +3299,7 @@ if (pla[24]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3312,7 +3312,7 @@ if (pla[24]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3378,7 +3378,7 @@ if (pla[42]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3391,7 +3391,7 @@ if (pla[42]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=~flags_cond_true; setM1=~flags_cond_true;
-                    ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3444,7 +3444,7 @@ if (pla[35]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3459,7 +3459,7 @@ if (pla[35]) begin
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3491,7 +3491,7 @@ if (pla[45]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3506,7 +3506,7 @@ if (pla[45]) begin
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3525,7 +3525,7 @@ if (pla[46]) begin
                     ctl_inc_cy=pc_inc;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3540,7 +3540,7 @@ if (pla[46]) begin
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3617,7 +3617,7 @@ if (pla[56]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1; end
     if (M4 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3635,7 +3635,7 @@ if (pla[56]) begin
     if (M5 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3817,7 +3817,7 @@ if (ixy_d) begin
                     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (T3) begin
-                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[0]=1;
+                    ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
                     ctl_reg_in_lo=1;
                     ctl_sw_2u=1;
                     ctl_flags_alu=1;
@@ -3841,7 +3841,7 @@ if (ixy_d) begin
     if (T5) begin
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1;
-                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo[1]=1;
+                    ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
                     ctl_flags_alu=1;
                     ctl_alu_oe=1;

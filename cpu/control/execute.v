@@ -151,9 +151,9 @@ begin
     // State-based signal assignment; code generated from Timings spreadsheet
     //-------------------------------------------------------------------------
     // TODO: Use on Altera
-//    `include "exec_matrix.vh"
+    `include "exec_matrix.vh"
     // TODO: Use on Xilinx
-    `include "exec_matrix_compiled.vh"
+//    `include "exec_matrix_compiled.vh"
 end
 
 endmodule
