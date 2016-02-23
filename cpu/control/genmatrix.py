@@ -77,9 +77,9 @@ def getSubst(key, token):
         if multiline==True:
             # Multiline copies lines until a char at [0] is not a space
             if len(l.strip())==0 or l[0]!=' ':
-                return '\n' + "\n".join(subst)
+                return '\n' + "\n".join(subst).rstrip()
             else:
-                subst.append(l)
+                subst.append(l.rstrip())
         lx = l.split(' ')               # Split the string and then ignore (duplicate)
         lx = list(filter(None, lx))     # spaces in the list left by the split()
         if l.startswith(":"):           # Find and recognize a matching set (key) section
