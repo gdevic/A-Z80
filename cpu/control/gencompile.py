@@ -36,6 +36,10 @@ def str2tok(s):
     t = io.BytesIO(bytes(s.encode()))
     return list(tokenize.tokenize(t.readline))[1:-1]
 
+def tok2str(tokens):
+    line = [ tokens[n][m].string for n in range(len(tokens)) for m in range(len(tokens[n])) ]
+    return ''.join(line)
+
 def get_rval(tokens, i):
     assert (tokens[i+1].string=='=')
     paren = list(str2tok('()'))
@@ -71,24 +75,25 @@ def sequential_or(f, tokens):
             if tokval=='end': # Pop a condition list
                 cond.pop()
             if is_ctl(tokval) and not incond:
-                if tokval in ctls_ignored:
-                    while (tokens[i].string!=';'):
-                        i += 1
-                    continue
                 rval = get_rval(tokens, i)
-                i += len(rval[0])
-                line = "{0} = {0} | ".format(tokval)
-                for n in range(len(cond)):
-                    for m in range(len(cond[n])):
-                        line += cond[n][m].string
-                    line += '&'
-                for n in range(len(rval[0])):
-                    line += rval[0][n].string
+                linesub = tok2str(cond)
+                rhs = tok2str(rval)
 
+                line = "{0} = {0} | ".format(tokval)
+
+                if tokval in ctls_ignored:
+                    print ("reg {0}_{1};".format(tokval, i))
+                    line = "{0}_{1} = {2};\n".format(tokval, i, linesub) + line
+                    line += "({{{0}_{1},{0}_{1}}}){2}".format(tokval, i, rhs)
+                else:
+                    line += linesub + rhs
+
+                line = line.replace(')(', ')&(')
                 line = line.replace('&&', '&')
                 line = line.replace('(1)&', '')
                 line = line.replace('&(1)', '')
 
+                i += len(rval[0])
                 f.write ('{0};\n'.format(line))
         i += 1
 
@@ -187,7 +192,7 @@ for line in lines:
 
 with open('exec_matrix_compiled.vh', 'w') as f:
     sequential_or(f, tokens)
-    write_nested_if(f, toklines)
+    #write_nested_if(f, toklines)
     #sum_of_products(f, tokens)
 
 # Touch a file that includes 'exec_matrix_compiled.vh' to ensure it will recompile correctly
