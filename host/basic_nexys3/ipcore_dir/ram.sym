@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="ram">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2016-2-14T14:53:7</timestamp>
-    <pin polarity="Input" x="0" y="80" name="addra[13:0]" />
+    <timestamp>2016-2-24T6:58:4</timestamp>
+    <pin polarity="Input" x="0" y="80" name="addra[8:0]" />
     <pin polarity="Input" x="0" y="112" name="dina[7:0]" />
     <pin polarity="Input" x="0" y="208" name="wea[0:0]" />
     <pin polarity="Input" x="0" y="272" name="clka" />
@@ -11,7 +11,7 @@
         <text style="fontsize:40;fontname:Arial" x="32" y="32">ram</text>
         <rect width="512" x="32" y="32" height="1344" />
         <line x2="32" y1="80" y2="80" style="linewidth:W" x1="0" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="80" type="pin addra[13:0]" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="80" type="pin addra[8:0]" />
         <line x2="32" y1="112" y2="112" style="linewidth:W" x1="0" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="36" y="112" type="pin dina[7:0]" />
         <line x2="32" y1="208" y2="208" style="linewidth:W" x1="0" />

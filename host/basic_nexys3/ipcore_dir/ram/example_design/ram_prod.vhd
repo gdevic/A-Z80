@@ -83,27 +83,27 @@
 --    C_AXI_ID_WIDTH              :  4 
 --    C_MEM_TYPE                  :  0 
 --    C_BYTE_SIZE                 :  9 
---    C_ALGORITHM                 :  0 
+--    C_ALGORITHM                 :  1 
 --    C_PRIM_TYPE                 :  1 
---    C_LOAD_INIT_FILE            :  1 
---    C_INIT_FILE_NAME            :  ram.mif 
+--    C_LOAD_INIT_FILE            :  0 
+--    C_INIT_FILE_NAME            :  no_coe_file_loaded 
 --    C_USE_DEFAULT_DATA          :  0 
 --    C_DEFAULT_DATA              :  0 
 --    C_RST_TYPE                  :  SYNC 
 --    C_HAS_RSTA                  :  0 
 --    C_RST_PRIORITY_A            :  CE 
 --    C_RSTRAM_A                  :  0 
---    C_INITA_VAL                 :  0 
+--    C_INITA_VAL                 :  00 
 --    C_HAS_ENA                   :  0 
 --    C_HAS_REGCEA                :  0 
 --    C_USE_BYTE_WEA              :  0 
 --    C_WEA_WIDTH                 :  1 
---    C_WRITE_MODE_A              :  WRITE_FIRST 
+--    C_WRITE_MODE_A              :  READ_FIRST 
 --    C_WRITE_WIDTH_A             :  8 
 --    C_READ_WIDTH_A              :  8 
---    C_WRITE_DEPTH_A             :  16384 
---    C_READ_DEPTH_A              :  16384 
---    C_ADDRA_WIDTH               :  14 
+--    C_WRITE_DEPTH_A             :  512 
+--    C_READ_DEPTH_A              :  512 
+--    C_ADDRA_WIDTH               :  9 
 --    C_HAS_RSTB                  :  0 
 --    C_RST_PRIORITY_B            :  CE 
 --    C_RSTRAM_B                  :  0 
@@ -115,9 +115,9 @@
 --    C_WRITE_MODE_B              :  WRITE_FIRST 
 --    C_WRITE_WIDTH_B             :  8 
 --    C_READ_WIDTH_B              :  8 
---    C_WRITE_DEPTH_B             :  16384 
---    C_READ_DEPTH_B              :  16384 
---    C_ADDRB_WIDTH               :  14 
+--    C_WRITE_DEPTH_B             :  512 
+--    C_READ_DEPTH_B              :  512 
+--    C_ADDRB_WIDTH               :  9 
 --    C_HAS_MEM_OUTPUT_REGS_A     :  0 
 --    C_HAS_MEM_OUTPUT_REGS_B     :  0 
 --    C_HAS_MUX_OUTPUT_REGS_A     :  0 
@@ -156,7 +156,7 @@ ENTITY ram_prod IS
     ENA        : IN STD_LOGIC;  --optional port
     REGCEA     : IN STD_LOGIC;  --optional port
     WEA        : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    ADDRA      : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+    ADDRA      : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     DINA       : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     DOUTA      : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 
@@ -166,7 +166,7 @@ ENTITY ram_prod IS
     ENB        : IN STD_LOGIC;  --optional port
     REGCEB     : IN STD_LOGIC;  --optional port
     WEB        : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    ADDRB      : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+    ADDRB      : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     DINB       : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     DOUTB      : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 
@@ -175,7 +175,7 @@ ENTITY ram_prod IS
     INJECTDBITERR  : IN STD_LOGIC; --optional port
     SBITERR        : OUT STD_LOGIC; --optional port
     DBITERR        : OUT STD_LOGIC; --optional port
-    RDADDRECC      : OUT STD_LOGIC_VECTOR(13 DOWNTO 0); --optional port
+    RDADDRECC      : OUT STD_LOGIC_VECTOR(8 DOWNTO 0); --optional port
  -- AXI BMG Input and Output Port Declarations
 
     -- AXI Global Signals
@@ -217,7 +217,7 @@ ENTITY ram_prod IS
     S_AXI_INJECTDBITERR            : IN  STD_LOGIC;
     S_AXI_SBITERR                  : OUT STD_LOGIC;
     S_AXI_DBITERR                  : OUT STD_LOGIC;
-    S_AXI_RDADDRECC                : OUT STD_LOGIC_VECTOR(13  DOWNTO 0);
+    S_AXI_RDADDRECC                : OUT STD_LOGIC_VECTOR(8  DOWNTO 0);
     S_ARESETN                      : IN  STD_LOGIC
 
 
@@ -233,7 +233,7 @@ ARCHITECTURE xilinx OF ram_prod IS
       --Port A
   
     WEA            : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    ADDRA          : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+    ADDRA          : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
   
     DINA           : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
   

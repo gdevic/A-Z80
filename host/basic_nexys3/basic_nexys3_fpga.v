@@ -37,13 +37,13 @@ module host
 assign GPIO_0[7:0] = A[7:0];
 assign GPIO_1[7:0] = A[15:8];
 assign GPIO_2[7:0] = D[7:0];
-assign GPIO_3 = {nM1, nMREQ, nRFSH, nHALT, nBUSACK};
+assign GPIO_3 = {reset, uart_tx, nM1, nMREQ, nRFSH, nHALT, nBUSACK};
 
 wire uart_tx;
 wire reset;
 wire locked;
 
-assign reset = locked & KEY0;
+assign reset = locked & ~KEY0;
 assign UART_TXD = uart_tx;
 
 // ----------------- CPU PINS -----------------
@@ -63,11 +63,11 @@ wire nNMI;
 
 assign nWAIT = 1;
 assign nBUSRQ = 1;
-assign nINT = KEY1;
-assign nNMI = KEY2;
+assign nINT = ~KEY1;
+assign nNMI = ~KEY2;
 
 wire [15:0] A;
-wire [7:0] D;
+reg [7:0] D;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
@@ -83,15 +83,41 @@ clock pll (
 );
 
 // ----------------- INTERNAL regS -----------------
-wire [7:0] RamData;                     // RamData is a data writer from the RAM module
+wire [7:0] RomData; // Data writer from the ROM module
+wire [7:0] RamData; // Data writer from the RAM module
+wire [7:0] UartData = D;
+wire [7:0] CpuData = D;
+
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
 // Memory map:
-//   0000 - 3FFF  16K RAM
-//   <alias RAM> x 4
-assign D[7:0] = {nIORQ,nRD,nWR}==3'b101 ? RamData :
-                {8{1'bz}};
+//   0000 - 01FF  512b ROM
+//   0200 - 03FF  512b RAM
+//   <repeats>
+always @(*) // always_comb
+begin
+    case ({nIORQ,nRD,nWR})
+        // -------------------------------- Memory read --------------------------------
+        3'b101: begin
+                casez (A[9])
+                    1'b0:  D[7:0] = RomData;
+                    1'b1:  D[7:0] = RamData;
+                endcase
+            end
+        3'b110: D[7:0] = CpuData;
+        // ---------------------------------- IO read ----------------------------------
+        3'b001: D[7:0] = UartData;
+        // IO read *** Interrupts test ***
+        // This value will be pushed on the data bus on an IORQ access which
+        // means that:
+        // In IM0: this is the opcode of an instruction to execute, set it to 0xFF
+        // In IM2: this is a vector, set it to 0x80 (to correspond to a test program Hello World)
+        3'b011: D[7:0] = 8'h80;
+    default:
+        D[7:0] = {8{1'bz}};
+    endcase
+end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
@@ -114,15 +140,24 @@ z80_top_direct_n z80_(
 
     .CLK (clk_cpu),
     .A (A),
-    .D (D)
+    .D (CpuData)
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 16Kb of RAM memory
+// Instantiate 512 bytes of ROM memory
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rom rom_(
+  .clka(CLOCK_100),
+  .addra(A[8:0]),
+  .douta(RomData)
+);
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate 512 bytes of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ram ram_(
-    .addra(A[13:0]),
-    .clka(clk_cpu),
+    .addra(A[8:0]),
+    .clka(CLOCK_100),
     .dina(D),
     .wea(RamWE),
     .douta(RamData)
@@ -139,7 +174,7 @@ uart_io uart_io_(
     .reset(!reset),
     .clk(clk_uart),
     .Address(A[15:8]),
-    .Data(D),
+    .Data(UartData),
     .IORQ(!nIORQ),
     .RD(!nRD),
     .WR(!nWR),

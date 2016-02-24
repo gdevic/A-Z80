@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Mon Feb 15 03:18:04 2016
+# Date: Wed Feb 24 06:57:29 2016
 #
 ##############################################################
 #
@@ -40,13 +40,13 @@ SELECT Block_Memory_Generator xilinx.com:ip:blk_mem_gen:7.3
 # END Select
 # BEGIN Parameters
 CSET additional_inputs_for_power_estimation=false
-CSET algorithm=Fixed_Primitives
+CSET algorithm=Minimum_Area
 CSET assume_synchronous_clk=false
 CSET axi_id_width=4
 CSET axi_slave_type=Memory_Slave
 CSET axi_type=AXI4_Full
 CSET byte_size=9
-CSET coe_file=\Z80\host\basic_nexys3\ram.coe
+CSET coe_file=no_coe_file_loaded
 CSET collision_warnings=ALL
 CSET component_name=ram
 CSET disable_collision_warnings=false
@@ -59,12 +59,12 @@ CSET enable_b=Always_Enabled
 CSET error_injection_type=Single_Bit_Error_Injection
 CSET fill_remaining_memory_locations=false
 CSET interface_type=Native
-CSET load_init_file=true
+CSET load_init_file=false
 CSET mem_file=no_Mem_file_loaded
 CSET memory_type=Single_Port_RAM
-CSET operating_mode_a=WRITE_FIRST
+CSET operating_mode_a=READ_FIRST
 CSET operating_mode_b=WRITE_FIRST
-CSET output_reset_value_a=0
+CSET output_reset_value_a=00
 CSET output_reset_value_b=0
 CSET pipeline_stages=0
 CSET port_a_clock=100
@@ -97,7 +97,7 @@ CSET use_regcea_pin=false
 CSET use_regceb_pin=false
 CSET use_rsta_pin=false
 CSET use_rstb_pin=false
-CSET write_depth_a=16384
+CSET write_depth_a=512
 CSET write_width_a=8
 CSET write_width_b=8
 # END Parameters
@@ -105,4 +105,4 @@ CSET write_width_b=8
 MISC pkg_timestamp=2012-11-19T16:22:25Z
 # END Extra information
 GENERATE
-# CRC: 52bd5906
+# CRC: 4ff531b9
