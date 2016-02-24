@@ -95,11 +95,6 @@ assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
 // Memory map:
 //   0000 - 3FFF  16K RAM
-assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
-                {8{1'bz}};
-
-// Memory map:
-//   0000 - 3FFF  16K RAM
 always_comb
 begin
     D[7:0] = {8{1'bz}};
@@ -121,7 +116,6 @@ begin
         D[7:0] = {8{1'bz}};
     endcase
 end
-
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate A-Z80 CPU module
