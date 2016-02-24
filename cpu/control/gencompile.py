@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 #
-# This script reads the exec_matrix.vh file and generates a compiled version
-# with each control wire written as sum of products.
+# This script reads exec_matrix.vh file and generates its compiled version
+# to be used as an alternate format with Xilinx tools: they are not able to
+# handle the complexity of the original file (Altera's Quartus does it just fine)
 #
 #-------------------------------------------------------------------------------
 #  Copyright (C) 2016  Goran Devic
@@ -23,10 +24,10 @@ import tokenize
 from io import BytesIO
 from tokenize import NAME, INDENT, DEDENT, ENCODING
 
-# Define a list of control signals which we don't convert into the sums-of-products format
-ctls_ignored = ['ctl_reg_gp_sel', 'ctl_reg_gp_hilo', 'ctl_reg_sys_hilo', 'ctl_flags_cf2_sel']
+# Define a list of control signals that are 2-bits wide
+ctls_wide = ['ctl_reg_gp_sel', 'ctl_reg_gp_hilo', 'ctl_reg_sys_hilo']
 
-# Define control signal names that are to be converted into the sums-of-products format
+# Help recognizing control signal names
 def is_ctl(name):
     return name.startswith('ctl_') or name=='validPLA' or name=='nextM' or name=='setM1' \
         or name=='fFetch' or name=='fMRead' or name=='fMWrite' or name=='fIORead' or name=='fIOWrite' \
@@ -53,7 +54,7 @@ def get_rval(tokens, i):
 #--------------------------------------------------------------------------------
 # Generate a sequential-or form for all control wires
 #--------------------------------------------------------------------------------
-def sequential_or(f, tokens):
+def sequential_or(f, t, tokens):
     incond = False              # Inside an "if" condition state
     cond = []                   # Condition nested lists
     ccond = []                  # Currently scanned condition list
@@ -78,108 +79,25 @@ def sequential_or(f, tokens):
                 rval = get_rval(tokens, i)
                 linesub = tok2str(cond)
                 rhs = tok2str(rval)
-
                 line = "{0} = {0} | ".format(tokval)
-
-                if tokval in ctls_ignored:
-                    print ("reg {0}_{1};".format(tokval, i))
+                if tokval in ctls_wide:
+                    t.write("reg {0}_{1};\n".format(tokval, i))
                     line = "{0}_{1} = {2};\n".format(tokval, i, linesub) + line
                     line += "({{{0}_{1},{0}_{1}}}){2}".format(tokval, i, rhs)
                 else:
                     line += linesub + rhs
-
                 line = line.replace(')(', ')&(')
                 line = line.replace('&&', '&')
                 line = line.replace('(1)&', '')
                 line = line.replace('&(1)', '')
-
                 i += len(rval[0])
                 f.write ('{0};\n'.format(line))
         i += 1
 
-#--------------------------------------------------------------------------------
-# Build a sum-of-products form
-#--------------------------------------------------------------------------------
-def sum_of_products(f, tokens):
-    incond = False              # Inside an "if" condition state
-    cond = []                   # Condition nested lists
-    ccond = []                  # Currently scanned condition list
-    ctls = {}                   # Dictionary of control wires and their equations
-    i = 0                       # Current index into the tokens list
-    while i < len(tokens):
-        tok = tokens[i]
-        (toknum, tokval, _, _, _) = tok
-        if incond and not (toknum==NAME and tokval=='begin'):
-            if toknum != DEDENT and toknum != INDENT:
-                ccond.append(tok)
-        if toknum==NAME:
-            if tokval=='if':
-                incond = True
-            if tokval=='begin': # Push a condition list
-                incond = False
-                cond.append(copy.deepcopy(ccond))
-                ccond.clear()
-            if tokval=='end': # Pop a condition list
-                cond.pop()
-            if is_ctl(tokval) and not incond:
-                if tokval in ctls_ignored:
-                    while (tokens[i].string!=';'):
-                        i += 1
-                    continue
-                rval = get_rval(tokens, i)
-                i += len(rval[0])
-                if tokval in ctls:
-                    ctls[tokval].append(copy.deepcopy(list(str2tok('|'))))
-                    ctls[tokval].extend(copy.deepcopy(cond))
-                else:
-                    ctls[tokval] = copy.deepcopy(cond)
-                ctls[tokval].extend(copy.deepcopy(rval))
-        i += 1
-
-    for name in sorted(ctls):
-        line = name + " = "
-        conditions = ctls[name]
-        n = len(conditions)
-        for i in range(n):
-            cond = conditions[i]
-            for t in cond:
-                line += t.string
-            if i==n-1:
-                line = line.replace('(1)', '')
-                line = line.replace(')(', ')&(')
-                #print ('{0};'.format(line))
-                f.write ('{0};\n'.format(line))
-
-#--------------------------------------------------------------------------------
-# Write out the original nested-if format using only ignored control signals
-#--------------------------------------------------------------------------------
-def write_nested_if(f, toklines):
-    for tokline in toklines:
-        i = 0                   # Current index into the tokens list
-        enabled = True
-        while i < len(tokline):
-            (toknum, tokval, _, _, _) = tokline[i]
-            if tokval=='begin':
-                enabled = True
-            if tokval=='if':
-                enabled = False
-            if enabled and toknum==NAME and is_ctl(tokval):
-                while tokline[i].string!=';':
-                    if tokval in ctls_ignored:
-                        i += 1
-                    else:
-                        del tokline[i]
-            i += 1
-
-        line = tokenize.untokenize(tokline).decode('utf-8')
-        #print (line, end='')
-        f.write ('{0}'.format(line))
 
 #--------------------------------------------------------------------------------
 tokens = []
-toklines = []
-#--------------------------------------------------------------------------------
-# Input file that we are processing
+# Input file which we are processing
 with open("exec_matrix.vh") as f:
     lines = f.readlines()
 
@@ -188,12 +106,12 @@ for line in lines:
     src = io.BytesIO(src)
     toklist = list(tokenize.tokenize(src.readline))
     tokens.extend(toklist)
-    toklines.append(toklist)
 
 with open('exec_matrix_compiled.vh', 'w') as f:
-    sequential_or(f, tokens)
-    #write_nested_if(f, toklines)
-    #sum_of_products(f, tokens)
+    with open('temp_wires.vh', 'w') as t:
+        f.write("// Automatically generated by gencompile.py\n\n")
+        t.write("// Automatically generated by gencompile.py\n\n")
+        sequential_or(f, t, tokens)
 
 # Touch a file that includes 'exec_matrix_compiled.vh' to ensure it will recompile correctly
 os.utime("execute.v", None)
