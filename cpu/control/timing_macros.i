@@ -82,16 +82,16 @@ SP      ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_r
 WZ      ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1; // Write 16-bit WZ, enable SW4 upstream
 IR      ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; // Write 16-bit IR
 // PC will not be incremented if we are in HALT, INTR or NMI state
-PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi); // Write 16-bit PC and control incrementer
+PC      ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi); // Write 16-bit PC and control incrementer
 >       ctl_sw_4u=1;
 
 //-----------------------------------------------------------------------------------------
 // Controls the address latch incrementer, the address latch and the address pin mux
 //-----------------------------------------------------------------------------------------
 :inc/dec
-+       ctl_inc_cy=pc_inc;                      // Increment
--       ctl_inc_cy=pc_inc; ctl_inc_dec=1;       // Decrement
-op3     ctl_inc_cy=pc_inc; ctl_inc_dec=op3;     // Decrement if op3 is set; increment otherwise
++       ctl_inc_cy=~pc_inc_hold;                      // Increment
+-       ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;       // Decrement
+op3     ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;     // Decrement if op3 is set; increment otherwise
 
 :A:latch
 W       ctl_al_we=1;                            // Write a value from the register bus to the address latch

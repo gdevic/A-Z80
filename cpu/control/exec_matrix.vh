@@ -10,8 +10,8 @@ if (pla[17] & ~pla[50]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; setM1=1; end
 end
@@ -43,8 +43,8 @@ if (use_ixiy & pla[58]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin ixy_d=1; end
@@ -79,8 +79,8 @@ if (use_ixiy & pla[59]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin ixy_d=1; end
@@ -119,16 +119,16 @@ if (pla[40]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1; end
     if (M3 & T1) begin fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; ixy_d=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; ixy_d=1; end
     if (M3 & T3) begin fMRead=1; ixy_d=1; end
     if (M3 & T4) begin ixy_d=1; end
@@ -141,8 +141,8 @@ if (pla[50] & ~pla[40]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1; end
     if (M3 & T1) begin fMWrite=1;
@@ -168,7 +168,7 @@ if (pla[8] & pla[13]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMWrite=1; setM1=1; end
 end
@@ -186,7 +186,7 @@ if (pla[8] & ~pla[13]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; setM1=1; end
 end
@@ -197,8 +197,8 @@ if (pla[38] & pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -210,8 +210,8 @@ if (pla[38] & pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -230,7 +230,7 @@ if (pla[38] & pla[13]) begin
                     ctl_bus_db_we=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; setM1=1; end
 end
@@ -247,8 +247,8 @@ if (pla[38] & ~pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -260,8 +260,8 @@ if (pla[38] & ~pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -274,7 +274,7 @@ if (pla[38] & ~pla[13]) begin
                     ctl_al_we=1; end
     if (M4 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMRead=1; setM1=1; end
 end
@@ -363,8 +363,8 @@ if (pla[7]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1; end
     if (M3 & T1) begin fMRead=1;
@@ -377,8 +377,8 @@ if (pla[7]) begin
                     ctl_bus_db_oe=1;
                     ctl_reg_use_sp=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1; end
 end
@@ -389,8 +389,8 @@ if (pla[30] & pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -402,8 +402,8 @@ if (pla[30] & pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -422,7 +422,7 @@ if (pla[30] & pla[13]) begin
                     ctl_bus_db_we=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -436,7 +436,7 @@ if (pla[30] & pla[13]) begin
                     ctl_bus_db_we=1; end
     if (M5 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMWrite=1; setM1=1; end
 end
@@ -447,8 +447,8 @@ if (pla[30] & ~pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -460,8 +460,8 @@ if (pla[30] & ~pla[13]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -474,7 +474,7 @@ if (pla[30] & ~pla[13]) begin
                     ctl_al_we=1; end
     if (M4 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
@@ -487,7 +487,7 @@ if (pla[30] & ~pla[13]) begin
                     ctl_al_we=1; end
     if (M5 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
@@ -503,8 +503,8 @@ if (pla[31] & pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -516,8 +516,8 @@ if (pla[31] & pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -537,7 +537,7 @@ if (pla[31] & pla[33]) begin
                     ctl_reg_use_sp=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -552,7 +552,7 @@ if (pla[31] & pla[33]) begin
                     ctl_reg_use_sp=1; end
     if (M5 & T2) begin fMWrite=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMWrite=1; setM1=1; end
 end
@@ -563,8 +563,8 @@ if (pla[31] & ~pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -576,8 +576,8 @@ if (pla[31] & ~pla[33]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -590,7 +590,7 @@ if (pla[31] & ~pla[33]) begin
                     ctl_al_we=1; end
     if (M4 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
@@ -604,7 +604,7 @@ if (pla[31] & ~pla[33]) begin
                     ctl_al_we=1; end
     if (M5 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
@@ -629,10 +629,10 @@ if (pla[23] & pla[16]) begin
     if (M1 & T4) begin validPLA=1; end
     if (M1 & T5) begin nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M2 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -641,14 +641,14 @@ if (pla[23] & pla[16]) begin
                     ctl_bus_db_we=1; end
     if (M2 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M3 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -657,7 +657,7 @@ if (pla[23] & pla[16]) begin
                     ctl_bus_db_we=1; end
     if (M3 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMWrite=1; setM1=1; end
 end
@@ -669,7 +669,7 @@ if (pla[23] & ~pla[16]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
@@ -682,7 +682,7 @@ if (pla[23] & ~pla[16]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
@@ -717,7 +717,7 @@ if (pla[10]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -730,7 +730,7 @@ if (pla[10]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -740,10 +740,10 @@ if (pla[10]) begin
                     ctl_bus_db_oe=1; end
     if (M3 & T4) begin nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M4 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -752,14 +752,14 @@ if (pla[10]) begin
                     ctl_bus_db_we=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M5 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -768,7 +768,7 @@ if (pla[10]) begin
                     ctl_bus_db_we=1; end
     if (M5 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMWrite=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -817,7 +817,7 @@ if (pla[12]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mWrite=1;
                     ctl_sw_2d=1;
@@ -841,14 +841,14 @@ if (pla[12]) begin
                     ctl_flags_use_cf2=1; end
     if (M3 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMWrite=1;
                     ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
                     ctl_al_we=1; end
     if (M3 & T4) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1;
                     ctl_repeat_we=1; end
     if (M3 & T5) begin nextM=1; setM1=nonRep | ~repeat_en; end
@@ -856,15 +856,15 @@ if (pla[12]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T2) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T4) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T5) begin setM1=1; end
 end
@@ -905,7 +905,7 @@ if (pla[11]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1;
                     ctl_sw_2d=1;
@@ -931,7 +931,7 @@ if (pla[11]) begin
                     ctl_al_we=1; end
     if (M3 & T4) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1;
                     ctl_repeat_we=1; end
     if (M3 & T5) begin nextM=1; setM1=nonRep | ~repeat_en | flags_zf; end
@@ -939,15 +939,15 @@ if (pla[11]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T2) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T4) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T5) begin setM1=1; end
 end
@@ -1043,8 +1043,8 @@ if (pla[64]) begin
                     ctl_al_we=1;
                     ctl_state_alu=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; setM1=1;
                     ctl_sw_2d=1;
@@ -1079,8 +1079,8 @@ if (use_ixiy & pla[52]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin ixy_d=1; end
@@ -1126,7 +1126,7 @@ if (~use_ixiy & pla[52]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; setM1=1;
                     ctl_sw_2d=1;
@@ -1256,8 +1256,8 @@ if (use_ixiy & pla[53]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin ixy_d=1; end
@@ -1620,7 +1620,7 @@ if (pla[9]) begin
                     ctl_reg_use_sp=1; end
     if (M1 & T5) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1;
                     ctl_reg_use_sp=1; end
     if (M1 & T6) begin setM1=1; end
@@ -2116,7 +2116,7 @@ if (pla[15] & op3) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin
@@ -2189,7 +2189,7 @@ if (pla[15] & ~op3) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_sys_we=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin
@@ -2657,8 +2657,8 @@ if (pla[37] & ~pla[28]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_iorw=1; end
     if (M3 & T1) begin fIORead=1;
@@ -2732,8 +2732,8 @@ if (pla[37] & pla[28]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_iorw=1;
                     ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10; ctl_sw_4d=1;
@@ -2835,22 +2835,22 @@ if (pla[91] & pla[21]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMWrite=1; nextM=1; setM1=nonRep | flags_zf; end
     if (M4 & T1) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T2) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T4) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T5) begin setM1=1; end
 end
@@ -2907,7 +2907,7 @@ if (pla[91] & pla[20]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=op3;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=op3;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_iorw=1;
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
@@ -2941,15 +2941,15 @@ if (pla[91] & pla[20]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T2) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M4 & T4) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T5) begin setM1=1; end
 end
@@ -2960,8 +2960,8 @@ if (pla[29]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -2973,8 +2973,8 @@ if (pla[29]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3006,8 +3006,8 @@ if (pla[43]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3019,8 +3019,8 @@ if (pla[43]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_not_pc=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={flags_cond_true,flags_cond_true}; ctl_sw_4d=flags_cond_true;
@@ -3051,8 +3051,8 @@ if (pla[47]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; end
     if (M3 & T1) begin
@@ -3128,8 +3128,8 @@ if (pla[48]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; setM1=~flags_cond_true; end
     if (M3 & T1) begin
@@ -3232,8 +3232,8 @@ if (pla[26]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; setM1=flags_zf; end
     if (M3 & T1) begin
@@ -3295,8 +3295,8 @@ if (pla[24]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3308,8 +3308,8 @@ if (pla[24]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1;
                     ctl_reg_sys_we_hi=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -3319,10 +3319,10 @@ if (pla[24]) begin
                     ctl_bus_db_oe=1; end
     if (M3 & T4) begin nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M4 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -3331,14 +3331,14 @@ if (pla[24]) begin
                     ctl_bus_db_we=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M5 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -3347,7 +3347,7 @@ if (pla[24]) begin
                     ctl_bus_db_we=1; end
     if (M5 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMWrite=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3374,8 +3374,8 @@ if (pla[42]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3387,8 +3387,8 @@ if (pla[42]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; nextM=~flags_cond_true; setM1=~flags_cond_true;
                     ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
@@ -3398,10 +3398,10 @@ if (pla[42]) begin
                     ctl_bus_db_oe=1; end
     if (M3 & T4) begin nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M4 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -3410,14 +3410,14 @@ if (pla[42]) begin
                     ctl_bus_db_we=1; end
     if (M4 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M4 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M5 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
                     ctl_reg_out_hi=1; ctl_reg_out_lo=1;
@@ -3426,7 +3426,7 @@ if (pla[42]) begin
                     ctl_bus_db_we=1; end
     if (M5 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMWrite=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3441,7 +3441,7 @@ if (pla[35]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3454,7 +3454,7 @@ if (pla[35]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3488,7 +3488,7 @@ if (pla[45]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3501,7 +3501,7 @@ if (pla[45]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3522,7 +3522,7 @@ if (pla[46]) begin
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1;
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3535,7 +3535,7 @@ if (pla[46]) begin
                     ctl_al_we=1; end
     if (M3 & T2) begin fMRead=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3562,7 +3562,7 @@ if (pla[56]) begin
     if (M1 & T4) begin validPLA=1; end
     if (M1 & T5) begin nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1;
                     ctl_sw_2d=1;
                     ctl_sw_1d=1;
@@ -3570,7 +3570,7 @@ if (pla[56]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1; end
     if (M2 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
                     ctl_reg_out_hi=1;
@@ -3579,14 +3579,14 @@ if (pla[56]) begin
                     ctl_bus_db_we=1; end
     if (M2 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMWrite=1; nextM=1; ctl_mWrite=1;
                     ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_al_we=1; end
     if (M3 & T1) begin fMWrite=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_apin_mux=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b01; ctl_sw_4u=1;
                     ctl_reg_out_lo=1;
@@ -3595,7 +3595,7 @@ if (pla[56]) begin
                     ctl_bus_db_we=1; end
     if (M3 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_reg_use_sp=1; ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc; ctl_inc_dec=1;
+                    ctl_inc_cy=~pc_inc_hold; ctl_inc_dec=1;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMWrite=1; nextM=1; ctl_mRead=in_intr & im2; setM1=~(in_intr & im2);
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3610,7 +3610,7 @@ if (pla[56]) begin
                     ctl_alu_op1_oe=1; end
     if (M4 & T2) begin fMRead=1;
                     ctl_sw_4u=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1;
                     ctl_reg_out_lo=1;
                     ctl_sw_2d=1;
@@ -3630,7 +3630,7 @@ if (pla[56]) begin
                     ctl_alu_oe=1;
                     ctl_alu_op1_oe=1; end
     if (M5 & T2) begin fMRead=1;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M5 & T3) begin fMRead=1; setM1=1;
                     ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -3663,16 +3663,16 @@ if (pla[49]) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; end
     if (M2 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M2 & T3) begin fMRead=1; nextM=1; ctl_mRead=1; end
     if (M3 & T1) begin fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;
                     ctl_al_we=1; ixy_d=1; end
     if (M3 & T2) begin fMRead=1;
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; ixy_d=1; end
     if (M3 & T3) begin fMRead=1; ixy_d=1; end
     if (M3 & T4) begin ixy_d=1; end
@@ -3855,8 +3855,8 @@ end
 
 if (1) begin
     if (M1 & T1) begin
-                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc=~(in_halt | in_intr | in_nmi);
-                    ctl_inc_cy=pc_inc;
+                    ctl_reg_sys_we=1; ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; pc_inc_hold=(in_halt | in_intr | in_nmi);
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; ctl_apin_mux2=1; end
     if (M1 & T2) begin
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;
@@ -3868,7 +3868,7 @@ if (1) begin
                     ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
     if (M1 & T3) begin
                     ctl_reg_sys_we=1; ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;
-                    ctl_inc_cy=pc_inc;
+                    ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; ctl_apin_mux2=1;
                     ctl_inc_limit6=1; end
     if (M1 & T4) begin

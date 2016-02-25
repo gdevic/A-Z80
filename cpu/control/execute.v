@@ -85,7 +85,7 @@ reg setCBED;                            // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
 reg nonRep;                             // Non-repeating block instruction
 // Suspends incrementing PC through address latch unless in HALT or interrupt mode
-reg pc_inc;                             // Normally defaults to 1
+reg pc_inc_hold;                        // Normally 0 unless in one of those modes
 
 //--------------------------------------------------------------
 // Define various shortcuts to field naming
@@ -152,7 +152,7 @@ begin
     setIXIY = 0;
     setCBED = 0;
     nonRep = 0;
-    pc_inc = 1;
+    pc_inc_hold = 0;
 
     //-------------------------------------------------------------------------
     // State-based signal assignment; code generated from Timings spreadsheet

@@ -24,6 +24,8 @@ module host
 (
     input wire clk,
     input wire reset,
+    input wire nint,
+    input wire nnmi,
     output wire uart_tx
 );
 
@@ -38,8 +40,8 @@ wire nHALT;
 wire nBUSACK;
 
 wire nWAIT = 1;
-wire nINT = 1;
-wire nNMI = 1;
+wire nINT = nint;
+wire nNMI = nnmi;
 wire nBUSRQ = 1;
 
 wire [15:0] A;
@@ -53,6 +55,7 @@ assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 // Memory map:
 //   0000 - 3FFF  16K RAM
 assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
+                (nIORQ==0 && nRD==1 && nWR==1) ? 8'h80 :
                 {8{1'bz}};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

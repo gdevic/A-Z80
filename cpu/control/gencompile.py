@@ -31,7 +31,7 @@ ctls_wide = ['ctl_reg_gp_sel', 'ctl_reg_gp_hilo', 'ctl_reg_sys_hilo']
 def is_ctl(name):
     return name.startswith('ctl_') or name=='validPLA' or name=='nextM' or name=='setM1' \
         or name=='fFetch' or name=='fMRead' or name=='fMWrite' or name=='fIORead' or name=='fIOWrite' \
-        or name=='ixy_d' or name=='setIXIY' or name=='setCBED' or name=='nonRep' or name=='pc_inc'
+        or name=='ixy_d' or name=='setIXIY' or name=='setCBED' or name=='nonRep' or name=='pc_inc_hold'
 
 def str2tok(s):
     t = io.BytesIO(bytes(s.encode()))
