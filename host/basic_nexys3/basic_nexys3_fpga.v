@@ -26,12 +26,13 @@ module host
     input wire KEY1,            // KEY1 generates a maskable interrupt (INT)
     input wire KEY2,            // KEY2 generates a non-maskable interrupt (NMI)
     output wire UART_TXD,
-    inout wire [7:0] GPIO_0,
+
+    inout wire [7:0] GPIO_0,    // Test points
     output wire [7:0] GPIO_1,
     output wire [7:0] GPIO_2,
     inout wire [7:0] GPIO_3
 );
-//`default_nettype none
+`default_nettype none
 
 // Export selected pins to the extension connector
 assign GPIO_0[7:0] = A[7:0];
@@ -39,6 +40,7 @@ assign GPIO_1[7:0] = A[15:8];
 assign GPIO_2[7:0] = D[7:0];
 assign GPIO_3 = {reset, uart_tx, nM1, nMREQ, nRFSH, nHALT, nBUSACK};
 
+// Basic wires and the reset logic
 wire uart_tx;
 wire reset;
 wire locked;
@@ -56,15 +58,10 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-wire nWAIT;
-wire nBUSRQ;
-wire nINT;
-wire nNMI;
-
-assign nWAIT = 1;
-assign nBUSRQ = 1;
-assign nINT = ~KEY1;
-assign nNMI = ~KEY2;
+wire nWAIT = 1;
+wire nBUSRQ = 1;
+wire nINT = ~KEY1;
+wire nNMI = ~KEY2;
 
 wire [15:0] A;
 reg [7:0] D;
@@ -72,17 +69,28 @@ reg [7:0] D;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wire clk_cpu; // CPU clock of 10MHz
+wire pll_clk;
+//wire clk_cpu; // CPU clock of 10MHz
 wire clk_uart; // 50MHz clock for UART
 
-clock pll (
-    .CLK_IN1(CLOCK_100),
-    .CLK_OUT1(clk_cpu),  // 10 MHz
-    .CLK_OUT2(clk_uart), // 50 MHz
-    .LOCKED(locked)
-);
+clock pll ( .CLK_IN1(CLOCK_100), .CLK_OUT1(pll_clk), .CLK_OUT2(clk_uart), .LOCKED(locked) );
 
-// ----------------- INTERNAL regS -----------------
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Generate the CPU clock by dividing input clock by a factor of a power of 2
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reg clk_cpu;                            // Final CPU clock
+// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
+// and then this divider-by-4 brings the effective clock down to 3.5 MHz
+reg [0:0] counter;                      // Clock divider counter
+
+always @(posedge pll_clk)
+begin
+    if (counter==1'b0)
+        clk_cpu <= ~clk_cpu;
+    counter <= counter - 1'b1;
+end
+
+// ----------------- INTERNAL WIRES -----------------
 wire [7:0] RomData; // Data writer from the ROM module
 wire [7:0] RamData; // Data writer from the RAM module
 wire [7:0] UartData = D;
@@ -97,15 +105,18 @@ assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 //   <repeats>
 always @(*) // always_comb
 begin
+    D[7:0] = {8{1'bz}};
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
         3'b101: begin
                 casez (A[9])
                     1'b0:  D[7:0] = RomData;
                     1'b1:  D[7:0] = RamData;
+                default:
+                    D[7:0] = 8'h76; // HALT
                 endcase
             end
-        3'b110: D[7:0] = CpuData;
+        3'bX10: D[7:0] = CpuData;
         // ---------------------------------- IO read ----------------------------------
         3'b001: D[7:0] = UartData;
         // IO read *** Interrupts test ***
@@ -117,6 +128,8 @@ begin
     default:
         D[7:0] = {8{1'bz}};
     endcase
+    if (nRFSH==0)
+        D[7:0] = CpuData;
 end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,7 +160,7 @@ z80_top_direct_n z80_(
 // Instantiate 512 bytes of ROM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 rom rom_(
-  .clka(CLOCK_100),
+  .clka(clk_cpu),
   .addra(A[8:0]),
   .douta(RomData)
 );
@@ -157,7 +170,7 @@ rom rom_(
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ram ram_(
     .addra(A[8:0]),
-    .clka(CLOCK_100),
+    .clka(clk_cpu),
     .dina(D),
     .wea(RamWE),
     .douta(RamData)

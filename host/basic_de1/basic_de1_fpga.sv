@@ -31,19 +31,21 @@ module host
 );
 `default_nettype none
 
-wire uart_tx;
-wire reset;
-wire locked;
-
-assign reset = locked & KEY0;
-assign UART_TXD = uart_tx;
-
+// Export selected pins to the extension connector
 assign GPIO_0[0] = reset;
 assign GPIO_0[1] = locked;
 assign GPIO_0[2] = nM1;
 assign GPIO_0[3] = nMREQ;
 assign GPIO_0[4] = nRD;
 assign GPIO_0[5] = nWR;
+
+// Basic wires and the reset logic
+wire uart_tx;
+wire reset;
+wire locked;
+
+assign reset = locked & KEY0;
+assign UART_TXD = uart_tx;
 
 // ----------------- CPU PINS -----------------
 wire nM1;
@@ -73,12 +75,8 @@ pll pll_( .locked(locked), .inclk0(CLOCK_50), .c0(pll_clk) );
 // Generate the CPU clock by dividing input clock by a factor of a power of 2
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 reg clk_cpu;                            // Final CPU clock
-
 // Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
 // and then this divider-by-4 brings the effective clock down to 3.5 MHz
-
-// NOTE: See the actual PLL output c0 since I frequently change it
-
 reg [0:0] counter;                      // Clock divider counter
 
 always @(posedge pll_clk)
@@ -89,7 +87,7 @@ begin
 end
 
 // ----------------- INTERNAL WIRES -----------------
-wire [7:0] RamData;                     // RamData is a data writer from the RAM module
+wire [7:0] RamData; // Data writer from the RAM module
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
