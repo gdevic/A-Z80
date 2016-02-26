@@ -78,10 +78,10 @@ clock pll ( .CLK_IN1(CLOCK_100), .CLK_OUT1(pll_clk), .CLK_OUT2(clk_uart), .LOCKE
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Generate the CPU clock by dividing input clock by a factor of a power of 2
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg clk_cpu;                            // Final CPU clock
+reg clk_cpu = 0;                        // Final CPU clock
 // Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
 // and then this divider-by-4 brings the effective clock down to 3.5 MHz
-reg [0:0] counter;                      // Clock divider counter
+reg [0:0] counter = 0;                  // Clock divider counter
 
 always @(posedge pll_clk)
 begin
@@ -105,7 +105,6 @@ assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 //   <repeats>
 always @(*) // always_comb
 begin
-    D[7:0] = {8{1'bz}};
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
         3'b101: begin

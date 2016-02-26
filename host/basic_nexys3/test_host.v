@@ -57,7 +57,9 @@ module test_host;
         KEY0 = 1;
         KEY1 = 0;
         KEY2 = 0;
-        #10;
+        // 100 MHz -> 10MHz (pll) -> div 4 (clk divider)
+        #(100/10*4 * 3); // hold for 3 CPU clock cycles
+        #(100/10*4 * 3); // ...twice, due to the way our CLOCK_100 gen below works
         KEY0 = 0;
     end
 
