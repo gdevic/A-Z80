@@ -108,16 +108,15 @@ begin
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
         3'b101: begin
-                casez (A[9])
+                case (A[9])
                     1'b0:  D[7:0] = RomData;
                     1'b1:  D[7:0] = RamData;
-                default:
-                    D[7:0] = 8'h76; // HALT
                 endcase
             end
-        3'bX10: D[7:0] = CpuData;
+        3'b110: D[7:0] = CpuData;
         // ---------------------------------- IO read ----------------------------------
         3'b001: D[7:0] = UartData;
+        3'b010: D[7:0] = CpuData; // CPU IO Write
         // IO read *** Interrupts test ***
         // This value will be pushed on the data bus on an IORQ access which
         // means that:
