@@ -13,10 +13,8 @@ initial begin : init
     z.nINT <= `CLR;
     z.nNMI <= `CLR;
     z.nBUSRQ <= `CLR;
-    force dut.z80_top_ifc_n.fpga_reset=1;
     z.nRESET <= `SET;
-#2  force dut.z80_top_ifc_n.fpga_reset=0;
-    repeat (3) @(posedge clk);
+#2  repeat (3) @(posedge clk);
     z.nRESET <= `CLR;
 end : init
 
