@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Feb 17 01:07:12 2016"
+// CREATED		"Fri Feb 26 22:23:08 2016"
 
 module ir(
 	ctl_ir_we,
@@ -31,24 +31,23 @@ input wire	nreset;
 input wire	[7:0] db;
 output reg	[7:0] opcode;
 
-wire	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
 
 
 
 
 
-always@(posedge clk)
+always@(posedge clk or negedge nreset)
 begin
-if (SYNTHESIZED_WIRE_0)
+if (!nreset)
+	begin
+	opcode[7:0] <= 8'b00000000;
+	end
+else
+if (ctl_ir_we)
 	begin
 	opcode[7:0] <= db[7:0];
 	end
 end
-
-assign	SYNTHESIZED_WIRE_1 =  ~nreset;
-
-assign	SYNTHESIZED_WIRE_0 = SYNTHESIZED_WIRE_1 | ctl_ir_we;
 
 
 endmodule

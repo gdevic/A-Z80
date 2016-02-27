@@ -14,13 +14,12 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Feb 17 00:54:40 2016"
+// CREATED		"Fri Feb 26 22:25:37 2016"
 
 module bus_control(
 	ctl_bus_ff_oe,
 	ctl_bus_zero_oe,
 	ctl_bus_db_oe,
-	nreset,
 	bus_db_oe,
 	db
 );
@@ -29,38 +28,34 @@ module bus_control(
 input wire	ctl_bus_ff_oe;
 input wire	ctl_bus_zero_oe;
 input wire	ctl_bus_db_oe;
-input wire	nreset;
 output wire	bus_db_oe;
 inout wire	[7:0] db;
 
 wire	[7:0] bus;
 wire	[7:0] vcc;
-wire	SYNTHESIZED_WIRE_4;
-wire	SYNTHESIZED_WIRE_2;
 wire	SYNTHESIZED_WIRE_3;
+wire	SYNTHESIZED_WIRE_2;
 
 
 
 
-assign	db[7] = SYNTHESIZED_WIRE_4 ? bus[7] : 1'bz;
-assign	db[6] = SYNTHESIZED_WIRE_4 ? bus[6] : 1'bz;
-assign	db[5] = SYNTHESIZED_WIRE_4 ? bus[5] : 1'bz;
-assign	db[4] = SYNTHESIZED_WIRE_4 ? bus[4] : 1'bz;
-assign	db[3] = SYNTHESIZED_WIRE_4 ? bus[3] : 1'bz;
-assign	db[2] = SYNTHESIZED_WIRE_4 ? bus[2] : 1'bz;
-assign	db[1] = SYNTHESIZED_WIRE_4 ? bus[1] : 1'bz;
-assign	db[0] = SYNTHESIZED_WIRE_4 ? bus[0] : 1'bz;
+assign	db[7] = SYNTHESIZED_WIRE_3 ? bus[7] : 1'bz;
+assign	db[6] = SYNTHESIZED_WIRE_3 ? bus[6] : 1'bz;
+assign	db[5] = SYNTHESIZED_WIRE_3 ? bus[5] : 1'bz;
+assign	db[4] = SYNTHESIZED_WIRE_3 ? bus[4] : 1'bz;
+assign	db[3] = SYNTHESIZED_WIRE_3 ? bus[3] : 1'bz;
+assign	db[2] = SYNTHESIZED_WIRE_3 ? bus[2] : 1'bz;
+assign	db[1] = SYNTHESIZED_WIRE_3 ? bus[1] : 1'bz;
+assign	db[0] = SYNTHESIZED_WIRE_3 ? bus[0] : 1'bz;
 
 
 assign	bus = {ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe,ctl_bus_ff_oe} & vcc;
 
-assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_4;
+assign	SYNTHESIZED_WIRE_2 =  ~SYNTHESIZED_WIRE_3;
 
-assign	SYNTHESIZED_WIRE_4 = SYNTHESIZED_WIRE_2 | ctl_bus_ff_oe | ctl_bus_zero_oe;
+assign	bus_db_oe = ctl_bus_db_oe & SYNTHESIZED_WIRE_2;
 
-assign	bus_db_oe = ctl_bus_db_oe & SYNTHESIZED_WIRE_3;
-
-assign	SYNTHESIZED_WIRE_2 =  ~nreset;
+assign	SYNTHESIZED_WIRE_3 = ctl_bus_ff_oe | ctl_bus_zero_oe;
 
 assign	vcc = 8'b11111111;
 

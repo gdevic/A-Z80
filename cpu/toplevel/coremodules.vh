@@ -541,7 +541,6 @@ bus_control bus_control_(
     .ctl_bus_ff_oe (ctl_bus_ff_oe),
     .ctl_bus_zero_oe (ctl_bus_zero_oe),
     .ctl_bus_db_oe (ctl_bus_db_oe),
-    .nreset (nreset),
     .bus_db_oe (bus_db_oe),
     .db (db0[7:0])
 );
