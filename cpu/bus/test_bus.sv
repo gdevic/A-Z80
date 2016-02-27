@@ -28,7 +28,7 @@ reg ctl_apin_mux2;          // Selects mux2
 reg ctl_inc_dec;            // Perform decrement (1) or increment (0)
 reg ctl_inc_limit6;         // Limit increment to 6 bits (for incrementing IR)
 reg ctl_inc_cy;             // Address increment, carry in value (+/-1 or 0)
-reg ctl_inc_zero;           // Output zero from the incrementer
+reg clrpc;                  // Force zero (to clear PC/IR)
 
 // ----------------- OUTPUT/STATUS -----------------
 wire address_is_1;          // Signals when the final address is 1
@@ -45,7 +45,7 @@ initial begin
     ctl_inc_dec = 0;
     ctl_inc_limit6 = 0;
     ctl_inc_cy = 0;
-    ctl_inc_zero = 0;
+    clrpc = 0;
     ctl_apin_mux = 0;
     ctl_apin_mux2 = 0;
 

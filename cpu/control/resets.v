@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Sun Nov 09 09:13:38 2014"
+// CREATED		"Sat Feb 27 08:32:59 2016"
 
 module resets(
 	reset_in,
@@ -32,18 +32,22 @@ input wire	clk;
 input wire	M1;
 input wire	T2;
 input wire	fpga_reset;
-output reg	clrpc;
+output wire	clrpc;
 output wire	nreset;
 
+reg	clrpc_int;
 wire	nclk;
 reg	x1;
 wire	x2;
 wire	x3;
 wire	SYNTHESIZED_WIRE_8;
 wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_9;
+reg	SYNTHESIZED_WIRE_9;
+reg	DFF_res3;
+reg	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_11;
 wire	SYNTHESIZED_WIRE_3;
-reg	DFF_res;
+reg	SYNTHESIZED_WIRE_12;
 wire	SYNTHESIZED_WIRE_6;
 
 assign	nreset = SYNTHESIZED_WIRE_6;
@@ -63,17 +67,19 @@ else
 	end
 end
 
+assign	clrpc = clrpc_int | SYNTHESIZED_WIRE_9 | DFF_res3 | SYNTHESIZED_WIRE_10;
+
 assign	SYNTHESIZED_WIRE_1 =  ~reset_in;
 
-assign	x2 = x1 & SYNTHESIZED_WIRE_9;
+assign	x2 = x1 & SYNTHESIZED_WIRE_11;
 
-assign	SYNTHESIZED_WIRE_9 = M1 & T2;
+assign	SYNTHESIZED_WIRE_11 = M1 & T2;
 
 assign	x3 = x1 & SYNTHESIZED_WIRE_3;
 
-assign	SYNTHESIZED_WIRE_6 =  ~DFF_res;
+assign	SYNTHESIZED_WIRE_6 =  ~SYNTHESIZED_WIRE_12;
 
-assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_9;
+assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_11;
 
 assign	nclk =  ~clk;
 
@@ -84,11 +90,35 @@ always@(posedge clk or negedge SYNTHESIZED_WIRE_8)
 begin
 if (!SYNTHESIZED_WIRE_8)
 	begin
-	DFF_res <= 1;
+	SYNTHESIZED_WIRE_12 <= 1;
 	end
 else
 	begin
-	DFF_res <= x3;
+	SYNTHESIZED_WIRE_12 <= x3;
+	end
+end
+
+
+always@(posedge nclk)
+begin
+	begin
+	SYNTHESIZED_WIRE_10 <= SYNTHESIZED_WIRE_12;
+	end
+end
+
+
+always@(posedge nclk)
+begin
+	begin
+	SYNTHESIZED_WIRE_9 <= SYNTHESIZED_WIRE_10;
+	end
+end
+
+
+always@(posedge nclk)
+begin
+	begin
+	DFF_res3 <= SYNTHESIZED_WIRE_9;
 	end
 end
 
@@ -97,11 +127,11 @@ always@(posedge nclk or negedge SYNTHESIZED_WIRE_6)
 begin
 if (!SYNTHESIZED_WIRE_6)
 	begin
-	clrpc <= 0;
+	clrpc_int <= 0;
 	end
 else
 	begin
-	clrpc <= ~clrpc & x2 | clrpc & ~SYNTHESIZED_WIRE_9;
+	clrpc_int <= ~clrpc_int & x2 | clrpc_int & ~SYNTHESIZED_WIRE_11;
 	end
 end
 

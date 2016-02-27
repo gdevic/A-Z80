@@ -105,7 +105,6 @@ wire [1:0] ctl_reg_gp_sel;
 wire [1:0] ctl_reg_sys_hilo;
 wire ctl_inc_cy;
 wire ctl_inc_dec;
-wire ctl_inc_zero;
 wire ctl_al_we;
 wire ctl_inc_limit6;
 wire ctl_bus_inc_oe;

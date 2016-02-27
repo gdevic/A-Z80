@@ -8,7 +8,7 @@ module test_reset;
 // ----------------- CLOCKS AND RESET -----------------
 `define T #2
 bit clk = 1;
-initial repeat (30) #1 clk = ~clk;
+initial repeat (40) #1 clk = ~clk;
 
 // Specific to FPGA, some modules in the schematic need to be pre-initialized
 reg fpga_reset = 1;
@@ -30,7 +30,15 @@ initial begin
     // Test normal reset sequence - 3 clocks long
     `T reset_in = 1;
     `T `T `T reset_in = 0;
-    `T assert(nreset==0 && clrpc==0);
+    `T assert(nreset==0);
+    // Out of the reset for several more cycles
+    // Check that the clrpc is set for the next 2 1/2 cycles (see waveform)
+    `T assert(nreset==1 && clrpc==1);
+    `T assert(nreset==1 && clrpc==1);
+    `T assert(nreset==1 && clrpc==0);
+    `T assert(nreset==1 && clrpc==0);
+    `T assert(nreset==1 && clrpc==0);
+
     // Test special reset sequence: a reset pin is briefly
     // asserted at M1/T1 and CLRPC should hold until the next
     // M1/T2

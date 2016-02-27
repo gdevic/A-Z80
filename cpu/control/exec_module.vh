@@ -105,7 +105,6 @@ output reg [1:0] ctl_reg_sys_hilo,
 // Module: bus/address_latch.v
 output reg ctl_inc_cy,
 output reg ctl_inc_dec,
-output reg ctl_inc_zero,
 output reg ctl_al_we,
 output reg ctl_inc_limit6,
 output reg ctl_bus_inc_oe,

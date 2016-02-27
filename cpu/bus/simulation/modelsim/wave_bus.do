@@ -10,7 +10,7 @@ add wave -noupdate /test_bus/ctl_bus_inc_oe
 add wave -noupdate /test_bus/ctl_inc_dec
 add wave -noupdate /test_bus/ctl_inc_limit6
 add wave -noupdate /test_bus/ctl_inc_cy
-add wave -noupdate /test_bus/ctl_inc_zero
+add wave -noupdate /test_bus/clrpc
 add wave -noupdate /test_bus/address_is_1
 add wave -noupdate /test_bus/address_latch_/ctl_apin_mux
 add wave -noupdate /test_bus/address_latch_/ctl_apin_mux2

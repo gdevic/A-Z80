@@ -26,8 +26,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "ctl_inc_zero" (rect 0 0 69 14)(font "Arial" (font_size 8)))
-		(text "ctl_inc_zero" (rect 21 27 90 41)(font "Arial" (font_size 8)))
+		(text "clrpc" (rect 0 0 28 14)(font "Arial" (font_size 8)))
+		(text "clrpc" (rect 21 27 49 41)(font "Arial" (font_size 8)))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port

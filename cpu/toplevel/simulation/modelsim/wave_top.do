@@ -369,7 +369,7 @@ add wave -noupdate -group {alu
 } -radix hexadecimal /test_top/dut/alu_/op2_low
 add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_cy
 add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_dec
-add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_zero
+add wave -noupdate -group {address latch} /test_top/dut/address_latch_/clrpc
 add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_al_we
 add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_inc_limit6
 add wave -noupdate -group {address latch} /test_top/dut/address_latch_/ctl_bus_inc_oe
