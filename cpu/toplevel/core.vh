@@ -28,7 +28,7 @@ wire [6:0] prefix;      // Instruction decode PLA prefix bitfield
 assign prefix = { ~use_ixiy, use_ixiy, ~in_halt, in_alu, table_xx, table_cb, table_ed };
 
 wire nM1_int;           // External pins timing control
-assign nM1_int = !((setM1 & nextM) | (fFetch & T1));
+assign nM1_int = !(setM1 | (fFetch & T1));
 
 `include "coremodules.vh"
 
