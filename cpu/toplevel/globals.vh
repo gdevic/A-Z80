@@ -112,13 +112,13 @@ wire ctl_apin_mux;
 wire ctl_apin_mux2;
 wire ctl_bus_ff_oe;
 wire ctl_bus_zero_oe;
-wire ctl_bus_db_oe;
 wire ctl_sw_1u;
 wire ctl_sw_1d;
 wire ctl_sw_2u;
 wire ctl_sw_2d;
 wire ctl_sw_mask543_en;
 wire ctl_bus_db_we;
+wire ctl_bus_db_oe;
 
 // Module: control/execute.v
 wire nextM;
@@ -261,9 +261,6 @@ wire [15:0] address;
 
 // Module: bus/address_pins.v
 wire [15:0] abus;
-
-// Module: bus/bus_control.v
-wire bus_db_oe;
 
 // Module: bus/bus_switch.v
 wire bus_sw_1u;

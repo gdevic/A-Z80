@@ -137,13 +137,13 @@ execute execute_(
     .ctl_apin_mux2 (ctl_apin_mux2),
     .ctl_bus_ff_oe (ctl_bus_ff_oe),
     .ctl_bus_zero_oe (ctl_bus_zero_oe),
-    .ctl_bus_db_oe (ctl_bus_db_oe),
     .ctl_sw_1u (ctl_sw_1u),
     .ctl_sw_1d (ctl_sw_1d),
     .ctl_sw_2u (ctl_sw_2u),
     .ctl_sw_2d (ctl_sw_2d),
     .ctl_sw_mask543_en (ctl_sw_mask543_en),
     .ctl_bus_db_we (ctl_bus_db_we),
+    .ctl_bus_db_oe (ctl_bus_db_oe),
     .nextM (nextM),
     .setM1 (setM1),
     .fFetch (fFetch),
@@ -539,8 +539,6 @@ address_latch address_latch_(
 bus_control bus_control_(
     .ctl_bus_ff_oe (ctl_bus_ff_oe),
     .ctl_bus_zero_oe (ctl_bus_zero_oe),
-    .ctl_bus_db_oe (ctl_bus_db_oe),
-    .bus_db_oe (bus_db_oe),
     .db (db0[7:0])
 );
 

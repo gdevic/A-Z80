@@ -100,6 +100,6 @@ end
 
 address_pins address_pins_inst( .*, .bus_ab_pin_we(ctl_ab_we), .address(ab[15:0]), .abus(apin[15:0]) );
 
-data_pins data_pins_inst( .*, .bus_db_oe(ctl_db_pin_oe), .ctl_bus_db_we(ctl_db_we), .bus_db_pin_oe(ctl_db_pin_oe), .bus_db_pin_re(ctl_db_pin_re), .D(dpin[7:0]) );
+data_pins data_pins_inst( .*, .ctl_bus_db_oe(ctl_db_pin_oe), .ctl_bus_db_we(ctl_db_we), .bus_db_pin_oe(ctl_db_pin_oe), .bus_db_pin_re(ctl_db_pin_re), .D(dpin[7:0]) );
 
 endmodule

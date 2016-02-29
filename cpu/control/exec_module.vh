@@ -114,7 +114,6 @@ output reg ctl_apin_mux2,
 // Module: bus/bus_control.v
 output reg ctl_bus_ff_oe,
 output reg ctl_bus_zero_oe,
-output reg ctl_bus_db_oe,
 
 // Module: bus/bus_switch.v
 output reg ctl_sw_1u,
@@ -125,3 +124,4 @@ output reg ctl_sw_mask543_en,
 
 // Module: bus/data_pins.v
 output reg ctl_bus_db_we,
+output reg ctl_bus_db_oe,

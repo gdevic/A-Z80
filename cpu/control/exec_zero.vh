@@ -114,7 +114,6 @@ ctl_apin_mux2 = 0;
 // Module: bus/bus_control.v
 ctl_bus_ff_oe = 0;
 ctl_bus_zero_oe = 0;
-ctl_bus_db_oe = 0;
 
 // Module: bus/bus_switch.v
 ctl_sw_1u = 0;
@@ -125,3 +124,4 @@ ctl_sw_mask543_en = 0;
 
 // Module: bus/data_pins.v
 ctl_bus_db_we = 0;
+ctl_bus_db_oe = 0;

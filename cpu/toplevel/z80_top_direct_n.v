@@ -44,7 +44,7 @@ data_pins data_pins_(
     .bus_db_pin_oe  (bus_db_pin_oe),
     .bus_db_pin_re  (bus_db_pin_re),
     .ctl_bus_db_we  (ctl_bus_db_we),
-    .bus_db_oe      (bus_db_oe),
+    .ctl_bus_db_oe  (ctl_bus_db_oe),
     .clk            (clk),
     .db             (db0),
     .D              (D)

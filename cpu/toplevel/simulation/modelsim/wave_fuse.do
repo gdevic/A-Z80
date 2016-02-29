@@ -71,7 +71,6 @@ add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db1
 add wave -noupdate -group db -radix hexadecimal /test_fuse/dut/db2
 add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_ff_oe
 add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_zero_oe
-add wave -noupdate -group {bus control} /test_fuse/dut/bus_control_/ctl_bus_db_oe
 add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_ab_pin_we
 add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_db_pin_oe
 add wave -noupdate -group {bus control} /test_fuse/dut/pin_control_/bus_db_pin_re
@@ -165,7 +164,7 @@ add wave -noupdate -group switch -color Aquamarine /test_fuse/dut/reg_file_/ctl_
 add wave -noupdate -group {data pins} /test_fuse/dut/data_pins_/bus_db_pin_oe
 add wave -noupdate -group {data pins} /test_fuse/dut/data_pins_/bus_db_pin_re
 add wave -noupdate -group {data pins} /test_fuse/dut/data_pins_/ctl_bus_db_we
-add wave -noupdate -group {data pins} /test_fuse/dut/data_pins_/bus_db_oe
+add wave -noupdate -group {data pins} /test_fuse/dut/data_pins_/ctl_bus_db_oe
 add wave -noupdate -group {data pins} -radix hexadecimal /test_fuse/dut/data_pins_/D
 add wave -noupdate -group {data pins} -radix hexadecimal /test_fuse/dut/data_pins_/db
 add wave -noupdate -group {alu

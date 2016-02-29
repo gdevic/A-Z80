@@ -162,6 +162,9 @@ begin
 `else
     `include "exec_matrix.vh"           // Execution statements in the original nested-if format
 `endif
+
+    // Needed by data bus 0 override logic, make only one bus writer active at any time
+    ctl_bus_db_oe = ctl_bus_db_oe & ~(ctl_bus_zero_oe | ctl_bus_ff_oe);
 end
 
 endmodule

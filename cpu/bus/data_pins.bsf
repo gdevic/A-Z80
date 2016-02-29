@@ -54,8 +54,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 96)
 		(input)
-		(text "bus_db_oe" (rect 0 0 63 14)(font "Arial" (font_size 8)))
-		(text "bus_db_oe" (rect 21 91 84 105)(font "Arial" (font_size 8)))
+		(text "ctl_bus_db_oe" (rect 0 0 83 14)(font "Arial" (font_size 8)))
+		(text "ctl_bus_db_oe" (rect 21 91 104 105)(font "Arial" (font_size 8)))
 		(line (pt 0 96)(pt 16 96))
 	)
 	(port
