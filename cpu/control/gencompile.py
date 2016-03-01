@@ -59,6 +59,7 @@ def sequential_or(f, t, tokens):
     cond = []                   # Condition nested lists
     ccond = []                  # Currently scanned condition list
     ctls = {}                   # Dictionary of control wires and their equations
+    ccwires = []                # List of wires at the current condition list level
     i = 0                       # Current index into the tokens list
     while i < len(tokens):
         tok = tokens[i]
@@ -73,6 +74,7 @@ def sequential_or(f, t, tokens):
                 incond = False
                 cond.append(copy.deepcopy(ccond))
                 ccond.clear()
+                ccwires.clear()
             if tokval=='end': # Pop a condition list
                 cond.pop()
             if is_ctl(tokval) and not incond:
@@ -80,10 +82,16 @@ def sequential_or(f, t, tokens):
                 linesub = tok2str(cond)
                 rhs = tok2str(rval)
                 line = "{0} = {0} | ".format(tokval)
+                if tokval in ccwires: # Check for duplicate assignments
+                    hint = [ cond[n][m].string for n in range(len(cond)) for m in range(len(cond[n])) ]
+                    print ("WARNING: {0}: Multiple assignment of {1}".format(''.join(hint), tokval))
+                ccwires.append(tokval) # Track this wire as assigned at this condition level
                 if tokval in ctls_wide:
-                    t.write("reg {0}_{1};\n".format(tokval, i))
-                    line = "{0}_{1} = {2};\n".format(tokval, i, linesub) + line
-                    line += "({{{0}_{1},{0}_{1}}}){2}".format(tokval, i, rhs)
+                    tr = linesub.translate(str.maketrans(dict.fromkeys('~','n'))) # Make temporary name
+                    tmpname = "{0}_{1}_{2}".format(tokval, tr.translate(str.maketrans(dict.fromkeys('[]()&',None))), len(ccwires))
+                    t.write("reg {0};\n".format(tmpname))
+                    line = "{0} = {1};\n".format(tmpname, linesub) + line
+                    line += "({{{0},{0}}}){1}".format(tmpname, rhs)
                 else:
                     line += linesub + rhs
                 line = line.replace(')(', ')&(')
@@ -93,7 +101,6 @@ def sequential_or(f, t, tokens):
                 i += len(rval[0])
                 f.write ('{0};\n'.format(line))
         i += 1
-
 
 #--------------------------------------------------------------------------------
 tokens = []
