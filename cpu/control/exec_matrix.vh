@@ -1669,7 +1669,7 @@ if (pla[77]) begin
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
-                    ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
+                    ctl_flags_cf_set=1;
                     ctl_flags_cf2_we=1; ctl_flags_cf2_sel_daa=1;
                     ctl_daa_oe=1;
                     ctl_alu_sel_op2_neg=flags_nf; ctl_flags_cf_cpl=~flags_nf; end
