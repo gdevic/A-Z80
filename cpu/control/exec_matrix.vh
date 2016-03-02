@@ -827,7 +827,7 @@ if (pla[12]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_cf2_we=1; end
     if (M3 & T1) begin fMWrite=1;
@@ -837,7 +837,7 @@ if (pla[12]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_use_cf2=1; end
     if (M3 & T2) begin fMWrite=1;
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_DE; ctl_reg_gp_hilo=2'b11; ctl_sw_4u=1;
@@ -876,7 +876,7 @@ if (pla[11]) begin
                     ctl_alu_res_oe=1;
                     ctl_alu_op1_sel_zero=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_REP;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1;
@@ -915,7 +915,7 @@ if (pla[11]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_cf2_we=1; end
     if (M3 & T1) begin
@@ -923,7 +923,7 @@ if (pla[11]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_use_cf2=1; end
     if (M3 & T3) begin
@@ -1177,7 +1177,7 @@ if (pla[66] & ~pla[53]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1210,7 +1210,7 @@ if (pla[66] & ~pla[53]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
@@ -1300,7 +1300,7 @@ if (~use_ixiy & pla[53]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_set=1;
@@ -1313,7 +1313,7 @@ if (~use_ixiy & pla[53]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1334,7 +1334,7 @@ if (~use_ixiy & pla[53]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1;
                     ctl_flags_cf_set=1;
@@ -1347,7 +1347,7 @@ if (~use_ixiy & pla[53]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1390,7 +1390,7 @@ if (pla[69]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
@@ -1401,7 +1401,7 @@ if (pla[69]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_xy_we=1;
                     ctl_flags_cf_we=1; end
     if (M2 & T3) begin
@@ -1418,7 +1418,7 @@ if (pla[69]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M3 & T1) begin
@@ -1431,7 +1431,7 @@ if (pla[69]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_xy_we=1;
                     ctl_flags_cf_we=1; end
     if (M3 & T2) begin
@@ -1472,7 +1472,7 @@ if (op3 & pla[68]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
@@ -1483,7 +1483,7 @@ if (op3 & pla[68]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_cf_we=1; end
@@ -1501,7 +1501,7 @@ if (op3 & pla[68]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M3 & T1) begin
@@ -1514,7 +1514,7 @@ if (op3 & pla[68]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1559,7 +1559,7 @@ if (~op3 & pla[68]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M2 & T2) begin
@@ -1570,7 +1570,7 @@ if (~op3 & pla[68]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_cf_we=1; end
@@ -1588,7 +1588,7 @@ if (~op3 & pla[68]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_sel_op2_neg=1; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_reg_use_sp=1; end
     if (M3 & T1) begin
@@ -1601,7 +1601,7 @@ if (~op3 & pla[68]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1634,7 +1634,7 @@ if (pla[77]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_P;
@@ -1665,7 +1665,7 @@ if (pla[77]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
@@ -1724,7 +1724,7 @@ if (pla[82]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V;
@@ -1752,7 +1752,7 @@ if (pla[82]) begin
                     ctl_flags_alu=1;
                     ctl_alu_op1_sel_zero=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_hf_we=1;
@@ -2806,7 +2806,7 @@ if (pla[91] & pla[21]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M2 & T3) begin fIORead=1;
@@ -2816,7 +2816,7 @@ if (pla[91] & pla[21]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_flags_cf_we=1;
@@ -2888,7 +2888,7 @@ if (pla[91] & pla[20]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M1 & T5) begin nextM=1; ctl_mRead=1;
@@ -2898,7 +2898,7 @@ if (pla[91] & pla[20]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_flags_xy_we=1;
                     ctl_alu_sel_op2_neg=1; end
@@ -2926,7 +2926,7 @@ if (pla[91] & pla[20]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_nf_we=1; end
     if (M3 & T3) begin fIOWrite=1;
@@ -2934,7 +2934,7 @@ if (pla[91] & pla[20]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_cf_we=1; end
     if (M3 & T4) begin fIOWrite=1; nextM=1; setM1=nonRep | flags_zf; end
     if (M4 & T1) begin
@@ -3023,7 +3023,7 @@ if (pla[43]) begin
                     ctl_inc_cy=~pc_inc_hold;
                     ctl_bus_inc_oe=1; end
     if (M3 & T3) begin fMRead=1; setM1=1;
-                    ctl_reg_not_pc=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={flags_cond_true,flags_cond_true}; ctl_sw_4d=flags_cond_true;
+                    ctl_reg_not_pc|=flags_cond_true; ctl_reg_sel_wz|=flags_cond_true; ctl_reg_sys_hilo|={flags_cond_true,flags_cond_true}; ctl_sw_4d|=flags_cond_true;
                     ctl_al_we=1;
                     ctl_reg_sys_we_hi=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={1'b1,ctl_reg_sys_hilo[0]};
                     ctl_reg_in_hi=1;
@@ -3071,7 +3071,7 @@ if (pla[47]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3081,7 +3081,7 @@ if (pla[47]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_cf_we=1; end
     if (M3 & T4) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -3091,7 +3091,7 @@ if (pla[47]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=flags_sf; end
     if (M3 & T5) begin setM1=1;
@@ -3103,7 +3103,7 @@ if (pla[47]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_reg_not_pc=1; end
 end
@@ -3148,7 +3148,7 @@ if (pla[48]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3158,7 +3158,7 @@ if (pla[48]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_cf_we=1; end
     if (M3 & T4) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -3168,7 +3168,7 @@ if (pla[48]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=flags_sf; end
     if (M3 & T5) begin setM1=1;
@@ -3180,7 +3180,7 @@ if (pla[48]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_reg_not_pc=1; end
 end
@@ -3215,7 +3215,7 @@ if (pla[26]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M1 & T5) begin nextM=1; ctl_mRead=1;
@@ -3225,7 +3225,7 @@ if (pla[26]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_sz_we=1;
                     ctl_alu_sel_op2_neg=1; end
     if (M2 & T1) begin fMRead=1;
@@ -3252,7 +3252,7 @@ if (pla[26]) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (M3 & T3) begin
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3262,7 +3262,7 @@ if (pla[26]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_cf_we=1; end
     if (M3 & T4) begin
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4u=1;
@@ -3272,7 +3272,7 @@ if (pla[26]) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_alu_sel_op2_neg=flags_sf; end
     if (M3 & T5) begin setM1=1;
@@ -3284,7 +3284,7 @@ if (pla[26]) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_reg_not_pc=1; end
 end
@@ -3708,7 +3708,7 @@ end
 
 if (pla[76]) begin
     begin
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
     if (M1 & T1) begin
                     ctl_flags_pf_we=1; ctl_pf_sel=`PFSEL_V; end
@@ -3716,7 +3716,7 @@ end
 
 if (pla[78]) begin
     begin
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
     if (M1 & T1) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
@@ -3727,7 +3727,7 @@ end
 
 if (pla[79]) begin
     begin
-                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_nf_we=1; ctl_flags_nf_set=1; end
     if (M1 & T1) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
@@ -3738,7 +3738,7 @@ end
 
 if (pla[80]) begin
     begin
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 & T1) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
@@ -3749,7 +3749,7 @@ end
 
 if (pla[84]) begin
     begin
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_nf_we=1; ctl_flags_nf_clr=1; end
     if (M1 & T1) begin
                     ctl_reg_gp_we=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b10;
@@ -3814,7 +3814,7 @@ if (ixy_d) begin
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1; end
     if (T3) begin
                     ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hilo[1],1'b1};
@@ -3824,7 +3824,7 @@ if (ixy_d) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_cf2_we=1; end
     if (T4) begin
                     ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
@@ -3834,7 +3834,7 @@ if (ixy_d) begin
                     ctl_alu_op2_sel_zero=1;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_hf_we=1;
                     ctl_flags_use_cf2=1;
                     ctl_alu_sel_op2_neg=flags_sf; end
@@ -3847,7 +3847,7 @@ if (ixy_d) begin
                     ctl_alu_oe=1;
                     ctl_alu_res_oe=1;
                     ctl_alu_sel_op2_high=1;
-                    ctl_alu_core_hf=~ctl_alu_op_low;
+                    ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_xy_we=1;
                     ctl_alu_sel_op2_neg=flags_sf;
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; end

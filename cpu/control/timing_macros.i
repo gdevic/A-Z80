@@ -65,7 +65,7 @@ I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;      // Select 8-
 PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
 
 // Conditional assertions of WZ, HL instead of PC
-WZ?     ctl_reg_not_pc=flags_cond_true; ctl_reg_sel_wz=flags_cond_true; ctl_reg_sys_hilo={flags_cond_true,flags_cond_true}; ctl_sw_4d=flags_cond_true;
+WZ?     ctl_reg_not_pc|=flags_cond_true; ctl_reg_sel_wz|=flags_cond_true; ctl_reg_sys_hilo|={flags_cond_true,flags_cond_true}; ctl_sw_4d|=flags_cond_true;
 // Alternate format:
 //    if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
 //        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
@@ -203,7 +203,7 @@ low     ctl_alu_op1_sel_low=1;                  // Write low nibble with a high 
 // Defines the ALU core compute operation
 // The listing is also showing their alternate formats (using if/then)
 //-----------------------------------------------------------------------------------------
-CP      ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+CP      ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
 //    ctl_alu_sel_op2_neg=1;
 //    if (ctl_alu_op_low) begin
 //        ctl_flags_cf_set=1;
@@ -211,7 +211,7 @@ CP      ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=
 //        ctl_alu_core_hf=1;
 //    end
 //-----------------------------------------------------------------------------------------
-SUB     ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+SUB     ctl_alu_sel_op2_neg=1; ctl_flags_cf_set|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
 //    ctl_alu_sel_op2_neg=1;
 //    if (ctl_alu_op_low) begin
 //        ctl_flags_cf_set=1;
@@ -219,7 +219,7 @@ SUB     ctl_alu_sel_op2_neg=1; ctl_flags_cf_set=ctl_alu_op_low; ctl_alu_core_hf=
 //        ctl_alu_core_hf=1;
 //    end
 //-----------------------------------------------------------------------------------------
-SBC     ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+SBC     ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
 //    ctl_alu_sel_op2_neg=1;
 //    if (ctl_alu_op_low) begin
 //        ctl_flags_cf_cpl=1;
@@ -227,18 +227,18 @@ SBC     ctl_alu_sel_op2_neg=1; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=
 //        ctl_alu_core_hf=1;
 //    end
 //-----------------------------------------------------------------------------------------
-SBCh    ctl_alu_sel_op2_neg=1; ctl_alu_core_hf=~ctl_alu_op_low;
+SBCh    ctl_alu_sel_op2_neg=1; ctl_alu_core_hf|=~ctl_alu_op_low;
 //    ctl_alu_sel_op2_neg=1;
 //    if (~ctl_alu_op_low) begin
 //        ctl_alu_core_hf=1;
 //    end
 //-----------------------------------------------------------------------------------------
-ADC     ctl_alu_core_hf=~ctl_alu_op_low;
+ADC     ctl_alu_core_hf|=~ctl_alu_op_low;
 //    if (~ctl_alu_op_low) begin
 //        ctl_alu_core_hf=1;
 //    end
 //-----------------------------------------------------------------------------------------
-ADD     ctl_flags_cf_set=ctl_alu_op_low; ctl_flags_cf_cpl=ctl_alu_op_low; ctl_alu_core_hf=~ctl_alu_op_low;
+ADD     ctl_flags_cf_set|=ctl_alu_op_low; ctl_flags_cf_cpl|=ctl_alu_op_low; ctl_alu_core_hf|=~ctl_alu_op_low;
 //    if (ctl_alu_op_low) begin
 //        ctl_flags_cf_set=1; ctl_flags_cf_cpl=1;
 //    end else begin
