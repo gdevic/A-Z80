@@ -103,31 +103,21 @@ reg pc_inc_hold;                        // Normally 0 unless in one of those mod
 //--------------------------------------------------------------
 // Make available different bits and sections of the opcode byte
 //--------------------------------------------------------------
-wire op0;
-wire op1;
-wire op2;
-wire op3;
-wire op4;
-wire op5;
-assign op0 = pla[99];
-assign op1 = pla[100];
-assign op2 = pla[101];
-assign op3 = pla[102];
-assign op4 = pla[103];
-assign op5 = pla[104];
+wire op0 = pla[99];
+wire op1 = pla[100];
+wire op2 = pla[101];
+wire op3 = pla[102];
+wire op4 = pla[103];
+wire op5 = pla[104];
 
-wire [1:0] op21;
-wire [1:0] op54;
-assign op21 = { pla[101], pla[100] };
-assign op54 = { pla[104], pla[103] };
+wire [1:0] op21 = { pla[101], pla[100] };
+wire [1:0] op54 = { pla[104], pla[103] };
 
 //--------------------------------------------------------------
 // 8-bit register selections needs to swizzle mux for A and F
 //--------------------------------------------------------------
-wire rsel0;
-wire rsel3;
-assign rsel0 = op0 ^ (op1 & op2);
-assign rsel3 = op3 ^ (op4 & op5);
+wire rsel0 = op0 ^ (op1 & op2);
+wire rsel3 = op3 ^ (op4 & op5);
 
 `ifdef USE_COMPILED_FORMAT
 `include "temp_wires.vh"                // Define all temp wires used with compiled equations
