@@ -81,7 +81,7 @@ def sequential_or(f, t, tokens):
                 rval = get_rval(tokens, i)
                 linesub = tok2str(cond)
                 rhs = tok2str(rval)
-                line = "{0} = {0} | ".format(tokval)
+                line = "{0} |= ".format(tokval)
                 if tokval in ccwires: # Check for duplicate assignments
                     hint = [ cond[n][m].string for n in range(len(cond)) for m in range(len(cond[n])) ]
                     print ("WARNING: {0}: Multiple assignment of {1}".format(''.join(hint), tokval))
