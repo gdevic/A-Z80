@@ -42,7 +42,7 @@ def tok2str(tokens):
     return ''.join(line)
 
 def get_rval(tokens, i):
-    assert (tokens[i+1].string=='=')
+    assert (tokens[i+1].string=='=' or tokens[i+1].string=='|=')
     paren = list(str2tok('()'))
     rval = paren[:1]
     while (tokens[i+2].string!=';'):
