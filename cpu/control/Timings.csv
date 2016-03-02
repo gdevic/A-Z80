@@ -67,12 +67,12 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:70  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	mw						r8'		>	u	>	W																		
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	mw						r8'		>r8	-	>	W																		
 #005H T5  AB:001 DB:--	2	1	fMWrite				HL			W																								
 #006H T6  AB:001 DB:01          MREQ	2	2	fMWrite																															
 #007H T7  AB:001 DB:01          MREQ    WR	2	3	fMWrite			Y																												
 																																		
-#017H T13 AB:000 DB:--	4	1	fMWrite							R	r8'		>	u	>	W																		...continues here
+#017H T13 AB:000 DB:--	4	1	fMWrite							R	r8'		>r8	-	>	W																		...continues here
 #018H T14 AB:000 DB:46          MREQ	4	2	fMWrite																															
 #019H T15 AB:000 DB:46          MREQ    WR	4	3	fMWrite			Y																												
 #end																																		
@@ -113,7 +113,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:02  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	mw						A		>	u	>	W																		
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	mw						A		>h	u	>	W																		
 #005H T5  AB:001 DB:--	2	1	fMWrite				r16			W																								
 #006H T6  AB:001 DB:FF          MREQ	2	2	fMWrite					WZ	+	R																								
 #007H T7  AB:001 DB:FF          MREQ    WR	2	3	fMWrite			Y																												
@@ -140,7 +140,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		mw		WZ			W		W	<h	d	<	R																		
-#011H T11 AB:001 DB:--	4	1	fMWrite							R	A		>	u	>	W																		
+#011H T11 AB:001 DB:--	4	1	fMWrite							R	A		>h	u	>	W																		
 #012H T12 AB:001 DB:FE          MREQ	4	2	fMWrite					WZ	+	R																								
 #013H T13 AB:001 DB:FE          MREQ    WR	4	3	fMWrite			Y																												
 #end																																		
@@ -203,10 +203,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #008H T8  AB:002 DB:--	3	1	fMRead				PC			W																								
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		mw		WZ			W		W	<h	d	<	R																		
-#011H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>	u	>	W																		
+#011H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>l		>	W																		
 #012H T12 AB:001 DB:01          MREQ	4	2	fMWrite					WZ	+	R																								
 #013H T13 AB:001 DB:01          MREQ    WR	4	3	fMWrite		mw		WZ			W																								
-#014H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>	u	>	W																		
+#014H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>h	u	>	W																		
 #015H T15 AB:002 DB:02          MREQ	5	2	fMWrite					WZ	+	R																								
 #016H T16 AB:002 DB:02          MREQ    WR	5	3	fMWrite			Y																												
 #end																																		
@@ -241,10 +241,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #012H T8  AB:003 DB:--	3	1	fMRead				PC			W																								
 #013H T9  AB:003 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #014H T10 AB:003 DB:02          MREQ RD	3	3	fMRead		mw		WZ			W		W	<h	d	<	R																		
-#015H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>	u	>	W																	USE_SP	
+#015H T11 AB:001 DB:--	4	1	fMWrite							R	rl		>l		>	W																	USE_SP	
 #016H T12 AB:001 DB:FF          MREQ	4	2	fMWrite					WZ	+	R																								
 #017H T13 AB:001 DB:FF          MREQ    WR	4	3	fMWrite		mw		WZ			W																								
-#018H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>	u	>	W																	USE_SP	
+#018H T14 AB:002 DB:--	5	1	fMWrite							R	rh		>h	u	>	W																	USE_SP	
 #019H T15 AB:002 DB:C3          MREQ	5	2	fMWrite					WZ	+	R																								
 #020H T16 AB:002 DB:C3          MREQ    WR	5	3	fMWrite			Y																												
 #end																																		
@@ -283,10 +283,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch																															
 #004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y																														
 #005H T5  AB:000 DB:--	1	5			mw		SP		-	W																								
-#006H T6  AB:002 DB:--	2	1	fMWrite						-	P	rh		>	u	>	W																		
+#006H T6  AB:002 DB:--	2	1	fMWrite						-	P	rh		>h	u	>	W																		
 #007H T7  AB:002 DB:02          MREQ	2	2	fMWrite					SP	-	R																								
 #008H T8  AB:002 DB:02          MREQ    WR	2	3	fMWrite		mw		SP		-	W																								
-#009H T9  AB:001 DB:--	3	1	fMWrite						-	P	rl		>	u	>	W																		
+#009H T9  AB:001 DB:--	3	1	fMWrite						-	P	rl		>l		>	W																		
 #010H T10 AB:001 DB:01          MREQ	3	2	fMWrite					SP	-	R																								
 #011H T11 AB:001 DB:01          MREQ    WR	3	3	fMWrite			Y																												
 #end																																		
@@ -339,10 +339,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #009H T9  AB:0FE DB:D1          MREQ RD	3	2	fMRead					SP	+	R																								
 #010H T10 AB:0FE DB:D1          MREQ RD	3	3	fMRead									W	<h	d	<	R																		
 #011H T11 AB:0FE DB:-- 	3	4			mw		SP		-	W																								
-#012H T12 AB:0FE DB:--	4	1	fMWrite						-	P	rh		>	u	>	W																		
+#012H T12 AB:0FE DB:--	4	1	fMWrite						-	P	rh		>h	u	>	W																		
 #013H T13 AB:0FE DB:00          MREQ	4	2	fMWrite					SP	-	R																								
 #014H T14 AB:0FE DB:00          MREQ    WR	4	3	fMWrite		mw		SP		-	W																								
-#015H T15 AB:0FD DB:--	5	1	fMWrite						-	P	rl		>	u	>	W																		
+#015H T15 AB:0FD DB:--	5	1	fMWrite						-	P	rl		>l		>	W																		
 #016H T16 AB:0FD DB:01          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FD DB:01          MREQ    WR 	5	3	fMWrite				WZ			W																								
 #018H T18 AB:0FD DB:01	5	4						HL		R																								
@@ -818,7 +818,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #005H T5  AB:001 DB:--	2	1	fMRead				PC			W																								
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		iow		A			W			<l		<	R																		
-#008H T8  AB:001 DB:--	3	1	fIOWrite							R	A		>	u	>	W																		
+#008H T8  AB:001 DB:--	3	1	fIOWrite							R	A		>h	u	>	W																		
 #009H T9  AB:001 DB:03                  WR IORQ	3	2	fIOWrite																															
 #010H T10 AB:001 DB:03                  WR IORQ	3	3	fIOWrite																															
 #011H T11 AB:001 DB:03                  WR IORQ	3	4	fIOWrite			Y																												
@@ -828,7 +828,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:41  M1      MREQ RD	1	2	fMFetch																															
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch																															
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	iow						r8		>	u	>	W																		
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	iow						r8		>r8	-	>	W																		
 #009H T5  AB:0FF DB:--	2	1	fIOWrite				BC			W																								
 #010H T6  AB:0FF DB:C3                  WR IORQ	2	2	fIOWrite																															
 #011H T7  AB:0FF DB:C3                  WR IORQ	2	3	fIOWrite																															
@@ -970,10 +970,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead									W	<h	d	<	R																		
 #011H T11 AB:002 DB:--	3	4			mw		SP		-	W																								
-#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>	u	>	W																		
+#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>h	u	>	W																		
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite					SP	-	R																								
 #014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		mw		SP		-	W																								
-#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>	u	>	W																		
+#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>l		>	W																		
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			Y	WZ			W																							NOT_PC!	
 #end																																		
@@ -990,10 +990,10 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #009H T9  AB:002 DB:02          MREQ RD	3	2	fMRead					PC	+	R																								
 #010H T10 AB:002 DB:02          MREQ RD	3	3	fMRead		CC	CC						W?	<h	d	<	R																		Load W only if condition is true
 #011H T11 AB:002 DB:--	3	4			mw		SP		-	W																								
-#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>	u	>	W																		
+#012H T12 AB:000 DB:--	4	1	fMWrite						-	P	PCh		>h	u	>	W																		
 #013H T13 AB:000 DB:00          MREQ	4	2	fMWrite					SP	-	R																								
 #014H T14 AB:000 DB:00          MREQ    WR	4	3	fMWrite		mw		SP		-	W																								
-#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>	u	>	W																		
+#015H T15 AB:0FF DB:--	5	1	fMWrite						-	P	PCl		>l		>	W																		
 #016H T16 AB:0FF DB:03          MREQ	5	2	fMWrite					SP	-	R																								
 #017H T17 AB:0FF DB:03          MREQ    WR	5	3	fMWrite			Y	WZ			W																							NOT_PC!	
 #end																																		
@@ -1047,7 +1047,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:000 DB:--	2	1	fMWrite						-	P	PCh		>h	u	>	W																		
 #007H T7  AB:000 DB:00          MREQ	2	2	fMWrite					SP	-	R																								
 #008H T8  AB:000 DB:00          MREQ    WR	2	3	fMWrite		mw		SP		-	W																								
-#009H T9  AB:0FF DB:--	3	1	fMWrite						-	P	PCl		>l	u	>	W																		
+#009H T9  AB:0FF DB:--	3	1	fMWrite						-	P	PCl		>l		>	W																		
 #010H T10 AB:0FF DB:01          MREQ	3	2	fMWrite					SP	-	R																								
 #011H T11 AB:0FF DB:01          MREQ    WR	3	3	fMWrite		INT	INT	WZ			W																							NOT_PC!	Value on the bus into ALU OP
 // INTR IM2 continues here...																																		Extension for IM2 interrupt mode

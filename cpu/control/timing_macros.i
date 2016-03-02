@@ -146,7 +146,14 @@ Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hil
 <       ctl_reg_in_hi=1; ctl_reg_in_lo=1;       // From the ALU side into the register file
 <l      ctl_reg_in_lo=1;                        // From the ALU side into the register file low byte only
 <h      ctl_reg_in_hi=1;                        // From the ALU side into the register file high byte only
+
+// TODO: Remove this macro since it could cause db1 bus contention
 >       ctl_reg_out_hi=1; ctl_reg_out_lo=1;     // From the register file into the ALU
+
+// New one!
+>r8     ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; // Enables a register gate corresponding to the selected 8-bit register
+
+// TODO: have these control SW2
 >l      ctl_reg_out_lo=1;                       // From the register file into the ALU low byte only
 >h      ctl_reg_out_hi=1;                       // From the register file into the ALU high byte only
 
@@ -156,6 +163,7 @@ Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hil
 :SW2
 d       ctl_sw_2d=1;
 u       ctl_sw_2u=1;
+-       // Controlled by register gate
 
 :SW1
 <       ctl_sw_1d=1;
