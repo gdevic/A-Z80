@@ -122,6 +122,8 @@ wire rsel3 = op3 ^ (op4 & op5);
 // Temporary test code
 reg [4:0] check_db1;
 reg check_db1_fail;
+reg [2:0] check_db2;
+reg check_db2_fail;
 
 `ifdef USE_COMPILED_FORMAT
 `include "temp_wires.vh"                // Define all temp wires used with compiled equations
@@ -168,9 +170,21 @@ begin
     begin
         setM1 = 1; // Screw up simulation so we catch it
         validPLA = 0;
-        $display("BUS ERROR");
+        $display("DB1 BUS ERROR");
     end
 `endif
+
+    check_db2[2:0] = {ctl_reg_out_hi, ctl_sw_2d, ctl_alu_oe};
+    check_db2_fail = ~(check_db2[2:0]==0 || check_db2[2:0]==3'b001 || check_db2[2:0]==3'b010 || check_db2[2:0]==3'b100);
+`ifdef MODEL_TECH
+    if (check_db2_fail==1)
+    begin
+        // setM1 = 1; // Screw up simulation so we catch it
+        // validPLA = 0;
+        $display("DB2 BUS ERROR");
+    end
+`endif
+
 end
 
 endmodule

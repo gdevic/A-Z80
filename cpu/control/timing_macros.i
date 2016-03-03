@@ -151,7 +151,7 @@ Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hil
 >       ctl_reg_out_hi=1; ctl_reg_out_lo=1;     // From the register file into the ALU
 
 // New one!
->r8     ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; // Enables a register gate corresponding to the selected 8-bit register
+>r8     ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0; // Enables a register gate corresponding to the selected 8-bit register
 
 // TODO: have these control SW2
 >l      ctl_reg_out_lo=1;                       // From the register file into the ALU low byte only

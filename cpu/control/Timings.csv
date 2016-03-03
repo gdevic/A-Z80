@@ -500,11 +500,11 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:09  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	0	*				
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>	d				>s0			bus													
-#005H T5  AB:000 DB:--	2	1									rl		>	d			alu	>s0		bus		L	ADD				*						USE_SP	
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>l	d				>s0			bus													
+#005H T5  AB:000 DB:--	2	1									rl		>l	d			alu	>s0		bus		L	ADD				*						USE_SP	
 #006H T6  AB:000 DB:--	2	2										Z	<l	u			alu	<	res			H	ADC			*				*				
-#007H T7  AB:000 DB:--	2	3									H		>	d				>s0			bus													
-#008H T8  AB:000 DB:--	2	4			Y						rh		>	d			alu	>s0		bus		L	ADC				*						USE_SP	
+#007H T7  AB:000 DB:--	2	3									H		>					>s0			bus													
+#008H T8  AB:000 DB:--	2	4			Y						rh		>				alu	>s0		bus		L	ADC				*						USE_SP	
 #009H T9  AB:000 DB:--	3	1					WZ			W		W	<h	u			alu	<	res			H	ADC			*				*				
 #010H T10 AB:000 DB:--	3	2						HL		R																								
 #011H T11 AB:000 DB:--	3	3				Y																												
@@ -514,11 +514,11 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<				<																	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	0	*				
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>	d				>s0			bus													
-#009H T5  AB:001 DB:--	2	1									rl		>	d			alu	>s0		bus		L	ADC				*						USE_SP	
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>l	d				>s0			bus													
+#009H T5  AB:001 DB:--	2	1									rl		>l	d			alu	>s0		bus		L	ADC				*						USE_SP	
 #010H T6  AB:001 DB:--	2	2										Z	<l	u			alu	<	res			H	ADC		*	*				*				
-#011H T7  AB:001 DB:--	2	3									H		>	d				>s0			bus													
-#012H T8  AB:001 DB:--	2	4			Y						rh		>	d			alu	>s0		bus		L	ADC				*						USE_SP	
+#011H T7  AB:001 DB:--	2	3									H		>					>s0			bus													
+#012H T8  AB:001 DB:--	2	4			Y						rh		>				alu	>s0		bus		L	ADC				*						USE_SP	
 #013H T9  AB:001 DB:--	3	1					WZ			W		W	<h	u			alu	<	res			H	ADC		*	*		V		*			ZERO_16BIT	
 #014H T10 AB:001 DB:--	3	2						HL		R																								
 #015H T11 AB:001 DB:--	3	3				Y																												
@@ -528,11 +528,11 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #005H T1  AB:001 DB:--  M1	1	1	fMFetch																															
 #006H T2  AB:001 DB:42  M1      MREQ RD	1	2	fMFetch									F	<				<																?NF_HF_CF	
 #007H T3  AB:001 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	1	*				
-#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>	d				>s0			bus													
-#009H T5  AB:001 DB:--	2	1									rl		>	d			alu	>s0		bus		L	SBC				*						USE_SP	
+#008H T4  AB:001 DB:--     RFSH MREQ	1	4	fMFetch	Y	Y						L		>l	d				>s0			bus													
+#009H T5  AB:001 DB:--	2	1									rl		>l	d			alu	>s0		bus		L	SBC				*						USE_SP	
 #010H T6  AB:001 DB:--	2	2										Z	<l	u			alu	<	res			H	SBC		*	*				*				
-#011H T7  AB:001 DB:--	2	3									H		>	d				>s0			bus													
-#012H T8  AB:001 DB:--	2	4			Y						rh		>	d			alu	>s0		bus		L	SBCh				*						USE_SP	
+#011H T7  AB:001 DB:--	2	3									H		>					>s0			bus													
+#012H T8  AB:001 DB:--	2	4			Y						rh		>				alu	>s0		bus		L	SBCh				*						USE_SP	
 #013H T9  AB:001 DB:--	3	1					WZ			W		W	<h	u			alu	<	res			H	SBC		*	*		V		*			ZERO_16BIT	
 #014H T10 AB:001 DB:--	3	2						HL		R																								
 #015H T11 AB:001 DB:--	3	3				Y																												
@@ -863,7 +863,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #039H T5  AB:004 DB:--	1	5			mr							B	<				alu	<	res			H	ADD		*	*							NEG_OP2	
 #040H T6  AB:000 DB:--	2	1	fMRead				HL			W																								
 #041H T7  AB:000 DB:21          MREQ RD	2	2	fMRead					HL	op3	R																								
-#042H T8  AB:000 DB:21          MREQ RD	2	3	fMRead		iow						L		>	d				>s0			bus													
+#042H T8  AB:000 DB:21          MREQ RD	2	3	fMRead		iow						L		>l	d				>s0			bus													
 #043H T9  AB:000 DB:--	3	1	fIOWrite				BC			W																								
 #044H T10 AB:000 DB:21                  WR IORQ	3	2	fIOWrite											d	<	R	alu	>s0		bus		L	ADD				*		S					
 #045H T11 AB:000 DB:21                  WR IORQ	3	3	fIOWrite														alu	<	res			H	ADD							*				
@@ -912,7 +912,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		Y																													
 #008H T8  AB:001 DB:--	3	1												d	<	R	alu	>s0		bus					*									"Reads ""e"" from the data latch"
-#009H T9  AB:001 DB:--	3	2									PCl		>	d			alu	>s0			bus	L	ADD				*							
+#009H T9  AB:001 DB:--	3	2									PCl		>l	d			alu	>s0			bus	L	ADD				*							
 #010H T10 AB:001 DB:--	3	3										Z	<l	u			alu	<	res			H	ADD							*				
 #011H T11 AB:001 DB:--	3	4									PCh		>				alu	>s0		0	bus	L	ADC				*						?SF_NEG	
 #012H T12 AB:001 DB:--	3	5				Y	WZ			W		W	<h				alu	<	res			H	ADC										"?SF_NEG, NOT_PC!"	
@@ -927,7 +927,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #006H T6  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #007H T7  AB:001 DB:01          MREQ RD	2	3	fMRead		Y	SS																												
 #008H T8  AB:001 DB:--	3	1												d	<	R	alu	>s0		bus					*									"Reads ""e"" from the data latch"
-#009H T9  AB:001 DB:--	3	2									PCl		>	d			alu	>s0			bus	L	ADD				*							
+#009H T9  AB:001 DB:--	3	2									PCl		>l	d			alu	>s0			bus	L	ADD				*							
 #010H T10 AB:001 DB:--	3	3										Z	<l	u			alu	<	res			H	ADD							*				
 #011H T11 AB:001 DB:--	3	4									PCh		>				alu	>s0		0	bus	L	ADC				*						?SF_NEG	
 #012H T12 AB:001 DB:--	3	5				Y	WZ			W		W	<h				alu	<	res			H	ADC										"?SF_NEG, NOT_PC!"	
@@ -944,15 +944,15 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 #001H T1  AB:000 DB:--  M1	1	1	fMFetch																															
 #002H T2  AB:000 DB:10  M1      MREQ RD	1	2	fMFetch																															
 #003H T3  AB:000 DB:--     RFSH	1	3	fMFetch								AF		>				>	>s0		bus	bus				*	*	*	*	*	*				
-#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y							B		>	d			alu	>s0		0	bus	L	ADD				*						NEG_OP2	B=B-1
+#004H T4  AB:000 DB:--     RFSH MREQ	1	4	fMFetch	Y							B		>h				alu	>s0		0	bus	L	ADD				*						NEG_OP2	B=B-1
 #005H T5  AB:000 DB:--	1	5			mr							B	<				alu	<	res			H	ADD		*								NEG_OP2	
 #006H T6  AB:001 DB:--	2	1	fMRead				PC			W																								
 #007H T7  AB:001 DB:01          MREQ RD	2	2	fMRead					PC	+	R																								
 #008H T8  AB:001 DB:01          MREQ RD	2	3	fMRead		Y	ZF																												
 #009H T9  AB:001 DB:--	3	1												d	<	R	alu	>s0		bus					*									"Reads ""e"" from the data latch"
-#010H T10 AB:001 DB:--	3	2									PCl		>	d			alu	>s0			bus	L	ADD				*							
+#010H T10 AB:001 DB:--	3	2									PCl		>l	d			alu	>s0			bus	L	ADD				*							
 #011H T11 AB:001 DB:--	3	3										Z	<l	u			alu	<	res			H	ADD							*				
-#012H T12 AB:001 DB:--	3	4									PCh		>				alu	>s0		0	bus	L	ADC				*						?SF_NEG	
+#012H T12 AB:001 DB:--	3	4									PCh		>h				alu	>s0		0	bus	L	ADC				*						?SF_NEG	
 #013H T13 AB:001 DB:--	3	5				Y	WZ			W		W	<h				alu	<	res			H	ADC										"?SF_NEG, NOT_PC!"	
 #end																																		
 																																		
@@ -1147,7 +1147,7 @@ A-Z80 Timing Table	M_	T_	Function	valid	nextM	setM1	A:reg rd	A:reg wr	inc/dec	A:
 // State machine to compute (IX+d)																																		
 #if ixy_d : Compute WZ=IX+d																																		
 #001H T1 any M-cycle	?	1												d	<	R	alu	>s0		bus					*									"Reads ""d"" from the data latch"
-#002H T2	?	2									L		>	d			alu	>s0			bus	L	ADD				*							
+#002H T2	?	2									L		>l	d			alu	>s0			bus	L	ADD				*							
 #003H T3	?	3										Z	<l	u			alu	<	res			H	ADC								W			
 #004H T4	?	4									H		>				alu	>s0		0	bus	L	ADC				*				R		?SF_NEG	Stores result into WZ
 #005H T5	?	5					WZ			W		W	<h				alu	<	res			H	ADC			*							"?SF_NEG, CLR_IX_IY"	and disables any further use of IX/IY
