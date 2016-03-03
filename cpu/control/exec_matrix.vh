@@ -25,8 +25,7 @@ if (pla[61] & ~pla[58] & ~pla[59]) begin
                     ctl_alu_op1_oe=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1; end
 end
@@ -978,8 +977,7 @@ if (pla[65] & ~pla[52]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
@@ -1022,8 +1020,7 @@ if (pla[64]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; nextM=1; ctl_mRead=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
@@ -1197,8 +1194,7 @@ if (pla[66] & ~pla[53]) begin
     if (M1 & T4) begin validPLA=1; setM1=1;
         if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel3; ctl_reg_out_lo=rsel3; ctl_sw_2u=~rsel3; ctl_sw_2d=rsel3;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_zero=1;
@@ -1924,8 +1920,7 @@ if (~use_ixiy & pla[70] & ~pla[55]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=1; ctl_shift_en=1;
                     ctl_alu_op2_sel_bus=1;
@@ -2258,8 +2253,7 @@ if (~use_ixiy & pla[72] & ~pla[55]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
@@ -2392,8 +2386,7 @@ if (~use_ixiy & pla[74] & ~pla[55]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
@@ -2525,8 +2518,7 @@ if (~use_ixiy & pla[73] & ~pla[55]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op1_sel_bus=1;
                     ctl_alu_op_low=1;
