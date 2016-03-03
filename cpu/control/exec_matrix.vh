@@ -2736,7 +2736,7 @@ if (pla[27] & pla[34]) begin
     if (M1 & T4) begin validPLA=1; nextM=1; ctl_iorw=1;
         if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end
-                    ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0;
+                    ctl_reg_out_hi=~rsel3; ctl_reg_out_lo=rsel3; ctl_sw_2u=~rsel3; ctl_sw_2d=rsel3;
                     ctl_sw_1u=1;
                     ctl_bus_db_we=1; end
     if (M2 & T1) begin fIOWrite=1;
