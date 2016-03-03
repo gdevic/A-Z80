@@ -25,7 +25,7 @@ from io import BytesIO
 from tokenize import NAME, INDENT, DEDENT, ENCODING
 
 # Define a list of control signals that are 2-bits wide
-ctls_wide = ['ctl_reg_gp_sel', 'ctl_reg_gp_hilo', 'ctl_reg_sys_hilo']
+ctls_wide = ['ctl_reg_gp_sel', 'ctl_reg_gp_hilo', 'ctl_reg_sys_hilo', 'ctl_pf_sel']
 
 # Help recognizing control signal names
 def is_ctl(name):

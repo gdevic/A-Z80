@@ -309,8 +309,7 @@ if (pla[83]) begin
                     ctl_flags_cf_we=1; end
     if (M1 & T4) begin validPLA=1;
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo={~op3,op3}; ctl_sw_4u=1;
-                    ctl_reg_out_hi=1; ctl_reg_out_lo=1;
-                    ctl_sw_2d=1;
+                    ctl_reg_out_hi=~rsel3; ctl_reg_out_lo=rsel3; ctl_sw_2u=~rsel3; ctl_sw_2d=rsel3;
                     ctl_flags_alu=1;
                     ctl_alu_shift_oe=~ctl_alu_bs_oe;
                     ctl_alu_op2_sel_bus=1;
