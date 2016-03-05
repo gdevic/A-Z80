@@ -64,13 +64,12 @@ wire nINT = ~KEY1;
 wire nNMI = ~KEY2;
 
 wire [15:0] A;
-reg [7:0] D;
+reg [7:0] D /* synthesis keep */;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wire pll_clk;
-//wire clk_cpu; // CPU clock of 10MHz
 wire clk_uart; // 50MHz clock for UART
 
 clock pll ( .CLK_IN1(CLOCK_100), .CLK_OUT1(pll_clk), .CLK_OUT2(clk_uart), .LOCKED(locked) );
@@ -94,7 +93,7 @@ end
 wire [7:0] RomData; // Data writer from the ROM module
 wire [7:0] RamData; // Data writer from the RAM module
 wire [7:0] CpuData;
-assign CpuData = nRD==0 ? D[7:0] : {8{1'bz}};
+assign CpuData = nRD==0 ? D[7:0] : {nIORQ,nRD,nWR}==3'b011 ? 8'h80 : {8{1'bz}};
 
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
@@ -107,7 +106,6 @@ assign UartWE = nIORQ==0 && nRD==1 && nWR==0;
 //   0000 - 01FF  512b RAM
 //   3E00 - 3FFF  512b RAM
 always @(*) // always_comb
-//always @(clk_cpu)
 begin
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
