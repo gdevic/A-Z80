@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Wed Feb 24 05:58:39 2016
+# Date: Sat Mar 05 14:39:17 2016
 #
 ##############################################################
 #
@@ -46,7 +46,7 @@ CSET axi_id_width=4
 CSET axi_slave_type=Memory_Slave
 CSET axi_type=AXI4_Full
 CSET byte_size=9
-CSET coe_file=P:\Z80\host\basic_nexys3\ram.coe
+CSET coe_file=R:\Z80\host\basic_nexys3\ram.coe
 CSET collision_warnings=ALL
 CSET component_name=rom
 CSET disable_collision_warnings=false
@@ -105,4 +105,4 @@ CSET write_width_b=8
 MISC pkg_timestamp=2012-11-19T16:22:25Z
 # END Extra information
 GENERATE
-# CRC: ba670701
+# CRC: e56fc773

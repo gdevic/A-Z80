@@ -59,7 +59,3 @@ os.chdir(dname)
 os.chdir("host/basic_de1/simulation/modelsim")
 setup()
 os.chdir(dname)
-
-os.chdir("host/common/simulation/modelsim")
-setup()
-os.chdir(dname)

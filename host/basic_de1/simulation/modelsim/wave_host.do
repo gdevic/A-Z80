@@ -51,50 +51,23 @@ add wave -noupdate -group {RAM
 } /test_bench_host/host_/ram_/wren
 add wave -noupdate -group {RAM
 } /test_bench_host/host_/ram_/q
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/reset
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/clk
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/Address
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/Data
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/IORQ
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/RD
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/WR
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/uart_tx
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/busy_tx
-add wave -noupdate -group {UART
-} /test_bench_host/host_/uart_io_/data_in_wr
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/BAUD
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/uart_tx
-add wave -noupdate -group {UART core
-} -color Gold /test_bench_host/host_/uart_io_/uart_core_/busy_tx
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/clk
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/reset
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/data_in
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/data_in_wr
-add wave -noupdate -group {UART core
-} -radix hexadecimal -childformat {{{/test_bench_host/host_/uart_io_/uart_core_/baud_count[31]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[30]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[29]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[28]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[27]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[26]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[25]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[24]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[23]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[22]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[21]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[20]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[19]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[18]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[17]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[16]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[15]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[14]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[13]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[12]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[11]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[10]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[9]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[8]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[7]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[6]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[5]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[4]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[3]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[2]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[1]} -radix hexadecimal} {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[0]} -radix hexadecimal}} -subitemconfig {{/test_bench_host/host_/uart_io_/uart_core_/baud_count[31]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[30]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[29]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[28]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[27]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[26]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[25]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[24]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[23]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[22]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[21]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[20]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[19]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[18]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[17]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[16]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[15]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[14]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[13]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[12]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[11]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[10]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[9]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[8]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[7]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[6]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[5]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[4]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[3]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[2]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[1]} {-height 15 -radix hexadecimal} {/test_bench_host/host_/uart_io_/uart_core_/baud_count[0]} {-height 15 -radix hexadecimal}} /test_bench_host/host_/uart_io_/uart_core_/baud_count
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/data
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/state
-add wave -noupdate -group {UART core
-} /test_bench_host/host_/uart_io_/uart_core_/next_state
+add wave -noupdate -group UART /test_bench_host/host_/uart_/BAUD
+add wave -noupdate -group UART /test_bench_host/host_/uart_/IN_CLOCK
+add wave -noupdate -group UART /test_bench_host/host_/uart_/busy
+add wave -noupdate -group UART /test_bench_host/host_/uart_/uart_tx
+add wave -noupdate -group UART /test_bench_host/host_/uart_/wr
+add wave -noupdate -group UART /test_bench_host/host_/uart_/data
+add wave -noupdate -group UART /test_bench_host/host_/uart_/clk
+add wave -noupdate -group UART /test_bench_host/host_/uart_/reset
+add wave -noupdate -group UART /test_bench_host/host_/uart_/bitcount
+add wave -noupdate -group UART /test_bench_host/host_/uart_/shifter
+add wave -noupdate -group UART /test_bench_host/host_/uart_/sending
+add wave -noupdate -group UART -radix hexadecimal /test_bench_host/host_/uart_/d
+add wave -noupdate -group UART -radix hexadecimal /test_bench_host/host_/uart_/inc
+add wave -noupdate -group UART -radix hexadecimal /test_bench_host/host_/uart_/delta
+add wave -noupdate -group UART -radix hexadecimal /test_bench_host/host_/uart_/ser_clk
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {344787 ps} 0} {{Cursor 2} {727941 ps} 0}
+WaveRestoreCursors {Cursor {168431 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 184
 configure wave -valuecolwidth 60
@@ -110,4 +83,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits us
 update
-WaveRestoreZoom {0 ps} {2113838 ps}
+WaveRestoreZoom {0 ps} {2036140 ps}

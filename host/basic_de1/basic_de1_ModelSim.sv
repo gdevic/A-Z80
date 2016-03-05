@@ -52,10 +52,14 @@ wire [7:0] RamData;                     // RamData is a data writer from the RAM
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
+wire uart_busy;
+wire UartWE = nIORQ==0 && nRD==1 && nWR==0;
+
 // Memory map:
 //   0000 - 3FFF  16K RAM
 assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
                 (nIORQ==0 && nRD==1 && nWR==1) ? 8'h80 :
+                (nIORQ==0 && nRD==0 && nWR==1) ? {7'h0,uart_busy} :
                 {8{1'bz}};
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,11 +74,16 @@ ram ram_( .address(A[13:0]), .clock(clk), .data(D[7:0]), .wren(RamWE), .q(RamDat
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
-// UART uses negative signalling logic, so invert control inputs
-// IO Map:
-//   0000 - 00FF  Write a byte to UART
-//   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_( .*, .reset(!reset), .Address(A[15:8]), .Data(D[7:0]), .IORQ(!nIORQ), .RD(!nRD), .WR(!nWR) );
+uart #( .BAUD(115200), .IN_CLOCK(10000000) ) uart_(
+   // Outputs
+   .busy(uart_busy),
+   .uart_tx(uart_tx),
+   // Inputs
+   .wr(UartWE),
+   .data(D[7:0]),
+   .clk(clk),
+   .reset(!reset)
+);
 
 endmodule

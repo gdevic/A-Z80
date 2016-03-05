@@ -93,11 +93,14 @@ end
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RomData; // Data writer from the ROM module
 wire [7:0] RamData; // Data writer from the RAM module
-wire [7:0] UartData = D;
 wire [7:0] CpuData = D;
 
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
+
+wire uart_busy;
+wire uart_we;
+assign uart_we = nIORQ==0 && nRD==1 && nWR==0;
 
 // Memory map:
 //   0000 - 01FF  512b ROM
@@ -115,8 +118,7 @@ begin
             end
         3'b110: D[7:0] = CpuData;
         // ---------------------------------- IO read ----------------------------------
-        3'b001: D[7:0] = UartData;
-        3'b010: D[7:0] = CpuData; // CPU IO Write
+        3'b001: D[7:0] = {7'b0000000, uart_busy};
         // IO read *** Interrupts test ***
         // This value will be pushed on the data bus on an IORQ access which
         // means that:
@@ -176,20 +178,16 @@ ram ram_(
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate UART module
-// UART uses negative signalling logic, so invert control inputs
-// IO Map:
-//   0000 - 00FF  Write a byte to UART
-//   0200 - 02FF  Get UART busy status in bit 0
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-uart_io uart_io_(
-    .reset(!reset),
-    .clk(clk_uart),
-    .Address(A[15:8]),
-    .Data(UartData),
-    .IORQ(!nIORQ),
-    .RD(!nRD),
-    .WR(!nWR),
-    .uart_tx(uart_tx)
+uart #( .BAUD(115200), .IN_CLOCK(50000000) ) uart_(
+   // Outputs
+   .busy(uart_busy),
+   .uart_tx(uart_tx),
+   // Inputs
+   .wr(uart_we),
+   .data(CpuData),
+   .clk(clk_uart),
+   .reset(!reset)
 );
 
 endmodule
