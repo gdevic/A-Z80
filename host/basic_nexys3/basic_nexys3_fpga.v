@@ -93,30 +93,34 @@ end
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RomData; // Data writer from the ROM module
 wire [7:0] RamData; // Data writer from the RAM module
-wire [7:0] CpuData = D;
+wire [7:0] CpuData;
+assign CpuData = nRD==0 ? D[7:0] : {8{1'bz}};
 
 wire RamWE;
 assign RamWE = nIORQ==1 && nRD==1 && nWR==0;
 
 wire uart_busy;
-wire uart_we;
-assign uart_we = nIORQ==0 && nRD==1 && nWR==0;
+wire UartWE;
+assign UartWE = nIORQ==0 && nRD==1 && nWR==0;
 
 // Memory map:
-//   0000 - 01FF  512b ROM
-//   0200 - 03FF  512b RAM
-//   <repeats>
+//   0000 - 01FF  512b RAM
+//   3E00 - 3FFF  512b RAM
 always @(*) // always_comb
+//always @(clk_cpu)
 begin
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
         3'b101: begin
                 case (A[9])
-                    1'b0:  D[7:0] = RomData;
-                    1'b1:  D[7:0] = RamData;
+                    0:  D[7:0] = RomData;
+                    1:  D[7:0] = RamData;
                 endcase
             end
+        // -------------------------------- Memory write -------------------------------
         3'b110: D[7:0] = CpuData;
+        // ---------------------------------- IO write ---------------------------------
+        3'b010: D[7:0] = CpuData;
         // ---------------------------------- IO read ----------------------------------
         3'b001: D[7:0] = {7'b0000000, uart_busy};
         // IO read *** Interrupts test ***
@@ -128,8 +132,6 @@ begin
     default:
         D[7:0] = {8{1'bz}};
     endcase
-    if (nRFSH==0)
-        D[7:0] = CpuData;
 end
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,8 +186,8 @@ uart #( .BAUD(115200), .IN_CLOCK(50000000) ) uart_(
    .busy(uart_busy),
    .uart_tx(uart_tx),
    // Inputs
-   .wr(uart_we),
-   .data(CpuData),
+   .wr(UartWE),
+   .data(D),
    .clk(clk_uart),
    .reset(!reset)
 );
