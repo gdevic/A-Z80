@@ -40,7 +40,7 @@ INT             nextM=1; ctl_mRead=in_intr & im2;   // RST38 interrupt extension
 Y               setM1=1;
 SS              setM1=~flags_cond_true;
 CC              setM1=~flags_cond_true;
-ZF              setM1=flags_zf; // Used in DJNZ
+ZF              setM1=flags_zf;                     // Used in DJNZ
 BR              setM1=nonRep | ~repeat_en;
 BRZ             setM1=nonRep | ~repeat_en | flags_zf;
 BZ              setM1=nonRep | flags_zf;
@@ -59,15 +59,15 @@ HL      ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;  // Read 
 SP      ctl_reg_use_sp=1; ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11; ctl_sw_4d=1;// Read 16-bit SP, enable SW4 downstream
 
 // System registers
-WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;      // Select 16-bit WZ
-IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit IR
-I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;      // Select 8-bit I register
-PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                   // Select 16-bit PC
+WZ      ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;          // Select 16-bit WZ
+IR      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11;                       // Select 16-bit IR
+I*      ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b10; ctl_sw_4d=1;          // Select 8-bit I register
+PC      ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11;                       // Select 16-bit PC
 
 // Conditional assertions of WZ, HL instead of PC
 WZ?     ctl_reg_not_pc|=flags_cond_true; ctl_reg_sel_wz|=flags_cond_true; ctl_reg_sys_hilo|={flags_cond_true,flags_cond_true}; ctl_sw_4d|=flags_cond_true;
 // Alternate format:
-//    if (flags_cond_true) begin      // If cc is true, use WZ instead of PC (for jumps)
+//    if (flags_cond_true) begin // If cc is true, use WZ instead of PC (for jumps)
 //        ctl_reg_not_pc=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo=2'b11; ctl_sw_4d=1;
 //    end
 
@@ -109,10 +109,10 @@ AF      ctl_reg_gp_sel=`GP_REG_AF; ctl_reg_gp_hilo=2'b11;
 B       ctl_reg_gp_sel=`GP_REG_BC; ctl_reg_gp_hilo=2'b10;
 H       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b10;
 L       ctl_reg_gp_sel=`GP_REG_HL; ctl_reg_gp_hilo=2'b01;
-r8 \    // r8 addressing does not allow reading F register (indices of A and F are also swapped) (ex. in OUT (c),r)
+r8      ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
+r8' \   // r8 addressing does not allow reading F register (indices of A and F are also swapped) (ex. in OUT (c),r)
         if (op4 & op5 & ~op3) begin ctl_bus_zero_oe=1; end  // Trying to read flags? Put 0 on the bus instead.
         if (~(op4 & op5 & ~op3)) begin ctl_reg_gp_sel=op54; ctl_reg_gp_hilo={~rsel3,rsel3}; end // Read 8-bit GP register
-r8'     ctl_reg_gp_sel=op21; ctl_reg_gp_hilo={~rsel0,rsel0};// Read 8-bit GP register selected by op[2:0]
 rh      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b10;         // Read 8-bit GP register high byte
 rl      ctl_reg_gp_sel=op54; ctl_reg_gp_hilo=2'b01;         // Read 8-bit GP register low byte
 //----- System registers -----
@@ -147,17 +147,14 @@ Z       ctl_reg_sys_we_lo=1; ctl_reg_sel_wz=1; ctl_reg_sys_hilo={ctl_reg_sys_hil
 <l      ctl_reg_in_lo=1;                        // From the ALU side into the register file low byte only
 <h      ctl_reg_in_hi=1;                        // From the ALU side into the register file high byte only
 
-// TODO: Remove this macro since it could cause db1 bus contention
->       ctl_reg_out_hi=1; ctl_reg_out_lo=1;     // From the register file into the ALU
+>       ctl_reg_out_hi=1; ctl_reg_out_lo=1;     // From the register file into the FLAGT and ALU
 
-// New one!
->r8     ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0; // Enables a register gate corresponding to the selected 8-bit register
+// Enables a register gate (high/low) corresponding to the selected 8-bit register
+>r8     ctl_reg_out_hi=~rsel0; ctl_reg_out_lo=rsel0; ctl_sw_2u=~rsel0; ctl_sw_2d=rsel0; // Enable register gate based on the rsel0
+>r8'    ctl_reg_out_hi=~rsel3; ctl_reg_out_lo=rsel3; ctl_sw_2u=~rsel3; ctl_sw_2d=rsel3; // Enable register gate based on the rsel3
 
->r8'    ctl_reg_out_hi=~rsel3; ctl_reg_out_lo=rsel3; ctl_sw_2u=~rsel3; ctl_sw_2d=rsel3; // Enables a register gate corresponding to the selected 8-bit register
-
-// TODO: have these control SW2
->l      ctl_reg_out_lo=1;                       // From the register file into the ALU low byte only
->h      ctl_reg_out_hi=1;                       // From the register file into the ALU high byte only
+>l      ctl_reg_out_lo=1;                       // From the register file onto the db1 (sw2 + FLAGT + sw1)
+>h      ctl_reg_out_hi=1;                       // From the register file onto the db2 (sw2 + ALU)
 
 //-----------------------------------------------------------------------------------------
 // Switches on the data bus for each direction (upstream, downstream)
@@ -344,6 +341,7 @@ NEG_OP2         ctl_alu_sel_op2_neg=1;
 // M1 opcode read cycle and the refresh register increment cycle
 // Write opcode into the instruction register through internal db0 bus:
 OpcodeToIR      ctl_ir_we=1;
+
 // At the common instruction load M1/T3, override opcode byte when servicing interrupts:
 // 1. We are in HALT mode: push NOP (0x00) instead
 // 2. We are in INTR mode (IM1 or IM2): push RST38 (0xFF) instead
