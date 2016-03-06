@@ -62,6 +62,16 @@ def get_rval(tokens, i):
     rval.extend(paren[1:2])
     return [rval]
 
+def decomment(s):
+    i = s.find('//') # Remove trailing comments from a line
+    if i>=0:
+        return s[:i]
+    i = s.find('/*') # Remove comments within a line
+    j = s.find('*/')
+    if i>=0 and j>=0:
+        return decomment(s[:i] + s[j+2:])
+    return s
+
 #--------------------------------------------------------------------------------
 # Generate a sequential-or form for all control wires
 #--------------------------------------------------------------------------------
@@ -120,7 +130,8 @@ with open(fname) as f:
     lines = f.readlines()
 
 for line in lines:
-    src = bytes(line.encode())
+    src = decomment(line)
+    src = bytes(src.encode())
     src = io.BytesIO(src)
     toklist = list(tokenize.tokenize(src.readline))
     tokens.extend(toklist)
