@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 #
 # This script reads A-Z80 instruction timing data from a spreadsheet text file
+# 'Timings.csv' (which is a TAB-delimited text file exported from 'Timings.xlsm')
 # and generates a Verilog include file defining the control block execution matrix.
 # Token keywords in the timing spreadsheet are substituted using a list of keys
-# stored in the macros file. See the macro file for the format information.
-#
-# Input timing file is exported from the Excel file as a TAB-delimited text file.
+# defined in 'timing_macros.i'.
 #
 #-------------------------------------------------------------------------------
-#  Copyright (C) 2014  Goran Devic
+#  Copyright (C) 2014,2016  Goran Devic
 #
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -25,7 +24,7 @@ import sys
 import csv
 import os
 
-# Input file exported from a timing spreadsheet:
+# Input file (exported from 'Timings.xlsm'):
 fname = "Timings.csv"
 
 # Input file containing macro substitution keys
