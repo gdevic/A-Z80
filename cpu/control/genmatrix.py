@@ -34,7 +34,7 @@ kname = "timing_macros.i"
 abbr = 1
 
 # Set this to 0 if you want to strip all comments from the resulting file
-comment = 0
+comment = 1
 
 # Set this to 1 if you want debug $display() printout on each PLA line
 debug = 0
