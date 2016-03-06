@@ -119,12 +119,6 @@ wire [1:0] op54 = { pla[104], pla[103] };
 wire rsel0 = op0 ^ (op1 & op2);
 wire rsel3 = op3 ^ (op4 & op5);
 
-// Temporary test code
-reg [4:0] check_db1;
-reg check_db1_fail;
-reg [2:0] check_db2;
-reg check_db2_fail;
-
 `ifdef USE_COMPILED_FORMAT
 `include "temp_wires.vh"                // Define all temp wires used with compiled equations
 `endif
@@ -161,29 +155,6 @@ begin
 
     // Needed by data bus 0 override logic, make only one bus writer active at any time
     ctl_bus_db_oe = ctl_bus_db_oe & ~(ctl_bus_zero_oe | ctl_bus_ff_oe);
-
-    // Temporary test code to catch bus contention
-    check_db1[4:0] = {ctl_reg_out_lo, ctl_sw_2u, ctl_flags_oe, ctl_daa_oe, ctl_sw_1d};
-    check_db1_fail = ~(check_db1[4:0]==0 || check_db1[4:0]==5'b00001 || check_db1[4:0]==5'b00010 || check_db1[4:0]==5'b00100 || check_db1[4:0]==5'b01000 || check_db1[4:0]==5'b10000);
-`ifdef MODEL_TECH
-    if (check_db1_fail==1)
-    begin
-        setM1 = 1; // Screw up simulation so we catch it
-        validPLA = 0;
-        $display("DB1 BUS ERROR");
-    end
-`endif
-
-    check_db2[2:0] = {ctl_reg_out_hi, ctl_sw_2d, ctl_alu_oe};
-    check_db2_fail = ~(check_db2[2:0]==0 || check_db2[2:0]==3'b001 || check_db2[2:0]==3'b010 || check_db2[2:0]==3'b100);
-`ifdef MODEL_TECH
-    if (check_db2_fail==1)
-    begin
-        // setM1 = 1; // Screw up simulation so we catch it
-        // validPLA = 0;
-        $display("DB2 BUS ERROR");
-    end
-`endif
 
 end
 
