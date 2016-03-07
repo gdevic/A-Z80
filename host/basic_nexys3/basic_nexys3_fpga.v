@@ -90,7 +90,6 @@ begin
 end
 
 // ----------------- INTERNAL WIRES -----------------
-wire [7:0] RomData; // Data writer from the ROM module
 wire [7:0] RamData; // Data writer from the RAM module
 wire [7:0] CpuData;
 assign CpuData = nRD==0 ? D[7:0] : {nIORQ,nRD,nWR}==3'b011 ? 8'h80 : {8{1'bz}};
@@ -103,18 +102,12 @@ wire UartWE;
 assign UartWE = nIORQ==0 && nRD==1 && nWR==0;
 
 // Memory map:
-//   0000 - 01FF  512b RAM
-//   3E00 - 3FFF  512b RAM
+//   0000 - 03FF  1Kb RAM
 always @(*) // always_comb
 begin
     case ({nIORQ,nRD,nWR})
         // -------------------------------- Memory read --------------------------------
-        3'b101: begin
-                case (A[9])
-                    0:  D[7:0] = RomData;
-                    1:  D[7:0] = RamData;
-                endcase
-            end
+        3'b101: D[7:0] = RamData;
         // -------------------------------- Memory write -------------------------------
         3'b110: D[7:0] = CpuData;
         // ---------------------------------- IO write ---------------------------------
@@ -157,23 +150,14 @@ z80_top_direct_n z80_(
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512 bytes of ROM memory
+// Instantiate 1K of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-rom rom_(
-  .clka(clk_cpu),
-  .addra(A[8:0]),
-  .douta(RomData)
-);
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 512 bytes of RAM memory
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram ram_(
-    .addra(A[8:0]),
-    .clka(clk_cpu),
-    .dina(D),
-    .wea(RamWE),
-    .douta(RamData)
+ram #( .n(10)) ram_(
+    .addr(A[9:0]),
+    .clk(clk_cpu),
+    .data_in(D),
+    .we(RamWE),
+    .data_out(RamData)
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

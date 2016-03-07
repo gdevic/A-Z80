@@ -14,9 +14,9 @@ zmac.exe --zmac %1
 if errorlevel 1 goto error
 bin2hex.exe zout\%~n1.cim fpga.hex
 if errorlevel 1 goto error
-python bin2coe.py zout\%~n1.cim rom.coe
+python bin2coe.py zout\%~n1.cim ram.coe
 if errorlevel 1 goto error
-python bin2mif.py --simple zout\%~n1.cim rom.mif
+python bin2mif.py --simple zout\%~n1.cim ram.mif
 if errorlevel 1 goto error
 
 Rem     Copy hex files to their target Quartus/ModelSim host directories
@@ -24,7 +24,7 @@ copy /Y fpga.hex ..\..\host\basic_de1
 copy /Y fpga.hex ..\..\host\basic_de1\simulation\modelsim
 
 Rem     Copy .mif and .coe files to their target Xilinx host directories
-copy /Y rom.coe ..\..\host\basic_nexys3\ipcore_dir
+copy /Y ram.mif ..\..\host\basic_nexys3\work
 goto end
 
 :error
