@@ -1,6 +1,5 @@
-This is a list of source files that are part of the top-level design.
-It is read by various Python scripts for the top level integration and
-synthesis. Every line that does not refer to a valid file is ignored.
+This is a list of A-Z80 top-level files and their dependencies.
+These files comprise the A-Z80 CPU proper.
 
 ------ Control block -------
 control/clk_delay.v
@@ -17,21 +16,38 @@ control/sequencer.v
 
 ---------- ALU -------------
 alu/alu_control.v
++ alu/alu_mux_4.v
++ alu/alu_mux_8.v
 alu/alu_select.v
 alu/alu_flags.v
++ alu/alu_mux_2.v
++ alu/alu_mux_4.v
 alu/alu.v
++ alu/alu_core.v
++ alu/alu_slice.v
++ alu/alu_bit_select.v
++ alu/alu_shifter_core.v
++ alu/alu_mux_2z.v
++ alu/alu_mux_3z.v
++ alu/alu_prep_daa.v
 
 ------ Register file -------
 registers/reg_file.v
++ registers/reg_latch.v
 registers/reg_control.v
 
 ------ Address latch -------
 bus/address_latch.v
++ bus/address_mux.v
++ bus/inc_dec.v
++ bus/inc_dec_2bit.v
 bus/address_pins.v
 
 --------- Misc bus ---------
 bus/bus_control.v
 bus/bus_switch.v
++ bus/data_switch.v
++ bus/data_swicth_mask.v
 
 ------ I/O pin control -----
 bus/data_pins.v
