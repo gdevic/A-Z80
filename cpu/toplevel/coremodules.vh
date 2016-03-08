@@ -152,7 +152,6 @@ execute execute_(
     .fIORead (fIORead),
     .fIOWrite (fIOWrite),
     .pla (pla),
-    .nreset (nreset),
     .in_intr (in_intr),
     .in_nmi (in_nmi),
     .in_halt (in_halt),
