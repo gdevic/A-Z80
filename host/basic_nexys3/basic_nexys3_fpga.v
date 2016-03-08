@@ -3,7 +3,7 @@
 //
 // This module defines a host board to be run on an FPGA.
 //
-//  Copyright (C) 2014  Goran Devic
+//  Copyright (C) 2016  Goran Devic
 //
 //  This program is free software; you can redistribute it and/or modify it
 //  under the terms of the GNU General Public License as published by the Free
@@ -102,7 +102,7 @@ wire UartWE;
 assign UartWE = nIORQ==0 && nRD==1 && nWR==0;
 
 // Memory map:
-//   0000 - 03FF  1Kb RAM
+//   0000 - 3FFF  16Kb RAM
 always @(*) // always_comb
 begin
     case ({nIORQ,nRD,nWR})
@@ -150,10 +150,10 @@ z80_top_direct_n z80_(
 );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Instantiate 1K of RAM memory
+// Instantiate 16K of RAM memory
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ram #( .n(10)) ram_(
-    .addr(A[9:0]),
+ram #( .n(14)) ram_(
+    .addr(A[13:0]),
     .clk(clk_cpu),
     .data_in(D),
     .we(RamWE),
