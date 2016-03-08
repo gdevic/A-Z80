@@ -75,19 +75,18 @@ wire clk_uart; // 50MHz clock for UART
 clock pll ( .CLK_IN1(CLOCK_100), .CLK_OUT1(pll_clk), .CLK_OUT2(clk_uart), .LOCKED(locked) );
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Generate the CPU clock by dividing input clock by a factor of a power of 2
+// Clocks
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-reg clk_cpu = 0;                        // Final CPU clock
-// Note: In order to test at 3.5 MHz, the PLL needs to be set to generate 14 MHz
-// and then this divider-by-4 brings the effective clock down to 3.5 MHz
-reg [0:0] counter = 0;                  // Clock divider counter
+wire clk_cpu = pll_clk; // CPU clock == PLL1 clock
 
-always @(posedge pll_clk)
-begin
-    if (counter==1'b0)
-        clk_cpu <= ~clk_cpu;
-    counter <= counter - 1'b1;
-end
+// Test code: Divide pll clock with a power of 2 to reduce effective CPU clock
+// reg [0:0] counter = 0;
+// always @(posedge pll_clk)
+// begin
+//     if (counter==1'b0)
+//         clk_cpu <= ~clk_cpu;
+//     counter <= counter - 1'b1;
+// end
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData; // Data writer from the RAM module
