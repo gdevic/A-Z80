@@ -1,11 +1,17 @@
 This is a list of A-Z80 top-level files and their dependencies.
-These files comprise the A-Z80 CPU proper.
+These files comprise the A-Z80 CPU proper. Use export.py to copy
+them into your project folder.
 
 ------ Control block -------
 control/clk_delay.v
 control/decode_state.v
 control/exec_module.vh
 control/execute.v
++ control/exec_matrix.vh
++ control/exec_matrix_compiled.vh
++ control/exec_module.vh
++ control/exec_zero.vh
++ control/temp_wires.vh
 control/interrupts.v
 control/ir.v
 control/pin_control.v
@@ -47,8 +53,16 @@ bus/address_pins.v
 bus/bus_control.v
 bus/bus_switch.v
 + bus/data_switch.v
-+ bus/data_swicth_mask.v
++ bus/data_switch_mask.v
 
 ------ I/O pin control -----
 bus/data_pins.v
 bus/control_pins_n.v
+
+--------- Top level --------
++ toplevel/z80_top_direct_n.v
++ toplevel/core.vh
++ toplevel/coremodules.vh
++ toplevel/globals.vh
+
+Files=49
