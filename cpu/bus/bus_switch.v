@@ -1,7 +1,7 @@
 //============================================================================
 // Bus switch in bus A-Z80 CPU
 //
-// Copyright 2014 Goran Devic
+// Copyright 2014, 2016 Goran Devic
 //
 // This module provides control data bus switch signals. The sole purpose of
 // having these wires defined in this module is to get all control signals

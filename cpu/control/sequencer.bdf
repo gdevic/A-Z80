@@ -2310,7 +2310,7 @@ applicable agreement for further details.
 (title_block
 	(rect 24 32 345 93)
 	(name "title-custom-medium")
-	(section (rect 0 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 5, 2014" (rect 56 3 138 19)(font "Arial" (font_size 10)))(border))
+	(section (rect 0 41 240 60)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "July 5, 2014, 2016" (rect 56 3 181 19)(font "Arial" (font_size 10)))(border))
 	(section (rect 0 21 320 40)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 151 19)(font "Arial" (font_size 11)))(border))
 	(section (rect 130 0 320 20)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "sequencer" (rect 43 2 138 21)(font "Arial" (font_size 12)(bold)))(border))
 	(section (rect 0 0 320 20)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 106 21)(font "Arial" (font_size 12)(bold)))(border))
