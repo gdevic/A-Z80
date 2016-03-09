@@ -132,11 +132,14 @@ exec:
 
     ld  (stack),sp
 
+; Several options on which values we want to dump, uncomment only one:
     ld  hl, text+5
-    ld  a,(stack+1)
+;   ld  a,(stack+1)     ; Dump stack pointer (useful to check SP)
+    ld  a, i            ; Show IR register
     call tohex
     ld  hl, text+7
-    ld  a,(stack)
+;   ld  a,(stack)       ; Dump stack pointer (useful to check SP)
+    ld  a, r            ; Show IR register
     call tohex
 
 ; Two versions of the code: either keep printing the text indefinitely (which
@@ -181,5 +184,6 @@ stack: dw 0
 hello:
     db  13,10
 text:
-    db '0000 0000 Hello, World!',13,10,'$'
+    db '---- ---- Hello, World!$'
+
 end
