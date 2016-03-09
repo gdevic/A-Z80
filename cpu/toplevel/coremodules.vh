@@ -107,7 +107,6 @@ execute execute_(
     .ctl_alu_zero_16bit (ctl_alu_zero_16bit),
     .ctl_flags_cf2_sel_shift (ctl_flags_cf2_sel_shift),
     .ctl_flags_cf2_sel_daa (ctl_flags_cf2_sel_daa),
-    .ctl_sw_4d (ctl_sw_4d),
     .ctl_sw_4u (ctl_sw_4u),
     .ctl_reg_in_hi (ctl_reg_in_hi),
     .ctl_reg_in_lo (ctl_reg_in_lo),
@@ -125,6 +124,7 @@ execute execute_(
     .ctl_reg_sys_we_lo (ctl_reg_sys_we_lo),
     .ctl_reg_sys_we_hi (ctl_reg_sys_we_hi),
     .ctl_reg_sys_we (ctl_reg_sys_we),
+    .ctl_sw_4d (ctl_sw_4d),
     .ctl_reg_gp_hilo (ctl_reg_gp_hilo),
     .ctl_reg_gp_sel (ctl_reg_gp_sel),
     .ctl_reg_sys_hilo (ctl_reg_sys_hilo),
@@ -448,7 +448,6 @@ reg_file reg_file_(
     .reg_sel_gp_hi (reg_sel_gp_hi),
     .reg_sel_ir (reg_sel_ir),
     .reg_sel_pc (reg_sel_pc),
-    .ctl_sw_4d (ctl_sw_4d),
     .ctl_sw_4u (ctl_sw_4u),
     .reg_sel_wz (reg_sel_wz),
     .reg_sel_sp (reg_sel_sp),
@@ -470,6 +469,8 @@ reg_file reg_file_(
     .ctl_reg_out_lo (ctl_reg_out_lo),
     .ctl_reg_out_hi (ctl_reg_out_hi),
     .clk (clk),
+    .reg_sw_4d_lo (reg_sw_4d_lo),
+    .reg_sw_4d_hi (reg_sw_4d_hi),
     .db_hi_as (db_hi_as[7:0]),
     .db_hi_ds (db2[7:0]),
     .db_lo_as (db_lo_as[7:0]),
@@ -493,6 +494,7 @@ reg_control reg_control_(
     .ctl_reg_sys_we_hi (ctl_reg_sys_we_hi),
     .ctl_reg_sys_we (ctl_reg_sys_we),
     .clk (clk),
+    .ctl_sw_4d (ctl_sw_4d),
     .ctl_reg_gp_hilo (ctl_reg_gp_hilo),
     .ctl_reg_gp_sel (ctl_reg_gp_sel),
     .ctl_reg_sys_hilo (ctl_reg_sys_hilo),
@@ -516,7 +518,9 @@ reg_control reg_control_(
     .reg_sel_sys_hi (reg_sel_sys_hi),
     .reg_gp_we (reg_gp_we),
     .reg_sys_we_lo (reg_sys_we_lo),
-    .reg_sys_we_hi (reg_sys_we_hi)
+    .reg_sys_we_hi (reg_sys_we_hi),
+    .reg_sw_4d_lo (reg_sw_4d_lo),
+    .reg_sw_4d_hi (reg_sw_4d_hi)
 );
 
 address_latch address_latch_(

@@ -82,7 +82,6 @@ wire ctl_flags_nf_clr;
 wire ctl_alu_zero_16bit;
 wire ctl_flags_cf2_sel_shift;
 wire ctl_flags_cf2_sel_daa;
-wire ctl_sw_4d;
 wire ctl_sw_4u;
 wire ctl_reg_in_hi;
 wire ctl_reg_in_lo;
@@ -100,6 +99,7 @@ wire ctl_reg_not_pc;
 wire ctl_reg_sys_we_lo;
 wire ctl_reg_sys_we_hi;
 wire ctl_reg_sys_we;
+wire ctl_sw_4d;
 wire [1:0] ctl_reg_gp_hilo;
 wire [1:0] ctl_reg_gp_sel;
 wire [1:0] ctl_reg_sys_hilo;
@@ -254,6 +254,8 @@ wire reg_sel_sys_hi;
 wire reg_gp_we;
 wire reg_sys_we_lo;
 wire reg_sys_we_hi;
+wire reg_sw_4d_lo;
+wire reg_sw_4d_hi;
 
 // Module: bus/address_latch.v
 wire address_is_1;

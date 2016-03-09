@@ -12,6 +12,8 @@ add wave -noupdate -expand -group {Data Side} -itemcolor Black -radix hexadecima
 add wave -noupdate -divider Control
 add wave -noupdate -itemcolor Violet /test_registers/ctl_sw_4u_sig
 add wave -noupdate -itemcolor Violet /test_registers/ctl_sw_4d_sig
+add wave -noupdate -itemcolor Violet /test_registers/reg_file_inst/reg_sw_4d_lo
+add wave -noupdate -itemcolor Violet /test_registers/reg_file_inst/reg_sw_4d_hi
 add wave -noupdate /test_registers/ctl_reg_in_hi_sig
 add wave -noupdate /test_registers/ctl_reg_in_lo_sig
 add wave -noupdate /test_registers/ctl_reg_out_hi_sig
@@ -41,10 +43,10 @@ add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_gp_lo_si
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_sys_hi_sig
 add wave -noupdate -color Coral -itemcolor Gold /test_registers/reg_sel_sys_lo_sig
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1300 ns} 0}
+WaveRestoreCursors {{Cursor 1} {1200 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 236
-configure wave -valuecolwidth 67
+configure wave -namecolwidth 260
+configure wave -valuecolwidth 39
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10

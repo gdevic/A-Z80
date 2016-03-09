@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Fri Nov 07 10:28:48 2014"
+// CREATED		"Tue Mar 08 06:12:46 2016"
 
 module reg_file(
 	reg_sel_sys_lo,
@@ -23,7 +23,6 @@ module reg_file(
 	reg_sel_gp_hi,
 	reg_sel_ir,
 	reg_sel_pc,
-	ctl_sw_4d,
 	ctl_sw_4u,
 	reg_sel_wz,
 	reg_sel_sp,
@@ -45,6 +44,8 @@ module reg_file(
 	ctl_reg_out_lo,
 	ctl_reg_out_hi,
 	clk,
+	reg_sw_4d_lo,
+	reg_sw_4d_hi,
 	db_hi_as,
 	db_hi_ds,
 	db_lo_as,
@@ -58,7 +59,6 @@ input wire	reg_sel_sys_hi;
 input wire	reg_sel_gp_hi;
 input wire	reg_sel_ir;
 input wire	reg_sel_pc;
-input wire	ctl_sw_4d;
 input wire	ctl_sw_4u;
 input wire	reg_sel_wz;
 input wire	reg_sel_sp;
@@ -80,6 +80,8 @@ input wire	ctl_reg_in_lo;
 input wire	ctl_reg_out_lo;
 input wire	ctl_reg_out_hi;
 input wire	clk;
+input wire	reg_sw_4d_lo;
+input wire	reg_sw_4d_hi;
 inout wire	[7:0] db_hi_as;
 inout wire	[7:0] db_hi_ds;
 inout wire	[7:0] db_lo_as;
@@ -501,14 +503,14 @@ assign	gdfx_temp0[2] = ctl_sw_4u ? db_lo_as[2] : 1'bz;
 assign	gdfx_temp0[1] = ctl_sw_4u ? db_lo_as[1] : 1'bz;
 assign	gdfx_temp0[0] = ctl_sw_4u ? db_lo_as[0] : 1'bz;
 
-assign	db_lo_as[7] = ctl_sw_4d ? gdfx_temp0[7] : 1'bz;
-assign	db_lo_as[6] = ctl_sw_4d ? gdfx_temp0[6] : 1'bz;
-assign	db_lo_as[5] = ctl_sw_4d ? gdfx_temp0[5] : 1'bz;
-assign	db_lo_as[4] = ctl_sw_4d ? gdfx_temp0[4] : 1'bz;
-assign	db_lo_as[3] = ctl_sw_4d ? gdfx_temp0[3] : 1'bz;
-assign	db_lo_as[2] = ctl_sw_4d ? gdfx_temp0[2] : 1'bz;
-assign	db_lo_as[1] = ctl_sw_4d ? gdfx_temp0[1] : 1'bz;
-assign	db_lo_as[0] = ctl_sw_4d ? gdfx_temp0[0] : 1'bz;
+assign	db_lo_as[7] = reg_sw_4d_lo ? gdfx_temp0[7] : 1'bz;
+assign	db_lo_as[6] = reg_sw_4d_lo ? gdfx_temp0[6] : 1'bz;
+assign	db_lo_as[5] = reg_sw_4d_lo ? gdfx_temp0[5] : 1'bz;
+assign	db_lo_as[4] = reg_sw_4d_lo ? gdfx_temp0[4] : 1'bz;
+assign	db_lo_as[3] = reg_sw_4d_lo ? gdfx_temp0[3] : 1'bz;
+assign	db_lo_as[2] = reg_sw_4d_lo ? gdfx_temp0[2] : 1'bz;
+assign	db_lo_as[1] = reg_sw_4d_lo ? gdfx_temp0[1] : 1'bz;
+assign	db_lo_as[0] = reg_sw_4d_lo ? gdfx_temp0[0] : 1'bz;
 
 assign	gdfx_temp1[7] = ctl_sw_4u ? db_hi_as[7] : 1'bz;
 assign	gdfx_temp1[6] = ctl_sw_4u ? db_hi_as[6] : 1'bz;
@@ -519,14 +521,14 @@ assign	gdfx_temp1[2] = ctl_sw_4u ? db_hi_as[2] : 1'bz;
 assign	gdfx_temp1[1] = ctl_sw_4u ? db_hi_as[1] : 1'bz;
 assign	gdfx_temp1[0] = ctl_sw_4u ? db_hi_as[0] : 1'bz;
 
-assign	db_hi_as[7] = ctl_sw_4d ? gdfx_temp1[7] : 1'bz;
-assign	db_hi_as[6] = ctl_sw_4d ? gdfx_temp1[6] : 1'bz;
-assign	db_hi_as[5] = ctl_sw_4d ? gdfx_temp1[5] : 1'bz;
-assign	db_hi_as[4] = ctl_sw_4d ? gdfx_temp1[4] : 1'bz;
-assign	db_hi_as[3] = ctl_sw_4d ? gdfx_temp1[3] : 1'bz;
-assign	db_hi_as[2] = ctl_sw_4d ? gdfx_temp1[2] : 1'bz;
-assign	db_hi_as[1] = ctl_sw_4d ? gdfx_temp1[1] : 1'bz;
-assign	db_hi_as[0] = ctl_sw_4d ? gdfx_temp1[0] : 1'bz;
+assign	db_hi_as[7] = reg_sw_4d_hi ? gdfx_temp1[7] : 1'bz;
+assign	db_hi_as[6] = reg_sw_4d_hi ? gdfx_temp1[6] : 1'bz;
+assign	db_hi_as[5] = reg_sw_4d_hi ? gdfx_temp1[5] : 1'bz;
+assign	db_hi_as[4] = reg_sw_4d_hi ? gdfx_temp1[4] : 1'bz;
+assign	db_hi_as[3] = reg_sw_4d_hi ? gdfx_temp1[3] : 1'bz;
+assign	db_hi_as[2] = reg_sw_4d_hi ? gdfx_temp1[2] : 1'bz;
+assign	db_hi_as[1] = reg_sw_4d_hi ? gdfx_temp1[1] : 1'bz;
+assign	db_hi_as[0] = reg_sw_4d_hi ? gdfx_temp1[0] : 1'bz;
 
 assign	db_lo_ds[7] = ctl_reg_out_lo ? gdfx_temp0[7] : 1'bz;
 assign	db_lo_ds[6] = ctl_reg_out_lo ? gdfx_temp0[6] : 1'bz;

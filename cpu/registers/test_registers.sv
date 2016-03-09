@@ -181,6 +181,7 @@ reg_control reg_control_inst
     .ctl_reg_sys_we_hi(ctl_reg_sys_we_hi_sig),// input  ctl_reg_sys_we_hi_sig
     .ctl_reg_sys_we(ctl_reg_sys_we_sig) ,   // input  ctl_reg_sys_we_sig
     .clk(clk) ,                             // input  clk
+    .ctl_sw_4d (ctl_sw_4d_sig) ,            // input  ctl_sw_4d
     .reg_sel_bc(reg_sel_bc_sig) ,           // output  reg_sel_bc_sig
     .reg_sel_bc2(reg_sel_bc2_sig) ,         // output  reg_sel_bc2_sig
     .reg_sel_ix(reg_sel_ix_sig) ,           // output  reg_sel_ix_sig
@@ -201,7 +202,9 @@ reg_control reg_control_inst
     .reg_sel_sys_hi(reg_sel_sys_hi_sig) ,   // output  reg_sel_sys_hi_sig
     .reg_gp_we(reg_gp_we_sig) ,             // output  reg_gp_we_sig
     .reg_sys_we_lo(reg_sys_we_lo_sig) ,     // output  reg_sys_we_lo_sig
-    .reg_sys_we_hi(reg_sys_we_hi_sig)       // output  reg_sys_we_hi_sig
+    .reg_sys_we_hi(reg_sys_we_hi_sig) ,     // output  reg_sys_we_hi_sig
+    .reg_sw_4d_lo (reg_sw_4d_lo_sig) ,      // output  reg_sw_4d_lo_sig
+    .reg_sw_4d_hi (reg_sw_4d_hi_sig)        // output  reg_sw_4d_hi_sig
 );
 
 // Instantiate register file block
@@ -213,7 +216,8 @@ reg_file reg_file_inst
     .reg_sel_gp_hi(reg_sel_gp_hi_sig) ,     // input  reg_sel_gp_hi_sig
     .reg_sel_ir(reg_sel_ir_sig) ,           // input  reg_sel_ir_sig
     .reg_sel_pc(reg_sel_pc_sig) ,           // input  reg_sel_pc_sig
-    .ctl_sw_4d(ctl_sw_4d_sig) ,             // input  ctl_sw_4d_sig
+    .reg_sw_4d_lo(reg_sw_4d_lo_sig) ,       // input  reg_sw_4d_lo_sig
+    .reg_sw_4d_hi(reg_sw_4d_hi_sig) ,       // input  reg_sw_4d_hi_sig
     .ctl_sw_4u(ctl_sw_4u_sig) ,             // input  ctl_sw_4u_sig
     .reg_sel_wz(reg_sel_wz_sig) ,           // input  reg_sel_wz_sig
     .reg_sel_sp(reg_sel_sp_sig) ,           // input  reg_sel_sp_sig

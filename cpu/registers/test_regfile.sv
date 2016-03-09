@@ -30,7 +30,8 @@ wire [7:0] db_hi_ds_sig;    // Read it using this bus
 
 // ----------------- CONTROL -----------------
 reg ctl_sw_4u_sig;          // Bus switch #4 upstream gate
-reg ctl_sw_4d_sig;          // Bus switch #4 downstream gate
+reg reg_sw_4d_lo_sig;       // Bus switch #4 downstream gate low byte lane
+reg reg_sw_4d_hi_sig;       // Bus switch #4 downstream gate high byte lane
 
 // ----------------- GP REGS -----------------
 reg reg_sel_af_sig;         // Select AF register
@@ -63,7 +64,8 @@ reg reg_sys_oe_sig;         // Write selected system register to the data bus
    assert(db_sig===arg);
 
 initial begin
-    ctl_sw_4d_sig = 0;
+    reg_sw_4d_lo_sig = 0;
+    reg_sw_4d_hi_sig = 0;
     ctl_sw_4u_sig = 0;
 
     reg_sel_af_sig = 0;         // Select AF register
@@ -139,7 +141,8 @@ reg_file reg_file_inst
     .reg_sel_gp_hi(reg_sel_gp_hi_sig) ,     // input  reg_sel_gp_hi_sig
     .reg_sel_ir(reg_sel_ir_sig) ,           // input  reg_sel_ir_sig
     .reg_sel_pc(reg_sel_pc_sig) ,           // input  reg_sel_pc_sig
-    .ctl_sw_4d(ctl_sw_4d_sig) ,             // input  ctl_sw_4d_sig
+    .reg_sw_4d_lo(reg_sw_4d_lo_sig) ,       // input  reg_sw_4d_lo_sig
+    .reg_sw_4d_hi(reg_sw_4d_hi_sig) ,       // input  reg_sw_4d_hi_sig
     .ctl_sw_4u(ctl_sw_4u_sig) ,             // input  ctl_sw_4u_sig
     .reg_sel_wz(reg_sel_wz_sig) ,           // input  reg_sel_wz_sig
     .reg_sel_sp(reg_sel_sp_sig) ,           // input  reg_sel_sp_sig

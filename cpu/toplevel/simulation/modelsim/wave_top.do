@@ -152,6 +152,8 @@ add wave -noupdate -group regfile -group selects -color Gold /test_top/dut/reg_f
 add wave -noupdate -group regfile -group selects /test_top/dut/reg_file_/reg_sel_wz
 add wave -noupdate -group regfile -group selects /test_top/dut/reg_file_/reg_sel_ir
 add wave -noupdate -group regfile -group selects /test_top/dut/reg_file_/reg_sel_pc
+add wave -noupdate -group regfile -group selects /test_top/dut/reg_file_/reg_sw_4d_lo
+add wave -noupdate -group regfile -group selects /test_top/dut/reg_file_/reg_sw_4d_hi
 add wave -noupdate -group regfile -radix hexadecimal /test_top/dut/reg_file_/db_hi_as
 add wave -noupdate -group regfile -radix hexadecimal -childformat {{{/test_top/dut/reg_file_/db_lo_as[7]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[6]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[5]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[4]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[3]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[2]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[1]} -radix hexadecimal} {{/test_top/dut/reg_file_/db_lo_as[0]} -radix hexadecimal}} -subitemconfig {{/test_top/dut/reg_file_/db_lo_as[7]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[6]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[5]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[4]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[3]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[2]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[1]} {-height 15 -radix hexadecimal} {/test_top/dut/reg_file_/db_lo_as[0]} {-height 15 -radix hexadecimal}} /test_top/dut/reg_file_/db_lo_as
 add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_mask543_en
@@ -159,7 +161,7 @@ add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_1u
 add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_1d
 add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_2u
 add wave -noupdate -group switch /test_top/dut/bus_switch_/ctl_sw_2d
-add wave -noupdate -group switch -color Aquamarine /test_top/dut/reg_file_/ctl_sw_4d
+add wave -noupdate -group switch /test_top/dut/reg_control_/ctl_sw_4d
 add wave -noupdate -group switch -color Aquamarine /test_top/dut/reg_file_/ctl_sw_4u
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_oe
 add wave -noupdate -group {data pins} /test_top/dut/data_pins_/bus_db_pin_re
