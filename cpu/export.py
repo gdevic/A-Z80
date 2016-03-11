@@ -4,7 +4,7 @@
 # The files copied are necessary and sufficient to include with your custom project.
 #
 #-------------------------------------------------------------------------------
-#  Copyright (C) 2016  Goran Devic
+#  Copyright (C) 2014, 2016  Goran Devic, www.baltazarstudios.com
 #
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -40,6 +40,9 @@ if not os.path.isdir(dest):
 with open('top-level-files.txt') as f:
     files = f.read().splitlines()
 
+with open('copyleft.txt') as f:
+    copyleft = f.read()
+
 # Read and copy each file from the list of input files
 for infile in files:
     if infile.startswith('+'):
@@ -55,5 +58,8 @@ for infile in files:
         continue
     name = os.path.basename(infile)
     print ('Copying', infile)
-    copyfile(infile, dest + '/' + name)
+    with open(dest + '/' + name, 'wt') as f:
+        f.write(copyleft)
+        with open(infile) as g:
+            f.write(g.read())
     total += 1
