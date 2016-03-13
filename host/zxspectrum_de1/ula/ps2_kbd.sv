@@ -20,7 +20,7 @@
 module ps2_keyboard
 (
     input wire clk,
-    input wire reset,           // Reset (negative logic)
+    input wire nreset,          // Active low reset
     input wire PS2_CLK,         // PS/2 keyboard clock line
     input wire PS2_DAT,         // PS/2 keyboard data line
 
@@ -47,9 +47,9 @@ assign parity = ^shiftreg[8:0];
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Filter the PS/2 clock signal since it might have a noise (false '1')
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-always @(posedge clk or negedge reset)
+always @(posedge clk or negedge nreset)
 begin
-    if (!reset) begin
+    if (!nreset) begin
         ps2_clk_in <= 1;
         clk_filter <= 8'b1;
         clk_edge <= 0;
@@ -73,9 +73,9 @@ end
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // State machine to process bits of PS/2 data
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-always @(posedge clk or negedge reset)
+always @(posedge clk or negedge nreset)
 begin
-    if (!reset) begin
+    if (!nreset) begin
         bit_count <= '0;
         shiftreg <= '0;
         scan_code_ready <= 0;

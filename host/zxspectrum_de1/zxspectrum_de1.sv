@@ -22,7 +22,7 @@ module zxspectrum_board
     //-------- Clocks and reset -----------------
     input wire CLOCK_27,            // Input clock 27 MHz
     input wire CLOCK_24,            // Input clock 24 MHz
-    input wire KEY0,                // RESET button
+    input wire KEY0,                // RESET button; on DE1, keys are active low!
     input wire KEY1,                // NMI button
 
     //-------- PS/2 Keyboard --------------------
@@ -202,7 +202,7 @@ ula ula_(
     .CLOCK_24 (CLOCK_24),       // Input clock 24 MHz
     .turbo (SW2),               // Turbo speed (3.5 MHz x 2 = 7.0 MHz)
     .clk_vram (clk_vram),
-    .reset (reset),             // KEY0 is reset
+    .nreset (reset),            // KEY0 is reset; on DE1, keys are active low!
     .locked (locked),           // PLL is locked signal
 
     //-------- CPU control ----------------------

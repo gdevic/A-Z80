@@ -1,22 +1,22 @@
 //============================================================================
 // Implementation of the ZX Spectrum keyboard input generator
-// This module takes scan-codes from the PS/2 keyboard input and sets
-// corresponding ZX key bitfields which are read by IN (FE) instructions.
+// This module takes scan-codes from the attached PS/2 keyboard and sets
+// corresponding ZX key bitfields which are read by the 'IN' instructions.
 //
 // PS/2      |  ZX Spectrum
 // ----------+-----------------
 // CTRL      |  CAPS SHIFT
 // ALT       |  SYMBOL SHIFT
 //
-// In addition to regular alpha-numeric keys, this code simulates many standard
-// symbols on the PS/2 keyboard for convenience.
+// For convenience, in addition to regular alpha-numeric keys, this code
+// simulates several other standard symbols on the PS/2 keyboard.
 //
 // PS/2      |  ZX Spectrum
 // ----------+-----------------
 // BACKSPACE |  DELETE
 // Arrows Left, Right, Up, Down
 // ESC       |  BREAK (CAPS+SPACE)
-// SHIFT => PS/2 shift for these separate additional keys: -_ += ;: "' <, >. ?/
+// SHIFT => PS/2 shift for additional keys: -_ += ;: "' <, >. ?/
 //
 //  Copyright (C) 2014-2016  Goran Devic
 //
@@ -37,7 +37,7 @@
 module zx_keyboard
 (
     input wire clk,
-    input wire reset,           // Reset (negative logic)
+    input wire nreset,          // Active low reset
 
     // Output ZX-specific keyboard codes when requested by the ULA access
     input wire [15:0] A,        // Address bus
@@ -79,9 +79,9 @@ begin
     endcase
 end
 
-always @(posedge clk or negedge reset)
+always @(posedge clk or negedge nreset)
 begin
-    if (!reset) begin
+    if (!nreset) begin
         released <= 0;
         extended <= 0;
         shifted  <= 0;
