@@ -2,6 +2,9 @@
 ;** An Assembly File Listing to generate a 16K ROM for the ZX Spectrum **
 ;************************************************************************
 ;
+; 03-13-2016:
+; Add custom NMI handler and a function to enter game pokes after pressing the NMI button
+;
 ; 11-10-2014:
 ; This version has been updated to correctly handle the NMI jump.
 ;
@@ -251,11 +254,12 @@ L0055:  LD      (IY+$00),L      ; Store it in the system variable ERR_NR.
 ;; RESET
 L0066:  PUSH    AF              ; save the
         PUSH    HL              ; registers.
-        LD      HL,($5CB0)      ; fetch the system variable NMIADD.
+;       LD      HL,($5CB0)      ; fetch the system variable NMIADD.
+        LD      HL, nmi_handler ; Custom NMI handler
         LD      A,H             ; test address
         OR      L               ; for zero.
 
-;        JR      NZ,L0070       ; skip to NO-RESET if NOT ZERO
+;       JR      NZ,L0070       ; skip to NO-RESET if NOT ZERO
         JR      Z,L0070         ; **FIXED**
 
         JP      (HL)            ; jump to routine ( i.e. L0000 )
@@ -19103,6 +19107,106 @@ L386C:  DEFB    $38             ;;end-calc              last value is 1 or 0.
 ;; spare
 L386E:  DEFB    $FF, $FF        ;
 
+; ----------------------------------------------------------------------------
+; This custom NMI handler provides a way to enter a POKE for a game by typing in
+; the address (5 decimal digits) followed by the value (3 decimal digits)
+; after which the value will be stored to the selected location.
+; ----------------------------------------------------------------------------
+nmi_handler:                    ; NMI handler
+        push    bc
+        push    de
+        push    ix
+        ld      hl,$04000       ; Use the screen memory as a temp storage
+        ld      e,$08           ; Will load 8 characters (numbers)
+next_key:
+        ld      bc,$f7fe        ; Number row 1..5
+        in      a,(c)
+        ld      c,a
+        ld      a,$01           ; Preload "1"
+        bit     0,c             ; If the key has been pressed
+        jr      z,accept_key    ; Accept it
+        inc     a               ; Preload "2"
+        bit     1,c             ; and continue for every key up to "5"
+        jr      z,accept_key
+        inc     a
+        bit     2,c
+        jr      z,accept_key
+        inc     a
+        bit     3,c
+        jr      z,accept_key
+        inc     a
+        bit     4,c
+        jr      z,accept_key
+        ld      bc,$effe        ; Number row 6...0
+        in      a,(c)
+        ld      c,a
+        ld      a,$06
+        bit     4,c
+        jr      z,accept_key
+        inc     a
+        bit     3,c
+        jr      z,accept_key
+        inc     a
+        bit     2,c
+        jr      z,accept_key
+        inc     a
+        bit     1,c
+        jr      z,accept_key
+        xor     a
+        bit     0,c
+        jr      z,accept_key
+        jp      next_key
+accept_key:
+        ld      (hl),a          ; Store current key value into the buffer
+        inc     hl
+poll_key_release:               ; Poll for any pressed key to be released
+        ld      bc,$f7fe
+        in      a,(c)
+        cpl
+        and     $1f
+        jr      nz,poll_key_release
+        ld      bc,$effe
+        in      a,(c)
+        cpl
+        and     $1f
+        jr      nz,poll_key_release
+        dec     e               ; Decrement the number of keys expected
+        jr      nz,next_key     ; Jump back to accept next key if not yet done
+        ld      ix,$4000
+        ld      b,$05           ; First 5 numbers represent the address to POKE to
+        call    decimal_to_hl
+        push    hl              ; Address is in HL, store it
+        ld      b,$03           ; Next 3 numbers represent the value to POKE
+        call    decimal_to_hl
+        ld      a,l             ; Value is in L
+        pop     hl              ; Get the address
+        ld      (hl),a          ; POKE a value
+        pop     ix
+        pop     de
+        pop     bc
+        pop     hl
+        pop     af
+        retn
+; Read a decimal value pointed to by IX register
+; The number of digits is given in B register
+; Return the value in HL register
+decimal_to_hl:
+        ld      hl,$0000        ; Start with value of 0
+lp2:
+        push    bc
+        ld      b,$09           ; Multiply the current value by 10
+        push    hl
+        pop     de
+lp1:
+        add     hl,de
+        djnz    lp1
+        pop     bc
+        ld      e,(ix+0)        ; Read in the next digit
+        ld      d,$00
+        add     hl,de           ; Add in the new value
+        inc     ix
+        djnz    lp2             ; Loop for the requested number of digits
+        ret
 
         DEFB    $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF;
         DEFB    $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF;
