@@ -1,5 +1,6 @@
 //============================================================================
-// Implementation of the ZX Spectrum keyboard input generator
+// ZX Spectrum keyboard input
+//
 // This module takes scan-codes from the attached PS/2 keyboard and sets
 // corresponding ZX key bitfields which are read by the 'IN' instructions.
 //
@@ -63,21 +64,15 @@ reg shifted;                // Tracks local "shifted" state
 assign pressed = ~(&keys[7] & &keys[6] & &keys[5] & &keys[4] & &keys[3] & &keys[2] & &keys[1] & &keys[0]);
 
 // Output requested row of keys continously
-always @(*) // always_comb
-begin
-    case (A[15:8])
-        8'b11111110: key_row = keys[0];
-        8'b11111101: key_row = keys[1];
-        8'b11111011: key_row = keys[2];
-        8'b11110111: key_row = keys[3];
-        8'b11101111: key_row = keys[4];
-        8'b11011111: key_row = keys[5];
-        8'b10111111: key_row = keys[6];
-        8'b01111111: key_row = keys[7];
-    default:
-        key_row = 5'b11111;
-    endcase
-end
+assign key_row =
+    (~A[8]  ? keys[0] : 5'b11111) &
+    (~A[9]  ? keys[1] : 5'b11111) &
+    (~A[10] ? keys[2] : 5'b11111) &
+    (~A[11] ? keys[3] : 5'b11111) &
+    (~A[12] ? keys[4] : 5'b11111) &
+    (~A[13] ? keys[5] : 5'b11111) &
+    (~A[14] ? keys[6] : 5'b11111) &
+    (~A[15] ? keys[7] : 5'b11111);
 
 always @(posedge clk or negedge nreset)
 begin
