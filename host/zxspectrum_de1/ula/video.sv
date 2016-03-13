@@ -1,5 +1,5 @@
 //============================================================================
-// Implementation of the Sinclair ZX Spectrum ULA
+// Sinclair ZX Spectrum ULA
 //
 // This module contains video support.
 //

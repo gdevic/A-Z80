@@ -1,5 +1,5 @@
 //============================================================================
-// Implementation of the PS/2 keyboard scan-code reader
+// PS/2 keyboard scan-code reader
 //
 //  Copyright (C) 2014-2016  Goran Devic
 //

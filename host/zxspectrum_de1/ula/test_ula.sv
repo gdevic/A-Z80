@@ -1,5 +1,5 @@
 //============================================================================
-// Test the implementation of the Sinclair ZX Spectrum ULA
+// Test Sinclair ZX Spectrum ULA
 //
 //  Copyright (C) 2014-2016  Goran Devic
 //
