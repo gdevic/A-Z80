@@ -63,8 +63,9 @@ module zxspectrum_board
     output wire SRAM_UB_N,
     output wire SRAM_LB_N,
 
-    //-------- My little imitation of a Kempston joystick -----------
-    input wire [5:0] kempston,
+    //-------- Atari joystick mapped as Kempston
+    input wire [4:0] kempston,      // Input with weak pull-up
+    output wire kempston_gnd,       // Helps mapping to DB9 cable
     output wire [4:0] LEDG,         // Show the joystick state
 
     //-------- Misc and debug -------------------
@@ -85,6 +86,7 @@ assign reset = locked & KEY0;
 assign GPIO_1[15:0] = A[15:0];
 assign GPIO_1[23:16] = D[7:0];
 assign GPIO_1[31:24] = {nM1,nMREQ,nIORQ,nRD,nWR,nRFSH,nHALT,nBUSACK};
+assign kempston_gnd = 0;
 
 // Top 3 green LEDs show various states:
 assign LEDGTOP[2] = 0;              // Reserved for future use
@@ -129,11 +131,10 @@ begin
                 // Normally data supplied by the ULA
                 D[7:0] = ula_data;
 
-                // Kempston joystick at the IO address of 0x1F: active bits are high: 000FUDLR
-                // The bits are scrambled since I just happen to solder them that way on a game
-                // pad I've got (see my blog); you can remap it if you have another kind of joystick
+                // Kempston joystick at the IO address 0x1F; active bits are high:
+                //                   FIRE         UP           DOWN         LEFT         RIGHT
                 if (A[7:0]==8'h1F) begin
-                    D[7:0] = { 3'b0, !kempston[3],!kempston[5],!kempston[4],!kempston[0],!kempston[2] };
+                    D[7:0] = { 3'b0, !kempston[4],!kempston[0],!kempston[1],!kempston[2],!kempston[3] };
                 end
             end
     default:
@@ -284,10 +285,10 @@ z80_top_direct_n z80_(
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Lit green LEDs to show activity on a Kempston compatible joystick
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assign LEDG[0] = !kempston[5];                  // UP
-assign LEDG[1] = !kempston[4];                  // DOWN
-assign LEDG[2] = !kempston[0];                  // LEFT
-assign LEDG[3] = !kempston[2];                  // RIGHT
-assign LEDG[4] = !kempston[3] | !kempston[1];   // BUTTON
+assign LEDG[0] = !kempston[0]; // UP
+assign LEDG[1] = !kempston[1]; // DOWN
+assign LEDG[2] = !kempston[2]; // LEFT
+assign LEDG[3] = !kempston[3]; // RIGHT
+assign LEDG[4] = !kempston[4]; // FIRE
 
 endmodule
