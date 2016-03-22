@@ -147,7 +147,7 @@ begin
     ula_data = 8'hFF;
     // Regular IO at every odd address: line-in and keyboard
     if (A[0]==0) begin
-        ula_data = { 1'b0, pcm_inl[14] | pcm_inr[14], 1'b0, key_row[4:0] };
+        ula_data = { 1'b1, pcm_inl[14] | pcm_inr[14], 1'b1, key_row[4:0] };
     end
 end
 
