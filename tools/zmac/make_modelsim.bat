@@ -9,7 +9,7 @@ Rem     this script will keep the DOS window open so you can see the errors.
 Rem
 zmac --zmac %1
 if errorlevel 1 goto error
-bindump.py zout\%~n1.cim ..\..\cpu\toplevel\simulation\modelsim\ram.hexdump
+python bindump.py zout\%~n1.cim ..\..\cpu\toplevel\simulation\modelsim\ram.hexdump
 if errorlevel 1 goto error
 goto end
 
