@@ -23,7 +23,9 @@ from shutil import copyfile
 if len(sys.argv) != 2:
     print ("\nUsage: export.py <destination-folder>\n")
     print ("Copies all core A-Z80 Verilog files to a destination of your choice.")
-    print ("The files copied are necessary and sufficient to include with your project.")
+    print ("The files copied are necessary and sufficient to include with your project.\n")
+    print ("Note for the users of Lattice FPGA toolset: instead of data_pins.v, manually")
+    print ("copy and use data_pins_lattice.v file instead.")
     exit(-1)
 
 dest = sys.argv[1]

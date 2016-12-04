@@ -1,6 +1,9 @@
-This is a list of A-Z80 top-level files and their dependencies.
-These files comprise the A-Z80 CPU proper. Use export.py to copy
-them into your project folder.
+# This is a list of A-Z80 top-level files and their dependencies.
+# These files comprise the A-Z80 CPU proper. Use export.py to copy
+# them into your project folder.
+#
+# Note for the users of Lattice FPGA toolset: instead of data_pins.v
+# manually copy and use data_pins_lattice.v file instead.
 
 ------ Control block -------
 control/clk_delay.v
