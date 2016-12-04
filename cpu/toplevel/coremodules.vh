@@ -255,7 +255,8 @@ memory_ifc memory_ifc_(
     .nRD_out (nRD_out),
     .nWR_out (nWR_out),
     .nIORQ_out (nIORQ_out),
-    .latch_wait (latch_wait)
+    .latch_wait (latch_wait),
+    .wait_m1 (wait_m1)
 );
 
 sequencer sequencer_(

@@ -159,6 +159,7 @@ wire nRD_out;
 wire nWR_out;
 wire nIORQ_out;
 wire latch_wait;
+wire wait_m1;
 
 // Module: control/sequencer.v
 wire M1;
