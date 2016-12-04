@@ -3842,7 +3842,7 @@ if (ixy_d) begin
                     ctl_alu_core_hf|=~ctl_alu_op_low;
                     ctl_flags_xy_we=1;
                     ctl_alu_sel_op2_neg=flags_sf;
-                    ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; /* Clear IX/IY flag */ end
+                    ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; /* Clear IX/IY flag if not explicitly set */ end
 end
 
 // Default instruction fetch (M1) state machine
@@ -3855,8 +3855,8 @@ if (1) begin
                     ctl_reg_sel_ir=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit IR */
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
-                    ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; /* Clear IX/IY flag */
-                    ctl_state_tbl_clr=~setCBED; /* Clear CB/ED prefix */
+                    ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; /* Clear IX/IY flag if not explicitly set */
+                    ctl_state_tbl_clr=~setCBED; /* Clear CB/ED prefix if not explicitly set */
                     ctl_ir_we=1;
                     ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
     if (M1 & T3) begin
