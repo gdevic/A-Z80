@@ -282,6 +282,7 @@ while True:
 # Write out the total number of clocks that this set of tests takes to execute
 ftest.write("`define TOTAL_CLKS " + str(total_clks) + "\n")
 ftest.write("$fdisplay(f,\"=== Tests completed ===\");\n")
+ftest.close()
 
 # Touch a file that includes 'test_fuse.vh' to ensure it will recompile correctly
 os.utime("test_fuse.sv", None)
