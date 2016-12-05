@@ -143,10 +143,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -319,10 +319,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#34 // Execute
+#34 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -496,10 +496,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#34 // Execute
+#34 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -672,10 +672,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -848,10 +848,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1024,10 +1024,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1200,10 +1200,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1375,10 +1375,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1550,10 +1550,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1725,10 +1725,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -1900,10 +1900,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2075,10 +2075,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#12 // Execute
+#12 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2250,10 +2250,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2425,10 +2425,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2600,10 +2600,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2775,10 +2775,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#12 // Execute
+#12 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -2951,10 +2951,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#36 // Execute
+#36 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3126,10 +3126,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#10 // Execute
+#10 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3299,10 +3299,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#10 // Execute
+#10 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3472,10 +3472,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3645,10 +3645,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#6 // Execute
+#6 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3821,10 +3821,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -3997,10 +3997,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -4173,10 +4173,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#28 // Execute
+#28 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -4350,10 +4350,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -4526,10 +4526,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -4702,10 +4702,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#14 // Execute
+#14 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -4877,10 +4877,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#36 // Execute
+#36 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2
@@ -5055,10 +5055,10 @@ force dut.z80_top_ifc_n.fpga_reset=1;
    force dut.address_latch_.Q=16'h0000;
    release dut.reg_control_.ctl_reg_sys_we;
    release dut.reg_file_.reg_gp_we;
-#3
-   release dut.address_latch_.Q;
+#2 // Execute: M1/T1 start
+#1 release dut.address_latch_.Q;
 #1
-#36 // Execute
+#36 // Wait for opcode end
    force dut.reg_control_.ctl_reg_sys_we=0;
 #2 pc=z.A;
 #2

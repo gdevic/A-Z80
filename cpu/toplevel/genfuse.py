@@ -189,9 +189,9 @@ while True:
     ftest.write("   force dut.address_latch_.Q=16'h" + r[11] +";\n") # Force PC into the address latch
     ftest.write("   release dut.reg_control_.ctl_reg_sys_we;\n")
     ftest.write("   release dut.reg_file_.reg_gp_we;\n")
-    ftest.write("#3\n")             # 1T (#2) overlaps the reset cycle
-    total_clks = total_clks + 3     # We borrow 1T (#2) to to force the PC to be what our test wants...
-    ftest.write("   release dut.address_latch_.Q;\n")
+    ftest.write("#2 // Execute: M1/T1 start\n") # 1T (#2) overlaps the reset cycle
+    ftest.write("#1 release dut.address_latch_.Q;\n")
+    total_clks = total_clks + 3 # We borrow 1T (#2) to to force the PC to be what our test wants...
     ftest.write("#1\n")
     total_clks = total_clks + 1
 
@@ -214,7 +214,7 @@ while True:
 
     ticks = int(s[6]) * 2 - 2       # We return 1T (#2) that we borrowed to set PC
     total_clks = total_clks + ticks
-    ftest.write("#" + str(ticks) + " // Execute\n")
+    ftest.write("#" + str(ticks) + " // Wait for opcode end\n")
 
     ftest.write("   force dut.reg_control_.ctl_reg_sys_we=0;\n")
     ftest.write("#2 pc=z.A;\n")     # Extra 2T for the next instruction overlap & read PC on the ABus
