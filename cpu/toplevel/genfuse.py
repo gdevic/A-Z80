@@ -40,8 +40,8 @@ start_test = "00"
 # Number of tests to run; use -1 to run all tests
 run_tests = 1
 
-# Set this to 1 to use regression test files instead of 'tests.*'
-# It will run all regression tests (start_test, run_tests are ignored)
+# Set this to 1 to use regression test instead of selected or full 'tests.*'
+# Regression test is a shorter set of tests and ignores start_test and run_tests values
 regress = 1
 
 #------------------------------------------------------------------------------
@@ -100,12 +100,11 @@ ftest.write("force dut.resets_.clrpc=0;\n")
 ftest.write("force dut.reg_file_.reg_gp_we=0;\n")
 ftest.write("force dut.reg_control_.ctl_reg_sys_we=0;\n")
 ftest.write("force dut.z80_top_ifc_n.fpga_reset=1;\n")
-ftest.write("#2\n")
+ftest.write("#2 // Start test loop\n\n")
 total_clks = total_clks + 2
 
 # Read each test from the testdat.in file
 while True:
-    ftest.write("//" + "-" * 80 + "\n")
     if len(t1)==0 or run_tests==0:
         break
     run_tests = run_tests-1
@@ -122,7 +121,7 @@ while True:
     # AF BC DE HL AF' BC' DE' HL' IX IY SP PC
     # I R IFF1 IFF2 IM <halted> <tstates>
     name = t1.pop(0)
-    ftest.write("$fdisplay(f,\"Testing opcode " + name + "\");\n")
+    ftest.write("   $fdisplay(f,\"Testing opcode " + name + "\");\n")
     name = name.split(" ")[0]
     r = t1.pop(0).split(' ')
     r = list(filter(None, r))
@@ -278,6 +277,8 @@ while True:
     # Read a list of IO checks that was compiled while parsing the initial condition
     while len(check_io)>0:
         ftest.write(check_io.pop(0))
+    ftest.write("#1 // End opcode\n\n")
+    total_clks = total_clks + 1
 
 # Write out the total number of clocks that this set of tests takes to execute
 ftest.write("`define TOTAL_CLKS " + str(total_clks) + "\n")

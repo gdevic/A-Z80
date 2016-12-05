@@ -4,13 +4,13 @@ force dut.resets_.clrpc=0;
 force dut.reg_file_.reg_gp_we=0;
 force dut.reg_control_.ctl_reg_sys_we=0;
 force dut.z80_top_ifc_n.fpga_reset=1;
-#2
-//--------------------------------------------------------------------------------
+#2 // Start test loop
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 00      NOP");
+   $fdisplay(f,"Testing opcode 00      NOP");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -177,12 +177,13 @@ $fdisplay(f,"Testing opcode 00      NOP");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode ed67    RRD");
+   $fdisplay(f,"Testing opcode ed67    RRD");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -353,12 +354,13 @@ $fdisplay(f,"Testing opcode ed67    RRD");
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[47582]!==8'h69) $fdisplay(f,"* Mem[b9de]=%h !=69",ram.Mem[47582]);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode ed6f    RLD");
+   $fdisplay(f,"Testing opcode ed6f    RLD");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -529,12 +531,13 @@ $fdisplay(f,"Testing opcode ed6f    RLD");
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[16444]!==8'h45) $fdisplay(f,"* Mem[403c]=%h !=45",ram.Mem[16444]);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 81      ADD A,C");
+   $fdisplay(f,"Testing opcode 81      ADD A,C");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -703,12 +706,13 @@ $fdisplay(f,"Testing opcode 81      ADD A,C");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb41    BIT 0,C");
+   $fdisplay(f,"Testing opcode cb41    BIT 0,C");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -878,12 +882,13 @@ $fdisplay(f,"Testing opcode cb41    BIT 0,C");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb93    RES 2,E");
+   $fdisplay(f,"Testing opcode cb93    RES 2,E");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1053,12 +1058,13 @@ $fdisplay(f,"Testing opcode cb93    RES 2,E");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cbe5    SET 4,L");
+   $fdisplay(f,"Testing opcode cbe5    SET 4,L");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1228,12 +1234,13 @@ $fdisplay(f,"Testing opcode cbe5    SET 4,L");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 8c      ADC A,H");
+   $fdisplay(f,"Testing opcode 8c      ADC A,H");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1402,12 +1409,13 @@ $fdisplay(f,"Testing opcode 8c      ADC A,H");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 92      SUB D");
+   $fdisplay(f,"Testing opcode 92      SUB D");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1576,12 +1584,13 @@ $fdisplay(f,"Testing opcode 92      SUB D");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 9d      SBC A,L");
+   $fdisplay(f,"Testing opcode 9d      SBC A,L");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1750,12 +1759,13 @@ $fdisplay(f,"Testing opcode 9d      SBC A,L");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode a3      AND E");
+   $fdisplay(f,"Testing opcode a3      AND E");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -1924,12 +1934,13 @@ $fdisplay(f,"Testing opcode a3      AND E");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode ae      XOR (HL)");
+   $fdisplay(f,"Testing opcode ae      XOR (HL)");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2098,12 +2109,13 @@ $fdisplay(f,"Testing opcode ae      XOR (HL)");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode b4      OR H");
+   $fdisplay(f,"Testing opcode b4      OR H");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2272,12 +2284,13 @@ $fdisplay(f,"Testing opcode b4      OR H");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode bf      CP A");
+   $fdisplay(f,"Testing opcode bf      CP A");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2446,12 +2459,13 @@ $fdisplay(f,"Testing opcode bf      CP A");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 43      LD B,E");
+   $fdisplay(f,"Testing opcode 43      LD B,E");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2620,12 +2634,13 @@ $fdisplay(f,"Testing opcode 43      LD B,E");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 6e      LD L,(HL)");
+   $fdisplay(f,"Testing opcode 6e      LD L,(HL)");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2794,12 +2809,13 @@ $fdisplay(f,"Testing opcode 6e      LD L,(HL)");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode e3      EX (SP),HL");
+   $fdisplay(f,"Testing opcode e3      EX (SP),HL");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -2971,12 +2987,13 @@ $fdisplay(f,"Testing opcode e3      EX (SP),HL");
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[883]!==8'h22) $fdisplay(f,"* Mem[373]=%h !=22",ram.Mem[883]);
    if (ram.Mem[884]!==8'h4d) $fdisplay(f,"* Mem[374]=%h !=4d",ram.Mem[884]);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 03      INC BC");
+   $fdisplay(f,"Testing opcode 03      INC BC");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -3143,12 +3160,13 @@ $fdisplay(f,"Testing opcode 03      INC BC");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 3b      DEC SP");
+   $fdisplay(f,"Testing opcode 3b      DEC SP");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -3315,12 +3333,13 @@ $fdisplay(f,"Testing opcode 3b      DEC SP");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 07      RLCA");
+   $fdisplay(f,"Testing opcode 07      RLCA");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -3487,12 +3506,13 @@ $fdisplay(f,"Testing opcode 07      RLCA");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode 1f      RRA");
+   $fdisplay(f,"Testing opcode 1f      RRA");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -3659,12 +3679,13 @@ $fdisplay(f,"Testing opcode 1f      RRA");
    if (pc!==16'h0001) $fdisplay(f,"* PC=%h !=0001",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h01) $fdisplay(f,"* Reg ir r=%h !=01",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb09    RRC C");
+   $fdisplay(f,"Testing opcode cb09    RRC C");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -3834,12 +3855,13 @@ $fdisplay(f,"Testing opcode cb09    RRC C");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb11    RL C");
+   $fdisplay(f,"Testing opcode cb11    RL C");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4009,12 +4031,13 @@ $fdisplay(f,"Testing opcode cb11    RL C");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb36    SLL (HL)*");
+   $fdisplay(f,"Testing opcode cb36    SLL (HL)*");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4185,12 +4208,13 @@ $fdisplay(f,"Testing opcode cb36    SLL (HL)*");
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[27960]!==8'he3) $fdisplay(f,"* Mem[6d38]=%h !=e3",ram.Mem[27960]);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb52    BIT 2,D");
+   $fdisplay(f,"Testing opcode cb52    BIT 2,D");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4360,12 +4384,13 @@ $fdisplay(f,"Testing opcode cb52    BIT 2,D");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cb93    RES 2,E");
+   $fdisplay(f,"Testing opcode cb93    RES 2,E");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4535,12 +4560,13 @@ $fdisplay(f,"Testing opcode cb93    RES 2,E");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode cbc4    SET 0,H");
+   $fdisplay(f,"Testing opcode cbc4    SET 0,H");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4710,12 +4736,13 @@ $fdisplay(f,"Testing opcode cbc4    SET 0,H");
    if (pc!==16'h0002) $fdisplay(f,"* PC=%h !=0002",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
+   $fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -4885,12 +4912,13 @@ $fdisplay(f,"Testing opcode dd75    LD (IX+d),L");
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
    if (ram.Mem[44668]!==8'h4f) $fdisplay(f,"* Mem[ae7c]=%h !=4f",ram.Mem[44668]);
-//--------------------------------------------------------------------------------
+#1 // End opcode
+
    force dut.ir_.ctl_ir_we=1;
    force dut.ir_.db=0;
 #2 release dut.ir_.ctl_ir_we;
    release dut.ir_.db;
-$fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
+   $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
    // Preset af
    force dut.reg_file_.b2v_latch_af_lo.we=1;
    force dut.reg_file_.b2v_latch_af_hi.we=1;
@@ -5061,6 +5089,7 @@ $fdisplay(f,"Testing opcode dd4e    LD C,(IX+d)");
    if (pc!==16'h0003) $fdisplay(f,"* PC=%h !=0003",pc);
    if (dut.reg_file_.b2v_latch_ir_lo.latch!==8'h02) $fdisplay(f,"* Reg ir r=%h !=02",dut.reg_file_.b2v_latch_ir_lo.latch);
    if (dut.reg_file_.b2v_latch_ir_hi.latch!==8'h00) $fdisplay(f,"* Reg ir i=%h !=00",dut.reg_file_.b2v_latch_ir_hi.latch);
-//--------------------------------------------------------------------------------
-`define TOTAL_CLKS 1559
+#1 // End opcode
+
+`define TOTAL_CLKS 1588
 $fdisplay(f,"=== Tests completed ===");
