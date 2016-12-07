@@ -78,9 +78,8 @@ module execute
 reg validPLA;                           // Valid PLA asserts this reg
 // Activates a state machine to compute WZ=IX+d; takes 5T cycles
 reg ixy_d;                              // Compute WX=IX+d
-// Signals the setting of IX/IY and CB/ED prefix flags; inhibits clearing them
+// Signals the setting of IX/IY prefix flags; inhibits clearing them
 reg setIXIY;                            // Set IX/IY flag at the next T cycle
-reg setCBED;                            // Set CB or ED flag at the next T cycle
 // Holds asserted by non-repeating versions of block instructions (LDI/CPI,...)
 reg nonRep;                             // Non-repeating block instruction
 // Suspends incrementing PC through address latch unless in HALT or interrupt mode
@@ -139,7 +138,6 @@ begin
     fMRead = 0; fMWrite = 0; fIORead = 0; fIOWrite = 0;
     ixy_d = 0;
     setIXIY = 0;
-    setCBED = 0;
     nonRep = 0;
     pc_inc_hold = 0;
 

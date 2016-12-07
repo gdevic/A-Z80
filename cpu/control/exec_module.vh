@@ -5,11 +5,11 @@ output reg ctl_state_iy_set,
 output reg ctl_state_ixiy_clr,
 output reg ctl_state_ixiy_we,
 output reg ctl_state_halt_set,
-output reg ctl_state_tbl_clr,
 output reg ctl_state_tbl_ed_set,
 output reg ctl_state_tbl_cb_set,
 output reg ctl_state_alu,
 output reg ctl_repeat_we,
+output reg ctl_state_tbl_we,
 
 // Module: control/interrupts.v
 output reg ctl_iff1_iff2,

@@ -386,7 +386,7 @@ add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_iy_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_ixiy_clr
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_ixiy_we
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_halt_set
-add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_clr
+add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_we
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_ed_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_tbl_cb_set
 add wave -noupdate -group state /test_fuse/dut/decode_state_/ctl_state_alu

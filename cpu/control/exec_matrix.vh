@@ -3646,7 +3646,7 @@ if (pla[49]) begin
                     ctl_flags_pf_we=1;
                     ctl_flags_nf_we=1; /* Previous NF, to be used when loading FLAGT */
                     ctl_flags_cf_we=1;
-                    ctl_state_tbl_cb_set=1; setCBED=1; /* CB-table prefix */ end
+                    ctl_state_tbl_we=1; ctl_state_tbl_cb_set=1; /* CB-table prefix */ end
     if (M1 & T4) begin validPLA=1; nextM=1; ctl_mRead=1; end
     if (M2 & T1) begin fMRead=1;
                     ctl_reg_sel_pc=1; ctl_reg_sys_hilo=2'b11; /* Select 16-bit PC */
@@ -3685,14 +3685,14 @@ end
 
 if (pla[44]) begin
     if (M1 & T2) begin
-                    ctl_state_tbl_cb_set=1; setCBED=1; /* CB-table prefix */ end
+                    ctl_state_tbl_we=1; ctl_state_tbl_cb_set=1; /* CB-table prefix */ end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
 
 if (pla[51]) begin
     if (M1 & T2) begin
-                    ctl_state_tbl_ed_set=1; setCBED=1; /* ED-table prefix */ end
+                    ctl_state_tbl_we=1; ctl_state_tbl_ed_set=1; /* ED-table prefix */ end
     if (M1 & T4) begin validPLA=1; setM1=1;
                     ctl_no_ints=1; /* Disable interrupt generation for this opcode (DI/EI/CB/ED/DD/FD) */ end
 end
@@ -3856,7 +3856,7 @@ if (1) begin
                     ctl_al_we=1; /* Write a value from the register bus to the address latch */
                     ctl_bus_db_oe=1; /* Read DB pads to internal data bus */
                     ctl_state_ixiy_we=1; ctl_state_ixiy_clr=~setIXIY; /* Clear IX/IY flag if not explicitly set */
-                    ctl_state_tbl_clr=~setCBED; /* Clear CB/ED prefix if not explicitly set */
+                    ctl_state_tbl_we=1; /* Clear CB/ED prefix if not explicitly set */
                     ctl_ir_we=1;
                     ctl_bus_zero_oe=in_halt; ctl_bus_ff_oe=(in_intr & (im1 | im2)) | in_nmi; end
     if (M1 & T3) begin
