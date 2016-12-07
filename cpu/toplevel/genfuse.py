@@ -19,8 +19,12 @@
 #    run_tests = -1
 #    regress = 0
 #
+# Orthogonal to that, set m1wait to a non-zero value to test nWAIT insertion at
+# the first M1 cycle of an instruction. Change it to the number of T-clocks to
+# insert.
+#
 #-------------------------------------------------------------------------------
-#  Copyright (C) 2014  Goran Devic
+#  Copyright (C) 2016  Goran Devic
 #
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -43,6 +47,9 @@ run_tests = 1
 # Set this to 1 to use regression test instead of selected or full 'tests.*'
 # Regression test is a shorter set of tests and ignores start_test and run_tests values
 regress = 1
+
+# Set this to a number of WAIT cycles to add at M1 clock period or 0 not to test nWAIT
+m1wait = 0
 
 #------------------------------------------------------------------------------
 # Determine which test files to use
@@ -214,6 +221,13 @@ while True:
 
     ticks = int(s[6]) * 2 - 2       # We return 1T (#2) that we borrowed to set PC
     total_clks = total_clks + ticks
+
+    # Test WAIT state insertion at the M1 clock cycle
+    if m1wait:
+        ftest.write("   z.nWAIT <= 0;\n")
+        ftest.write("#" + str(m1wait * 2) + " z.nWAIT <= 1; // nWAIT during M1\n")
+        total_clks = total_clks + m1wait * 2
+
     ftest.write("#" + str(ticks) + " // Wait for opcode end\n")
 
     ftest.write("   force dut.reg_control_.ctl_reg_sys_we=0;\n")
