@@ -201,6 +201,7 @@ ir ir_(
     .ctl_ir_we (ctl_ir_we),
     .clk (clk),
     .nreset (nreset),
+    .hold_clk_wait (hold_clk_wait),
     .db (db0[7:0]),
     .opcode (opcode)
 );
