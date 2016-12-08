@@ -41,6 +41,8 @@ add wave -noupdate -expand -group {host
 } /test_bench_host/host_/D
 add wave -noupdate -expand -group {host
 } /test_bench_host/host_/RamData
+add wave -noupdate /test_bench_host/host_/nWAIT_M1_sig
+add wave -noupdate /test_bench_host/host_/nWAIT_Mem_sig
 add wave -noupdate -group {RAM
 } /test_bench_host/host_/ram_/address
 add wave -noupdate -group {RAM

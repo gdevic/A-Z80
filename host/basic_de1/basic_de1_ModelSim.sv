@@ -39,13 +39,22 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-wire nWAIT = 1;
+wire nWAIT;
 wire nINT = nint;
 wire nNMI = nnmi;
 wire nBUSRQ = 1;
 
 wire [15:0] A;
 wire [7:0] D;
+
+// This is an optional, test feature: add M1/Memory Wait states as described in the Zilog manual
+reg nWAIT_M1_sig;
+reg nWAIT_Mem_sig;
+
+// *** Uncomment one of the following 3 choices ***:
+//assign nWAIT = nWAIT_M1_sig;  // Add one wait state to an M1 cycle
+//assign nWAIT = nWAIT_Mem_sig; // Add one wait state to any memory cycle (M1 + memory read/write)
+assign nWAIT = 1;               // Do not add wait cycles
 
 // ----------------- INTERNAL WIRES -----------------
 wire [7:0] RamData;                     // RamData is a data writer from the RAM module
@@ -66,6 +75,18 @@ assign D[7:0] = (A[15:14]=='h0 && nIORQ==1 && nRD==0 && nWR==1) ? RamData :
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate gates to add Wait states to M1 and Memory cycles (for testing)
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wait_state wait_state_inst
+(
+    .CLK(clk),
+    .nM1(nM1),
+    .nMREQ((nMREQ === z) ? 1'b1 : nMREQ), // Correct nMREQ from being tri-stated after reset
+    .nWAIT_M1(nWAIT_M1_sig),
+    .nWAIT_Mem(nWAIT_Mem_sig)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 16Kb of RAM memory
