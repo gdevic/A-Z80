@@ -59,13 +59,22 @@ wire nRFSH;
 wire nHALT;
 wire nBUSACK;
 
-wire nWAIT = 1;
+wire nWAIT;
 wire nBUSRQ = 1;
 wire nINT = KEY1;
 wire nNMI = KEY2;
 
 wire [15:0] A;
 wire [7:0] D;
+
+// This is an optional, test feature: add M1/Memory Wait states as described in the Zilog manual
+reg nWAIT_M1_sig;
+reg nWAIT_Mem_sig;
+
+// *** Uncomment one of the following 3 choices ***:
+//assign nWAIT = nWAIT_M1_sig;  // Add one wait state to an M1 cycle
+//assign nWAIT = nWAIT_Mem_sig; // Add one wait state to any memory cycle (M1 + memory read/write)
+assign nWAIT = 1;               // Do not add wait cycles
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate PLL
@@ -122,6 +131,18 @@ end
 // Instantiate A-Z80 CPU module
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 z80_top_direct_n z80_( .*, .nRESET(reset), .CLK(clk_cpu) );
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Instantiate gates to add Wait states to M1 and Memory cycles (for testing)
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wait_state wait_state_inst
+(
+    .CLK(clk_cpu),
+    .nM1(nM1),
+    .nMREQ(nMREQ),
+    .nWAIT_M1(nWAIT_M1_sig),
+    .nWAIT_Mem(nWAIT_Mem_sig)
+);
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Instantiate 16Kb of RAM memory

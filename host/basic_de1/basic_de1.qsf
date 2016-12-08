@@ -639,6 +639,7 @@ set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_control.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_file.v
 set_global_assignment -name VERILOG_FILE ../../cpu/registers/reg_latch.v
 set_global_assignment -name VERILOG_FILE ../common/uart.v
+set_global_assignment -name VERILOG_FILE ../common/wait_state.v
 set_global_assignment -name VERILOG_FILE basic_de1_fpga.sv
 set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name QIP_FILE pll.qip
