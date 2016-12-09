@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Tue Mar 08 20:46:27 2016"
+// CREATED		"Thu Dec 08 22:19:25 2016"
 
 module reg_control(
 	ctl_reg_exx,
@@ -34,6 +34,7 @@ module reg_control(
 	ctl_reg_sys_we,
 	clk,
 	ctl_sw_4d,
+	hold_clk_wait,
 	ctl_reg_gp_hilo,
 	ctl_reg_gp_sel,
 	ctl_reg_sys_hilo,
@@ -80,6 +81,7 @@ input wire	ctl_reg_sys_we_hi;
 input wire	ctl_reg_sys_we;
 input wire	clk;
 input wire	ctl_sw_4d;
+input wire	hold_clk_wait;
 input wire	[1:0] ctl_reg_gp_hilo;
 input wire	[1:0] ctl_reg_gp_sel;
 input wire	[1:0] ctl_reg_sys_hilo;
@@ -111,6 +113,7 @@ reg	bank_af;
 reg	bank_exx;
 reg	bank_hl_de1;
 reg	bank_hl_de2;
+wire	n_hold_clk_wait;
 wire	reg_sys_we_lo_ALTERA_SYNTHESIZED;
 wire	SYNTHESIZED_WIRE_52;
 wire	SYNTHESIZED_WIRE_53;
@@ -172,7 +175,7 @@ assign	SYNTHESIZED_WIRE_5 =  ~ctl_reg_use_sp;
 
 assign	reg_sel_ix = SYNTHESIZED_WIRE_56 & use_ix;
 
-assign	SYNTHESIZED_WIRE_37 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_53;
+assign	SYNTHESIZED_WIRE_50 = ctl_reg_ex_de_hl & SYNTHESIZED_WIRE_53;
 
 assign	reg_sel_iy = SYNTHESIZED_WIRE_56 & SYNTHESIZED_WIRE_10;
 
@@ -180,15 +183,15 @@ assign	reg_sel_af2 = bank_af & SYNTHESIZED_WIRE_54;
 
 assign	SYNTHESIZED_WIRE_2 =  ~bank_af;
 
-assign	SYNTHESIZED_WIRE_48 = SYNTHESIZED_WIRE_57 & SYNTHESIZED_WIRE_58;
+assign	SYNTHESIZED_WIRE_47 = SYNTHESIZED_WIRE_57 & SYNTHESIZED_WIRE_58;
 
-assign	SYNTHESIZED_WIRE_47 = bank_hl_de2 & SYNTHESIZED_WIRE_59;
+assign	SYNTHESIZED_WIRE_46 = bank_hl_de2 & SYNTHESIZED_WIRE_59;
 
-assign	SYNTHESIZED_WIRE_41 = SYNTHESIZED_WIRE_60 & SYNTHESIZED_WIRE_58;
+assign	SYNTHESIZED_WIRE_39 = SYNTHESIZED_WIRE_60 & SYNTHESIZED_WIRE_58;
 
-assign	SYNTHESIZED_WIRE_50 = bank_hl_de2 & SYNTHESIZED_WIRE_58;
+assign	SYNTHESIZED_WIRE_49 = bank_hl_de2 & SYNTHESIZED_WIRE_58;
 
-assign	SYNTHESIZED_WIRE_49 = SYNTHESIZED_WIRE_57 & SYNTHESIZED_WIRE_59;
+assign	SYNTHESIZED_WIRE_48 = SYNTHESIZED_WIRE_57 & SYNTHESIZED_WIRE_59;
 
 assign	reg_sel_de = SYNTHESIZED_WIRE_53 & SYNTHESIZED_WIRE_21;
 
@@ -198,13 +201,13 @@ assign	reg_sel_de2 = bank_exx & SYNTHESIZED_WIRE_24;
 
 assign	reg_sel_hl2 = bank_exx & SYNTHESIZED_WIRE_25;
 
-assign	SYNTHESIZED_WIRE_40 = bank_hl_de1 & SYNTHESIZED_WIRE_59;
+assign	SYNTHESIZED_WIRE_38 = bank_hl_de1 & SYNTHESIZED_WIRE_59;
 
 assign	SYNTHESIZED_WIRE_53 =  ~bank_exx;
 
-assign	SYNTHESIZED_WIRE_46 = bank_hl_de1 & SYNTHESIZED_WIRE_58;
+assign	SYNTHESIZED_WIRE_45 = bank_hl_de1 & SYNTHESIZED_WIRE_58;
 
-assign	SYNTHESIZED_WIRE_45 = SYNTHESIZED_WIRE_60 & SYNTHESIZED_WIRE_59;
+assign	SYNTHESIZED_WIRE_44 = SYNTHESIZED_WIRE_60 & SYNTHESIZED_WIRE_59;
 
 assign	SYNTHESIZED_WIRE_52 = SYNTHESIZED_WIRE_30 & SYNTHESIZED_WIRE_31;
 
@@ -224,76 +227,13 @@ assign	reg_sys_we_lo_ALTERA_SYNTHESIZED = ctl_reg_sys_we_lo | ctl_reg_sys_we;
 
 assign	SYNTHESIZED_WIRE_56 = SYNTHESIZED_WIRE_61 & use_ixiy;
 
-assign	SYNTHESIZED_WIRE_44 =  ~ctl_reg_gp_sel[0];
+assign	SYNTHESIZED_WIRE_42 =  ~ctl_reg_gp_sel[0];
 
-assign	SYNTHESIZED_WIRE_39 = ctl_reg_ex_de_hl & bank_exx;
+assign	SYNTHESIZED_WIRE_43 = ctl_reg_ex_de_hl & bank_exx;
 
 assign	SYNTHESIZED_WIRE_34 =  ~use_ixiy;
 
 assign	SYNTHESIZED_WIRE_59 = ctl_reg_gp_sel[0] & SYNTHESIZED_WIRE_36;
-
-assign	SYNTHESIZED_WIRE_10 =  ~use_ix;
-
-assign	SYNTHESIZED_WIRE_57 =  ~bank_hl_de2;
-
-assign	SYNTHESIZED_WIRE_43 =  ~reg_sys_we_lo_ALTERA_SYNTHESIZED;
-
-
-always@(posedge clk or negedge nreset)
-begin
-if (!nreset)
-	begin
-	bank_hl_de1 <= 0;
-	end
-else
-	bank_hl_de1 <= bank_hl_de1 ^ SYNTHESIZED_WIRE_37;
-end
-
-assign	SYNTHESIZED_WIRE_42 =  ~SYNTHESIZED_WIRE_38;
-
-
-always@(posedge clk or negedge nreset)
-begin
-if (!nreset)
-	begin
-	bank_hl_de2 <= 0;
-	end
-else
-	bank_hl_de2 <= bank_hl_de2 ^ SYNTHESIZED_WIRE_39;
-end
-
-assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_40 | SYNTHESIZED_WIRE_41;
-
-assign	reg_sw_4d_hi = ctl_sw_4d & SYNTHESIZED_WIRE_42;
-
-assign	SYNTHESIZED_WIRE_38 = ctl_reg_sys_hilo[1] & SYNTHESIZED_WIRE_43 & ctl_reg_sel_ir;
-
-assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_44 & ctl_reg_gp_sel[1];
-
-assign	SYNTHESIZED_WIRE_21 = SYNTHESIZED_WIRE_45 | SYNTHESIZED_WIRE_46;
-
-assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_47 | SYNTHESIZED_WIRE_48;
-
-assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_49 | SYNTHESIZED_WIRE_50;
-
-assign	SYNTHESIZED_WIRE_55 = ctl_reg_gp_sel[0] & ctl_reg_gp_sel[1];
-
-assign	SYNTHESIZED_WIRE_30 =  ~ctl_reg_gp_sel[0];
-
-assign	SYNTHESIZED_WIRE_31 =  ~ctl_reg_gp_sel[1];
-
-
-always@(posedge clk or negedge nreset)
-begin
-if (!nreset)
-	begin
-	bank_exx <= 0;
-	end
-else
-	bank_exx <= bank_exx ^ ctl_reg_exx;
-end
-
-assign	reg_sel_bc2 = SYNTHESIZED_WIRE_52 & bank_exx;
 
 
 always@(posedge clk or negedge nreset)
@@ -303,8 +243,85 @@ if (!nreset)
 	bank_af <= 0;
 	end
 else
+if (n_hold_clk_wait)
+	begin
 	bank_af <= bank_af ^ ctl_reg_ex_af;
+	end
 end
+
+assign	SYNTHESIZED_WIRE_10 =  ~use_ix;
+
+assign	SYNTHESIZED_WIRE_57 =  ~bank_hl_de2;
+
+assign	SYNTHESIZED_WIRE_41 =  ~reg_sys_we_lo_ALTERA_SYNTHESIZED;
+
+assign	SYNTHESIZED_WIRE_40 =  ~SYNTHESIZED_WIRE_37;
+
+assign	SYNTHESIZED_WIRE_23 = SYNTHESIZED_WIRE_38 | SYNTHESIZED_WIRE_39;
+
+assign	reg_sw_4d_hi = ctl_sw_4d & SYNTHESIZED_WIRE_40;
+
+assign	SYNTHESIZED_WIRE_37 = ctl_reg_sys_hilo[1] & SYNTHESIZED_WIRE_41 & ctl_reg_sel_ir;
+
+assign	SYNTHESIZED_WIRE_61 = SYNTHESIZED_WIRE_42 & ctl_reg_gp_sel[1];
+
+
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	bank_hl_de2 <= 0;
+	end
+else
+if (n_hold_clk_wait)
+	begin
+	bank_hl_de2 <= bank_hl_de2 ^ SYNTHESIZED_WIRE_43;
+	end
+end
+
+assign	SYNTHESIZED_WIRE_21 = SYNTHESIZED_WIRE_44 | SYNTHESIZED_WIRE_45;
+
+assign	SYNTHESIZED_WIRE_25 = SYNTHESIZED_WIRE_46 | SYNTHESIZED_WIRE_47;
+
+assign	SYNTHESIZED_WIRE_24 = SYNTHESIZED_WIRE_48 | SYNTHESIZED_WIRE_49;
+
+
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	bank_hl_de1 <= 0;
+	end
+else
+if (n_hold_clk_wait)
+	begin
+	bank_hl_de1 <= bank_hl_de1 ^ SYNTHESIZED_WIRE_50;
+	end
+end
+
+
+always@(posedge clk or negedge nreset)
+begin
+if (!nreset)
+	begin
+	bank_exx <= 0;
+	end
+else
+if (n_hold_clk_wait)
+	begin
+	bank_exx <= bank_exx ^ ctl_reg_exx;
+	end
+end
+
+assign	SYNTHESIZED_WIRE_55 = ctl_reg_gp_sel[0] & ctl_reg_gp_sel[1];
+
+assign	SYNTHESIZED_WIRE_30 =  ~ctl_reg_gp_sel[0];
+
+assign	SYNTHESIZED_WIRE_31 =  ~ctl_reg_gp_sel[1];
+
+assign	n_hold_clk_wait =  ~hold_clk_wait;
+
+assign	reg_sel_bc2 = SYNTHESIZED_WIRE_52 & bank_exx;
 
 assign	reg_sys_we_lo = reg_sys_we_lo_ALTERA_SYNTHESIZED;
 

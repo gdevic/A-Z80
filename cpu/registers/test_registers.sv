@@ -49,6 +49,7 @@ logic ctl_reg_sys_we_hi_sig=0;      // Write to high byte of a system register
 logic ctl_reg_sys_we_sig=0;         // Write to system register
 logic use_ixiy_sig=0;               // Use IX or IY
 logic use_ix_sig=0;                 // Use IX and not IY
+logic hold_clk_wait_sig=0;          // Hold all transitions
 
 logic ctl_reg_exx_sig=0;            // Exchange register banks
 logic ctl_reg_ex_af_sig=0;          // Exchange AF banks
@@ -182,6 +183,7 @@ reg_control reg_control_inst
     .ctl_reg_sys_we(ctl_reg_sys_we_sig) ,   // input  ctl_reg_sys_we_sig
     .clk(clk) ,                             // input  clk
     .ctl_sw_4d (ctl_sw_4d_sig) ,            // input  ctl_sw_4d
+    .hold_clk_wait(hold_clk_wait_sig) ,     // input  hold_clk_wait_sig
     .reg_sel_bc(reg_sel_bc_sig) ,           // output  reg_sel_bc_sig
     .reg_sel_bc2(reg_sel_bc2_sig) ,         // output  reg_sel_bc2_sig
     .reg_sel_ix(reg_sel_ix_sig) ,           // output  reg_sel_ix_sig

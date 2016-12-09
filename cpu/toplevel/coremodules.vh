@@ -499,6 +499,7 @@ reg_control reg_control_(
     .ctl_reg_sys_we (ctl_reg_sys_we),
     .clk (clk),
     .ctl_sw_4d (ctl_sw_4d),
+    .hold_clk_wait (hold_clk_wait),
     .ctl_reg_gp_hilo (ctl_reg_gp_hilo),
     .ctl_reg_gp_sel (ctl_reg_gp_sel),
     .ctl_reg_sys_hilo (ctl_reg_sys_hilo),
