@@ -233,6 +233,7 @@ resets resets_(
     .M1 (M1),
     .T2 (T2),
     .fpga_reset (fpga_reset),
+    .hold_clk_wait (hold_clk_wait),
     .clrpc (clrpc),
     .nreset (nreset)
 );

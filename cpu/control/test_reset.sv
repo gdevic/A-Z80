@@ -23,7 +23,10 @@ logic M1 = 0;
 logic T2 = 0;
 
 wire clrpc;            // Load 0 to PC
+wire hold_clk_wait;    // Hold clrpc
 wire nreset;           // Internal inverted reset signal
+
+assign hold_clk_wait = 0; // Will not test this case
 
 // ----------------- TEST -------------------
 initial begin
