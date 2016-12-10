@@ -391,6 +391,7 @@ alu_flags alu_flags_(
     .clk (clk),
     .ctl_flags_cf2_sel_shift (ctl_flags_cf2_sel_shift),
     .ctl_flags_cf2_sel_daa (ctl_flags_cf2_sel_daa),
+    .hold_clk_wait (hold_clk_wait),
     .flags_sf (flags_sf),
     .flags_zf (flags_zf),
     .flags_hf (flags_hf),
