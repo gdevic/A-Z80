@@ -22,7 +22,7 @@ wire sending = |bitcount;
 
 // Calculate UART clock based on the input clock
 reg [28:0] d;
-wire [28:0] inc = d[28] ? (BAUD) : (BAUD - IN_CLOCK);
+wire [28:0] inc = d[28] ? 29'(BAUD) : 29'(BAUD - IN_CLOCK);
 wire [28:0] delta = d + inc;
 
 always @(posedge clk)
@@ -48,7 +48,9 @@ always @(posedge clk) begin
     begin
         if (wr & ~busy)
         begin
+            // synopsys translate_off
             $strobe("[UART] %c", data[7:0]);
+            // synopsys translate_on
             shifter <= { data[7:0], 1'h0 };
             bitcount <= 4'd11; // 1 + 8 + 2
         end
