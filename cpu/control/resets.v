@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Thu Dec 08 21:08:44 2016"
+// CREATED		"Sat Dec 10 08:57:54 2016"
 
 module resets(
 	reset_in,
@@ -22,7 +22,7 @@ module resets(
 	M1,
 	T2,
 	fpga_reset,
-	hold_clk_wait,
+	nhold_clk_wait,
 	clrpc,
 	nreset
 );
@@ -33,7 +33,7 @@ input wire	clk;
 input wire	M1;
 input wire	T2;
 input wire	fpga_reset;
-input wire	hold_clk_wait;
+input wire	nhold_clk_wait;
 output wire	clrpc;
 output wire	nreset;
 
@@ -42,25 +42,24 @@ wire	nclk;
 reg	x1;
 wire	x2;
 wire	x3;
-wire	SYNTHESIZED_WIRE_11;
+wire	SYNTHESIZED_WIRE_8;
 wire	SYNTHESIZED_WIRE_1;
-reg	SYNTHESIZED_WIRE_12;
+reg	SYNTHESIZED_WIRE_9;
 reg	DFFE_intr_ff3;
-reg	SYNTHESIZED_WIRE_13;
-wire	SYNTHESIZED_WIRE_14;
+reg	SYNTHESIZED_WIRE_10;
+wire	SYNTHESIZED_WIRE_11;
 wire	SYNTHESIZED_WIRE_3;
-reg	SYNTHESIZED_WIRE_15;
-wire	SYNTHESIZED_WIRE_16;
-wire	SYNTHESIZED_WIRE_9;
+reg	SYNTHESIZED_WIRE_12;
+wire	SYNTHESIZED_WIRE_6;
 
-assign	nreset = SYNTHESIZED_WIRE_9;
-
+assign	nreset = SYNTHESIZED_WIRE_6;
 
 
 
-always@(posedge nclk or negedge SYNTHESIZED_WIRE_11)
+
+always@(posedge nclk or negedge SYNTHESIZED_WIRE_8)
 begin
-if (!SYNTHESIZED_WIRE_11)
+if (!SYNTHESIZED_WIRE_8)
 	begin
 	x1 <= 1;
 	end
@@ -70,76 +69,74 @@ else
 	end
 end
 
-assign	clrpc = clrpc_int | SYNTHESIZED_WIRE_12 | DFFE_intr_ff3 | SYNTHESIZED_WIRE_13;
+assign	clrpc = clrpc_int | SYNTHESIZED_WIRE_9 | DFFE_intr_ff3 | SYNTHESIZED_WIRE_10;
 
 assign	SYNTHESIZED_WIRE_1 =  ~reset_in;
 
-assign	x2 = x1 & SYNTHESIZED_WIRE_14;
+assign	x2 = x1 & SYNTHESIZED_WIRE_11;
 
-assign	SYNTHESIZED_WIRE_14 = M1 & T2;
+assign	SYNTHESIZED_WIRE_11 = M1 & T2;
 
 assign	x3 = x1 & SYNTHESIZED_WIRE_3;
 
-assign	SYNTHESIZED_WIRE_9 =  ~SYNTHESIZED_WIRE_15;
+assign	SYNTHESIZED_WIRE_6 =  ~SYNTHESIZED_WIRE_12;
 
-assign	SYNTHESIZED_WIRE_16 =  ~hold_clk_wait;
-
-assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_14;
+assign	SYNTHESIZED_WIRE_3 =  ~SYNTHESIZED_WIRE_11;
 
 assign	nclk =  ~clk;
 
-assign	SYNTHESIZED_WIRE_11 =  ~fpga_reset;
+assign	SYNTHESIZED_WIRE_8 =  ~fpga_reset;
 
 
 always@(posedge nclk)
 begin
-if (SYNTHESIZED_WIRE_16)
+if (nhold_clk_wait)
 	begin
-	DFFE_intr_ff3 <= SYNTHESIZED_WIRE_12;
+	DFFE_intr_ff3 <= SYNTHESIZED_WIRE_9;
 	end
 end
 
 
 always@(posedge nclk)
 begin
-if (SYNTHESIZED_WIRE_16)
+if (nhold_clk_wait)
 	begin
-	SYNTHESIZED_WIRE_13 <= SYNTHESIZED_WIRE_15;
+	SYNTHESIZED_WIRE_10 <= SYNTHESIZED_WIRE_12;
 	end
 end
 
 
 always@(posedge nclk)
 begin
-if (SYNTHESIZED_WIRE_16)
+if (nhold_clk_wait)
 	begin
-	SYNTHESIZED_WIRE_12 <= SYNTHESIZED_WIRE_13;
+	SYNTHESIZED_WIRE_9 <= SYNTHESIZED_WIRE_10;
 	end
 end
 
 
-always@(posedge clk or negedge SYNTHESIZED_WIRE_11)
+always@(posedge clk or negedge SYNTHESIZED_WIRE_8)
 begin
-if (!SYNTHESIZED_WIRE_11)
+if (!SYNTHESIZED_WIRE_8)
 	begin
-	SYNTHESIZED_WIRE_15 <= 1;
+	SYNTHESIZED_WIRE_12 <= 1;
 	end
 else
 	begin
-	SYNTHESIZED_WIRE_15 <= x3;
+	SYNTHESIZED_WIRE_12 <= x3;
 	end
 end
 
 
-always@(posedge nclk or negedge SYNTHESIZED_WIRE_9)
+always@(posedge nclk or negedge SYNTHESIZED_WIRE_6)
 begin
-if (!SYNTHESIZED_WIRE_9)
+if (!SYNTHESIZED_WIRE_6)
 	begin
 	clrpc_int <= 0;
 	end
 else
 	begin
-	clrpc_int <= ~clrpc_int & x2 | clrpc_int & ~SYNTHESIZED_WIRE_14;
+	clrpc_int <= ~clrpc_int & x2 | clrpc_int & ~SYNTHESIZED_WIRE_11;
 	end
 end
 

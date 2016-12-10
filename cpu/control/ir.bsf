@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 216 144)
+	(rect 16 16 224 144)
 	(text "ir" (rect 5 0 12 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 112 25 124)(font "Arial" ))
 	(port
@@ -47,8 +47,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
-		(text "hold_clk_wait" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "hold_clk_wait" (rect 21 75 98 89)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 0 0 84 14)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 21 75 105 89)(font "Arial" (font_size 8)))
 		(line (pt 0 80)(pt 16 80))
 	)
 	(port
@@ -59,13 +59,13 @@ applicable agreement for further details.
 		(line (pt 0 96)(pt 16 96))
 	)
 	(port
-		(pt 200 32)
+		(pt 208 32)
 		(output)
 		(text "opcode[7..0]" (rect 0 0 70 14)(font "Arial" (font_size 8)))
-		(text "opcode[7..0]" (rect 109 27 179 41)(font "Arial" (font_size 8)))
-		(line (pt 200 32)(pt 184 32)(line_width 3))
+		(text "opcode[7..0]" (rect 117 27 187 41)(font "Arial" (font_size 8)))
+		(line (pt 208 32)(pt 192 32)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 184 112))
+		(rectangle (rect 16 16 192 112))
 	)
 )

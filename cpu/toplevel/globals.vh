@@ -7,6 +7,7 @@ wire iorq_Tw;
 wire busack;
 wire pin_control_oe;
 wire hold_clk_busrq;
+wire nhold_clk_wait;
 
 // Module: control/decode_state.v
 wire in_halt;

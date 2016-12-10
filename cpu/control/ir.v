@@ -14,13 +14,13 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Fri Feb 26 22:23:08 2016"
+// CREATED		"Sat Dec 10 08:56:46 2016"
 
 module ir(
 	ctl_ir_we,
 	clk,
 	nreset,
-	hold_clk_wait,
+	nhold_clk_wait,
 	db,
 	opcode
 );
@@ -29,19 +29,16 @@ module ir(
 input wire	ctl_ir_we;
 input wire	clk;
 input wire	nreset;
-input wire	hold_clk_wait;
+input wire	nhold_clk_wait;
 input wire	[7:0] db;
 output reg	[7:0] opcode;
 
 wire	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
 
 
 
 
-assign	SYNTHESIZED_WIRE_0 =  ~hold_clk_wait;
-
-assign	SYNTHESIZED_WIRE_1 = ctl_ir_we & SYNTHESIZED_WIRE_0;
+assign	SYNTHESIZED_WIRE_0 = ctl_ir_we & nhold_clk_wait;
 
 
 always@(posedge clk or negedge nreset)
@@ -51,7 +48,7 @@ if (!nreset)
 	opcode[7:0] <= 8'b00000000;
 	end
 else
-if (SYNTHESIZED_WIRE_1)
+if (SYNTHESIZED_WIRE_0)
 	begin
 	opcode[7:0] <= db[7:0];
 	end

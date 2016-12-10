@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Wed Dec 07 00:18:12 2016"
+// CREATED		"Sat Dec 10 08:55:35 2016"
 
 module decode_state(
 	ctl_state_iy_set,
@@ -31,7 +31,7 @@ module decode_state(
 	in_nmi,
 	nreset,
 	ctl_state_tbl_we,
-	hold_clk_wait,
+	nhold_clk_wait,
 	in_halt,
 	table_cb,
 	table_ed,
@@ -57,7 +57,7 @@ input wire	in_intr;
 input wire	in_nmi;
 input wire	nreset;
 input wire	ctl_state_tbl_we;
-input wire	hold_clk_wait;
+input wire	nhold_clk_wait;
 output reg	in_halt;
 output wire	table_cb;
 output wire	table_ed;
@@ -73,9 +73,8 @@ reg	DFFE_inst4;
 reg	DFFE_instED;
 reg	DFFE_instCB;
 wire	SYNTHESIZED_WIRE_0;
-wire	SYNTHESIZED_WIRE_1;
-wire	SYNTHESIZED_WIRE_5;
 wire	SYNTHESIZED_WIRE_4;
+wire	SYNTHESIZED_WIRE_3;
 
 assign	in_alu = ctl_state_alu;
 assign	table_cb = DFFE_instCB;
@@ -106,11 +105,9 @@ end
 
 assign	SYNTHESIZED_WIRE_0 = ~(ctl_state_iy_set | ctl_state_ixiy_clr);
 
-assign	SYNTHESIZED_WIRE_5 = ctl_state_tbl_we & SYNTHESIZED_WIRE_1;
+assign	SYNTHESIZED_WIRE_4 = ctl_state_tbl_we & nhold_clk_wait;
 
-assign	SYNTHESIZED_WIRE_4 = in_nmi | in_intr;
-
-assign	SYNTHESIZED_WIRE_1 =  ~hold_clk_wait;
+assign	SYNTHESIZED_WIRE_3 = in_nmi | in_intr;
 
 
 always@(posedge clk or negedge nreset)
@@ -120,7 +117,7 @@ if (!nreset)
 	DFFE_instCB <= 0;
 	end
 else
-if (SYNTHESIZED_WIRE_5)
+if (SYNTHESIZED_WIRE_4)
 	begin
 	DFFE_instCB <= ctl_state_tbl_cb_set;
 	end
@@ -134,7 +131,7 @@ if (!nreset)
 	DFFE_instED <= 0;
 	end
 else
-if (SYNTHESIZED_WIRE_5)
+if (SYNTHESIZED_WIRE_4)
 	begin
 	DFFE_instED <= ctl_state_tbl_ed_set;
 	end
@@ -149,7 +146,7 @@ if (!nreset)
 	end
 else
 	begin
-	in_halt <= ~in_halt & ctl_state_halt_set | in_halt & ~SYNTHESIZED_WIRE_4;
+	in_halt <= ~in_halt & ctl_state_halt_set | in_halt & ~SYNTHESIZED_WIRE_3;
 	end
 end
 

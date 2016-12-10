@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Thu Dec 08 22:19:25 2016"
+// CREATED		"Sat Dec 10 09:05:10 2016"
 
 module reg_control(
 	ctl_reg_exx,
@@ -34,7 +34,7 @@ module reg_control(
 	ctl_reg_sys_we,
 	clk,
 	ctl_sw_4d,
-	hold_clk_wait,
+	nhold_clk_wait,
 	ctl_reg_gp_hilo,
 	ctl_reg_gp_sel,
 	ctl_reg_sys_hilo,
@@ -81,7 +81,7 @@ input wire	ctl_reg_sys_we_hi;
 input wire	ctl_reg_sys_we;
 input wire	clk;
 input wire	ctl_sw_4d;
-input wire	hold_clk_wait;
+input wire	nhold_clk_wait;
 input wire	[1:0] ctl_reg_gp_hilo;
 input wire	[1:0] ctl_reg_gp_sel;
 input wire	[1:0] ctl_reg_sys_hilo;
@@ -113,7 +113,6 @@ reg	bank_af;
 reg	bank_exx;
 reg	bank_hl_de1;
 reg	bank_hl_de2;
-wire	n_hold_clk_wait;
 wire	reg_sys_we_lo_ALTERA_SYNTHESIZED;
 wire	SYNTHESIZED_WIRE_52;
 wire	SYNTHESIZED_WIRE_53;
@@ -243,7 +242,7 @@ if (!nreset)
 	bank_af <= 0;
 	end
 else
-if (n_hold_clk_wait)
+if (nhold_clk_wait)
 	begin
 	bank_af <= bank_af ^ ctl_reg_ex_af;
 	end
@@ -273,7 +272,7 @@ if (!nreset)
 	bank_hl_de2 <= 0;
 	end
 else
-if (n_hold_clk_wait)
+if (nhold_clk_wait)
 	begin
 	bank_hl_de2 <= bank_hl_de2 ^ SYNTHESIZED_WIRE_43;
 	end
@@ -293,7 +292,7 @@ if (!nreset)
 	bank_hl_de1 <= 0;
 	end
 else
-if (n_hold_clk_wait)
+if (nhold_clk_wait)
 	begin
 	bank_hl_de1 <= bank_hl_de1 ^ SYNTHESIZED_WIRE_50;
 	end
@@ -307,7 +306,7 @@ if (!nreset)
 	bank_exx <= 0;
 	end
 else
-if (n_hold_clk_wait)
+if (nhold_clk_wait)
 	begin
 	bank_exx <= bank_exx ^ ctl_reg_exx;
 	end
@@ -318,8 +317,6 @@ assign	SYNTHESIZED_WIRE_55 = ctl_reg_gp_sel[0] & ctl_reg_gp_sel[1];
 assign	SYNTHESIZED_WIRE_30 =  ~ctl_reg_gp_sel[0];
 
 assign	SYNTHESIZED_WIRE_31 =  ~ctl_reg_gp_sel[1];
-
-assign	n_hold_clk_wait =  ~hold_clk_wait;
 
 assign	reg_sel_bc2 = SYNTHESIZED_WIRE_52 & bank_exx;
 

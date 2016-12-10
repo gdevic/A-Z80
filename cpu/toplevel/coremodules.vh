@@ -15,7 +15,8 @@ clk_delay clk_delay_(
     .iorq_Tw (iorq_Tw),
     .busack (busack),
     .pin_control_oe (pin_control_oe),
-    .hold_clk_busrq (hold_clk_busrq)
+    .hold_clk_busrq (hold_clk_busrq),
+    .nhold_clk_wait (nhold_clk_wait)
 );
 
 decode_state decode_state_(
@@ -33,7 +34,7 @@ decode_state decode_state_(
     .in_nmi (in_nmi),
     .nreset (nreset),
     .ctl_state_tbl_we (ctl_state_tbl_we),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .in_halt (in_halt),
     .table_cb (table_cb),
     .table_ed (table_ed),
@@ -201,7 +202,7 @@ ir ir_(
     .ctl_ir_we (ctl_ir_we),
     .clk (clk),
     .nreset (nreset),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .db (db0[7:0]),
     .opcode (opcode)
 );
@@ -233,7 +234,7 @@ resets resets_(
     .M1 (M1),
     .T2 (T2),
     .fpga_reset (fpga_reset),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .clrpc (clrpc),
     .nreset (nreset)
 );
@@ -251,7 +252,7 @@ memory_ifc memory_ifc_(
     .ctl_iorw (ctl_iorw),
     .timings_en (timings_en),
     .iorq_Tw (iorq_Tw),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .nM1_out (nM1_out),
     .nRFSH_out (nRFSH_out),
     .nMREQ_out (nMREQ_out),
@@ -391,7 +392,7 @@ alu_flags alu_flags_(
     .clk (clk),
     .ctl_flags_cf2_sel_shift (ctl_flags_cf2_sel_shift),
     .ctl_flags_cf2_sel_daa (ctl_flags_cf2_sel_daa),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .flags_sf (flags_sf),
     .flags_zf (flags_zf),
     .flags_hf (flags_hf),
@@ -500,7 +501,7 @@ reg_control reg_control_(
     .ctl_reg_sys_we (ctl_reg_sys_we),
     .clk (clk),
     .ctl_sw_4d (ctl_sw_4d),
-    .hold_clk_wait (hold_clk_wait),
+    .nhold_clk_wait (nhold_clk_wait),
     .ctl_reg_gp_hilo (ctl_reg_gp_hilo),
     .ctl_reg_gp_sel (ctl_reg_gp_sel),
     .ctl_reg_sys_hilo (ctl_reg_sys_hilo),

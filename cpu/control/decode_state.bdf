@@ -245,9 +245,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 40 624 216 640)
+	(rect 40 608 216 624)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "hold_clk_wait" (rect 9 0 73 12)(font "Arial" ))
+	(text "nhold_clk_wait" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -889,7 +889,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 312 584 376 632)
+	(rect 256 584 320 632)
 	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "inst6" (rect 3 37 26 49)(font "Arial" ))
 	(port
@@ -920,31 +920,6 @@ applicable agreement for further details.
 		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37))
 	)
 )
-(symbol
-	(rect 224 616 272 648)
-	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
-	(text "inst8" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7))
-		(line (pt 13 7)(pt 31 16))
-		(line (pt 13 25)(pt 31 16))
-		(circle (rect 31 12 39 20))
-	)
-)
 (connector
 	(pt 376 104)
 	(pt 440 104)
@@ -954,32 +929,12 @@ applicable agreement for further details.
 	(pt 312 112)
 )
 (connector
-	(text "clk" (rect 408 104 422 116)(font "Arial" ))
-	(pt 440 120)
-	(pt 400 120)
-)
-(connector
-	(text "clk" (rect 410 224 424 236)(font "Arial" ))
-	(pt 440 240)
-	(pt 400 240)
-)
-(connector
 	(pt 536 208)
 	(pt 552 208)
 )
 (connector
 	(pt 504 224)
 	(pt 552 224)
-)
-(connector
-	(text "nreset" (rect 408 160 438 172)(font "Arial" ))
-	(pt 472 176)
-	(pt 400 176)
-)
-(connector
-	(text "nreset" (rect 406 280 436 292)(font "Arial" ))
-	(pt 472 296)
-	(pt 400 296)
 )
 (connector
 	(pt 616 216)
@@ -1030,14 +985,6 @@ applicable agreement for further details.
 	(pt 640 104)
 )
 (connector
-	(pt 472 160)
-	(pt 472 176)
-)
-(connector
-	(pt 472 280)
-	(pt 472 296)
-)
-(connector
 	(pt 216 392)
 	(pt 440 392)
 )
@@ -1050,16 +997,6 @@ applicable agreement for further details.
 	(pt 320 424)
 )
 (connector
-	(text "nreset" (rect 384 456 414 468)(font "Arial" ))
-	(pt 472 472)
-	(pt 376 472)
-)
-(connector
-	(text "clk" (rect 387 392 401 404)(font "Arial" ))
-	(pt 440 408)
-	(pt 376 408)
-)
-(connector
 	(pt 216 416)
 	(pt 256 416)
 )
@@ -1068,17 +1005,8 @@ applicable agreement for further details.
 	(pt 256 432)
 )
 (connector
-	(pt 472 448)
-	(pt 472 472)
-)
-(connector
 	(pt 440 720)
 	(pt 408 720)
-)
-(connector
-	(text "clk" (rect 387 576 401 588)(font "Arial" ))
-	(pt 440 592)
-	(pt 376 592)
 )
 (connector
 	(text "clk" (rect 384 688 398 700)(font "Arial" ))
@@ -1111,11 +1039,6 @@ applicable agreement for further details.
 	(pt 424 648)
 )
 (connector
-	(text "nreset" (rect 432 744 462 756)(font "Arial" ))
-	(pt 424 760)
-	(pt 472 760)
-)
-(connector
 	(pt 504 688)
 	(pt 536 688)
 )
@@ -1134,10 +1057,6 @@ applicable agreement for further details.
 (connector
 	(pt 472 632)
 	(pt 472 648)
-)
-(connector
-	(pt 472 744)
-	(pt 472 760)
 )
 (connector
 	(pt 608 856)
@@ -1180,15 +1099,62 @@ applicable agreement for further details.
 	(pt 440 688)
 )
 (connector
-	(pt 288 616)
-	(pt 312 616)
-)
-(connector
 	(pt 408 608)
 	(pt 408 720)
 )
 (connector
-	(pt 376 608)
+	(text "nreset" (rect 384 744 414 756)(font "Arial" ))
+	(pt 472 760)
+	(pt 376 760)
+)
+(connector
+	(pt 472 744)
+	(pt 472 760)
+)
+(connector
+	(text "clk" (rect 392 104 406 116)(font "Arial" ))
+	(pt 440 120)
+	(pt 384 120)
+)
+(connector
+	(text "nreset" (rect 392 160 422 172)(font "Arial" ))
+	(pt 472 176)
+	(pt 384 176)
+)
+(connector
+	(pt 472 160)
+	(pt 472 176)
+)
+(connector
+	(text "clk" (rect 394 224 408 236)(font "Arial" ))
+	(pt 440 240)
+	(pt 384 240)
+)
+(connector
+	(text "nreset" (rect 390 280 420 292)(font "Arial" ))
+	(pt 472 296)
+	(pt 384 296)
+)
+(connector
+	(pt 472 280)
+	(pt 472 296)
+)
+(connector
+	(text "clk" (rect 395 392 409 404)(font "Arial" ))
+	(pt 440 408)
+	(pt 384 408)
+)
+(connector
+	(text "nreset" (rect 392 456 422 468)(font "Arial" ))
+	(pt 472 472)
+	(pt 384 472)
+)
+(connector
+	(pt 472 448)
+	(pt 472 472)
+)
+(connector
+	(pt 320 608)
 	(pt 408 608)
 )
 (connector
@@ -1197,19 +1163,16 @@ applicable agreement for further details.
 )
 (connector
 	(pt 216 600)
-	(pt 312 600)
+	(pt 256 600)
 )
 (connector
-	(pt 224 632)
-	(pt 216 632)
+	(pt 216 616)
+	(pt 256 616)
 )
 (connector
-	(pt 288 616)
-	(pt 288 632)
-)
-(connector
-	(pt 288 632)
-	(pt 272 632)
+	(text "clk" (rect 387 576 401 588)(font "Arial" ))
+	(pt 440 592)
+	(pt 376 592)
 )
 (junction (pt 312 256))
 (junction (pt 256 96))
@@ -1229,7 +1192,7 @@ applicable agreement for further details.
 	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "decode_state" (rect 43 2 135 17)(font "Arial" (font_size 9)(bold)))(border))
 	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
 	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "August 9, 2014, 2016" (rect 56 3 178 17)(font "Arial" (font_size 8)))(border))
-	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.4" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.5" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
 	(drawing
 	)
 )

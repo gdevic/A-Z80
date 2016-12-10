@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 184 176)
+	(rect 16 16 192 176)
 	(text "resets" (rect 5 0 41 14)(font "Arial" (font_size 8)))
 	(text "inst" (rect 8 144 25 156)(font "Arial" ))
 	(port
@@ -61,25 +61,25 @@ applicable agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "hold_clk_wait" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "hold_clk_wait" (rect 21 107 98 121)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 0 0 84 14)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 21 107 105 121)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 16 112))
 	)
 	(port
-		(pt 168 32)
+		(pt 176 32)
 		(output)
 		(text "nreset" (rect 0 0 36 14)(font "Arial" (font_size 8)))
-		(text "nreset" (rect 111 27 147 41)(font "Arial" (font_size 8)))
-		(line (pt 168 32)(pt 152 32))
+		(text "nreset" (rect 119 27 155 41)(font "Arial" (font_size 8)))
+		(line (pt 176 32)(pt 160 32))
 	)
 	(port
-		(pt 168 48)
+		(pt 176 48)
 		(output)
 		(text "clrpc" (rect 0 0 28 14)(font "Arial" (font_size 8)))
-		(text "clrpc" (rect 119 43 147 57)(font "Arial" (font_size 8)))
-		(line (pt 168 48)(pt 152 48))
+		(text "clrpc" (rect 127 43 155 57)(font "Arial" (font_size 8)))
+		(line (pt 176 48)(pt 160 48))
 	)
 	(drawing
-		(rectangle (rect 16 16 152 144))
+		(rectangle (rect 16 16 160 144))
 	)
 )

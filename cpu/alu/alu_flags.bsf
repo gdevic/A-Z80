@@ -229,8 +229,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 496)
 		(input)
-		(text "hold_clk_wait" (rect 0 0 77 14)(font "Arial" (font_size 8)))
-		(text "hold_clk_wait" (rect 21 491 98 505)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 0 0 84 14)(font "Arial" (font_size 8)))
+		(text "nhold_clk_wait" (rect 21 491 105 505)(font "Arial" (font_size 8)))
 		(line (pt 0 496)(pt 16 496))
 	)
 	(port

@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Sun Nov 16 23:41:11 2014"
+// CREATED		"Sat Dec 10 08:59:31 2016"
 
 module clk_delay(
 	clk,
@@ -31,7 +31,8 @@ module clk_delay(
 	iorq_Tw,
 	busack,
 	pin_control_oe,
-	hold_clk_busrq
+	hold_clk_busrq,
+	nhold_clk_wait
 );
 
 
@@ -50,6 +51,7 @@ output wire	iorq_Tw;
 output wire	busack;
 output wire	pin_control_oe;
 output wire	hold_clk_busrq;
+output wire	nhold_clk_wait;
 
 reg	hold_clk_busrq_ALTERA_SYNTHESIZED;
 wire	SYNTHESIZED_WIRE_6;
@@ -60,9 +62,9 @@ reg	SYNTHESIZED_WIRE_8;
 wire	SYNTHESIZED_WIRE_3;
 wire	SYNTHESIZED_WIRE_4;
 wire	SYNTHESIZED_WIRE_5;
-reg	DFFE_inst;
+reg	SYNTHESIZED_WIRE_9;
 
-assign	hold_clk_wait = DFFE_inst;
+assign	hold_clk_wait = SYNTHESIZED_WIRE_9;
 assign	iorq_Tw = DFF_inst5;
 
 
@@ -72,12 +74,12 @@ always@(posedge SYNTHESIZED_WIRE_6 or negedge nreset)
 begin
 if (!nreset)
 	begin
-	DFFE_inst <= 0;
+	SYNTHESIZED_WIRE_9 <= 0;
 	end
 else
 if (SYNTHESIZED_WIRE_1)
 	begin
-	DFFE_inst <= mwait;
+	SYNTHESIZED_WIRE_9 <= mwait;
 	end
 end
 
@@ -146,7 +148,9 @@ end
 
 assign	SYNTHESIZED_WIRE_4 = in_intr & M1 & T1;
 
-assign	SYNTHESIZED_WIRE_1 = latch_wait | DFFE_inst;
+assign	SYNTHESIZED_WIRE_1 = latch_wait | SYNTHESIZED_WIRE_9;
+
+assign	nhold_clk_wait =  ~SYNTHESIZED_WIRE_9;
 
 assign	SYNTHESIZED_WIRE_6 =  ~clk;
 

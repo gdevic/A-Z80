@@ -101,9 +101,9 @@ applicable agreement for further details.
 )
 (pin
 	(input)
-	(rect 32 640 208 656)
+	(rect 32 632 208 648)
 	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
-	(text "hold_clk_wait" (rect 9 0 73 12)(font "Arial" ))
+	(text "nhold_clk_wait" (rect 9 0 79 12)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -641,31 +641,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 216 632 264 664)
-	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
-	(text "inst4" (rect 3 21 26 33)(font "Arial" ))
-	(port
-		(pt 0 16)
-		(input)
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(text "IN" (rect 2 7 13 19)(font "Courier New" (bold))(invisible))
-		(line (pt 0 16)(pt 13 16))
-	)
-	(port
-		(pt 48 16)
-		(output)
-		(text "OUT" (rect 32 7 49 19)(font "Courier New" (bold))(invisible))
-		(text "OUT" (rect 32 7 46 19)(font "Courier New" (bold))(invisible))
-		(line (pt 39 16)(pt 48 16))
-	)
-	(drawing
-		(line (pt 13 25)(pt 13 7))
-		(line (pt 13 7)(pt 31 16))
-		(line (pt 13 25)(pt 31 16))
-		(circle (rect 31 12 39 20))
-	)
-)
-(symbol
 	(rect 296 520 360 600)
 	(text "DFFE" (rect 1 0 25 10)(font "Arial" (font_size 6)))
 	(text "intr_ff4" (rect 3 68 39 80)(font "Arial" ))
@@ -978,20 +953,8 @@ applicable agreement for further details.
 	(pt 776 496)
 )
 (connector
-	(pt 712 296)
-	(pt 712 336)
-)
-(connector
-	(pt 712 336)
-	(pt 712 424)
-)
-(connector
 	(pt 232 320)
 	(pt 232 352)
-)
-(connector
-	(pt 208 648)
-	(pt 216 648)
 )
 (connector
 	(pt 296 560)
@@ -1005,14 +968,6 @@ applicable agreement for further details.
 	(text "nclk" (rect 216 600 236 612)(font "Arial" ))
 	(pt 208 616)
 	(pt 264 616)
-)
-(connector
-	(pt 712 424)
-	(pt 264 424)
-)
-(connector
-	(pt 264 424)
-	(pt 264 544)
 )
 (connector
 	(pt 296 544)
@@ -1075,8 +1030,8 @@ applicable agreement for further details.
 	(pt 520 544)
 )
 (connector
-	(pt 504 648)
 	(pt 504 576)
+	(pt 504 640)
 )
 (connector
 	(pt 520 576)
@@ -1088,11 +1043,7 @@ applicable agreement for further details.
 )
 (connector
 	(pt 392 576)
-	(pt 392 648)
-)
-(connector
-	(pt 392 648)
-	(pt 504 648)
+	(pt 392 640)
 )
 (connector
 	(pt 296 576)
@@ -1100,15 +1051,35 @@ applicable agreement for further details.
 )
 (connector
 	(pt 280 576)
-	(pt 280 648)
+	(pt 280 640)
 )
 (connector
-	(pt 264 648)
-	(pt 280 648)
+	(pt 392 640)
+	(pt 504 640)
 )
 (connector
-	(pt 280 648)
-	(pt 392 648)
+	(pt 208 640)
+	(pt 280 640)
+)
+(connector
+	(pt 280 640)
+	(pt 392 640)
+)
+(connector
+	(pt 712 432)
+	(pt 264 432)
+)
+(connector
+	(pt 264 544)
+	(pt 264 432)
+)
+(connector
+	(pt 712 296)
+	(pt 712 336)
+)
+(connector
+	(pt 712 336)
+	(pt 712 432)
 )
 (junction (pt 232 144))
 (junction (pt 368 96))
@@ -1123,8 +1094,8 @@ applicable agreement for further details.
 (junction (pt 376 616))
 (junction (pt 376 544))
 (junction (pt 488 544))
-(junction (pt 392 648))
-(junction (pt 280 648))
+(junction (pt 392 640))
+(junction (pt 280 640))
 (text "Needed only for FPGAs" (rect 40 72 174 86)(font "Arial" (font_size 8)))
 (text "Special reset, USPTO 4,486,827 by Shima et al." (rect 40 24 371 40)(font "Arial" (font_size 10))(border))
 (text "Required 3 clock reset cycles to clear PC and IR" (rect 304 464 576 478)(font "Arial" (font_size 8)))
@@ -1133,11 +1104,11 @@ applicable agreement for further details.
 (title_block
 	(rect 696 584 953 636)
 	(name "title-custom-small")
-	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "September 6, 2014, 2016" (rect 56 3 198 17)(font "Arial" (font_size 8)))(border))
-	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
-	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "resets" (rect 43 2 86 17)(font "Arial" (font_size 9)(bold)))(border))
 	(section (rect 0 0 256 17)(text "PROJECT" (rect 2 0 52 12)(font "Arial" ))(text "A-Z80" (rect 56 2 94 17)(font "Arial" (font_size 9)(bold)))(border))
-	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.4" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 104 0 256 17)(text "MODULE" (rect 2 1 48 13)(font "Arial" ))(text "resets" (rect 43 2 86 17)(font "Arial" (font_size 9)(bold)))(border))
+	(section (rect 0 18 256 34)(text "DESIGNER" (rect 2 0 59 12)(font "Arial" ))(text "Goran Devic" (rect 56 2 135 17)(font "Arial" (font_size 9)))(border))
+	(section (rect 0 35 256 51)(text "DATE" (rect 2 0 30 12)(font "Arial" ))(text "September 6, 2014, 2016" (rect 56 3 198 17)(font "Arial" (font_size 8)))(border))
+	(section (rect 192 35 256 51)(text "REV" (rect 2 1 25 13)(font "Arial" ))(text "1.5" (rect 43 3 60 17)(font "Arial" (font_size 8)))(border))
 	(drawing
 	)
 )
