@@ -89,9 +89,9 @@ subtype lrdivider_t is integer range 0 to lrdivider_top;
 subtype bdivider_t is integer range 0 to bdivider_top;
 subtype bitcount_t is integer range 0 to nbits;
 
-signal lrdivider : lrdivider_t;
-signal bdivider : bdivider_t;
-signal bitcount : bitcount_t;
+signal lrdivider : lrdivider_t := lrdivider_top;
+signal bdivider : bdivider_t := bdivider_top;
+signal bitcount : bitcount_t := nbits;
 
 signal mclk_r : std_logic;
 signal lrclk_r : std_logic;

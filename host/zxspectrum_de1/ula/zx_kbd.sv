@@ -188,38 +188,38 @@ begin
                     // Otherwise, it will stay active if the shift was released first
                     8'h4E:  begin                       // - or (shifted) _
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[4][0] <= shifted ? released : 1;     // 0
-                            keys[6][3] <= shifted ? 1 : released;     // J
+                            keys[4][0] <= shifted ? released : 1'b1;     // 0
+                            keys[6][3] <= shifted ? 1'b1 : released;     // J
                             end
                     8'h55:  begin                       // = or (shifted) +
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[6][2] <= shifted ? released : 1;     // K
-                            keys[6][1] <= shifted ? 1 : released;     // L
+                            keys[6][2] <= shifted ? released : 1'b1;     // K
+                            keys[6][1] <= shifted ? 1'b1 : released;     // L
                             end
                     8'h52:  begin                       // ' or (shifted) "
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[5][0] <= shifted ? released : 1;     // P
-                            keys[4][3] <= shifted ? 1 : released;     // 7
+                            keys[5][0] <= shifted ? released : 1'b1;     // P
+                            keys[4][3] <= shifted ? 1'b1 : released;     // 7
                             end
                     8'h4C:  begin                       // ; or (shifted) :
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[0][1] <= shifted ? released : 1;     // Z
-                            keys[5][1] <= shifted ? 1 : released;     // O
+                            keys[0][1] <= shifted ? released : 1'b1;     // Z
+                            keys[5][1] <= shifted ? 1'b1 : released;     // O
                             end
                     8'h41:  begin                       // , or (shifted) <
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[2][3] <= shifted ? released : 1;     // R
-                            keys[7][3] <= shifted ? 1 : released;     // N
+                            keys[2][3] <= shifted ? released : 1'b1;     // R
+                            keys[7][3] <= shifted ? 1'b1 : released;     // N
                             end
                     8'h49:  begin                       // . or (shifted) >
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[2][4] <= shifted ? released : 1;     // T
-                            keys[7][2] <= shifted ? 1 : released;     // M
+                            keys[2][4] <= shifted ? released : 1'b1;     // T
+                            keys[7][2] <= shifted ? 1'b1 : released;     // M
                             end
                     8'h4A:  begin                       // / or (shifted) ?
                             keys[7][1] <= released;     // SYMBOL SHIFT (Red)
-                            keys[0][3] <= shifted ? released : 1;     // C
-                            keys[0][4] <= shifted ? 1 : released;     // V
+                            keys[0][3] <= shifted ? released : 1'b1;     // C
+                            keys[0][4] <= shifted ? 1'b1 : released;     // V
                             end
                 endcase
             end
