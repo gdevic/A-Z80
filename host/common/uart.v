@@ -1,8 +1,8 @@
 // Simple transmit-only UART model
 
 module uart #(
-    parameter BAUD = 115200,
-    parameter IN_CLOCK = 50000000)
+    parameter [28:0] BAUD = 115200,
+    parameter [28:0] IN_CLOCK = 50000000)
 (
     // Outputs
     output wire busy,          // Set when busy transmitting
@@ -22,7 +22,7 @@ wire sending = |bitcount;
 
 // Calculate UART clock based on the input clock
 reg [28:0] d;
-wire [28:0] inc = d[28] ? 29'(BAUD) : 29'(BAUD - IN_CLOCK);
+wire [28:0] inc = d[28] ? (BAUD) : (BAUD - IN_CLOCK);
 wire [28:0] delta = d + inc;
 
 always @(posedge clk)
