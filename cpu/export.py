@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 #
-# This script exports all core A-Z80 Verilog files to a destination of your choice.
-# The files copied are necessary and sufficient to include with your custom project.
+# This script exports all core A-Z80 Verilog files to a destination folder of your choice.
+# Add all Verilog files (*.v) to your project and ensure that Verilog include files (*.vh)
+# are on the include path.
 #
 #-------------------------------------------------------------------------------
-#  Copyright (C) 2014, 2016  Goran Devic, www.baltazarstudios.com
+#  Copyright (C) 2014,2017  Goran Devic, www.baltazarstudios.com
 #
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -22,10 +23,7 @@ from shutil import copyfile
 
 if len(sys.argv) != 2:
     print ("\nUsage: export.py <destination-folder>\n")
-    print ("Copies all core A-Z80 Verilog files to a destination of your choice.")
-    print ("The files copied are necessary and sufficient to include with your project.\n")
-    print ("Note for the users of Lattice FPGA toolset: instead of data_pins.v, manually")
-    print ("copy and use data_pins_lattice.v file instead.")
+    print ("Copies all core A-Z80 Verilog files to a destination folder of your choice.")
     exit(-1)
 
 dest = sys.argv[1]
@@ -55,7 +53,7 @@ for infile in files:
             print ("ERROR: Incorrect number of files copied!")
             exit(-1)
         else:
-            print ("\nDone copying {0} files.".format(files))
+            print ("\nDone copying {0} files.\n".format(files))
     if not os.path.isfile(infile):
         continue
     name = os.path.basename(infile)
@@ -65,3 +63,10 @@ for infile in files:
         with open(infile) as g:
             f.write(g.read())
     total += 1
+
+print ("All necessary A-Z80 CPU files are copied to", dest)
+print ("Add all Verilog files (*.v) to your project and ensure that Verilog include")
+print ("files (*.vh) are on the include path.\n")
+print ("Use z80_top_direct_n.v as your top-level interface file.\n")
+print ("Note for the users of Lattice FPGA toolset: instead of data_pins.v, manually")
+print ("copy and use data_pins_lattice.v file instead.")
