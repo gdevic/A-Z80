@@ -1,6 +1,6 @@
-# This is a list of A-Z80 files and their dependencies used by several scripts.
-# If you simply want to copy the CPU files into your project, run "export.py"
-# instead of reading this list.
+# This is a list of A-Z80 files and their dependencies. It is used by several scripts.
+# To copy A-Z80 files into your project, run "export.py" script instead of reading
+# this list or, even worse, copying everything.
 
 ------ Control block -------
 control/clk_delay.v
