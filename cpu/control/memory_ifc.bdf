@@ -2653,15 +2653,6 @@ applicable agreement for further details.
 	(pt 408 1416)
 )
 (connector
-	(pt 384 1376)
-	(pt 488 1376)
-)
-(connector
-	(text "wait_iorq" (rect 635 1360 677 1372)(font "Arial" ))
-	(pt 488 1376)
-	(pt 672 1376)
-)
-(connector
 	(text "iorq" (rect 408 1296 425 1308)(font "Arial" ))
 	(pt 400 1312)
 	(pt 480 1312)
@@ -3177,11 +3168,6 @@ applicable agreement for further details.
 	(pt 768 1832)
 )
 (connector
-	(text "wait_iorq" (rect 455 1824 497 1836)(font "Arial" ))
-	(pt 448 1840)
-	(pt 688 1840)
-)
-(connector
 	(text "wait_mwr" (rect 532 1808 576 1820)(font "Arial" ))
 	(pt 528 1824)
 	(pt 688 1824)
@@ -3550,6 +3536,20 @@ applicable agreement for further details.
 	(pt 224 1448)
 	(pt 296 1448)
 	(color 76 152 0)
+)
+(connector
+	(pt 384 1376)
+	(pt 488 1376)
+)
+(connector
+	(text "wait_iorqinta" (rect 619 1360 679 1372)(font "Arial" ))
+	(pt 488 1376)
+	(pt 664 1376)
+)
+(connector
+	(text "wait_iorqinta" (rect 447 1824 507 1836)(font "Arial" ))
+	(pt 448 1840)
+	(pt 688 1840)
 )
 (junction (pt 248 144))
 (junction (pt 272 320))

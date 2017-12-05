@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Dec 04 17:37:20 2017"
+// CREATED		"Mon Dec 04 18:35:47 2017"
 
 module memory_ifc(
 	clk,
@@ -75,7 +75,7 @@ wire	nMEMRQ_int;
 wire	nq2;
 reg	q1;
 reg	q2;
-reg	wait_iorq;
+reg	wait_iorqinta;
 reg	wait_m_ALTERA_SYNTHESIZED1;
 reg	wait_mrd;
 reg	wait_mwr;
@@ -113,7 +113,7 @@ assign	iorq = SYNTHESIZED_WIRE_15 | DFFE_iorq_ff4 | SYNTHESIZED_WIRE_16;
 
 assign	ioWrite = iorq & fIOWrite;
 
-assign	latch_wait = wait_mrd | wait_iorq | wait_m_ALTERA_SYNTHESIZED1 | wait_mwr;
+assign	latch_wait = wait_mrd | wait_iorqinta | wait_m_ALTERA_SYNTHESIZED1 | wait_mwr;
 
 assign	nMEMRQ_int = ~(m1_mreq | mrd_mreq | mwr_mreq);
 
@@ -127,7 +127,7 @@ assign	mwr_mreq = mwr_wr | wait_mwr;
 
 assign	nIORQ_out = ~(intr_iorq | iorq);
 
-assign	intr_iorq = DFFE_intr_ff3 | wait_iorq;
+assign	intr_iorq = DFFE_intr_ff3 | wait_iorqinta;
 
 assign	nM1_out = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_17;
 
@@ -140,12 +140,12 @@ always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
 begin
 if (!nreset)
 	begin
-	wait_iorq <= 0;
+	wait_iorqinta <= 0;
 	end
 else
 if (timings_en)
 	begin
-	wait_iorq <= iorq_Tw;
+	wait_iorqinta <= iorq_Tw;
 	end
 end
 
@@ -159,7 +159,7 @@ if (!nreset)
 else
 if (nhold_clk_wait)
 	begin
-	DFFE_intr_ff3 <= wait_iorq;
+	DFFE_intr_ff3 <= wait_iorqinta;
 	end
 end
 
