@@ -2201,6 +2201,39 @@ applicable agreement for further details.
 		(circle (rect 31 12 39 20))
 	)
 )
+(symbol
+	(rect 688 1344 752 1392)
+	(text "OR2" (rect 1 0 19 10)(font "Arial" (font_size 6)))
+	(text "inst4" (rect 3 37 26 49)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 15 32))
+	)
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 15 16))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 48 24)(pt 64 24))
+	)
+	(drawing
+		(line (pt 14 36)(pt 25 36))
+		(line (pt 14 13)(pt 25 13))
+		(arc (pt 7 29)(pt 7 19)(rect -14 8 19 41))
+		(arc (pt 49 24)(pt 25 13)(rect -6 13 57 76))
+		(arc (pt 25 35)(pt 49 24)(rect -6 -27 57 36))
+	)
+)
 (connector
 	(pt 704 112)
 	(pt 720 112)
@@ -2410,10 +2443,6 @@ applicable agreement for further details.
 (connector
 	(pt 512 1112)
 	(pt 512 1056)
-)
-(connector
-	(pt 624 1072)
-	(pt 736 1072)
 )
 (connector
 	(pt 624 1112)
@@ -3538,18 +3567,37 @@ applicable agreement for further details.
 	(color 76 152 0)
 )
 (connector
+	(pt 624 1072)
+	(pt 736 1072)
+)
+(connector
+	(text "wait_iorq" (rect 865 1056 907 1068)(font "Arial" ))
+	(pt 736 1072)
+	(pt 904 1072)
+)
+(connector
+	(text "wait_io" (rect 447 1824 480 1836)(font "Arial" ))
+	(pt 448 1840)
+	(pt 688 1840)
+)
+(connector
 	(pt 384 1376)
 	(pt 488 1376)
 )
 (connector
 	(text "wait_iorqinta" (rect 619 1360 679 1372)(font "Arial" ))
 	(pt 488 1376)
-	(pt 664 1376)
+	(pt 688 1376)
 )
 (connector
-	(text "wait_iorqinta" (rect 447 1824 507 1836)(font "Arial" ))
-	(pt 448 1840)
-	(pt 688 1840)
+	(text "wait_io" (rect 793 1352 826 1364)(font "Arial" ))
+	(pt 752 1368)
+	(pt 824 1368)
+)
+(connector
+	(text "wait_iorq" (rect 619 1344 661 1356)(font "Arial" ))
+	(pt 616 1360)
+	(pt 688 1360)
 )
 (junction (pt 248 144))
 (junction (pt 272 320))
@@ -3616,6 +3664,7 @@ applicable agreement for further details.
 (junction (pt 704 112))
 (junction (pt 592 200))
 (junction (pt 224 1216))
+(junction (pt 736 1072))
 (text "MREQ DURING REFRESH" (rect 640 248 780 262)(font "Arial" (font_size 8)))
 (text "STANDARD MEM REQ" (rect 712 408 837 422)(font "Arial" (font_size 8)))
 (text "Refresh generator logic, USPTO 4,332,008 by Shima et al.   FIG. 9A" (rect 40 32 506 48)(font "Arial" (font_size 10))(border))

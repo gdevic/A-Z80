@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Dec 04 18:35:47 2017"
+// CREATED		"Mon Dec 04 20:31:24 2017"
 
 module memory_ifc(
 	clk,
@@ -75,6 +75,8 @@ wire	nMEMRQ_int;
 wire	nq2;
 reg	q1;
 reg	q2;
+wire	wait_io;
+reg	wait_iorq;
 reg	wait_iorqinta;
 reg	wait_m_ALTERA_SYNTHESIZED1;
 reg	wait_mrd;
@@ -82,16 +84,15 @@ reg	wait_mwr;
 wire	SYNTHESIZED_WIRE_0;
 reg	DFFE_m1_ff3;
 wire	SYNTHESIZED_WIRE_1;
-reg	SYNTHESIZED_WIRE_15;
 reg	DFFE_iorq_ff4;
-reg	SYNTHESIZED_WIRE_16;
+reg	SYNTHESIZED_WIRE_15;
 reg	DFFE_mrd_ff3;
 reg	DFFE_intr_ff3;
 wire	SYNTHESIZED_WIRE_2;
-reg	SYNTHESIZED_WIRE_17;
+reg	SYNTHESIZED_WIRE_16;
 wire	SYNTHESIZED_WIRE_3;
-reg	SYNTHESIZED_WIRE_18;
-wire	SYNTHESIZED_WIRE_19;
+reg	SYNTHESIZED_WIRE_17;
+wire	SYNTHESIZED_WIRE_18;
 reg	DFFE_iorq_ff1;
 reg	DFFE_m1_ff1;
 reg	DFFE_mrd_ff1;
@@ -109,11 +110,11 @@ assign	SYNTHESIZED_WIRE_1 = ~(DFFE_m1_ff3 | wait_m_ALTERA_SYNTHESIZED1);
 
 assign	m1_mreq = ~(in_intr | SYNTHESIZED_WIRE_1);
 
-assign	iorq = SYNTHESIZED_WIRE_15 | DFFE_iorq_ff4 | SYNTHESIZED_WIRE_16;
+assign	iorq = wait_iorq | DFFE_iorq_ff4 | SYNTHESIZED_WIRE_15;
 
 assign	ioWrite = iorq & fIOWrite;
 
-assign	latch_wait = wait_mrd | wait_iorqinta | wait_m_ALTERA_SYNTHESIZED1 | wait_mwr;
+assign	latch_wait = wait_mrd | wait_io | wait_m_ALTERA_SYNTHESIZED1 | wait_mwr;
 
 assign	nMEMRQ_int = ~(m1_mreq | mrd_mreq | mwr_mreq);
 
@@ -127,16 +128,18 @@ assign	mwr_mreq = mwr_wr | wait_mwr;
 
 assign	nIORQ_out = ~(intr_iorq | iorq);
 
+assign	wait_io = wait_iorqinta | wait_iorq;
+
 assign	intr_iorq = DFFE_intr_ff3 | wait_iorqinta;
 
-assign	nM1_out = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_17;
+assign	nM1_out = SYNTHESIZED_WIRE_2 | SYNTHESIZED_WIRE_16;
 
-assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_3 & SYNTHESIZED_WIRE_18);
+assign	SYNTHESIZED_WIRE_0 = ~(SYNTHESIZED_WIRE_3 & SYNTHESIZED_WIRE_17);
 
-assign	nRFSH_out = ~(nq2 & SYNTHESIZED_WIRE_17);
+assign	nRFSH_out = ~(nq2 & SYNTHESIZED_WIRE_16);
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -182,31 +185,31 @@ always@(posedge clk or negedge nreset)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_16 <= 0;
-	end
-else
-if (timings_en)
-	begin
-	SYNTHESIZED_WIRE_16 <= DFFE_iorq_ff1;
-	end
-end
-
-
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
-begin
-if (!nreset)
-	begin
 	SYNTHESIZED_WIRE_15 <= 0;
 	end
 else
 if (timings_en)
 	begin
-	SYNTHESIZED_WIRE_15 <= SYNTHESIZED_WIRE_16;
+	SYNTHESIZED_WIRE_15 <= DFFE_iorq_ff1;
 	end
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
+begin
+if (!nreset)
+	begin
+	wait_iorq <= 0;
+	end
+else
+if (timings_en)
+	begin
+	wait_iorq <= SYNTHESIZED_WIRE_15;
+	end
+end
+
+
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -215,7 +218,7 @@ if (!nreset)
 else
 if (timings_en)
 	begin
-	DFFE_iorq_ff4 <= SYNTHESIZED_WIRE_15;
+	DFFE_iorq_ff4 <= wait_iorq;
 	end
 end
 
@@ -224,17 +227,17 @@ always@(posedge clk or negedge nreset)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_17 <= 0;
+	SYNTHESIZED_WIRE_16 <= 0;
 	end
 else
 if (timings_en)
 	begin
-	SYNTHESIZED_WIRE_17 <= nM1_int;
+	SYNTHESIZED_WIRE_16 <= nM1_int;
 	end
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -248,7 +251,7 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -290,7 +293,7 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -304,7 +307,7 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -318,21 +321,21 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
-	SYNTHESIZED_WIRE_18 <= 0;
+	SYNTHESIZED_WIRE_17 <= 0;
 	end
 else
 if (timings_en)
 	begin
-	SYNTHESIZED_WIRE_18 <= SYNTHESIZED_WIRE_17;
+	SYNTHESIZED_WIRE_17 <= SYNTHESIZED_WIRE_16;
 	end
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -341,7 +344,7 @@ if (!nreset)
 else
 if (timings_en)
 	begin
-	DFFE_mreq_ff2 <= SYNTHESIZED_WIRE_18;
+	DFFE_mreq_ff2 <= SYNTHESIZED_WIRE_17;
 	end
 end
 
@@ -360,7 +363,7 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -374,7 +377,7 @@ if (timings_en)
 end
 
 
-always@(posedge SYNTHESIZED_WIRE_19 or negedge nreset)
+always@(posedge SYNTHESIZED_WIRE_18 or negedge nreset)
 begin
 if (!nreset)
 	begin
@@ -387,7 +390,7 @@ if (timings_en)
 	end
 end
 
-assign	SYNTHESIZED_WIRE_19 =  ~clk;
+assign	SYNTHESIZED_WIRE_18 =  ~clk;
 
 assign	nq2 =  ~q2;
 
@@ -405,7 +408,7 @@ if (!nreset)
 else
 if (timings_en)
 	begin
-	q1 <= SYNTHESIZED_WIRE_17;
+	q1 <= SYNTHESIZED_WIRE_16;
 	end
 end
 
