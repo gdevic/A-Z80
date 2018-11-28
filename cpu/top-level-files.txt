@@ -1,6 +1,5 @@
 # This is a list of A-Z80 files and their dependencies. It is used by several scripts.
-# To copy A-Z80 files into your project, run "export.py" script instead of reading
-# this list or, even worse, copying everything.
+# To copy A-Z80 files into your project, run "export.py" script.
 
 ------ Control block -------
 control/clk_delay.v

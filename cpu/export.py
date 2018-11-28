@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 #
-# This script exports all core A-Z80 Verilog files to a destination folder of your choice.
-# Add all Verilog files (*.v) to your project and ensure that Verilog include files (*.vh)
-# are on the include path.
+# Run this script to export necessary CPU files away and into your project.
 #
 #-------------------------------------------------------------------------------
-#  Copyright (C) 2014,2017  Goran Devic, www.baltazarstudios.com
+#  Copyright (C) 2014,2018  Goran Devic, www.baltazarstudios.com
 #
 #  This program is free software; you can redistribute it and/or modify it
 #  under the terms of the GNU General Public License as published by the Free
@@ -23,7 +21,7 @@ from shutil import copyfile
 
 if len(sys.argv) != 2:
     print ("\nUsage: export.py <destination-folder>\n")
-    print ("Copies all core A-Z80 Verilog files to a destination folder of your choice.")
+    print ("Exports all necessary A-Z80 Verilog files to a project folder of your choice.")
     exit(-1)
 
 dest = sys.argv[1]

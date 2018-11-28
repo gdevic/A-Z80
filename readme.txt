@@ -13,27 +13,27 @@ Prerequisites
 * Altera Quartus and Modelsim (free web editions) OR
 * Xilinx ISE (free Webpack edition) OR
 * Lattice ICECube toolchain from Synopsis (Lattice tested by JuanS)
-* Python 3.5.x
+* Python 3.5 or newer
 
-Description of Folders
-======================
-"cpu" folder contains A-Z80 CPU functional blocks and top-level modules:
-  alu         contains ALU block, ALU control and flags logic
-  bus         contains data bus switches, pin logic, address latch and the
-              address incrementer
-  control     contains PLA decoder, the sequencer and other control blocks
-  registers   contains CPU register file and the register control logic
-  toplevel    A-Z80 top level core, interfaces and test code
-
-IMPORTANT:
+Importing A-Z80 into your project
+=================================
 If you want to use A-Z80 in your own project, run "export.py" script which
-will copy only files that are needed (so, don't copy everything yourself).
+will copy only files that are needed. Do not manually pick and copy files.
+
+Folder content
+==============
+"cpu" folder contains all CPU functional blocks and top-level modules:
+  alu         ALU block, ALU control and flags logic
+  bus         data bus switches, pin logic, address latch and incrementer
+  control     PLA decoder, the sequencer and other control blocks
+  registers   CPU register file and the register control logic
+  toplevel    top level core, interfaces and test code
 
 "host" folder integrates the A-Z80 CPU into several fully functional designs:
   "basic_de1" contains a simplified board consisting of A-Z80 CPU, memory
           and UART modules that can run small Z80 programs on Altera DE1
   "basic_nexys3" contains the same example project but for Xilinx Nexys3 board
-  "zxspectrum_de1" contains an implementation of the Sinclair ZX Spectrum
+  "zxspectrum_de1" contains a simple implementation of the Sinclair ZX Spectrum
           for Altera DE1 board
 
 "tools", "resources" contain various tools related to the project; reverse
