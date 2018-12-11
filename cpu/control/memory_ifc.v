@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
-// CREATED		"Mon Dec 04 20:31:24 2017"
+// CREATED		"Sun Dec 09 19:14:29 2018"
 
 module memory_ifc(
 	clk,
@@ -146,7 +146,6 @@ if (!nreset)
 	wait_iorqinta <= 0;
 	end
 else
-if (timings_en)
 	begin
 	wait_iorqinta <= iorq_Tw;
 	end

@@ -3253,10 +3253,6 @@ applicable agreement for further details.
 	(pt 688 1856)
 )
 (connector
-	(pt 208 1504)
-	(pt 392 1504)
-)
-(connector
 	(pt 560 160)
 	(pt 544 160)
 	(color 76 152 0)
@@ -3557,16 +3553,6 @@ applicable agreement for further details.
 	(color 76 152 0)
 )
 (connector
-	(pt 224 1216)
-	(pt 224 1448)
-	(color 76 152 0)
-)
-(connector
-	(pt 224 1448)
-	(pt 296 1448)
-	(color 76 152 0)
-)
-(connector
 	(pt 624 1072)
 	(pt 736 1072)
 )
@@ -3598,6 +3584,10 @@ applicable agreement for further details.
 	(text "wait_iorq" (rect 619 1344 661 1356)(font "Arial" ))
 	(pt 616 1360)
 	(pt 688 1360)
+)
+(connector
+	(pt 208 1504)
+	(pt 392 1504)
 )
 (junction (pt 248 144))
 (junction (pt 272 320))
@@ -3663,7 +3653,6 @@ applicable agreement for further details.
 (junction (pt 624 880))
 (junction (pt 704 112))
 (junction (pt 592 200))
-(junction (pt 224 1216))
 (junction (pt 736 1072))
 (text "MREQ DURING REFRESH" (rect 640 248 780 262)(font "Arial" (font_size 8)))
 (text "STANDARD MEM REQ" (rect 712 408 837 422)(font "Arial" (font_size 8)))
