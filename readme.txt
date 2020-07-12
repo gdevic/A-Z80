@@ -3,7 +3,7 @@
              ------------------------------------------
                 for Altera, Xilinx and Lattice FPGAs
 
-This project is described in more details at www.baltazarstudios.com
+This project is described in more details at https://baltazarstudios.com
 
 For additional information, read 'Quick Start' and 'Users Guide' documents
 in the 'docs' folder. Also read a 'readme.txt' file in each of the folders.
@@ -18,11 +18,11 @@ Prerequisites
 Importing A-Z80 into your project
 =================================
 If you want to use A-Z80 in your own project, run "export.py" script which
-will copy only files that are needed. Do not manually pick and copy files.
+will copy only the files that are needed. Do not manually pick and copy files.
 
-Folder content
-==============
-"cpu" folder contains all CPU functional blocks and top-level modules:
+Folder layout
+=============
+"cpu" folder contains CPU functional blocks and all top-level modules:
   alu         ALU block, ALU control and flags logic
   bus         data bus switches, pin logic, address latch and incrementer
   control     PLA decoder, the sequencer and other control blocks
@@ -37,10 +37,10 @@ Folder content
           for Altera DE1 board
 
 "tools", "resources" contain various tools related to the project; reverse
-  engineering Z80, design verification and testing.
+  engineering of the real Z80, design verification and testing.
 
 Email me if you have any questions, issues or you want to use A-Z80 or any of
-the files herein; I'd like to hear from you,
+the files within this project. I'd like to hear from you,
 
 Goran Devic
 gdevic@yahoo.com

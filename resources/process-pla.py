@@ -101,7 +101,7 @@ with open(outFile, 'w') as fOut:
             fOut.write(seg[0] + "\t" + seg[21] + "\t" + ' '.join(seg[23:len(seg)]) +  "\n")
 
     # The original PLA table passes individual opcode bits that are needed to decode many
-    # instructions but it does not contain concrete entries
+    # instructions but it does not contain concrete single-bit entries
     # We append those bits to the end of our PLA table
     fOut.write("....... ...............1\t-\t99\txxxxxxx1\topcode[0]\n")
     fOut.write("....... .............1..\t-\t100\txxxxxx1x\topcode[1]\n")

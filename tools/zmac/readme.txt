@@ -1,8 +1,8 @@
-Several things are happening here:
+This directory supports several processes:
 
 1. Generation of Z80 test code for ModelSim and FPGA at the "host/basic" level:
 
-  Run the batch file "make_fpga.bat" generate "fpga.hex" from a test source file.
+  Run the batch file "make_fpga.bat" to generate "fpga.hex" from a test source file.
   This file is included by the host/basic/ram.v module into the FPGA image.
 
 2. Generation of Z80 test code for the toplevel A-Z80 CPU ModelSim at the
@@ -17,7 +17,7 @@ Several things are happening here:
   "ram.hexdump" contains the test code that provides UART print functions as well
   as INT/NMI handlers used to test interrupts.
 
-Currently tested sources which should work in both of those use cases:
+Currently tested sources, which should work in both of those use cases, are:
 
      "hello_world.asm" - simply test UART print out functions
 

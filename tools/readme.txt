@@ -2,8 +2,8 @@ This directory contains various tools related to the project:
 
 Arduino
 =======
-The Arduino Mega firmware to be run with a dongle described at:
-http://www.baltazarstudios.com
+The Arduino Mega firmware to be run with a dongle described in this blog:
+https://baltazarstudios.com/arduino-zilog-z80
 
 
 dongle
